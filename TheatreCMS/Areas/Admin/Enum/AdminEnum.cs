@@ -5,8 +5,9 @@ using System.Web;
 
 namespace TheatreCMS.Areas.Admin.Enum
 {
+    //enum for the admin area
     public class AdminEnum
     {
-        enum ContentDisplay { Production, Sponsor, Info, Links };
+        public enum ContentDisplay { Production, Sponsor, Info, Links };
     }
 }
