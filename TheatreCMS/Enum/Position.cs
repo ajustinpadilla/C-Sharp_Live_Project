@@ -15,7 +15,7 @@ namespace TheatreCMS.Enum
         Director,
         [Description("Technician")]
         Technician,
-        [Description("StageManager")]
+        [Description("Stage Manager")]
         StageManager,
         [Description("Other")]
         Other
