@@ -16,5 +16,7 @@ namespace TheatreCMS.Models
         public DateTime ShowtimeEve { get; set; }
         public DateTime ShowtimeMat { get; set; }
         public string TicketLink { get; set; }
+
+        public virtual ICollection<ContentSection> ContentSection { get; set; }
     }
 }
