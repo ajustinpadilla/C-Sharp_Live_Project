@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace TheatreCMS.Models
 {
     public class CurrentProduction
     {
+        [Key]
         public int ProductionId { get; set; }
         public string Title { get; set; }
         public string Playwright { get; set; }
@@ -17,6 +20,6 @@ namespace TheatreCMS.Models
         public DateTime ShowtimeMat { get; set; }
         public string TicketLink { get; set; }
 
-        public virtual ICollection<ContentSection> ContentSection { get; set; }
+        //public virtual ICollection<ContentSection> ContentSection { get; set; }
     }
 }
