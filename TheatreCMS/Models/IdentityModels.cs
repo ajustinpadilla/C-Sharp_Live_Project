@@ -31,16 +31,10 @@ namespace TheatreCMS.Models
         {
             return new ApplicationDbContext();
         }
-    }
 
-    public class CurrentProduction : ApplicationDbContext
-    {
-        public CurrentProductionContext() : base("CurrentProduction")
-        {
-        }
-
-        public DbSet<CurrentProduction> { get; set; }
-        
+        public DbSet<CurrentProduction> currentProductions { get; set; }
 
     }
+
+
 }
