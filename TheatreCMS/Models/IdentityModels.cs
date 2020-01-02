@@ -32,7 +32,7 @@ namespace TheatreCMS.Models
             return new ApplicationDbContext();
         }
 
-        public DbSet<CurrentProduction> currentProductions { get; set; }
+        public DbSet<CurrentProduction> CurrentProductions { get; set; }
 
     }
 

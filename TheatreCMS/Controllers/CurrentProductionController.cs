@@ -12,7 +12,7 @@ namespace TheatreCMS.Controllers
 {
     public class CurrentProductionController : Controller
     {
-        private TheatreCMSContext db = new TheatreCMSContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CurrentProduction
         public ActionResult Index()
