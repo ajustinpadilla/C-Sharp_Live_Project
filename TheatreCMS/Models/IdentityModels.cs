@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -33,5 +34,8 @@ namespace TheatreCMS.Models
         }
 
         public DbSet<ContentSection> ContentSections { get; set; }
+        public DbSet<CurrentProduction> CurrentProductions { get; set; }
     }
+
+
 }

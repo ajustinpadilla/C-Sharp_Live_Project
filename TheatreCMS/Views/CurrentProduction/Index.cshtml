@@ -1,0 +1,75 @@
+﻿@model IEnumerable<TheatreCMS.Models.CurrentProduction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Playwright)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpeningDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClosingDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowtimeEve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowtimeMat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketLink)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Playwright)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpeningDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClosingDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowtimeEve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowtimeMat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TicketLink)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductionId })
+        </td>
+    </tr>
+}
+
+</table>
