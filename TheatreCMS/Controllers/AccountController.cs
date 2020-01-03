@@ -151,7 +151,7 @@ namespace TheatreCMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = model.GetUser();
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -166,6 +166,7 @@ namespace TheatreCMS.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+                return View(model);
             }
 
             // If we got this far, something failed, redisplay form
