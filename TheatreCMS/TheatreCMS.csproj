@@ -172,11 +172,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\ContentSectionController.cs" />
-=======
     <Compile Include="Controllers\CurrentProductionController.cs" />
->>>>>>> ca9e327b03464cb274efd94975a360f7d91dc8ca
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
