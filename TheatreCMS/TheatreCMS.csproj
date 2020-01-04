@@ -173,6 +173,7 @@
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CurrentProductionController.cs" />
+    <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CurrentProduction.cs" />
+    <Compile Include="Models\DisplayLinks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -358,6 +360,11 @@
     <Content Include="Views\CurrentProduction\Details.cshtml" />
     <Content Include="Views\CurrentProduction\Edit.cshtml" />
     <Content Include="Views\CurrentProduction\Index.cshtml" />
+    <Content Include="Views\DisplayLinks\Create.cshtml" />
+    <Content Include="Views\DisplayLinks\Delete.cshtml" />
+    <Content Include="Views\DisplayLinks\Details.cshtml" />
+    <Content Include="Views\DisplayLinks\Edit.cshtml" />
+    <Content Include="Views\DisplayLinks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

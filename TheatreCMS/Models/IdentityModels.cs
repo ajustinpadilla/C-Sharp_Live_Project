@@ -33,6 +33,7 @@ namespace TheatreCMS.Models
         }
 
         public DbSet<CurrentProduction> CurrentProductions { get; set; }
+        public DbSet<DisplayLinks> DisplayLinks { get; set; }
 
     }
 
