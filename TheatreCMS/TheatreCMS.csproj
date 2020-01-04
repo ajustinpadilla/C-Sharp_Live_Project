@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
@@ -174,6 +174,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
     <Compile Include="Controllers\CurrentProductionController.cs" />
+    <Compile Include="Controllers\DisplayImagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContentSection.cs" />
     <Compile Include="Models\CurrentProduction.cs" />
+    <Compile Include="Models\DisplayImage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -365,6 +367,11 @@
     <Content Include="Views\CurrentProduction\Details.cshtml" />
     <Content Include="Views\CurrentProduction\Edit.cshtml" />
     <Content Include="Views\CurrentProduction\Index.cshtml" />
+    <Content Include="Views\DisplayImages\Create.cshtml" />
+    <Content Include="Views\DisplayImages\Delete.cshtml" />
+    <Content Include="Views\DisplayImages\Details.cshtml" />
+    <Content Include="Views\DisplayImages\Edit.cshtml" />
+    <Content Include="Views\DisplayImages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

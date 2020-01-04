@@ -35,6 +35,7 @@ namespace TheatreCMS.Models
 
         public DbSet<ContentSection> ContentSections { get; set; }
         public DbSet<CurrentProduction> CurrentProductions { get; set; }
+        public DbSet<DisplayImage> DisplayImages { get; set; }
     }
 
 
