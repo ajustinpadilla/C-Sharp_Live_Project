@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity.ModelConfiguration.Conventions;
+using TheatreCMS.Areas.Subscribers.Models;
 using TheatreCMS.Models;
 
 namespace TheatreCMS.Models
@@ -35,6 +35,8 @@ namespace TheatreCMS.Models
 
         public DbSet<ContentSection> ContentSections { get; set; }
         public DbSet<CurrentProduction> CurrentProductions { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
+
     }
 
 
