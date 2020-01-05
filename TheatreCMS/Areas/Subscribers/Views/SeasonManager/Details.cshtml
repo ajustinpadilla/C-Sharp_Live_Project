@@ -1,0 +1,98 @@
+﻿@model TheatreCMS.Areas.Subscribers.Models.SeasonManager
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SeasonManager</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedCurrent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedCurrent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FallProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FallProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FallTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FallTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedFall)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedFall)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WinterProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WinterProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WinterTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WinterTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedWinter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedWinter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpringProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpringProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpringTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpringTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedSpring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedSpring)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NumberSeats }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

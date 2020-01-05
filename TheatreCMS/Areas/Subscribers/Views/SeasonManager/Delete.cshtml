@@ -1,0 +1,104 @@
+﻿@model TheatreCMS.Areas.Subscribers.Models.SeasonManager
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SeasonManager</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedCurrent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedCurrent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FallProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FallProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FallTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FallTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedFall)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedFall)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WinterProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WinterProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WinterTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WinterTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedWinter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedWinter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpringProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpringProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpringTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpringTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedSpring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedSpring)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
