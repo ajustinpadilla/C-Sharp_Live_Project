@@ -172,7 +172,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContentSectionController.cs" />
     <Compile Include="Controllers\CurrentProductionController.cs" />
+    <Compile Include="Controllers\DisplayInfoController.cs" />
     <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -187,7 +189,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ContentSection.cs" />
     <Compile Include="Models\CurrentProduction.cs" />
+    <Compile Include="Models\DisplayInfo.cs" />
     <Compile Include="Models\DisplayLinks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -355,11 +359,21 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\ContentSection\Create.cshtml" />
+    <Content Include="Views\ContentSection\Delete.cshtml" />
+    <Content Include="Views\ContentSection\Details.cshtml" />
+    <Content Include="Views\ContentSection\Edit.cshtml" />
+    <Content Include="Views\ContentSection\Index.cshtml" />
     <Content Include="Views\CurrentProduction\Create.cshtml" />
     <Content Include="Views\CurrentProduction\Delete.cshtml" />
     <Content Include="Views\CurrentProduction\Details.cshtml" />
     <Content Include="Views\CurrentProduction\Edit.cshtml" />
     <Content Include="Views\CurrentProduction\Index.cshtml" />
+    <Content Include="Views\DisplayInfo\Create.cshtml" />
+    <Content Include="Views\DisplayInfo\Delete.cshtml" />
+    <Content Include="Views\DisplayInfo\Details.cshtml" />
+    <Content Include="Views\DisplayInfo\Edit.cshtml" />
+    <Content Include="Views\DisplayInfo\Index.cshtml" />
     <Content Include="Views\DisplayLinks\Create.cshtml" />
     <Content Include="Views\DisplayLinks\Delete.cshtml" />
     <Content Include="Views\DisplayLinks\Details.cshtml" />
