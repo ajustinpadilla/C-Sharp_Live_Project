@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using TheatreCMS.Models;
 
 
 namespace TheatreCMS.Models
@@ -42,6 +45,9 @@ namespace TheatreCMS.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<ContentSection> ContentSections { get; set; }
+        public DbSet<CurrentProduction> CurrentProductions { get; set; }
     }
     // IdentityManager will be able to edit, add and delete roles
     public class IdentityManager 
