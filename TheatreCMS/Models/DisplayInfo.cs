@@ -8,7 +8,7 @@ using System.Web;
 namespace TheatreCMS.Models
 {
     [Table("displayimage")]
-    public class DisplayImage
+    public class DisplayInfo
     {
         [Key]
         public int InfoId { get; set; }

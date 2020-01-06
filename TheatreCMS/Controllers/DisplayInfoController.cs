@@ -10,107 +10,107 @@ using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
 {
-    public class DisplayImagesController : Controller
+    public class DisplayInfoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: DisplayImages
+        // GET: DisplayInfo
         public ActionResult Index()
         {
-            return View(db.DisplayImages.ToList());
+            return View(db.DisplayInfo.ToList());
         }
 
-        // GET: DisplayImages/Details/5
+        // GET: DisplayInfo/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DisplayImage displayImage = db.DisplayImages.Find(id);
-            if (displayImage == null)
+            DisplayInfo displayInfo = db.DisplayInfo.Find(id);
+            if (displayInfo == null)
             {
                 return HttpNotFound();
             }
-            return View(displayImage);
+            return View(displayInfo);
         }
 
-        // GET: DisplayImages/Create
+        // GET: DisplayInfo/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: DisplayImages/Create
+        // POST: DisplayInfo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InfoId,Title,Description,Image,File")] DisplayImage displayImage)
+        public ActionResult Create([Bind(Include = "InfoId,Title,Description,Image,File")] DisplayInfo displayInfo)
         {
             if (ModelState.IsValid)
             {
-                db.DisplayImages.Add(displayImage);
+                db.DisplayInfo.Add(displayInfo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(displayImage);
+            return View(displayInfo);
         }
 
-        // GET: DisplayImages/Edit/5
+        // GET: DisplayInfo/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DisplayImage displayImage = db.DisplayImages.Find(id);
-            if (displayImage == null)
+            DisplayInfo displayInfo = db.DisplayInfo.Find(id);
+            if (displayInfo == null)
             {
                 return HttpNotFound();
             }
-            return View(displayImage);
+            return View(displayInfo);
         }
 
-        // POST: DisplayImages/Edit/5
+        // POST: DisplayInfo/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InfoId,Title,Description,Image,File")] DisplayImage displayImage)
+        public ActionResult Edit([Bind(Include = "InfoId,Title,Description,Image,File")] DisplayInfo displayInfo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(displayImage).State = EntityState.Modified;
+                db.Entry(displayInfo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(displayImage);
+            return View(displayInfo);
         }
 
-        // GET: DisplayImages/Delete/5
+        // GET: DisplayInfo/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DisplayImage displayImage = db.DisplayImages.Find(id);
-            if (displayImage == null)
+            DisplayInfo displayInfo = db.DisplayInfo.Find(id);
+            if (displayInfo == null)
             {
                 return HttpNotFound();
             }
-            return View(displayImage);
+            return View(displayInfo);
         }
 
-        // POST: DisplayImages/Delete/5
+        // POST: DisplayInfo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DisplayImage displayImage = db.DisplayImages.Find(id);
-            db.DisplayImages.Remove(displayImage);
+            DisplayInfo displayInfo = db.DisplayInfo.Find(id);
+            db.DisplayInfo.Remove(displayInfo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

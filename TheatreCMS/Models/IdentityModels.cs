@@ -47,7 +47,7 @@ namespace TheatreCMS.Models
 
         public DbSet<ContentSection> ContentSections { get; set; }
         public DbSet<CurrentProduction> CurrentProductions { get; set; }
-        public DbSet<DisplayImage> DisplayImages { get; set; }
+        public DbSet<DisplayInfo> DisplayInfo { get; set; }
     }
     // IdentityManager will be able to edit, add and delete roles
     public class IdentityManager 
