@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
@@ -170,6 +170,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Subscribers\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
@@ -228,6 +229,9 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Areas\Subscribers\Views\web.config" />
+    <Content Include="Areas\Subscribers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Dashboard\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -379,9 +383,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Subscribers\Controllers\" />
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="Areas\Subscribers\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">
