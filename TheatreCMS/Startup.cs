@@ -40,7 +40,7 @@ namespace TheatreCMS
                 user.State = "OR";
                 user.ZipCode = "97212";
 
-                string userPWD = "password";
+                string userPWD = "Passw0rd!";
 
                 var chkUser = userManager.Create(user, userPWD);
                 if (chkUser.Succeeded)
