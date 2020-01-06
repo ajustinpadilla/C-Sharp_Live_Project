@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TheatreCMS.Models
 {
@@ -79,7 +81,142 @@ namespace TheatreCMS.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        // New fields added to extend User class
+        [Required]
+        [Display(Name = "FirstName")]
+        public string FirstName {get; set;}
+
+        [Required]
+        [Display(Name = "LastName")]
+        public string LastName {get; set;}
+
+        [Required]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
+
+        [Display(Name = "StreetAddress")]
+        public string StreetAddress { get; set; }
+        
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Display(Name = "ZipCode")]
+        public string ZipCode { get; set; }
+
+        public ApplicationUser GetUser()
+        {
+            var user = new ApplicationUser()
+            {
+                UserName = this.UserName,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Email = this.Email,
+            };
+            return user;
+        }
     }
+
+    public class EditUserViewModel
+    {
+        public EditUserViewModel() { }
+
+        public EditUserViewModel(ApplicationUser user)
+        {
+            this.UserName = user.UserName;
+            this.FirstName = user.FirstName;
+            this.LastName = user.LastName;
+            this.Email = user.Email;
+            this.StreetAddress = user.StreetAddress;
+            this.City = user.City;
+            this.State = user.State;
+            this.ZipCode = user.ZipCode;
+        }
+
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Street Address")]
+        public string StreetAddress { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "Zip Code")]
+        public string ZipCode { get; set; }
+    }
+
+    public class SelectUserRolesViewModel
+    {
+        public SelectUserRolesViewModel()
+        {
+            this.Roles = new List<SelectUserRolesViewModel>();
+        }
+
+        //public SelectUserRolesViewModel(ApplicationUser user) : this()
+        //{
+        //    this.UserName = user.UserName;
+        //    this.FirstName = user.FirstName;
+        //    this.LastName = user.LastName;
+
+        //    var Db = new ApplicationDbContext();
+        //    //Add list of all roles
+        //    var allRoles = Db.Roles;
+        //    foreach(var role in allRoles)
+        //    {
+        //        var rvm = new SelectUserRolesViewModel(role);
+        //        this.Roles.Add(rvm);
+        //    }
+        //    // set selected roles to true of which the user is a member
+        //    foreach(var userRole in user.Roles)
+        //    {
+        //        var checkUserRole = this.Roles.Find(r => r.RoleName == userRole.RoleId.Name);
+        //        checkUserRole.Selected = true;
+        //    }
+        //}
+        public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public List<SelectUserRolesViewModel> Roles { get; set; }
+    }
+
+    public class SelectRoleEditorViewModel
+    {
+        public SelectRoleEditorViewModel() { }
+        public SelectRoleEditorViewModel(IdentityRole role)
+        {
+            this.RoleName = role.Name;
+        }
+
+        public bool Selected { get; set; }
+
+        [Required]
+        public string RoleName { get; set; }
+    }
+
 
     public class ResetPasswordViewModel
     {
