@@ -151,7 +151,7 @@ namespace TheatreCMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = model.GetUser();
+                var user = new ApplicationUser { FirstName = model.FirstName, LastName = model.LastName, Email = model.Email, UserName = model.UserName, StreetAddress = model.StreetAddress, City = model.City, State = model.State, ZipCode = model.ZipCode};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
