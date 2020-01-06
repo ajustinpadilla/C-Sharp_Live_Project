@@ -175,6 +175,7 @@
     <Compile Include="Controllers\ContentSectionController.cs" />
     <Compile Include="Controllers\CurrentProductionController.cs" />
     <Compile Include="Controllers\DisplayInfoController.cs" />
+    <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Models\ContentSection.cs" />
     <Compile Include="Models\CurrentProduction.cs" />
     <Compile Include="Models\DisplayInfo.cs" />
+    <Compile Include="Models\DisplayLinks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -372,6 +374,11 @@
     <Content Include="Views\DisplayInfo\Details.cshtml" />
     <Content Include="Views\DisplayInfo\Edit.cshtml" />
     <Content Include="Views\DisplayInfo\Index.cshtml" />
+    <Content Include="Views\DisplayLinks\Create.cshtml" />
+    <Content Include="Views\DisplayLinks\Delete.cshtml" />
+    <Content Include="Views\DisplayLinks\Details.cshtml" />
+    <Content Include="Views\DisplayLinks\Edit.cshtml" />
+    <Content Include="Views\DisplayLinks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
