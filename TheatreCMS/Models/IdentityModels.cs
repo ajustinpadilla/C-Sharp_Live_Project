@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using TheatreCMS.Models;
 
 
@@ -48,6 +47,7 @@ namespace TheatreCMS.Models
 
         public DbSet<ContentSection> ContentSections { get; set; }
         public DbSet<CurrentProduction> CurrentProductions { get; set; }
+        public DbSet<DisplayInfo> DisplayInfo { get; set; }
     }
     // IdentityManager will be able to edit, add and delete roles
     public class IdentityManager 
