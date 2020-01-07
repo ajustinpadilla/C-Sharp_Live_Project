@@ -25,6 +25,14 @@ namespace TheatreCMS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            //Add Calendar bundle
+            bundles.Add(new StyleBundle("~/Content/fullcalendar.css").Include(
+                "~/Content/themes/jquery.ui.all.css",
+                "~/Content/fullcalendar.css"));
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar.js").Include(
+                "~/Scripts/jquery-ui-1.10.4.min.js",
+                "~/Scripts/fullcalendar.min.js"));
         }
     }
 }

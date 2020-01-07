@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
-using TheatreCMS.Enum;
-
-
 namespace TheatreCMS.Models
 {
-    public class Role
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class Role
     {
-        [Key]
         public int RoleID { get; set; }
-        public virtual Production Play { get; set; }
+
         public string Character { get; set; }
-        public PositionEnum Type { get; set; }
-        public virtual CastMember Person { get; set; }
+
+        public int Type { get; set; }
+
         public string Details { get; set; }
 
+        public int? Person_CastMemberID { get; set; }
+
+        public int? Play_ProductionId { get; set; }
+
+        public virtual CastMember CastMember { get; set; }
+
+        public virtual Production Production { get; set; }
     }
 }
