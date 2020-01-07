@@ -12,9 +12,15 @@ namespace TheatreCMS.Models
     {
         [Key]
         public int RoleID { get; set; }
+
+        //Play attribute needs help in the Create() action of the Role controller
         public virtual Production Play { get; set; }
+
         public string Character { get; set; }
+
+        //Type attribute needs help in the Create() action of the Role controller
         public PositionEnum Type { get; set; }
+
         public virtual CastMember Person { get; set; }
         public string Details { get; set; }
 
