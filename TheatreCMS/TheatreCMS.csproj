@@ -179,6 +179,7 @@
     <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
     <Compile Include="Enum\Position.cs" />
     <Compile Include="Global.asax.cs">
@@ -387,6 +388,11 @@
     <Content Include="Views\DisplayLinks\Details.cshtml" />
     <Content Include="Views\DisplayLinks\Edit.cshtml" />
     <Content Include="Views\DisplayLinks\Index.cshtml" />
+    <Content Include="Views\Sponsors\Create.cshtml" />
+    <Content Include="Views\Sponsors\Delete.cshtml" />
+    <Content Include="Views\Sponsors\Details.cshtml" />
+    <Content Include="Views\Sponsors\Edit.cshtml" />
+    <Content Include="Views\Sponsors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
