@@ -170,10 +170,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Subscribers\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
     <Compile Include="Controllers\CurrentProductionController.cs" />
+    <Compile Include="Controllers\DisplayInfoController.cs" />
+    <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
@@ -191,6 +194,8 @@
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\ContentSection.cs" />
     <Compile Include="Models\CurrentProduction.cs" />
+    <Compile Include="Models\DisplayInfo.cs" />
+    <Compile Include="Models\DisplayLinks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Role.cs" />
@@ -231,6 +236,9 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Areas\Subscribers\Views\web.config" />
+    <Content Include="Areas\Subscribers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Dashboard\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -368,6 +376,16 @@
     <Content Include="Views\CurrentProduction\Details.cshtml" />
     <Content Include="Views\CurrentProduction\Edit.cshtml" />
     <Content Include="Views\CurrentProduction\Index.cshtml" />
+    <Content Include="Views\DisplayInfo\Create.cshtml" />
+    <Content Include="Views\DisplayInfo\Delete.cshtml" />
+    <Content Include="Views\DisplayInfo\Details.cshtml" />
+    <Content Include="Views\DisplayInfo\Edit.cshtml" />
+    <Content Include="Views\DisplayInfo\Index.cshtml" />
+    <Content Include="Views\DisplayLinks\Create.cshtml" />
+    <Content Include="Views\DisplayLinks\Delete.cshtml" />
+    <Content Include="Views\DisplayLinks\Details.cshtml" />
+    <Content Include="Views\DisplayLinks\Edit.cshtml" />
+    <Content Include="Views\DisplayLinks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -382,9 +400,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Subscribers\Controllers\" />
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="Areas\Subscribers\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">
