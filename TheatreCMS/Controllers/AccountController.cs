@@ -75,7 +75,19 @@ namespace TheatreCMS.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
+            //LoginViewModel model holds only information entered form user (email, password and remember-me-or-not bool),
+            //However, the built in method used below (SignInManager.PasswordSignInAsync), which verifies login attempts as valid or not, 
+            //requires the UserName of the user whose email address is model.Email
+
+            //So, we can find the user whose Email is model.Email via ->
+            var tempUser = UserManager.FindByEmail(model.Email);
+
+            //and extract their username as a string to pass to SignInManager.PasswordSignInAsync
+            string tempUserName = tempUser.UserName;
+
+            
+            var result = await SignInManager.PasswordSignInAsync(tempUserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,7 +163,7 @@ namespace TheatreCMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { FirstName = model.FirstName, LastName = model.LastName, Email = model.Email, UserName = model.UserName, StreetAddress = model.StreetAddress, City = model.City, State = model.State, ZipCode = model.ZipCode};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -166,6 +178,7 @@ namespace TheatreCMS.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+                return View(model);
             }
 
             // If we got this far, something failed, redisplay form
