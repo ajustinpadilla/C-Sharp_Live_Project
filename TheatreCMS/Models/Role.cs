@@ -12,10 +12,10 @@ namespace TheatreCMS.Models
     {
         [Key]
         public int RoleID { get; set; }
-        public Production Play { get; set; }
+        public virtual Production Play { get; set; }
         public string Character { get; set; }
         public PositionEnum Type { get; set; }
-        public CastMember Person { get; set; }
+        public virtual CastMember Person { get; set; }
         public string Details { get; set; }
 
     }
