@@ -17,7 +17,7 @@ namespace TheatreCMS.Models
         public int YearJoined { get; set; }
         public PositionEnum MainRole { get; set; }
         public string Bio { get; set; }
-        public Image Photo { get; set; }
+        public byte[] Photo { get; set; }
         public bool CurrentMember { get; set; }
         public virtual List<Role> Roles { get; set; }
     }

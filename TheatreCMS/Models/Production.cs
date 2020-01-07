@@ -16,7 +16,7 @@ namespace TheatreCMS.Models
         public string Title { get; set; }
         public string Playwright { get; set; }
         public string Description { get; set; }
-        public Image PromoPhoto { get; set; }
+        public byte[] PromoPhoto { get; set; }
         public DateTime OpeningDay { get; set; }
         public DateTime ClosingDay { get; set; }
         public int Season { get; set; }
