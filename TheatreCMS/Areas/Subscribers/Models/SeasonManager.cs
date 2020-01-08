@@ -30,7 +30,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime SpringTime { get; set; }
         public bool BookedSpring { get; set; }
-        public virtual Subscriber Subscriber { get; set; }
+        public virtual ApplicationUser Subscriber { get; set; }
 
     }
 }
