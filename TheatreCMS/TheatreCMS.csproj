@@ -173,6 +173,7 @@
     <Compile Include="Areas\Subscribers\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CastMembersController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
     <Compile Include="Controllers\CurrentProductionController.cs" />
     <Compile Include="Controllers\DisplayInfoController.cs" />
@@ -407,6 +408,11 @@
     <Content Include="Views\RentalRequest\Details.cshtml" />
     <Content Include="Views\RentalRequest\Edit.cshtml" />
     <Content Include="Views\RentalRequest\Index.cshtml" />
+    <Content Include="Views\CastMembers\Create.cshtml" />
+    <Content Include="Views\CastMembers\Delete.cshtml" />
+    <Content Include="Views\CastMembers\Details.cshtml" />
+    <Content Include="Views\CastMembers\Edit.cshtml" />
+    <Content Include="Views\CastMembers\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Role\Details.cshtml" />
