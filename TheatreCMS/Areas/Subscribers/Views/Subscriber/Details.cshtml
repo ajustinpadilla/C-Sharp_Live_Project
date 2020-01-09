@@ -1,0 +1,82 @@
+﻿@model TheatreCMS.Areas.Subscribers.Models.Subscriber
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Subscriber</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentSubscriber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentSubscriber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasRenewed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasRenewed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Newsletter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Newsletter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecentDonor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecentDonor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDonated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastDonated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDonationAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastDonationAmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialRequests)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecialRequests)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubscriberId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

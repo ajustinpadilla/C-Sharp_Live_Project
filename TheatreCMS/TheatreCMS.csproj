@@ -171,6 +171,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Subscribers\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Subscribers\Controllers\SubscriberController.cs" />
+    <Compile Include="Areas\Subscribers\Models\Subscriber.cs" />
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CastMembersController.cs" />
@@ -246,6 +248,11 @@
     <Content Include="Areas\Subscribers\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Subscribers\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Subscribers\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Create.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Delete.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Details.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Edit.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

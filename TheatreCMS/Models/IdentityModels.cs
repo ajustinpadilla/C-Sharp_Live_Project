@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using TheatreCMS.Areas.Subscribers.Models;
 using TheatreCMS.Models;
 
 
@@ -31,6 +32,10 @@ namespace TheatreCMS.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string Role { get; set; }
+
+        
+        public virtual Subscriber SubscriberPerson { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -54,6 +59,8 @@ namespace TheatreCMS.Models
         public DbSet<DisplayLinks> DisplayLinks { get; set; }
         public DbSet<DisplayInfo> DisplayInfo { get; set; }
         public DbSet<Sponsor> Sponsors { get; set; }
+
+        public DbSet<Subscriber> Subscribers { get; set; }
 
     }
     // IdentityManager will be able to edit, add and delete roles
