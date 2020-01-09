@@ -91,7 +91,6 @@
     <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -171,14 +170,24 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Subscribers\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Subscribers\Controllers\SubscriberController.cs" />
+    <Compile Include="Areas\Subscribers\Models\Subscriber.cs" />
     <Compile Include="Areas\Subscribers\Controllers\SeasonManagerController.cs" />
     <Compile Include="Areas\Subscribers\Models\SeasonManager.cs" />
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CastMembersController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
     <Compile Include="Controllers\CurrentProductionController.cs" />
+    <Compile Include="Controllers\DisplayInfoController.cs" />
+    <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductionsController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SponsorsController.cs" />
+    <Compile Include="Controllers\RentalRequestController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
     <Compile Include="Enum\Position.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,10 +199,17 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CastMember.cs" />
+    <Compile Include="Models\Production.cs" />
     <Compile Include="Models\ContentSection.cs" />
     <Compile Include="Models\CurrentProduction.cs" />
+    <Compile Include="Models\DisplayInfo.cs" />
+    <Compile Include="Models\DisplayLinks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Sponsor.cs" />
+    <Compile Include="Models\RentalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -233,6 +249,14 @@
     <Content Include="Areas\Subscribers\Views\web.config" />
     <Content Include="Areas\Subscribers\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Subscribers\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Create.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Delete.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Details.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Edit.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Index.cshtml" />
+    <Content Include="Areas\Subscribers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Subscribers\Views\SeasonManager\Create.cshtml" />
     <Content Include="Areas\Subscribers\Views\SeasonManager\Delete.cshtml" />
     <Content Include="Areas\Subscribers\Views\SeasonManager\Details.cshtml" />
@@ -253,6 +277,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -375,6 +400,41 @@
     <Content Include="Views\CurrentProduction\Details.cshtml" />
     <Content Include="Views\CurrentProduction\Edit.cshtml" />
     <Content Include="Views\CurrentProduction\Index.cshtml" />
+    <Content Include="Views\DisplayInfo\Create.cshtml" />
+    <Content Include="Views\DisplayInfo\Delete.cshtml" />
+    <Content Include="Views\DisplayInfo\Details.cshtml" />
+    <Content Include="Views\DisplayInfo\Edit.cshtml" />
+    <Content Include="Views\DisplayInfo\Index.cshtml" />
+    <Content Include="Views\DisplayLinks\Create.cshtml" />
+    <Content Include="Views\DisplayLinks\Delete.cshtml" />
+    <Content Include="Views\DisplayLinks\Details.cshtml" />
+    <Content Include="Views\DisplayLinks\Edit.cshtml" />
+    <Content Include="Views\DisplayLinks\Index.cshtml" />
+    <Content Include="Views\Productions\Create.cshtml" />
+    <Content Include="Views\Productions\Delete.cshtml" />
+    <Content Include="Views\Productions\Details.cshtml" />
+    <Content Include="Views\Productions\Edit.cshtml" />
+    <Content Include="Views\Productions\Index.cshtml" />
+    <Content Include="Views\Sponsors\Create.cshtml" />
+    <Content Include="Views\Sponsors\Delete.cshtml" />
+    <Content Include="Views\Sponsors\Details.cshtml" />
+    <Content Include="Views\Sponsors\Edit.cshtml" />
+    <Content Include="Views\Sponsors\Index.cshtml" />
+    <Content Include="Views\RentalRequest\Create.cshtml" />
+    <Content Include="Views\RentalRequest\Delete.cshtml" />
+    <Content Include="Views\RentalRequest\Details.cshtml" />
+    <Content Include="Views\RentalRequest\Edit.cshtml" />
+    <Content Include="Views\RentalRequest\Index.cshtml" />
+    <Content Include="Views\CastMembers\Create.cshtml" />
+    <Content Include="Views\CastMembers\Delete.cshtml" />
+    <Content Include="Views\CastMembers\Details.cshtml" />
+    <Content Include="Views\CastMembers\Edit.cshtml" />
+    <Content Include="Views\CastMembers\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\Role\Details.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
