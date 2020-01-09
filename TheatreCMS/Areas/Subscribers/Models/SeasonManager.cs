@@ -12,7 +12,8 @@ namespace TheatreCMS.Areas.Subscribers.Models
     public class SeasonManager
     {
         [Key]
-        public int SeasonManagerId { get; set; }
+        [ForeignKey("SeasonManagerPerson")]
+        public string SeasonManagerId { get; set; }
         public int NumberSeats { get; set; }
         public bool BookedCurrent { get; set; }
         public string FallProd { get; set; }
@@ -30,7 +31,8 @@ namespace TheatreCMS.Areas.Subscribers.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime SpringTime { get; set; }
         public bool BookedSpring { get; set; }
-        public virtual ApplicationUser Subscriber { get; set; }
+        [Required]
+        public virtual ApplicationUser SeasonManagerPerson { get; set; }
 
     }
 }

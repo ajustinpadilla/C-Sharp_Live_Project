@@ -20,7 +20,7 @@ namespace TheatreCMS.Models
             return userIdentity;
         }
 
-        public virtual ApplicationUser Subscribers { get; set; }
+        public virtual SeasonManager SeasonManagerPerson { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
