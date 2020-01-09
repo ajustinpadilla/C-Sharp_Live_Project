@@ -329,7 +329,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="UploadedFiles\test.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -420,7 +419,7 @@
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Home\UploadFile.cshtml" />
+    <Content Include="Views\Home\UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -436,6 +435,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Subscribers\Data\" />
+    <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">

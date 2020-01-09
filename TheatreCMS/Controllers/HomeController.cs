@@ -31,35 +31,39 @@ namespace TheatreCMS.Controllers
 
 
         //File upload GET and POST controls
-        [HttpGet]
-        public ActionResult UploadFile()
+        public ActionResult UploadImage()
         {
+            
             return View();
         }
         [HttpPost]
-        public ActionResult UploadFile(HttpPostedFileBase file)
+        public ActionResult UploadImage(HttpPostedFileBase file)
         {
             try
             {
-                if (file.ContentLength > 0)
-                {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
-                    file.SaveAs(_path);
-                }
+                //Upload user photo to project directory
+                string _fileName = Path.GetFileName(file.FileName);
+                string _path = Path.Combine(Server.MapPath("~/UploadedImages"), _fileName);
+                file.SaveAs(_path);
 
-                //TODO
-                //upon success, display image instead of 
-                //ViewBag.Message = "File Uploaded Successfully!!";
+                //Capture image as base64 string and store image byte array
+                byte[] imageBytes;
+                string imageBase64 = ImageUploader.ImageToBase64(_path, out imageBytes);
 
-                ViewBag.Message = "File uploaded Successfully.";
+                ViewBag.ImageData = String.Format("data:image/png;base64,{0}", imageBase64);
+                ViewBag.Message = "Image uploaded successfully!";
+                
                 return View();
             }
+
             catch
             {
-                ViewBag.Message = "File upload failed.";
-                return View();
+                ViewBag.ImageData = "";
+                ViewBag.Message = "There was an error uploading your image :(";
             }
+
+            return View();
+
         }
     }
 }
