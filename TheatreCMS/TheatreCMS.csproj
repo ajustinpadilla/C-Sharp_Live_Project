@@ -181,6 +181,9 @@
     <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductionsController.cs" />
+    <Compile Include="Controllers\SponsorsController.cs" />
+    <Compile Include="Controllers\RentalRequestController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
     <Compile Include="Enum\Position.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,6 +212,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Sponsor.cs" />
+    <Compile Include="Models\RentalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -497,6 +502,21 @@
     <Content Include="Views\DisplayLinks\Details.cshtml" />
     <Content Include="Views\DisplayLinks\Edit.cshtml" />
     <Content Include="Views\DisplayLinks\Index.cshtml" />
+    <Content Include="Views\Productions\Create.cshtml" />
+    <Content Include="Views\Productions\Delete.cshtml" />
+    <Content Include="Views\Productions\Details.cshtml" />
+    <Content Include="Views\Productions\Edit.cshtml" />
+    <Content Include="Views\Productions\Index.cshtml" />
+    <Content Include="Views\Sponsors\Create.cshtml" />
+    <Content Include="Views\Sponsors\Delete.cshtml" />
+    <Content Include="Views\Sponsors\Details.cshtml" />
+    <Content Include="Views\Sponsors\Edit.cshtml" />
+    <Content Include="Views\Sponsors\Index.cshtml" />
+    <Content Include="Views\RentalRequest\Create.cshtml" />
+    <Content Include="Views\RentalRequest\Delete.cshtml" />
+    <Content Include="Views\RentalRequest\Details.cshtml" />
+    <Content Include="Views\RentalRequest\Edit.cshtml" />
+    <Content Include="Views\RentalRequest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -511,7 +531,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Subscribers\Controllers\" />
     <Folder Include="Areas\Subscribers\Data\" />
+    <Folder Include="Areas\Subscribers\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">
