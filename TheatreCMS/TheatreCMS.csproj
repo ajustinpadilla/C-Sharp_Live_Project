@@ -248,6 +248,11 @@
     <Content Include="Areas\Subscribers\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Subscribers\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Subscribers\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Create.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Delete.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Details.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Edit.cshtml" />
+    <Content Include="Areas\Subscribers\Views\Subscriber\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -436,7 +441,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="Areas\Subscribers\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">
