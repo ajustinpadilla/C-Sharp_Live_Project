@@ -1,8 +1,9 @@
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
+using TheatreCMS.Enum;
 
 namespace TheatreCMS.Models
 {
@@ -10,11 +11,10 @@ namespace TheatreCMS.Models
     {
         [Key]
         public int SectionId { get; set; }
-
-        public string ContentType { get; set; }
-
+        public ContentEnum ContentType { get; set; }
         public int ContentId { get; set; }
-
         public string CssId { get; set; }
+
     }
+
 }
