@@ -6,14 +6,26 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Role</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Production</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Productions", new SelectList(Enumerable.Empty<SelectListItem>()))
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Person</label>
+            <div class="col-md-10">
+                @Html.DropDownList("CastMembers", new SelectList(Enumerable.Empty<SelectListItem>()))
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Character, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -49,3 +61,38 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var productions = [];
+            $.ajax({
+                type: "GET",
+                url: "/Role/GetProductionDropdown",
+                success: function (result) {
+                    $(result).each(function () {
+                        $("#Productions").append($("<option></option>").val(this.title).html(this.title));
+                    });
+                    console.log(result);
+                },
+                error: function (data) { }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var castMembers = [];
+            $.ajax({
+                type: "GET",
+                url: "/Role/GetCastMemberDropdown",
+                success: function (result) {
+                    $(result).each(function () {
+                        $("#CastMembers").append($("<option></option>").val(this.name).html(this.name));
+                    });
+                    console.log(result);
+                },
+                error: function (data) { }
+            });
+        });
+    </script>
+}
