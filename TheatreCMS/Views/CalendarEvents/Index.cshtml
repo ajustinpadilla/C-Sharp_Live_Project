@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TheatreCMS.Models.CalendarEvent>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div id="calendar"></div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                url: "/calendarEvents/GetCalendarEvents",
+                success: function (data) {
+                    data[0].start = moment(data[0].start)
+                    data[0].end = moment(data[0].end)
+                    events = data
+                    $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                        events: events
+                    })
+                    console.log(data);
+                    console.log(events);
+                }
+            })
+
+            // page is now ready, initialize the calendar...
+
+
+
+        });
+    </script>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentalRequestId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentalRequestId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EventId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
