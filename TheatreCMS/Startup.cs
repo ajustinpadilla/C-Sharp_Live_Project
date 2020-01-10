@@ -55,6 +55,27 @@ namespace TheatreCMS
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Member";
                 roleManager.Create(role);
+
+                var user = new ApplicationUser()
+                {
+                    UserName = "memberTest",
+                    FirstName = "God",
+                    LastName = "Skrilla",
+                    Email = "member.test@gmail.com",
+                    StreetAddress = "314 Pi Ct",
+                    City = "Detroit",
+                    //State could be Enum later
+                    State = "FL",
+                    ZipCode = "12345"
+                };
+
+                string userPWD = "Ih@ve12cats";
+
+                var chkUser = userManager.Create(user, userPWD);
+                if (chkUser.Succeeded)
+                {
+                    var result1 = userManager.AddToRole(user.Id, "Member");
+                }
             }
 
             //Creating Subscriber role
@@ -63,6 +84,26 @@ namespace TheatreCMS
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Subscriber";
                 roleManager.Create(role);
+
+                var user = new ApplicationUser()
+                {
+                    UserName = "subscriberTest",
+                    FirstName = "Pamela",
+                    LastName = "Flanderson",
+                    Email = "subscriber.test@gmail.com",
+                    StreetAddress = "100 100th St",
+                    City = "Shire",
+                    State = "MA",
+                    ZipCode = "54321"
+                };
+
+                string userPWD = "100100St!";
+
+                var chkUser = userManager.Create(user, userPWD);
+                if (chkUser.Succeeded)
+                {
+                    var result1 = userManager.AddToRole(user.Id, "Subscriber");
+                }
             }
         }
     }

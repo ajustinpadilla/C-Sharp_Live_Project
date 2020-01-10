@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
+
 namespace TheatreCMS
 {
     public class BundleConfig
@@ -22,9 +23,14 @@ namespace TheatreCMS
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
+                      "~/Scripts/moment.js",
+                      "~/Scripts/fullcalendar/fullcalendar.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/fullcalendar.css"));
 
             //Bundling our site-wide Js file.
             bundles.Add(new ScriptBundle("~/bundles/javascript").Include(
