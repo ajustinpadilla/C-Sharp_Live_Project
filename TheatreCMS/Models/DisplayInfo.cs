@@ -7,7 +7,6 @@ using System.Web;
 
 namespace TheatreCMS.Models
 {
-    [Table("displayimage")]
     public class DisplayInfo
     {
         [Key]

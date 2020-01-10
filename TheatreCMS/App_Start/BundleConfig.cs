@@ -32,8 +32,9 @@ namespace TheatreCMS
                       "~/Content/site.css",
                       "~/Content/fullcalendar.css"));
 
-
-
+            //Bundling our site-wide Js file.
+            bundles.Add(new ScriptBundle("~/bundles/javascript").Include(
+                      "~/Scripts/Site.js"));
         }
     }
 }

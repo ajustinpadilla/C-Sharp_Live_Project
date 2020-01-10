@@ -24,11 +24,14 @@ namespace TheatreCMS.Models
 
         public string Bio { get; set; }
 
+        //Photo attribute needs work in the Create() action of the CastMemembersController
         public byte[] Photo { get; set; }
 
         public bool CurrentMember { get; set; }
 
+        //Roles attribute needs work in the Create() action of the CastMemembersController
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }
+
     }
 }
