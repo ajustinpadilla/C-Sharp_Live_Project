@@ -381,11 +381,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\ContentSection\Create.cshtml" />
-    <Content Include="Views\ContentSection\Delete.cshtml" />
-    <Content Include="Views\ContentSection\Details.cshtml" />
-    <Content Include="Views\ContentSection\Edit.cshtml" />
-    <Content Include="Views\ContentSection\Index.cshtml" />
     <Content Include="Views\CurrentProduction\Create.cshtml" />
     <Content Include="Views\CurrentProduction\Delete.cshtml" />
     <Content Include="Views\CurrentProduction\Details.cshtml" />
@@ -426,6 +421,11 @@
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\ContentSection\Create.cshtml" />
+    <Content Include="Views\ContentSection\Delete.cshtml" />
+    <Content Include="Views\ContentSection\Details.cshtml" />
+    <Content Include="Views\ContentSection\Edit.cshtml" />
+    <Content Include="Views\ContentSection\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
