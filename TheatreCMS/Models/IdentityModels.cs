@@ -36,6 +36,8 @@ namespace TheatreCMS.Models
         
         public virtual Subscriber SubscriberPerson { get; set; }
 
+
+        public virtual SeasonManager SeasonManagerPerson { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -61,7 +63,7 @@ namespace TheatreCMS.Models
         public DbSet<Sponsor> Sponsors { get; set; }
 
         public DbSet<Subscriber> Subscribers { get; set; }
-
+        public DbSet<SeasonManager> SeasonManagers { get; set; }
     }
     // IdentityManager will be able to edit, add and delete roles
     public class IdentityManager 
