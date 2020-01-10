@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using TheatreCMS.Enum;
 
 namespace TheatreCMS.Models
 {
@@ -10,16 +11,10 @@ namespace TheatreCMS.Models
     {
         [Key]
         public int SectionId { get; set; }
-        public ContentType ContentType { get; set; }
+        public ContentEnum ContentType { get; set; }
         public int ContentId { get; set; }
         public string CssId { get; set; }
 
     }
-    public enum ContentType
-    {
-        Production,
-        Sponsor,
-        Info,
-        Links
-    }
+
 }
