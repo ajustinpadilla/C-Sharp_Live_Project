@@ -10,6 +10,7 @@ using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
 {
+
     public class RoleController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,6 +19,28 @@ namespace TheatreCMS.Controllers
         public ActionResult Index()
         {
             return View(db.Roles.ToList());
+        }
+
+        public JsonResult GetProductionDropdown()
+        {
+            var productions = db.Productions.ToArray();
+
+            return Json(db.Productions.Select(x => new
+            {
+                id = x.ProductionId,
+                title = x.Title
+            }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCastMemberDropdown()
+        {
+            var persons = db.CastMembers.ToArray();
+
+            return Json(db.CastMembers.Select(x => new
+            {
+                id = x.CastMemberID,
+                name = x.Name
+            }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Role/Details/5
