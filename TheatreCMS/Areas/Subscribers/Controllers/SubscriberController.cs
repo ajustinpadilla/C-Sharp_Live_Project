@@ -75,7 +75,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         }
 
         // GET: Subscribers/Subscriber/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -86,6 +86,9 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+
             return View(subscriber);
         }
 
@@ -96,6 +99,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")] Subscriber subscriber)
         {
+            ModelState.Remove("SubscriberPerson");
             if (ModelState.IsValid)
             {
                 db.Entry(subscriber).State = EntityState.Modified;
