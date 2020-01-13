@@ -39,6 +39,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager/Create
         public ActionResult Create()
         {
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
             return View();
         }
 
@@ -49,8 +50,13 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SeasonManagerId,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring")] SeasonManager seasonManager)
         {
+            ModelState.Remove("SeasonManagerPerson");
+            string userId = Request.Form["dbUsers"].ToString();
+
             if (ModelState.IsValid)
             {
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+                seasonManager.SeasonManagerPerson = db.Users.Find(userId);
                 db.SeasonManagers.Add(seasonManager);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,9 +66,9 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         }
 
         // GET: Subscribers/SeasonManager/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
-            if (id == null)
+            if (id == "")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -71,6 +77,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
             return View(seasonManager);
         }
 
@@ -81,8 +88,13 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SeasonManagerId,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring")] SeasonManager seasonManager)
         {
+            ModelState.Remove("SeasonManagerPerson");
+            string userId = Request.Form["dbUsers"].ToString();
+
             if (ModelState.IsValid)
             {
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+                seasonManager.SeasonManagerPerson = db.Users.Find(userId);
                 db.Entry(seasonManager).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
