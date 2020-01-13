@@ -66,9 +66,9 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         }
 
         // GET: Subscribers/SeasonManager/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
-            if (id == null)
+            if (id == "")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -77,6 +77,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
             return View(seasonManager);
         }
 
