@@ -19,7 +19,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         public bool RecentDonor { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime LastDonated { get; set; }
+        public DateTime? LastDonated { get; set; }
         public decimal? LastDonationAmt { get; set; }
         public string SpecialRequests { get; set; }
         public string Notes { get; set; }
