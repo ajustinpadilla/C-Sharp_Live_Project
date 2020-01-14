@@ -23,7 +23,7 @@ namespace TheatreCMS.Models
 
         public bool CurrentMember { get; set; }
 
-        //Roles attribute needs work in the Create() action of the CastMemembersController
-        public virtual List<Role> Roles { get; set; }
+        //Parts attribute needs work in the Create() action of the CastMemembersController
+        public virtual List<Part> Parts { get; set; }
     }
 }
