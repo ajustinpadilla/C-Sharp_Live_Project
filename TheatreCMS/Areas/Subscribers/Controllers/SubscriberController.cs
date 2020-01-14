@@ -39,6 +39,8 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/Subscriber/Create
         public ActionResult Create()
         {
+            //Pass data into SelectList to display for the user to choose which user subscription relates to
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
             return View();
         }
 
@@ -47,20 +49,33 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")] Subscriber subscriber)
+        public ActionResult Create([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")]  Subscriber subscriber)
         {
+            //The form sent the user's User selection (from SelectList) into the POST method
+            //Remove the SubscriberPerson from ModelState, at dbo.Subscribers has no such column
+            ModelState.Remove("SubscriberPerson");
+
+            //Extract the Guid as type String from user's selected User (from SelectList)
+            string userId = Request.Form["dbUsers"].ToString();
+
             if (ModelState.IsValid)
             {
+                //See tutorials for why SelectList is loaded here as well
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+
+                //LINQ statemenet to query the Guid (via String) of the user's selected User
+                subscriber.SubscriberPerson = db.Users.Find(userId);
+
+                //Add Subscriber to database, linked with User and save changes
                 db.Subscribers.Add(subscriber);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(subscriber);
         }
 
         // GET: Subscribers/Subscriber/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -71,6 +86,9 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+
             return View(subscriber);
         }
 
@@ -81,6 +99,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")] Subscriber subscriber)
         {
+            ModelState.Remove("SubscriberPerson");
             if (ModelState.IsValid)
             {
                 db.Entry(subscriber).State = EntityState.Modified;
