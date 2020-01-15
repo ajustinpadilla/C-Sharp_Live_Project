@@ -22,7 +22,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         }
 
         // GET: Subscribers/Subscriber/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -75,12 +75,12 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         }
 
         // GET: Subscribers/Subscriber/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id = null)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
             Subscriber subscriber = db.Subscribers.Find(id);
             if (subscriber == null)
             {
@@ -110,7 +110,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         }
 
         // GET: Subscribers/Subscriber/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -127,7 +127,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // POST: Subscribers/Subscriber/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Subscriber subscriber = db.Subscribers.Find(id);
             db.Subscribers.Remove(subscriber);
