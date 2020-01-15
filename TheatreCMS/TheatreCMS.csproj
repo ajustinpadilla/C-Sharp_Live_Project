@@ -189,7 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductionsController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Controllers\RentalRequestController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
@@ -213,7 +213,7 @@
     <Compile Include="Models\DisplayLinks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Part.cs" />
     <Compile Include="Models\Sponsor.cs" />
     <Compile Include="Models\RentalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -515,11 +515,11 @@
     <Content Include="Views\CastMembers\Details.cshtml" />
     <Content Include="Views\CastMembers\Edit.cshtml" />
     <Content Include="Views\CastMembers\Index.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
-    <Content Include="Views\Role\Delete.cshtml" />
-    <Content Include="Views\Role\Details.cshtml" />
-    <Content Include="Views\Role\Edit.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Part\Create.cshtml" />
+    <Content Include="Views\Part\Delete.cshtml" />
+    <Content Include="Views\Part\Details.cshtml" />
+    <Content Include="Views\Part\Edit.cshtml" />
+    <Content Include="Views\Part\Index.cshtml" />
     <Content Include="Views\Home\UploadImage.cshtml" />
     <Content Include="Views\CalendarEvents\Create.cshtml" />
     <Content Include="Views\CalendarEvents\Delete.cshtml" />
@@ -546,7 +546,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">

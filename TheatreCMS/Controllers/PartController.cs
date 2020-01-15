@@ -11,14 +11,14 @@ using TheatreCMS.Models;
 namespace TheatreCMS.Controllers
 {
 
-    public class RoleController : Controller
+    public class PartController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Role
+        // GET: Part
         public ActionResult Index()
         {
-            return View(db.Roles.ToList());
+            return View(db.Parts.ToList());
         }
 
         public JsonResult GetProductionDropdown()
@@ -43,97 +43,97 @@ namespace TheatreCMS.Controllers
             }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Role/Details/5
+        // GET: Part/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
-            if (role == null)
+            Part part = db.Parts.Find(id);
+            if (part == null)
             {
                 return HttpNotFound();
             }
-            return View(role);
+            return View(part);
         }
 
-        // GET: Role/Create
+        // GET: Part/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Role/Create
+        // POST: Part/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RoleID,Character,Type,Details")] Role role)
+        public ActionResult Create([Bind(Include = "PartID,Character,Type,Details")] Part part)
         {
             if (ModelState.IsValid)
             {
-                db.Roles.Add(role);
+                db.Parts.Add(part);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(role);
+            return View(part);
         }
 
-        // GET: Role/Edit/5
+        // GET: Part/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
-            if (role == null)
+            Part part = db.Parts.Find(id);
+            if (part == null)
             {
                 return HttpNotFound();
             }
-            return View(role);
+            return View(part);
         }
 
-        // POST: Role/Edit/5
+        // POST: Part/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoleID,Character,Type,Details")] Role role)
+        public ActionResult Edit([Bind(Include = "PartID,Character,Type,Details")] Part part)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(role).State = EntityState.Modified;
+                db.Entry(part).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(role);
+            return View(part);
         }
 
-        // GET: Role/Delete/5
+        // GET: Part/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
-            if (role == null)
+            Part part = db.Parts.Find(id);
+            if (part == null)
             {
                 return HttpNotFound();
             }
-            return View(role);
+            return View(part);
         }
 
-        // POST: Role/Delete/5
+        // POST: Part/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Role role = db.Roles.Find(id);
-            db.Roles.Remove(role);
+            Part part = db.Parts.Find(id);
+            db.Parts.Remove(part);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
