@@ -1,6 +1,35 @@
-﻿body {
+﻿:root { /* Color palette for css */
+    --main-bg-color: #C40000; /* Red */
+    --main-secondary-color: #E94646; /* Red, a shade lighter */
+    --secondary-color: #E99C0B; /* Yellow gold */
+    --light-color: #FFFBFB; /* White */
+    --dark-color: #210000; /* Black */
+}
+
+.btn { /* Applying --light-color and --dark-color to button elements of the site */
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.navbar { /* Applying --secondary-color to navbar */
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+}
+
+.navbar-brand { /* Applying --dark-color to the text of the class navbar-brand inside the navbar content*/
+    color: var(--dark-color);
+}
+
+.body-content, .table { /* Styling for the body and its contents including tables on other pages of the site*/
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: var(--main-bg-color); /* Applied --main-bg-color to the background of body */
+    color: var(--light-color);
 }
 
 /* Set padding to keep content from hitting the edges */
