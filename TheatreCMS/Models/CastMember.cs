@@ -29,7 +29,7 @@ namespace TheatreCMS.Models
         /* Need to find a way to explicitly match a CastMember's User account to their ApplicationUser object, 
         If a castmember signs up for an account, ensure that for ApplicationUser user "=" CastMember castMember,
         user.CastMemberPersonID = castMembe.CastMemberPersonID */
-        public virtual ApplicationUser CastMemberPerson { get; set; } 
+        //public virtual ApplicationUser CastMemberPerson { get; set; } 
         public string CastMemberPersonID { get; set; } 
     }
 }
