@@ -2,9 +2,11 @@
 
 @{
     ViewBag.Title = "Edit";
+    ViewBag.User = Model.SubscriberPerson.FirstName + " " + Model.SubscriberPerson.LastName;
 }
 
-<h2>Edit</h2>
+<h2>Edit:</h2>
+<br />
 
 
 @using (Html.BeginForm())
@@ -16,16 +18,16 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.SubscriberId)
+        <br />
 
         <!--dv for a drop down menu-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div>
-                    @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
-                </div>
-            </div>
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            <label class="font-weight-bold h5">@ViewBag.User</label>
         </div>
+    </div>
+    <br />
 
         <div class="form-group">
             @Html.LabelFor(model => model.CurrentSubscriber, htmlAttributes: new { @class = "control-label col-md-2" })
