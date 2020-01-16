@@ -20,6 +20,6 @@ namespace TheatreCMS.Models
         public DateTime OpeningDay { get; set; }
         public DateTime ClosingDay { get; set; }
         public int Season { get; set; }
-        public virtual List<Role> Roles { get; set; }
+        public virtual List<Part> Parts { get; set; }
     }
 }

@@ -18,17 +18,17 @@ namespace TheatreCMS.Areas.Subscribers.Models
         public string FallProd { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime FallTime { get; set; }
+        public DateTime? FallTime { get; set; }
         public bool BookedFall { get; set; }
         public string WinterProd { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime WinterTime { get; set; }
+        public DateTime? WinterTime { get; set; }
         public bool BookedWinter { get; set; }
         public string SpringProd { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime SpringTime { get; set; }
+        public DateTime? SpringTime { get; set; }
         public bool BookedSpring { get; set; }
         [Required]
         public virtual ApplicationUser SeasonManagerPerson { get; set; }

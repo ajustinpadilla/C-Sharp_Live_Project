@@ -1,4 +1,4 @@
-﻿@model TheatreCMS.Models.Role
+﻿@model TheatreCMS.Models.Part
 
 @{
     ViewBag.Title = "Create";
@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Role</h4>
+        <h4>Part</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -68,7 +68,7 @@
             var productions = [];
             $.ajax({
                 type: "GET",
-                url: "/Role/GetProductionDropdown",
+                url: "/Part/GetProductionDropdown",
                 success: function (result) {
                     $(result).each(function () {
                         $("#Productions").append($("<option></option>").val(this.title).html(this.title));
@@ -84,7 +84,7 @@
             var castMembers = [];
             $.ajax({
                 type: "GET",
-                url: "/Role/GetCastMemberDropdown",
+                url: "/Part/GetCastMemberDropdown",
                 success: function (result) {
                     $(result).each(function () {
                         $("#CastMembers").append($("<option></option>").val(this.name).html(this.name));
