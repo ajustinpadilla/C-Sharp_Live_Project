@@ -1,4 +1,4 @@
-﻿* { /* Color palette for css */
+﻿:root { /* Color palette for css */
     --main-bg-color: #C40000; /* Red */
     --main-secondary-color: #E94646; /* Red, a shade lighter */
     --secondary-color: #E99C0B; /* Yellow gold */
