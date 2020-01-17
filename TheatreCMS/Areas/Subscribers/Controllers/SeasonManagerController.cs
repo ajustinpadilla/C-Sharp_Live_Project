@@ -66,9 +66,9 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         }
 
         // GET: Subscribers/SeasonManager/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
-            if (id == "")
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
