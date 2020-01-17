@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TheatreCMS.Models.DisplayInfo>
+﻿@using TheatreCMS.Helpers
+@model IEnumerable<TheatreCMS.Models.DisplayInfo>
 
 @{
     ViewBag.Title = "Index";
@@ -26,7 +27,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -35,7 +37,13 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            @{
+                byte[] thumbBytes = ImageUploader.ImageThumbnail(item.Image, 200, 200);
+                var thumbBase64 = Convert.ToBase64String(thumbBytes);
+                var imgSrc = String.Format("data:image/png;base64,{0}", thumbBase64);
+            }
+
+            <img src="@imgSrc" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.File)
