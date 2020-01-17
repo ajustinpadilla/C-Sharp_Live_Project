@@ -1,4 +1,4 @@
-﻿:root { /* Color palette for css */
+﻿* { /* Color palette for css */
     --main-bg-color: #C40000; /* Red */
     --main-secondary-color: #E94646; /* Red, a shade lighter */
     --secondary-color: #E99C0B; /* Yellow gold */
@@ -6,30 +6,23 @@
     --dark-color: #210000; /* Black */
 }
 
-.btn { /* Applying --light-color and --dark-color to button elements of the site */
-    background-color: var(--light-color);
-    color: var(--dark-color);
+.palette-body {
+    background-color: var(--main-bg-color); /* Applying --main-bg-color to the background of body */
 }
 
-.navbar { /* Applying --secondary-color to navbar */
-    background-color: var(--secondary-color);
-    color: var(--dark-color);
-}
-
-.navbar-brand { /* Applying --dark-color to the text of the class navbar-brand inside the navbar content*/
-    color: var(--dark-color);
-}
-
-.body-content, .table { /* Styling for the body and its contents including tables on other pages of the site*/
+.palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
     background-color: var(--dark-color);
     color: var(--light-color);
+}
+
+.palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
 }
 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: var(--main-bg-color); /* Applied --main-bg-color to the background of body */
-    color: var(--light-color);
 }
 
 /* Set padding to keep content from hitting the edges */
