@@ -11,8 +11,8 @@ namespace TheatreCMS.Areas.Subscribers.Models
     public class SeasonManager
     {
         [Key]
-        [ForeignKey("SeasonManagerPerson")]
-        public string SeasonManagerId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int SeasonManagerId { get; set; }
         public int NumberSeats { get; set; }
         public bool BookedCurrent { get; set; }
         public string FallProd { get; set; }
