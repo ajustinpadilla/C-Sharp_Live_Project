@@ -10,8 +10,8 @@ namespace TheatreCMS.Areas.Subscribers.Models
 {
     public class SeasonManager
     {
-        //[Key]
-        // [ForeignKey("SeasonManagerPerson")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SeasonManagerId { get; set; }
         public int NumberSeats { get; set; }
         public bool BookedCurrent { get; set; }
