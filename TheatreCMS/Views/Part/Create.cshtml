@@ -14,12 +14,14 @@
         <h4>Part</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label>Production</label>
-            <div class="col-md-10">
-                @Html.DropDownList("Productions", new SelectList(Enumerable.Empty<SelectListItem>()))
-            </div>
+
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <label>Production</label>
+        <div class="col-md-10">
+            @Html.DropDownList("Productions", new SelectList(Enumerable.Empty<SelectListItem>()))
         </div>
+    </div>
         <div class="form-group">
             <label>Person</label>
             <div class="col-md-10">

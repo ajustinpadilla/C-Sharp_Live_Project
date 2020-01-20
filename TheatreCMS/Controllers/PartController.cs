@@ -56,11 +56,13 @@ namespace TheatreCMS.Controllers
                 return HttpNotFound();
             }
             return View(part);
+
         }
 
         // GET: Part/Create
         public ActionResult Create()
         {
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
             return View();
         }
 
@@ -93,6 +95,20 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            Part person = db.Parts.Find(id);
+            if (person == null)
+            {
+                return HttpNotFound();
+            }
+            Part production = db.Parts.Find(id);
+            if (production == null)
+            {
+                return HttpNotFound();
+            }
+            ViewData["dbCastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
+
+            ViewData["dbProductions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+
             return View(part);
         }
 
@@ -101,10 +117,14 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PartID,Character,Type,Details")] Part part)
+        public ActionResult Edit([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
         {
             if (ModelState.IsValid)
             {
+                ViewData["dbCastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
+
+                ViewData["dbProductions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+
                 db.Entry(part).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
