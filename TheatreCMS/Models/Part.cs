@@ -8,17 +8,17 @@ using TheatreCMS.Enum;
 
 namespace TheatreCMS.Models
 {
-    public class Role
+    public class Part
     {
         [Key]
-        public int RoleID { get; set; }
+        public int PartID { get; set; }
 
-        //Play attribute needs help in the Create() action of the Role controller
+        //Play attribute needs help in the Create() action of the Part controller
         public virtual Production Production { get; set; }
 
         public string Character { get; set; }
 
-        //Type attribute needs help in the Create() action of the Role controller
+        //Type attribute needs help in the Create() action of the Part controller
         public PositionEnum Type { get; set; }
 
         public virtual CastMember Person { get; set; }

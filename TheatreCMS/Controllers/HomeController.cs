@@ -41,29 +41,25 @@ namespace TheatreCMS.Controllers
         {
             try
             {
-                //Upload user photo to project directory
-                string _fileName = Path.GetFileName(file.FileName);
-                string _path = Path.Combine(Server.MapPath("~/UploadedImages"), _fileName);
-                file.SaveAs(_path);
+                //Using Helpers.ImageUploader.ImageBytes to get the byte[] representation of the file
+                //and extracting the string representation as a returned out-parrameter
+                string imageBase64;
+                byte[] imageBytes = ImageUploader.ImageBytes(file, out imageBase64);
 
-                //Capture image as base64 string and store image byte array
-                byte[] imageBytes;
-                string imageBase64 = ImageUploader.ImageToBase64(_path, out imageBytes);
-
+                //Add the base64 representation of the image to the ViewBag to be accessed by the View
                 ViewBag.ImageData = String.Format("data:image/png;base64,{0}", imageBase64);
+
                 ViewBag.Message = "Image uploaded successfully!";
-                
                 return View();
             }
 
             catch
             {
+                //Using this empty string for the View to trigger when an upload fails
                 ViewBag.ImageData = "";
                 ViewBag.Message = "There was an error uploading your image :(";
             }
-
             return View();
-
         }
     }
 }

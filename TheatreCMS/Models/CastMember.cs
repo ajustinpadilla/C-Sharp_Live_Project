@@ -23,7 +23,13 @@ namespace TheatreCMS.Models
 
         public bool CurrentMember { get; set; }
 
-        //Roles attribute needs work in the Create() action of the CastMemembersController
-        public virtual List<Role> Roles { get; set; }
+        //Parts attribute needs work in the Create() action of the CastMemembersController
+        public virtual List<Part> Parts { get; set; }
+
+        /* Need to find a way to explicitly match a CastMember's User account to their ApplicationUser object, 
+        If a castmember signs up for an account, ensure that for ApplicationUser user "=" CastMember castMember,
+        user.CastMemberPersonID = castMembe.CastMemberPersonID */
+        //public virtual ApplicationUser CastMemberPerson { get; set; } 
+        public string CastMemberPersonID { get; set; } 
     }
 }
