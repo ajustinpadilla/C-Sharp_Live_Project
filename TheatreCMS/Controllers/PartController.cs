@@ -105,9 +105,9 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["dbCastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
+            ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
 
-            ViewData["dbProductions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
 
             return View(part);
         }
@@ -119,12 +119,19 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
         {
+
+            int castID = Convert.ToInt32(Request.Form["CastMembers"]);
+            int productionID = Convert.ToInt32(Request.Form["Productions"]);
             if (ModelState.IsValid)
             {
-                ViewData["dbCastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
+                //ViewData["dbCastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
 
-                ViewData["dbProductions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                //ViewData["dbProductions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
 
+                var castMember = db.CastMembers.Find(castID);
+                part.Person = castMember;
+                var production = db.Productions.Find(productionID);
+                part.Production = production;
                 db.Entry(part).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
