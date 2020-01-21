@@ -9,67 +9,113 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Playwright)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpeningDay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClosingDay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShowtimeEve)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShowtimeMat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TicketLink)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Playwright)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpeningDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClosingDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShowtimeEve)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShowtimeMat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TicketLink)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductionId })
-        </td>
-    </tr>
+@* Cycle through each object displaying individual results*@
+@foreach (var item in Model)
+{
+    <div class="row col-12">
+        @*This Row is used to set the elements of the card side by mx-auto side instead of a classic over under*@
+        <div class="col-md-3 col-sm-4 col-lg-2"></div> @*This pushes the elements to the center of the view*@
+    <div class="col-md-4 col-sm-5 col-lg-3">
+            <div class="card overflow-hidden my-2 rh-25 palette-container"> @*Create a card, that hides the corners of the image and is spaced slightly away from each other*@
+                @Html.DisplayFor(modelItem => item.Image)
+            </div>
+        </div>
+        <div class="card col-md-5 col-sm-7 col-l-2  my-2 palette-body">@.....Create 'Info' Card...................*@
+            <div class="card-body rh-25">@...............fixes row height
+                <div class="container">
+                    <h5> @*.........................................Big text for play*@
+                        @Html.DisplayFor(modelItem => item.Title)
+                        <small> @*.................................Small text for author*@
+                            by @Html.DisplayFor(modelItem => item.Playwright)
+                        </small>
+                    </h5>
+                    <div class="row">
+                        <div class="col-8">
+                            <p>
+                                @Html.DisplayFor(modelItem => item.OpeningDay) - @Html.DisplayFor(modelItem => item.ClosingDay)<br /> @*shows open to close*@
+                                <br />
+                                    @Html.DisplayNameFor(model => model.ShowtimeEve): @Html.DisplayFor(modelItem => item.ShowtimeEve)<br /> @*Evening and matinee times*@
+                                    @Html.DisplayNameFor(model => model.ShowtimeMat): @Html.DisplayFor(modelItem => item.ShowtimeMat)<br />
+                            </p>
+                        </div>
+                        <div class="col-4">
+                            @*Large button that sits halfway down the card*@
+                            <button type="submit" class="get-ticket-btn btn palette-container my-3 mx-auto text-captialize text-center font-weight-bold">Get Tickets!</button>
+                        </div>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) | @*This part left in for debugging purposes*@
+                        @Html.ActionLink("Details", "Details", new { id = item.ProductionId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
-</table>
+@*<p>..................................................Scaffold Code..............................................
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Playwright)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpeningDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClosingDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowtimeEve)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowtimeMat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketLink)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Playwright)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpeningDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClosingDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShowtimeEve)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShowtimeMat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketLink)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductionId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId })
+                </td>
+            </tr>
+        }*@
+
