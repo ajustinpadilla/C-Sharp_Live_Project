@@ -1,17 +1,24 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TheatreCMS.Areas.Subscribers.Models;
+using TheatreCMS.Models;
 
 namespace TheatreCMS.Areas.Subscribers.Controllers
 {
     public class DashboardController : Controller
     {
-        // GET: Subscribers/Dashboard
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return View();
+            string id = User.Identity.GetUserId();
+            Subscriber subscriber = db.Subscribers.Find(id);
+            return View(subscriber);
         }
     }
 }

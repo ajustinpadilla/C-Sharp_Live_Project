@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
+using System.Drawing;
 
 namespace TheatreCMS.Helpers
 {
     public static class ImageUploader
     {
-        public static string ImageToBase64(string path, out byte[] imageBytes)
+        public static byte[] ImageBytes(HttpPostedFileBase file, out string imageBase64)
         {
-            using (System.Drawing.Image image = System.Drawing.Image.FromFile(path))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    image.Save(ms, image.RawFormat);
-                    imageBytes = ms.ToArray();
-                    string base64String = Convert.ToBase64String(imageBytes);
-                    return base64String;
-                }
-            }
+            //Convert the file into a System.Drawing.Image type
+            Image image = Image.FromStream(file.InputStream, true, true);
+            //Convert that image into a Byte Array to facilitate storing the image in a database
+            var converter = new ImageConverter();
+            byte[] imageBytes = (byte[])converter.ConvertTo(image, typeof(byte[]));
+            //Extract the String.Base64 representation of the image for inline, browser-side rendering during display
+            imageBase64 = Convert.ToBase64String(imageBytes);
+            //return Byte Array
+            return imageBytes;
         }
     }
 }
