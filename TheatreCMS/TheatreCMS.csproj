@@ -531,6 +531,9 @@
     <Content Include="Views\ContentSection\Details.cshtml" />
     <Content Include="Views\ContentSection\Edit.cshtml" />
     <Content Include="Views\ContentSection\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutSubscriber.cshtml" />
+    <Content Include="Views\Shared\_LayoutMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -44,13 +44,12 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!--Need a template for Admin subscriber and Wiki-->
                         <a class="nav-link" href="@Url.Action("Index","CalendarEvents")">Calendar Events</a>
-                        <a class="nav-link" href="@Url.Action("Index","CastMembers")">Cast Members</a>
                         <a class="nav-link" href="@Url.Action("Index","ContentSection")">Content Section</a>
-
+                        <a class="nav-link" href="@Url.Action("Index","CurrentProduction")">Current Production</a> <!--Needs to be only available to admin-->
                         <a class="nav-link" href="@Url.Action("Index","Productions")">Productions</a>
                         <a class="nav-link" href="@Url.Action("Index","RentalRequest")">Rental Requests</a>
-
-
+                        <a class="nav-link" href="@Url.Action("Index","Role")">Role</a>
+                        <a class="nav-link" href="@Url.Action("Index","Sponsors")">Sponsors</a>
                     </div>
                     <!-- /Items in the drop down-->
                 </li>
@@ -58,9 +57,9 @@
             @Html.Partial("_LoginPartial")
             <!--Search bar-->
             @*<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-            </form>*@
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>*@
         </div>
     </nav>
 
