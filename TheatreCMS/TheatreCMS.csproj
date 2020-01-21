@@ -538,6 +538,9 @@
     <Content Include="Views\ContentSection\Details.cshtml" />
     <Content Include="Views\ContentSection\Edit.cshtml" />
     <Content Include="Views\ContentSection\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutSubscriber.cshtml" />
+    <Content Include="Views\Shared\_LayoutMember.cshtml" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.woff" />

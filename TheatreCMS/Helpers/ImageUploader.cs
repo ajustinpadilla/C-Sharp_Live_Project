@@ -9,6 +9,7 @@ namespace TheatreCMS.Helpers
 {
     public static class ImageUploader
     {
+        //file -> buyte[] (out string64)
         public static byte[] ImageBytes(HttpPostedFileBase file, out string imageBase64)
         {
             //Convert the file into a System.Drawing.Image type
@@ -20,6 +21,17 @@ namespace TheatreCMS.Helpers
             imageBase64 = Convert.ToBase64String(imageBytes);
             //return Byte Array
             return imageBytes;
+        }
+        
+        //byte[] -> smaller byte[]
+        public static byte[] ImageThumbnail(byte[] imageBytes, int thumbWidth, int thumbHeight)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            using (Image thumbnail = Image.FromStream(new MemoryStream(imageBytes)).GetThumbnailImage(thumbWidth, thumbHeight, null, new IntPtr()))
+            {
+                thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
         }
     }
 }
