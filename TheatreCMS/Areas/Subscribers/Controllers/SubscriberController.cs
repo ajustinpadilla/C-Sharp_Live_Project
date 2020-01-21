@@ -77,10 +77,10 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/Subscriber/Edit/5
         public ActionResult Edit(string id = null)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Subscriber subscriber = db.Subscribers.Find(id);
             if (subscriber == null)
             {
