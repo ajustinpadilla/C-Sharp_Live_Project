@@ -9,9 +9,9 @@
 
 
 </head>
-<body class="palette-body">
-    <nav class="palette-navbar navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index","Home")">Theatre Vertigo</a>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">Theatre Vertigo</a>
         <!--Drop down menu button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,6 @@
                     <!--("Page in controller", "Controller")-->
                     <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
                 </li>
-                <!--Drop Down menu "About"-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About
@@ -44,12 +43,10 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!--Need a template for Admin subscriber and Wiki-->
                         <a class="nav-link" href="@Url.Action("Index","CalendarEvents")">Calendar Events</a>
-                        <a class="nav-link" href="@Url.Action("Index","CastMembers")">Cast Members</a>
+                        
                         <a class="nav-link" href="@Url.Action("Index","ContentSection")">Content Section</a>
-
                         <a class="nav-link" href="@Url.Action("Index","Productions")">Productions</a>
                         <a class="nav-link" href="@Url.Action("Index","RentalRequest")">Rental Requests</a>
-
 
                     </div>
                     <!-- /Items in the drop down-->
@@ -58,13 +55,13 @@
             @Html.Partial("_LoginPartial")
             <!--Search bar-->
             @*<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-            </form>*@
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>*@
         </div>
     </nav>
 
-    <div class="palette-container body-content">
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
