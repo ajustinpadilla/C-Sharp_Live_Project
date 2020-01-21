@@ -25,13 +25,14 @@ body {
     padding-bottom: 20px;
 }
 
-/* Footer stylings*/
+/* ------Footer stylings----- */
+footer {
+    background-color: black;
+    display: flex;
+}
 .footer-container {
     padding-top: 30px;
     padding-bottom: 30px;
-}
-footer {
-    background-color: black;
 }
 a.navLink {
     color: white;
