@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+  
 
 </head>
 <body class="palette-body">
@@ -34,7 +34,56 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class="footer-container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-6 ml-5">
+                        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: black">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="navLink" href="#">Opportunities</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navLink" href="#">News Items</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navLink" href="#">Contact Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navLink" href="#">Donate</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>                 
+                    <div class="col-sm-3 mr-5"  id="socialMediaLinks" style="background-color: black">
+                        <ul class="list-group list-group-horizontal" style="background-color: black">
+                            <li class="list-group-item"> <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
+                            <li class="list-group-item"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                            <li class="list-group-item"><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
+                            <li class="list-group-item"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li>
+                        </ul>
+                     </div>                       
+                </div>
+                <div class="row pl-5">
+                    <div class="col-sm-2 ml-3" id="address">
+                        <p>2110 SE 10th AVE<br />
+                        Portland, OR 97214</p>
+                    </div>
+                    <div class="col-sm-3" id="phoneNumbers">
+                        <p>Phone Number (General)<br />
+                        Phone Number (Sales)</p>
+                    </div>
+                    <div class="col-sm text-right ml-1 pr-4 mr-5" >
+                        <p><br />&copy; @DateTime.Now.Year</p>
+                    </div>
+                </div>
+            </div>
+                
         </footer>
     </div>
 

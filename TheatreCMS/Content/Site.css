@@ -25,6 +25,44 @@ body {
     padding-bottom: 20px;
 }
 
+/* Footer stylings*/
+.footer-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+footer {
+    background-color: black;
+}
+a.navLink {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    padding-right: 2em;
+}
+
+a.navLink :hover{
+    font-weight: bolder;
+}
+
+footer p {
+    color: white;
+    font-size: 1rem;
+}
+footer #address {
+    margin-right:0;
+}
+footer .list-group-item {
+    background-color: black;
+    padding-right: 15px;
+}
+footer .fab {
+    color: white;
+}
+
+footer .list-group-item :hover {
+    color: red;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
