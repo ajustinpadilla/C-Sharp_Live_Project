@@ -204,7 +204,6 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-
     <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\CastMember.cs" />
     <Compile Include="Models\Production.cs" />
@@ -532,6 +531,7 @@
     <Content Include="Views\ContentSection\Details.cshtml" />
     <Content Include="Views\ContentSection\Edit.cshtml" />
     <Content Include="Views\ContentSection\Index.cshtml" />
+    <Content Include="Views\Home\Wiki.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
