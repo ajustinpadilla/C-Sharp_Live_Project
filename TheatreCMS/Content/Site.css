@@ -83,3 +83,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.rh-25 { /*Limits height of rows*/
+    height: 250px;
+}
+.get-ticket-btn { /*Increases Button size*/
+    height: 7rem;
+    width: 7rem;
+}
