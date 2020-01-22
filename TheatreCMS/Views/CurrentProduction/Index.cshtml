@@ -18,6 +18,7 @@
     <div class="col-md-4 col-sm-5 col-lg-3">
             <div class="card  my-2 rh-25 palette-container overflow-hidden"> @*Create a card, that hides the corners of the image and is spaced slightly away from each other*@
                     @Html.DisplayFor(modelItem => item.Image)
+                    @* This is where we'll need to display the image from the byte[] in the database. *@
                     <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20070821135049%2Fillogicopedia%2Fimages%2Fthumb%2F9%2F91%2FDuck_patrol.JPG%2F500px-Duck_patrol.JPG&f=1&nofb=1" />
             </div>
         </div>
@@ -33,14 +34,15 @@
                     <div class="row">
                         <div class="col-8">
                             <p>
-                                @Html.DisplayFor(modelItem => item.OpeningDay) - @Html.DisplayFor(modelItem => item.ClosingDay)<br /> @*shows open to close*@
+                                @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
                                 <br />
-                                @*   @Html.DisplayNameFor(model => model.ShowtimeEve): @Html.DisplayFor(modelItem => item.ShowtimeEve)<br />  @* Evening and matinee times commented out due to throwing an argument error
-                                @Html.DisplayNameFor(model => model.ShowtimeMat): @Html.DisplayFor(modelItem => item.ShowtimeMat)<br /> *@
+
+                                @Html.DisplayNameFor(model => model.ShowtimeEve): @item.ShowtimeEve.ToString("hh:mm tt")<br />
+                                @Html.DisplayNameFor(model => model.ShowtimeMat): @item.ShowtimeMat.ToString("hh:mm tt")<br /> 
                             </p>
                         </div>
                         <div class="col-4">
-                            @*Large button that sits halfway down the card*@
+                            @*Large button that sits halfway down the card
                             <button type="submit" class="get-ticket-btn btn palette-container my-3 text-captialize text-center font-weight-bold">Get Tickets!</button>
                           @*  @Html.DisplayFor(modelItem => item.TicketLink) ..................Ticket Link Info *@
                         </div>
