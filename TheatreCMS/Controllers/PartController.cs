@@ -119,20 +119,33 @@ namespace TheatreCMS.Controllers
         public ActionResult Edit([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
         {
 
-            int castID = Convert.ToInt32(Request.Form["CastMembers"]);
-            int productionID = Convert.ToInt32(Request.Form["Productions"]);
+            //int castID = Convert.ToInt32(Request.Form["CastMembers"]);
+            //int productionID = Convert.ToInt32(Request.Form["Productions"]);
             if (ModelState.IsValid)
             {
-                //ViewData["dbCastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
 
-                //ViewData["dbProductions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
 
-                var castMember = db.CastMembers.Find(castID);
-                part.Person = castMember;
-                var production = db.Productions.Find(productionID);
+                ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberID", "Name");
+
+
+                //var parts = db.Parts.Find(part.PartID);
+
+                var production = db.Productions.Find(part.Production.ProductionId);
                 part.Production = production;
-                db.Entry(part).State = EntityState.Modified;
+                //production = new Production();
+                //production.Parts = parts;
+                var person = db.CastMembers.Find(part.Person.CastMemberID);
+                part.Person = person;
+
+
+                //part.Production = db.Productions.Find(productionID);
+                //part.Person = db.CastMembers.Find(castID);
+                db.Entry(part.Production).State = EntityState.Added;
                 db.SaveChanges();
+                db.Entry(part.Person).State = EntityState.Added;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(part);
