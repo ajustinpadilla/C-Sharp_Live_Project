@@ -20,6 +20,20 @@ namespace TheatreCMS.Controllers
             return View(db.CastMembers.ToList());
         }
 
+        public JsonResult GetAllUsersDropdown()
+        {
+            var users = db.Users.ToArray();
+            var list = new Dictionary<int, string>();
+            var result = Json(db.Users.Select(x => new
+            {
+                id = x.Id,
+                UserName = x.UserName,
+                
+            }).ToArray(), JsonRequestBehavior.AllowGet);
+            ViewData["UserName"] = result;
+            return result;
+        }
+
         // GET: CastMembers/Details/5
         public ActionResult Details(int? id)
         {

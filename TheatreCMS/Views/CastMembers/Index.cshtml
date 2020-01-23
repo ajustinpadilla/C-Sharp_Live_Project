@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    
 }
 
 <h2>Index</h2>
@@ -29,35 +30,42 @@
         <th>
             @Html.DisplayNameFor(model => model.CurrentMember)
         </th>
+        <th>
+            User Name
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearJoined)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MainRole)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentMember)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CastMemberID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CastMemberID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CastMemberID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearJoined)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentMember)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscriberPerson.UserName) @*This Code finds the username through the virtual SubscriberPerson class*@
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CastMemberID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CastMemberID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CastMemberID })
+            </td>
+        </tr>
+    }
 
 </table>

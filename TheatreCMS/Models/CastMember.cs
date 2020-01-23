@@ -30,6 +30,8 @@ namespace TheatreCMS.Models
         If a castmember signs up for an account, ensure that for ApplicationUser user "=" CastMember castMember,
         user.CastMemberPersonID = castMembe.CastMemberPersonID */
         //public virtual ApplicationUser CastMemberPerson { get; set; } 
-        public string CastMemberPersonID { get; set; } 
+        public string CastMemberPersonID { get; set; }
+        [Required]
+        public virtual ApplicationUser SubscriberPerson { get; set; }
     }
 }
