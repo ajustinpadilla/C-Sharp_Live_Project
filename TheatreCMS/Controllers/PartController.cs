@@ -105,9 +105,9 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
+            ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
 
-            //ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
             return View(part);
         }
 
@@ -119,8 +119,8 @@ namespace TheatreCMS.Controllers
         public ActionResult Edit([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
         {
 
-            //int castID = Convert.ToInt32(Request.Form["CastMembers"]);
-            //int productionID = Convert.ToInt32(Request.Form["Productions"]);
+            int castID = Convert.ToInt32(Request.Form["CastMembers"]);
+            int productionID = Convert.ToInt32(Request.Form["Productions"]);
             if (ModelState.IsValid)
             {
 
@@ -129,21 +129,18 @@ namespace TheatreCMS.Controllers
                 ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberID", "Name");
 
 
-                //var parts = db.Parts.Find(part.PartID);
 
-                var production = db.Productions.Find(part.Production.ProductionId);
+                var production = db.Productions.Find(productionID);
+                
+                var person = db.CastMembers.Find(castID);
+
                 part.Production = production;
-                //production = new Production();
-                //production.Parts = parts;
-                var person = db.CastMembers.Find(part.Person.CastMemberID);
-                part.Person = person;
-
-
-                //part.Production = db.Productions.Find(productionID);
-                //part.Person = db.CastMembers.Find(castID);
-                db.Entry(part.Production).State = EntityState.Added;
+                db.Entry(part.Production).State = EntityState.Modified;
                 db.SaveChanges();
-                db.Entry(part.Person).State = EntityState.Added;
+                part.Person = person;
+                db.Entry(part.Person).State = EntityState.Modified;
+                db.SaveChanges();
+                db.Entry(part).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
