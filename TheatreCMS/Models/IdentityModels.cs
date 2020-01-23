@@ -32,12 +32,15 @@ namespace TheatreCMS.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string Role { get; set; }
-
-        
         public virtual Subscriber SubscriberPerson { get; set; }
+        public virtual ICollection<SeasonManager> SeasonManagerPerson { get; set; }
 
+        /* Need to find a way to explicitly match a CastMember's User account to their ApplicationUser object, 
+        If an app-user becomes a Castmember, ensure that for ApplicationUser user "=" CastMember castMember,
+        user.CastMemberPersonID = castMembe.CastMemberPersonID */
+        //public virtual CastMember CastMemberUser { get; set; }
+        public int CastMemberUserID { get; set; }
 
-        public virtual SeasonManager SeasonManagerPerson { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -56,12 +59,37 @@ namespace TheatreCMS.Models
         public DbSet<CurrentProduction> CurrentProductions { get; set; }
         public DbSet<RentalRequest> RentalRequests { get; set; }
         public DbSet<CastMember> CastMembers { get; set; }
-        public DbSet<Role> Roles { get; set; }
+
+        /* We'll be using the fluent API to create a 0..1 to 0..1 relationship
+         * between a CastMember and an ApplicationUser, since some cast-members 
+         * won't have logins, and not all app-users will be cast members */
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+
+        //    modelBuilder.Entity<CastMember>()
+        //        .HasOptional(u => u.CastMemberPerson)
+        //        .WithRequired(p => p.CastMemberUser);
+
+        //    modelBuilder.Entity<ApplicationUser>()
+        //        .HasOptional(p => p.CastMemberUser)
+        //        .WithRequired(u => u.CastMemberPerson);
+        //}
+        /* The above code doesn't jell with update-database due to 
+         * "conflicting multiplicities," but I think it's close. 
+         * The documentation on Fluent API and code first all seem to 
+         * suggest that this kind of implicitly loaded zero-or-one-
+         * to-zero-or-one relationship doesn't really exist... 
+         * 
+         * This code has been commented out along with the two commented 
+         * virtual methods in CastMember and ApplicationUser, and should only
+         * serve as a starting point for later stories that might want to 
+         * tackle this further. */
+
+        public DbSet<Part> Parts { get; set; }
         public DbSet<Production> Productions { get; set; }
         public DbSet<DisplayLinks> DisplayLinks { get; set; }
         public DbSet<DisplayInfo> DisplayInfo { get; set; }
         public DbSet<Sponsor> Sponsors { get; set; }
-
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<SeasonManager> SeasonManagers { get; set; }
         public DbSet<CalendarEvent> CalendarEvent { get; set; }

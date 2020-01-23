@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OpeningDay)
+            @Model.OpeningDay.ToString("M/d/yy")
         </dd>
 
         <dt>
@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ClosingDay)
+            @Model.ClosingDay.ToString("M/d/yy")
         </dd>
 
         <dt>
@@ -55,7 +55,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ShowtimeEve)
+            @Model.ShowtimeEve.ToString("hh:mm tt")
         </dd>
 
         <dt>
@@ -63,7 +63,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ShowtimeMat)
+            @Model.ShowtimeMat.ToString("hh:mm tt")
         </dd>
 
         <dt>

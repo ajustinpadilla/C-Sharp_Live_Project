@@ -18,6 +18,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager
         public ActionResult Index()
         {
+            
             return View(db.SeasonManagers.ToList());
         }
 
@@ -39,6 +40,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager/Create
         public ActionResult Create()
         {
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
             return View();
         }
 
@@ -47,15 +49,31 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SeasonManagerId,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring")] SeasonManager seasonManager)
+        public ActionResult Create([Bind(Include = "SeasonManagerId,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring, SeasonManagerPerson")] SeasonManager seasonManager)
         {
+            ModelState.Remove("SeasonManagerPerson");
+            string userId = Request.Form["dbUsers"].ToString();
+
             if (ModelState.IsValid)
             {
-                db.SeasonManagers.Add(seasonManager);
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+                seasonManager.SeasonManagerPerson = db.Users.Find(userId);
+                db.SeasonManagers.Add(seasonManager);               
+                if (seasonManager.FallTime != null)
+                {
+                    seasonManager.BookedFall = true;
+                }
+                if (seasonManager.WinterTime != null)
+                {
+                    seasonManager.BookedWinter = true;
+                }
+                if (seasonManager.SpringTime != null)
+                {
+                    seasonManager.BookedSpring = true;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(seasonManager);
         }
 
@@ -71,6 +89,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
             return View(seasonManager);
         }
 
@@ -79,11 +98,28 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SeasonManagerId,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring")] SeasonManager seasonManager)
+        public ActionResult Edit([Bind(Include = "SeasonManagerId,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring, SeasonManagerPerson")] SeasonManager seasonManager)
         {
+            ModelState.Remove("SeasonManagerPerson");
+            string userId = Request.Form["dbUsers"].ToString();
+
             if (ModelState.IsValid)
             {
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+                seasonManager.SeasonManagerPerson = db.Users.Find(userId);
                 db.Entry(seasonManager).State = EntityState.Modified;
+                if (seasonManager.FallTime != null)
+                {
+                    seasonManager.BookedFall = true;
+                }
+                if (seasonManager.WinterTime != null)
+                {
+                    seasonManager.BookedWinter = true;
+                }
+                if (seasonManager.SpringTime != null)
+                {
+                    seasonManager.BookedSpring = true;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

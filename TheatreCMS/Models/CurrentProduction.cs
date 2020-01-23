@@ -15,21 +15,21 @@ namespace TheatreCMS.Models
 
         public string Playwright { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "M/d/yy", ApplyFormatInEditMode = true)]
         [Display(Name = "Opening Day")]
         public DateTime OpeningDay { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "M/d/yy", ApplyFormatInEditMode = true)]
         [Display(Name = "Closing Day")]
         public DateTime ClosingDay { get; set; }
 
         public byte[] Image { get; set; }
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{hh: mm tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "hh:mm tt", ApplyFormatInEditMode = true)]
         [Display(Name = "Evening Showtime")]
         public DateTime ShowtimeEve { get; set; }
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{hh: mm tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "hh:mm tt", ApplyFormatInEditMode = true)]
         [Display(Name = "Matinee Showtime")]
         public DateTime ShowtimeMat { get; set; }
         [Display(Name = "Ticket Link")]

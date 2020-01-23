@@ -6,15 +6,25 @@
 
 <h2>Create</h2>
 
+@*Commented out code below is to remove checkboxes from form. Commented it out instead of deleting it. - LR 1/21/20 *@
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>SeasonManager</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SeasonManagerPerson, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.NumberSeats, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -49,15 +59,15 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookedFall, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.BookedFall)
-                    @Html.ValidationMessageFor(model => model.BookedFall, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.BookedFall, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.BookedFall)
+                        @Html.ValidationMessageFor(model => model.BookedFall, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.WinterProd, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -75,15 +85,15 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookedWinter, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.BookedWinter)
-                    @Html.ValidationMessageFor(model => model.BookedWinter, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.BookedWinter, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.BookedWinter)
+                        @Html.ValidationMessageFor(model => model.BookedWinter, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.SpringProd, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -101,15 +111,15 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookedSpring, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.BookedSpring)
-                    @Html.ValidationMessageFor(model => model.BookedSpring, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.BookedSpring, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.BookedSpring)
+                        @Html.ValidationMessageFor(model => model.BookedSpring, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -1,6 +1,67 @@
-﻿body {
+﻿:root { /* Color palette for css */
+    --main-bg-color: #C40000; /* Red */
+    --main-secondary-color: #E94646; /* Red, a shade lighter */
+    --secondary-color: #E99C0B; /* Yellow gold */
+    --light-color: #FFFBFB; /* White */
+    --dark-color: #210000; /* Black */
+}
+
+.palette-body {
+    background-color: var(--main-bg-color); /* Applying --main-bg-color to the background of body */
+}
+
+.palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+.palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+}
+
+/* ------Footer stylings----- */
+footer {
+    background-color: black;
+    display: flex;
+}
+.footer-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+a.navLink {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    padding-right: 2em;
+}
+
+a.navLink :hover{
+    font-weight: bolder;
+}
+
+footer p {
+    color: white;
+    font-size: 1rem;
+}
+footer #address {
+    margin-right:0;
+}
+footer .list-group-item {
+    background-color: black;
+    padding-right: 15px;
+}
+footer .fab {
+    color: white;
+}
+
+footer .list-group-item :hover {
+    color: red;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +82,12 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.rh-25 { /*Limits height of rows*/
+    height: 250px;
+}
+.get-ticket-btn { /*Increases Button size*/
+    height: 7rem;
+    width: 7rem;
 }
