@@ -547,6 +547,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Subscribers\Data\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
