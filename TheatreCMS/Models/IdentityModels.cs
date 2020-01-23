@@ -26,7 +26,6 @@ namespace TheatreCMS.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Required]
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
