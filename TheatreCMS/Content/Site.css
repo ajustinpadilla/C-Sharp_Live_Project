@@ -119,6 +119,45 @@ body {
     padding-bottom: 20px;
 }
 
+/* ------Footer stylings----- */
+footer {
+    background-color: black;
+    display: flex;
+}
+.footer-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+a.navLink {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    padding-right: 2em;
+}
+
+a.navLink :hover{
+    font-weight: bolder;
+}
+
+footer p {
+    color: white;
+    font-size: 1rem;
+}
+footer #address {
+    margin-right:0;
+}
+footer .list-group-item {
+    background-color: black;
+    padding-right: 15px;
+}
+footer .fab {
+    color: white;
+}
+
+footer .list-group-item :hover {
+    color: red;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -137,4 +176,12 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.rh-25 { /*Limits height of rows*/
+    height: 250px;
+}
+.get-ticket-btn { /*Increases Button size*/
+    height: 7rem;
+    width: 7rem;
 }

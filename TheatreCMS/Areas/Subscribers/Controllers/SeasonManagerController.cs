@@ -18,6 +18,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager
         public ActionResult Index()
         {
+            
             return View(db.SeasonManagers.ToList());
         }
 
@@ -57,11 +58,22 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             {
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
                 seasonManager.SeasonManagerPerson = db.Users.Find(userId);
-                db.SeasonManagers.Add(seasonManager);
+                db.SeasonManagers.Add(seasonManager);               
+                if (seasonManager.FallTime != null)
+                {
+                    seasonManager.BookedFall = true;
+                }
+                if (seasonManager.WinterTime != null)
+                {
+                    seasonManager.BookedWinter = true;
+                }
+                if (seasonManager.SpringTime != null)
+                {
+                    seasonManager.BookedSpring = true;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(seasonManager);
         }
 
@@ -96,6 +108,18 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
                 seasonManager.SeasonManagerPerson = db.Users.Find(userId);
                 db.Entry(seasonManager).State = EntityState.Modified;
+                if (seasonManager.FallTime != null)
+                {
+                    seasonManager.BookedFall = true;
+                }
+                if (seasonManager.WinterTime != null)
+                {
+                    seasonManager.BookedWinter = true;
+                }
+                if (seasonManager.SpringTime != null)
+                {
+                    seasonManager.BookedSpring = true;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
