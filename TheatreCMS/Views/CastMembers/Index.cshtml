@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
-    
+    var variable = ViewData["Ids"] as List<string>; //Gets List of USers and Ids
+    var variable2 = ViewData["Names"] as List<string>;
 }
 
 <h2>Index</h2>
@@ -58,7 +59,20 @@
                 @Html.DisplayFor(modelItem => item.CurrentMember)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubscriberPerson.UserName) @*This Code finds the username through the virtual SubscriberPerson class*@
+                @*Iterates through list of all UserNames Displaying only 
+                    Matching GUID users*@
+                @for (int i = 0; i < variable.Count; i++) 
+                {
+                    if (variable[i] == item.CastMemberPersonID)
+                    {
+                        <text>@variable2[i]</text>
+                        break;
+                    }
+                }
+
+
+
+
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.CastMemberID }) |

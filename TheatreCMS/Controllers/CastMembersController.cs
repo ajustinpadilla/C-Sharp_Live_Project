@@ -17,22 +17,33 @@ namespace TheatreCMS.Controllers
         // GET: CastMembers
         public ActionResult Index()
         {
+             var users = db.Users.ToArray();
+            var user = from a in users select new { a.Id, a.UserName };
+            List<string> result1 = new List<string>();
+            List<string> result2 = new List<string>();
+            foreach (var item in user)
+            {
+                result1.Add(item.Id);
+                result2.Add(item.UserName);
+            }
+            ViewData["Ids"] = result1;
+            ViewData["Names"] = result2;
             return View(db.CastMembers.ToList());
         }
-
         public JsonResult GetAllUsersDropdown()
         {
             var users = db.Users.ToArray();
-            var list = new Dictionary<int, string>();
+            
             var result = Json(db.Users.Select(x => new
             {
                 id = x.Id,
                 UserName = x.UserName,
                 
             }).ToArray(), JsonRequestBehavior.AllowGet);
-            ViewData["UserName"] = result;
+            
             return result;
         }
+        
 
         // GET: CastMembers/Details/5
         public ActionResult Details(int? id)
@@ -46,12 +57,22 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            var users = db.Users.ToArray();
+            var user = from a in users select new { a.Id, a.UserName };
+            foreach (var item in user)
+            {
+                if (item.Id.ToString() == castMember.CastMemberPersonID && castMember.CastMemberID == id)
+                    ViewData["userName"] = item.UserName;
+            }
+
             return View(castMember);
         }
 
         // GET: CastMembers/Create
         public ActionResult Create()
         {
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+            
             return View();
         }
 
@@ -62,6 +83,7 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember)
         {
+            string userId = Request.Form["dbUsers"].ToString();
             if (ModelState.IsValid)
             {
                 db.CastMembers.Add(castMember);
@@ -75,6 +97,7 @@ namespace TheatreCMS.Controllers
         // GET: CastMembers/Edit/5
         public ActionResult Edit(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -83,6 +106,13 @@ namespace TheatreCMS.Controllers
             if (castMember == null)
             {
                 return HttpNotFound();
+            }
+            var users = db.Users.ToArray();
+            var user = from a in users select new { a.Id, a.UserName };
+            foreach (var item in user)
+            {
+                if (item.Id.ToString() == castMember.CastMemberPersonID && castMember.CastMemberID == id)
+                    ViewData["userName"] = item.UserName;
             }
             return View(castMember);
         }
@@ -94,6 +124,9 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember)
         {
+            string userId = Request.Form["dbUsers"].ToString();
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+
             if (ModelState.IsValid)
             {
                 db.Entry(castMember).State = EntityState.Modified;
@@ -115,6 +148,13 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            var users = db.Users.ToArray();
+            var user = from a in users select new { a.Id, a.UserName };
+            foreach (var item in user)
+            {
+                if (item.Id.ToString() == castMember.CastMemberPersonID && castMember.CastMemberID == id)
+                    ViewData["userName"] = item.UserName;
+            }
             return View(castMember);
         }
 
@@ -123,6 +163,9 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            string userId = Request.Form["dbUsers"].ToString();
+            
+
             CastMember castMember = db.CastMembers.Find(id);
             db.CastMembers.Remove(castMember);
             db.SaveChanges();

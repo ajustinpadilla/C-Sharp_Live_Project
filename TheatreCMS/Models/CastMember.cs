@@ -31,7 +31,6 @@ namespace TheatreCMS.Models
         user.CastMemberPersonID = castMembe.CastMemberPersonID */
         //public virtual ApplicationUser CastMemberPerson { get; set; } 
         public string CastMemberPersonID { get; set; }
-        [Required]
-        public virtual ApplicationUser SubscriberPerson { get; set; }
+
     }
 }

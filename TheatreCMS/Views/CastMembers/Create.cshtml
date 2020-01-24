@@ -13,9 +13,6 @@
 <div class="form-horizontal">
     <h4>CastMember</h4>
     <hr />
-    
-    @Html.Display("UserName")
-    
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })

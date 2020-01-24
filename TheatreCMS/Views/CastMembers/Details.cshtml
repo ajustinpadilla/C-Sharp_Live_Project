@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    ViewBag.User = Model.SubscriberPerson.UserName;
+    
 }
 
 <h2>Details</h2>
@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            <label class="font-weight-bold h5">@(ViewBag.User)</label>
+            <label class="font-weight-bold h5">@ViewData["userName"]</label>
         </dt>
         <dt>
             @Html.DisplayNameFor(model => model.Name)
