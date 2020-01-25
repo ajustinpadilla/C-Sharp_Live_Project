@@ -21,27 +21,6 @@ namespace TheatreCMS.Controllers
             return View(db.Parts.ToList());
         }
 
-        public JsonResult GetProductionDropdown()
-        {
-            var productions = db.Productions.ToArray();
-
-            return Json(db.Productions.Select(x => new
-            {
-                id = x.ProductionId,
-                title = x.Title
-            }).ToArray(), JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetCastMemberDropdown()
-        {
-            var persons = db.CastMembers.ToArray();
-
-            return Json(db.CastMembers.Select(x => new
-            {
-                id = x.CastMemberID,
-                name = x.Name
-            }).ToArray(), JsonRequestBehavior.AllowGet);
-        }
 
         // GET: Part/Details/5
         public ActionResult Details(int? id)
@@ -63,6 +42,10 @@ namespace TheatreCMS.Controllers
         public ActionResult Create()
         {
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+
+            ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
+
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
             return View();
         }
 
@@ -71,10 +54,18 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PartID,Character,Type,Details")] Part part)
+        public ActionResult Create([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
         {
+            int productionID = Convert.ToInt32(Request.Form["Productions"]);
+            int castID = Convert.ToInt32(Request.Form["CastMembers"]);
+
             if (ModelState.IsValid)
             {
+                var person = db.CastMembers.Find(castID);
+                var production = db.Productions.Find(productionID);
+                
+                part.Production = production;
+                part.Person = person;
                 db.Parts.Add(part);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -123,24 +114,26 @@ namespace TheatreCMS.Controllers
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
             if (ModelState.IsValid)
             {
+                var currentPart = db.Parts.Find(part.PartID);
+                currentPart.Character = part.Character;
+                currentPart.Type = part.Type;
+                currentPart.Details = part.Details;
 
                 ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
 
                 ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberID", "Name");
 
-
-
                 var production = db.Productions.Find(productionID);
                 
                 var person = db.CastMembers.Find(castID);
-
-                part.Production = production;
-                db.Entry(part.Production).State = EntityState.Modified;
+                
+                currentPart.Production = production;
+                db.Entry(currentPart.Production).State = EntityState.Modified;
                 db.SaveChanges();
-                part.Person = person;
-                db.Entry(part.Person).State = EntityState.Modified;
+                currentPart.Person = person;
+                db.Entry(currentPart.Person).State = EntityState.Modified;
                 db.SaveChanges();
-                db.Entry(part).State = EntityState.Modified;
+                db.Entry(currentPart).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");

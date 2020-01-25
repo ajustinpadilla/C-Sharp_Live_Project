@@ -15,17 +15,18 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label>Production</label>
-        <div class="col-md-10">
-            @Html.DropDownList("Productions", new SelectList(Enumerable.Empty<SelectListItem>()))
-        </div>
-    </div>
         <div class="form-group">
-            <label>Person</label>
+            @Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CastMembers", new SelectList(Enumerable.Empty<SelectListItem>()))
+                @Html.DropDownList("Productions", string.Empty)
+                @Html.ValidationMessageFor(model => model.Production)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Person, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CastMembers", string.Empty)
+                @Html.ValidationMessageFor(model => model.Person)
             </div>
         </div>
         <div class="form-group">
@@ -65,36 +66,5 @@
 </div>
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            var productions = [];
-            $.ajax({
-                type: "GET",
-                url: "/Part/GetProductionDropdown",
-                success: function (result) {
-                    $(result).each(function () {
-                        $("#Productions").append($("<option></option>").val(this.title).html(this.title));
-                    });
-                    console.log(result);
-                },
-                error: function (data) { }
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            var castMembers = [];
-            $.ajax({
-                type: "GET",
-                url: "/Part/GetCastMemberDropdown",
-                success: function (result) {
-                    $(result).each(function () {
-                        $("#CastMembers").append($("<option></option>").val(this.name).html(this.name));
-                    });
-                    console.log(result);
-                },
-                error: function (data) { }
-            });
-        });
-    </script>
+    
 }
