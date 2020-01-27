@@ -191,14 +191,15 @@ textarea {
     width: 7rem;
 }
 
+/*This section contains styling for create forms*/
 .formContainer {
     display: block;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     max-width: 30%;
-    background-color: var(--secondary-color);
-    background-image: linear-gradient(var(--main-bg-color), var(--main-secondary-color));
+    background-color: var(--main-secondary-color);
+    background-image: linear-gradient(var(--light-color), var(--main-secondary-color));
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 2px;
     font-family: 'Lato Hairline';
@@ -221,6 +222,7 @@ textarea {
 }
 
 .formHeader {
+    color: var(--dark-color);
     font-family: Lato;
     letter-spacing: 3px;
     font-size: 40px;
@@ -229,14 +231,15 @@ textarea {
     padding-bottom: 20px;
 }
 
-.inputbox {
+.inputBox {
+    color: var(--dark-color);
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 15px;
     max-width: 50%;
     letter-spacing: 1px;
     font-size: 15px;
-    font-weight: 900;
+    font-weight: bolder;
     animation-duration: 10s;
     -webkit-animation-duration: 10s;
     animation-name: fadeIn2;
@@ -252,9 +255,7 @@ textarea {
 @keyframes fadeIn2 {
     0% { opacity: 0; }
 
-    100% {
-        opacity: 1;
-    }
+    100% { opacity: 1; }
 }
 
 .inputText {
@@ -266,10 +267,12 @@ textarea {
 }
 
 .submitButton {
+    display: inline-block;
+    width: 75%;
     letter-spacing: 1px;
     font-family: Lato;
     font-weight: 500;
-    padding: 10px 200px;
+    padding: 10px 0px;
     margin: 10px auto 10px auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border: 0px solid;
@@ -282,7 +285,7 @@ textarea {
     line-height: 1.5;
     border-radius: 15px;
     user-select: none;
-    transition: all 1s;
+    transition: all .5s;
     box-shadow: 0px 4px #999;
     animation-duration: 10s;
     -webkit-animation-duration: 10s;
