@@ -30,7 +30,8 @@ namespace TheatreCMS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/fullcalendar.css"));
+                      "~/Content/fullcalendar.css",
+                      "~/Content/all.min.css"));
 
             //Bundling our site-wide Js file.
             bundles.Add(new ScriptBundle("~/bundles/javascript").Include(

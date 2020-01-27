@@ -1,4 +1,5 @@
-﻿@model TheatreCMS.Models.DisplayInfo
+﻿@using TheatreCMS.Helpers
+@model TheatreCMS.Models.DisplayInfo
 
 @{
     ViewBag.Title = "Delete";
@@ -32,7 +33,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            @* model does not exist in the current context?! *@
+            @{
+                var img = Model.Image;
+                //displays the image using inline <img tag
+                byte[] thumbBytes = ImageUploader.ImageThumbnail(img, 200, 200);
+                var thumbBase64 = Convert.ToBase64String(thumbBytes);
+                var imgSrc = String.Format("data:image/png;base64,{0}", thumbBase64);
+            }
         </dd>
 
         <dt>
@@ -45,7 +53,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

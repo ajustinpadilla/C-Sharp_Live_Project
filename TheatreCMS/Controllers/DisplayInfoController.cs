@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
+using System.Drawing;
+using TheatreCMS.Helpers;
 
 namespace TheatreCMS.Controllers
 {
@@ -38,6 +40,7 @@ namespace TheatreCMS.Controllers
         // GET: DisplayInfo/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -46,8 +49,16 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InfoId,Title,Description,Image,File")] DisplayInfo displayInfo)
-        {
+        
+        //The ModelState variable only holds three key/value pairs in its dictionary after POST.
+        //They are Title, Description and File (which is the file name, and should so be called.
+        //Not sure whether or not Image should be in the Include parameter of the Bind method...
+        public ActionResult Create([Bind(Include = "InfoId,Title,Description,File")] DisplayInfo displayInfo, HttpPostedFileBase file)
+        { 
+            byte[] image = Helpers.ImageUploader.ImageBytes(file, out string _64);
+            displayInfo.Image = image;
+            displayInfo.File = file.FileName;
+
             if (ModelState.IsValid)
             {
                 db.DisplayInfo.Add(displayInfo);
@@ -78,10 +89,13 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InfoId,Title,Description,Image,File")] DisplayInfo displayInfo)
+        public ActionResult Edit([Bind(Include = "InfoId,Title,Description")] DisplayInfo displayInfo, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                displayInfo.File = file.FileName;
+                var img = ImageUploader.ImageBytes(file, out _);
+                displayInfo.Image = img;
                 db.Entry(displayInfo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
