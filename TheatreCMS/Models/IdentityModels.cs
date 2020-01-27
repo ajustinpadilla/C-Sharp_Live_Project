@@ -26,7 +26,6 @@ namespace TheatreCMS.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Required]
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
@@ -93,6 +92,8 @@ namespace TheatreCMS.Models
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<SeasonManager> SeasonManagers { get; set; }
         public DbSet<CalendarEvent> CalendarEvent { get; set; }
+
+        public System.Data.Entity.DbSet<TheatreCMS.ViewModels.NewsletterListVm> NewsletterListVms { get; set; }
     }
     // IdentityManager will be able to edit, add and delete roles
     public class IdentityManager 
