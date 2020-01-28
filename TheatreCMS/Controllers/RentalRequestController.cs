@@ -51,6 +51,12 @@ namespace TheatreCMS.Controllers
             if (ModelState.IsValid)
             {
                 db.RentalRequests.Add(rentalRequest);
+                //var codeNum = new Random();
+                //if (rentalRequest.PlaceHolderr == null)
+                //{
+                //    codeNum.Next(0, 99999);
+                //}
+                //rentalRequest.PlaceHolder = codeNum.ToString();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
