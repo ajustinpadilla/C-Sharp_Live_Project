@@ -553,6 +553,7 @@
     <Content Include="webfonts\fa-solid-900.woff2" />
     <Content Include="Views\Home\Wiki.cshtml" />
     <Content Include="Views\Home\NewsletterSubscribers.cshtml" />
+    <Content Include="Views\RentalRequest\RequestConfirm.cshtml" />
     <Content Include="Views\Manage\ChangeEmailAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
