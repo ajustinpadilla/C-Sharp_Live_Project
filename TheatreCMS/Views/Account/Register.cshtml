@@ -3,6 +3,7 @@
     ViewBag.Title = "Register";
 }
 
+<br />
 <h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -13,94 +14,102 @@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 <div class="container form-container">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="registerTextHead">Account Info:</h5>
+				<div class="row">
+					<div class="col">
+						<div class="registerText">
+							@Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
+							<div class="registerInput">
+								@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="registerText">
+							@Html.LabelFor(m => m.LastName, new { @class = "control-label" })
+							<div class="registerInput">
+								@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="registerText">
+							@Html.LabelFor(m => m.Email, new { @class = "control-label" })
+							<div class="registerInput">
+								@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="registerText">
+							@Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+							<div class="registerInput">
+								@Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="registerText">
+							@Html.LabelFor(m => m.Password, new { @class = "control-label" })
+							<div class="registerInput">
+								@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="registerText">
+							@Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+							<div class="registerInput">
+								@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Account Info</h5>
+            <h5 class="registerTextHead">Address:</h5>
             <div class="row">
                 <div class="col">
-                    <div class="form-group info">
-                        @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group info">
-                        @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group info">
-                        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group info">
-                        @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group info">
-                        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group info">
-                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Address</h5>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group info">
+                    <div class="registerText">
                         @Html.LabelFor(m => m.StreetAddress, new { @class = "control-label" })
-                        <div class="col-md-10">
+                        <div class="registerInput">
                             @Html.TextBoxFor(m => m.StreetAddress, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="form-group info">
+                    <div class="registerText">
                         @Html.LabelFor(m => m.City, new { @class = "control-label" })
-                        <div class="col-md-10">
+                        <div class="registerInput">
                             @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-group info">
+                    <div class="registerText">
                         @Html.LabelFor(m => m.State, new { @class = "control-label" })
-                        <div class="col-md-10">
+                        <div class="registerInput">
                             @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="form-group info">
+                    <div class="registerText">
                         @Html.LabelFor(m => m.ZipCode, new { @class = "control-label" })
-                        <div class="col-md-10">
+                        <div class="registerInput">
                             @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
+							<br />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+	<br />
+	
+
     <div class="form-group">
-        <div class="col-md-2 col-md-10">
+        <div class="registerButton">
             <button type="submit" class="btn btn-primary" value="Register">Register</button>
         </div>
     </div>
+	
 </div>
+
+	<br />
     
     
     
