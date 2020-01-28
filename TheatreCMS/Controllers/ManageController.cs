@@ -61,6 +61,7 @@ namespace TheatreCMS.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.ChangeEmailSuccess ? "Your Email has been changed."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -333,7 +334,37 @@ namespace TheatreCMS.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        // GET: /Manage/ChangeEmailAddress
+        public ActionResult ChangeEmailAddress()
+        {
+            return View();
+        }
+
+        // POST: /Manage/ChangeEmailAddress
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeEmail(ChangeEmailViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var confirmToken = await UserManager.GenerateEmailConfirmationTokenAsync(User.Identity.GetUserId());
+            var result = await UserManager.ConfirmEmailAsync(User.Identity.GetUserId(), confirmToken);
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangeEmailSuccess });
+            }
+            AddErrors(result);
+            return View(model);
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -381,6 +412,7 @@ namespace TheatreCMS.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            ChangeEmailSuccess,
             Error
         }
 
