@@ -121,6 +121,11 @@ namespace TheatreCMS.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult RequestConfirm()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
