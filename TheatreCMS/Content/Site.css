@@ -112,6 +112,34 @@
     -webkit-text-stroke-width: 1px;
 }
 
+/* CSS for Table Styling */
+.table-styling, .th-styling, .td-styling, .tr-styling {
+    border: 2px solid var(--light-color);
+}
+
+.table-styling {
+    width: 100%;
+}
+
+.th-styling {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    padding: 8px;
+    font-size: 18px;
+}
+
+.td-styling {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 4px;
+}
+
+.td-styling:hover {
+    background-color: var(--main-secondary-color);
+    color: var(--dark-color);
+}
+
+
 
 
 body {
