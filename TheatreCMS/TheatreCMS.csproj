@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201912270113296_InitialSetUp.designer.cs">
       <DependentUpon>201912270113296_InitialSetUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001281927434_UpdateRentalRequest.cs" />
+    <Compile Include="Migrations\202001281927434_UpdateRentalRequest.designer.cs">
+      <DependentUpon>202001281927434_UpdateRentalRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CalendarEvent.cs" />
@@ -573,6 +577,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">
       <DependentUpon>201912270113296_InitialSetUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001281927434_UpdateRentalRequest.resx">
+      <DependentUpon>202001281927434_UpdateRentalRequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
