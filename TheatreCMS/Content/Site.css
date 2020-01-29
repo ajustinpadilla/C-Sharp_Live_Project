@@ -315,3 +315,28 @@ textarea {
     box-shadow: 0px 0px #666;
     transform: translateY(2px)
 }
+
+
+/*Styling for the register form page*/
+
+.registerText {
+	color: black;
+	font-family: Lato;
+	font-size: 120%;
+}
+
+.registerTextHead { 
+	color: black;
+	font-family: Lato;
+	font-size: 160%
+}
+
+.registerInput {
+	width: 80%;
+}
+
+.registerButton {
+	width: auto;
+}
+
+/*End style for register form page*/
