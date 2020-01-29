@@ -63,6 +63,7 @@ namespace TheatreCMS.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : message == ManageMessageId.ChangeEmailSuccess ? "Your Email has been changed."
                 : message == ManageMessageId.ChangeMailingAddressSuccess ? "Your mailing address has been changed."
+                : message == ManageMessageId.ChangePhoneSuccess ? "Your phone number has been changed."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -120,16 +121,51 @@ namespace TheatreCMS.Controllers
             }
             // Generate the token and send it
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
+            var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.Number, code);
+            if (!result.Succeeded)
             {
-                var message = new IdentityMessage
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                //var message = new IdentityMessage
+                if (user != null)
                 {
-                    Destination = model.Number,
-                    Body = "Your security code is: " + code
-                };
-                await UserManager.SmsService.SendAsync(message);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //Destination = model.Number,
+                    //Body = "Your security code is: " + code
+                    //await UserManager.SmsService.SendAsync(message);
+                }
             }
-            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+            return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
+        }
+
+        // GET: /Manage/ChangePhoneNumber
+        public ActionResult ChangePhoneNumber()
+        {
+            return View();
+        }
+
+        // POST: /Manage/ChangePhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePhoneNumber(AddPhoneNumberViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
+            var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.Number, code);
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePhoneSuccess });
+            }
+            // If we got this far, something failed, redisplay form
+            AddErrors(result);
+            return View(model);
         }
 
         //
@@ -449,6 +485,7 @@ namespace TheatreCMS.Controllers
             RemovePhoneSuccess,
             ChangeEmailSuccess,
             ChangeMailingAddressSuccess,
+            ChangePhoneSuccess,
             Error
         }
 

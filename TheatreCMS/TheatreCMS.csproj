@@ -557,6 +557,7 @@
     <Content Include="Views\RentalRequest\RequestConfirm.cshtml" />
     <Content Include="Views\Manage\ChangeEmailAddress.cshtml" />
     <Content Include="Views\Manage\ChangeMailingAddress.cshtml" />
+    <Content Include="Views\Manage\ChangePhoneNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
