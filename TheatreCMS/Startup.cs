@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using TheatreCMS.Models;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
@@ -13,12 +15,15 @@ namespace TheatreCMS
         {
             ConfigureAuth(app);
             createRolesandUsers();
+            SeedCastMembers();
         }
+
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         //create method for default roles and Admin users for login
         private void createRolesandUsers()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
+
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
@@ -105,6 +110,29 @@ namespace TheatreCMS
                     var result1 = userManager.AddToRole(user.Id, "Subscriber");
                 }
             }
+        }
+
+        //Seeding database with dummy CastMembers
+        private void SeedCastMembers()
+        {
+            var castMembers = new List<CastMember>
+            {
+                new CastMember{Name = "Aaron Rodgers", YearJoined= 2005, MainRole = Enum.PositionEnum.Actor,
+                Bio = "Aaron was a highly sought after actor who we were thrilled to have join us in 2005.",
+                CurrentMember = true, },
+
+                new CastMember{Name = "Davante Adams", YearJoined= 2014, MainRole = Enum.PositionEnum.Actor,
+                Bio = "Davante is a big part of our team.",
+                CurrentMember = true, },
+
+                new CastMember{Name = "Matt Lafluer", YearJoined= 2019, MainRole = Enum.PositionEnum.Director,
+                Bio = "Matt became one of the youngest directors in the business when he joined us in 2019",
+                CurrentMember = true, }
+
+            };
+
+            castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => new { c.Name }, castMember));
+            context.SaveChanges();
         }
     }
 }
