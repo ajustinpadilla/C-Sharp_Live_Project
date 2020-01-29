@@ -131,7 +131,7 @@ namespace TheatreCMS
 
             };
 
-            castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => new { c.Name }, castMember));
+            castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => c.Name, castMember));
             context.SaveChanges();
         }
     }
