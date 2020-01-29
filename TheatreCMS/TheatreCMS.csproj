@@ -555,6 +555,7 @@
     <Content Include="Views\Home\NewsletterSubscribers.cshtml" />
     <Content Include="Views\RentalRequest\RequestConfirm.cshtml" />
     <Content Include="Views\Manage\ChangeEmailAddress.cshtml" />
+    <Content Include="Views\Manage\ChangeMailingAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

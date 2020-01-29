@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -100,5 +101,24 @@ namespace TheatreCMS.Models
         [Display(Name = "Confirm new email")]
         [Compare("NewEmail", ErrorMessage = "The new email and confirmation email do not match.")]
         public string ConfirmEmail { get; set; }
+    }
+
+    public class ChangeMailingAddressViewModel
+    {
+        [Required]
+        [Display(Name = "Street Address")]
+        public string StreetAddress { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "Zip Code")]
+        public string ZipCode { get; set; }
     }
 }

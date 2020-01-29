@@ -62,6 +62,7 @@ namespace TheatreCMS.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : message == ManageMessageId.ChangeEmailSuccess ? "Your Email has been changed."
+                : message == ManageMessageId.ChangeMailingAddressSuccess ? "Your mailing address has been changed."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -349,8 +350,8 @@ namespace TheatreCMS.Controllers
             {
                 return View(model);
             }
-            var confirmToken = await UserManager.GenerateEmailConfirmationTokenAsync(User.Identity.GetUserId());
-            var result = await UserManager.ConfirmEmailAsync(User.Identity.GetUserId(), confirmToken);
+            
+            var result = await UserManager.SetEmailAsync(User.Identity.GetUserId(), model.ConfirmEmail);
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -359,6 +360,40 @@ namespace TheatreCMS.Controllers
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangeEmailSuccess });
+            }
+            AddErrors(result);
+            return View(model);
+        }
+
+        // GET: /Manage/ChangeMailingAddressAddress
+        public ActionResult ChangeMailingAddress()
+        {
+            return View();
+        }
+
+        // POST: /Manage/ChangeMailingAddressAddress
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeMailingAddress(ChangeMailingAddressViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var userDetails = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            userDetails.StreetAddress = model.StreetAddress;
+            userDetails.City = model.City;
+            userDetails.State = model.State;
+            userDetails.ZipCode = model.ZipCode;
+            var result = await UserManager.UpdateAsync(userDetails);
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangeMailingAddressSuccess });
             }
             AddErrors(result);
             return View(model);
@@ -413,6 +448,7 @@ namespace TheatreCMS.Controllers
             RemoveLoginSuccess,
             RemovePhoneSuccess,
             ChangeEmailSuccess,
+            ChangeMailingAddressSuccess,
             Error
         }
 
