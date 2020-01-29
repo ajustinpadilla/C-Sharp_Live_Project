@@ -9,56 +9,56 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table class="table-styling">
+    <tr class="tr-styling">
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Playwright)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.PromoPhoto)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.OpeningDay)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.ClosingDay)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Season)
         </th>
-        <th></th>
+        @*<th class="th-styling"></th>*@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <tr class="tr-styling">
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Title)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Playwright)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.PromoPhoto)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.OpeningDay)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.ClosingDay)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Season)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.ActionLink("Edit", "Edit", new { id=item.ProductionId }) |
             @Html.ActionLink("Details", "Details", new { id=item.ProductionId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ProductionId })

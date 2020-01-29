@@ -9,68 +9,68 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table class="table-styling">
+    <tr class="tr-styling">
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.ContactPerson)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Company)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.EndTime)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.ProjectInfo)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Requests)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Attachments)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Accepted)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.ContractSigned)
         </th>
-        <th></th>
+        @*<th class="th-styling"></th>*@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <tr class="tr-styling">
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.ContactPerson)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Company)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.ProjectInfo)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Requests)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Attachments)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Accepted)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.ContractSigned)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.ActionLink("Edit", "Edit", new { id=item.RentalRequestId }) |
             @Html.ActionLink("Details", "Details", new { id=item.RentalRequestId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.RentalRequestId })
