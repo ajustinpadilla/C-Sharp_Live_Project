@@ -36,7 +36,9 @@ namespace TheatreCMS.Models
         
         [StringLength(1000, ErrorMessage = "Error. This field is limited to 1000 characters.")]
         public string Requests { get; set; }
-        public byte[] Attachments { get; set; }
+
+        [Display(Name = "Rental Code")]
+        public int RentalCode { get; set; }
         public bool Accepted { get; set; }
 
         [Display(Name = "Contract Signed")]
