@@ -17,12 +17,23 @@ namespace TheatreCMS.Controllers
         // GET: CastMembers
         public ActionResult Index()
         {
+            //Creates a dictionary of Id's and Usernames passing it to the View 
+             var Users = from a in db.Users select new { a.Id, a.UserName };
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            foreach (var user in Users)
+                keyValuePairs.Add(user.Id, user.UserName);
+
+            ViewBag.Users = keyValuePairs;
             return View(db.CastMembers.ToList());
         }
+
+        
 
         // GET: CastMembers/Details/5
         public ActionResult Details(int? id)
         {
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -32,12 +43,17 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            //Passes The Username of the currently selected cast member to the model
+            if (castMember.CastMemberPersonID != null)
+                ViewBag.CurrentUser = db.Users.Find(castMember.CastMemberPersonID).UserName;
             return View(castMember);
         }
 
         // GET: CastMembers/Create
         public ActionResult Create()
         {
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+            
             return View();
         }
 
@@ -48,8 +64,18 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember)
         {
+            
+            ModelState.Remove("CastMemberPersonID");
+
+            //Extract the Guid as type String from user's selected User (from SelectList)
+            string userId = Request.Form["dbUsers"].ToString();
+
             if (ModelState.IsValid)
             {
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+
+                castMember.CastMemberPersonID = db.Users.Find(userId).Id;
+
                 db.CastMembers.Add(castMember);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -70,6 +96,8 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+            
             return View(castMember);
         }
 
@@ -80,12 +108,16 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember)
         {
+            ModelState.Remove("CastMemberPersonID");
+            string userId = Request.Form["dbUsers"].ToString();
             if (ModelState.IsValid)
             {
+                castMember.CastMemberPersonID = db.Users.Find(userId).Id;
                 db.Entry(castMember).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
             return View(castMember);
         }
 
@@ -101,13 +133,15 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            if (castMember.CastMemberPersonID != null)
+                ViewBag.CurrentUser = db.Users.Find(castMember.CastMemberPersonID).UserName;
             return View(castMember);
         }
 
         // POST: CastMembers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             CastMember castMember = db.CastMembers.Find(id);
             db.CastMembers.Remove(castMember);
@@ -122,6 +156,7 @@ namespace TheatreCMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }        
+        
     }
 }
