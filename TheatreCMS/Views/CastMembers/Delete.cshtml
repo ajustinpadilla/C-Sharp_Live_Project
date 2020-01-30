@@ -15,8 +15,14 @@
           
     <hr />
     <dl class="dl-horizontal">
-        @ViewData["userName"]
+        <dt>
+            UserName
+        </dt>
         
+        <dd>
+            @ViewBag.CurrentUser
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>

@@ -24,7 +24,7 @@
     <div class="form-group">
         <label> &nbsp; &nbsp;User name</label>
         <div class="col-md-10">
-            @Html.DropDownList("Subscriber", new SelectList(Enumerable.Empty<SelectListItem>()))
+            @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
         </div>
     </div>
     <div class="form-group">

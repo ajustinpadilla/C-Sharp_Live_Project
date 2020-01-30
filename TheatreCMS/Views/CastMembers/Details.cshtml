@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Details";
-    
 }
 
 <h2>Details</h2>
@@ -10,10 +9,15 @@
 <div>
     <h4>CastMember</h4>
     <hr />
+
+
     <dl class="dl-horizontal">
         <dt>
-            <label class="font-weight-bold h5">@ViewData["userName"]</label>
+            User Name:
         </dt>
+        <dd>
+            @ViewBag.CurrentUser
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
