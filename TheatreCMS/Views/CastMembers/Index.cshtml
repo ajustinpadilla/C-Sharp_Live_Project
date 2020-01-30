@@ -1,7 +1,11 @@
-﻿@model IEnumerable<TheatreCMS.Models.CastMember>
+﻿@using TheatreCMS.Controllers
+@model IEnumerable<TheatreCMS.Models.CastMember>
+
 
 @{
     ViewBag.Title = "Index";
+    // UserIds set to make it easier to read
+    var UserIds = ViewBag.Users as Dictionary<string, string>; 
 }
 
 <h2>Index</h2>
@@ -29,7 +33,10 @@
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.CurrentMember)
         </th>
-        @*<th class="th-styling"></th>*@
+        <th class="th-styling">
+            User Name
+        </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -52,6 +59,20 @@
             </td>
             <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.CurrentMember)
+            </td>
+            <td class="td-styling">
+                            @{ 
+                    foreach (var temp in UserIds)
+                    {
+                        if (temp.Key == item.CastMemberPersonID && item.CastMemberPersonID != null)
+                        {
+                             // Iterates through all Ids displaying UserName through the Dictionary
+                            <text>@temp.Value</text>
+                            break;
+                        }
+                    }
+                }
+                
             </td>
             <td class="td-styling">
                 @Html.ActionLink("Edit", "Edit", new { id = item.CastMemberID }) |
