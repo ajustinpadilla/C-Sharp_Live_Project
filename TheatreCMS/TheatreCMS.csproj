@@ -218,6 +218,7 @@
     <Compile Include="Models\RentalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\NewsletterListVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />
@@ -355,6 +356,7 @@
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="AdminSettings.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -538,9 +540,6 @@
     <Content Include="Views\ContentSection\Details.cshtml" />
     <Content Include="Views\ContentSection\Edit.cshtml" />
     <Content Include="Views\ContentSection\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Shared\_LayoutSubscriber.cshtml" />
-    <Content Include="Views\Shared\_LayoutMember.cshtml" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.woff" />
@@ -553,6 +552,12 @@
     <Content Include="webfonts\fa-solid-900.ttf" />
     <Content Include="webfonts\fa-solid-900.woff" />
     <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="Views\Home\Wiki.cshtml" />
+    <Content Include="Views\Home\NewsletterSubscribers.cshtml" />
+    <Content Include="Views\RentalRequest\RequestConfirm.cshtml" />
+    <Content Include="Views\Manage\ChangeEmailAddress.cshtml" />
+    <Content Include="Views\Manage\ChangeMailingAddress.cshtml" />
+    <Content Include="Views\Manage\ChangePhoneNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -567,6 +572,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Subscribers\Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">

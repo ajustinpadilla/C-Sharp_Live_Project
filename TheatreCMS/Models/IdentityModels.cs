@@ -26,14 +26,13 @@ namespace TheatreCMS.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Required]
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string Role { get; set; }
         public virtual Subscriber SubscriberPerson { get; set; }
-        public virtual List<SeasonManager> SeasonManagerPerson { get; set; }
+        public virtual ICollection<SeasonManager> SeasonManagerPerson { get; set; }
 
         /* Need to find a way to explicitly match a CastMember's User account to their ApplicationUser object, 
         If an app-user becomes a Castmember, ensure that for ApplicationUser user "=" CastMember castMember,
@@ -93,6 +92,8 @@ namespace TheatreCMS.Models
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<SeasonManager> SeasonManagers { get; set; }
         public DbSet<CalendarEvent> CalendarEvent { get; set; }
+
+        public System.Data.Entity.DbSet<TheatreCMS.ViewModels.NewsletterListVm> NewsletterListVms { get; set; }
     }
     // IdentityManager will be able to edit, add and delete roles
     public class IdentityManager 

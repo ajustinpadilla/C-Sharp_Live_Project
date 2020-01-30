@@ -13,27 +13,27 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table class="table-styling">
+    <tr class="tr-styling">
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.YearJoined)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.MainRole)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Bio)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Photo)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.CurrentMember)
         </th>
-        <th>
+        <th class="th-styling">
             User Name
         </th>
         <th></th>
@@ -41,27 +41,27 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <tr class="tr-styling">
+            <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.YearJoined)
             </td>
-            <td>
+            <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.MainRole)
             </td>
-            <td>
+            <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.Bio)
             </td>
-            <td>
+            <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.Photo)
             </td>
-            <td>
+            <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.CurrentMember)
             </td>
-            <td>
-                @{ 
+            <td class="td-styling">
+                            @{ 
                     foreach (var temp in UserIds)
                     {
                         if (temp.Key == item.CastMemberPersonID && item.CastMemberPersonID != null)
@@ -73,15 +73,8 @@
                     }
                 }
                 
-
-
-
-
-
-
-
             </td>
-            <td>
+            <td class="td-styling">
                 @Html.ActionLink("Edit", "Edit", new { id = item.CastMemberID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.CastMemberID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.CastMemberID })
