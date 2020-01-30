@@ -88,37 +88,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            var users = [];
-            $.ajax({
-                type: "GET",
-                url: "/CastMembers/GetAllUsersDropdown",
-                success: function (result) {
-                    $(result).each(function () {
-                        $("#Subscriber").append($("<option></option>").val(this.UserName).html(this.UserName));
-                    });
-                    console.log(result);
-                },
-                error: function (data) { }
-            });
-        });
-
-        $(document).ready(function () {
-            var users = [];
-            $.ajax({
-                type: "GET",
-                url: "/CastMembers/GetAllUsersDropdown",
-                success: function (result) {
-                    $(result).each(function () {
-                        $("#UserName").append($("<option></option>").val(this.UserName).html(this.UserName));
-                        $("#UserName").append($("<option></option>")).val(this.CastMemberUserId).html(this.CastMemberUserId);
-                    });
-                    console.log(result);
-                },
-                error: function (data) { }
-            });
-        });
-    </script>
-}

@@ -80,24 +80,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-@section Scripts{
-<script>
-    $("#UserName").remove();
-        $(document).ready(function () {
-            var users = [];
-            $.ajax({
-                type: "GET",
-                url: "/CastMembers/GetAllUsersDropdown",
-                success: function (result) {
-                    $(result).each(function () {
-                        $("#Subscriber").append($("<option></option>").val(this.UserName).html(this.UserName));
-                        
-                    });
-                    $(result).filter()
-                    console.log(result);
-                },
-                error: function (data) { }
-            });
-        });
-</script>
-}

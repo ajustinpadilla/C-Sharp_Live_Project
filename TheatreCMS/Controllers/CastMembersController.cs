@@ -44,7 +44,8 @@ namespace TheatreCMS.Controllers
                 return HttpNotFound();
             }
             //Passes The Username of the currently selected cast member to the model
-            ViewBag.CurrentUser = db.Users.Find(castMember.CastMemberPersonID).UserName;
+            if (castMember.CastMemberPersonID != null)
+                ViewBag.CurrentUser = db.Users.Find(castMember.CastMemberPersonID).UserName;
             return View(castMember);
         }
 
@@ -73,7 +74,7 @@ namespace TheatreCMS.Controllers
             {
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
 
-                castMember.CastMemberPersonID = db.Users.Find(userId).ToString();
+                castMember.CastMemberPersonID = db.Users.Find(userId).Id;
 
                 db.CastMembers.Add(castMember);
                 db.SaveChanges();
@@ -108,8 +109,10 @@ namespace TheatreCMS.Controllers
         public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember)
         {
             ModelState.Remove("CastMemberPersonID");
+            string userId = Request.Form["dbUsers"].ToString();
             if (ModelState.IsValid)
             {
+                castMember.CastMemberPersonID = db.Users.Find(userId).Id;
                 db.Entry(castMember).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -130,7 +133,8 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CurrentUser = db.Users.Find(castMember.CastMemberPersonID).UserName;
+            if (castMember.CastMemberPersonID != null)
+                ViewBag.CurrentUser = db.Users.Find(castMember.CastMemberPersonID).UserName;
             return View(castMember);
         }
 
