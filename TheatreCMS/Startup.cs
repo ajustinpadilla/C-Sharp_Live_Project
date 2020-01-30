@@ -4,6 +4,8 @@ using Microsoft.Owin;
 using Owin;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.IO;
+using System.Web;
 using TheatreCMS.Models;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
@@ -115,11 +117,14 @@ namespace TheatreCMS
         //Seeding database with dummy CastMembers
         private void SeedCastMembers()
         {
+            byte[] rodgers = File.ReadAllBytes("~/Content/Images/AaronRodgers.jpg");
+            byte[] rodgersThumb = Helpers.ImageUploader.ImageThumbnail(rodgers, 5, 5);
+
             var castMembers = new List<CastMember>
             {
                 new CastMember{Name = "Aaron Rodgers", YearJoined= 2005, MainRole = Enum.PositionEnum.Actor,
                 Bio = "Aaron was a highly sought after actor who we were thrilled to have join us in 2005.",
-                CurrentMember = true, },
+                CurrentMember = true, Photo = rodgersThumb},
 
                 new CastMember{Name = "Davante Adams", YearJoined= 2014, MainRole = Enum.PositionEnum.Actor,
                 Bio = "Davante is a big part of our team.",
