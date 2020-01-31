@@ -342,3 +342,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/TheatreCMS/App_Readme/Elmah.txt

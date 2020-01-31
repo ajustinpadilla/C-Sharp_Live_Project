@@ -46,11 +46,14 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,Attachments,Accepted,ContractSigned")] RentalRequest rentalRequest)
+        public ActionResult Create([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
             if (ModelState.IsValid)
             {
                 db.RentalRequests.Add(rentalRequest);
+                var randomNum = new Random();
+                int codeNum = randomNum.Next(10000, 99999);
+                rentalRequest.RentalCode = codeNum;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -78,7 +81,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,Attachments,Accepted,ContractSigned")] RentalRequest rentalRequest)
+        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
             if (ModelState.IsValid)
             {

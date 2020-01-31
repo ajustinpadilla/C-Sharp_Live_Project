@@ -16,9 +16,10 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
+            
             string id = User.Identity.GetUserId();
-            Subscriber subscriber = db.Subscribers.Find(id);
-            return View(subscriber);
+            ApplicationUser user = db.Users.Find(id);
+            return View(user);
         }
     }
 }

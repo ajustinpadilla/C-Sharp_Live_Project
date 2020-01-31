@@ -357,6 +357,7 @@
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="AdminSettings.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -555,6 +556,9 @@
     <Content Include="Views\Home\Wiki.cshtml" />
     <Content Include="Views\Home\NewsletterSubscribers.cshtml" />
     <Content Include="Views\RentalRequest\RequestConfirm.cshtml" />
+    <Content Include="Views\Manage\ChangeEmailAddress.cshtml" />
+    <Content Include="Views\Manage\ChangeMailingAddress.cshtml" />
+    <Content Include="Views\Manage\ChangePhoneNumber.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
