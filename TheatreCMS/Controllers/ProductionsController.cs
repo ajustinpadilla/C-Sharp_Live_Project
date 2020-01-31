@@ -20,6 +20,14 @@ namespace TheatreCMS.Controllers
             return View(db.Productions.ToList());
         }
 
+        public ActionResult Current()
+        {
+            var current = from a in db.Productions
+                          where a.IsCurrent == true
+                          select a;
+            return View(current.ToList());
+        }
+
         // GET: Productions/Details/5
         public ActionResult Details(int? id)
         {
