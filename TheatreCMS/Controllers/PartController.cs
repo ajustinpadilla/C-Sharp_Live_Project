@@ -98,7 +98,9 @@ namespace TheatreCMS.Controllers
             }
             ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
 
-            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+			
+
+			ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
             return View(part);
         }
 
@@ -123,7 +125,9 @@ namespace TheatreCMS.Controllers
 
                 ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberID", "Name");
 
-                var production = db.Productions.Find(productionID);
+				ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name", part.Person.CastMemberID);
+
+				var production = db.Productions.Find(productionID);
                 
                 var person = db.CastMembers.Find(castID);
                 
