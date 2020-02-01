@@ -561,6 +561,7 @@
     <Content Include="Views\Manage\ChangePhoneNumber.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Productions\Current.cshtml" />
+    <Content Include="Views\Account\LoginFailure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
