@@ -6,12 +6,12 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-  
-
 </head>
 <body class="palette-body">
     <nav class="palette-navbar navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index","Home")">Theatre Vertigo</a>
+        <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index", "Home")">
+            <img src="~/Content/Images/cropped-logo.png" />
+        </a>
         <!--Drop down menu button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,29 +19,30 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                @*<li class="nav-item active"> -- home removed in favor of logo
                     <!--("Page in controller", "Controller")-->
                     <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
-                </li>
-                <!--Drop Down menu "About"-->
-                <li class="nav-item dropdown">
+                </li> *@
+                <!--Drop Down menu "About" Commented out due to redundancy-->
+                
+              @*  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="nav-link" href="@Url.Action("About","Home")">About Us</a>
-                        <a class="nav-link" href="@Url.Action("Index","CastMembers")">Cast Members</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown NavBarButton">
+                        <a class="nav-link" href="@Url.Action("About", "Home")">About Us</a>
+                        <a class="nav-link" href="@Url.Action("Index", "CastMembers")">Cast Members</a>
                     </div>
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Contact","Home")">Contact</a>
-                </li>
-                <!--Drop Down menu "More"-->
-                <li class="nav-item dropdown">
+                    <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a>
+                </li> *@
+                <!--Drop Down menu "More" more removed in favor of wiki-->
+                @* <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         More
                     </a>
                     <!-- Items in the drop down menu -->
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown NavBarButton">
                         <!--Need a template for Admin subscriber and Wiki-->
                         <a class="nav-link" href="@Url.Action("Index","CalendarEvents")">Calendar Events</a>
                         <a class="nav-link" href="@Url.Action("Index","CastMembers")">Cast Members</a>
@@ -50,12 +51,58 @@
                         <a class="nav-link" href="@Url.Action("Index","Productions")">Productions</a>
                         <a class="nav-link" href="@Url.Action("Index","RentalRequest")">Rental Requests</a>
 
+                    </div>
+                    <!-- /Items in the drop down-->
+                </li> *@
+                <!--Wiki-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Wiki
+                    </a>
+                    <!-- Items in the drop down menu -->
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
+                        <a class="nav-link" href="@Url.Action("Wiki", "Home")">Wiki</a>
+                        <a class="nav-link" href="@Url.Action("Index", "CalendarEvents")">Calendar Events</a>
+                        <a class="nav-link" href="@Url.Action("Index", "CastMembers")">Cast Members</a>
+                        <a class="nav-link" href="@Url.Action("Index", "ContentSection")">Content Section</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Productions")">Productions</a>
+                        <a class="nav-link" href="@Url.Action("Index", "DisplayLinks")">DisplayLinks</a>
+                        <a class="nav-link" href="@Url.Action("About", "Home")">About Us</a>
+                    </div>
+                </li>
+                    <!--Subscriber Link-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Subscriber
+                    </a>
+                    <!-- Items in the drop down menu -->
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown ">
+                        <a class="nav-link" href="@Url.Action("Index", "Manage")">Manage</a>
+                        <a class="nav-link" href="@Url.Action("Index", "RentalRequest")">Rental Requests</a>
+                        @Html.ActionLink("SeasonManager", "Index", "Subscribers/SeasonManager", new { @class="nav-link" }) 
+                        
+                    </div>
+                </li>
+                    <!--Admin Link-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <!-- Items in the drop down menu -->
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown NavBarButton">
+                        <a class="nav-link" href="@Url.Action("Index","CurrentProduction")">Current Production</a>
+                        @Html.ActionLink("Subscribers", "Index", "Subscribers/Subscriber", new { @class="nav-link"})
+                        <a class="nav-link" href="@Url.Action("Index","Sponsors")">Sponsors</a>
+                        <a class="nav-link" href="@Url.Action("Index","Part")">Part</a>
                     </div>
                     <!-- /Items in the drop down-->
                 </li>
             </ul>
-            @Html.Partial("_LoginPartial")
+            <div class="nav-login text-center">
+                @Html.Partial("_LoginPartial")
+            </div>
+
             <!--Search bar-->
             @*<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
