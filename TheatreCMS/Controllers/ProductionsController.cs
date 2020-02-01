@@ -20,6 +20,14 @@ namespace TheatreCMS.Controllers
             return View(db.Productions.ToList());
         }
 
+        public ActionResult Current()
+        {
+            var current = from a in db.Productions
+                          where a.IsCurrent == true
+                          select a;
+            return View(current.ToList());
+        }
+
         // GET: Productions/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,7 +54,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,PromoPhoto,OpeningDay,ClosingDay,Season")] Production production)
+        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,ShowDays")] Production production)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +86,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,PromoPhoto,OpeningDay,ClosingDay,Season")] Production production)
+        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,ShowDays")] Production production)
         {
             if (ModelState.IsValid)
             {
