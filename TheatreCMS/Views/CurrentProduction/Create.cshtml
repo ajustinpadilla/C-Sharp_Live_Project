@@ -1,6 +1,6 @@
-﻿@model TheatreCMS.Models.CurrentProduction
+﻿@*@model TheatreCMS.Models.CurrentProduction*@
 
-@{
+@*@{
     ViewBag.Title = "Create";
 }
 
@@ -28,10 +28,10 @@
                     @Html.EditorFor(model => model.Playwright, new { htmlAttributes = new { @class = "form-control inputText" } })
                     @Html.ValidationMessageFor(model => model.Playwright, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
 
             @* Day and Time date-pickers start *@
-            <div class="inputBox">
+            @*<div class="inputBox">
                 @Html.LabelFor(model => model.OpeningDay, "Opening Day", htmlAttributes: new { @class = "control-label" })
                 <div>
                     @Html.EditorFor(model => model.OpeningDay, new { htmlAttributes = new { @class = "form-control inputText" } })
@@ -61,10 +61,10 @@
                     @Html.EditorFor(model => model.ShowtimeMat, new { htmlAttributes = new { @class = "form-control inputText" } })
                     @Html.ValidationMessageFor(model => model.ShowtimeMat, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
             @* date-pickers end *@
 
-            <div class="inputBox">
+            @*<div class="inputBox">
                 @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label" })
                 <div>
                     @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control inputText" } })
@@ -95,4 +95,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

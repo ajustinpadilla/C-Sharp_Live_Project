@@ -560,6 +560,7 @@
     <Content Include="Views\Manage\ChangeMailingAddress.cshtml" />
     <Content Include="Views\Manage\ChangePhoneNumber.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Productions\Current.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
