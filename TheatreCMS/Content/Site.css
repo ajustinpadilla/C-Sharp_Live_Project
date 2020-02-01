@@ -368,3 +368,13 @@ textarea {
 }
 
 /*End style for register form page*/
+.nav-login li{
+    padding-right: 3rem;
+}
+#navbarSupportedContent li:hover{
+    background-color: var(--main-bg-color);
+}
+#navbarSupportedContent a:hover {
+    background-color: var(--main-bg-color);
+}
+
