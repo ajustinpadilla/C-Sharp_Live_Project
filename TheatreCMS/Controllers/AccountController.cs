@@ -408,7 +408,14 @@ namespace TheatreCMS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
+       
+        // GET: /Account/ExternalLoginFailure
+        [AllowAnonymous]
+        public ActionResult LoginFailure()
+        {
+            return View();
+        }
+
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
