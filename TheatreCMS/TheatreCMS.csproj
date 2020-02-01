@@ -180,6 +180,7 @@
     <Compile Include="Areas\Subscribers\Models\SeasonManager.cs" />
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CastMembersController.cs" />
     <Compile Include="Controllers\CalendarEventsController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
@@ -558,6 +559,7 @@
     <Content Include="Views\Manage\ChangeEmailAddress.cshtml" />
     <Content Include="Views\Manage\ChangeMailingAddress.cshtml" />
     <Content Include="Views\Manage\ChangePhoneNumber.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Productions\Current.cshtml" />
   </ItemGroup>
   <ItemGroup>
