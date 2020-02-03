@@ -18,19 +18,20 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Productions", string.Empty)
-            @Html.ValidationMessageFor(model => model.Production)
-        </div>
+		<div class="col-md-10">
+			@Html.DropDownList("Productions")
+			@Html.ValidationMessageFor(model => model.Production)
+		</div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Person, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("CastMembers", string.Empty)
-            @Html.ValidationMessageFor(model => model.Person)
+           @Html.DropDownList("CastMembers")
+           @Html.ValidationMessageFor(model => model.Person)
         </div>
     </div>
+
     <div class="form-group">
         @Html.LabelFor(model => model.Character, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
