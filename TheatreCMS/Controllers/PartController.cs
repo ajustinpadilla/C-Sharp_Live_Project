@@ -97,9 +97,10 @@ namespace TheatreCMS.Controllers
                 return HttpNotFound();
             }
 
-			ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name", part.Person.CastMemberID);
+			ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", part.Production.ProductionId);
+			
+			ViewData["CastMembers"] = new SelectList(db.CastMembers, "CastMemberId", "Name", part.Person.CastMemberID);
 
-			ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title", part.Production.ProductionId);
             return View(part);
         }
 
