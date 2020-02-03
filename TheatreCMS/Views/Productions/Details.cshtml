@@ -124,7 +124,7 @@
                         foreach (var part in Model.Parts)
                         {
                             <dd>
-                                @Html.DisplayFor(model => part.Character)
+                                <a href="/Part/Details/@part.PartID">@Html.DisplayFor(model => part.Character)</a>
                             </dd>
                         }
                     }
