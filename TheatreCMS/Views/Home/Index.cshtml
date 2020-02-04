@@ -2,30 +2,59 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+@Styles.Render("~/Content/Site.css")
+@Scripts.Render("~/Scripts/Site.js")
+@using TheatreCMS.Models
+@model List<Sponsor>
+
+@*carousel section*@
+<div id="main-carousel">
+    <div class="slideshow-container">
+        <div class="slides">
+            <div class="slideTitle">Title for slide 1 here</div>
+            <img src="@Url.Content("~/Content/Images/img1.jpg")" style="width:100%" />
+            <div class="slideText center text-outline">Context for slide 1 here</div>
+        </div> 
+        <div class="slides">
+            <div class="slideTitle">Title for slide 2 here</div>
+            <img src="@Url.Content("~/Content/Images/img2.jpg")" style="width:100%" />
+            <div class="slideText center text-outline">Context for slide 2 here</div>
+        </div>
+        <div class="slides">
+            <div class="slideTitle">Title for slide 3 here</div>
+            <img src="@Url.Content("~/Content/Images/img3.jpg")" style="width:100%" />
+            <div class="slideText center text-outline">Context for slide 3 here</div>
+        </div>
+        <div class="slides">
+            <div class="slideTitle">Title for slide 4 here</div>
+            <img src="@Url.Content("~/Content/Images/img4.jpg")" style="width:100%" />
+            <div class="slideText center text-outline">Context for slide 4 here</div>
+        </div>
+        <div class="slides">
+            <div class="slideTitle">Title for slide 5 here</div>
+            <img src="@Url.Content("~/Content/Images/img5.jpg")" style="width:100%" />
+            <div class="slideText center text-outline">Context for slide 5 here</div>
+        </div>
+        @*The left and right buttons*@
+        <a class="left text-outline" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="right text-outline" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+    <br />
+    @*The dots for navigation*@
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+@*text section*@
+<div id="main-body">
+    <div class="synopsisTitle center">Title for body text here</div>
+    <div class="synopsisBody center">
+        <p>Body text here.</p>
     </div>
 </div>
+

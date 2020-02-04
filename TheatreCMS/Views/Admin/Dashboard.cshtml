@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+
+<!DOCTYPE html>
+
+<h2>Dashboard</h2>
+
+<ul>
+    <li>
+        @Html.ActionLink("Info", "Index", "DisplayInfo")
+    </li>
+    <li>
+        @Html.ActionLink("Display Links", "Index", "DisplayLinks")
+    </li>
+    <li>
+        @Html.ActionLink("Sponsors", "Index", "Sponsors")
+    </li>
+    <li>
+        @Html.ActionLink("Content Section", "Index", "ContentSection")
+    </li>
+    <li>
+        @Html.ActionLink("Productions", "Index", "Productions")
+    </li>
+    <li>
+        @Html.ActionLink("Cast Members", "Index", "CastMembers")
+    </li>
+    <li>
+        @Html.ActionLink("Part", "Index", "Part")
+    </li>
+    <li>
+        @Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber")
+    </li>
+    <li>
+        @Html.ActionLink("Rental Request", "Index", "RentalRequest")
+    </li>
+</ul>

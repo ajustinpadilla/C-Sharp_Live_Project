@@ -9,56 +9,81 @@
 <div>
     <h4>CastMember</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <div class="row">
+        <dl class="dl-horizontal justify-content-start col-md-9">
+            <dt>
+                User Name:
+            </dt>
+            <dd class="col-md-9">
+                @ViewBag.CurrentUser
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.YearJoined)
-        </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.YearJoined)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.YearJoined)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MainRole)
-        </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.YearJoined)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MainRole)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MainRole)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Bio)
-        </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.MainRole)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Bio)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Bio)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.Bio)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentMember)
-        </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.Photo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CurrentMember)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CurrentMember)
+            </dt>
 
-    </dl>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.CurrentMember)
+            </dd>
+
+        </dl>
+        <div class="justify-content-end col-md-3">
+            <dl>
+                @if (Model.Parts.Count() != 0)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Parts)
+                    </dt>
+                    foreach (var role in Model.Parts)
+                    {
+                        <dd>
+                            <a href="/Part/Details/@role.PartID">@Html.DisplayFor(model => role.Character)</a>
+                        </dd>
+                    }
+                }
+            </dl>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CastMemberID }) |
