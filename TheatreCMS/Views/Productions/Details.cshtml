@@ -1,118 +1,137 @@
 ﻿@model TheatreCMS.Models.Production
 
+
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
+    <h2>Details</h2>
+    <div>
+        <h4>Production</h4>
+        <hr />
+        <div class="row">
+            <dl class="dl-horizontal justify-content-start col-md-9">
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
 
-<h2>Details</h2>
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
 
-<div>
-    <h4>Production</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.Playwright)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.Playwright)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Playwright)
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Playwright)
-        </dd>
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.OpeningDay)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.OpeningDay)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OpeningDay)
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.ClosingDay)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OpeningDay)
-        </dd>
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.ClosingDay)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ClosingDay)
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.PromoPhoto)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ClosingDay)
-        </dd>
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.PromoPhoto)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PromoPhoto)
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.ShowtimeEve)
 
-        <dd>
-            @Html.DisplayFor(model => model.PromoPhoto)
-        </dd>
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowtimeEve)
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.ShowtimeEve)
 
-        </dt>
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShowtimeEve)
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.ShowtimeMat)
 
-        </dd>
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowtimeMat)
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.ShowtimeMat)
+                </dd>
 
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.TicketLink)
 
-        <dd>
-            @Html.DisplayFor(model => model.ShowtimeMat)
-        </dd>
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TicketLink)
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.TicketLink)
+                </dd>
 
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.Season)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TicketLink)
-        </dd>
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.Season)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Season)
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.IsCurrent)
 
-        <dd>
-            @Html.DisplayFor(model => model.Season)
-        </dd>
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsCurrent)
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.IsCurrent)
+                </dd>
 
-        </dt>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.ShowDays)
 
-        <dd>
-            @Html.DisplayFor(model => model.IsCurrent)
-        </dd>
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowDays)
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.ShowDays)
+                </dd>
 
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShowDays)
-        </dd>
-
-    </dl>
+            </dl>
+            <div class="justify-content-end col-md-3">
+                <dl>
+                    @if (Model.Parts.Count != 0)
+                    {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Parts)
+                        </dt>
+                        foreach (var part in Model.Parts)
+                        {
+                            <dd>
+                                <a href="/Part/Details/@part.PartID">@Html.DisplayFor(model => part.Character)</a>
+                            </dd>
+                        }
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductionId }) |
