@@ -29,9 +29,9 @@
                 @Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
                 @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Height, "Height", new { @class = "text-danger" })
                 @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Width, "Width", new { @class = "text-danger" })
             </div>
         </div>
 
