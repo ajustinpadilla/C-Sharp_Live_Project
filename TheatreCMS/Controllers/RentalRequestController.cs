@@ -61,9 +61,11 @@ namespace TheatreCMS.Controllers
         public void RentalDeleteCalendar(RentalRequest rentalRequest)
         {
             CalendarEvent calendar = db.CalendarEvent.Where(x => x.RentalRequestId == rentalRequest.RentalRequestId).FirstOrDefault();
-
-            db.CalendarEvent.Remove(calendar);
-            db.SaveChanges();
+            if (calendar != null)
+            {
+                db.CalendarEvent.Remove(calendar);
+                db.SaveChanges();
+            }
             
         }
         
