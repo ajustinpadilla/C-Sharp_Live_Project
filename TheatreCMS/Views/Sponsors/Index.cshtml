@@ -18,6 +18,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Logo)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Width)
+        </th>
         <th></th>
     </tr>
 
@@ -29,6 +35,12 @@
         <td>
             <img width="25px" height="25px" scr="@Url.Content(modelItem => item.Logo)"
             @*@Html.DisplayFor(modelItem => item.Logo)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SponsorId }) |
