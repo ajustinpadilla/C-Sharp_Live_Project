@@ -369,6 +369,53 @@ textarea {
 }
 
 /*End style for register form page*/
+
+/*Styling for CastMember Index View*/
+
+.castContainer {
+    position: relative;
+    width: auto;
+}
+
+.castImage {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.castContainer:hover .castImage {
+    opacity: 0.3;
+}
+
+.castContainer:hover .castMiddle {
+    opacity: 1;
+}
+
+
+.castText {
+    background-color: var(--light-color);
+    color: var(--main-bg-color);
+    font-size: 22px;
+    font-weight: 500;
+    padding: 1px 1px;
+}
+
+.castMiddle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/*ENd Styling for CastMember Index View*/
+
 .nav-login li{
     padding-right: 3rem;
 }

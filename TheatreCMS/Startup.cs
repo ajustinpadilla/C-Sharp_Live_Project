@@ -4,7 +4,10 @@ using Microsoft.Owin;
 using Owin;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.IO;
+using System.Web;
 using TheatreCMS.Models;
+using TheatreCMS.Helpers;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
 namespace TheatreCMS
@@ -115,6 +118,7 @@ namespace TheatreCMS
         //Seeding database with dummy CastMembers
         private void SeedCastMembers()
         {
+            
             var castMembers = new List<CastMember>
             {
                 new CastMember{Name = "Aaron Rodgers", YearJoined= 2005, MainRole = Enum.PositionEnum.Actor,
