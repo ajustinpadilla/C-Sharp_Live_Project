@@ -143,6 +143,10 @@ namespace TheatreCMS.Controllers
                 {
                     RentalEditCalendar(rentalRequest);
                 }
+                else if (rentalRequest.Accepted == false)
+                {
+                    RentalDeleteCalendar(rentalRequest);
+                }
                 return RedirectToAction("Index");
             }
             return View(rentalRequest);
