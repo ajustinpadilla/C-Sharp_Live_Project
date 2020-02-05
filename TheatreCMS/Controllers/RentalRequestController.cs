@@ -28,39 +28,39 @@ namespace TheatreCMS.Controllers
             calendar.Title = rentalRequest.Company;
             calendar.StartDate = rentalRequest.StartTime;
             calendar.EndDate = rentalRequest.EndTime;
-            db.CalendarEvents.Add(calendar);
+            db.CalendarEvent.Add(calendar);
             db.SaveChanges();
             
         }
 
-        public void RentalEditCalendar(RentalRequest rentalRequest, CalendarEvent calendarEvent)
+        public void RentalEditCalendar(RentalRequest rentalRequest)
         {
-            //CalendarEvent calendar = new CalendarEvent();
+            // CalendarEvent calendar = new CalendarEvent();
             //int calendarId = Convert.ToInt32(calendarEvent);
-            //CalendarEvent calendar = db.CalendarEvents.Where(x => x.RentalRequestId == rentalRequest.RentalRequestId);
             //int rental = rentalRequest.RentalRequestId;
             //CalendarEvent calendar = db.CalendarEvents.Where(rentalRequest.RentalRequestId);
 
-            int calendar = Convert.ToInt32(calendarEvent.RentalRequestId);
+            CalendarEvent calendar = db.CalendarEvent.Where(x => x.RentalRequestId == rentalRequest.RentalRequestId).FirstOrDefault();
 
-            if (rentalRequest.RentalRequestId == calendar)
-            {
-                //calendar.RentalRequestId = rentalRequest.RentalRequestId;
-                calendarEvent.Title = rentalRequest.Company;
-                calendarEvent.StartDate = rentalRequest.StartTime;
-                calendarEvent.EndDate = rentalRequest.EndTime;
-                db.Entry(calendarEvent).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-            else
+            if (calendar == null)
             {
                 RentalAddCalendar(rentalRequest);
             }
+            else if (rentalRequest.RentalRequestId == calendar.RentalRequestId)
+            {
+                //calendar.RentalRequestId = rentalRequest.RentalRequestId;
+                calendar.Title = rentalRequest.Company;
+                calendar.StartDate = rentalRequest.StartTime;
+                calendar.EndDate = rentalRequest.EndTime;
+                db.Entry(calendar).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            
         }
 
         public void RentalDeleteCalendar(RentalRequest rentalRequest)
         {
-            CalendarEvent calendar = db.CalendarEvent.Find(rentalRequest.RentalRequestId);
+            CalendarEvent calendar = db.CalendarEvent.Where(x => x.RentalRequestId == rentalRequest.RentalRequestId).FirstOrDefault();
 
             db.CalendarEvent.Remove(calendar);
             db.SaveChanges();
@@ -133,7 +133,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest, CalendarEvent calendarEvent)
+        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
             if (ModelState.IsValid)
             {
@@ -141,7 +141,7 @@ namespace TheatreCMS.Controllers
                 db.SaveChanges();
                 if (rentalRequest.Accepted == true)
                 {
-                    RentalEditCalendar(rentalRequest, calendarEvent);
+                    RentalEditCalendar(rentalRequest);
                 }
                 return RedirectToAction("Index");
             }
