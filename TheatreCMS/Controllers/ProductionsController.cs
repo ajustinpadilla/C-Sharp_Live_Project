@@ -20,6 +20,14 @@ namespace TheatreCMS.Controllers
             return View(db.Productions.ToList());
         }
 
+        public ActionResult Current()
+        {
+            var current = from a in db.Productions
+                          where a.IsCurrent == true
+                          select a;
+            return View(current.ToList());
+        }
+
         // GET: Productions/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,7 +54,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,PromoPhoto,OpeningDay,ClosingDay,Season")] Production production)
+        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,ShowDays")] Production production)
         {
             if (ModelState.IsValid)
             {
@@ -65,20 +73,22 @@ namespace TheatreCMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Production production = db.Productions.Find(id);
-            if (production == null)
-            {
-                return HttpNotFound();
-            }
-            return View(production);
-        }
+			Production production = db.Productions.Find(id);
+			if (production == null)
+			{
+				return HttpNotFound();
+			}
+			return View(production);
+
+
+		}
 
         // POST: Productions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,PromoPhoto,OpeningDay,ClosingDay,Season")] Production production)
+        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,ShowDays")] Production production)
         {
             if (ModelState.IsValid)
             {

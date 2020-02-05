@@ -1,9 +1,10 @@
 ﻿:root { /* Color palette for css */
-    --main-bg-color: #C40000; /* Red */
-    --main-secondary-color: #E94646; /* Red, a shade lighter */
-    --secondary-color: #E99C0B; /* Yellow gold */
+    --main-bg-color: #DB1A11; /* Red */
+    --main-secondary-color: #F04D44; /* Red, a shade lighter */
+    --secondary-color: #D6972A; /* Yellow gold */
     --light-color: #FFFBFB; /* White */
-    --dark-color: #210000; /* Black */
+    --dark-color: #000000; /* Black */
+    --subscriber-main: #9D7C39; /* Dark Gold */
 }
 
 .palette-body {
@@ -395,8 +396,8 @@ textarea {
 
 
 .castText {
-    background-color: rgba(255,255,255,0.5);
-    color: maroon;
+    background-color: var(--light-color);
+    color: var(--main-bg-color);
     font-size: 22px;
     font-weight: 500;
     padding: 1px 1px;
@@ -414,3 +415,14 @@ textarea {
 }
 
 /*ENd Styling for CastMember Index View*/
+
+.nav-login li{
+    padding-right: 3rem;
+}
+#navbarSupportedContent li:hover{
+    background-color: var(--main-bg-color);
+}
+#navbarSupportedContent a:hover {
+    background-color: var(--main-bg-color);
+}
+

@@ -21,49 +21,81 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th class="th-styling">
-            @Html.DisplayNameFor(model => model.PromoPhoto)
-        </th>
-        <th class="th-styling">
             @Html.DisplayNameFor(model => model.OpeningDay)
         </th>
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.ClosingDay)
         </th>
         <th class="th-styling">
+            @Html.DisplayNameFor(model => model.PromoPhoto)
+        </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.ShowtimeEve)
+        </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.ShowtimeMat)
+        </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.TicketLink)
+        </th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Season)
+        </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.IsCurrent)
+        </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.ShowDays)
         </th>
         @*<th class="th-styling"></th>*@
     </tr>
 
 @foreach (var item in Model) {
-    <tr class="tr-styling">
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Playwright)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.PromoPhoto)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.OpeningDay)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.ClosingDay)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Season)
-        </td>
-        <td class="td-styling">
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductionId })
-        </td>
-    </tr>
+<tr class="tr-styling">
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.Playwright)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.OpeningDay)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.ClosingDay)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.PromoPhoto)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.ShowtimeEve)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.ShowtimeMat)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.TicketLink)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.Season)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.IsCurrent)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.ShowDays)
+    </td>
+
+    <td class="td-styling">
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ProductionId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId }) |
+        @Html.ActionLink("Current Productions", "Current")
+    </td>
+</tr>
 }
 
 </table>

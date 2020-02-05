@@ -46,7 +46,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo")] Sponsor sponsor)
+        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo")] Sponsor sponsor)
+        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor)
         {
             if (ModelState.IsValid)
             {
