@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
+using TheatreCMS.Helpers;
+using System.IO;
 
 namespace TheatreCMS.Controllers
 {
@@ -46,10 +48,18 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo")] Sponsor sponsor)
+        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo")] Sponsor sponsor, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                var temp = new List<string>();
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var logo = ImageUploader.ImageBytes(upload, out string convertedLogo);
+                    var logo2 = ImageUploader.ImageThumbnail(logo, 100, 100);
+                    sponsor.Logo = logo2;
+                    temp.Append(convertedLogo);
+                }
                 db.Sponsors.Add(sponsor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
