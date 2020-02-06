@@ -3,83 +3,40 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cast";
     // UserIds set to make it easier to read
-    var UserIds = ViewBag.Users as Dictionary<string, string>; 
+    var UserIds = ViewBag.Users as Dictionary<string, string>;
 }
 
-<h2>Index</h2>
+<h1 class="text-center">Cast</h1>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table-styling">
-    <tr class="tr-styling">
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.YearJoined)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.MainRole)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Bio)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.CurrentMember)
-        </th>
-        <th class="th-styling">
-            User Name
-        </th>
-        <th></th>
-    </tr>
 
+
+<div class="row">
     @foreach (var item in Model)
     {
-        <tr class="tr-styling">
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.YearJoined)
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.MainRole)
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Bio)
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Photo)
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.CurrentMember)
-            </td>
-            <td class="td-styling">
-                            @{ 
-                    foreach (var temp in UserIds)
-                    {
-                        if (temp.Key == item.CastMemberPersonID && item.CastMemberPersonID != null)
-                        {
-                             // Iterates through all Ids displaying UserName through the Dictionary
-                            <text>@temp.Value</text>
-                            break;
-                        }
-                    }
-                }
-                
-            </td>
-            <td class="td-styling">
-                @Html.ActionLink("Edit", "Edit", new { id = item.CastMemberID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CastMemberID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CastMemberID })
-            </td>
-        </tr>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <div class="castContainer">
+                    <img class="castImage" src="@Url.Content("~/Content/Images/CastMember.jpg")" style="width:100%">
+                    <div class="castMiddle"><div class="castText">@Html.DisplayFor(modelItem => item.Bio)</div></div>
+                </div>
+                <div class="caption">
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Name) |
+                        Joined our cast: @Html.DisplayFor(modelItem => item.YearJoined) |
+                        Role: @Html.DisplayFor(modelItem => item.MainRole)
+                    </p>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CastMemberID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.CastMemberID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CastMemberID })
+                    </p>
+                </div>
+            </div>
+        </div>
     }
-
-</table>
+</div>

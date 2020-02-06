@@ -17,6 +17,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Logo)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Width)
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +33,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Logo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SponsorId }) |
