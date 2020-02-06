@@ -52,13 +52,10 @@ namespace TheatreCMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var temp = new List<string>();
                 if (upload != null && upload.ContentLength > 0)
                 {
                     var logo = ImageUploader.ImageBytes(upload, out string convertedLogo);
-                    var logo2 = ImageUploader.ImageThumbnail(logo, 100, 100);
-                    sponsor.Logo = logo2;
-                    temp.Append(convertedLogo);
+                    sponsor.Logo = logo;
                 }
                 db.Sponsors.Add(sponsor);
                 db.SaveChanges();
