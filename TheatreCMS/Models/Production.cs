@@ -27,12 +27,12 @@ namespace TheatreCMS.Models
         public byte[] PromoPhoto { get; set; }
 
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "hh:mm tt", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Evening Showtime")]
         public DateTime? ShowtimeEve { get; set; }
         
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "hh:mm tt", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Matinee Showtime")]
         public DateTime? ShowtimeMat { get; set; }
 
