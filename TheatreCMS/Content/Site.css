@@ -430,7 +430,7 @@ textarea {
 .thanks {
     -webkit-text-stroke-width: 5px;
     -webkit-text-stroke-color: black;
-    font-size: 75px;
+    font-size: 85px;
     font-weight: bold;
 }
 
@@ -442,9 +442,8 @@ textarea {
 }
 
 #giraffe {
-    text-align: center;
-    padding: 50px 50px;
-    background-size: 40%;
+  
+    background-size: 30%;
     background-image: url('https://cdn.pixabay.com/photo/2019/02/19/19/45/thumbs-up-4007573_960_720.png');
     background-repeat: no-repeat;
 }
