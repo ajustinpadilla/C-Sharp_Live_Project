@@ -85,10 +85,21 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor)
+        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor, HttpPostedFileBase upload, HttpPostedFileBase currentLogo)
         {
             if (ModelState.IsValid)
             {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var logo = ImageUploader.ImageBytes(upload, out string convertedLogo);
+                    sponsor.Logo = logo;
+                }
+                //Keeps current Logo
+                else if (currentLogo != null)
+                {
+                    byte[] imageBytes = Convert.FromBase64String(currentLogo.ToString());
+                    sponsor.Logo = imageBytes;
+                }
                 db.Entry(sponsor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
