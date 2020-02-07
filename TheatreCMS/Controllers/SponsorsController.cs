@@ -54,7 +54,7 @@ namespace TheatreCMS.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    var logo = ImageUploader.ImageBytes(upload, out string convertedLogo);
+                    var logo = ImageUploader.ImageBytes(upload, out string _64);
                     sponsor.Logo = logo;
                 }
                 db.Sponsors.Add(sponsor);
@@ -85,7 +85,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor, HttpPostedFileBase upload, HttpPostedFileBase currentLogo)
+        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -93,12 +93,6 @@ namespace TheatreCMS.Controllers
                 {
                     var logo = ImageUploader.ImageBytes(upload, out string convertedLogo);
                     sponsor.Logo = logo;
-                }
-                //Keeps current Logo
-                else if (currentLogo != null)
-                {
-                    byte[] imageBytes = Convert.FromBase64String(currentLogo.ToString());
-                    sponsor.Logo = imageBytes;
                 }
                 db.Entry(sponsor).State = EntityState.Modified;
                 db.SaveChanges();
