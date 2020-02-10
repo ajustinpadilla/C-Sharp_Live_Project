@@ -73,13 +73,15 @@ namespace TheatreCMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Production production = db.Productions.Find(id);
-            if (production == null)
-            {
-                return HttpNotFound();
-            }
-            return View(production);
-        }
+			Production production = db.Productions.Find(id);
+			if (production == null)
+			{
+				return HttpNotFound();
+			}
+			return View(production);
+
+
+		}
 
         // POST: Productions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

@@ -1,4 +1,5 @@
 ﻿@model TheatreCMS.Models.Sponsor
+@using TheatreCMS.Helpers
 
 @{
     ViewBag.Title = "Edit";
@@ -7,7 +8,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Sponsors", null, FormMethod.Post, new { enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
     
@@ -16,6 +17,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.SponsorId)
+        @Html.HiddenFor(model => model.Logo)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -28,8 +30,26 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })
+                @{
+                    string img = "";
+                    if (Model.Logo != null)
+                    {
+                        byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.Logo, 100, 100);
+                        var base64 = System.Convert.ToBase64String(thumbBytes);
+                        img = String.Format("data:image/png;base64,{0}", base64);
+                    }
+                }
+                <img src="@img" />
+                <input type="file" id="Logo" name="upload" />
+                <hr />
+                @*@Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Width, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
             </div>
         </div>
 
