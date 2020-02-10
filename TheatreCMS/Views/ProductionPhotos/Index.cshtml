@@ -26,7 +26,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Photo)
+            @*@Html.DisplayFor(modelItem => item.Photo)*@
+            <img src="@Url.Action("RenderImage", new { id = item.Photo})" class="ProPhotoImage"/>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)

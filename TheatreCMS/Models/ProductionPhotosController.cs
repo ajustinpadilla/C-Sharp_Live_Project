@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Helpers;
@@ -14,11 +15,28 @@ namespace TheatreCMS.Models
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: ProductionPhotos
-        public ActionResult Index()
+        //render image from database
+        public ActionResult RenderImage(int id)
         {
+            //int photoID = Convert.ToInt32(Request.Form["ProductionPhotos"]);
+
+            var photo = db.ProductionPhotos.Find(id);
+            byte[] photoBack = photo.Photo;
+            return File(photoBack, "image/png");
+        }
+
+        // GET: ProductionPhotos
+        public ActionResult Index(ProductionPhotos productionPhotos)
+        {
+            //int production = Convert.ToInt32(Request.Form["ProductionPhotos"]);
+            //var photo = db.ProductionPhotos.Find(photoID.);
+
+            int photoID = productionPhotos.ProPhotoId;
+            RenderImage(photoID);
             return View(db.ProductionPhotos.ToList());
         }
+
+       
 
         // GET: ProductionPhotos/Details/5
         public ActionResult Details(int? id)
