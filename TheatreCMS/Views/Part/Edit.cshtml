@@ -9,58 +9,67 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+
+    <div class="formContainer">
+        <div class="form-horizontal">
+            <h4 class="formHeader">Part</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.PartID)
+
+            <div class="inputBox">
+                @Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label" }) @*col-md-2*@
+                <div @*class="col-md-10"*@>
+                    @Html.DropDownList("Productions", string.Empty)
+                    @Html.ValidationMessageFor(model => model.Production)
+                </div>
+            </div>
+
+            <div class="inputBox">
+                @Html.LabelFor(model => model.Person, htmlAttributes: new { @class = "control-label" }) @*col-md-2*@
+                <div @*class="col-md-10"*@>
+                    @Html.DropDownList("CastMembers", string.Empty)
+                    @Html.ValidationMessageFor(model => model.Person)
+                </div>
+            </div>
+            <div class="inputBox">
+                @Html.LabelFor(model => model.Character, htmlAttributes: new { @class = "control-label" }) @*col-md-2*@
+                <div @*class="col-md-10"*@>
+                    @Html.EditorFor(model => model.Character, new { htmlAttributes = new { @class = "form-control inputText" } })
+                    @Html.ValidationMessageFor(model => model.Character, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="inputBox">
+                @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label" }) @*col-md-2*@
+                <div @*class="col-md-10"*@>
+                    @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control inputText" })
+                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="inputBox">
+                @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label" }) @*col-md-2*@
+                <div @*class="col-md-10"*@>
+                    @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control inputText" } })
+                    @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <input type="submit" value="Save" class="submitButton" />
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>*@
+        </div>
+    </div>
     
-<div class="form-horizontal">
-    <h4>Part</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.PartID)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Productions", string.Empty)
-            @Html.ValidationMessageFor(model => model.Production)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Person, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("CastMembers", string.Empty)
-            @Html.ValidationMessageFor(model => model.Person)
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Character, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Character, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Character, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>
