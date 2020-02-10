@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Sponsor>
+@using TheatreCMS.Helpers
+
 
 @{
     ViewBag.Title = "Index";
@@ -17,6 +19,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Logo)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Width)
+        </th>
         <th></th>
     </tr>
 
@@ -26,7 +34,23 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Logo)
+            @{
+                string img = "";
+                if (item.Logo != null)
+                {
+                    byte[] thumbBytes = ImageUploader.ImageThumbnail(item.Logo, 28, 28);
+                    var base64 = System.Convert.ToBase64String(thumbBytes);
+                    img = String.Format("data:image/png;base64,{0}", base64);
+                }
+            }
+            <img src="@img" />
+            @*@Html.DisplayFor(modelItem => item.Logo)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SponsorId }) |

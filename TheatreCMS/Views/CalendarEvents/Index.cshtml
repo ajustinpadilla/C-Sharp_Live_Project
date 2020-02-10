@@ -52,6 +52,9 @@
             @Html.DisplayNameFor(model => model.EndDate)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.TicketsAvailable)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ProductionId)
         </th>
         <th>
@@ -71,6 +74,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketsAvailable)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductionId)
