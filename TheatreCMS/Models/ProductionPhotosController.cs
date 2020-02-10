@@ -18,8 +18,6 @@ namespace TheatreCMS.Models
         //render image from database
         public ActionResult RenderImage(int id)
         {
-            //int photoID = Convert.ToInt32(Request.Form["ProductionPhotos"]);
-
             var photo = db.ProductionPhotos.Find(id);
             byte[] photoBack = photo.Photo;
             return File(photoBack, "image/png");
@@ -28,8 +26,10 @@ namespace TheatreCMS.Models
         // GET: ProductionPhotos
         public ActionResult Index(ProductionPhotos productionPhotos)
         {
-            //int production = Convert.ToInt32(Request.Form["ProductionPhotos"]);
-            //var photo = db.ProductionPhotos.Find(photoID.);
+            //foreach (var item in productionPhotos)
+            //{
+
+            //}
 
             int photoID = productionPhotos.ProPhotoId;
             RenderImage(photoID);
