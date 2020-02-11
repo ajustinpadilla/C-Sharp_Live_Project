@@ -448,3 +448,10 @@ textarea {
     background-repeat: no-repeat;
 }
 /*End SubmitRequest CSS*/
+.bgimage {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
+}
+
+.card-deck, .card, .card-img-top {
+    --dark-color: #210000; /*Black*/
+}
