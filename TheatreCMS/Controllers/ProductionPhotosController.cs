@@ -16,23 +16,21 @@ namespace TheatreCMS.Models
         private ApplicationDbContext db = new ApplicationDbContext();
 
         //render image from database
-        public ActionResult RenderImage(int id)
+        public ActionResult RenderImage(byte[] img)
         {
-            var photo = db.ProductionPhotos.Find(id);
-            byte[] photoBack = photo.Photo;
+            //var photo = db.ProductionPhotos.Find(id);
+            //var photoBack = Convert.ToBase64String(photo.Photo);
+            //byte[] thumbBytes = ImageUploader.ImageThumbnail(img, 200, 200);
+            //var photoBack = String.Format("data:image/png;base64,{0}", thumbBase64);
+            //return File(photoBack, "data:image/png;base64,{0}");
+
+            var photoBack = Convert.ToBase64String(img);
             return File(photoBack, "image/png");
         }
 
         // GET: ProductionPhotos
-        public ActionResult Index(ProductionPhotos productionPhotos)
+        public ActionResult Index()
         {
-            //foreach (var item in productionPhotos)
-            //{
-
-            //}
-
-            int photoID = productionPhotos.ProPhotoId;
-            RenderImage(photoID);
             return View(db.ProductionPhotos.ToList());
         }
 
@@ -65,9 +63,14 @@ namespace TheatreCMS.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProPhotoId,Photo,Title,Description")] ProductionPhotos productionPhotos)
+        public ActionResult Create([Bind(Include = "ProPhotoId,Title,Description")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
+
+
+            byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
+            productionPhotos.Photo = photo;
+            productionPhotos.File = file.FileName;
 
             if (ModelState.IsValid)
             {
@@ -158,30 +161,6 @@ namespace TheatreCMS.Models
             
             return View();
         }
-        [HttpPost]
-        public ActionResult UploadImage(HttpPostedFileBase file)
-        {
-            try
-            {
-                //Using Helpers.ImageUploader.ImageBytes to get the byte[] representation of the file
-                //and extracting the string representation as a returned out-parrameter
-                string imageBase64;
-                byte[] imageBytes = ImageUploader.ImageBytes(file, out imageBase64);
-
-                //Add the base64 representation of the image to the ViewBag to be accessed by the View
-                ViewBag.ImageData = String.Format("data:image/png;base64,{0}", imageBase64);
-
-                ViewBag.Message = "Image uploaded successfully!";
-                return View();
-            }
-
-            catch
-            {
-                //Using this empty string for the View to trigger when an upload fails
-                ViewBag.ImageData = "";
-                ViewBag.Message = "There was an error uploading your image :(";
-            }
-            return View();
-        }
+        
     }
 }

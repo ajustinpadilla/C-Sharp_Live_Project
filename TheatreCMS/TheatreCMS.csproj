@@ -216,7 +216,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\ProductionPhotos.cs" />
-    <Compile Include="Models\ProductionPhotosController.cs" />
+    <Compile Include="Controllers\ProductionPhotosController.cs" />
     <Compile Include="Models\Sponsor.cs" />
     <Compile Include="Models\RentalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
