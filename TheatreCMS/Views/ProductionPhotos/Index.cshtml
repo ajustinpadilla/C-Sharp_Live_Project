@@ -26,24 +26,33 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            @*@Html.DisplayFor(modelItem => item.Photo)*@
-            <td>
-                <img src="@Html.Action("RenderImage", new { img = item.Photo})" class="ProPhotoImage" />
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProPhotoId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProPhotoId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProPhotoId })
-            </td>
-        </tr>
+    <tr>
+        @*@Html.DisplayFor(modelItem => item.Photo)*@
+       <td>
+            @{
+                string img = "";
+                if (item.Photo != null)
+                {
+                    byte[] thumbBytes = ImageUploader.ImageThumbnail(item.Photo, 28, 28);
+                    var base64 = System.Convert.ToBase64String(thumbBytes);
+                    img = String.Format("data:image/png;base64,{0}", base64);
+                }
+            }
+            <img src="@img" />
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ProPhotoId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ProPhotoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProPhotoId })
+        </td>
+    </tr>
     }
 
 </table>

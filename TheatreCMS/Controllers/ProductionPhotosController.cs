@@ -15,26 +15,12 @@ namespace TheatreCMS.Models
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        //render image from database
-        public ActionResult RenderImage(byte[] img)
-        {
-            //var photo = db.ProductionPhotos.Find(id);
-            //var photoBack = Convert.ToBase64String(photo.Photo);
-            //byte[] thumbBytes = ImageUploader.ImageThumbnail(img, 200, 200);
-            //var photoBack = String.Format("data:image/png;base64,{0}", thumbBase64);
-            //return File(photoBack, "data:image/png;base64,{0}");
-
-            var photoBack = Convert.ToBase64String(img);
-            return File(photoBack, "image/png");
-        }
 
         // GET: ProductionPhotos
         public ActionResult Index()
         {
             return View(db.ProductionPhotos.ToList());
         }
-
-       
 
         // GET: ProductionPhotos/Details/5
         public ActionResult Details(int? id)
@@ -66,7 +52,6 @@ namespace TheatreCMS.Models
         public ActionResult Create([Bind(Include = "ProPhotoId,Title,Description")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
-
 
             byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
             productionPhotos.Photo = photo;
