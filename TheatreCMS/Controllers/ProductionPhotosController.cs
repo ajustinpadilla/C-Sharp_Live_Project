@@ -92,19 +92,28 @@ namespace TheatreCMS.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProPhotoId,Photo,Title,Description")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "ProPhotoId,Photo,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
 
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
 
-            byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
-            productionPhotos.Photo = photo;
-            
-
             if (ModelState.IsValid)
             {
-                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                if (file != null && file.ContentLength > 0)
+                {
+                    var photo = ImageUploader.ImageBytes(file, out string _64);
+                    productionPhotos.Photo = photo;
+                }
 
+                //Coming up null
+                var production = db.ProductionPhotos.Find(productionPhotos.Production);
+
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId");
+
+                var productionId = db.Productions.Find(productionID);
+                productionPhotos.Production = productionId;
+                db.Entry(productionPhotos.Production).State = EntityState.Modified;
+                db.SaveChanges();
                 db.Entry(productionPhotos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

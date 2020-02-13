@@ -8,7 +8,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "ProductionPhotos", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 
 
 {
@@ -19,6 +19,7 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.ProPhotoId)
+    @Html.HiddenFor(model => model.Photo)
 
     <div class="form-group">
         @Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-2" })
