@@ -55,7 +55,7 @@ namespace TheatreCMS.Models
 
             byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
             productionPhotos.Photo = photo;
-            productionPhotos.File = file.FileName;
+            
 
             if (ModelState.IsValid)
             {
@@ -92,8 +92,15 @@ namespace TheatreCMS.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProPhotoId,Photo,Title,Description")] ProductionPhotos productionPhotos)
+        public ActionResult Edit([Bind(Include = "ProPhotoId,Photo,Title,Description")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
+
+            int productionID = Convert.ToInt32(Request.Form["Productions"]);
+
+            byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
+            productionPhotos.Photo = photo;
+            
+
             if (ModelState.IsValid)
             {
                 ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
