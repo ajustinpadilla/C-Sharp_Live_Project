@@ -89,13 +89,16 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InfoId,Title,Description")] DisplayInfo displayInfo, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "InfoId,Title,Description,Image, File")] DisplayInfo displayInfo, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                displayInfo.File = file.FileName;
-                var img = ImageUploader.ImageBytes(file, out _);
-                displayInfo.Image = img;
+                if (file != null && file.ContentLength > 0)
+                {
+                    var img = ImageUploader.ImageBytes(file, out string convertedLogo);
+                    displayInfo.Image = img;
+                    displayInfo.File = file.FileName;
+                }
                 db.Entry(displayInfo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
