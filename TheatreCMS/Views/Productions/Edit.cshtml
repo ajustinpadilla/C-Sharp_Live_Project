@@ -60,7 +60,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.PromoPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PromoPhoto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBoxFor(model => model.PromoPhoto, new { type = "file", Name = "upload", Id = "PromoPhoto" })
+            @*@Html.EditorFor(model => model.PromoPhoto, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => model.PromoPhoto, "", new { @class = "text-danger" })
         </div>
     </div>
