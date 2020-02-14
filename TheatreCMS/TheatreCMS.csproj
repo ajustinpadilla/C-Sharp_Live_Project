@@ -53,7 +53,7 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>  
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -188,6 +188,7 @@
     <Compile Include="Controllers\DisplayInfoController.cs" />
     <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageUploadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductionsController.cs" />
     <Compile Include="Controllers\PartController.cs" />
@@ -198,7 +199,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ImageUploader.cs" />
     <Compile Include="Migrations\201912270113296_InitialSetUp.cs" />
     <Compile Include="Migrations\201912270113296_InitialSetUp.designer.cs">
       <DependentUpon>201912270113296_InitialSetUp.cs</DependentUpon>
@@ -577,6 +577,8 @@
   <ItemGroup>
     <Folder Include="Areas\Subscribers\Data\" />
     <Folder Include="Content\Images\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Views\ImageUpload\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">

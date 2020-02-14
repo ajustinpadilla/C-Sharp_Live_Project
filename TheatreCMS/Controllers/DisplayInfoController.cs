@@ -8,14 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
 using System.Drawing;
-using TheatreCMS.Helpers;
+using TheatreCMS.Controllers;
 
 namespace TheatreCMS.Controllers
 {
     public class DisplayInfoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        
         // GET: DisplayInfo
         public ActionResult Index()
         {
@@ -55,7 +55,7 @@ namespace TheatreCMS.Controllers
         //Not sure whether or not Image should be in the Include parameter of the Bind method...
         public ActionResult Create([Bind(Include = "InfoId,Title,Description,File")] DisplayInfo displayInfo, HttpPostedFileBase file)
         { 
-            byte[] image = Helpers.ImageUploader.ImageBytes(file, out string _64);
+            byte[] image = ImageUploadController.ImageBytes(file, out string _64);
             displayInfo.Image = image;
             displayInfo.File = file.FileName;
 
@@ -94,7 +94,7 @@ namespace TheatreCMS.Controllers
             if (ModelState.IsValid)
             {
                 displayInfo.File = file.FileName;
-                var img = ImageUploader.ImageBytes(file, out _);
+                var img = ImageUploadController.ImageBytes(file, out _);
                 displayInfo.Image = img;
                 db.Entry(displayInfo).State = EntityState.Modified;
                 db.SaveChanges();
