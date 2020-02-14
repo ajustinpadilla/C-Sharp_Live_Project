@@ -9,6 +9,7 @@ using System.Web;
 using TheatreCMS.Models;
 using TheatreCMS.Helpers;
 using System;
+using System.Linq;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
 namespace TheatreCMS
@@ -144,6 +145,7 @@ namespace TheatreCMS
 		//Seeding database with dummy Productions
 		private void SeedProductions()
 		{
+            
 			var productions = new List<Production>
 			{
 				new Production{Title = "Hamilton", Playwright = "Lin-Manuel Miranda", Description = "This is a musical inspired by the biography " +
@@ -176,8 +178,19 @@ namespace TheatreCMS
 				IsCurrent = false},
 			};
 
-			productions.ForEach(Production => context.Productions.AddOrUpdate(d => d.Title, Production));
-			context.SaveChanges();
+            //added if statement to ensure that Startup.cs will not override additions to the productions table on start up.
+            var currentList = context.Productions.ToList();
+
+            if (currentList.Count == 0)
+            {
+               
+                productions.ForEach(Production => context.Productions.AddOrUpdate(d => d.Title, Production));
+                context.SaveChanges();
+            }
+                
+            
+            
+			
 		}
 	}
 }

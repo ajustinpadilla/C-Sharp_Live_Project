@@ -102,8 +102,14 @@ namespace TheatreCMS.Controllers
                 {
                     var promoPhoto = ImageUploader.ImageBytes(upload, out string _64);
                     production.PromoPhoto = promoPhoto;
+                    db.Entry(production).State = EntityState.Modified;
                 }
-                db.Entry(production).State = EntityState.Modified;
+                if (upload == null)
+                {
+                    db.Entry(production).State = EntityState.Modified;
+                    db.Entry(production).Property(x => x.PromoPhoto).IsModified = false;
+                }
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
