@@ -5,92 +5,172 @@
     ViewBag.Title = "Index";
 }
 
-<background-image"./Images/img1.jpg"></background-image>
-<h2 class="subback">Welcome to the Subscriber Area!</h2>
+    <body class="subbody">
+            <h1 class="subback1">WELCOME TO THE SUBSCRIBER AREA</h1>
 
-<div class="d-flex mt-5">
-    <div class="align-self-stretch bg-info text-white col-md-4 mr-1" style="height:402px; border-radius:6px">
-        <div class="d-inline-flex flex-row">
-            <img src="" class="img-fluid" />
-            <h3 class="align-items-center">Upcoming Shows</h3>
+
+                <div class="accountbox">
+                    <h2 class="subback2">Your Upcoming Shows</h2>   
+                    <table class="shows" cellpadding="10">
+                            <tr>
+                                <th>Performance</th>
+                                <th>Date and Time</th>
+                                <th>Change or Cancel</th>
+                            </tr>
+                            <tr>
+                                <td>Merchant of Venice</td>
+                                <td>June 22nd, 7pm</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Click Here</button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Change Date</a>
+                                            <a href="#">Cancel</a>
+                                        </div>
+                                    </div>
+                                </td></tr>
+                        <tr>
+                            <td>Dumb Ghost</td>
+                            <td>July 3rd, 7pm</td>
+                            <td><div class="dropdown">
+                            <button class="dropbtn">Click Here</button>
+                            <div class="dropdown-content">
+                                <a href="#">Change Date</a>
+                                <a href="#">Cancel</a>
+                            </div>
+                        </div></td>
+                        </tr>
+                        <tr>
+                            <td>Death of A Salesman</td>
+                            <td>July 27th, 7pm</td>
+                            <td><div class="dropdown">
+                                <button class="dropbtn">Click Here</button>
+                                <div class="dropdown-content">
+                                    <a href="#">Change Date</a>
+                                    <a href="#">Cancel</a>
+                                </div>
+                            </div></td>
+                        </tr>
+
+
+                        </table>
+                    </div>
+            <div class="accountbox">
+                <div class="accountinfo">
+                    <form>
+                        <h2 class="subback2">Manage Your Account</h2>
+                        <div class="currentinfo">
+                            <table class="current">
+                                <column>
+                                    <tr style="padding:10px">
+                                        <th colspan="1" style="padding:10px">First Name</th>
+                                        <th style="padding:10px">Last Name</th>
+
+                                    <tr style="padding:10px">
+                                        <td style="padding:10px">Johnny</td>
+                                        <td style="padding:10px">Appleseed</td>
+                                        <td></td>
+                                    </tr>
+                                </column>
+                                    <column>
+                                    <tr style="padding:10px">
+                                        <th colspan="2" style="padding:10px">Current Address</th>
+                                    </tr>
+                                    <tr style="padding:10px">
+                                        <td style="padding:10px">123 Subscriber Lane</td>
+                                        <td style="padding:10px">Vertigo City</td>
+                                    </tr>
+                                    <tr style="padding:10px">
+                                        <td style="padding:10px">Oregon</td>
+                                        <td style="padding:10px">97206</td>
+                                    </tr>
+                                </column>
+                                    <column>
+                                        <tr style="padding:10px">
+                                            <th style="padding:10px">Current Email</th>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:10px">appleseed3000@gmail.com</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </column>
+                                </table>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="inputFirst">First Name</label>
+                                <input type="text" class="form-control name" id="inputFirst" placeholder="Edit">
+                            </div>
+                            <div class="col">
+                                <label for="inputLast">Last Name</label>
+                                <input type="text" class="form-control name" id="inputLast" placeholder="Edit">
+                            </div>
+                        </div>
+                    </form>
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Edit">
         </div>
-        <div class="card bg-secondary mt-4 mb-3" style="max-width: 27rem;">
-            <div class="card-body">
-                <ul>
-                    <li>1</li>
-                    <li class="overflow-hidden"></li>
-                    <li>2</li>
-                    <li class="overflow-hidden"></li>
-                    <li>3</li>
-                    <li class="overflow-hidden"></li>
-                    <li>4</li>
-                    <li class="overflow-hidden"></li>
-                    <li>5</li>
-                </ul>
+        <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Edit">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="Edit">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Edit</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="inputZip" placeholder="Edit">
             </div>
         </div>
-    </div>
-    <div class="d-flex flex-column">
-        <div class="p-2 align-self-start bg-info text-white mr-1" style="height:200px; width:200px; border-radius:6px;">
-            <div class="d-inline-flex">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                <div class="form-group">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.Id)
-                    <h3>@User.Identity.GetUserName()</h3>
-                    <br />
-                        <p>@Model.Email</p>>
-                </div>
-                }
+        <div>
+            <button type="button" class="subsave">Save</button>
+        </div>    
+        </div>
+        </div>
+
+            <div class="accountbox">
+                <h2 class="subback2">Manage Your Subscription</h2>
+                <form action="/action_page.php">
+                    <div>
+                        <h2>Current Subscription Level: Silver</h2>
+                        <p><button type="button" class="subsave">Renew Subscription</button></p>
+                    </div>
+                    <div>
+                        <p>
+                            <label for="sublevel">Subscription Level</label>
+                            <select id="sublevel" name="sublevel">
+                                <option value="Platinum">Platinum &nbsp;&nbsp;  /  &nbsp;&nbsp;   all shows &nbsp;&nbsp;    /   &nbsp;&nbsp;  $500/yr</option>
+                                <option value="Gold">Gold   &nbsp;&nbsp;  /   &nbsp;&nbsp;  any ten shows &nbsp;&nbsp;    /  &nbsp;&nbsp;   $300/yr</option>
+                                <option value="Silver">Silver &nbsp;&nbsp;    /    &nbsp;&nbsp; any five shows  &nbsp;&nbsp;  /  &nbsp;&nbsp;   $200/yr</option>
+                            </select>
+                        </p>
+
+                        <button type="button" class="subsave">Update Subscription</button>
+                    </div>
+
+                    <label for="upshows">Upcoming Shows</label>
+                    <select id="upshows" name="upshows">
+                        <option value="mechant1">Merchant of Venice  &nbsp;&nbsp;&nbsp; June 24th, 7pm</option>
+                        <option value="merchant2">Merchant of Venice &nbsp;&nbsp;&nbsp; June 25th, 7pm</option>
+                        <option value="dumb1">Dumb Ghost &nbsp;&nbsp;&nbsp; July 5th, 7pm</option>
+                        <option value="dumb2">Dumb Ghost &nbsp;&nbsp;&nbsp;  July 6th, 7pm</option>
+                    </select>
+                    <div>
+                        <button type="button" class="subsave">Add to Schedule</button>
+                    </div>
+                </form>
+
             </div>
-        </div>
-        <div class="p-2 align-self-end bg-secondary text-white mt-1 mr-1" style="height:200px; width:200px; border-radius:6px;">
-            @if (Model.SubscriberPerson != null)
-            {
-                <div class="d-inline-flex">
-                    <img src="" class="img-fluid" />
-                    <h4 class="align-items-center">Manage Subscription</h4>
-                    <p></p>
-                </div>
-                <a href="/Subscribers/Subscriber/Index" class="btn btn-info mt-3">Button</a>
-            }
-            else
-            {
-                <div>
-                    <h4 class="align-items-center">You dont currently have a subscription</h4>
-                </div>
-                <a href="/Subscribers/Subscriber/Create" class="btn btn-info mt-3">Add Subscription</a>
-            }
-        </div>
-    </div>
-    <div class="d-flex flex-column">
-        <div class="p-2 align-self-start bg-secondary text-white mr-1" style="height:200px; width:200px; border-radius:6px;">
-            <div class="d-inline-flex">
-                <img src="" class="img-fluid" />
-                <h4 class="align-items-center">Manage Account</h4>
-                <p></p>
-            </div>
-            <a href="~/Manage/Index" class="btn btn-info mt-3">Button</a>
-        </div>
-        <div class="p-2 align-self-end bg-info text-white mt-1 mr-1" style="height:200px; width:200px; border-radius:6px;">
-            @if (Model.SeasonManagerPerson.Count() != 0)
-            {
-                <div class="d-inline-flex">
-                    <img src="" class="img-fluid" />
-                    <h4 class="align-items-center">Manage Season</h4>
-                    <p></p>
-                </div>
-                <a href="/Subscribers/SeasonManager/Index" class="btn btn-secondary mt-3">Button</a>
-            }
-            else
-            {
-                <div>
-                    <h4 class="align-items-center">No seasons are currently associated with your account</h4>
-                </div>
-                <a href="/Subscribers/SeasonManager/Create" class="btn btn-secondary mt-3">Add Season</a>
-            }
-        </div>
-    </div>
-</div>
+
+    </body>
