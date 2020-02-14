@@ -216,6 +216,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Part.cs" />
+    <Compile Include="Models\ProductionPhotos.cs" />
+    <Compile Include="Controllers\ProductionPhotosController.cs" />
     <Compile Include="Models\Sponsor.cs" />
     <Compile Include="Models\RentalRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -563,6 +565,11 @@
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Productions\Current.cshtml" />
     <Content Include="Views\Account\LoginFailure.cshtml" />
+    <Content Include="Views\ProductionPhotos\Create.cshtml" />
+    <Content Include="Views\ProductionPhotos\Delete.cshtml" />
+    <Content Include="Views\ProductionPhotos\Details.cshtml" />
+    <Content Include="Views\ProductionPhotos\Edit.cshtml" />
+    <Content Include="Views\ProductionPhotos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
