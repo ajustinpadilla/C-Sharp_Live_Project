@@ -11,29 +11,29 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table class="table-styling">
+    <tr class="tr-styling">
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Logo)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Height)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Width)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <tr class="tr-styling">
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
+        <td class="td-styling">
             @{
                 string img = "";
                 if (item.Logo != null)
@@ -44,15 +44,15 @@
                 }
             }
             <img src="@img" />
-            @*@Html.DisplayFor(modelItem => item.Logo)*@
+            
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Height)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Width)
         </td>
-        <td>
+        <td class="td-styling">
             @Html.ActionLink("Edit", "Edit", new { id=item.SponsorId }) |
             @Html.ActionLink("Details", "Details", new { id=item.SponsorId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SponsorId })
