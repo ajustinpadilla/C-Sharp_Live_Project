@@ -93,13 +93,22 @@ namespace TheatreCMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                var currentInfo = db.DisplayInfo.Find(displayInfo.InfoId);
+                currentInfo.Title = displayInfo.Title;
+                currentInfo.Description = displayInfo.Description;
+
                 if (file != null && file.ContentLength > 0)
                 {
                     var img = ImageUploader.ImageBytes(file, out string convertedLogo);
-                    displayInfo.Image = img;
-                    displayInfo.File = file.FileName;
+                    currentInfo.Image = img;
+                    currentInfo.File = file.FileName;
                 }
-                db.Entry(displayInfo).State = EntityState.Modified;
+                else
+                {
+                    currentInfo.Image = displayInfo.Image;
+                    currentInfo.File = displayInfo.File;
+                }
+                db.Entry(currentInfo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
