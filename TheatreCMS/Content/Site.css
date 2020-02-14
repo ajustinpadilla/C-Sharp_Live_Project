@@ -426,3 +426,32 @@ textarea {
     background-color: var(--main-bg-color);
 }
 
+/*Begin SubmitRequest CSS*/
+.thanks {
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: black;
+    font-size: 85px;
+    font-weight: bold;
+}
+
+.bigger {
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#giraffe {
+  
+    background-size: 30%;
+    background-image: url('https://cdn.pixabay.com/photo/2019/02/19/19/45/thumbs-up-4007573_960_720.png');
+    background-repeat: no-repeat;
+}
+/*End SubmitRequest CSS*/
+.bgimage {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
+}
+
+.card-deck, .card, .card-img-top {
+    --dark-color: #210000; /*Black*/
+}
