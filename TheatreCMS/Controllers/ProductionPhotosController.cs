@@ -99,22 +99,28 @@ namespace TheatreCMS.Models
 
             if (ModelState.IsValid)
             {
+                var currentProPhoto = db.ProductionPhotos.Find(productionPhotos.ProPhotoId);
+                currentProPhoto.Title = productionPhotos.Title;
+                currentProPhoto.Description = productionPhotos.Description;
+
+                //ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId");
+
+                var production = db.Productions.Find(productionID);
+                currentProPhoto.Production = production;
+
                 if (file != null && file.ContentLength > 0)
                 {
                     var photo = ImageUploader.ImageBytes(file, out string _64);
-                    productionPhotos.Photo = photo;
+                    currentProPhoto.Photo = photo;
+                }
+                else
+                {
+                    currentProPhoto.Photo = productionPhotos.Photo;
                 }
 
-                //Coming up null
-                var production = db.ProductionPhotos.Find(productionPhotos.Production);
-
-                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId");
-
-                var productionId = db.Productions.Find(productionID);
-                productionPhotos.Production = productionId;
-                db.Entry(productionPhotos.Production).State = EntityState.Modified;
+                db.Entry(currentProPhoto.Production).State = EntityState.Modified;
                 db.SaveChanges();
-                db.Entry(productionPhotos).State = EntityState.Modified;
+                db.Entry(currentProPhoto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
