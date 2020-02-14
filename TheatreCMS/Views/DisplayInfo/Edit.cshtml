@@ -8,7 +8,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm("Edit", "DisplayInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "DisplayInfo", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -45,20 +45,27 @@
             </div>*@
 
         @* eidtor for image *@
-    <div class="form-group">   
-        <div class="control-label col-md-2">
-            @Html.LabelFor(model => model.File)
-            @{
-                var img = Model.Image;
-                //displays the image using inline <img tag
-                byte[] thumbBytes = ImageUploader.ImageThumbnail(img, 200, 200);
-                var thumbBase64 = Convert.ToBase64String(thumbBytes);
-                var imgSrc = String.Format("data:image/png;base64,{0}", thumbBase64);
-            }
-            <img src="@imgSrc" />
-            @Html.TextBoxFor(m => m.File, new { type = "file" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2">
+                @*@Html.LabelFor(model => model.File)*@
+                @{
+                    string imgSrc = "";
+                    if (Model.Image != null)
+                    {
+                        //displays the image using inline <img tag
+                        byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.Image, 200, 200);
+                        var thumbBase64 = Convert.ToBase64String(thumbBytes);
+                        imgSrc = String.Format("data:image/png;base64,{0}", thumbBase64);
+                    }
+                }
+                <img src="@imgSrc" />
+                <input type="file" name="file" />
+                <hr />
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                @*@Html.TextBoxFor(m => m.File, "file", new { type = "file" })*@
+            </div>
         </div>
-    </div>
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.File, htmlAttributes: new { @class = "control-label col-md-2" })
