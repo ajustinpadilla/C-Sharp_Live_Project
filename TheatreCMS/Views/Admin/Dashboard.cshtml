@@ -6,7 +6,6 @@
     ViewBag.Title = "Dashboard";
 }
 
-
 <!DOCTYPE html>
 
 <h2>Dashboard</h2>
@@ -40,3 +39,21 @@
         @Html.ActionLink("Rental Request", "Index", "RentalRequest")
     </li>
 </ul>
+
+
+@using (Html.BeginForm("SettingsUpdate", "Admin", FormMethod.Post))
+{
+<div>
+    Current Season:
+    <input type="number" name="Current_Season"><br />
+    Season Productions:<br />
+    Winter:<input type="number" name="Fall"><br>
+    Fall:<input type="number" name="Winter"><br>
+    Spring:<input type="number" name="Spring"><br>
+    Recent Definition:<br />
+    Span:<input type="number" name="Span"><br>
+    Date:<input type="date" name="Date"><br>
+    Onstage:<input type="number" name="Onstage"><br />
+    <button type="submit">Submit</button>
+</div>
+}
