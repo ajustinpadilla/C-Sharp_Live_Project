@@ -45,7 +45,7 @@ namespace TheatreCMS.Controllers
             try
             {
                 //Using Helpers.ImageUploader.ImageBytes to get the byte[] representation of the file
-                //and extracting the string representation as a returned out-parrameter
+                //and extracting the string representation as a returned out-parameter
                 string imageBase64;
                 byte[] imageBytes = ImageUploader.ImageBytes(file, out imageBase64);
 
