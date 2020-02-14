@@ -35,11 +35,7 @@ namespace TheatreCMS.Controllers
 
         public void RentalEditCalendar(RentalRequest rentalRequest)
         {
-            // CalendarEvent calendar = new CalendarEvent();
-            //int calendarId = Convert.ToInt32(calendarEvent);
-            //int rental = rentalRequest.RentalRequestId;
-            //CalendarEvent calendar = db.CalendarEvents.Where(rentalRequest.RentalRequestId);
-
+            
             CalendarEvent calendar = db.CalendarEvent.Where(x => x.RentalRequestId == rentalRequest.RentalRequestId).FirstOrDefault();
 
             if (calendar == null)
@@ -48,7 +44,6 @@ namespace TheatreCMS.Controllers
             }
             else if (rentalRequest.RentalRequestId == calendar.RentalRequestId)
             {
-                //calendar.RentalRequestId = rentalRequest.RentalRequestId;
                 calendar.Title = rentalRequest.Company;
                 calendar.StartDate = rentalRequest.StartTime;
                 calendar.EndDate = rentalRequest.EndTime;

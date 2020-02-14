@@ -43,5 +43,6 @@ namespace TheatreCMS.Models
         public byte[] ShowDays { get; set; }
         public virtual ICollection<Part> Parts { get; set; }
         public virtual ICollection<CalendarEvent> Events { get; set; }
+        public virtual ICollection<ProductionPhotos> ProductionPhotos { get; set; }
     }
 }
