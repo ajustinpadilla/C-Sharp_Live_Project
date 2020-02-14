@@ -5,7 +5,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Welcome to the Subscriber Area!</h2>
+<background-image"./Images/img1.jpg"></background-image>
+<h2 class="subback">Welcome to the Subscriber Area!</h2>
 
 <div class="d-flex mt-5">
     <div class="align-self-stretch bg-info text-white col-md-4 mr-1" style="height:402px; border-radius:6px">
@@ -40,12 +41,7 @@
                     @Html.HiddenFor(model => model.Id)
                     <h3>@User.Identity.GetUserName()</h3>
                     <br />
-                        <p>@Model.StreetAddress</p>
-                        <p>@Model.PhoneNumber</p>
-                        <p>@Model.Email</p>
-                        @*<p>@Model.SubscriberPerson.StreetAddress</p>
-                        <p>@Model.SubscriberPerson.PhoneNumber</p>
-                        <p>@Model.SubscriberPerson.Email</p>*@
+                        <p>@Model.Email</p>>
                 </div>
                 }
             </div>
