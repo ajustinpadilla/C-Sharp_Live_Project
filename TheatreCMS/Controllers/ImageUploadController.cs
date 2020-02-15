@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace TheatreCMS.Controllers
 {
-    public static class ImageUploadController 
+    public class ImageUploadController : Controller
     {
         
         //file -> buyte[] (out string64)
