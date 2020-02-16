@@ -8,9 +8,9 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="palette-body">
-    <nav class="palette-navbar navbar navbar-expand-lg navbar-light bg-light" id="menu">
+    <nav class="palette-navbar navbar fixed-top navbar-expand-lg navbar-light bg-light" id="menu">
         <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index", "Home")">
-            <img src="~/Content/Images/cropped-logo.png" />
+            <img src="~/Content/Images/cropped-logo.png" id="logo"/>
         </a>
         <!--Drop down menu button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -145,7 +145,7 @@
 
 body {
 
-    padding-top: 0px;
+    padding-top: 110px;
     padding-bottom: 20px;
 }
 /* ------Footer stylings----- */
@@ -458,7 +458,7 @@ textarea {
     --dark-color: #210000; /*Black*/
 }
 
-/*test*/
+/*navbar*/
 .navbar-nav li:hover > ul.dropdown-menu {
     display: block;
 }
@@ -473,6 +473,9 @@ textarea {
         margin-top: -6px;
     }
 
+a.dropdown-item:hover {
+    color: white;
+}
 /* The sticky class */
 .sticky {
     position: fixed;
@@ -480,6 +483,11 @@ textarea {
     width: 100%;
 }
 
-    .sticky + .body-content {
-        padding-top: 60px;
-    }
+#menu {
+    transition: 0.2s;
+    padding: 20px;
+}
+
+#logo {
+    transition: 0.2s;
+}
