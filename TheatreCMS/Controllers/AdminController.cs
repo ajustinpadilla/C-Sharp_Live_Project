@@ -11,6 +11,8 @@ namespace TheatreCMS.Controllers
 {
     public class AdminController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Admin
         public ActionResult Index()
         {
@@ -51,6 +53,29 @@ namespace TheatreCMS.Controllers
                 writer.Write(newSettings);
             }
             return RedirectToAction("Dashboard");
+
+        }
+
+        public ActionResult DonorList(string sortOrder)
+        {
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            var donor = from z in db.Subscribers
+                        where z.RecentDonor == true
+                        select z;
+
+            switch (sortOrder)
+            {
+                case "Date":
+                    donor = donor.OrderBy(s => s.LastDonated);
+                    break;
+                case "date_desc":
+                    donor = donor.OrderByDescending(s => s.LastDonated);
+                    break;
+            }
+
+
+            return View(donor.ToList());
         }
     }
 }

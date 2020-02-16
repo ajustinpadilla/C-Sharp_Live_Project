@@ -570,6 +570,7 @@
     <Content Include="Views\ProductionPhotos\Details.cshtml" />
     <Content Include="Views\ProductionPhotos\Edit.cshtml" />
     <Content Include="Views\ProductionPhotos\Index.cshtml" />
+    <Content Include="Views\Admin\DonorList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
