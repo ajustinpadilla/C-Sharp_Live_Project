@@ -1,4 +1,5 @@
-﻿@using TheatreCMS.Controllers
+﻿@using TheatreCMS.Helpers
+@using TheatreCMS.Controllers
 @model IEnumerable<TheatreCMS.Models.CastMember>
 
 
@@ -21,7 +22,21 @@
         <div class="col-md-4">
             <div class="thumbnail">
                 <div class="castContainer">
-                    <img class="castImage" src="@Url.Content("~/Content/Images/CastMember.jpg")" style="width:100%">
+                    @*<img class="castImage" src="@Url.Content("~/Content/Images/CastMember.jpg")" style="width:100%">*@
+                    @{
+                        string img = "";
+                        if (item.Photo != null)
+                        {
+                            byte[] thumbBytes = ImageUploader.ImageThumbnail(item.Photo, 100, 100);
+                            var base64 = System.Convert.ToBase64String(thumbBytes);
+                            img = String.Format("data:image/png;base64,{0}", base64);
+                        }
+                        else
+                        {
+                            img = @Url.Content("~/Content/Images/CastMember.jpg");
+                        }
+                    }
+                    <img class="castImage" src="@img" / style="width:100%">
                     <div class="castMiddle"><div class="castText">@Html.DisplayFor(modelItem => item.Bio)</div></div>
                 </div>
                 <div class="caption">

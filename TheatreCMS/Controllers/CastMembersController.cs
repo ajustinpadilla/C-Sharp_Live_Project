@@ -62,9 +62,8 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember)
-        {
-            
+        public ActionResult Create([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember, HttpPostedFileBase file)
+        { 
             ModelState.Remove("CastMemberPersonID");
 
             //Extract the Guid as type String from user's selected User (from SelectList)
@@ -72,6 +71,12 @@ namespace TheatreCMS.Controllers
 
             if (ModelState.IsValid)
             {
+                if (file != null && file.ContentLength > 0)
+                {
+                    byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
+                    castMember.Photo = photo;
+                }
+
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
 
                 castMember.CastMemberPersonID = db.Users.Find(userId).Id;
@@ -106,14 +111,34 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember)
+        public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember, HttpPostedFileBase file)
         {
+
             ModelState.Remove("CastMemberPersonID");
             string userId = Request.Form["dbUsers"].ToString();
             if (ModelState.IsValid)
             {
-                castMember.CastMemberPersonID = db.Users.Find(userId).Id;
-                db.Entry(castMember).State = EntityState.Modified;
+                var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
+                byte[] oldPhoto = currentCastMember.Photo;
+
+                currentCastMember.Name = castMember.Name;
+                currentCastMember.YearJoined = castMember.YearJoined;
+                currentCastMember.MainRole = castMember.MainRole;
+                currentCastMember.Bio = castMember.Bio;
+                currentCastMember.CurrentMember = castMember.CurrentMember;
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    byte[] newPhoto = Helpers.ImageUploader.ImageBytes(file, out string _64);
+                    currentCastMember.Photo = newPhoto;
+                }
+                else
+                {
+                    currentCastMember.Photo = oldPhoto;
+                }
+                //castMember.CastMemberPersonID = db.Users.Find(userId).Id;
+                //db.Entry(castMember).State = EntityState.Modified;
+                db.Entry(currentCastMember).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
