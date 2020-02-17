@@ -61,6 +61,7 @@ namespace TheatreCMS.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
             var donor = from z in db.Subscribers
+                        where z.RecentDonor == true
                         select z;
 
             switch (sortOrder)
@@ -68,9 +69,7 @@ namespace TheatreCMS.Controllers
                 case "date_desc":
                     donor = donor.OrderByDescending(s => s.LastDonated);
                     break;
-                default:
-                    donor = donor.OrderBy(s => s.RecentDonor);
-                    break;
+               
             }
 
 
