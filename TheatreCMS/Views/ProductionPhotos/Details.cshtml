@@ -5,51 +5,67 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>ProductionPhotos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
 
-        <dd>
-            @*@Html.DisplayFor(model => model.Photo)*@
-            <td>
-                @{
-                    string img = "";
-                    if (Model.Photo != null)
-                    {
-                        byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.Photo, 100, 100);
-                        var base64 = System.Convert.ToBase64String(thumbBytes);
-                        img = String.Format("data:image/png;base64,{0}", base64);
-                    }
-                }
-                <img src="@img" />
-            </td>
-        </dd>
+<div class="container">
+    <h2>Details</h2>
+    <div>
+        <h4>ProductionPhotos</h4>
+        <hr />
+        <div class="row">
+            <dl class="dl-horizontal justify-content-start col-md-9">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Production)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Production.Title)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Production.Season)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Production.Season)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Photo)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                <dd>
+                    @*@Html.DisplayFor(model => model.Photo)*@
+                    <td>
+                        @{
+                            string img = "";
+                            if (Model.Photo != null)
+                            {
+                                byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.Photo, 100, 100);
+                                var base64 = System.Convert.ToBase64String(thumbBytes);
+                                img = String.Format("data:image/png;base64,{0}", base64);
+                            }
+                        }
+                        <img src="@img" />
+                    </td>
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProPhotoId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProPhotoId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
