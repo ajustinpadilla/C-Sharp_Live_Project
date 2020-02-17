@@ -8,14 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
 using System.Drawing;
-using TheatreCMS.Controllers;
+using TheatreCMS.Helpers;
 
 namespace TheatreCMS.Controllers
 {
     public class DisplayInfoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
         // GET: DisplayInfo
         public ActionResult Index()
         {
@@ -55,7 +55,7 @@ namespace TheatreCMS.Controllers
         //Not sure whether or not Image should be in the Include parameter of the Bind method...
         public ActionResult Create([Bind(Include = "InfoId,Title,Description,File")] DisplayInfo displayInfo, HttpPostedFileBase file)
         { 
-            byte[] image = ImageUploadController.ImageBytes(file, out string _64);
+            byte[] image = Helpers.ImageUploader.ImageBytes(file, out string _64);
             displayInfo.Image = image;
             displayInfo.File = file.FileName;
 
@@ -89,14 +89,26 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InfoId,Title,Description")] DisplayInfo displayInfo, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "InfoId,Title,Description,Image, File")] DisplayInfo displayInfo, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                displayInfo.File = file.FileName;
-                var img = ImageUploadController.ImageBytes(file, out _);
-                displayInfo.Image = img;
-                db.Entry(displayInfo).State = EntityState.Modified;
+                var currentInfo = db.DisplayInfo.Find(displayInfo.InfoId);
+                currentInfo.Title = displayInfo.Title;
+                currentInfo.Description = displayInfo.Description;
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var img = ImageUploader.ImageBytes(file, out string convertedLogo);
+                    currentInfo.Image = img;
+                    currentInfo.File = file.FileName;
+                }
+                else
+                {
+                    currentInfo.Image = displayInfo.Image;
+                    currentInfo.File = displayInfo.File;
+                }
+                db.Entry(currentInfo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

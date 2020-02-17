@@ -58,6 +58,7 @@ namespace TheatreCMS.Models
         //public DbSet<CurrentProduction> CurrentProductions { get; set; }
         public DbSet<RentalRequest> RentalRequests { get; set; }
         public DbSet<CastMember> CastMembers { get; set; }
+        public DbSet<ProductionPhotos> ProductionPhotos { get; set; }
 
         /* We'll be using the fluent API to create a 0..1 to 0..1 relationship
          * between a CastMember and an ApplicationUser, since some cast-members 
