@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
 using System.Drawing;
-using TheatreCMS.Helpers;
+using TheatreCMS.Controllers;
 
 namespace TheatreCMS.Controllers
 {
@@ -55,7 +55,7 @@ namespace TheatreCMS.Controllers
         //Not sure whether or not Image should be in the Include parameter of the Bind method...
         public ActionResult Create([Bind(Include = "InfoId,Title,Description,File")] DisplayInfo displayInfo, HttpPostedFileBase file)
         { 
-            byte[] image = Helpers.ImageUploader.ImageBytes(file, out string _64);
+            byte[] image = ImageUploadController.ImageBytes(file, out string _64);
             displayInfo.Image = image;
             displayInfo.File = file.FileName;
 
@@ -99,7 +99,7 @@ namespace TheatreCMS.Controllers
 
                 if (file != null && file.ContentLength > 0)
                 {
-                    var img = ImageUploader.ImageBytes(file, out string convertedLogo);
+                    var img = ImageUploadController.ImageBytes(file, out string convertedLogo);
                     currentInfo.Image = img;
                     currentInfo.File = file.FileName;
                 }

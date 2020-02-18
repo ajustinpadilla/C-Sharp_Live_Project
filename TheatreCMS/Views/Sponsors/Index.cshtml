@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Sponsor>
-@using TheatreCMS.Helpers
+@using TheatreCMS.Controllers
 
 
 @{
@@ -38,7 +38,7 @@
                 string img = "";
                 if (item.Logo != null)
                 {
-                    byte[] thumbBytes = ImageUploader.ImageThumbnail(item.Logo, 28, 28);
+                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
                     var base64 = System.Convert.ToBase64String(thumbBytes);
                     img = String.Format("data:image/png;base64,{0}", base64);
                 }

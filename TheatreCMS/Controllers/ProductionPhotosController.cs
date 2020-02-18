@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using TheatreCMS.Helpers;
+using TheatreCMS.Controllers;
 
 namespace TheatreCMS.Models
 {
@@ -29,7 +29,10 @@ namespace TheatreCMS.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+           
             ProductionPhotos productionPhotos = db.ProductionPhotos.Find(id);
+            Production production = db.Productions.Find(id);
+
             if (productionPhotos == null)
             {
                 return HttpNotFound();
@@ -53,7 +56,7 @@ namespace TheatreCMS.Models
         {
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
 
-            byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
+            byte[] photo = ImageUploadController.ImageBytes(file, out string _64);
             productionPhotos.Photo = photo;
             
 
@@ -103,14 +106,12 @@ namespace TheatreCMS.Models
                 currentProPhoto.Title = productionPhotos.Title;
                 currentProPhoto.Description = productionPhotos.Description;
 
-                //ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId");
-
                 var production = db.Productions.Find(productionID);
                 currentProPhoto.Production = production;
 
                 if (file != null && file.ContentLength > 0)
                 {
-                    var photo = ImageUploader.ImageBytes(file, out string _64);
+                    var photo = ImageUploadController.ImageBytes(file, out string _64);
                     currentProPhoto.Photo = photo;
                 }
                 else
