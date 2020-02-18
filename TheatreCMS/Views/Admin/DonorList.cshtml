@@ -1,0 +1,101 @@
+﻿
+@model IEnumerable<TheatreCMS.Areas.Subscribers.Models.Subscriber>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Donor List";
+
+
+}
+
+<h2>Donor List</h2>
+
+<p>
+    @Html.ActionLink("Back to Dashboard", "./Dashboard")
+
+</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SubscriberPerson.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubscriberPerson.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubscriberPerson.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentSubscriber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasRenewed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Newsletter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecentDonor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastDonated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastDonationAmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpecialRequests)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscriberPerson.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscriberPerson.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscriberPerson.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentSubscriber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasRenewed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Newsletter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecentDonor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDonated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDonationAmt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialRequests)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SubscriberId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SubscriberId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SubscriberId })
+            </td>
+        </tr>
+    }
+
+</table>
