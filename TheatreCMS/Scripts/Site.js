@@ -31,18 +31,18 @@ function showSlides(n) {
 
 
 
-//Script for sticky navbar
-window.onscroll = function () { stickyNav() };
-var menu = document.getElementById("menu");
-var sticky = menu.offsetTop;
+////Script for sticky navbar
+//window.onscroll = function () { stickyNav() };
+//var menu = document.getElementById("menu");
+//var sticky = menu.offsetTop;
 
-function stickyNav() {
-    if (window.pageYOffset >= sticky) {
-        menu.classList.add("sticky")
-    } else {
-        menu.classList.remove("sticky");
-    }
-}
+//function stickyNav() {
+//    if (window.pageYOffset >= sticky) {
+//        menu.classList.add("sticky")
+//    } else {
+//        menu.classList.remove("sticky");
+//    }
+//}
 
 // Script for shrinking logo
 window.onscroll = function () { shrinkFunction() };

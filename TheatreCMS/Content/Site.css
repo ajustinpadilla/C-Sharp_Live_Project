@@ -477,11 +477,11 @@ a.dropdown-item:hover {
     color: white;
 }
 /* The sticky class */
-.sticky {
+/*.sticky {
     position: fixed;
     top: 0;
     width: 100%;
-}
+}*/
 
 #menu {
     transition: 0.2s;
