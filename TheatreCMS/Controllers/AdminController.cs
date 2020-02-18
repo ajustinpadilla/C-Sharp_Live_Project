@@ -56,21 +56,12 @@ namespace TheatreCMS.Controllers
 
         }
 
-        public ActionResult DonorList(string sortOrder)
+        public ActionResult DonorList()
         {
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
             var donor = from z in db.Subscribers
                         where z.RecentDonor == true
                         select z;
-
-            switch (sortOrder)
-            {
-                case "date_desc":
-                    donor = donor.OrderByDescending(s => s.LastDonated);
-                    break;
-               
-            }
 
 
             return View(donor.ToList());
