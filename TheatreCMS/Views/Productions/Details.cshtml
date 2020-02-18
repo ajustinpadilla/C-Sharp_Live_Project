@@ -1,4 +1,5 @@
 ﻿@model TheatreCMS.Models.Production
+@using TheatreCMS.Helpers
 
 
 @{
@@ -56,7 +57,16 @@
                 </dt>
 
                 <dd class="col-md-9">
-                    @Html.DisplayFor(model => model.PromoPhoto)
+                    @{
+                        string img = "";
+                        if (Model.PromoPhoto != null)
+                        {
+                            byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.PromoPhoto, 100, 100);
+                            var base64 = System.Convert.ToBase64String(thumbBytes);
+                            img = String.Format("data:image/png;base64,{0}", base64);
+                        }
+                    }
+                    <img src="@img" />
                 </dd>
 
                 <dt class="col-md-9">
