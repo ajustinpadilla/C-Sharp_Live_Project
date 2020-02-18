@@ -349,24 +349,38 @@ textarea {
 /*Styling for the register form page*/
 
 .registerText {
-	color: black;
-	font-family: Lato;
-	font-size: 120%;
+    color: #FFFBFF;
+    font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
+    font-size: 120%;
 }
 
+
+
 .registerTextHead { 
-	color: black;
-	font-family: Lato;
-	font-size: 160%
+	color: #FFFBFB;
+	font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
+	font-size: 200%
+}
+
+.registerTextHead:hover {
+    color: black;
 }
 
 .registerInput {
 	width: 80%;
+    border-radius: 0 !important;    
 }
 
-.registerButton {
-	width: auto;
+.registerInput:hover {
+    border: solid gray 1px;
+    transition: .5s;
 }
+
+
+.registerButton {
+	width: auto;    
+}
+
 
 /*End style for register form page*/
 
