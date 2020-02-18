@@ -238,6 +238,35 @@ textarea {
     -webkit-animation-name: fadeIn;
 }
 
+.formContainer2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+    max-width: 65%;
+    background-color: var(--main-secondary-color);
+    /*background-image: linear-gradient(var(--light-color), var(--main-secondary-color));*/
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2px;
+    font-family: 'Lato Hairline';
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-name: fadeIn;
+    -webkit-animation-name: fadeIn;
+}
+
+.formBox {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #666;
+    font-family: Lato;
+    font-size: 13px;
+    font-weight: normal;
+}
+
 @-webkit-keyframes fadeIn {
     0% { opacity: 0; }
 
@@ -252,6 +281,9 @@ textarea {
 
 .formHeader {
     color: var(--dark-color);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
     font-family: Lato;
     letter-spacing: 3px;
     font-size: 40px;
@@ -275,6 +307,22 @@ textarea {
     -webkit-animation-name: fadeIn2;
 }
 
+
+.inputBox2 {
+    color: var(--dark-color);
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 15px;
+    max-width: 85%;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: bolder;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-name: fadeIn2;
+    -webkit-animation-name: fadeIn2;
+}
+
 @-webkit-keyframes fadeIn2 {
     0% { opacity: 0; }
 
@@ -288,11 +336,20 @@ textarea {
 }
 
 .inputText {
+    margin-left: auto;
     color: var(--dark-color);
     font-family: Lato;
     border: none;
     border-radius: 4px 4px 0px 0px;
     border-bottom: 2px solid var(--dark-color);
+}
+
+.inputLabel {
+    color: var(--dark-color);
+    font-family: Lato;
+    border: none;
+    /*border-radius: 0px 2px 0px 0px;*/
+    /*border-bottom: 2px solid var(--dark-color);*/
 }
 
 .submitButton {
@@ -322,6 +379,32 @@ textarea {
     -webkit-animation-name: fadeIn3;
 }
 
+.submitButton2 {
+    display: inline-block;
+    width: 30%;
+    letter-spacing: 1px;
+    font-family: Lato;
+    font-weight: bolder;
+    padding: 10px 0px;
+    margin: 10px auto 10px auto;
+    /*box-shadow: 0 4px 8px 0 #DB1A11;*/
+    border: 0px solid;
+    border-color: var(--dark-color);
+    color: var(--light-color);
+    background-color: var(--dark-color);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 15px;
+    user-select: none;
+    transition: all .5s;
+    box-shadow: 0px 4px #D6972A;
+    animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    animation-name: fadeIn3;
+    -webkit-animation-name: fadeIn3;
+}
 @-webkit-keyframes fadeIn3 {
     0% { opacity: 0; }
 
@@ -335,6 +418,11 @@ textarea {
 }
 
 .submitButton:hover {
+    color: var(--dark-color);
+    background-color: var(--main-bg-color);
+}
+
+.submitButton2:hover {
     color: var(--dark-color);
     background-color: var(--main-bg-color);
 }
