@@ -11,6 +11,8 @@ namespace TheatreCMS.Controllers
 {
     public class AdminController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Admin
         public ActionResult Index()
         {
@@ -51,6 +53,18 @@ namespace TheatreCMS.Controllers
                 writer.Write(newSettings);
             }
             return RedirectToAction("Dashboard");
+
+        }
+
+        public ActionResult DonorList()
+        {
+
+            var donor = from z in db.Subscribers
+                        where z.RecentDonor == true
+                        select z;
+
+
+            return View(donor.ToList());
         }
     }
 }
