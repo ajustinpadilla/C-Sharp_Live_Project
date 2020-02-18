@@ -1,5 +1,5 @@
 ﻿@model TheatreCMS.Models.Production
-@using TheatreCMS.Helpers
+@using TheatreCMS.Controllers
 @{
     ViewBag.Title = "Edit";
 }
@@ -64,7 +64,7 @@
                 string img = "";
                 if (Model.PromoPhoto != null)
                 {
-                    byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.PromoPhoto, 100, 100);
+                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.PromoPhoto, 100, 100);
                     var base64 = System.Convert.ToBase64String(thumbBytes);
                     img = String.Format("data:image/png;base64,{0}", base64);
                 }
