@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TheatreCMS.Controllers;
 using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
@@ -54,10 +55,15 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,ShowDays")] Production production)
+        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,ShowDays")] Production production, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                if (upload != null)
+                {
+                    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
+                    production.PromoPhoto = promoPhoto;
+                }
                 db.Productions.Add(production);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,11 +94,22 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,ShowDays")] Production production)
+        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,ShowDays")] Production production, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(production).State = EntityState.Modified;
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
+                    production.PromoPhoto = promoPhoto;
+                    db.Entry(production).State = EntityState.Modified;
+                }
+                if (upload == null)
+                {
+                    db.Entry(production).State = EntityState.Modified;
+                    db.Entry(production).Property(x => x.PromoPhoto).IsModified = false;
+                }
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
