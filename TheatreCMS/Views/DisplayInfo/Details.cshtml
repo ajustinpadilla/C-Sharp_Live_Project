@@ -1,4 +1,4 @@
-﻿@using TheatreCMS.Helpers
+﻿@using TheatreCMS.Controllers
 @model TheatreCMS.Models.DisplayInfo
 
 @{
@@ -35,7 +35,7 @@
             @{
                 var img = Model.Image;
                 //displays the image using inline <img tag
-                byte[] thumbBytes = ImageUploader.ImageThumbnail(img, 200, 200);
+                byte[] thumbBytes = ImageUploadController.ImageThumbnail(img, 200, 200);
                 var thumbBase64 = Convert.ToBase64String(thumbBytes);
                 var imgSrc = String.Format("data:image/png;base64,{0}", thumbBase64);
             }

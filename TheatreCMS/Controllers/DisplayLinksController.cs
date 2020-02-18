@@ -10,6 +10,7 @@ using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DisplayLinksController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
