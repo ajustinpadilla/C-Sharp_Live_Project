@@ -29,7 +29,10 @@ namespace TheatreCMS.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+           
             ProductionPhotos productionPhotos = db.ProductionPhotos.Find(id);
+            Production production = db.Productions.Find(id);
+
             if (productionPhotos == null)
             {
                 return HttpNotFound();
@@ -102,8 +105,6 @@ namespace TheatreCMS.Models
                 var currentProPhoto = db.ProductionPhotos.Find(productionPhotos.ProPhotoId);
                 currentProPhoto.Title = productionPhotos.Title;
                 currentProPhoto.Description = productionPhotos.Description;
-
-                //ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId");
 
                 var production = db.Productions.Find(productionID);
                 currentProPhoto.Production = production;
