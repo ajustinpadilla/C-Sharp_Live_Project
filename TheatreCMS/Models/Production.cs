@@ -40,6 +40,9 @@ namespace TheatreCMS.Models
         public string TicketLink { get; set; }
         public int Season { get; set; }
         public bool IsCurrent { get; set; }
+
+        [Display(Name = "World Premiere")]
+        public bool IsWorldPremiere { get; set; } 
         public byte[] ShowDays { get; set; }
         public virtual ICollection<Part> Parts { get; set; }
         public virtual ICollection<CalendarEvent> Events { get; set; }

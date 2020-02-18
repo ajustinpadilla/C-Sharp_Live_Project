@@ -33,7 +33,11 @@
                         @Html.DisplayFor(modelItem => item.Title)
                         <small>
                             @*.................................Small text for author*@
-                            by @Html.DisplayFor(modelItem => item.Playwright)
+                            by @Html.DisplayFor(modelItem => item.Playwright)<br/>
+                            @if (item.IsWorldPremiere==true)
+                            {
+                            @Html.DisplayNameFor(model => model.IsWorldPremiere)
+                            }
                         </small>
                     </h5>
                     <div class="row">
