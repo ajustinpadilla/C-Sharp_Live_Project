@@ -144,7 +144,8 @@
 
 
 body {
-    padding-top: 50px;
+
+    padding-top: 110px;
     padding-bottom: 20px;
 }
 /* ------Footer stylings----- */
@@ -193,6 +194,7 @@ footer .list-group-item :hover {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -621,3 +623,38 @@ input[type=submit] {
     input[type=submit]:hover {
         background-color: #45a049;
     }
+
+
+/*navbar*/
+.navbar-nav li:hover > ul.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+    }
+
+a.dropdown-item:hover {
+    color: white;
+}
+/* The sticky class */
+/*.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}*/
+
+#menu {
+    transition: 0.2s;
+    padding: 20px;
+}
+
+#logo {
+    transition: 0.2s;
+}
