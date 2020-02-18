@@ -32,6 +32,7 @@ namespace TheatreCMS.Controllers
                 title = x.Title,
                 start = x.StartDate,
                 end = x.EndDate,
+                seats = x.TicketsAvailable,
                 color = x.Color,
                 className = x.ClassName,
                 someKey = x.SomeKey,
@@ -65,7 +66,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventId,Title,StartDate,EndDate,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
+        public ActionResult Create([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +98,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
+        public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
         {
             if (ModelState.IsValid)
             {

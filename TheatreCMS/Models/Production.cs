@@ -27,12 +27,12 @@ namespace TheatreCMS.Models
         public byte[] PromoPhoto { get; set; }
 
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "hh:mm tt", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Evening Showtime")]
         public DateTime? ShowtimeEve { get; set; }
         
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "hh:mm tt", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Matinee Showtime")]
         public DateTime? ShowtimeMat { get; set; }
 
@@ -43,5 +43,6 @@ namespace TheatreCMS.Models
         public byte[] ShowDays { get; set; }
         public virtual ICollection<Part> Parts { get; set; }
         public virtual ICollection<CalendarEvent> Events { get; set; }
+        public virtual ICollection<ProductionPhotos> ProductionPhotos { get; set; }
     }
 }

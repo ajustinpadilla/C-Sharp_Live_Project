@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Sponsor>
+@using TheatreCMS.Controllers
+
 
 @{
     ViewBag.Title = "Index";
@@ -9,26 +11,48 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table class="table-styling">
+    <tr class="tr-styling">
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.Width)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <tr class="tr-styling">
+        <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Logo)
+        <td class="td-styling">
+            @{
+                string img = "";
+                if (item.Logo != null)
+                {
+                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
+                    var base64 = System.Convert.ToBase64String(thumbBytes);
+                    img = String.Format("data:image/png;base64,{0}", base64);
+                }
+            }
+            <img src="@img" />
+            
         </td>
-        <td>
+        <td class="td-styling">
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td class="td-styling">
+            @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td class="td-styling">
             @Html.ActionLink("Edit", "Edit", new { id=item.SponsorId }) |
             @Html.ActionLink("Details", "Details", new { id=item.SponsorId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SponsorId })

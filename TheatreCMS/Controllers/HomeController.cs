@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-using TheatreCMS.Helpers;
+using TheatreCMS.Controllers;
 using TheatreCMS.Models;
 using TheatreCMS.ViewModels;
 using TheatreCMS.Areas.Subscribers.Models;
@@ -45,9 +45,9 @@ namespace TheatreCMS.Controllers
             try
             {
                 //Using Helpers.ImageUploader.ImageBytes to get the byte[] representation of the file
-                //and extracting the string representation as a returned out-parrameter
+                //and extracting the string representation as a returned out-parameter
                 string imageBase64;
-                byte[] imageBytes = ImageUploader.ImageBytes(file, out imageBase64);
+                byte[] imageBytes = ImageUploadController.ImageBytes(file, out imageBase64);
 
                 //Add the base64 representation of the image to the ViewBag to be accessed by the View
                 ViewBag.ImageData = String.Format("data:image/png;base64,{0}", imageBase64);
