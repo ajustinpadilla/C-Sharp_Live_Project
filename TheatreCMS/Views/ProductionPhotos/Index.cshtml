@@ -1,4 +1,4 @@
-﻿@using TheatreCMS.Helpers
+﻿@using TheatreCMS.Controllers
 @model IEnumerable<TheatreCMS.Models.ProductionPhotos>
 
 @{
@@ -32,7 +32,7 @@
                     string img = "";
                     if (item.Photo != null)
                     {
-                        byte[] thumbBytes = ImageUploader.ImageThumbnail(item.Photo, 100, 100);
+                        byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 100, 100);
                         var base64 = System.Convert.ToBase64String(thumbBytes);
                         img = String.Format("data:image/png;base64,{0}", base64);
                     }
