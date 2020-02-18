@@ -439,6 +439,8 @@ textarea {
     -webkit-text-stroke-color: black;
     font-size: 50px;
     font-weight: bold;
+}
+
 .card-deck, .card, .card-img-top {
     background-color: var(--dark-color);
 }
@@ -452,6 +454,7 @@ textarea {
 /*End SubmitRequest CSS*/
 .bgimage {
     background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
+}
 .results {
     color: black;
     background-color: white;
