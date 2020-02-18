@@ -55,7 +55,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere,ShowDays")] Production production)
+        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere,ShowDays")] Production production, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere,ShowDays")] Production production)
+        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere,ShowDays")] Production production, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
