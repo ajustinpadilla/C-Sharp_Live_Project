@@ -46,6 +46,9 @@
             @Html.DisplayNameFor(model => model.IsCurrent)
         </th>
         <th class="th-styling">
+            @Html.DisplayNameFor(model => model.IsWorldPremiere)
+        </th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.ShowDays)
         </th>
         @*<th class="th-styling"></th>*@
@@ -102,7 +105,10 @@
         @Html.DisplayFor(modelItem => item.IsCurrent)
     </td>
     <td class="td-styling">
-        @*@Html.DisplayFor(modelItem => item.ShowDays)*@
+        @Html.DisplayFor(modelItem => item.IsWorldPremiere)
+    </td>
+    <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.ShowDays)
     </td>
 
     <td class="td-styling">
