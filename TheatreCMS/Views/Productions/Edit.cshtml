@@ -1,5 +1,5 @@
 ﻿@model TheatreCMS.Models.Production
-
+@using TheatreCMS.Helpers
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Productions", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -60,7 +60,19 @@
     <div class="form-group">
         @Html.LabelFor(model => model.PromoPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PromoPhoto, new { htmlAttributes = new { @class = "form-control" } })
+            @{
+                string img = "";
+                if (Model.PromoPhoto != null)
+                {
+                    byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.PromoPhoto, 100, 100);
+                    var base64 = System.Convert.ToBase64String(thumbBytes);
+                    img = String.Format("data:image/png;base64,{0}", base64);
+                }
+            }
+            <img src="@img" />
+            <input type="file" id="PromoPhoto" name="upload" />
+            @*@Html.TextBoxFor(model => model.PromoPhoto, new { type = "file", Name = "upload", Id = "PromoPhoto" })*@
+            @*@Html.EditorFor(model => model.PromoPhoto, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => model.PromoPhoto, "", new { @class = "text-danger" })
         </div>
     </div>
