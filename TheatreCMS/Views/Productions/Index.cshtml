@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Production>
-@using TheatreCMS.Helpers
+@using TheatreCMS.Controllers
 
 @{
     ViewBag.Title = "Index";
@@ -75,7 +75,7 @@
             string img = "";
             if (item.PromoPhoto != null)
             {
-                byte[] thumbBytes = ImageUploader.ImageThumbnail(item.PromoPhoto, 370, 250);
+                byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
                 var base64 = System.Convert.ToBase64String(thumbBytes);
                 img = String.Format("data:image/png;base64,{0}", base64);
             }

@@ -7,7 +7,7 @@ using System.Data.Entity.Migrations;
 using System.IO;
 using System.Web;
 using TheatreCMS.Models;
-using TheatreCMS.Helpers;
+using TheatreCMS.Controllers;
 using System;
 using System.Linq;
 

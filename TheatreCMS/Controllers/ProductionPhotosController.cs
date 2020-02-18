@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using TheatreCMS.Helpers;
+using TheatreCMS.Controllers;
 
 namespace TheatreCMS.Models
 {
@@ -53,7 +53,7 @@ namespace TheatreCMS.Models
         {
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
 
-            byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
+            byte[] photo = ImageUploadController.ImageBytes(file, out string _64);
             productionPhotos.Photo = photo;
             
 
@@ -110,7 +110,7 @@ namespace TheatreCMS.Models
 
                 if (file != null && file.ContentLength > 0)
                 {
-                    var photo = ImageUploader.ImageBytes(file, out string _64);
+                    var photo = ImageUploadController.ImageBytes(file, out string _64);
                     currentProPhoto.Photo = photo;
                 }
                 else
