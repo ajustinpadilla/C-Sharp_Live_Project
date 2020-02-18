@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
-using TheatreCMS.Helpers;
+using TheatreCMS.Controllers;
 using System.IO;
 
 namespace TheatreCMS.Controllers
@@ -54,7 +54,7 @@ namespace TheatreCMS.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    var logo = ImageUploader.ImageBytes(upload, out string _64);
+                    var logo = ImageUploadController.ImageBytes(upload, out string _64);
                     sponsor.Logo = logo;
                 }
                 db.Sponsors.Add(sponsor);
@@ -91,7 +91,7 @@ namespace TheatreCMS.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    var logo = ImageUploader.ImageBytes(upload, out string convertedLogo);
+                    var logo = ImageUploadController.ImageBytes(upload, out string convertedLogo);
                     sponsor.Logo = logo;
                 }
                 db.Entry(sponsor).State = EntityState.Modified;

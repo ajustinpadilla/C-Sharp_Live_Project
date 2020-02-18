@@ -1,4 +1,5 @@
 ﻿@model TheatreCMS.Models.Production
+@using TheatreCMS.Controllers
 
 @{
     ViewBag.Title = "Delete";
@@ -56,7 +57,16 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PromoPhoto)
+            @{
+                string img = "";
+                if (Model.PromoPhoto != null)
+                {
+                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.PromoPhoto, 100, 100);
+                    var base64 = System.Convert.ToBase64String(thumbBytes);
+                    img = String.Format("data:image/png;base64,{0}", base64);
+                }
+            }
+            <img src="@img" />
         </dd>
 
         <dt>
@@ -127,7 +137,7 @@
         @Html.AntiForgeryToken()
 
 <div class="form-actions no-color">
-    <input type="submit" value="Delete" class="btn btn-default" /> |
+    <input type="submit" value="Delete" class="btn" /> |
     @Html.ActionLink("Current Productions", "Current") |
     @Html.ActionLink("Back to List", "Index")
 </div>

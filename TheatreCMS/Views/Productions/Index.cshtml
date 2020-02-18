@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Production>
+@using TheatreCMS.Controllers
 
 @{
     ViewBag.Title = "Index";
@@ -71,7 +72,22 @@
         @Html.DisplayFor(modelItem => item.ClosingDay)
     </td>
     <td class="td-styling">
-        @Html.DisplayFor(modelItem => item.PromoPhoto)
+        @*@Html.DisplayFor(modelItem => item.PromoPhoto)*@
+        @*<img src="data:image/png;base64,@System.Convert.ToBase64String(item.PromoPhoto??(new Byte[]{ 0x0 }))" />*@
+        @{
+            string img = "";
+            if (item.PromoPhoto != null)
+            {
+                byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
+                var base64 = System.Convert.ToBase64String(thumbBytes);
+                img = String.Format("data:image/png;base64,{0}", base64);
+            }
+            else
+            {
+                Html.DisplayFor(modelItem => item.PromoPhoto);
+            }
+        }
+        <img src="@img" />
     </td>
     <td class="td-styling">
         @Html.DisplayFor(modelItem => item.ShowtimeEve)
