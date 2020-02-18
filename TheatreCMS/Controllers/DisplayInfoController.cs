@@ -12,6 +12,7 @@ using TheatreCMS.Controllers;
 
 namespace TheatreCMS.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DisplayInfoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -49,10 +50,11 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+
         //The ModelState variable only holds three key/value pairs in its dictionary after POST.
         //They are Title, Description and File (which is the file name, and should so be called.
         //Not sure whether or not Image should be in the Include parameter of the Bind method...
+
         public ActionResult Create([Bind(Include = "InfoId,Title,Description,File")] DisplayInfo displayInfo, HttpPostedFileBase file)
         { 
             byte[] image = ImageUploadController.ImageBytes(file, out string _64);

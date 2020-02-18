@@ -15,6 +15,7 @@ namespace TheatreCMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: RentalRequest
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.RentalRequests.ToList());
@@ -111,6 +112,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: RentalRequest/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -130,6 +132,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
             if (ModelState.IsValid)
@@ -150,6 +153,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: RentalRequest/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -165,6 +169,7 @@ namespace TheatreCMS.Controllers
         }
 
         // POST: RentalRequest/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

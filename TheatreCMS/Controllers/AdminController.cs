@@ -9,9 +9,10 @@ using System.IO;
 
 namespace TheatreCMS.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        // GET: Admin
+        // GET: Admin       
         public ActionResult Index()
         {
             return View();
