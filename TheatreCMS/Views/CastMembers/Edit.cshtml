@@ -1,4 +1,4 @@
-﻿@using TheatreCMS.Helpers
+﻿@using TheatreCMS.Controllers
 @model TheatreCMS.Models.CastMember
 
 
@@ -66,7 +66,7 @@
                     string img = "";
                     if (Model.Photo != null)
                     {
-                        byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.Photo, 100, 100);
+                        byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Photo, 100, 100);
                         var base64 = System.Convert.ToBase64String(thumbBytes);
                         img = String.Format("data:image/png;base64,{0}", base64);
                     }

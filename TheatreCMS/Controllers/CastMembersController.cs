@@ -73,7 +73,7 @@ namespace TheatreCMS.Controllers
             {
                 if (file != null && file.ContentLength > 0)
                 {
-                    byte[] photo = Helpers.ImageUploader.ImageBytes(file, out string _64);
+                    byte[] photo = ImageUploadController.ImageBytes(file, out string _64);
                     castMember.Photo = photo;
                 }
 
@@ -129,7 +129,7 @@ namespace TheatreCMS.Controllers
 
                 if (file != null && file.ContentLength > 0)
                 {
-                    byte[] newPhoto = Helpers.ImageUploader.ImageBytes(file, out string _64);
+                    byte[] newPhoto = ImageUploadController.ImageBytes(file, out string _64);
                     currentCastMember.Photo = newPhoto;
                 }
                 else
