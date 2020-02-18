@@ -349,7 +349,8 @@ textarea {
 /*Styling for the register form page*/
 
 .registerText {
-    color: #FFFBFF;
+    
+    color: var(--light-color);
     font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
     font-size: 120%;
 }
@@ -357,13 +358,13 @@ textarea {
 
 
 .registerTextHead { 
-	color: #FFFBFB;
+	color: var(--light-color);
 	font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
 	font-size: 200%
 }
 
 .registerTextHead:hover {
-    color: black;
+    color: var(--dark-color);
 }
 
 .registerInput {
