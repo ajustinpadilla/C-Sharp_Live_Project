@@ -12,6 +12,7 @@ using System.IO;
 
 namespace TheatreCMS.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SponsorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
