@@ -88,6 +88,11 @@ namespace TheatreCMS.Controllers
 
             return View(donor.ToList());
         }
+
+        public ActionResult AddShows()
+        {
+            return View();
+        }
     }
 }
 
