@@ -194,9 +194,7 @@ footer .list-group-item :hover {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-top: 25px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -351,24 +349,39 @@ textarea {
 /*Styling for the register form page*/
 
 .registerText {
-	color: black;
-	font-family: Lato;
-	font-size: 120%;
+    
+    color: var(--light-color);
+    font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
+    font-size: 120%;
 }
 
+
+
 .registerTextHead { 
-	color: black;
-	font-family: Lato;
-	font-size: 160%
+	color: var(--light-color);
+	font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
+	font-size: 200%
+}
+
+.registerTextHead:hover {
+    color: var(--dark-color);
 }
 
 .registerInput {
 	width: 80%;
+    border-radius: 0 !important;    
 }
 
-.registerButton {
-	width: auto;
+.registerInput:hover {
+    border: solid gray 1px;
+    transition: .5s;
 }
+
+
+.registerButton {
+	width: auto;    
+}
+
 
 /*End style for register form page*/
 
