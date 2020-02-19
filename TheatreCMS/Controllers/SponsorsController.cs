@@ -19,8 +19,14 @@ namespace TheatreCMS.Controllers
 
         // GET: Sponsors
         public ActionResult Index()
-        {
+        {          
             return View(db.Sponsors.ToList());
+        }
+
+        //List of sponsors, partial view _Sponsors
+        public ActionResult List()
+        {
+            return View("_Sponsors", db.Sponsors); 
         }
 
         // GET: Sponsors/Details/5

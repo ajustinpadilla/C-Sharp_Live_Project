@@ -671,3 +671,25 @@ a.dropdown-item:hover {
 #logo {
     transition: 0.2s;
 }
+
+/*Styling for sponsor logos*/
+
+.sponsor-pic {
+    width: 400px;
+    height: 200px ;
+    display: block;
+    margin-right: auto;
+    margin-left:auto;
+    text-align:center;
+    border-radius: 5%;
+}
+.sponsor-title {
+    text-align:center;
+}
+
+#sponsor-text {
+    color: var(--light-color);
+    text-align:center;
+    font-size: 20px;
+}
+
