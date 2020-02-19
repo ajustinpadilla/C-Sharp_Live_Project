@@ -239,6 +239,7 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\Images\subscriber.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -585,7 +586,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\ImageUpload\" />
   </ItemGroup>
