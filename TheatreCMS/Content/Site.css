@@ -249,7 +249,7 @@ textarea {
     /*background-image: linear-gradient(var(--light-color), var(--main-secondary-color));*/
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 2px;
-    font-family: 'Lato Hairline';
+    font-family: Tahoma, Geneva, sans-serif;
     animation-duration: 1s;
     -webkit-animation-duration: 1s;
     animation-name: fadeIn;
@@ -266,6 +266,34 @@ textarea {
     font-size: 13px;
     font-weight: normal;
 }
+
+.fileSelect {
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    text-align: justify;
+    color: #FFFBFB;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+/*input[type=file] {
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2px;
+}*/
+
+/*#PromoPhoto {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}*/
 
 @-webkit-keyframes fadeIn {
     0% { opacity: 0; }
@@ -284,7 +312,8 @@ textarea {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    font-family: Lato;
+    text-shadow: .5px 1px #FFFBFB;
+    font-family: Tahoma, Geneva, sans-serif;
     letter-spacing: 3px;
     font-size: 40px;
     font-weight: 400;
@@ -346,17 +375,16 @@ textarea {
 
 .inputLabel {
     color: var(--dark-color);
-    font-family: Lato;
+    /*text-shadow: 1px 1px #000000;*/
+    font-family: Tahoma, Geneva, sans-serif; 
     border: none;
-    /*border-radius: 0px 2px 0px 0px;*/
-    /*border-bottom: 2px solid var(--dark-color);*/
 }
 
 .submitButton {
     display: inline-block;
     width: 75%;
     letter-spacing: 1px;
-    font-family: Lato;
+    font-family: Tahoma, Geneva, sans-serif;
     font-weight: 500;
     padding: 10px 0px;
     margin: 10px auto 10px auto;
@@ -387,7 +415,6 @@ textarea {
     font-weight: bolder;
     padding: 10px 0px;
     margin: 10px auto 10px auto;
-    /*box-shadow: 0 4px 8px 0 #DB1A11;*/
     border: 0px solid;
     border-color: var(--dark-color);
     color: var(--light-color);

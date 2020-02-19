@@ -11,125 +11,118 @@
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal">
-    <h4>Production</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.ProductionId)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Playwright, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Playwright, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Playwright, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.OpeningDay, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.OpeningDay, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.OpeningDay, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ClosingDay, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ClosingDay, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ClosingDay, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.PromoPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @{
-                string img = "";
-                if (Model.PromoPhoto != null)
-                {
-                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.PromoPhoto, 100, 100);
-                    var base64 = System.Convert.ToBase64String(thumbBytes);
-                    img = String.Format("data:image/png;base64,{0}", base64);
-                }
-            }
-            <img src="@img" />
-            <input type="file" id="PromoPhoto" name="upload" />
-            @*@Html.TextBoxFor(model => model.PromoPhoto, new { type = "file", Name = "upload", Id = "PromoPhoto" })*@
-            @*@Html.EditorFor(model => model.PromoPhoto, new { htmlAttributes = new { @class = "form-control" } })*@
-            @Html.ValidationMessageFor(model => model.PromoPhoto, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ShowtimeEve, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShowtimeEve, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ShowtimeEve, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ShowtimeMat, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShowtimeMat, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ShowtimeMat, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.TicketLink, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TicketLink, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TicketLink, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Season, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Season, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.IsCurrent, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.IsCurrent)
-                @Html.ValidationMessageFor(model => model.IsCurrent, "", new { @class = "text-danger" })
+<div class="formContainer2 ">
+    <div class="form-horizontal">
+        <h4 class="formHeader">Production</h4>
+        <hr />
+        <div class="inputBox2">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ShowDays, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShowDays, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ShowDays, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Playwright, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.Playwright, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Playwright, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-labelcol-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OpeningDay, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.OpeningDay, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OpeningDay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClosingDay, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.ClosingDay, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ClosingDay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PromoPhoto, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+
+                    @Html.TextBoxFor(model => model.PromoPhoto, new { type = "file", Name = "upload", Id = "PromoPhoto", Class = "fileSelect" })
+                    @*@Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.PromoPhoto, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShowtimeEve, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.ShowtimeEve, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ShowtimeEve, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShowtimeMat, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.ShowtimeMat, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ShowtimeMat, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TicketLink, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.TicketLink, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TicketLink, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.Season, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Season, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsCurrent, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsCurrent)
+                        @Html.ValidationMessageFor(model => model.IsCurrent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShowDays, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                    @Html.EditorFor(model => model.ShowDays, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ShowDays, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 formBox">
+                    <input type="submit" value="Save" class="submitButton2" />
+                </div>
+            </div>
         </div>
     </div>
 </div>
