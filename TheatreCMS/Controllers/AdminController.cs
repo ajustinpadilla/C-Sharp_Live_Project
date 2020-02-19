@@ -9,6 +9,7 @@ using System.IO;
 using System.Globalization;
 using static TheatreCMS.Models.AdminSettings;
 using Newtonsoft.Json.Linq;
+using TheatreCMS.Helpers;
 
 namespace TheatreCMS.Controllers
 {
@@ -24,8 +25,9 @@ namespace TheatreCMS.Controllers
         }
         public ActionResult Dashboard()
         {
-
-            return View();
+            AdminSettings current = new AdminSettings();
+            current = AdminSettingsReader.CurrentSettings();
+            return View(current);
         }
 
         // ***OLD "SettingsUpdate" method, can be deleted once NEW one with tweaks (see below) has been reviewed - 2/18/2020, jc***
