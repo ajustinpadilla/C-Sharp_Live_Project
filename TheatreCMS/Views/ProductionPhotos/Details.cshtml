@@ -5,15 +5,30 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>ProductionPhotos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
+
+<div class="container">
+    <h2>Details</h2>
+    <div>
+        <h4>ProductionPhotos</h4>
+        <hr />
+        <div class="row">
+            <dl class="dl-horizontal justify-content-start col-md-9">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Production)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Production.Title)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Production.Season)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Production.Season)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Photo)
+                </dt>
 
         <dd>
             @*@Html.DisplayFor(model => model.Photo)*@
@@ -31,25 +46,26 @@
             </td>
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProPhotoId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProPhotoId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

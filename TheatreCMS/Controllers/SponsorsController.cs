@@ -12,14 +12,21 @@ using System.IO;
 
 namespace TheatreCMS.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SponsorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Sponsors
         public ActionResult Index()
-        {
+        {          
             return View(db.Sponsors.ToList());
+        }
+
+        //List of sponsors, partial view _Sponsors
+        public ActionResult List()
+        {
+            return View("_Sponsors", db.Sponsors); 
         }
 
         // GET: Sponsors/Details/5

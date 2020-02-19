@@ -9,10 +9,9 @@ namespace TheatreCMS.Models
 	public class AdminSettings
 	{
 		public int current_season { get; set; }
-		public int onstage { get; set; }
 		public seasonProductions season_productions { get; set; }
 		public recentDefinition recent_definition { get; set; }
-
+		public int onstage { get; set; }
 		public class seasonProductions
 		{
 			public int fall { get; set; }
@@ -24,7 +23,6 @@ namespace TheatreCMS.Models
 			public int span { get; set; }
 			public DateTime date { get; set; }
 		}
-		
+
 	}
 }
- 
