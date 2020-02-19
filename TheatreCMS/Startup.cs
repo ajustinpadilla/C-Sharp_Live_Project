@@ -40,7 +40,10 @@ namespace TheatreCMS
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             //create Admin roll on strartup if none exist
-            if (!roleManager.RoleExists("Admin"))
+            if (roleManager.RoleExists("Admin"))
+            {
+            }
+            else
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Admin";
@@ -132,7 +135,7 @@ namespace TheatreCMS
                 {
                     CastMemberID = 1,
                     Name = "Aaron Rodgers",
-                    YearJoined = 2005,
+                    YearJoined = null,
                     MainRole = Enum.PositionEnum.Actor,
                     Bio = "Aaron was a highly sought after actor who we were thrilled to have join us in 2005.",
                     CurrentMember = true,
@@ -142,7 +145,7 @@ namespace TheatreCMS
                 {
                     CastMemberID = 2,
                     Name = "Davante Adams",
-                    YearJoined = 2014,
+                    YearJoined = null,
                     MainRole = Enum.PositionEnum.Actor,
                     Bio = "Davante is a big part of our team.",
                     CurrentMember = true,
@@ -152,7 +155,7 @@ namespace TheatreCMS
                 {
                     CastMemberID = 2,
                     Name = "Matt Lafluer",
-                    YearJoined = 2019,
+                    YearJoined = null,
                     MainRole = Enum.PositionEnum.Director,
                     Bio = "Matt became one of the youngest directors in the business when he joined us in 2019",
                     CurrentMember = true,
