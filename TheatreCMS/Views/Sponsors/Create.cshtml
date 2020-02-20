@@ -50,11 +50,16 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Current, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Current, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
                     <div class="col-md-10 formBox">
                         @Html.CheckBox("Current", true)
                     </div>
-                </div>                   
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10 formBox">
+                        <input type="submit" value="Create" class="submitButton2" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
