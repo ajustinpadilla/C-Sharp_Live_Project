@@ -57,10 +57,7 @@
     Spring:<input type="number" name="Spring" value="@Html.DisplayFor(model => model.season_productions.spring)"><br>
     RECENT DEFINITION:<br />
     Span:<input type="number" name="Span" value="@Html.DisplayFor(model => model.recent_definition.span)"><br>
-    @*input type for "Date" field (below) changed from "date" to "text" to allow
-        current (default) value to populate from AdminSettings.json - 2/19/20, jc*@
-    @*Date:<input type="date" name="Date"><br>*@
-    Date (mm/dd/yyyy):<input type="text" name="Date" class="col-md-2 form-control-sm" value="@Html.DisplayFor(model => model.recent_definition.date)"><br>
+    Date:<input type="date" name="Date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")"><br>
     ONSTAGE:<input type="number" name="Onstage" value="@Html.DisplayFor(model => model.onstage)"><br />
     <button type="submit">Submit</button>
 </div>
