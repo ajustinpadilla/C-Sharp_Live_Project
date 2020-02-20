@@ -34,7 +34,12 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td class="td-styling">
-            @{
+            @{ 
+                <img src = "@Url.Action("ImageView", "ImageUploadController", new { id = item.SponsorId, table="Sponsor" })"/>
+                //  id = item.SponsorId, table="Sponsor", path = item.Logo
+            }
+
+            @*@{
                 string img = "";
                 if (item.Logo != null)
                 {
@@ -43,7 +48,7 @@
                     img = String.Format("data:image/png;base64,{0}", base64);
                 }
             }
-            <img src="@img" />
+            <img src="@img" />*@
             
         </td>
         <td class="td-styling">

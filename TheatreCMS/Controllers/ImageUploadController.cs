@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Drawing;
+using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
 {
     public class ImageUploadController : Controller
     {
-        
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         //file -> buyte[] (out string64)
         public static byte[] ImageBytes(HttpPostedFileBase file, out string imageBase64)
         {
@@ -34,6 +36,18 @@ namespace TheatreCMS.Controllers
                 thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 return ms.ToArray();
             }
+        }
+
+        public FileContentResult ImageView(int id, string table)
+        {
+            string path = "";
+            if (table == "Sponsor")
+            {
+                var sponsor = db.Sponsors.Find(id);
+                path = Convert.ToBase64String(sponsor.Logo);
+            }
+            byte[] imgArray = System.IO.File.ReadAllBytes(path);
+            return new FileContentResult(imgArray, "image/jpg");
         }
     }
 }
