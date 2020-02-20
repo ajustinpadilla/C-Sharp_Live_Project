@@ -15,7 +15,9 @@ namespace TheatreCMS.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ApplicationDbContext db = new ApplicationDbContext();            
+            var proPhotos = db.ProductionPhotos.ToList();            
+            return View(proPhotos);
         }
 
         public ActionResult About()
