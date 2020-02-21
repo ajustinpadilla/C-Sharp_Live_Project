@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
@@ -21,6 +22,8 @@ namespace TheatreCMS.Models
 		public class recentDefinition
 		{
 			public int span { get; set; }
+			[DataType(DataType.Date)]
+			[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
 			public DateTime date { get; set; }
 		}
 

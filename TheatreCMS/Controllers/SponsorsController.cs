@@ -19,8 +19,14 @@ namespace TheatreCMS.Controllers
 
         // GET: Sponsors
         public ActionResult Index()
-        {
+        {          
             return View(db.Sponsors.ToList());
+        }
+
+        //List of sponsors, partial view _Sponsors
+        public ActionResult List()
+        {
+            return View("_Sponsors", db.Sponsors); 
         }
 
         // GET: Sponsors/Details/5
@@ -49,7 +55,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo,Height,Width,Current")] Sponsor sponsor, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +92,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width,Current")] Sponsor sponsor, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {

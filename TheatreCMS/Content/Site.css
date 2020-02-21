@@ -90,6 +90,14 @@
     transition: background-color 0.6s ease;
 }
 
+.dot-container {
+    text-align: center;
+}
+
+.image-carousel {
+    width: 100%;
+}
+
 .active, .dot:hover {
     background-color: var(--main-secondary-color);
 }
@@ -261,6 +269,66 @@ textarea {
     -webkit-animation-name: fadeIn;
 }
 
+.formContainer2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+    max-width: 65%;
+    background-color: var(--main-secondary-color);
+    /*background-image: linear-gradient(var(--light-color), var(--main-secondary-color));*/
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2px;
+    font-family: Tahoma, Geneva, sans-serif;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-name: fadeIn;
+    -webkit-animation-name: fadeIn;
+}
+
+.formBox {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #666;
+    font-family: Lato;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.fileSelect {
+    display: block;
+    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2px;*/
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    padding-top: 10px;
+    padding-left:12%;
+    padding-right:5px;
+    text-align: center;
+    color: #FFFBFB;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+/*input[type=file] {
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2px;
+}*/
+
+/*#PromoPhoto {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}*/
+
 @-webkit-keyframes fadeIn {
     0% { opacity: 0; }
 
@@ -275,7 +343,11 @@ textarea {
 
 .formHeader {
     color: var(--dark-color);
-    font-family: Lato;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-shadow: .5px 1px #FFFBFB;
+    font-family: Tahoma, Geneva, sans-serif;
     letter-spacing: 3px;
     font-size: 40px;
     font-weight: 400;
@@ -298,6 +370,22 @@ textarea {
     -webkit-animation-name: fadeIn2;
 }
 
+
+.inputBox2 {
+    color: var(--dark-color);
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 15px;
+    max-width: 85%;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: bolder;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-name: fadeIn2;
+    -webkit-animation-name: fadeIn2;
+}
+
 @-webkit-keyframes fadeIn2 {
     0% { opacity: 0; }
 
@@ -311,6 +399,7 @@ textarea {
 }
 
 .inputText {
+    margin-left: auto;
     color: var(--dark-color);
     font-family: Lato;
     border: none;
@@ -318,11 +407,18 @@ textarea {
     border-bottom: 2px solid var(--dark-color);
 }
 
+.inputLabel {
+    color: var(--dark-color);
+    /*text-shadow: 1px 1px #000000;*/
+    font-family: Tahoma, Geneva, sans-serif; 
+    border: none;
+}
+
 .submitButton {
     display: inline-block;
     width: 75%;
     letter-spacing: 1px;
-    font-family: Lato;
+    font-family: Tahoma, Geneva, sans-serif;
     font-weight: 500;
     padding: 10px 0px;
     margin: 10px auto 10px auto;
@@ -345,6 +441,31 @@ textarea {
     -webkit-animation-name: fadeIn3;
 }
 
+.submitButton2 {
+    display: inline-block;
+    width: 30%;
+    letter-spacing: 1px;
+    font-family: Lato;
+    font-weight: bolder;
+    padding: 10px 0px;
+    margin: 10px auto 10px auto;
+    border: 0px solid;
+    border-color: var(--dark-color);
+    color: var(--light-color);
+    background-color: var(--dark-color);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 15px;
+    user-select: none;
+    transition: all .5s;
+    box-shadow: 0px 4px #D6972A;
+    animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    animation-name: fadeIn3;
+    -webkit-animation-name: fadeIn3;
+}
 @-webkit-keyframes fadeIn3 {
     0% { opacity: 0; }
 
@@ -358,6 +479,11 @@ textarea {
 }
 
 .submitButton:hover {
+    color: var(--dark-color);
+    background-color: var(--main-bg-color);
+}
+
+.submitButton2:hover {
     color: var(--dark-color);
     background-color: var(--main-bg-color);
 }
@@ -694,3 +820,25 @@ a.dropdown-item:hover {
 #logo {
     transition: 0.2s;
 }
+
+/*Styling for sponsor logos*/
+
+.sponsor-pic {
+    width: 400px;
+    height: 200px ;
+    display: block;
+    margin-right: auto;
+    margin-left:auto;
+    text-align:center;
+    border-radius: 5%;
+}
+.sponsor-title {
+    text-align:center;
+}
+
+#sponsor-text {
+    color: var(--light-color);
+    text-align:center;
+    font-size: 20px;
+}
+
