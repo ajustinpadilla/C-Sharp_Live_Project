@@ -140,11 +140,31 @@
     color: var(--dark-color);
 }
 
-/*-----Button styling------*/
-.button-styling {
-    background-color: var()
-}
+/*-----Classes and styling for LoginFailure view------*/
+.button-redirect {
+    background-color: var(--secondary-color);
+    text-decoration:none;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--dark-color);
+    top: 10px;
+    bottom: 10px;
+    padding: 10px;
+    transition: all 600ms ease;
+   }
 
+.button-redirect:hover {
+    background: var(--main-bg-color);
+    text-decoration:none;
+    color:var(--light-color);
+}
+.flexbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+/*-----End styling for LoginFailure view----*/
 
 body {
 
