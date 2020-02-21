@@ -34,10 +34,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td class="td-styling">
-            @{ 
-                <img src = "@Url.Action("ImageView", "ImageUploadController", new { id = item.SponsorId, table="Sponsor" })"/>
+            
+                <img src = "@Url.Action("ImageView", "ImageUpload", new { id = item.SponsorId, table="Sponsor"})"/>
                 //  id = item.SponsorId, table="Sponsor", path = item.Logo
-            }
+          
 
             @*@{
                 string img = "";

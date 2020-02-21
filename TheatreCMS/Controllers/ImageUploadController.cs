@@ -40,13 +40,41 @@ namespace TheatreCMS.Controllers
 
         public FileContentResult ImageView(int id, string table)
         {
-            string path = "";
-            if (table == "Sponsor")
+            byte[] imgArray = null;
+          
+            switch (table)
             {
-                var sponsor = db.Sponsors.Find(id);
-                path = Convert.ToBase64String(sponsor.Logo);
+                case "Sponsor":
+                    var sponsor = db.Sponsors.Find(id);
+                    imgArray = sponsor.Logo;
+                    break;
+                case "CastMembers":
+                    var castMembers = db.CastMembers.Find(id);
+                    imgArray = castMembers.Photo;
+                    break;
+                case "DisplayInfo":
+                    var displayInfo = db.DisplayInfo.Find(id);
+                    imgArray = displayInfo.Image;
+                    break;
+                case "Productions":
+                    var production = db.Productions.Find(id);
+                    imgArray = production.PromoPhoto;
+                    //imgArray = production.ShowDays how to display two bytes in the same class
+                    break;
+                case "ProductionPhotos":
+                    var productionPhotos = db.ProductionPhotos.Find(id);
+                    imgArray = productionPhotos.Photo;
+                    break;
+               
+                default:
+                    break;
             }
-            byte[] imgArray = System.IO.File.ReadAllBytes(path);
+            //using (MemoryStream ms = new MemoryStream())
+            //using (Image thumbnail = Image.FromStream(new MemoryStream(imgArray)).GetThumbnailImage(thumbWidth, thumbHeight, null, new IntPtr()))
+            //{
+            //    thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            //    ms.ToArray();
+            //}
             return new FileContentResult(imgArray, "image/jpg");
         }
     }
