@@ -35,6 +35,13 @@
                 <dd class="col-md-9">
                     @Html.DisplayFor(model => model.Description)
                 </dd>
+                <dt class="col-md-9">
+                    @Html.DisplayNameFor(model => model.Runtime)
+                </dt>
+
+                <dd class="col-md-9">
+                    @Html.DisplayFor(model => model.Runtime)
+                </dd>
 
                 <dt class="col-md-9">
                     @Html.DisplayNameFor(model => model.OpeningDay)
@@ -53,20 +60,22 @@
                 </dd>
 
                 <dt class="col-md-9">
-                    @Html.DisplayNameFor(model => model.PromoPhoto)
+                    @Html.DisplayNameFor(model => model.DefaultPhoto)
                 </dt>
 
                 <dd class="col-md-9">
-                    @{
-                        string img = "";
-                        if (Model.PromoPhoto != null)
-                        {
-                            byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.PromoPhoto, 100, 100);
-                            var base64 = System.Convert.ToBase64String(thumbBytes);
-                            img = String.Format("data:image/png;base64,{0}", base64);
-                        }
-                    }
-                    <img src="@img" />
+                    @Html.DisplayFor(model => model.DefaultPhoto)
+
+                    @*@{
+                string img = "";
+                if (Model.PromoPhoto != null)
+                {
+                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.PromoPhoto, 100, 100);
+                    var base64 = System.Convert.ToBase64String(thumbBytes);
+                    img = String.Format("data:image/png;base64,{0}", base64);
+                }
+            }
+            <img src="@img" />*@
                 </dd>
 
                 <dt class="col-md-9">
@@ -123,14 +132,30 @@
                     @Html.DisplayFor(model => model.IsWorldPremiere)
                 </dd>
 
-                <dt class="col-md-9">
-                    @Html.DisplayNameFor(model => model.ShowDays)
-
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProductionPhotos)
                 </dt>
+                <dd>
+                    <table class="table">
+                        <tr>
+                            <th style="color:white;">Description</th>
+                            <th style="color:white;">Photos</th>
 
-                <dd class="col-md-9">
-                    @Html.DisplayFor(model => model.ShowDays)
+                        </tr>
+                        @foreach (var item in Model.ProductionPhotos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    <img src="data:image;base64,@System.Convert.ToBase64String(item.Photo)" />
+                                </td>
+                            </tr>
+                        }
+                    </table>
                 </dd>
+
 
             </dl>
             <div class="justify-content-end col-md-3">

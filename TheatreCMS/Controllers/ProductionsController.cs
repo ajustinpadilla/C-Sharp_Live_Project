@@ -55,15 +55,15 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere,ShowDays")] Production production, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null)
-                {
-                    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
-                    production.PromoPhoto = promoPhoto;
-                }
+                //if (upload != null)
+                //{
+                //    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
+                //    production.DefaultPhoto = promoPhoto;
+                //}
                 db.Productions.Add(production);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -94,22 +94,37 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere,ShowDays")] Production production, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
-                {
-                    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
-                    production.PromoPhoto = promoPhoto;
-                    db.Entry(production).State = EntityState.Modified;
-                }
-                if (upload == null)
-                {
-                    db.Entry(production).State = EntityState.Modified;
-                    db.Entry(production).Property(x => x.PromoPhoto).IsModified = false;
-                }
-                
+                //int proPhotoId = Convert.ToInt32(Request.Form["ProductionPhotos"]);
+
+                ////DefaultPhoto = data:image; base64, System.Convert.ToBase64String(db.ProductionPhotos.Photo);
+
+
+
+                //if (ModelState.IsValid)
+                //{
+                //    var productionPhoto = db.ProductionPhotos.Find(proPhotoId);
+
+                //    production.ProductionPhotos = productionPhoto;
+                //    db.Productions.Add(production);
+                //    db.SaveChanges();
+                //    return RedirectToAction("Index");
+                //}
+                //if (upload != null && upload.ContentLength > 0)
+                //{
+                //    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
+                //    production.PromoPhoto = promoPhoto;
+                //    db.Entry(production).State = EntityState.Modified;
+                //}
+                //if (upload == null)
+                //{
+                //    db.Entry(production).State = EntityState.Modified;
+                //    db.Entry(production).Property(x => x.PromoPhoto).IsModified = false;
+                //}
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

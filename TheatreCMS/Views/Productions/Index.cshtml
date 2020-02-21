@@ -22,13 +22,16 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th class="th-styling">
+            @Html.DisplayNameFor(model => model.Runtime)
+        </th>
+        <th class="th-styling">
             @Html.DisplayNameFor(model => model.OpeningDay)
         </th>
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.ClosingDay)
         </th>
         <th class="th-styling">
-            @Html.DisplayNameFor(model => model.PromoPhoto)
+            @Html.DisplayNameFor(model => model.DefaultPhoto)
         </th>
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.ShowtimeEve)
@@ -48,9 +51,7 @@
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.IsWorldPremiere)
         </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.ShowDays)
-        </th>
+
         @*<th class="th-styling"></th>*@
     </tr>
 
@@ -66,6 +67,9 @@
         @Html.DisplayFor(modelItem => item.Description)
     </td>
     <td class="td-styling">
+        @Html.DisplayFor(modelItem => item.Runtime)
+    </td>
+    <td class="td-styling">
         @Html.DisplayFor(modelItem => item.OpeningDay)
     </td>
     <td class="td-styling">
@@ -74,20 +78,21 @@
     <td class="td-styling">
         @*@Html.DisplayFor(modelItem => item.PromoPhoto)*@
         @*<img src="data:image/png;base64,@System.Convert.ToBase64String(item.PromoPhoto??(new Byte[]{ 0x0 }))" />*@
-        @{
-            string img = "";
-            if (item.PromoPhoto != null)
-            {
-                byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
-                var base64 = System.Convert.ToBase64String(thumbBytes);
-                img = String.Format("data:image/png;base64,{0}", base64);
+        @*@{
+                string img = "";
+                if (item.PromoPhoto != null)
+                {
+                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
+                    var base64 = System.Convert.ToBase64String(thumbBytes);
+                    img = String.Format("data:image/png;base64,{0}", base64);
+                }
+                else
+                {
+                    Html.DisplayFor(modelItem => item.PromoPhoto);
+                }
             }
-            else
-            {
-                Html.DisplayFor(modelItem => item.PromoPhoto);
-            }
-        }
-        <img src="@img" />
+            <img src="@img" />*@
+        @Html.DisplayFor(modelItem => item.DefaultPhoto)
     </td>
     <td class="td-styling">
         @Html.DisplayFor(modelItem => item.ShowtimeEve)
@@ -107,9 +112,7 @@
     <td class="td-styling">
         @Html.DisplayFor(modelItem => item.IsWorldPremiere)
     </td>
-    <td class="td-styling">
-        @Html.DisplayFor(modelItem => item.ShowDays)
-    </td>
+
 
     <td class="td-styling">
         @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) |
@@ -119,5 +122,4 @@
     </td>
 </tr>
 }
-
 </table>
