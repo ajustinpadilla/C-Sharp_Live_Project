@@ -77,9 +77,12 @@ namespace TheatreCMS.Controllers
                     castMember.Photo = photo;
                 }
 
-                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+                //ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
 
-                castMember.CastMemberPersonID = db.Users.Find(userId).Id;
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    castMember.CastMemberPersonID = db.Users.Find(userId).Id;
+                }
 
                 db.CastMembers.Add(castMember);
                 db.SaveChanges();
@@ -101,7 +104,8 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+            // ***still need to get existing value to display as a default in drop-down list***
+            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", castMember.CastMemberPersonID);
             
             return View(castMember);
         }
@@ -126,6 +130,15 @@ namespace TheatreCMS.Controllers
                 currentCastMember.MainRole = castMember.MainRole;
                 currentCastMember.Bio = castMember.Bio;
                 currentCastMember.CurrentMember = castMember.CurrentMember;
+
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    currentCastMember.CastMemberPersonID = db.Users.Find(userId).Id;
+                }
+                else
+                {
+                    currentCastMember.CastMemberPersonID = null;
+                }
 
                 if (file != null && file.ContentLength > 0)
                 {
