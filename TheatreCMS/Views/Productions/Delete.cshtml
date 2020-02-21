@@ -64,18 +64,20 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DefaultPhoto)
+            @{
+                if (Model.DefaultPhoto != null)
+                {
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.DefaultPhoto.Photo)" />
 
-            @*@{
-            string img = "";
-            if (Model.PromoPhoto != null)
-            {
-                byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.PromoPhoto, 100, 100);
-                var base64 = System.Convert.ToBase64String(thumbBytes);
-                img = String.Format("data:image/png;base64,{0}", base64);
+                    //byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
+                    //var base64 = System.Convert.ToBase64String(thumbBytes);
+                    //img = String.Format("data:image/png;base64,{0}", base64);
+                }
+                else
+                {
+                    <p>No image yet</p>
+                }
             }
-        }
-        <img src="@img" />*@
         </dd>
 
         <dt>

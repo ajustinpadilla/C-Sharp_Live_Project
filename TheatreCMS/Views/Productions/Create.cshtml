@@ -40,21 +40,21 @@
                     </div>
                 </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Runtime, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Runtime, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Runtime, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Runtime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Runtime, new { htmlAttributes = new { @class = "form-control", @Value="120" } })
+                        @Html.ValidationMessageFor(model => model.Runtime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.OpeningDay, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.OpeningDay, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.OpeningDay, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OpeningDay, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OpeningDay, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OpeningDay, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.ClosingDay, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
@@ -64,16 +64,16 @@
                     </div>
                 </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DefaultPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+                @*@<div class="form-group">
+                    @Html.LabelFor(model => model.DefaultPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
            
-            @Html.TextBoxFor(model => model.DefaultPhoto, new { type = "file", Name = "upload", Id = "DefaultPhoto" })
-            @*@Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })*@
-            @Html.ValidationMessageFor(model => model.DefaultPhoto, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.DefaultPhoto, new { type = "file", Name = "upload", Id = "DefaultPhoto" })
+                        @Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DefaultPhoto, "", new { @class = "text-danger" })
             
-        </div>
-    </div>
+                    </div>
+                </div>*@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.ShowtimeEve, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
@@ -117,23 +117,25 @@
                     </div>
                 </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.IsWorldPremiere, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-        <div class="col-md-10 formBox">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.IsWorldPremiere)
-                @Html.ValidationMessageFor(model => model.IsWorldPremiere, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsWorldPremiere, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+                    <div class="col-md-10 formBox">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsWorldPremiere)
+                            @Html.ValidationMessageFor(model => model.IsWorldPremiere, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+   
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-   
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>
