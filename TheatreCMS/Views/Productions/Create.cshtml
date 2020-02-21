@@ -41,6 +41,14 @@
                 </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.Runtime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Runtime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Runtime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.OpeningDay, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.OpeningDay, new { htmlAttributes = new { @class = "form-control" } })
@@ -57,12 +65,12 @@
                 </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.PromoPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.DefaultPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
            
-            @Html.TextBoxFor(model => model.PromoPhoto, new { type = "file", Name = "upload", Id = "PromoPhoto" })
+            @Html.TextBoxFor(model => model.DefaultPhoto, new { type = "file", Name = "upload", Id = "DefaultPhoto" })
             @*@Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })*@
-            @Html.ValidationMessageFor(model => model.PromoPhoto, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.DefaultPhoto, "", new { @class = "text-danger" })
             
         </div>
     </div>
@@ -119,14 +127,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ShowDays, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShowDays, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ShowDays, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
+   
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
