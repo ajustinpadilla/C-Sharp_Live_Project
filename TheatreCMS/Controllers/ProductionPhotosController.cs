@@ -50,9 +50,10 @@ namespace TheatreCMS.Models
         // POST: ProductionPhotos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProPhotoId,Title,Description")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "Photo,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
 
@@ -73,7 +74,7 @@ namespace TheatreCMS.Models
             return View(productionPhotos);
         }
 
-        // GET: ProductionPhotos/Edit/5
+        //GET: ProductionPhotos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,18 +87,19 @@ namespace TheatreCMS.Models
                 return HttpNotFound();
             }
 
-            ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
+            //ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
             return View(productionPhotos);
         }
 
+     
         // POST: ProductionPhotos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProPhotoId,Photo,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
-        {
-
+        {          
+                      
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
 
             if (ModelState.IsValid)
