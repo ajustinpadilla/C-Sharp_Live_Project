@@ -62,8 +62,9 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember, HttpPostedFileBase file)
-        { 
+        public ActionResult Create([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember,CastMemberPersonId,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
+        {
+            
             ModelState.Remove("CastMemberPersonID");
 
             //Extract the Guid as type String from user's selected User (from SelectList)
@@ -111,7 +112,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember")] CastMember castMember, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
         {
 
             ModelState.Remove("CastMemberPersonID");
@@ -126,6 +127,10 @@ namespace TheatreCMS.Controllers
                 currentCastMember.MainRole = castMember.MainRole;
                 currentCastMember.Bio = castMember.Bio;
                 currentCastMember.CurrentMember = castMember.CurrentMember;
+                currentCastMember.AssociateArtist = castMember.AssociateArtist;
+                currentCastMember.EnsembleMember = castMember.EnsembleMember;
+                currentCastMember.CastYearLeft = castMember.CastYearLeft;
+                currentCastMember.DebutYear = castMember.DebutYear;
 
                 if (file != null && file.ContentLength > 0)
                 {
