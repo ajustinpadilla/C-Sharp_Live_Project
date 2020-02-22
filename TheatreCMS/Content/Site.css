@@ -166,13 +166,20 @@
     text-decoration:none;
     color:var(--light-color);
 }
-.flexbox {
+.center-box {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-/*-----End styling for LoginFailure view----*/
+
+#move-oops {
+    position: relative;
+    top: 10px;
+    bottom: 10px;
+}
+
+/*-----End styling for LoginFailure view-----*/
 
 body {
 
