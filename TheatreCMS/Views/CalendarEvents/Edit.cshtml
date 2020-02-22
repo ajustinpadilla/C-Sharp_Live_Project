@@ -7,13 +7,14 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "CalendarEvents", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="formContainer2 ">
         <div class="form-horizontal">
             <h4 class="formHeader">CalendarEvent</h4>
             <hr />
+            @Html.Hidden("EventId", Model.EventId)
             <div class="inputBox2">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
