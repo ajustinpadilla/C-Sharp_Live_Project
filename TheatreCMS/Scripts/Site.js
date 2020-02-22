@@ -28,3 +28,29 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
+
+
+
+////Script for sticky navbar
+//window.onscroll = function () { stickyNav() };
+//var menu = document.getElementById("menu");
+//var sticky = menu.offsetTop;
+
+//function stickyNav() {
+//    if (window.pageYOffset >= sticky) {
+//        menu.classList.add("sticky")
+//    } else {
+//        menu.classList.remove("sticky");
+//    }
+//}
+
+// Script for shrinking logo
+window.onscroll = function () { shrinkFunction() };
+
+function shrinkFunction() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("logo").style.height = "30px";
+    } else {
+        document.getElementById("logo").style.height = "90px";
+    }
+}

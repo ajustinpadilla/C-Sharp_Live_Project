@@ -7,19 +7,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
-using TheatreCMS.Helpers;
+using TheatreCMS.Controllers;
 using System.IO;
 
 namespace TheatreCMS.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SponsorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Sponsors
         public ActionResult Index()
-        {
+        {          
             return View(db.Sponsors.ToList());
+        }
+
+        //List of sponsors, partial view _Sponsors
+        public ActionResult List()
+        {
+            return View("_Sponsors", db.Sponsors); 
         }
 
         // GET: Sponsors/Details/5
@@ -48,13 +55,13 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo,Height,Width,Current")] Sponsor sponsor, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    var logo = ImageUploader.ImageBytes(upload, out string _64);
+                    var logo = ImageUploadController.ImageBytes(upload, out string _64);
                     sponsor.Logo = logo;
                 }
                 db.Sponsors.Add(sponsor);
@@ -85,13 +92,13 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width")] Sponsor sponsor, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width,Current")] Sponsor sponsor, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    var logo = ImageUploader.ImageBytes(upload, out string convertedLogo);
+                    var logo = ImageUploadController.ImageBytes(upload, out string convertedLogo);
                     sponsor.Logo = logo;
                 }
                 db.Entry(sponsor).State = EntityState.Modified;

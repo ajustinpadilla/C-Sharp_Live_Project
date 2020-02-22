@@ -1,5 +1,5 @@
 ﻿@model TheatreCMS.Models.Sponsor
-@using TheatreCMS.Helpers
+@using TheatreCMS.Controllers
 
 @{
     ViewBag.Title = "Details";
@@ -28,7 +28,7 @@
                             string img = "";
                             if (Model.Logo != null)
                             {
-                                byte[] thumbBytes = ImageUploader.ImageThumbnail(Model.Logo, 100, 100);
+                                byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Logo, 100, 100);
                                 var base64 = System.Convert.ToBase64String(thumbBytes);
                                 img = String.Format("data:image/png;base64,{0}", base64);
                             }
@@ -46,6 +46,12 @@
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Width)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Current)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Current)
                     </dd>
 
                 </dl>

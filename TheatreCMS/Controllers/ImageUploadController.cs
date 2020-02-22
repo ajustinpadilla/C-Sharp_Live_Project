@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.IO;
 using System.Drawing;
 
-namespace TheatreCMS.Helpers
+namespace TheatreCMS.Controllers
 {
-    public static class ImageUploader
+    public class ImageUploadController : Controller
     {
+        
         //file -> buyte[] (out string64)
         public static byte[] ImageBytes(HttpPostedFileBase file, out string imageBase64)
         {
@@ -22,15 +24,18 @@ namespace TheatreCMS.Helpers
             //return Byte Array
             return imageBytes;
         }
-        
+
         //byte[] -> smaller byte[]
         public static byte[] ImageThumbnail(byte[] imageBytes, int thumbWidth, int thumbHeight)
         {
             using (MemoryStream ms = new MemoryStream())
-            using (Image thumbnail = Image.FromStream(new MemoryStream(imageBytes)).GetThumbnailImage(thumbWidth, thumbHeight, null, new IntPtr()))
             {
-                thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                return ms.ToArray();
+                Image img = Image.FromStream(new MemoryStream(imageBytes));
+                using (Image thumbnail = img.GetThumbnailImage(img.Width, img.Height, null, new IntPtr()))
+                {
+                    thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    return ms.ToArray();
+                }
             }
         }
     }

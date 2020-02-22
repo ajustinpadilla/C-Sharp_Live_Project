@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Sponsor>
-@using TheatreCMS.Helpers
+@using TheatreCMS.Controllers
 
 
 @{
@@ -25,6 +25,10 @@
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.Width)
         </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.Current)
+        </th>
+        
         <th></th>
     </tr>
 
@@ -38,13 +42,13 @@
                 string img = "";
                 if (item.Logo != null)
                 {
-                    byte[] thumbBytes = ImageUploader.ImageThumbnail(item.Logo, 28, 28);
+                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
                     var base64 = System.Convert.ToBase64String(thumbBytes);
                     img = String.Format("data:image/png;base64,{0}", base64);
                 }
             }
             <img src="@img" />
-            
+
         </td>
         <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Height)
@@ -53,11 +57,20 @@
             @Html.DisplayFor(modelItem => item.Width)
         </td>
         <td class="td-styling">
-            @Html.ActionLink("Edit", "Edit", new { id=item.SponsorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SponsorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SponsorId })
+            @Html.DisplayFor(modelItem => item.Current)
+        </td>
+        
+
+        <td class="td-styling">
+            @Html.ActionLink("Edit", "Edit", new { id = item.SponsorId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SponsorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })
         </td>
     </tr>
 }
-
 </table>
+<br />
+<p>
+    @Html.ActionLink("View Sponsors", "List")
+</p>
+
