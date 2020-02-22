@@ -84,16 +84,18 @@ namespace TheatreCMS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CalendarEvent calendarEvent = db.CalendarEvent.Find(id);
-            if (calendarEvent == null)
+            CalendarEvent calendarEvents = db.CalendarEvent.Find(id);
+            
+            if (calendarEvents == null)
             {
                 return HttpNotFound();
             }
-            return View(calendarEvent);
+            return View(calendarEvents);
         }
 
         // POST: CalendarEvents/Edit/5
@@ -102,15 +104,15 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
-        {
+        public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvents)
+        {     
             if (ModelState.IsValid)
-            {
-                db.Entry(calendarEvent).State = EntityState.Modified;
+            {                
+                db.Entry(calendarEvents).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(calendarEvent);
+            return View();
         }
 
         // GET: CalendarEvents/Delete/5
