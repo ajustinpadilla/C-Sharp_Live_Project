@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -14,6 +15,7 @@ namespace TheatreCMS.Controllers
     public class ProductionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
 
         // GET: Productions
         public ActionResult Index()
@@ -50,27 +52,28 @@ namespace TheatreCMS.Controllers
             return View();
         }
 
+
         // POST: Productions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere,ShowDays")] Production production, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto_ProPhotoId,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null)
-                {
-                    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
-                    production.PromoPhoto = promoPhoto;
-                }
+                //if (upload != null)
+                //{
+                //    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
+                //    production.DefaultPhoto = promoPhoto;
+                //}
                 db.Productions.Add(production);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(production);
         }
+
 
         // GET: Productions/Edit/5
         public ActionResult Edit(int? id)
@@ -79,43 +82,57 @@ namespace TheatreCMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-			Production production = db.Productions.Find(id);
-			if (production == null)
-			{
-				return HttpNotFound();
-			}
-			return View(production);
+            Production production = db.Productions.Find(id);
+            if (production == null)
+            {
+                return HttpNotFound();
+            }
 
+            ViewData["ProductionPhotos"] = new SelectList(db.ProductionPhotos.Where(x => x.Production.ProductionId == id).ToList(), "ProPhotoId", "Title");
+            return View(production);
+        }
 
-		}
 
         // POST: Productions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,OpeningDay,ClosingDay,PromoPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere,ShowDays")] Production production, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            int proPhotoId = Convert.ToInt32(Request.Form["ProductionPhotos"]);
+
+            if (ModelState.IsValid)  //!!!!!part controller
             {
-                if (upload != null && upload.ContentLength > 0)
-                {
-                    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
-                    production.PromoPhoto = promoPhoto;
-                    db.Entry(production).State = EntityState.Modified;
-                }
-                if (upload == null)
-                {
-                    db.Entry(production).State = EntityState.Modified;
-                    db.Entry(production).Property(x => x.PromoPhoto).IsModified = false;
-                }
-                
+                var currentProduction = db.Productions.Find(production.ProductionId);
+                currentProduction.Title = production.Title;
+                currentProduction.Playwright = production.Playwright;
+                currentProduction.Description = production.Description;
+                currentProduction.Runtime = production.Runtime;
+                currentProduction.OpeningDay = production.OpeningDay;
+                currentProduction.ClosingDay = production.ClosingDay;
+                currentProduction.ShowtimeEve = production.ShowtimeEve;
+                currentProduction.ShowtimeMat = production.ShowtimeMat;
+                currentProduction.TicketLink = production.TicketLink;
+                currentProduction.Season = production.Season;
+                currentProduction.IsCurrent = production.IsCurrent;
+                currentProduction.IsWorldPremiere = production.IsWorldPremiere;
+
+                var productionPhoto = db.ProductionPhotos.Find(proPhotoId);
+                               
+                currentProduction.DefaultPhoto = productionPhoto;
+                db.Entry(currentProduction.DefaultPhoto).State = EntityState.Modified;
                 db.SaveChanges();
+
+                db.Entry(currentProduction).State = EntityState.Modified;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            return View(production);
+                return View(production);
         }
 
+            
         // GET: Productions/Delete/5
         public ActionResult Delete(int? id)
         {
