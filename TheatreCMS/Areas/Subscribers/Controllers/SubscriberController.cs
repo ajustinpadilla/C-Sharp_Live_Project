@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Areas.Subscribers.Models;
 using TheatreCMS.Models;
+using Owin;
 
 namespace TheatreCMS.Areas.Subscribers.Controllers
 {
@@ -49,8 +52,10 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")]  Subscriber subscriber)
+        public async System.Threading.Tasks.Task<ActionResult> CreateAsync([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")]  Subscriber subscriber)
         {
+           
+
             //The form sent the user's User selection (from SelectList) into the POST method
             //Remove the SubscriberPerson from ModelState, at dbo.Subscribers has no such column
             ModelState.Remove("SubscriberPerson");
@@ -60,6 +65,15 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
 
             if (ModelState.IsValid)
             {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+                var user = new ApplicationUser { UserName = userId };
+                var chkUser = await userManager.CreateAsync(user);
+                if (chkUser.Succeeded)
+                {
+                    var result = userManager.AddToRole(userId, "Subscriber");
+                }
+                
                 //See tutorials for why SelectList is loaded here as well
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
 
@@ -70,6 +84,9 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
                 db.Subscribers.Add(subscriber);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+               
+               
+              
             }
             return View(subscriber);
         }
