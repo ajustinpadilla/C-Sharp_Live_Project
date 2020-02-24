@@ -38,7 +38,7 @@ namespace TheatreCMS.Controllers
             }
         }
 
-        public FileContentResult ImageView(int id, string table)
+        public FileContentResult ImageView(int id, string table, int thumbWidth, int thumbHeight)
         {
             byte[] imgArray = null;
           
@@ -69,12 +69,13 @@ namespace TheatreCMS.Controllers
                 default:
                     break;
             }
-            //using (MemoryStream ms = new MemoryStream())
-            //using (Image thumbnail = Image.FromStream(new MemoryStream(imgArray)).GetThumbnailImage(thumbWidth, thumbHeight, null, new IntPtr()))
-            //{
-            //    thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            //    ms.ToArray();
-            //}
+            using (MemoryStream ms = new MemoryStream())
+            using (Image thumbnail = Image.FromStream(new MemoryStream(imgArray)).GetThumbnailImage(thumbWidth, thumbHeight, null, new IntPtr()))
+            {
+                thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                ms.ToArray();
+                //saves to db, but cannot plug into FileContentResult. Need diff way to combine methods.
+            }
             return new FileContentResult(imgArray, "image/jpg");
         }
     }
