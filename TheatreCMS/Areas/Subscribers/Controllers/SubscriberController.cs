@@ -65,10 +65,6 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
 
             if (ModelState.IsValid)
             {
-
-                //var user = new ApplicationUser { UserName = userId };
-                //var chkUser = await userManager.Create(user);
-                //if (chkUser.Succeeded)
               
                 
                 //See tutorials for why SelectList is loaded here as well
@@ -79,9 +75,10 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
 
                 //create instance of UserManager class &add user to "Subscriber" role
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-                if (!userManager.IsInRole(userId, "Subscriber"))
+
+                if (userManager.GetRoles(userId).Count < 1)
                 {
-                    var result = userManager.AddToRole(userId, "Subscriber");
+                    userManager.AddToRole(userId, "Subscriber");
                 }
                 
                 
