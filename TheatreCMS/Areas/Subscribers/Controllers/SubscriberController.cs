@@ -52,7 +52,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<ActionResult> CreateAsync([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")]  Subscriber subscriber)
+        public ActionResult Create([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")]  Subscriber subscriber)
         {
            
 
@@ -65,20 +65,26 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
 
             if (ModelState.IsValid)
             {
-                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-                var user = new ApplicationUser { UserName = userId };
-                var chkUser = await userManager.CreateAsync(user);
-                if (chkUser.Succeeded)
-                {
-                    var result = userManager.AddToRole(userId, "Subscriber");
-                }
+                //var user = new ApplicationUser { UserName = userId };
+                //var chkUser = await userManager.Create(user);
+                //if (chkUser.Succeeded)
+              
                 
                 //See tutorials for why SelectList is loaded here as well
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
 
                 //LINQ statemenet to query the Guid (via String) of the user's selected User
                 subscriber.SubscriberPerson = db.Users.Find(userId);
+
+                //create instance of UserManager class &add user to "Subscriber" role
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                if (!userManager.IsInRole(userId, "Subscriber"))
+                {
+                    var result = userManager.AddToRole(userId, "Subscriber");
+                }
+                
+                
 
                 //Add Subscriber to database, linked with User and save changes
                 db.Subscribers.Add(subscriber);
