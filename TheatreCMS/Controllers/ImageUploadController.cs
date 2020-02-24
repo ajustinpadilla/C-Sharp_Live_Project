@@ -29,10 +29,13 @@ namespace TheatreCMS.Controllers
         public static byte[] ImageThumbnail(byte[] imageBytes, int thumbWidth, int thumbHeight)
         {
             using (MemoryStream ms = new MemoryStream())
-            using (Image thumbnail = Image.FromStream(new MemoryStream(imageBytes)).GetThumbnailImage(thumbWidth, thumbHeight, null, new IntPtr()))
             {
-                thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                return ms.ToArray();
+                Image img = Image.FromStream(new MemoryStream(imageBytes));
+                using (Image thumbnail = img.GetThumbnailImage(img.Width, img.Height, null, new IntPtr()))
+                {
+                    thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    return ms.ToArray();
+                }
             }
         }
     }
