@@ -34,22 +34,22 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td class="td-styling">
-            
-                <img src = "@Url.Action("ImageView", "ImageUpload", new { id = item.SponsorId, table="Sponsor", thumbHeight = 100, thumbWidth = 100})"/>
-                //  id = item.SponsorId, table="Sponsor", path = item.Logo
-          
 
-            @*@{
-                string img = "";
-                if (item.Logo != null)
-                {
-                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
-                    var base64 = System.Convert.ToBase64String(thumbBytes);
-                    img = String.Format("data:image/png;base64,{0}", base64);
-                }
+            <img src="@Url.Action("ImageView", "ImageUpload", new { id = item.SponsorId, table="Sponsor", thumbHeight = 100, thumbWidth = 100})" />
+            @*//  id = item.SponsorId, table="Sponsor", path = item.Logo
+
+
+        @{
+            string img = "";
+            if (item.Logo != null)
+            {
+                byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
+                var base64 = System.Convert.ToBase64String(thumbBytes);
+                img = String.Format("data:image/png;base64,{0}", base64);
             }
-            <img src="@img" />*@
-            
+        }
+        <img src="@img" />*@
+
         </td>
         <td class="td-styling">
             @Html.DisplayFor(modelItem => item.Height)

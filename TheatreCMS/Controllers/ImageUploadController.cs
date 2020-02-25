@@ -76,6 +76,7 @@ namespace TheatreCMS.Controllers
                 ms.ToArray();
                 //saves to db, but cannot plug into FileContentResult. Need diff way to combine methods.
             }
+            //image not returning at input size, will need to fix later
             return new FileContentResult(imgArray, "image/jpg");
         }
     }
