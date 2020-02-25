@@ -61,8 +61,7 @@ namespace TheatreCMS.Controllers
                     break;
                 case "Productions":
                     var production = db.Productions.Find(id);
-                    imgArray = production.PromoPhoto;
-                    //imgArray = production.ShowDays how to display two bytes in the same class
+                    imgArray = production.DefaultPhoto.Photo;
                     break;
                 case "ProductionPhotos":
                     var productionPhotos = db.ProductionPhotos.Find(id);
