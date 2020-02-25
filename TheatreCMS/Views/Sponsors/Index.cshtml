@@ -25,6 +25,10 @@
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.Width)
         </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.Current)
+        </th>
+        
         <th></th>
     </tr>
 
@@ -58,9 +62,14 @@
             @Html.DisplayFor(modelItem => item.Width)
         </td>
         <td class="td-styling">
-            @Html.ActionLink("Edit", "Edit", new { id=item.SponsorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SponsorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SponsorId })
+            @Html.DisplayFor(modelItem => item.Current)
+        </td>
+        
+
+        <td class="td-styling">
+            @Html.ActionLink("Edit", "Edit", new { id = item.SponsorId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SponsorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })
         </td>
     </tr>
 }

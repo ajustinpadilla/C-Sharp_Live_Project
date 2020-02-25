@@ -14,7 +14,7 @@ namespace TheatreCMS.Models
         [Key]
         public int CastMemberID { get; set; }
         public string Name { get; set; }
-        public int YearJoined { get; set; }
+        public int? YearJoined { get; set; }
         public PositionEnum MainRole { get; set; }
         public string Bio { get; set; }
 
@@ -31,6 +31,9 @@ namespace TheatreCMS.Models
         user.CastMemberPersonID = castMembe.CastMemberPersonID */
         //public virtual ApplicationUser CastMemberPerson { get; set; } 
         public string CastMemberPersonID { get; set; }
-
+        public bool AssociateArtist { get; set;}
+        public bool EnsembleMember { get; set; }
+        public int? CastYearLeft { get; set; }
+        public int? DebutYear { get; set; }
     }
 }

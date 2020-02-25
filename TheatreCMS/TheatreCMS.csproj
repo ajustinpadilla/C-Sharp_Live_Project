@@ -199,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AdminSettingsReader.cs" />
     <Compile Include="Migrations\201912270113296_InitialSetUp.cs" />
     <Compile Include="Migrations\201912270113296_InitialSetUp.designer.cs">
       <DependentUpon>201912270113296_InitialSetUp.cs</DependentUpon>
@@ -587,7 +588,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Views\ImageUpload\" />
   </ItemGroup>
   <ItemGroup>
