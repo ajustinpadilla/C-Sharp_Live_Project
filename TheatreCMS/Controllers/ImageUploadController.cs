@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Drawing;
+using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
 {
     public class ImageUploadController : Controller
     {
-        
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         //file -> buyte[] (out string64)
         public static byte[] ImageBytes(HttpPostedFileBase file, out string imageBase64)
         {
@@ -37,6 +39,47 @@ namespace TheatreCMS.Controllers
                     return ms.ToArray();
                 }
             }
+        }
+
+        public FileContentResult ImageView(int id, string table, int thumbWidth, int thumbHeight)
+        {
+            byte[] imgArray = null;
+          
+            switch (table)
+            {
+                case "Sponsor":
+                    var sponsor = db.Sponsors.Find(id);
+                    imgArray = sponsor.Logo;
+                    break;
+                case "CastMembers":
+                    var castMembers = db.CastMembers.Find(id);
+                    imgArray = castMembers.Photo;
+                    break;
+                case "DisplayInfo":
+                    var displayInfo = db.DisplayInfo.Find(id);
+                    imgArray = displayInfo.Image;
+                    break;
+                case "Productions":
+                    var production = db.Productions.Find(id);
+                    imgArray = production.DefaultPhoto.Photo;
+                    break;
+                case "ProductionPhotos":
+                    var productionPhotos = db.ProductionPhotos.Find(id);
+                    imgArray = productionPhotos.Photo;
+                    break;
+               
+                default:
+                    break;
+            }
+            using (MemoryStream ms = new MemoryStream())
+            using (Image thumbnail = Image.FromStream(new MemoryStream(imgArray)).GetThumbnailImage(thumbWidth, thumbHeight, null, new IntPtr()))
+            {
+                thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                ms.ToArray();
+                //saves to db, but cannot plug into FileContentResult. Need diff way to combine methods.
+            }
+            //image not returning at input size, will need to fix later
+            return new FileContentResult(imgArray, "image/jpg");
         }
     }
 }
