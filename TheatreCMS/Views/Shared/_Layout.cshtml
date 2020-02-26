@@ -25,9 +25,9 @@
                         Events
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="@Url.Action("Index", "CurrentProduction")">Productions/Current</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Index", "CalendarEvents")">Calender of Events</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Index", "RentalRequest")">Rentals</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Current", "Productions")">Productions/Current</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "CalendarEvents")">Calendar of Events</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Create", "RentalRequest")">Rentals</a></li>
                     </ul>
                 </li>
                 <!--Company-->
@@ -36,8 +36,8 @@
                         Company
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="@Url.Action("", "")">Wiki Dashboard</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("", "")">Current Members</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Wiki", "Home")">Wiki Dashboard</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "CastMembers")">Current Members</a></li>
                     </ul>
                 </li>
                 <!--Admin-->
@@ -53,7 +53,7 @@
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Productions")">Productions</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "CastMembers")">Cast Members</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Part")">Roles</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("", "")">Images</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "ProductionPhotos")">Images</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
@@ -64,7 +64,7 @@
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "DisplayLinks")">Links</a></li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="@Url.Action("", "")">Manage Rentals</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "RentalRequest")">Manage Rentals</a></li>
                     </ul>
                 </li>
                 <!--Subscriber-->
@@ -73,10 +73,15 @@
                         Subscriber
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        
-                        <li>@Html.ActionLink("Dashboard", "Index", "Subscribers/Dashboard", new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>
+
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "Dashboard", new { area = "Subscribers" })">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "SeasonManager", new { area = "Subscribers" })">Season Manager</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Details", "Subscriber", new { area = "Subscribers" })">Manage Subscription</a></li>
+
+
+                            @*<li>@Html.ActionLink("Dashboard", "Index", "Subscribers/Dashboard", new { @class = "dropdown-item" })</li>
+            <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
+            <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>*@
 
                     </ul>
                 </li>
