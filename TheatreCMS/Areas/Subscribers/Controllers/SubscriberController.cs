@@ -27,6 +27,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/Subscriber/Details/5
         public ActionResult Details(string id)
         {
+            id = User.Identity.GetUserId();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
