@@ -10,13 +10,13 @@ namespace TheatreCMS.Models
     public class ProductionPhotos
     {
         [Key]
-        public int ProPhotoId { get; set; }
-        public byte[] Photo { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public int ProPhotoId { get; set; }         // production photo primary key
+        public byte[] Photo { get; set; }           // image data
+        public string Title { get; set; }           // photo title
+        public string Description { get; set; }     // photo description
 
         [InverseProperty ("ProductionPhotos")]
-        public virtual Production Production { get; set; }  
+        public virtual Production Production { get; set; }  //associated production
 
     }
 }

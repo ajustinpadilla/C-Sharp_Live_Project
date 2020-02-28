@@ -9,6 +9,7 @@ namespace TheatreCMS.Enum
     //Enum for the Wiki Schema
     public enum PositionEnum
     {
+        //Cast member job position
         [Description("Actor")]
         Actor,
         [Description("Director")]

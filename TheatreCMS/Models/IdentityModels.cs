@@ -30,9 +30,9 @@ namespace TheatreCMS.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-        public string Role { get; set; }
-        public virtual Subscriber SubscriberPerson { get; set; }
-        public virtual ICollection<SeasonManager> SeasonManagerPerson { get; set; }
+        public string Role { get; set; }            // role of user for website
+        public virtual Subscriber SubscriberPerson { get; set; }                        // associated subscriber record
+        public virtual ICollection<SeasonManager> SeasonManagerPerson { get; set; }     // all season managers associated with user
 
         /* Need to find a way to explicitly match a CastMember's User account to their ApplicationUser object, 
         If an app-user becomes a Castmember, ensure that for ApplicationUser user "=" CastMember castMember,

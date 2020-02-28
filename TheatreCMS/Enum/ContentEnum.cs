@@ -6,5 +6,5 @@ using System.Web;
 namespace TheatreCMS.Enum
 {
     //Enum for the Wiki Schema
-    public enum ContentEnum { Production, Sponsor, Info, Links };
+    public enum ContentEnum { Production, Sponsor, Info, Links }; // type of content
 }

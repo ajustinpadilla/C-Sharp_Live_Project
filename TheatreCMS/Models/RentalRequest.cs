@@ -11,38 +11,38 @@ namespace TheatreCMS.Models
     public class RentalRequest
     {
         [Key]
-        public int RentalRequestId { get; set; }
+        public int RentalRequestId { get; set; }    // rental request primary key
 
         [StringLength(40, ErrorMessage = "Error. This field is limited to 40 characters.")]
         [Display(Name = "Contact Person")]
-        public string ContactPerson { get; set; }
+        public string ContactPerson { get; set; }   // name for point of contact
         
         [StringLength(100, ErrorMessage = "Error. This field is limited to 100 characters.")]
-        public string Company { get; set; }
+        public string Company { get; set; }         // company requesting the rental
         
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Start Time")]
-        public DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; }     // rental start date and time
         
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "End Time")]
-        public DateTime EndTime { get; set; }
-        
+        public DateTime EndTime { get; set; }       // rental end date and time
+
         [Display(Name = "Project Info")]
         [StringLength(2000, ErrorMessage = "Error. This field is limited to 2000 characters.")]
-        public string ProjectInfo { get; set; }
+        public string ProjectInfo { get; set; }     // info on the project using the space
         
         [StringLength(1000, ErrorMessage = "Error. This field is limited to 1000 characters.")]
-        public string Requests { get; set; }
+        public string Requests { get; set; }        // special requests for rental
 
         [Display(Name = "Rental Code")]
-        public int RentalCode { get; set; }
-        public bool Accepted { get; set; }
+        public int RentalCode { get; set; }         // 
+        public bool Accepted { get; set; }          // rental request approved
 
         [Display(Name = "Contract Signed")]
-        public bool ContractSigned { get; set; }
+        public bool ContractSigned { get; set; }    // rental contract signed by both parties
         
     
 
