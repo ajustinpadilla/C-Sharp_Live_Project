@@ -10,7 +10,7 @@
 <body class="palette-body">
     <nav class="palette-navbar navbar fixed-top navbar-expand-lg navbar-light bg-light" id="menu">
         <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index", "Home")">
-            <img src="~/Content/Images/cropped-logo.png" id="logo" />
+            <img src="~/Content/Images/cropped-logo.png" id="logo"/>
         </a>
         <!--Drop down menu button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,13 +21,13 @@
             <ul class="navbar-nav mr-auto">
                 <!--Events-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Events
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="@Url.Action("Current", "Productions")">Productions/Current</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Index", "CalendarEvents")">Calender of Events</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("", "")">Rentals</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "CalendarEvents")">Calendar of Events</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Create", "RentalRequest")">Rentals</a></li>
                     </ul>
                 </li>
                 <!--Company-->
@@ -36,8 +36,8 @@
                         Company
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="@Url.Action("", "")">Wiki Dashboard</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("", "")">Current Members</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Wiki", "Home")">Wiki Dashboard</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "CastMembers")">Current Members</a></li>
                     </ul>
                 </li>
                 <!--Admin-->
@@ -74,9 +74,14 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-                        <li>@Html.ActionLink("Dashboard", "Index", "Subscribers/Dashboard", new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "Dashboard", new { area = "Subscribers" })">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "SeasonManager", new { area = "Subscribers" })">Season Manager</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Details", "Subscriber", new { area = "Subscribers" })">Manage Subscription</a></li>
+
+
+                            @*<li>@Html.ActionLink("Dashboard", "Index", "Subscribers/Dashboard", new { @class = "dropdown-item" })</li>
+            <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
+            <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>*@
 
                     </ul>
                 </li>
@@ -92,66 +97,62 @@
     <div class="palette-container body-content">
 
         @RenderBody()
-
+       
     </div>
-    <footer>
-        <div class="footer-container container-fluid">
-            <div class="footer-top row justify-content-between">
-                <div class="footer-nav col-sm-6 ml-5">
-                    <nav class="footer-navbar navbar navbar-expand-sm navbar-dark" style="background-color: black">
-                        <button class="footer-btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="footer-tog navbar-toggler-icon"></span>
-                        </button>
-                        <div class="footer-colps collapse navbar-collapse" id="navbarNav">
-                            <ul class="footer-Links navbar-nav">
-                                <li class="footer nav-item">
-                                    <a class="navLink" href="#">Opportunities</a>
-                                </li>
-                                <li class="footer nav-item">
-                                    <a class="navLink" href="#">News Items</a>
-                                </li>
-                                <li class="footer nav-item">
-                                    <a class="navLink" href="#">Contact Info</a>
-                                </li>
-                                <li class="footer nav-item">
-                                    <a class="navLink" href="#">Donate</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                <div class="footer-icons col-sm-3 mr-5" id="socialMediaLinks" style="background-color: black">
-                    <ul class="footer-list
+        <footer>
+            <div class="footer-container container-fluid">
+                <div class="footer-top row justify-content-between">
+                    <div class="footer-nav col-sm-6 ml-5">
+                        <nav class="footer-navbar navbar navbar-expand-sm navbar-dark" style="background-color: black">
+                            <button class="footer-btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="footer-tog navbar-toggler-icon"></span>
+                            </button>
+                            <div class="footer-colps collapse navbar-collapse" id="navbarNav">
+                                <ul class="footer-Links navbar-nav">
+                                    <li class="footer nav-item">
+                                        <a class="navLink" href="#">Opportunities</a>
+                                    </li>
+                                    <li class="footer nav-item">
+                                        <a class="navLink" href="#">News Items</a>
+                                    </li>
+                                    <li class="footer nav-item">
+                                        <a class="navLink" href="#">Contact Info</a>
+                                    </li>
+                                    <li class="footer nav-item">
+                                        <a class="navLink" href="#">Donate</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>                 
+                    <div class="footer-icons col-sm-3 mr-5"  id="socialMediaLinks" style="background-color: black">
+                        <ul class="footer-list 
                             list-group list-group-horizontal float-lg-right" style="background-color: black">
-                        <li class="list-group-item"> <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
-                        <li class="list-group-item"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-group-item"><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li class="list-group-item"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li>
-                    </ul>
+                            <li class="list-group-item"> <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
+                            <li class="list-group-item"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                            <li class="list-group-item"><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
+                            <li class="list-group-item"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li>
+                        </ul>
+                     </div>                       
+                </div>
+                <div class="row pl-5">
+                    <div class="col-sm-2 ml-3" id="address">
+                        <p>2110 SE 10th AVE<br />
+                        Portland, OR 97214</p>
+                    </div>
+                    <div class="col-sm-3" id="phoneNumbers">
+                        <p>Phone Number (General)<br />
+                        Phone Number (Sales)</p>
+                    </div>
+                    <div class="col-sm text-right ml-1 pr-4 mr-5" >
+                        <p><br />&copy; @DateTime.Now.Year</p>
+                    </div>
                 </div>
             </div>
-            <div class="row pl-5">
-                <div class="col-sm-2 ml-3" id="address">
-                    <p>
-                        2110 SE 10th AVE<br />
-                        Portland, OR 97214
-                    </p>
-                </div>
-                <div class="col-sm-3" id="phoneNumbers">
-                    <p>
-                        Phone Number (General)<br />
-                        Phone Number (Sales)
-                    </p>
-                </div>
-                <div class="col-sm text-right ml-1 pr-4 mr-5">
-                    <p><br />&copy; @DateTime.Now.Year</p>
-                </div>
-            </div>
-        </div>
-
-    </footer>
-
+                
+        </footer>
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendar")
@@ -160,10 +161,3 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-<script>
-$('.dropdown').on('mouseenter mouseleave click tap', function () {
-    $(this).toggleClass("dropdown");
-    console.log('triggered')
-});
-
-    </script>
