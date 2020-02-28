@@ -190,6 +190,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageUploadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\ProductionsController.cs" />
     <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Models\AdminSettings.cs" />
     <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\CastMember.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\ContentSection.cs" />
     <Compile Include="Models\CurrentProduction.cs" />
@@ -574,6 +576,11 @@
     <Content Include="Views\ProductionPhotos\Index.cshtml" />
     <Content Include="Views\Admin\DonorList.cshtml" />
     <Content Include="Views\Admin\AddShows.cshtml" />
+    <Content Include="Views\Photo\Create.cshtml" />
+    <Content Include="Views\Photo\Delete.cshtml" />
+    <Content Include="Views\Photo\Details.cshtml" />
+    <Content Include="Views\Photo\Edit.cshtml" />
+    <Content Include="Views\Photo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
