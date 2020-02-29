@@ -75,25 +75,31 @@ namespace TheatreCMS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
         {
-            if((calendarEvent.ProductionId.HasValue) && (calendarEvent.RentalRequestId.HasValue))
-            {
-                var validationMessage = "Please only choose Production or Rental Request.";
-                this.ModelState.AddModelError("ProductionId", validationMessage);
-                this.ModelState.AddModelError("RentalRequestId", validationMessage);
-            }
-            if ((!calendarEvent.ProductionId.HasValue) && (!calendarEvent.RentalRequestId.HasValue))
-            {
-                var validationMessage = "Please only choose a Production or Rental Request.";
-                this.ModelState.AddModelError("ProductionId", validationMessage);
-                this.ModelState.AddModelError("RentalRequestId", validationMessage);
-            }
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+
+            //if ((calendarEvent.ProductionId.HasValue) && (calendarEvent.RentalRequestId != null))
+            //{
+            //    var validationMessage = "Please only choose Production or Rental Request.";
+            //    this.ModelState.AddModelError("ProductionId", validationMessage);
+            //    this.ModelState.AddModelError("RentalRequestId", validationMessage);
+            //}
+           // if ((!calendarEvent.ProductionId.HasValue) && (!calendarEvent.RentalRequestId.HasValue))
+            //{
+            //    var validationMessage = "Please only choose a Production or Rental Request.";
+            //    this.ModelState.AddModelError("ProductionId", validationMessage);
+            //    this.ModelState.AddModelError("RentalRequestId", validationMessage);
+            //}
            
             if (ModelState.IsValid)
             {
-                
-       
+               // ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+               // ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
 
-                db.CalendarEvent.Add(calendarEvent);
+                //if (ViewData["Productions"] != null)
+              
+
+                    db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
