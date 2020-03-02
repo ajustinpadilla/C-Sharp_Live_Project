@@ -44,23 +44,6 @@ function showSlides(n) {
 //    }
 //}
 
-//Begin script to fix overlapping navbar
-//var menu = document.querySelectorAll('.nav-link dropdown-toggle');
-//if (menu.checked = true) {
-//    menu.addEventListener('hover', function removeBar() {
-//        $('.dropdown-toggle').dropdown();
-//    })
-//}
-//else {
-//     menu.addEventListener('click', function removeBar () {
-//        $(.dropdown-toggle').dropdown();
-//        })
-//}
-$('.dropdown-toggle').on('mouseenter mouseleave click tap', function () {
-    $(this).toggleClass("collapse");
-    console.log('triggered')
-});
-
 // Script for shrinking logo
 window.onscroll = function () { shrinkFunction() };
 
