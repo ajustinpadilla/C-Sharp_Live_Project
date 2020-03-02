@@ -59,20 +59,47 @@ namespace TheatreCMS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
+
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId","Title");
+            ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
             return View();
-        }
+            
+      
+        } 
 
         // POST: CalendarEvents/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for  on, let me show u the 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
         {
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+
+            //if ((calendarEvent.ProductionId.HasValue) && (calendarEvent.RentalRequestId != null))
+            //{
+            //    var validationMessage = "Please only choose Production or Rental Request.";
+            //    this.ModelState.AddModelError("ProductionId", validationMessage);
+            //    this.ModelState.AddModelError("RentalRequestId", validationMessage);
+            //}
+           // if ((!calendarEvent.ProductionId.HasValue) && (!calendarEvent.RentalRequestId.HasValue))
+            //{
+            //    var validationMessage = "Please only choose a Production or Rental Request.";
+            //    this.ModelState.AddModelError("ProductionId", validationMessage);
+            //    this.ModelState.AddModelError("RentalRequestId", validationMessage);
+            //}
+           
             if (ModelState.IsValid)
             {
-                db.CalendarEvent.Add(calendarEvent);
+               // ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+               // ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+
+                //if (ViewData["Productions"] != null)
+              
+
+                    db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

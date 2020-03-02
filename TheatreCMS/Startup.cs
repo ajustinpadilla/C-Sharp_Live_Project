@@ -178,6 +178,8 @@ namespace TheatreCMS
 				IsCurrent = false},
 			};
 
+
+
             //added if statement to ensure that Startup.cs will not override additions to the productions table on start up.
             var currentList = context.Productions.ToList();
 

@@ -11,6 +11,8 @@ namespace TheatreCMS.Models
 {
     public class CalendarEvent
     {
+        
+
         [Key]
         public int EventId { get; set; }
         public string Title { get; set; }
@@ -23,6 +25,9 @@ namespace TheatreCMS.Models
         public bool AllDay { get; set; }
 
         public int? ProductionId { get; set; }
+
+        //Create() action of the CalendarEvent controller
+        //public virtual Production Production { get; set; }
 
         public int? RentalRequestId { get; set; }
     }
