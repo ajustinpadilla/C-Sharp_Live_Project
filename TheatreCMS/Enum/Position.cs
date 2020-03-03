@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace TheatreCMS.Enum
 {
-    //Enum for the Wiki Schema
+    //Enum for the Cast Member Schema
     public enum PositionEnum
     {
         [Description("Actor")]

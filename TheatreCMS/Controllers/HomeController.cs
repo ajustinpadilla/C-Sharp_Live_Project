@@ -66,7 +66,7 @@ namespace TheatreCMS.Controllers
             }
             return View();
         }
-        public ActionResult Wiki()
+        public ActionResult Archive()
         {
             return View();
         }
