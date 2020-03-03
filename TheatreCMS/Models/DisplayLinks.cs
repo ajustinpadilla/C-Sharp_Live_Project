@@ -11,7 +11,7 @@ namespace TheatreCMS.Models
         [Key]
         public int LinkId { get; set; }     // link primary key
         public string Name { get; set; }    // link title
-        public string Text { get; set; }    // link description
+        public string Text { get; set; }    // link display text
         public string Link { get; set; }    // link url
     }
 }

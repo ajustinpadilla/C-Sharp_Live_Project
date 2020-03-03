@@ -13,7 +13,7 @@ namespace TheatreCMS.Models
     {
         [Key]
         public int CastMemberID { get; set; }           // cast member primary key
-        public string Name { get; set; }                // cast member name
+        public string Name { get; set; }                // cast member display name
         public int? YearJoined { get; set; }            // year that permenant cast member joined theater
         public PositionEnum MainRole { get; set; }      // position at theater
         public string Bio { get; set; }                 // cast member biographical excerpt
