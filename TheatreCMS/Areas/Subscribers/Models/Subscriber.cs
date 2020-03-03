@@ -13,8 +13,8 @@ namespace TheatreCMS.Areas.Subscribers.Models
         [Key]
         [ForeignKey("SubscriberPerson")]
         public string SubscriberId { get; set; }        // subscriber primary key
-        public bool CurrentSubscriber { get; set; }     // 
-        public bool HasRenewed { get; set; }            //
+        public bool CurrentSubscriber { get; set; }     // subscriber has purchased current season
+        public bool HasRenewed { get; set; }            // subscriber has purchased next season (or simply creating new season manager would suffice)
         public bool Newsletter { get; set; }            // subscriber signed up for newsletter
         public bool RecentDonor { get; set; }           // subscriber donated "recently" as defined by the settings file
         [DataType(DataType.Date)]

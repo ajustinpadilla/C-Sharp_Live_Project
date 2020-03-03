@@ -184,7 +184,6 @@
     <Compile Include="Controllers\CastMembersController.cs" />
     <Compile Include="Controllers\CalendarEventsController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
-    <Compile Include="Controllers\CurrentProductionController.cs" />
     <Compile Include="Controllers\DisplayInfoController.cs" />
     <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -211,7 +210,6 @@
     <Compile Include="Models\CastMember.cs" />
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\ContentSection.cs" />
-    <Compile Include="Models\CurrentProduction.cs" />
     <Compile Include="Models\DisplayInfo.cs" />
     <Compile Include="Models\DisplayLinks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -495,11 +493,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\CurrentProduction\Create.cshtml" />
-    <Content Include="Views\CurrentProduction\Delete.cshtml" />
-    <Content Include="Views\CurrentProduction\Details.cshtml" />
-    <Content Include="Views\CurrentProduction\Edit.cshtml" />
-    <Content Include="Views\CurrentProduction\Index.cshtml" />
     <Content Include="Views\DisplayInfo\Create.cshtml" />
     <Content Include="Views\DisplayInfo\Delete.cshtml" />
     <Content Include="Views\DisplayInfo\Details.cshtml" />
@@ -588,7 +581,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="Views\ImageUpload\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">

@@ -43,7 +43,7 @@ namespace TheatreCMS.Models
         public bool IsCurrent { get; set; }         // production belongs to current season
 
         [Display(Name = "World Premiere")]
-        public bool IsWorldPremiere { get; set; }   // 
+        public bool IsWorldPremiere { get; set; }   // first time produced in the world
 
 
         [Display(Name = "Promo Photo")]

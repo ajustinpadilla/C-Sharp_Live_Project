@@ -38,7 +38,7 @@ namespace TheatreCMS.Models
         public string Requests { get; set; }        // special requests for rental
 
         [Display(Name = "Rental Code")]
-        public int RentalCode { get; set; }         // 
+        public int RentalCode { get; set; }         // rental confirmation number
         public bool Accepted { get; set; }          // rental request approved
 
         [Display(Name = "Contract Signed")]

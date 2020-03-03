@@ -18,8 +18,8 @@ namespace TheatreCMS.Models
         public DateTime EndDate { get; set; }       // event end date and time
         public int? TicketsAvailable { get; set; }  // number of tickets remaining
         public string Color { get; set; }           // event color when rendered in full calendar
-        public string ClassName { get; set; }       // 
-        public string SomeKey { get; set; }         // 
+        public string ClassName { get; set; }       // (remove)
+        public string SomeKey { get; set; }         // (remove)
         public bool AllDay { get; set; }            // all day event
 
         public int? ProductionId { get; set; }      // Id for associated production

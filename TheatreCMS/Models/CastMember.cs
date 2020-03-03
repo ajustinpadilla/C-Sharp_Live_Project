@@ -21,7 +21,7 @@ namespace TheatreCMS.Models
         //Photo attribute needs work in the Create() action of the CastMemembersController
         public byte[] Photo { get; set; }               // cast member photo
 
-        public bool CurrentMember { get; set; }         // 
+        public bool CurrentMember { get; set; }         // active permanent or temporary cast member
 
         //Parts attribute needs work in the Create() action of the CastMemembersController
         public virtual List<Part> Parts { get; set; }   // list of parts played by cast member
@@ -31,8 +31,8 @@ namespace TheatreCMS.Models
         user.CastMemberPersonID = castMembe.CastMemberPersonID */
         //public virtual ApplicationUser CastMemberPerson { get; set; } 
         public string CastMemberPersonID { get; set; }  // user ID for cast member
-        public bool AssociateArtist { get; set;}        // 
-        public bool EnsembleMember { get; set; }        // 
+        public bool AssociateArtist { get; set;}        // defined by customer
+        public bool EnsembleMember { get; set; }        // defined by customer
         public int? CastYearLeft { get; set; }          // year that permenant cast member leaves theater
         public int? DebutYear { get; set; }             // first year that temporary cast member joins theater
     }
