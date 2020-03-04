@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Newtonsoft.Json;
 
 namespace TheatreCMS.Models
@@ -27,5 +28,13 @@ namespace TheatreCMS.Models
 			public DateTime date { get; set; }
 		}
 
-	}
+
+        // This property will hold a production, selected by user
+        [Required]
+        [Display(Name = "Production")]
+        public string Production { get; set; }
+        // This property will hold all available productions for selection
+        public IEnumerable<SelectListItem> Productions { get; set; }
+
+    }
 }

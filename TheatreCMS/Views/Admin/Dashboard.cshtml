@@ -46,12 +46,34 @@
 </ul>
 
 
-@using (Html.BeginForm("SettingsUpdate", "Admin", FormMethod.Post))
+@using (Html.BeginForm("SettingsUpdate", "Admin", FormMethod.Post, new { role = "form" }))
 {
+
+
 <div>
+
+
     CURRENT SEASON:
     <input type="number" name="Current_Season" value="@Html.DisplayFor(model => model.current_season)"><br />
     SEASON PRODUCTIONS:<br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Production)
+        @Html.DropDownListFor(m => m.Production, // 1. Store selected value in Model.Production;
+                                                // when page is rendered after postback,
+                                                // take selected value from Model.State.
+
+                              // 2. Take list of values from Model.Productions
+                              Model.Productions,
+
+                              // 3. Text for the first 'default' option
+                              "- Please select a production -",
+
+                              //4. A class name to assign to <select> tag
+                              new { @class = "form-control" })
+    </div>
+
+
+
     Winter:<input type="number" name="Fall" value="@Html.DisplayFor(model => model.season_productions.fall)"><br>
     Fall:<input type="number" name="Winter" value="@Html.DisplayFor(model => model.season_productions.winter)"><br>
     Spring:<input type="number" name="Spring" value="@Html.DisplayFor(model => model.season_productions.spring)"><br>
