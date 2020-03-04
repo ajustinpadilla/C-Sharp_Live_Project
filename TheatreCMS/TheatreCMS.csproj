@@ -581,6 +581,7 @@
     <Content Include="Views\Photo\Details.cshtml" />
     <Content Include="Views\Photo\Edit.cshtml" />
     <Content Include="Views\Photo\Index.cshtml" />
+    <Content Include="Views\Shared\_Sponsors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
