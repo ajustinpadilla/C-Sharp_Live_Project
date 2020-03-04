@@ -28,17 +28,8 @@
 
 @foreach (var item in Model) {
     <tr class="tr-styling">
-        @*temporary display method*@
-        <td>
-            @{
-                string img = "";
-                if (item.PhotoFile != null)
-                {
-                    var base64 = System.Convert.ToBase64String(item.PhotoFile);
-                    img = String.Format("data:image/png;base64,{0}", base64);
-                }
-            }
-            <img src="@img" />
+        <td class="td-styling">
+            <img src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
         </td>
         <td class="td-styling">
             @Html.DisplayFor(modelItem => item.OriginalHeight)

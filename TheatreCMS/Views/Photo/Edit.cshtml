@@ -19,19 +19,7 @@
                 @Html.HiddenFor(model => model.PhotoId)
 
                 <div class="form-group">
-                    @*temporary display method*@
-                    @*temporary display method*@
-                    <td>
-                        @{
-                            string img = "";
-                            if (Model.PhotoFile != null)
-                            {
-                                var base64 = System.Convert.ToBase64String(Model.PhotoFile);
-                                img = String.Format("data:image/png;base64,{0}", base64);
-                            }
-                        }
-                        <img src="@img" />
-                    </td>
+                    <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
                     @*@Html.LabelFor(model => model.PhotoFile, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
         <div class="col-md-10 formBox">
             @Html.EditorFor(model => model.PhotoFile, new { htmlAttributes = new { @class = "form-control" } })

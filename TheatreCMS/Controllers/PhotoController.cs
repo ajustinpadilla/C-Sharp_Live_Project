@@ -91,6 +91,16 @@ namespace TheatreCMS.Controllers
             return View(photo);
         }
 
+
+        public ActionResult DisplayPhoto(int id)
+        {
+            //find photo object from db
+            var photo = db.Photo.Find(id);
+            //get byte array 
+            var byteData = photo.PhotoFile;
+            return File(byteData, "image/png");
+        }
+
         // GET: Photo/Edit/5
         public ActionResult Edit(int? id)
         {
