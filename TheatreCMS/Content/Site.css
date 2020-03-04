@@ -855,3 +855,16 @@ a.dropdown-item:hover {
     font-size: 20px;
 }
 
+/*Sponsor partial styling*/
+.sponsor-partial-pic {
+    width: auto;
+    height: 100px;
+}
+.sponsor-donate-btn {
+    margin-top: 20px;
+    background-color: var(--main-bg-color);
+}
+.sponsor-donate-btn:hover {
+    margin-top: 20px;
+    background-color: var(--main-secondary-color);
+}
