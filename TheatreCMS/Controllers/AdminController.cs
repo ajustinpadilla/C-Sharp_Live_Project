@@ -112,10 +112,19 @@ namespace TheatreCMS.Controllers
         // Retrieve a list of productions from the database
         private IEnumerable<string> GetAllProductions()
         {
-            List<string> ProductionsList = db.Productions.Select(Production => Production.Title).ToList();
+            // List<string> ProductionsList = db.Productions.Select(Production => Production.Title).ToList();
+            // Create a list of productions sorted by season (int)
+            var SortedProductions = db.Productions.ToList().OrderByDescending(prod => prod.Season);
+            // Initialize an empty list of strings to add production names to
+            List<string> ProductionsList = new List<string>();
+
+            // Add each production title to List<string>
+            foreach (Production production in SortedProductions)
+            {
+                ProductionsList.Add(production.Title);
+            }
 
             return ProductionsList;
-
         }
 
         // This function takes a list of strings and returns a list of SelectListItem objects
@@ -126,8 +135,6 @@ namespace TheatreCMS.Controllers
 
             // For each string in the 'elements' variable, create a new SelectListItem object
             // that has both its Value and Text properties set to a particular value.
-            // This will result in MVC rendering each item as:
-            //     <option value="Production Name">Production Name</option>
             foreach (var element in elements)
             {
                 selectList.Add(new SelectListItem
