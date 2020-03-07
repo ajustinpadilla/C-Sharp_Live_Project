@@ -631,16 +631,16 @@ textarea {
     background-color: white;
     border: 1px black;
 }  
-/*End styling for Wiki page*/    
+/*End styling for Archive page*/    
     
     
 
-/*Styling for Subscriber section*/
+/*Begin styling for Subscriber section*/
 
 .subsave {
-    background-color: var(--dark-color);
+    background-color: var(--subscriber-main);
     border: none;
-    color: white;
+    color: var(--light-color);
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -650,13 +650,18 @@ textarea {
     border-radius: 16px;
 }
 
+.subsave:hover {
+        text-decoration: none;
+        color: var(--secondary-color);
+    }
+
 .subback1 {
     margin-bottom: 50px;
     border-radius: 16px;
     text-align: center;
     padding: 10px;
-    color: white;
-    background-color: var(--dark-color);
+    color: var(--light-color);
+    background-color: var(--subscriber-main);
 }
 
 .subback2 {
@@ -664,8 +669,8 @@ textarea {
     border-radius: 16px;
     text-align: center;
     padding: 10px;
-    color: white;
-    background-color: var(--dark-color);
+    color: var(--light-color);
+    background-color: var(--subscriber-main);
 }
 
 
@@ -678,11 +683,10 @@ textarea {
 
 .accountbox {
     margin: 15px;
-    background: white;
+    background: var(--light-color);
     border-radius: 16px;
     padding: 10px;
-    color: black;
-    background-color: rgba(255, 255, 255, 0.7);
+    color: black;  
 }
 
 .accountinfo {
@@ -713,6 +717,8 @@ textarea {
     column-count: 3;
     padding: 50px;
 }
+
+/*End styling for Subscriber section*/
 
 /* Dropdown Button */
 .dropbtn {
@@ -849,3 +855,32 @@ a.dropdown-item:hover {
     font-size: 20px;
 }
 
+/*Sponsor partial styling*/
+.sponsor-partial-pic {
+    width: auto;
+    height: 100px;
+}
+.sponsor-donate-btn {
+    margin-top: 20px;
+    background-color: var(--main-bg-color);
+}
+.sponsor-donate-btn:hover {
+    margin-top: 20px;
+    background-color: var(--main-secondary-color);
+}
+
+/*Production Index button styling*/
+
+.production-admin-btn {
+    margin-top: 5px;
+    background-color: var(--main-bg-color) !important;
+}
+
+.production-admin-btn:hover {
+    margin-top: 5px;
+    background-color: var(--main-secondary-color) !important;
+}
+
+.production-admin-div{
+    width: 350px;
+}

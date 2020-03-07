@@ -189,6 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageUploadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\ProductionsController.cs" />
     <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\AdminSettings.cs" />
     <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\CastMember.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\ContentSection.cs" />
     <Compile Include="Models\DisplayInfo.cs" />
@@ -238,6 +240,11 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\Images\Ellyn-Bye-Logo.png" />
+    <Content Include="Content\Images\LogoRoundColor.png" />
+    <Content Include="Content\Images\Ninkasi-white-text.png" />
+    <Content Include="Content\Images\OCF-logo-in-white-with-tagline-lg.png" />
+    <Content Include="Content\Images\RACC2.png" />
     <Content Include="Content\Images\subscriber.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -551,7 +558,7 @@
     <Content Include="webfonts\fa-solid-900.ttf" />
     <Content Include="webfonts\fa-solid-900.woff" />
     <Content Include="webfonts\fa-solid-900.woff2" />
-    <Content Include="Views\Home\Wiki.cshtml" />
+    <Content Include="Views\Home\Archive.cshtml" />
     <Content Include="Views\Home\NewsletterSubscribers.cshtml" />
     <Content Include="Views\RentalRequest\RequestConfirm.cshtml" />
     <Content Include="Views\Manage\ChangeEmailAddress.cshtml" />
@@ -567,6 +574,14 @@
     <Content Include="Views\ProductionPhotos\Index.cshtml" />
     <Content Include="Views\Admin\DonorList.cshtml" />
     <Content Include="Views\Admin\AddShows.cshtml" />
+    <Content Include="Views\Photo\Create.cshtml" />
+    <Content Include="Views\Photo\Delete.cshtml" />
+    <Content Include="Views\Photo\Details.cshtml" />
+    <Content Include="Views\Photo\Edit.cshtml" />
+    <Content Include="Views\Photo\Index.cshtml" />
+    <Content Include="Views\Shared\_Sponsors.cshtml" />
+    <Content Include="Views\Shared\_SponsorsPartial.cshtml" />
+    <Content Include="Views\Admin\UserList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

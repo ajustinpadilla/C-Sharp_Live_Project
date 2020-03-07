@@ -54,6 +54,9 @@ namespace TheatreCMS.Models
         [InverseProperty ("Production")]
         public virtual ICollection<ProductionPhotos> ProductionPhotos { get; set; } // associated production photos
 
-       
+        //public static implicit operator object(Production v)
+       // {
+         //  throw new NotImplementedException();
+        //}
     }
 }

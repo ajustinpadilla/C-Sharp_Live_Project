@@ -1,0 +1,50 @@
+﻿@model TheatreCMS.Models.Photo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Photo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoFile)
+        </dt>
+
+        <dd>
+            <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OriginalHeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OriginalHeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OriginalWidth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OriginalWidth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

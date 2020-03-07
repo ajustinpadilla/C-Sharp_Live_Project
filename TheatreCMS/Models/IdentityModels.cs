@@ -93,6 +93,7 @@ namespace TheatreCMS.Models
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<SeasonManager> SeasonManagers { get; set; }
         public DbSet<CalendarEvent> CalendarEvent { get; set; }
+        public DbSet<Photo> Photo { get; set; }
 
         public System.Data.Entity.DbSet<TheatreCMS.ViewModels.NewsletterListVm> NewsletterListVms { get; set; }
     }
