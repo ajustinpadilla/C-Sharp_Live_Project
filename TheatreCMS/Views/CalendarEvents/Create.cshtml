@@ -23,7 +23,7 @@
                     @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                     <div class="col-md-10 formBox">
                         @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-white" })
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
                     @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                     <div class="col-md-10 formBox">
                         @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-white" })
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
                     @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel"})
                     <div class="col-md-10 formBox">
                         @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
-                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-white" })
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
                     @Html.LabelFor(model => model.TicketsAvailable, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                     <div class="col-md-10 formBox">
                         @Html.EditorFor(model => model.TicketsAvailable, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TicketsAvailable, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.TicketsAvailable, "", new { @class = "text-white" })
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                     <label class="inputLabel col-md-4"> &nbsp; &nbsp;Production</label>
                     <div class="col-md-10 formBox">
                         @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"],"N/A" , htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.ProductionId,"", new { @class = "text-danger" }) 
+                        @Html.ValidationMessageFor(model => model.ProductionId,"", new { @class = "text-white" }) 
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
                     <div class="col-md-10 formBox">
                         
                         @Html.DropDownList("RentalRequests", (IEnumerable<SelectListItem>)ViewData["RentalRequests"],"N/A", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.RentalRequestId,"", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.RentalRequestId,"", new { @class = "text-white" })
                     </div>
                 </div>
 

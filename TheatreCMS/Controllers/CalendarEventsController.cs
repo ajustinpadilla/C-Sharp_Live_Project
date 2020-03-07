@@ -83,7 +83,7 @@ namespace TheatreCMS.Controllers
 
             if (productionID == "" && rentalID == "")
             {
-                var validationMessage = "Please choose Production or Rental Request from the drop-down.";
+                var validationMessage = "Please select a Production or a Rental Request.";
                 this.ModelState.AddModelError("ProductionId", validationMessage);
                 this.ModelState.AddModelError("RentalRequestId", validationMessage);
             }
@@ -93,11 +93,11 @@ namespace TheatreCMS.Controllers
             }
             else if (productionID == "" && rentalID != "")
             {
-                calendarEvent.ProductionId = Convert.ToInt32(rentalID);
+                calendarEvent.RentalRequestId = Convert.ToInt32(rentalID);
             }
             else
             {
-                var validationMessage = "Please choose Production or Rental Request from the drop-down.";
+                var validationMessage = "You can only select either Production or Rental Request, please try again.";
                 this.ModelState.AddModelError("ProductionId", validationMessage);
                 this.ModelState.AddModelError("RentalRequestId", validationMessage);
             }
