@@ -87,7 +87,7 @@ namespace TheatreCMS.Models
                 return HttpNotFound();
             }
 
-            //ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
+            ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
             return View(productionPhotos);
         }
 
