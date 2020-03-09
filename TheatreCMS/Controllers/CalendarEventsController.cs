@@ -65,7 +65,7 @@ namespace TheatreCMS.Controllers
             return View();
             
       
-        } 
+        }
 
         // POST: CalendarEvents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for  on, let me show u the 
@@ -78,19 +78,30 @@ namespace TheatreCMS.Controllers
             ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
             ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
 
-            //if ((calendarEvent.ProductionId.HasValue) && (calendarEvent.RentalRequestId != null))
-            //{
-            //    var validationMessage = "Please only choose Production or Rental Request.";
-            //    this.ModelState.AddModelError("ProductionId", validationMessage);
-            //    this.ModelState.AddModelError("RentalRequestId", validationMessage);
-            //}
-           // if ((!calendarEvent.ProductionId.HasValue) && (!calendarEvent.RentalRequestId.HasValue))
-            //{
-            //    var validationMessage = "Please only choose a Production or Rental Request.";
-            //    this.ModelState.AddModelError("ProductionId", validationMessage);
-            //    this.ModelState.AddModelError("RentalRequestId", validationMessage);
-            //}
-           
+            var productionID = Request.Form["Productions"];
+            var rentalID = Request.Form["RentalRequests"];
+
+            if (productionID == "" && rentalID == "")
+            {
+                var validationMessage = "Please select a Production or a Rental Request.";
+                this.ModelState.AddModelError("ProductionId", validationMessage);
+                this.ModelState.AddModelError("RentalRequestId", validationMessage);
+            }
+            else if (productionID != "" && rentalID == "")
+            {
+                calendarEvent.ProductionId = Convert.ToInt32(productionID);
+            }
+            else if (productionID == "" && rentalID != "")
+            {
+                calendarEvent.RentalRequestId = Convert.ToInt32(rentalID);
+            }
+            else
+            {
+                var validationMessage = "You can only select either Production or Rental Request, please try again.";
+                this.ModelState.AddModelError("ProductionId", validationMessage);
+                this.ModelState.AddModelError("RentalRequestId", validationMessage);
+            }
+
             if (ModelState.IsValid)
             {
                // ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
@@ -99,7 +110,7 @@ namespace TheatreCMS.Controllers
                 //if (ViewData["Productions"] != null)
               
 
-                    db.CalendarEvent.Add(calendarEvent);
+                db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

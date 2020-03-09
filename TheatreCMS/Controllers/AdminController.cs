@@ -10,6 +10,9 @@ using System.Globalization;
 using static TheatreCMS.Models.AdminSettings;
 using Newtonsoft.Json.Linq;
 using TheatreCMS.Helpers;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Net;
 
 namespace TheatreCMS.Controllers
 {
@@ -21,7 +24,6 @@ namespace TheatreCMS.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            
             return View();
         }
         public ActionResult Dashboard()
@@ -102,6 +104,22 @@ namespace TheatreCMS.Controllers
             return View();
         }
 
+        public ActionResult UserList()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var users = db.Users.ToList();
+
+            foreach (var user in users)
+            {
+                var role = userManager.GetRoles(user.Id).FirstOrDefault();
+                //var roleName = roleManager.FindById(role);
+                user.Role = role.ToString();
+                
+            }
+            return View(users);
+        }
+
         public List<SelectListItem> GetSelectListItems()
         {
             //Create a list of productions sorted by season(int)
@@ -125,5 +143,4 @@ namespace TheatreCMS.Controllers
         }
     }
 }
-
 

@@ -11,18 +11,18 @@ namespace TheatreCMS.Models
     public class Part
     {
         [Key]
-        public int PartID { get; set; }
+        public int PartID { get; set; }                     // part primary key
 
         //Play attribute needs help in the Create() action of the Part controller
-        public virtual Production Production { get; set; }
+        public virtual Production Production { get; set; }  // associated production
 
-        public string Character { get; set; }
+        public string Character { get; set; }               // character name played by Person on Production
 
         //Type attribute needs help in the Create() action of the Part controller
-        public PositionEnum Type { get; set; }
+        public PositionEnum Type { get; set; }              // job position of Person on Production
 
-        public virtual CastMember Person { get; set; }
-        public string Details { get; set; }
+        public virtual CastMember Person { get; set; }      // associated cast member
+        public string Details { get; set; }                 // additional details for part
 
     }
 }

@@ -184,7 +184,6 @@
     <Compile Include="Controllers\CastMembersController.cs" />
     <Compile Include="Controllers\CalendarEventsController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
-    <Compile Include="Controllers\CurrentProductionController.cs" />
     <Compile Include="Controllers\DisplayInfoController.cs" />
     <Compile Include="Controllers\DisplayLinksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -213,7 +212,6 @@
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\ContentSection.cs" />
-    <Compile Include="Models\CurrentProduction.cs" />
     <Compile Include="Models\DisplayInfo.cs" />
     <Compile Include="Models\DisplayLinks.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -228,6 +226,7 @@
     <Compile Include="ViewModels\NewsletterListVm.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Dummy.txt" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -502,11 +501,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\CurrentProduction\Create.cshtml" />
-    <Content Include="Views\CurrentProduction\Delete.cshtml" />
-    <Content Include="Views\CurrentProduction\Details.cshtml" />
-    <Content Include="Views\CurrentProduction\Edit.cshtml" />
-    <Content Include="Views\CurrentProduction\Index.cshtml" />
     <Content Include="Views\DisplayInfo\Create.cshtml" />
     <Content Include="Views\DisplayInfo\Delete.cshtml" />
     <Content Include="Views\DisplayInfo\Details.cshtml" />
@@ -588,6 +582,7 @@
     <Content Include="Views\Photo\Index.cshtml" />
     <Content Include="Views\Shared\_Sponsors.cshtml" />
     <Content Include="Views\Shared\_SponsorsPartial.cshtml" />
+    <Content Include="Views\Admin\UserList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -602,7 +597,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="Views\ImageUpload\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">

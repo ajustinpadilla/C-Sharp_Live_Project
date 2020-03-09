@@ -868,3 +868,19 @@ a.dropdown-item:hover {
     margin-top: 20px;
     background-color: var(--main-secondary-color);
 }
+
+/*Production Index button styling*/
+
+.production-admin-btn {
+    margin-top: 5px;
+    background-color: var(--main-bg-color) !important;
+}
+
+.production-admin-btn:hover {
+    margin-top: 5px;
+    background-color: var(--main-secondary-color) !important;
+}
+
+.production-admin-div{
+    width: 350px;
+}
