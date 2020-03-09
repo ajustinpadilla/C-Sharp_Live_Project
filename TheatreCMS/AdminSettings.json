@@ -9,43 +9,5 @@
     "span": 12,
     "date": "2020-01-28"
   },
-  "onstage": 0,
-  "Production": null,
-  "Productions": [
-    {
-      "Disabled": false,
-      "Group": null,
-      "Selected": false,
-      "Text": "Hamilton",
-      "Value": "Hamilton"
-    },
-    {
-      "Disabled": false,
-      "Group": null,
-      "Selected": false,
-      "Text": "Phantom of the Opera",
-      "Value": "Phantom of the Opera"
-    },
-    {
-      "Disabled": false,
-      "Group": null,
-      "Selected": false,
-      "Text": "The Book of Mormon",
-      "Value": "The Book of Mormon"
-    },
-    {
-      "Disabled": false,
-      "Group": null,
-      "Selected": false,
-      "Text": "Wicked",
-      "Value": "Wicked"
-    },
-    {
-      "Disabled": false,
-      "Group": null,
-      "Selected": false,
-      "Text": "How to Succeed in Business Without Really Trying",
-      "Value": "How to Succeed in Business Without Really Trying"
-    }
-  ]
+  "onstage": 2
 }
