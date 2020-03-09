@@ -226,6 +226,7 @@
     <Compile Include="ViewModels\NewsletterListVm.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Dummy.txt" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
