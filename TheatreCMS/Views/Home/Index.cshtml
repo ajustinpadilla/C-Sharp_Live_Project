@@ -112,7 +112,9 @@
 </div>
 
 @*Sponsor section*@
-<div>
+@*<div>
     @Html.Partial("_SponsorsPartial")
+</div>*@
+<div>
+    @{Html.RenderAction("List", "Sponsors");}
 </div>
-
