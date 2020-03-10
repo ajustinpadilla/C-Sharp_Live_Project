@@ -69,14 +69,9 @@ namespace TheatreCMS.Controllers
         //}
 
         [HttpPost]
-        public ActionResult SettingsUpdate(AdminSettings adminSet, seasonProductions seasonProd, recentDefinition recentDef)
+        public ActionResult SettingsUpdate(AdminSettings currentSettings)
         {
-            AdminSettings settings = new AdminSettings();
-            settings = adminSet;
-            settings.season_productions = seasonProd;
-            settings.recent_definition = recentDef;
-
-            string newSettings = JsonConvert.SerializeObject(settings, Formatting.Indented);
+            string newSettings = JsonConvert.SerializeObject(currentSettings, Formatting.Indented);
             newSettings = newSettings.Replace("T00:00:00", "");
             string filepath = Server.MapPath(Url.Content("~/AdminSettings.json"));
             using (StreamWriter writer = new StreamWriter(filepath))
