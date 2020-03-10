@@ -23,10 +23,17 @@ namespace TheatreCMS.Controllers
             return View(db.Sponsors.ToList());
         }
 
-        //List of sponsors, partial view _Sponsors
+        ////List of sponsors, partial view _Sponsors
+        //public ActionResult List()
+        //{
+        //    return View("_Sponsors", db.Sponsors); 
+        //}
+
+
+        //Method for partial view 
         public ActionResult List()
         {
-            return View("_Sponsors", db.Sponsors); 
+            return PartialView("_SponsorsPartial", db.Sponsors);
         }
 
         // GET: Sponsors/Details/5

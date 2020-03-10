@@ -1,4 +1,9 @@
-﻿//Simple welcome message that prints to the console on App Start
+﻿
+
+
+
+
+//Simple welcome message that prints to the console on App Start
 console.log("Welcome to the theatre!");
 
 //Script for Landing Page

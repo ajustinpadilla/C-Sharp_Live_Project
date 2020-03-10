@@ -10,10 +10,10 @@ namespace TheatreCMS.Models
     public class DisplayInfo
     {
         [Key]
-        public int InfoId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public byte[] Image { get; set; }
-        public string File { get; set; }
+        public int InfoId { get; set; }         // info primary key
+        public string Title { get; set; }       // info title
+        public string Description { get; set; } // info description
+        public byte[] Image { get; set; }       // attached image
+        public string File { get; set; }        // file path for attached file
     }
 }
