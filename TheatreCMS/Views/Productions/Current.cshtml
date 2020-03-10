@@ -45,9 +45,16 @@
                             <p>
                                 @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
                                 <br />
+                                @if (item.ShowtimeEve != null)
+                                {
+                                    @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
+                                }
+                                
+                                @if (item.ShowtimeMat != null)
+                                {
+                                    @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
+                                }
 
-                                @Html.DisplayNameFor(model => model.ShowtimeEve) : @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
-                                @Html.DisplayNameFor(model => model.ShowtimeMat) : @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
                             </p>
                         </div>
                         <div class="col-4">
