@@ -28,8 +28,13 @@ namespace TheatreCMS.Controllers
         }
         public ActionResult Dashboard()
         {
+            #region ViewData
+            List<SelectListItem> productionList = GetSelectListItems();
+            ViewData["ProductionList"] = productionList;
+            #endregion
             AdminSettings current = new AdminSettings();
             current = AdminSettingsReader.CurrentSettings();
+
             return View(current);
         }
 
@@ -113,6 +118,28 @@ namespace TheatreCMS.Controllers
                 
             }
             return View(users);
+        }
+
+        public List<SelectListItem> GetSelectListItems()
+        {
+            //Create a list of productions sorted by season(int)
+            var SortedProductions = db.Productions.ToList().OrderByDescending(prod => prod.Season).ToList();
+
+            // Create an empty list to hold result
+            var selectList = new List<SelectListItem>();
+
+            // For each string in the 'elements' variable, create a new SelectListItem object
+            // that has both its Value and Text properties set to a particular value.
+            foreach (var production in SortedProductions)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = production.ProductionId.ToString(),
+                    Text = production.Title
+                });
+            }
+
+            return selectList;
         }
     }
 }
