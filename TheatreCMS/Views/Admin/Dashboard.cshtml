@@ -52,19 +52,18 @@
     CURRENT SEASON:
     <input type="number" name="Current_Season" value="@Html.DisplayFor(model => model.current_season)"><br />
     SEASON PRODUCTIONS:<br />
-    Winter:
-    @*<input type="number" name="Fall" value="@Html.DisplayFor(model => model.season_productions.fall)"><br>*@
-    <div>
-        @Html.DropDownListFor(model => model.season_productions.winter, (IEnumerable
-        <SelectListItem>)ViewData["ProductionList"])
-    </div>
     Fall:
     @*<input type="number" name="Winter" value="@Html.DisplayFor(model => model.season_productions.winter)"><br>*@
     <div>
         @Html.DropDownListFor(model => model.season_productions.fall, (IEnumerable
         <SelectListItem>)ViewData["ProductionList"])
     </div>
-
+    Winter:
+    @*<input type="number" name="Fall" value="@Html.DisplayFor(model => model.season_productions.fall)"><br>*@
+    <div>
+        @Html.DropDownListFor(model => model.season_productions.winter, (IEnumerable
+        <SelectListItem>)ViewData["ProductionList"])
+    </div>
     Spring:
     @*<input type="number" name="Spring" value="@Html.DisplayFor(model => model.season_productions.spring)"><br>*@
     <div>
@@ -73,8 +72,8 @@
     </div>
 
     RECENT DEFINITION:<br />
-    Span:<input type="number" name="Span" value="@Html.DisplayFor(model => model.recent_definition.span)"><br>
-    Date:<input type="date" name="Date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")"><br>
+    Span:<input type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)"><br>
+    Date:<input type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")"><br>
     ONSTAGE:
     @*<input type="number" name="Onstage" value="@Html.DisplayFor(model => model.onstage)"><br />*@
     <div>
