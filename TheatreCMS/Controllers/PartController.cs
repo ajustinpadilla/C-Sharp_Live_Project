@@ -117,9 +117,9 @@ namespace TheatreCMS.Controllers
             if (ModelState.IsValid)
             {
                 var currentPart = db.Parts.Find(part.PartID);
-                currentPart.Character = part.Character;
-                currentPart.Type = part.Type;
-                currentPart.Details = part.Details;
+                    currentPart.Character = part.Character;
+                    currentPart.Type = part.Type;
+                    currentPart.Details = part.Details;
 
                 ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
 
