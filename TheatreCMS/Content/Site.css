@@ -884,3 +884,9 @@ a.dropdown-item:hover {
 .production-admin-div{
     width: 350px;
 }
+
+
+.productionphotos-cardborder {
+    border: 5px solid var(--main-bg-color);
+    border-radius: 25px;
+}
