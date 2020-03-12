@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Controllers;
+using TheatreCMS.Helpers;
 using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
@@ -34,9 +35,12 @@ namespace TheatreCMS.Controllers
         // GET: Productions/Details/5
         public ActionResult Details(int? id)
         {
+
+            AdminSettings adminSettings = AdminSettingsReader.CurrentSettings();
+
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                id = adminSettings.onstage;
             }
             Production production = db.Productions.Find(id);
             if (production == null)
