@@ -77,7 +77,6 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PhotoId,PhotoFile,OriginalHeight,OriginalWidth,Title")] Photo photo, HttpPostedFileBase file)
         {
-            
             if (ModelState.IsValid)
             {
                 byte[] photoArray = ImageBytes(file);
@@ -91,7 +90,24 @@ namespace TheatreCMS.Controllers
             return View(photo);
         }
 
+        public static int CreatePhoto(HttpPostedFileBase file, string title)
 
+        {
+            var photo1 = new Photo();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                photo1.Title = Convert.ToString(title);
+                Image image = Image.FromStream(file.InputStream, true, true);
+                photo1.OriginalHeight = image.Height;
+                photo1.OriginalWidth = image.Width;
+                Image image1 = Image.FromStream(file.InputStream, true, true);
+                var converter = new ImageConverter();
+                photo1.PhotoFile = (byte[])converter.ConvertTo(image1, typeof(byte[]));
+                db.Photo.Add(photo1);
+                db.SaveChanges();
+                return (photo1.PhotoId);
+            }            
+        }
         public ActionResult DisplayPhoto(int id)
         {
             //find photo object from db
@@ -157,6 +173,7 @@ namespace TheatreCMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {
