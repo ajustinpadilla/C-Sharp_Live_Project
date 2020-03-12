@@ -226,7 +226,6 @@
     <Compile Include="ViewModels\NewsletterListVm.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Dummy.txt" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -358,8 +357,6 @@
     <Content Include="Areas\Subscribers\Views\Subscriber\Details.cshtml" />
     <Content Include="Areas\Subscribers\Views\Subscriber\Edit.cshtml" />
     <Content Include="Areas\Subscribers\Views\Subscriber\Index.cshtml" />
-    <Content Include="Areas\Subscribers\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Subscribers\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Subscribers\Views\SeasonManager\Create.cshtml" />
     <Content Include="Areas\Subscribers\Views\SeasonManager\Delete.cshtml" />
     <Content Include="Areas\Subscribers\Views\SeasonManager\Details.cshtml" />
@@ -596,6 +593,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+  	<Folder Include="App_Data\" />
     <Folder Include="Areas\Subscribers\Data\" />
   </ItemGroup>
   <ItemGroup>
