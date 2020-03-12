@@ -884,3 +884,17 @@ a.dropdown-item:hover {
 .production-admin-div{
     width: 350px;
 }
+
+.thumbnail_image {
+    width: 150px;
+}
+
+.medium_image {
+    width: 300px;
+    height: 250px;
+}
+
+.large_image {
+    width: 100%;
+    height: auto;
+}
