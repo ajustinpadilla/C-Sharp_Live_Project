@@ -762,7 +762,10 @@ textarea {
         }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.dropdown:active .dropdown-content {
+    /* Dagmar 20200311:
+        Modified Selector to remove the hover effect on menu.
+        Replaced "dropdown:hover" with "dropdown:active" */
     display: block;
 }
 
@@ -801,7 +804,17 @@ input[type=submit] {
 
 
 /*navbar*/
-.navbar-nav li:hover > ul.dropdown-menu {
+.navbar-nav li:active > ul.dropdown-menu {
+    /* Dagmar 20200311:
+        Modified Selector to remove the hover effect on menu.
+        Replaced "li:hover" with "li:active" */
+    display: block;
+}
+
+.navbar-nav li > ul.dropdown-menu > li:active > ul.dropdown-menu {
+    /* Dagmar 20200311:
+        Modified Selector to remove the hover effect on menu.
+        Replaced "li:hover" with "li:active" */
     display: block;
 }
 
