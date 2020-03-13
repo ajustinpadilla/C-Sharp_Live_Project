@@ -84,6 +84,7 @@ namespace TheatreCMS.Controllers
 
                 db.Photo.Add(photo);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
@@ -93,19 +94,18 @@ namespace TheatreCMS.Controllers
         public static int CreatePhoto(HttpPostedFileBase file, string title)
 
         {
-            var photo1 = new Photo();
+            var photo = new Photo();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                photo1.Title = Convert.ToString(title);
+                photo.Title = title;
                 Image image = Image.FromStream(file.InputStream, true, true);
-                photo1.OriginalHeight = image.Height;
-                photo1.OriginalWidth = image.Width;
-                Image image1 = Image.FromStream(file.InputStream, true, true);
+                photo.OriginalHeight = image.Height;
+                photo.OriginalWidth = image.Width;
                 var converter = new ImageConverter();
-                photo1.PhotoFile = (byte[])converter.ConvertTo(image1, typeof(byte[]));
-                db.Photo.Add(photo1);
+                photo.PhotoFile = (byte[])converter.ConvertTo(image, typeof(byte[]));
+                db.Photo.Add(photo);
                 db.SaveChanges();
-                return (photo1.PhotoId);
+                return photo.PhotoId;
             }            
         }
         public ActionResult DisplayPhoto(int id)
