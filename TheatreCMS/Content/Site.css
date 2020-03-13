@@ -913,3 +913,10 @@ a.dropdown-item:hover {
     transform: translate(-50%, -50%);
 }
 /*end about page container*/
+
+
+.productionphotos-cardborder {
+    border: 5px solid var(--main-bg-color);
+    border-radius: 25px;
+    margin-bottom: 25px;
+}
