@@ -889,4 +889,5 @@ a.dropdown-item:hover {
 .productionphotos-cardborder {
     border: 5px solid var(--main-bg-color);
     border-radius: 25px;
+    margin-bottom: 25px;
 }
