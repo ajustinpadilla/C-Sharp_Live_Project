@@ -60,7 +60,23 @@
         </div>
     </div>
 
-<p>
+    <div>
+        <div class="iconBtnContainer">
+            <button class="iconBtn">
+                <i class="fa fa-hand-point-left fa-fw"></i><a @Html.ActionLink("Edit", "Edit", new { id = Model.SponsorId })> <!-- This button is a link to a different page-->
+            </button>
+            <button class="iconBtn">
+                <i class="fa fa-hand-point-left fa-fw"></i><a @Html.ActionLink("Back to List", "Index")> <!-- This button is a link to a different page-->
+            </button>
+        </div>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.SponsorId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.SponsorId }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

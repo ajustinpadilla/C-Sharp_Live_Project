@@ -884,3 +884,59 @@ a.dropdown-item:hover {
 .production-admin-div{
     width: 350px;
 }
+
+/* style new icon buttons*/
+.iconBtnContainer {
+    width: 100px;
+    margin: 5px;
+}
+
+.iconBtn {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 5px;
+    display: inline-block;
+    border: 1px solid var(--light-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: blue;
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+/* Add a background color to the submit button on mouse-over */
+    .iconBtn:hover {
+        background-color: var(--subscriber-main);
+    }
+
+.iconSubmitBtn {
+    display: inline-block;
+    width: 30%;
+    letter-spacing: 1px;
+    font-family: Lato;
+    font-weight: bolder;
+    padding: 10px 0px;
+    margin: 10px auto 10px auto;
+    border: 0px solid;
+    border-color: var(--light-color);
+    color: blue;
+    background-color: var(--secondary-color);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 15px;
+    user-select: none;
+    transition: all .5s;
+    /*box-shadow: 0px 4px #D6972A;*/
+    animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    animation-name: fadeIn3;
+    -webkit-animation-name: fadeIn3;
+    cursor: pointer;
+}
+
+/* Add a background color to the submit button on mouse-over */
+.iconSubmitBtn:hover {
+    background-color: var(--subscriber-main);
+}

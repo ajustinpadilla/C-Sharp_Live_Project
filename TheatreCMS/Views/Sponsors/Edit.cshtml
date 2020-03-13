@@ -71,7 +71,10 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10 formBox">
-                        <input type="submit" value="Save" class="submitButton2" />
+                        <button class="iconSubmitBtn">
+                            <i class="fa fa-save fa-fw"></i>Save <!-- This button is executes the save function -->
+                        </button>
+                        @*<input type="submit" value="Save" class="submitButton2" />*@
                     </div>
                 </div>
             </div>
@@ -79,6 +82,12 @@
     </div>
 }
 <div>
+    <div class="iconBtnContainer">
+        <button class="iconBtn">
+            <i class="fa fa-hand-point-left fa-fw"></i><a @Html.ActionLink("Back to List", "Index")> <!-- This button is a link to a different page-->
+        </button>
+    </div>
+
     @Html.ActionLink("Back to List", "Index")
 </div>
 
