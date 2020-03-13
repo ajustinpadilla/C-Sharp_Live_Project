@@ -884,3 +884,19 @@ a.dropdown-item:hover {
 .production-admin-div{
     width: 350px;
 }
+
+/*about page container*/
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/*end about page container*/
