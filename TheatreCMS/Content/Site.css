@@ -898,16 +898,25 @@ a.dropdown-item:hover {
     width: 350px;
 }
 
-.thumbnail_image {
-    width: 150px;
+/*about page container*/
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
 }
 
-.medium_image {
-    width: 300px;
-    height: 250px;
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+/*end about page container*/
 
-.large_image {
-    width: 100%;
-    height: auto;
+
+.productionphotos-cardborder {
+    border: 5px solid var(--main-bg-color);
+    border-radius: 25px;
+    margin-bottom: 25px;
 }
