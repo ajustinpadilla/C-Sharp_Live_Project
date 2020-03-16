@@ -14,23 +14,30 @@
 <p>These buttons are not formated on the page.</p>
 
 <div class="iconBtnContainer">
-    <button class="iconBtn">
+    <button class="iconBtn" onclick="window.location.href ='@Url.Action("Create", "Sponsors")'">
+        <!-- or buttons can be in their own container-->
+        <i class="fa fa-plus-square fa-fw"></i>Create New<!-- This button is a link to a different page -->
+    </button>
+</div>
+
+<div class="iconBtnContainer">
+    <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
+        <!-- This button is a link to a different page-->
+        <i class="fa fa-hand-point-left fa-fw"></i>Back To List<!-- This button is a link to a different page -->
+    </button>
+</div>
+
+<div class="iconBtnContainer">
+    <button class="iconBtn" >
         <i class="fa fa-edit fa-fw"></i>Edit<!-- This button is a link to a different page-->
     </button>
     <button class="iconBtn">
         <i class="fa fa-info-circle fa-fw"></i>Details <!-- This button is a link to a different page-->
     </button>
-    <button class="iconBtn">
 
+    <button class="iconBtn">
         <i class="fa fa-trash-alt fa-fw"></i>Delete<!-- This button is a link to a different page-->
     </button><!-- This demonstrates that multiple buttons can be in the same container-->
-</div>
-
-<div class="iconBtnContainer">
-    <button class="iconBtn">
-        <!-- or buttons can be in their own container-->
-        <i class="fa fa-plus-square fa-fw"></i><a @Html.ActionLink("Create New", "Create")></a><!-- This button is executes the create function -->
-    </button>
 </div>
 
 <div class="iconBtnContainer"><!-- or buttons can be in their own container-->
@@ -47,22 +54,9 @@
 
 <div class="iconBtnContainer">
     <button class="iconBtn">
-        <i class="fa fa-hand-point-left fa-fw"></i><a @Html.ActionLink("Back to List", "Index")> <!-- This button is a link to a different page-->
-</button>
-</div>
-
-<div class="iconBtnContainer">
-    <button class="iconBtn">
-        <i class="fa fa-hand-point-left fa-fw"></i>Back to List <!-- This button is a link to a different page-->
-    </button>
-</div>
-
-<div class="iconBtnContainer">
-    <button class="iconBtn">
         <i class="fa fa-search fa-fw"></i>Search <!-- This button executes a search function-->
     </button>
 </div>
-
 
 <table class="table-styling">
     <tr class="tr-styling">
@@ -121,15 +115,14 @@
 
 
             <td class="td-styling">             
-                <button class="iconBtn">
-                    <i class="fa fa-edit fa-fw"></i><a @Html.ActionLink("Edit", "Edit", new { id = item.SponsorId })>
+                <button class="iconBtn" onclick="window.location.href = '@Url.Action("Edit", "Sponsors", new { id = item.SponsorId })'" >
+                    <i class="fa fa-edit fa-fw"></i>Edit
                 </button>
-                <button class="iconBtn">
-                    <i class="fa fa-info-circle fa-fw"></i><a @Html.ActionLink("Details", "Details", new { id = item.SponsorId })>
+                <button class="iconBtn" onclick="window.location.href ='@Url.Action("Details", "Sponsors", new { id = item.SponsorId })'">
+                    <i class="fa fa-info-circle fa-fw"></i>Details
                 </button>
-                <button class="iconBtn">
-
-                    <i class="fa fa-trash-alt fa-fw"></i><a @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })>
+                <button class="iconBtn" onclick="window.location.href ='@Url.Action("Delete", "Sponsors", new { id = item.SponsorId })'">
+                    <i class="fa fa-trash-alt fa-fw"></i>Delete
                 </button>
 
                 @Html.ActionLink("Edit", "Edit", new { id = item.SponsorId }) |

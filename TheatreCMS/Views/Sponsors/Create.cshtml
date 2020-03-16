@@ -71,8 +71,8 @@
 
 <div>
     <div class="iconBtnContainer">
-        <button class="iconBtn">
-            <i class="fa fa-hand-point-left fa-fw"></i><a @Html.ActionLink("Back to List", "Index")> <!-- This button is a link to a different page-->
+        <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
+            <i class="fa fa-hand-point-left fa-fw"></i>Back To List
         </button>
     </div>
 
