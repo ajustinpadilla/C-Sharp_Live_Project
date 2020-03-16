@@ -52,16 +52,14 @@
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Current)
-                    </dd>
-
-                </dl>
+                    </dd>                    
+                </dl>                
             </div>
-            
         </div>
     </div>
 
     <div>
-        <div class="iconBtnContainer">
+        
             
             <div class="iconBtnContainer">
                 <button class="iconBtn" onclick="window.location.href ='@Url.Action("Edit", "Sponsors", new { id = Model.SponsorId })'">
@@ -78,7 +76,7 @@
                 @Html.ActionLink("Edit", "Edit", new { id = Model.SponsorId }) |
                 @Html.ActionLink("Back to List", "Index")
             </p>
-        </div>
+        
     </div>
 
 @*<p>

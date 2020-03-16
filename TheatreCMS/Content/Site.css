@@ -920,3 +920,27 @@ a.dropdown-item:hover {
     border-radius: 25px;
     margin-bottom: 25px;
 }
+
+/* style new icon buttons*/
+.iconBtnContainer {
+    width: 20%;
+    margin: 5px;
+}
+
+.iconBtn {
+    width: auto;
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    border: 1px solid var(--light-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--light-color);
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+}
+
+.iconBtn:hover {
+    color: var(--light-color);
+    background-color: var(--main-secondary-color);
+}
