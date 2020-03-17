@@ -10,7 +10,7 @@
             <h4>Sponsor</h4>
             <hr />
             <div class="row">
-                <dl class="dl-horizontal justify-content-start col-md-9">
+                <dl class="dl-horizontal justify-content-start col-md-12">
                     <dt>
                         @Html.DisplayNameFor(model => model.Name)
                     </dt>
@@ -61,7 +61,7 @@
     <div>
         
             
-            <div class="iconBtnContainer">
+            <div class="text-center">
                 <button class="iconBtn" onclick="window.location.href ='@Url.Action("Edit", "Sponsors", new { id = Model.SponsorId })'">
                     <i class="fa fa-edit fa-fw"></i>Edit
                 </button>
@@ -72,10 +72,10 @@
                     <i class="fa fa-hand-point-left fa-fw"></i>Back To List
                 </button>
             </div>
-            <p>
+            @*<p>
                 @Html.ActionLink("Edit", "Edit", new { id = Model.SponsorId }) |
                 @Html.ActionLink("Back to List", "Index")
-            </p>
+            </p>*@
         
     </div>
 

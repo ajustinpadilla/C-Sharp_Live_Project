@@ -123,7 +123,7 @@
 
 /* CSS for Table Styling */
 .table-styling, .th-styling, .td-styling, .tr-styling {
-    border: 2px solid var(--light-color);
+    border: 1px solid var(--light-color);
 }
 
 .table-styling {
@@ -135,18 +135,20 @@
     color: var(--dark-color);
     padding: 8px;
     font-size: 18px;
+    text-align: center;
 }
 
 .td-styling {
     background-color: var(--dark-color);
     color: var(--light-color);
     padding: 4px;
+    text-align: center;
 }
 
-.td-styling:hover {
+/*.td-styling:hover {
     background-color: var(--main-secondary-color);
     color: var(--dark-color);
-}
+}*/
 
 /*-----Classes and styling for LoginFailure view------*/
 .button-redirect {

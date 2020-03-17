@@ -11,7 +11,7 @@
             <h4>Sponsor</h4>
             <hr />
             <div class="row">
-                <dl class="dl-horizontal justify-content-start col-md-9">
+                <dl class="dl-horizontal justify-content-start col-md-12">
                     <dt>
                         @Html.DisplayNameFor(model => model.Name)
                     </dt>
@@ -61,26 +61,30 @@
         </div>
     </div>
 
-<div>
-    
-    
+    <div>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color" style="padding-left: 100px">
-            <button type="submit" class="iconBtn">
-                <i class="fa fa-trash-alt fa-fw"></i>Delete
-            </button> |
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color text-center">
+                <button type="submit" class="iconBtn">
+                    <i class="fa fa-trash-alt fa-fw"></i>Delete
+                </button>
+
+
+                @*
+                <input type="submit" value="Delete" class="btn btn-danger btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")*@
+            </div>
 
             <div class="iconBtnContainer">
                 <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
                     <i class="fa fa-hand-point-left fa-fw"></i>Back To List
                 </button>
             </div>
-            @*
-            <input type="submit" value="Delete" class="btn btn-danger btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")*@
-        </div>
-    }
-</div>
+
+        }
+    </div>
