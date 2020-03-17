@@ -9,8 +9,8 @@
 <h2>Index</h2>
 
 @*
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 
 <div class="iconBtnContainer">
     <button class="iconBtn" onclick="window.location.href ='@Url.Action("Create", "Sponsors")'">
@@ -27,7 +27,7 @@
 </div>
 
 <div class="iconBtnContainer">
-    <button class="iconBtn" >
+    <button class="iconBtn">
         <i class="fa fa-edit fa-fw"></i>Edit<!-- This button is a link to a different page-->
     </button>
 
@@ -40,7 +40,8 @@
     </button><!-- This demonstrates that multiple buttons can be in the same container-->
 </div>
 
-<div class="iconBtnContainer"><!-- or buttons can be in their own container-->
+<div class="iconBtnContainer">
+    <!-- or buttons can be in their own container-->
     <button class="iconBtn">
         <i class="fa fa-plus-square fa-fw"></i>Create<!-- This button is executes the create function -->
     </button>
@@ -114,8 +115,8 @@
             </td>
 
 
-            <td class="td-styling">             
-                <button class="iconBtn" onclick="window.location.href = '@Url.Action("Edit", "Sponsors", new { id = item.SponsorId })'" >
+            <td class="td-styling">
+                <button class="iconBtn" onclick="window.location.href = '@Url.Action("Edit", "Sponsors", new { id = item.SponsorId })'">
                     <i class="fa fa-edit fa-fw"></i>Edit
                 </button>
                 <button class="iconBtn" onclick="window.location.href ='@Url.Action("Details", "Sponsors", new { id = item.SponsorId })'">
@@ -126,12 +127,18 @@
                 </button>
 
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.SponsorId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.SponsorId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })*@
+                    @Html.ActionLink("Details", "Details", new { id = item.SponsorId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })*@
             </td>
         </tr>
     }
 </table>
+<div class="text-right">
+    <button class="iconBtn" onclick="window.location.href ='@Url.Action("Create", "Sponsors")'">
+        <!-- or buttons can be in their own container-->
+        <i class="fa fa-plus-square fa-fw"></i>Create New<!-- This button is a link to a different page -->
+    </button>
+</div>
 <br />
 <p>
     @Html.ActionLink("View Sponsors", "List")
