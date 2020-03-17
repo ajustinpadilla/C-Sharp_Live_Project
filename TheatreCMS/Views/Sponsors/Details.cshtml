@@ -52,15 +52,34 @@
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Current)
-                    </dd>
-
-                </dl>
+                    </dd>                    
+                </dl>                
             </div>
-            
         </div>
     </div>
 
-<p>
+    <div>
+        
+            
+            <div class="iconBtnContainer">
+                <button class="iconBtn" onclick="window.location.href ='@Url.Action("Edit", "Sponsors", new { id = Model.SponsorId })'">
+                    <i class="fa fa-edit fa-fw"></i>Edit
+                </button>
+            </div>
+
+            <div class="iconBtnContainer">
+                <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
+                    <i class="fa fa-hand-point-left fa-fw"></i>Back To List
+                </button>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.SponsorId }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        
+    </div>
+
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.SponsorId }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

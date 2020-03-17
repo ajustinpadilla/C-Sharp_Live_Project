@@ -8,9 +8,56 @@
 
 <h2>Index</h2>
 
-<p>
+@*
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
+
+<div class="iconBtnContainer">
+    <button class="iconBtn" onclick="window.location.href ='@Url.Action("Create", "Sponsors")'">
+        <!-- or buttons can be in their own container-->
+        <i class="fa fa-plus-square fa-fw"></i>Create New<!-- This button is a link to a different page -->
+    </button>
+</div>
+
+<div class="iconBtnContainer">
+    <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
+        <!-- This button is a link to a different page-->
+        <i class="fa fa-hand-point-left fa-fw"></i>Back To List<!-- This button is a link to a different page -->
+    </button>
+</div>
+
+<div class="iconBtnContainer">
+    <button class="iconBtn" >
+        <i class="fa fa-edit fa-fw"></i>Edit<!-- This button is a link to a different page-->
+    </button>
+
+    <button class="iconBtn">
+        <i class="fa fa-info-circle fa-fw"></i>Details <!-- This button is a link to a different page-->
+    </button>
+
+    <button class="iconBtn">
+        <i class="fa fa-trash-alt fa-fw"></i>Delete<!-- This button is a link to a different page-->
+    </button><!-- This demonstrates that multiple buttons can be in the same container-->
+</div>
+
+<div class="iconBtnContainer"><!-- or buttons can be in their own container-->
+    <button class="iconBtn">
+        <i class="fa fa-plus-square fa-fw"></i>Create<!-- This button is executes the create function -->
+    </button>
+</div>
+
+<div class="iconBtnContainer">
+    <button class="iconBtn">
+        <i class="fa fa-save fa-fw"></i>Save <!-- This button is executes the save function -->
+    </button>
+</div>
+
+<div class="iconBtnContainer">
+    <button class="iconBtn">
+        <i class="fa fa-search fa-fw"></i>Search <!-- This button executes a search function-->
+    </button>
+</div>
+
 <table class="table-styling">
     <tr class="tr-styling">
         <th class="th-styling">
@@ -28,51 +75,62 @@
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.Current)
         </th>
-        
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr class="tr-styling">
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td class="td-styling">
+    @foreach (var item in Model)
+    {
+        <tr class="tr-styling">
+            <td class="td-styling">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="td-styling">
 
-            <img src="@Url.Action("ImageView", "ImageUpload", new { id = item.SponsorId, table="Sponsor", thumbHeight = 100, thumbWidth = 100})" />
-            @*//  id = item.SponsorId, table="Sponsor", path = item.Logo
+                <img src="@Url.Action("ImageView", "ImageUpload", new { id = item.SponsorId, table="Sponsor", thumbHeight = 100, thumbWidth = 100})" />
+                @*//  id = item.SponsorId, table="Sponsor", path = item.Logo
 
 
-        @{
-            string img = "";
-            if (item.Logo != null)
-            {
-                byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
-                var base64 = System.Convert.ToBase64String(thumbBytes);
-                img = String.Format("data:image/png;base64,{0}", base64);
-            }
-        }
-        <img src="@img" />*@
+                    @{
+                        string img = "";
+                        if (item.Logo != null)
+                        {
+                            byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
+                            var base64 = System.Convert.ToBase64String(thumbBytes);
+                            img = String.Format("data:image/png;base64,{0}", base64);
+                        }
+                    }
+                    <img src="@img" />*@
 
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Height)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Width)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Current)
-        </td>
-        
+            </td>
+            <td class="td-styling">
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td class="td-styling">
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td class="td-styling">
+                @Html.DisplayFor(modelItem => item.Current)
+            </td>
 
-        <td class="td-styling">
-            @Html.ActionLink("Edit", "Edit", new { id = item.SponsorId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.SponsorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })
-        </td>
-    </tr>
-}
+
+            <td class="td-styling">             
+                <button class="iconBtn" onclick="window.location.href = '@Url.Action("Edit", "Sponsors", new { id = item.SponsorId })'" >
+                    <i class="fa fa-edit fa-fw"></i>Edit
+                </button>
+                <button class="iconBtn" onclick="window.location.href ='@Url.Action("Details", "Sponsors", new { id = item.SponsorId })'">
+                    <i class="fa fa-info-circle fa-fw"></i>Details
+                </button>
+                <button class="iconBtn" onclick="window.location.href ='@Url.Action("Delete", "Sponsors", new { id = item.SponsorId })'">
+                    <i class="fa fa-trash-alt fa-fw"></i>Delete
+                </button>
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.SponsorId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SponsorId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })*@
+            </td>
+        </tr>
+    }
 </table>
 <br />
 <p>
