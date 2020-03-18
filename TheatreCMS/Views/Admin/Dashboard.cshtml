@@ -10,79 +10,110 @@
 
 <!DOCTYPE html>
 
-<h2>Dashboard</h2>
+<h1>Dashboard</h1>
 
-<ul>
-    <li>
-        @Html.ActionLink("Info", "Index", "DisplayInfo")
-    </li>
-    <li>
-        @Html.ActionLink("Display Links", "Index", "DisplayLinks")
-    </li>
-    <li>
-        @Html.ActionLink("Sponsors", "Index", "Sponsors")
-    </li>
-    <li>
-        @Html.ActionLink("Content Section", "Index", "ContentSection")
-    </li>
-    <li>
-        @Html.ActionLink("Productions", "Index", "Productions")
-    </li>
-    <li>
-        @Html.ActionLink("Cast Members", "Index", "CastMembers")
-    </li>
-    <li>
-        @Html.ActionLink("Part", "Index", "Part")
-    </li>
-    <li>
-        @Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber")
-    </li>
-    <li>
-        @Html.ActionLink("Rental Request", "Index", "RentalRequest")
-    </li>
-    <li>
-        @Html.ActionLink("Donor List", "Index", "Admin/DonorList")
-    </li>
-</ul>
+<!-- Admin Nav Top-->
+<div class="container" id="dash">
+    <ul>
+        <li>
+            @Html.ActionLink("Info |", "Index", "DisplayInfo")
+        </li>
+        <li>
+            @Html.ActionLink("Display Links |", "Index", "DisplayLinks")
+        </li>
 
-
-@using (Html.BeginForm("SettingsUpdate", "Admin", FormMethod.Post))
-{
-<div>
-    CURRENT SEASON:
-    <input type="number" name="Current_Season" value="@Html.DisplayFor(model => model.current_season)"><br />
-    SEASON PRODUCTIONS:<br />
-    Fall:
-    @*<input type="number" name="Winter" value="@Html.DisplayFor(model => model.season_productions.winter)"><br>*@
-    <div>
-        @Html.DropDownListFor(model => model.season_productions.fall, (IEnumerable
-        <SelectListItem>)ViewData["ProductionList"])
-    </div>
-    Winter:
-    @*<input type="number" name="Fall" value="@Html.DisplayFor(model => model.season_productions.fall)"><br>*@
-    <div>
-        @Html.DropDownListFor(model => model.season_productions.winter, (IEnumerable
-        <SelectListItem>)ViewData["ProductionList"])
-    </div>
-    Spring:
-    @*<input type="number" name="Spring" value="@Html.DisplayFor(model => model.season_productions.spring)"><br>*@
-    <div>
-        @Html.DropDownListFor(model => model.season_productions.spring, (IEnumerable
-        <SelectListItem>)ViewData["ProductionList"])
-    </div>
-
-    RECENT DEFINITION:<br />
-    Span:<input type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)"><br>
-    Date:<input type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")"><br>
-    ONSTAGE:
-    @*<input type="number" name="Onstage" value="@Html.DisplayFor(model => model.onstage)"><br />*@
-    <div>
-        @Html.DropDownListFor(model => model.onstage, (IEnumerable
-        <SelectListItem>)ViewData["ProductionList"])
-    </div>
-
-
-    <button type="submit">Submit</button>
+        <li>
+            @Html.ActionLink("Content Section |", "Index", "ContentSection")
+        </li>
+        <li>
+            @Html.ActionLink("Productions |", "Index", "Productions")
+        </li>
+        <li>
+            @Html.ActionLink("Cast Members |", "Index", "CastMembers")
+        </li>
+        <li>
+            @Html.ActionLink("Part |", "Index", "Part")
+        </li>
+        <li>
+            @Html.ActionLink("Subscriber |", "Index", "Subscribers/Subscriber")
+        </li>
+        <li>
+            @Html.ActionLink("Rental Request |", "Index", "RentalRequest")
+        </li>
+        <li>
+            @Html.ActionLink("Donor List", "Index", "Admin/DonorList")
+        </li>
+    </ul>
 </div>
-}
+<!-- End Admin Nav Top-->
+
+
+
+<!--Form-->
+    <div class="container">
+        @using (Html.BeginForm("SettingsUpdate", "Admin", FormMethod.Post))
+        {
+        <div id="formspace">
+            CURRENT SEASON:
+            <br />
+            <input type="number" name="Current_Season" value="@Html.DisplayFor(model => model.current_season)">
+            <br />
+            <br />
+            <br />
+            SEASON PRODUCTIONS:
+            <br />
+            Fall:
+            @*<input type="number" name="Winter" value="@Html.DisplayFor(model => model.season_productions.winter)"><br>*@
+            <div>
+                @Html.DropDownListFor(model => model.season_productions.fall, (IEnumerable
+                <SelectListItem>)ViewData["ProductionList"])
+            </div>
+            Winter:
+            @*<input type="number" name="Fall" value="@Html.DisplayFor(model => model.season_productions.fall)"><br>*@
+            <div>
+                @Html.DropDownListFor(model => model.season_productions.winter, (IEnumerable
+                <SelectListItem>)ViewData["ProductionList"])
+            </div>
+            Spring:
+            @*<input type="number" name="Spring" value="@Html.DisplayFor(model => model.season_productions.spring)"><br>*@
+            <div>
+                @Html.DropDownListFor(model => model.season_productions.spring, (IEnumerable
+                <SelectListItem>)ViewData["ProductionList"])
+            </div>
+            <br />
+            <br />
+
+            RECENT DEFINITION:
+            <br />
+            Date:
+            <br />
+            <input align="center" type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")">
+            <br />
+            <br />
+            Span:
+            <br />
+            <input align="center" type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)">
+            <br />
+            <br />
+            <br />
+            ONSTAGE:
+            @*<input type="number" name="Onstage" value="@Html.DisplayFor(model => model.onstage)"><br /><br />*@
+            <div>
+                @Html.DropDownListFor(model => model.onstage, (IEnumerable
+                <SelectListItem>)ViewData["ProductionList"])
+            </div>
+            <br />
+            <br />
+            <br />
+
+
+            <button type="submit">Submit</button>
+        </div>
+        }
+    </div>
+<!--End Form-->
+
+
+
+
 
