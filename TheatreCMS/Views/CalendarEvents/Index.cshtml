@@ -22,7 +22,9 @@
                     events = data
                     $('#calendar').fullCalendar({
                 // put your options and callbacks here
-                        events: events
+                        events: events,
+                        height: 100,
+                        contentHeight: 500,
                     })
                     console.log(data);
                     console.log(events);
@@ -93,5 +95,3 @@
     }
 
 </table>
-
-

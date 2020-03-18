@@ -897,3 +897,22 @@ a.dropdown-item:hover {
 .production-admin-div{
     width: 350px;
 }
+
+/* Styling for calendar*/
+
+.palette-container :nth-child(n+1) td.fc-today {
+    background-color: red;
+}
+
+.palette-container :nth-child(n+1) .fc-content{
+    background-color: red;
+}
+
+.palette-container :nth-child(n+2) .fc-event{
+    border: 1px solid red;
+}
+
+palette-container :nth-child(n+3) .fc-basic-view .fc-body .fc-row {
+    min-height: 2em;
+    /* ensure that all rows are at least this tall */
+}
