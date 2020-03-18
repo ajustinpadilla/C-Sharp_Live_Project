@@ -920,3 +920,18 @@ a.dropdown-item:hover {
     border-radius: 25px;
     margin-bottom: 25px;
 }
+
+.thumbnail {
+    height: auto;
+    width: 200px;
+}
+
+.medium_size {
+    height: auto;
+    max-width : 300px;
+}
+
+.large_size {
+    height: auto;
+    width: 100%;
+}

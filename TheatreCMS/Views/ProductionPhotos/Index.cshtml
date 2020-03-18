@@ -27,7 +27,7 @@
     @foreach (var item in Model) {
         <tr class="tr-styling">
             @*@Html.DisplayFor(modelItem => item.Photo)*@
-            <td class="td-styling">
+            <td class="td-styling">             
                 @{
                     string img = "";
                     if (item.Photo != null)
@@ -35,11 +35,12 @@
                         byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 100, 100);
                         var base64 = System.Convert.ToBase64String(thumbBytes);
                         img = String.Format("data:image/png;base64,{0}", base64);
+
                     }
                 }
-                <div class="thumbnail_image">
-                    <img src="@img" />
-                </div>
+                
+                <img src="@img" class="thumbnail"/>
+                
             </td>
 
             <td class="td-styling">

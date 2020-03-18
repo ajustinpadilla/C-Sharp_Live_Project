@@ -40,9 +40,7 @@
                                 img = String.Format("data:image/png;base64,{0}", base64);
                             }
                         }
-                        <div class="medium_image">
-                            <img src="@img" />
-                        </div>
+                        <img src="@img" class="medium_size"/>
                         <input class="fileSelect" type="file" name="file" />
                         <hr />
                         @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
