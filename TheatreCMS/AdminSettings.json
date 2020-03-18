@@ -1,13 +1,13 @@
 {
-  "current_season": 4,
+  "current_season": 9,
   "season_productions": {
     "fall": 4,
     "winter": 1,
     "spring": 2
   },
   "recent_definition": {
-    "span": 50,
+    "span": 60,
     "date": "2020-03-15"
   },
-  "onstage": 2
+  "onstage": 4
 }
