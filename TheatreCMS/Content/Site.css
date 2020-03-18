@@ -123,7 +123,7 @@
 
 /* CSS for Table Styling */
 .table-styling, .th-styling, .td-styling, .tr-styling {
-    border: 2px solid var(--light-color);
+    border: 1px solid var(--light-color);
 }
 
 .table-styling {
@@ -135,18 +135,20 @@
     color: var(--dark-color);
     padding: 8px;
     font-size: 18px;
+    text-align: center;
 }
 
 .td-styling {
     background-color: var(--dark-color);
     color: var(--light-color);
     padding: 4px;
+    text-align: center;
 }
 
-.td-styling:hover {
+/*.td-styling:hover {
     background-color: var(--main-secondary-color);
     color: var(--dark-color);
-}
+}*/
 
 /*-----Classes and styling for LoginFailure view------*/
 .button-redirect {
@@ -919,4 +921,31 @@ a.dropdown-item:hover {
     border: 5px solid var(--main-bg-color);
     border-radius: 25px;
     margin-bottom: 25px;
+}
+
+/* style new icon buttons*/
+.iconBtnContainer {
+    width: 20%;
+    margin: 5px;
+}
+
+.iconBtn {
+    width: auto;
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    border: 1px solid var(--light-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--light-color);
+    background-color: var(--main-bg-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.iconBtn:hover {
+    color: var(--light-color);
+    background-color: var(--main-secondary-color);
 }
