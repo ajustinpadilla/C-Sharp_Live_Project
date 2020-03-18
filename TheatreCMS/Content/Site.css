@@ -305,8 +305,13 @@ textarea {
 }
 
 .formGroup {
-    text-align: center;
+    max-width: 100%;
     margin-bottom: 1rem;
+}
+
+.col-centered {
+    margin: 0 auto;
+    float: none;
 }
 
 .formBox {
