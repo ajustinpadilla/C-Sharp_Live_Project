@@ -4,10 +4,10 @@
     ViewBag.Title = "Create";
 }
 
-<div class="text-center">
+<div class="page-format">
 
-<h1>Create</h1>
-    <br>
+@*<h1 class="bold">Create</h1>
+    <br>*@
 @*Commented out code below is to remove checkboxes from form. Commented it out instead of deleting it. - LR 1/21/20 *@
 
 
@@ -16,29 +16,30 @@
     @Html.AntiForgeryToken()
 
     <div class="formContainer3">
-        <h4>SeasonManager</h4>
+        <h2 class="bold">Season Manager</h2>
+        <br />
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.SeasonManagerPerson, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SeasonManagerPerson, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
-                @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
+                @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"], htmlAttributes: new { @class = "field-centered" })
             </div>
         </div>
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.NumberSeats, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NumberSeats, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
-                @Html.EditorFor(model => model.NumberSeats, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NumberSeats, new { htmlAttributes = new { @class = "form-control field-centered" } })
                 @Html.ValidationMessageFor(model => model.NumberSeats, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.BookedCurrent, htmlAttributes: new { @class = "control-label col-md-2 text-center" })
+            @Html.LabelFor(model => model.BookedCurrent, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
-                <div class="checkbox">
+                <div class="big-checkbox">
                     @Html.EditorFor(model => model.BookedCurrent)
                     @Html.ValidationMessageFor(model => model.BookedCurrent, "", new { @class = "text-danger" })
                 </div>
@@ -46,7 +47,7 @@
         </div>
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.FallProd, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FallProd, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
                 @Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FallProd, "", new { @class = "text-danger" })
@@ -54,7 +55,7 @@
         </div>
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.FallTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FallTime, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
                 @Html.EditorFor(model => model.FallTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FallTime, "", new { @class = "text-danger" })
@@ -72,7 +73,7 @@
             </div>*@
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.WinterProd, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WinterProd, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
                 @Html.EditorFor(model => model.WinterProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.WinterProd, "", new { @class = "text-danger" })
@@ -80,7 +81,7 @@
         </div> 
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.WinterTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WinterTime, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
                 @Html.EditorFor(model => model.WinterTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.WinterTime, "", new { @class = "text-danger" })
@@ -98,7 +99,7 @@
             </div>*@
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.SpringProd, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SpringProd, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
                 @Html.EditorFor(model => model.SpringProd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SpringProd, "", new { @class = "text-danger" })
@@ -106,7 +107,7 @@
         </div>
 
         <div class="formGroup">
-            @Html.LabelFor(model => model.SpringTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SpringTime, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10 col-centered">
                 @Html.EditorFor(model => model.SpringTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SpringTime, "", new { @class = "text-danger" })

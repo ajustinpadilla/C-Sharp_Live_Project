@@ -295,7 +295,7 @@ textarea {
 }
 
 .formContainer3 {
-
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
     max-width: 65%;
@@ -312,6 +312,42 @@ textarea {
 .col-centered {
     margin: 0 auto;
     float: none;
+}
+
+.field-centered {
+    padding-left: 50%;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text|Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Bellota&display=swap");
+
+.page-format {
+    text-align: center;
+    font-family: 'Bellota', cursive, 'Crimson Text', serif, 'Verdana', sans-serif;
+    font-size: 20px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.bg_1 {
+    background-image: url("Images/theater_1.jpeg");
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*-webkit-filter: grayscale(100%);*/
+}
+
+.big-checkbox {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    padding: 10px;
 }
 
 .formBox {

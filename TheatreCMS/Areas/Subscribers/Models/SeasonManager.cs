@@ -12,24 +12,33 @@ namespace TheatreCMS.Areas.Subscribers.Models
     {
         [Key]
         public int SeasonManagerId { get; set; }    // season manager primary key
+        [Display(Name = "Number of Seats Available")]
         public int NumberSeats { get; set; }        // number of seats available for book for each production
-        public bool BookedCurrent { get; set; }     // 
+        [Display(Name = "Is it Currently Booked?")]
+        public bool BookedCurrent { get; set; }
+        [Display(Name = "Fall Production Name")]// 
         public string FallProd { get; set; }        // production name for fall (--> string to virtual)
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Fall Production Date")]
         public DateTime? FallTime { get; set; }     // chosen date and time for fall production 
         public bool BookedFall { get; set; }        // fall booking approved
+        [Display(Name = "Winter Production Name")]
         public string WinterProd { get; set; }      // production name for winter (--> string to virtual)
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Winter Production Date")]
         public DateTime? WinterTime { get; set; }   // chosen date and time for winter production 
         public bool BookedWinter { get; set; }      // winter booking approved
+        [Display(Name = "Spring Production Time")]
         public string SpringProd { get; set; }      // production name for spring (--> string to virtual)
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Spring Production Date")]
         public DateTime? SpringTime { get; set; }   // chosen date and time for spring production 
         public bool BookedSpring { get; set; }      // spring booking approved
         [Required]
+        [Display(Name = "Season Manager Person")]
         public virtual ApplicationUser SeasonManagerPerson { get; set; }    // associated user
 
     }
