@@ -7,19 +7,19 @@
 
 @foreach (var item in Model)
 {
+    <figure class="sponsors-partial-column">
     <img class="sponsor-pic" src="data:image;base64,@System.Convert.ToBase64String(item.Logo)" />
     <br />
-    <p id="sponsor-text">@Html.DisplayFor(modelItem => item.Name)</p>
-
+    <figcaption id="sponsor-text">@Html.DisplayFor(modelItem => item.Name)</figcaption>
+    </figure>
 }
-
 <div class="center">
     <button type="button" class="btn btn-lg sponsor-donate-btn">Donate</button>
 </div>
 
 
 
-<div id="sponsor-body">
+@*<div id="sponsor-body">
     <div class="synopsisTitle center">Our Proud Sponsors</div>
     <div class="center">
         <img class="sponsor-partial-pic" src="~/Content/Images/Ellyn-Bye-Logo.png" />
@@ -31,6 +31,6 @@
     <div class="center">
         <button type="button" class="btn btn-lg sponsor-donate-btn">Donate</button>
     </div>
-</div>
+</div>*@
 
 
