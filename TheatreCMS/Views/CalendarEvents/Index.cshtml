@@ -17,14 +17,13 @@
                 type: "GET",
                 url: "/calendarEvents/GetCalendarEvents",
                 success: function (data) {
-                    data[0].start = moment(data[0].start)
-                    data[0].end = moment(data[0].end)
+                //    data[0].start = moment(data[0].start)
+                //    data[0].end = moment(data[0].end)
                     events = data
                     $('#calendar').fullCalendar({
                 // put your options and callbacks here
                         events: events,
-                        height: 100,
-                        contentHeight: 500,
+                       contentHeight: 420,
                     })
                     console.log(data);
                     console.log(events);

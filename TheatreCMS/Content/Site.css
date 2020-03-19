@@ -900,19 +900,21 @@ a.dropdown-item:hover {
 
 /* Styling for calendar*/
 
-.palette-container :nth-child(n+1) td.fc-today {
+.palette-container .fc td.fc-today {
+    background-color: darkgray;
+}
+
+.palette-container .fc-content {
     background-color: red;
+    border: red;
 }
 
-.palette-container :nth-child(n+1) .fc-content{
+.palette-container .fc-event {
     background-color: red;
+    border: red;
 }
 
-.palette-container :nth-child(n+2) .fc-event{
-    border: 1px solid red;
-}
-
-palette-container :nth-child(n+3) .fc-basic-view .fc-body .fc-row {
-    min-height: 2em;
-    /* ensure that all rows are at least this tall */
+/* Enures the calendar doesn't become too wide on large screens */
+.palette-container .fc {
+    max-width: 1000px;
 }
