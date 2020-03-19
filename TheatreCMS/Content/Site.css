@@ -950,16 +950,19 @@ a.dropdown-item:hover {
     background-color: var(--main-secondary-color);
 }
 
+/*Small Image size for Index page*/
 .thumbnail_size {
     height: auto;
     max-width: 150px;
 }
 
+/*Medium size Image for editing and deleting photos*/
 .medium_size {
     height: auto;
     max-width: 350px;
 }
 
+/*Large size Image for Details of photo*/
 .large_size {
     height:auto;
     max-width: 100%;
