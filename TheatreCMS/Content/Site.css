@@ -964,3 +964,34 @@ a.dropdown-item:hover {
     height:auto;
     max-width: 100%;
 }
+
+
+/*Admin Dashoboard list*/
+#dash ul {
+    list-style: none;
+    border: hidden;
+    display: inline-block;
+}
+#dash ul li:not(:last-child):after {
+    content: "|";
+}
+
+#dash li {
+    display: inline-block;
+    border: hidden;
+}
+
+
+/*End Admin Dashboard list*/
+
+
+/*Admin Dashboard Form*/
+#formspace {
+    padding: 100px;
+}
+#formspace {
+    margin: auto;
+    border: dashed;
+    border-color: #F04D44;
+}
+/*End Admin Dashboard Form*/
