@@ -22,6 +22,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fall Production Date")]
         public DateTime? FallTime { get; set; }     // chosen date and time for fall production 
+        [Display(Name = "Booked for Fall")]
         public bool BookedFall { get; set; }        // fall booking approved
         [Display(Name = "Winter Production Name")]
         public string WinterProd { get; set; }      // production name for winter (--> string to virtual)
@@ -29,6 +30,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Winter Production Date")]
         public DateTime? WinterTime { get; set; }   // chosen date and time for winter production 
+        [Display(Name = "Booked for Winter")]
         public bool BookedWinter { get; set; }      // winter booking approved
         [Display(Name = "Spring Production Time")]
         public string SpringProd { get; set; }      // production name for spring (--> string to virtual)
@@ -36,6 +38,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Spring Production Date")]
         public DateTime? SpringTime { get; set; }   // chosen date and time for spring production 
+        [Display(Name = "Booked for Spring")]
         public bool BookedSpring { get; set; }      // spring booking approved
         [Required]
         [Display(Name = "Season Manager Person")]

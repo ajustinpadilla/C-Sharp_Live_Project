@@ -192,6 +192,8 @@ body {
 footer {
     background-color: black;
     display: flex;
+    position: fixed;
+    bottom:0px;
 }
 
 .footer-container {
@@ -296,13 +298,15 @@ textarea {
     -webkit-animation-name: fadeIn;
 }
 
+/* SEASON MANAGER STYLING CLASSES*/
+
 .formContainer3 {
-    text-align: center;
+    /*text-align: center;*/
     margin-left: auto;
     margin-right: auto;
     max-width: 65%;
     border-radius: 5px;
-    background-color: var(--light-color);
+    background-color: #a3a7b4;
     padding: 20px;
 }
 
@@ -310,6 +314,31 @@ textarea {
     max-width: 100%;
     margin-bottom: 1rem;
 }
+
+.b-on-w {
+    color: var(--dark-color);
+    background-color: var(--light-color);
+}
+
+.b-on-r {
+    color: var(--dark-color);
+    background-color: var(--main-secondary-color);
+}
+
+.b-on-g {
+    color: var(--dark-color);
+    background-color: #a3a7b4;
+}
+
+.b-on-gold {
+    color: var(--dark-color);
+    background-color: var(--secondary-color);
+}
+
+/*.w-on-gold {
+    color: var(--light-color);
+    background-color: var(--secondary-color);
+}*/
 
 .col-centered {
     margin: 0 auto;
@@ -323,7 +352,27 @@ textarea {
 @import url("https://fonts.googleapis.com/css?family=Crimson+Text|Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Bellota&display=swap");
 
-.page-format {
+.page-format-index {
+    text-align: center;
+    font-family: 'Bellota', cursive, 'Crimson Text', serif, 'Verdana', sans-serif;
+    font-size: 16px;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banner-format-index {
+    text-align: center;
+    font-family: 'Bellota', cursive, 'Crimson Text', serif, 'Verdana', sans-serif;
+    font-size: 16px;
+    padding-top: 16px;
+    padding-bottom: 2px;
+    max-width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-format-create {
     text-align: center;
     font-family: 'Bellota', cursive, 'Crimson Text', serif, 'Verdana', sans-serif;
     font-size: 20px;
@@ -334,11 +383,12 @@ textarea {
 }
 
 .bg_1 {
-    background-image: url("Images/theater_1.jpeg");
+    background-image: url("Images/img2_bw.jpeg");
     height: 100%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: var(--dark-color);
     /*-webkit-filter: grayscale(100%);*/
 }
 
@@ -351,6 +401,12 @@ textarea {
     transform: scale(2);
     padding: 10px;
 }
+
+.font-white{
+    color: white;
+}
+
+/* SEASON MANAGER STYLING CLASSES END*/
 
 .formBox {
     display: block;

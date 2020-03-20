@@ -242,13 +242,13 @@
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
     <Content Include="Content\Images\Ellyn-Bye-Logo.png" />
+    <Content Include="Content\Images\img2.jpg" />
+    <Content Include="Content\Images\img2_bw.jpeg" />
     <Content Include="Content\Images\LogoRoundColor.png" />
     <Content Include="Content\Images\Ninkasi-white-text.png" />
     <Content Include="Content\Images\OCF-logo-in-white-with-tagline-lg.png" />
     <Content Include="Content\Images\RACC2.png" />
     <Content Include="Content\Images\subscriber.jpg" />
-    <Content Include="Content\Images\theater_1.jpeg" />
-    <Content Include="Content\Images\theater_2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -596,7 +596,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Subscribers\Data\" />
   </ItemGroup>
   <ItemGroup>

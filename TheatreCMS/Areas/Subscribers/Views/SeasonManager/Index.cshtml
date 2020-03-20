@@ -3,92 +3,94 @@
 @{
     ViewBag.Title = "Index";
 }
+    <div class="b-on-g banner-format-index">
+        <h2>Season Managers</h2>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+            &nbsp;&nbsp;@Html.ActionLink("Back to Dashboard", "../Dashboard/Index")
+        </p>
+    </div>
+        <table class="table page-format-index">
+            <tr class="b-on-r">
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberSeats)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookedCurrent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FallProd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FallTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookedFall)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WinterProd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WinterTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookedWinter)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SpringProd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SpringTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookedSpring)
+                </th>
+                <th></th>
+            </tr>
 
-<h2>Index</h2>
+            @foreach (var item in Model)
+            {
+                <tr class="b-on-gold">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberSeats)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookedCurrent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FallProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FallTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookedFall)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WinterProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WinterTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookedWinter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpringProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpringTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookedSpring)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.SeasonManagerId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.SeasonManagerId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.SeasonManagerId })
+                    </td>
+                </tr>
+            }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-    &nbsp;&nbsp;@Html.ActionLink("Back to Dashboard", "../Dashboard/Index")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberSeats)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookedCurrent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FallProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FallTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookedFall)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WinterProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WinterTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookedWinter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SpringProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SpringTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookedSpring)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberSeats)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookedCurrent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FallProd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FallTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookedFall)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WinterProd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WinterTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookedWinter)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SpringProd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SpringTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookedSpring)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SeasonManagerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SeasonManagerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SeasonManagerId })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    
