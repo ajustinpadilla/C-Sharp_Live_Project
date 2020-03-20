@@ -12,11 +12,12 @@ using System.IO;
 
 namespace TheatreCMS.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class SponsorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [Authorize(Roles = "Admin")]
         // GET: Sponsors
         public ActionResult Index()
         {          
@@ -36,6 +37,7 @@ namespace TheatreCMS.Controllers
             return PartialView("_SponsorsPartial", db.Sponsors);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Sponsors/Details/5
         public ActionResult Details(int? id)
         {
@@ -51,12 +53,14 @@ namespace TheatreCMS.Controllers
             return View(sponsor);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Sponsors/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Sponsors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -79,6 +83,7 @@ namespace TheatreCMS.Controllers
             return View(sponsor);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Sponsors/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -94,6 +99,7 @@ namespace TheatreCMS.Controllers
             return View(sponsor);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Sponsors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -115,6 +121,7 @@ namespace TheatreCMS.Controllers
             return View(sponsor);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Sponsors/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -130,6 +137,7 @@ namespace TheatreCMS.Controllers
             return View(sponsor);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Sponsors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
