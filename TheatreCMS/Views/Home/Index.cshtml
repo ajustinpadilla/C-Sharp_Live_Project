@@ -21,54 +21,54 @@
                 <div class="slideText center text-outline">Test Description</div>
                 <div class="dot-container">
                     <span class="dot" onclick="currentSlide(1)"></span>
-                </div>                
+                </div>
             }
         }
 
         @foreach (var item in Model)
         {
-                <div class="slides">
-                    <div class="slideTitle">@Html.DisplayFor(modelItem => item.Title)</div>
+            <div class="slides">
+                <div class="slideTitle">@Html.DisplayFor(modelItem => item.Title)</div>
 
-                    @{
-                        string img = "";
-                        if (item.Photo != null)
-                        {
-                            byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 400, 400);
-                            var base64 = System.Convert.ToBase64String(thumbBytes);
-                            img = String.Format("data:image/png;base64,{0}", base64);
-                            <img src="@img" class="image-carousel" />
-                        }
-
+                @{
+                    string img = "";
+                    if (item.Photo != null)
+                    {
+                        byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 400, 400);
+                        var base64 = System.Convert.ToBase64String(thumbBytes);
+                        img = String.Format("data:image/png;base64,{0}", base64);
+                        <img src="@img" class="image-carousel" />
                     }
-                    @*<img src="img" />*@
-                    <div class="slideText center text-outline">@Html.DisplayFor(modelItem => item.Description)</div>                    
-                </div>
+
+                }
+                @*<img src="img" />*@
+                <div class="slideText center text-outline">@Html.DisplayFor(modelItem => item.Description)</div>
+            </div>
         }
         @*<div class="slideTitle">Title for slide 1 here</div>
-        <img src="@Url.Content("~/Content/Images/img1.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 1 here</div>
+            <img src="@Url.Content("~/Content/Images/img1.jpg")" style="width:100%" />
+            <div class="slideText center text-outline">Context for slide 1 here</div>
 
-        <div class="slides">
-            <div class="slideTitle">Title for slide 2 here</div>
-            <img src="@Url.Content("~/Content/Images/img2.jpg")" style="width:100%" />
-            <div class="slideText center text-outline">Context for slide 2 here</div>
-        </div>
-        <div class="slides">
-            <div class="slideTitle">Title for slide 3 here</div>
-            <img src="@Url.Content("~/Content/Images/img3.jpg")" style="width:100%" />
-            <div class="slideText center text-outline">Context for slide 3 here</div>
-        </div>
-        <div class="slides">
-            <div class="slideTitle">Title for slide 4 here</div>
-            <img src="@Url.Content("~/Content/Images/img4.jpg")" style="width:100%" />
-            <div class="slideText center text-outline">Context for slide 4 here</div>
-        </div>
-        <div class="slides">
-            <div class="slideTitle">Title for slide 5 here</div>
-            <img src="@Url.Content("~/Content/Images/img5.jpg")" style="width:100%" />
-            <div class="slideText center text-outline">Context for slide 5 here</div>
-        </div>*@
+            <div class="slides">
+                <div class="slideTitle">Title for slide 2 here</div>
+                <img src="@Url.Content("~/Content/Images/img2.jpg")" style="width:100%" />
+                <div class="slideText center text-outline">Context for slide 2 here</div>
+            </div>
+            <div class="slides">
+                <div class="slideTitle">Title for slide 3 here</div>
+                <img src="@Url.Content("~/Content/Images/img3.jpg")" style="width:100%" />
+                <div class="slideText center text-outline">Context for slide 3 here</div>
+            </div>
+            <div class="slides">
+                <div class="slideTitle">Title for slide 4 here</div>
+                <img src="@Url.Content("~/Content/Images/img4.jpg")" style="width:100%" />
+                <div class="slideText center text-outline">Context for slide 4 here</div>
+            </div>
+            <div class="slides">
+                <div class="slideTitle">Title for slide 5 here</div>
+                <img src="@Url.Content("~/Content/Images/img5.jpg")" style="width:100%" />
+                <div class="slideText center text-outline">Context for slide 5 here</div>
+            </div>*@
         @*The left and right buttons*@
         <a class="left text-outline" onclick="changeSlide(-1)">&#10094;</a>
         <a class="right text-outline" onclick="changeSlide(1)">&#10095;</a>
@@ -77,29 +77,29 @@
     @*The dots for navigation*@
     <div style="text-align:center">
         @*@{
-            foreach (var item in Model)
-            {
-                <span class="dot" onclick="currentSlide(1)"></span>
-            }
-        }*@
+                foreach (var item in Model)
+                {
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                }
+            }*@
         @{
 
-            
+
             for (int i = 0; i < Model.ToList().Count; i++)
             {
                 <span class="dot" onclick="currentSlide(@(i+1))"></span>
 
             }
-                @*<span class="dot" onclick="currentSlide(i)"></span>*@
-            
+            @*<span class="dot" onclick="currentSlide(i)"></span>*@
+
         }
 
 
         @*<span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
-        <span class="dot" onclick="currentSlide(5)"></span>*@
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>*@
     </div>
 </div>
 
@@ -113,8 +113,6 @@
 
 @*Sponsor section*@
 @*<div>
-    @Html.Partial("_SponsorsPartial")
-</div>*@
-<div>
-    @{Html.RenderAction("List", "Sponsors");}
-</div>
+        @Html.Partial("_SponsorsPartial")
+    </div>*@
+@{Html.RenderAction("List", "Sponsors");}
