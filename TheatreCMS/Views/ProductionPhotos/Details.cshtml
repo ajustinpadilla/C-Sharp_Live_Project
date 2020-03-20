@@ -51,7 +51,7 @@
             </div>
             <div class="center">
                 <dl>
-                    @*@Html.DisplayFor(model => model.Photo)*@
+                    @*@Html.DisplayFor(model => model.PhotoId)*@
                     <td>
                         <img src='@Url.Action("DisplayPhoto", "Photo", new { id = model.PhotoId })' />
                     </td>
@@ -82,22 +82,13 @@
                     @Html.DisplayFor(model => model.Production.Season)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Photo)
+                    @Html.DisplayNameFor(model => model.PhotoId)
                 </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Photo)
+            @Html.DisplayFor(model => model.PhotoId)
             <td>
-                @{
-                    string img = "";
-                    if (Model.Photo != null)
-                    {
-                        byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Photo, 100, 100);
-                        var base64 = System.Convert.ToBase64String(thumbBytes);
-                        img = String.Format("data:image/png;base64,{0}", base64);
-                    }
-                }
-                    <img src="@img" />
+                <img src='@Url.Action("DisplayPhoto", "Photo", new { id = model.PhotoId })' />
             </td>
         </dd>
 
