@@ -57,9 +57,7 @@ namespace TheatreCMS.Models
         {
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
 
-            byte[] photo = ImageUploadController.ImageBytes(file, out string _64);
-            productionPhotos.Photo = photo;
-            
+            productionPhotos.PhotoId = PhotoController.CreatePhoto(file, productionPhotos.Title);
 
             if (ModelState.IsValid)
             {
@@ -114,11 +112,11 @@ namespace TheatreCMS.Models
                 if (file != null && file.ContentLength > 0)
                 {
                     var photo = ImageUploadController.ImageBytes(file, out string _64);
-                    currentProPhoto.Photo = photo;
+                    currentProPhoto.PhotoId = PhotoController.CreatePhoto(file, productionPhotos.Title);
                 }
                 else
                 {
-                    currentProPhoto.Photo = productionPhotos.Photo;
+                    currentProPhoto.PhotoId = productionPhotos.PhotoId;
                 }
 
                 db.Entry(currentProPhoto.Production).State = EntityState.Modified;

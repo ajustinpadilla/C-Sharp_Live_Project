@@ -11,7 +11,7 @@ namespace TheatreCMS.Models
     {
         [Key]
         public int ProPhotoId { get; set; }         // production photo primary key
-        public byte[] Photo { get; set; }           // image data
+        public int PhotoId { get; set; }            // primary key for associated photo
         public string Title { get; set; }           // photo title
         public string Description { get; set; }     // photo description
 

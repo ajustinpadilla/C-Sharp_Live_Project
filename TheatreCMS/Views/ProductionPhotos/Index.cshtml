@@ -28,19 +28,7 @@
         <tr class="tr-styling">
             @*@Html.DisplayFor(modelItem => item.Photo)*@
             <td class="td-styling">             
-                @{
-                    string img = "";
-                    if (item.Photo != null)
-                    {
-                        byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 100, 100);
-                        var base64 = System.Convert.ToBase64String(thumbBytes);
-                        img = String.Format("data:image/png;base64,{0}", base64);
-
-                    }
-                }
-                
-                <img src="@img" class="thumbnail_size"/>
-                
+                <img src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
             </td>
 
             <td class="td-styling">
