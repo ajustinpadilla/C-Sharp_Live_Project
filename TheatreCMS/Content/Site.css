@@ -1015,7 +1015,12 @@ a.dropdown-item:hover {
     border: red;
 }
 
-/* Enures the calendar doesn't become too wide on large screens */
+
 .palette-container .fc {
+    /* Ensures the calendar doesn't become too wide on large screens */
     max-width: 1000px;
+    /* Lowers calendar*/
+    padding-top: 16px;
+    /*Centers calendar*/
+    margin: auto;
 }
