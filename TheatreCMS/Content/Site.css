@@ -1001,8 +1001,8 @@ a.dropdown-item:hover {
 /*Sponsors Partial View*/
 
 .sponsors-partial-column {
-    width: 10%;
+    width: 300px;
     display: inline-block;
-    margin: 50px;
+    margin: 20px;
     vertical-align: middle;
 }
