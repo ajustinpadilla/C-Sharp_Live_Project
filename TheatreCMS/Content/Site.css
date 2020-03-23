@@ -1006,3 +1006,29 @@ a.dropdown-item:hover {
     margin: 20px;
     vertical-align: middle;
 }
+
+/* Styling for calendar*/
+
+.palette-container .fc td.fc-today {
+    background-color: darkgray;
+}
+
+.palette-container .fc-content {
+    background-color: red;
+    border: red;
+}
+
+.palette-container .fc-event {
+    background-color: red;
+    border: red;
+}
+
+
+.palette-container .fc {
+    /* Ensures the calendar doesn't become too wide on large screens */
+    max-width: 1000px;
+    /* Lowers calendar*/
+    padding-top: 16px;
+    /*Centers calendar*/
+    margin: auto;
+}
