@@ -3,15 +3,15 @@
 @{
     ViewBag.Title = "Index";
 }
-    <div class="b-on-g banner-format-index">
-        <h2>Season Managers</h2>
+    <div class="banner-format-index">
+        <h2 class="underline">Season Managers</h2>
         <p>
             @Html.ActionLink("Create New", "Create")
             &nbsp;&nbsp;@Html.ActionLink("Back to Dashboard", "../Dashboard/Index")
         </p>
     </div>
-        <table class="table page-format-index">
-            <tr class="b-on-r">
+        <table class="page-format-index">
+            <tr class="">
                 <th>
                     @Html.DisplayNameFor(model => model.NumberSeats)
                 </th>
@@ -45,12 +45,14 @@
                 <th>
                     @Html.DisplayNameFor(model => model.BookedSpring)
                 </th>
-                <th></th>
+                <th>
+                    Manage Your Reservations
+                </th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr class="b-on-gold">
+                <tr class="">
                     <td>
                         @Html.DisplayFor(modelItem => item.NumberSeats)
                     </td>

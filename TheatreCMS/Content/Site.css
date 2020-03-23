@@ -300,45 +300,18 @@ textarea {
 
 /* SEASON MANAGER STYLING CLASSES*/
 
-.formContainer3 {
-    /*text-align: center;*/
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 65%;
-    border-radius: 5px;
-    background-color: #a3a7b4;
-    padding: 20px;
-}
-
-.formGroup {
-    max-width: 100%;
-    margin-bottom: 1rem;
-}
-
+/* THESE ARE FOR MANAGING COLOR SCHEMES */
 .b-on-w {
     color: var(--dark-color);
     background-color: var(--light-color);
 }
 
-.b-on-r {
-    color: var(--dark-color);
-    background-color: var(--main-secondary-color);
-}
-
 .b-on-g {
     color: var(--dark-color);
-    background-color: #a3a7b4;
+    background-color: #bfc5db;
 }
 
-.b-on-gold {
-    color: var(--dark-color);
-    background-color: var(--secondary-color);
-}
-
-/*.w-on-gold {
-    color: var(--light-color);
-    background-color: var(--secondary-color);
-}*/
+/* THESE HELP CENTER TEXT ESPECIALLY ON EDIT/CREATE FORM FIELDS */
 
 .col-centered {
     margin: 0 auto;
@@ -349,8 +322,29 @@ textarea {
     padding-left: 50%;
 }
 
+.field-centered2 {
+    padding-left: 45%;
+}
+
+.center-text {
+    text-align: center;
+}
+
+/* THESE MANIPULATE THE TEXT ON THE HEADERS */
+
+.bold {
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+/* Loading Google Fonts for Use with Season Manager Views */
 @import url("https://fonts.googleapis.com/css?family=Crimson+Text|Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Bellota&display=swap");
+
+/* THESE ARE THE MOST IMPORTANT FORMATTING CLASSES FOR THE SEASON MANAGER VIEWS */
 
 .page-format-index {
     text-align: center;
@@ -360,8 +354,31 @@ textarea {
     margin-left: auto;
     margin-right: auto;
 }
+/* STYLING FOR INDEX TABLE SPECIFICALLY */
+table.page-format-index {
+    border: 1px solid var(--dark-color);
+    border-radius: 2px;
+    box-shadow: 1px 1px 5px 1px #888888;
+}
 
-.banner-format-index {
+table.page-format-index th {
+    color: var(--dark-color);
+    background-color: var(--main-secondary-color);
+    padding: 20px 10px;
+    border: 1px solid var(--dark-color);
+}
+
+table.page-format-index td {
+    color: var(--dark-color);
+    background-color: #bfc5db;
+    padding: 10px 10px;
+    border: 1px solid #AAAAAA;
+    opacity: .85;
+}
+
+.banner-format-index { /*Seperate styling for top banner on Index Page*/
+    color: var(--dark-color);
+    background-color: var(--secondary-color);
     text-align: center;
     font-family: 'Bellota', cursive, 'Crimson Text', serif, 'Verdana', sans-serif;
     font-size: 16px;
@@ -370,30 +387,66 @@ textarea {
     max-width: 35%;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 2px;
+    border: 1px solid var(--dark-color);
+    box-shadow: 1px 1px 5px 1px #888888;
 }
 
-.page-format-create {
+.page-format-EditCreate { /*Form Container for Both Edit and Delete Pages*/
     text-align: center;
     font-family: 'Bellota', cursive, 'Crimson Text', serif, 'Verdana', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 65%;
+    border-radius: 5px;
+    background-color: #bfc5db;
+    padding: 20px;
 }
 
-.bold {
-    font-weight: bold;
+.page-format-delete { /*Form Container for Delete Page*/
+    text-align: center;
+    font-family: 'Bellota', cursive, 'Crimson Text', serif, 'Verdana', sans-serif;
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+    border-radius: 5px;
+    background-color: #bfc5db;
+    padding: 20px;
 }
 
-.bg_1 {
+.page-format-details { /*Form Container for Delete Page*/
+    text-align: center;
+    font-family: 'Bellota', cursive, 'Crimson Text', serif, 'Verdana', sans-serif;
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 35%;
+    border-radius: 5px;
+    background-color: #bfc5db;
+    padding: 20px;
+}
+
+.formGroup {
+    max-width: 80%;
+    margin-bottom: 1rem;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.bg_1 { /* Background.  Black and White Theater Image  */
     background-image: url("Images/img2_bw.jpeg");
     height: 100%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-color: var(--dark-color);
-    /*-webkit-filter: grayscale(100%);*/
 }
 
+/* Double-sized Checkboxes */
+
 .big-checkbox {
-    /* Double-sized Checkboxes */
     -ms-transform: scale(2); /* IE */
     -moz-transform: scale(2); /* FF */
     -webkit-transform: scale(2); /* Safari and Chrome */
@@ -402,11 +455,7 @@ textarea {
     padding: 10px;
 }
 
-.font-white{
-    color: white;
-}
-
-/* SEASON MANAGER STYLING CLASSES END*/
+/* SEASON MANAGER STYLING CLASSES END */
 
 .formBox {
     display: block;

@@ -32,7 +32,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         public DateTime? WinterTime { get; set; }   // chosen date and time for winter production 
         [Display(Name = "Booked for Winter")]
         public bool BookedWinter { get; set; }      // winter booking approved
-        [Display(Name = "Spring Production Time")]
+        [Display(Name = "Spring Production Name")]
         public string SpringProd { get; set; }      // production name for spring (--> string to virtual)
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]

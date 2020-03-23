@@ -4,103 +4,107 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>SeasonManager</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberSeats)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NumberSeats)
-        </dd>
+    <div class="page-format-details">
+        <h2 class="underline bold">Details</h2>
+        <br />
+        <h3 class="bold">SeasonManager</h3>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NumberSeats)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BookedCurrent)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NumberSeats)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.BookedCurrent)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BookedCurrent)
-        </dd>
+            <dd class="big-checkbox">
+                @Html.DisplayFor(model => model.BookedCurrent)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.FallProd)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FallProd)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FallProd)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.FallTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FallProd)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FallTime)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.BookedFall)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FallTime)
-        </dt>
+            <dd class="big-checkbox">
+                @Html.DisplayFor(model => model.BookedFall)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.WinterProd)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FallTime)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.WinterProd)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.WinterTime)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BookedFall)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.WinterTime)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.BookedWinter)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BookedFall)
-        </dd>
+            <dd class="big-checkbox">
+                @Html.DisplayFor(model => model.BookedWinter)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.SpringProd)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.WinterProd)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SpringProd)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.SpringTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.WinterProd)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.SpringTime)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.BookedSpring)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.WinterTime)
-        </dt>
+            <dd class="big-checkbox">
+                @Html.DisplayFor(model => model.BookedSpring)
+            </dd>
+            <hr />
+            <p>
+                @Html.ActionLink("Back to List", "Index") |
+                @Html.ActionLink("Edit", "Edit", new { id = Model.SeasonManagerId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.SeasonManagerId })
+            </p>
+        </dl>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.WinterTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BookedWinter)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BookedWinter)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SpringProd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SpringProd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SpringTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SpringTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BookedSpring)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BookedSpring)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SeasonManagerId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
