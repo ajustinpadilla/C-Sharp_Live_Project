@@ -20,7 +20,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         public string FallProd { get; set; }        // production name for fall (--> string to virtual)
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Fall Production Date")]
+        [Display(Name = "Fall Production Time")]
         public DateTime? FallTime { get; set; }     // chosen date and time for fall production 
         [Display(Name = "Booked for Fall")]
         public bool BookedFall { get; set; }        // fall booking approved
@@ -28,7 +28,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         public string WinterProd { get; set; }      // production name for winter (--> string to virtual)
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Winter Production Date")]
+        [Display(Name = "Winter Production Time")]
         public DateTime? WinterTime { get; set; }   // chosen date and time for winter production 
         [Display(Name = "Booked for Winter")]
         public bool BookedWinter { get; set; }      // winter booking approved
@@ -36,7 +36,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         public string SpringProd { get; set; }      // production name for spring (--> string to virtual)
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Spring Production Date")]
+        [Display(Name = "Spring Production Time")]
         public DateTime? SpringTime { get; set; }   // chosen date and time for spring production 
         [Display(Name = "Booked for Spring")]
         public bool BookedSpring { get; set; }      // spring booking approved
