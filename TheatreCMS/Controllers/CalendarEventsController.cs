@@ -19,6 +19,7 @@ namespace TheatreCMS.Controllers
         // GET: CalendarEvents
         public ActionResult Index()
         {
+
             return View(db.CalendarEvent.ToList());
         }
 
