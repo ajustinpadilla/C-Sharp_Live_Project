@@ -136,20 +136,17 @@
         </div>*@
         <br />
         <br />
-        <div class="formGroup">
-            <div class="col-md-3 col-centered">
-                <input type="submit" value="Create" class="btn iconBtn" />
-                <div class="iconBtnContainer col-centered">
-                    <button type="submit" class="iconBtn" onclick="window.location.href ='@Url.Action("Create", "SeasonManager")'">
+            <div class="col-md-4 col-centered">
+                @*<input type="submit" value="Create" class="btn iconBtn" />*@
+                    <button type="submit" class="SmBtn">
                         <!-- or buttons can be in their own container-->
                         <i class="fa fa-plus-square fa-fw"></i>Create New<!-- This button is a link to a different page -->
                     </button>
-                </div>
-                <br />
-                <br />
-                @Html.ActionLink("Back to List", "Index")
+                    <br />
+                    <br />
+                    @Html.ActionLink("Back to List", "Index")
             </div>
-        </div>
+
         
     </div>
 }
