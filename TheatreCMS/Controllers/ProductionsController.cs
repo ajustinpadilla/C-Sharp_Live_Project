@@ -126,15 +126,17 @@ namespace TheatreCMS.Controllers
 
 
                 currentProduction.DefaultPhoto = productionPhoto;
-                try
-                {
-                    db.Entry(currentProduction.DefaultPhoto).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                catch (System.ArgumentNullException e)
-                {
-                    //Allowing this argument to pass
-                }
+
+                // Ignoring attempt to update photo specifically until model can handle null values.
+                //try
+                //{
+                //    db.Entry(currentProduction.DefaultPhoto).State = EntityState.Modified;
+                //    db.SaveChanges();
+                //}
+                //catch (System.ArgumentNullException e)
+                //{
+                //    //Allowing this argument to pass
+                //}
 
                 db.Entry(currentProduction).State = EntityState.Modified;
                 db.SaveChanges();
