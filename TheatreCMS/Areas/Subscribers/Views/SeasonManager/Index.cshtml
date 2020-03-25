@@ -3,14 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
-    <div class="banner-format-index">
+    <div class="banner-format-index col-md-4">
         <h2 class="underline">Season Managers</h2>
         <p>
             @Html.ActionLink("Create New", "Create")
             &nbsp;&nbsp;@Html.ActionLink("Back to Dashboard", "../Dashboard/Index")
         </p>
     </div>
-        <table class="page-format-index">
+        <table class="page-format-index col-md-10">
             <tr class="">
                 <th>
                     @Html.DisplayNameFor(model => model.NumberSeats)
