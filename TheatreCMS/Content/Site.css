@@ -320,6 +320,10 @@ textarea {
     float: none;
 }
 
+.top-margin {
+    margin-top: 1rem;
+}
+
 /* THESE MANIPULATE THE TEXT ON THE HEADERS */
 
 .bold {
@@ -339,8 +343,8 @@ textarea {
 .page-format-index {
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 16px;
-    /*max-width: 95%;*/
+    font-size: 18px;
+    overflow: hidden;
     margin-left: auto;
     margin-right: auto;
 }

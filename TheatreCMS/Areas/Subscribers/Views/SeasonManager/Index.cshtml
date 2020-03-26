@@ -10,13 +10,16 @@
             &nbsp;&nbsp;@Html.ActionLink("Back to Dashboard", "../Dashboard/Index")
         </p>
     </div>
-        <table class="page-format-index col-md-10">
+    <div class="page-format-index b-on-g col-md-10">
+        <table class="table table-bordered top-margin">
             <tr class="">
                 <th>
-                    @Html.DisplayNameFor(model => model.NumberSeats)
+                    @*@Html.DisplayNameFor(model => model.NumberSeats)*@
+                    Seats Available
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.BookedCurrent)
+                    @*@Html.DisplayNameFor(model => model.BookedCurrent)*@
+                    Currently Booked
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.FallProd)
@@ -81,7 +84,7 @@
                     <td>
                         <div class="big-checkbox">
                             @Html.DisplayFor(modelItem => item.BookedWinter)
-                        </div>  
+                        </div>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.SpringProd)
@@ -103,4 +106,4 @@
             }
 
         </table>
-    
+    </div>
