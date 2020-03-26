@@ -22,13 +22,20 @@
                     Currently Booked
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FallProd)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FallTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BookedFall)
+                    <div class="table-box">
+                        <div class="season-body underline">
+                            Fall Production
+                        </div>
+                        <div class="season-body">
+                            Name
+                        </div>
+                        <div class="season-body">
+                            Time
+                        </div>
+                        <div class="season-body">
+                            Booked
+                        </div>
+                    </div>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.WinterProd)
@@ -49,7 +56,7 @@
                     @Html.DisplayNameFor(model => model.BookedSpring)
                 </th>
                 <th>
-                    Manage Your Reservations
+                    Manage Reservations
                 </th>
             </tr>
 
@@ -64,15 +71,20 @@
                             @Html.DisplayFor(modelItem => item.BookedCurrent)
                         </div>
                     </td>
+
                     <td>
-                        @Html.DisplayFor(modelItem => item.FallProd)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FallTime)
-                    </td>
-                    <td>
-                        <div class="big-checkbox">
-                            @Html.DisplayFor(modelItem => item.BookedFall)
+                        <div class="table-box">
+                            <div class="season-body">
+                                @Html.DisplayFor(modelItem => item.FallProd)
+                            </div>
+                            <div class="season-body">
+                                @Html.DisplayFor(modelItem => item.FallTime)
+                            </div>
+                            <div class=" season-body">
+                                <div class="big-checkbox">
+                                    @Html.DisplayFor(modelItem => item.BookedFall)
+                                </div>
+                            </div>
                         </div>
                     </td>
                     <td>

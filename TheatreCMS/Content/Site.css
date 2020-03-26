@@ -314,12 +314,11 @@ textarea {
 }
 
 /* HELPS CENTER TEXT ON EDIT/CREATE VIEWS */
-
 .col-centered {
     margin: 0 auto;
     float: none;
 }
-
+/* MODIFYING INDEX PAGE TABLE TO HAVE HEADER SINCE BOOTSTRAP TABLE CLASS DIDN'T INCLUDE IT */
 .top-margin {
     margin-top: 1rem;
 }
@@ -334,10 +333,6 @@ textarea {
     text-decoration: underline;
 }
 
-/* Loading Google Fonts for Use with Season Manager Views */
-@import url("https://fonts.googleapis.com/css?family=Crimson+Text|Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Bellota&display=swap");
-
 /* THESE ARE THE MOST IMPORTANT FORMATTING CLASSES FOR THE SEASON MANAGER VIEWS */
 
 .page-format-index {
@@ -347,27 +342,9 @@ textarea {
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
-}
-/* STYLING FOR INDEX TABLE SPECIFICALLY */
-table.page-format-index {
     border: 1px solid var(--dark-color);
     border-radius: 2px;
     box-shadow: 1px 1px 5px 1px #888888;
-}
-
-table.page-format-index th {
-    color: var(--dark-color);
-    background-color: var(--main-secondary-color);
-    padding: 20px 10px;
-    border: 1px solid var(--dark-color);
-}
-
-table.page-format-index td {
-    color: var(--dark-color);
-    background-color: #bfc5db;
-    padding: 10px 10px;
-    border: 1px solid #AAAAAA;
-    opacity: .85;
 }
 
 .banner-format-index { /*Seperate styling for top banner on Index Page*/
@@ -378,7 +355,6 @@ table.page-format-index td {
     font-size: 16px;
     padding-top: 16px;
     padding-bottom: 2px;
-    /*max-width: 35%;*/
     margin-left: auto;
     margin-right: auto;
     border-radius: 2px;
@@ -462,6 +438,22 @@ table.page-format-index td {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 5px 5px;
+}
+
+.table-box {
+    /*border: solid var(--dark-color);
+    padding: 10px 10px;*/
+    /*margin-top: 20px;*/
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    /*background-clip: border-box;*/
+    /*border: 1px solid rgba(0, 0, 0, 0.125);*/
+    /*border-radius: 0.25rem;*/
 }
 
 /* Double-sized Checkboxes */
