@@ -133,7 +133,7 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
+        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
             if (ModelState.IsValid)
             {
@@ -146,11 +146,10 @@ namespace TheatreCMS.Controllers
                 currentRentalRequest.EndTime = rentalRequest.EndTime;
                 currentRentalRequest.ProjectInfo = rentalRequest.ProjectInfo;
                 currentRentalRequest.Requests = rentalRequest.Requests;
-                currentRentalRequest.RentalCode = rentalRequest.RentalCode;
                 currentRentalRequest.Accepted = rentalRequest.Accepted;
                 currentRentalRequest.ContractSigned = rentalRequest.ContractSigned;
 
-                db.Entry(rentalRequest).State = EntityState.Modified;
+                db.Entry(currentRentalRequest).State = EntityState.Modified;
                 db.SaveChanges();
 
                 if (rentalRequest.Accepted == true)
