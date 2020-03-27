@@ -309,6 +309,11 @@ textarea {
     background-color: #bfc5db;
 }
 
+.b-on-r {
+    color: var(--dark-color);
+    background-color: var(--main-bg-color);
+}
+
 .red {
     color: var(--main-bg-color);
 }
@@ -321,6 +326,18 @@ textarea {
 /* MODIFYING INDEX PAGE TABLE TO HAVE HEADER SINCE BOOTSTRAP TABLE CLASS DIDN'T INCLUDE IT */
 .top-margin {
     margin-top: 1rem;
+}
+/* CENTERS TITLES IN INDEX PAGE TABLE HEADER (RED) */
+.box-center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: auto;
+}
+
+.page-center {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* THESE MANIPULATE THE TEXT ON THE HEADERS */
@@ -352,7 +369,7 @@ textarea {
     background-color: #bfc5db;
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 16px;
+    font-size: 18px;
     padding-top: 16px;
     padding-bottom: 2px;
     margin-left: auto;
@@ -416,6 +433,13 @@ textarea {
 
 /* CONTAINERS THAT HELP COMPARTEMENTALIZE THE FORMS */
 
+.season-container {
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px;
+    overflow: hidden;
+}
+
 .season-box {
     /*border: solid var(--dark-color);
     padding: 10px 10px;*/
@@ -438,6 +462,32 @@ textarea {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 5px 5px;
+}
+
+.season-box-index {
+    /*border: solid var(--dark-color);
+    padding: 10px 10px;*/
+    /*margin-top: 20px;*/
+    position: relative;
+    display: -ms-flexbox;
+    display: inline-flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+.season-body-row {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px; 
+    padding: 50px 10px;
+    margin-top: auto;
+    margin-bottom:auto;
 }
 
 .table-box {
