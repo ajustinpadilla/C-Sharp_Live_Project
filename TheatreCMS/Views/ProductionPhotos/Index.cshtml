@@ -26,7 +26,7 @@
 
     @foreach (var item in Model) {
         <tr class="tr-styling">
-            @*@Html.DisplayFor(modelItem => item.Photo)*@
+            @*@Html.DisplayFor(modelItem => item.PhotoId)*@
             <td class="td-styling">             
                 <img src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
             </td>

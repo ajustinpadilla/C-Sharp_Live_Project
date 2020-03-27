@@ -53,7 +53,7 @@ namespace TheatreCMS.Models
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Photo,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
 
@@ -95,7 +95,7 @@ namespace TheatreCMS.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProPhotoId,Photo,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "ProPhotoId,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {          
                       
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
@@ -109,15 +109,15 @@ namespace TheatreCMS.Models
                 var production = db.Productions.Find(productionID);
                 currentProPhoto.Production = production;
 
-                if (file != null && file.ContentLength > 0)
-                {
-                    var photo = ImageUploadController.ImageBytes(file, out string _64);
-                    currentProPhoto.PhotoId = PhotoController.CreatePhoto(file, productionPhotos.Title);
-                }
-                else
-                {
-                    currentProPhoto.PhotoId = productionPhotos.PhotoId;
-                }
+                //if (file != null && file.ContentLength > 0)
+                //{
+                //    var photo = ImageUploadController.ImageBytes(file, out string _64);
+                //    currentProPhoto.Photo = photo;
+                //}
+                //else
+                //{
+                //    currentProPhoto.Photo = productionPhotos.Photo;
+                //}
 
                 db.Entry(currentProPhoto.Production).State = EntityState.Modified;
                 db.SaveChanges();

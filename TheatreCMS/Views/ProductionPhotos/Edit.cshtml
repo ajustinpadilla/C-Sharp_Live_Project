@@ -31,7 +31,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.PhotoId, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
                     <div class="col-md-10 formBox">
-                        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = model.PhotoId })' />   
+                        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />   
                         <input class="fileSelect" type="file" name="file" />
                         <hr />
                         @Html.ValidationMessageFor(model => model.PhotoId, "", new { @class = "text-danger" })

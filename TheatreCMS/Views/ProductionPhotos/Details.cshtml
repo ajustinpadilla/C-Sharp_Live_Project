@@ -53,7 +53,7 @@
                 <dl>
                     @*@Html.DisplayFor(model => model.PhotoId)*@
                     <td>
-                        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = model.PhotoId })' />
+                        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
                     </td>
                 </dl>
             </div>
@@ -88,7 +88,7 @@
         <dd>
             @Html.DisplayFor(model => model.PhotoId)
             <td>
-                <img src='@Url.Action("DisplayPhoto", "Photo", new { id = model.PhotoId })' />
+                <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
             </td>
         </dd>
 

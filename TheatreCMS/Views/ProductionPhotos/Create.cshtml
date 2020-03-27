@@ -27,7 +27,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.PhotoId, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                     <div class="col-md-10 formBox">
-                        @Html.TextBoxFor(model => model.PhotoId, new { type = "file", Name = "file" , Class = "fileSelect " })
+                        <input type="file" name="file" required />
                         @Html.ValidationMessageFor(model => model.PhotoId, "", new { @class = "text-danger" })
                     </div>
                 </div>
