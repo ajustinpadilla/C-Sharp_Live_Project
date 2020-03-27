@@ -3,135 +3,134 @@
 @{
     ViewBag.Title = "Index";
 }
-    <div class="banner-format-index col-md-4">
+    <div class="banner-format-index col-sm-6 col-md-4">
         <h2 class="underline">Season Managers</h2>
         <p>
             @Html.ActionLink("Create New", "Create")
             &nbsp;&nbsp;@Html.ActionLink("Back to Dashboard", "../Dashboard/Index")
         </p>
     </div>
-        <div class="page-format-index col-md-8 b-on-g">
-            <div class="col-md-10 page-center">
-                <div class="season-container">
-                    <div class="season-box-index b-on-r bold">
-                        <div class="season-body-row">
+
+                <div class="page-format-index">
+                    <div class="season-table-row col-md-12  b-on-r bold">
+                        <div class="season-body-row col-sm-2 col-md-2">
                             @*@Html.DisplayNameFor(model => model.NumberSeats)*@
                             Seats Available
                         </div>
-                        <div class="season-body-row">
+                        <div class="season-body-row col-sm-2 col-md-2">
                             @*@Html.DisplayNameFor(model => model.BookedCurrent)*@
                             Currently Booked?
                         </div>
-                        <div class="season-body">
+                        <div class="season-card col-sm-2 col-md-2">
                             <h4 class="box-center">
                                 Fall Production
                             </h4>
-                            <div class="season-box-index">
-                                <div class="season-body">
+                            <div class="season-card-index">
+                                <div class="season-card">
                                     Name
                                 </div>
-                                <div class="season-body">
+                                <div class="season-card">
                                     Time
                                 </div>
-                                <div class="season-body">
+                                <div class="season-card">
                                     Booked?
                                 </div>
                             </div>
                         </div>
-                        <div class="season-body">
+                        <div class="season-card col-sm-2 col-md-2">
                             <h4 class="box-center">
                                 Winter Production
                             </h4>
-                            <div class="season-box-index">
-                                <div class="season-body">
+                            <div class="season-card-index">
+                                <div class="season-card">
                                     Name
                                 </div>
-                                <div class="season-body">
+                                <div class="season-card">
                                     Time
                                 </div>
-                                <div class="season-body">
+                                <div class="season-card">
                                     Booked?
                                 </div>
                             </div>
                         </div>
-                        <div class="season-body">
+                        <div class="season-card col-sm-2 col-md-2">
                             <h4 class="box-center">
                                 Spring Production
                             </h4>
-                            <div class="season-box-index">
-                                <div class="season-body">
+                            <div class="season-card-index">
+                                <div class="season-card">
                                     Name
                                 </div>
-                                <div class="season-body">
+                                <div class="season-card">
                                     Time
                                 </div>
-                                <div class="season-body">
+                                <div class="season-card">
                                     Booked?
                                 </div>
                             </div>
                         </div>
-                        <div class="season-body-row">
+                        <div class="season-body-row-last col-sm-2 col-md-2">
                             Manage Season
                         </div>
                     </div>
 
                     @foreach (var item in Model)
                     {
-                        <div class="season-box-index">
-                            <div class="season-body-row">
+                        <div class="season-table-row col-md-12 b-on-g">
+                            <div class="season-body-row col-sm-2 col-md-2">
                                 @Html.DisplayFor(modelItem => item.NumberSeats)
                             </div>
-                            <div class="season-body-row">
+                            <div class="season-body-row col-sm-2 col-md-2">
                                 <div class="big-checkbox">
                                     @Html.DisplayFor(modelItem => item.BookedCurrent)
                                 </div>
                             </div>
-                            <div class="season-body">
-                                <div class="season-box-index">
-                                    <div class="season-body">
+                            <div class="season-container col-sm-2 col-md-2">
+                                <div class="season-card-index box-center-2">
+                                    <div class="season-card">
                                         @Html.DisplayFor(modelItem => item.FallProd)
                                     </div>
-                                    <div class="season-body">
+                                    <div class="season-card">
                                         @Html.DisplayFor(modelItem => item.FallTime)
                                     </div>
-                                    <div class="season-body">
+                                    <div class="season-card">
                                         <div class="big-checkbox">
                                             @Html.DisplayFor(modelItem => item.BookedFall)
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="season-body">
-                                <div class="season-box-index">
-                                    <div class="season-body">
+                            <div class="season-container col-sm-2 col-md-2">
+                                <div class="season-card-index box-center-2">
+                                    <div class="season-card"> 
                                         @Html.DisplayFor(modelItem => item.WinterProd)
                                     </div>
-                                    <div class="season-body">
+                                    <div class="season-card">
                                         @Html.DisplayFor(modelItem => item.WinterTime)
                                     </div>
-                                    <div class="season-body">
+                                    <div class="season-card">
                                         <div class="big-checkbox">
                                             @Html.DisplayFor(modelItem => item.BookedWinter)
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="season-body">
-                                <div class="season-box-index">
-                                    <div class="season-body">
+                            <div class="season-container col-sm-2 col-md-2">
+                                <div class="season-card-index box-center-2">
+                                    <div class="season-card">
                                         @Html.DisplayFor(modelItem => item.SpringProd)
                                     </div>
-                                    <div class="season-body">
+                                    <div class="season-card">
                                         @Html.DisplayFor(modelItem => item.SpringTime)
                                     </div>
-                                    <div class="season-body">
+                                    <div class="season-card">
                                         <div class="big-checkbox">
                                             @Html.DisplayFor(modelItem => item.BookedSpring)
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div class="season-body-row-last col-sm-2 col-md-2">
                                 @Html.ActionLink("Edit", "Edit", new { id = item.SeasonManagerId }) |
                                 @Html.ActionLink("Details", "Details", new { id = item.SeasonManagerId }) |
                                 @Html.ActionLink("Delete", "Delete", new { id = item.SeasonManagerId })
@@ -140,6 +139,5 @@
                         </div>
                     }
                 </div>
-            </div>
-        </div>
+     
     

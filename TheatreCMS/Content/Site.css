@@ -323,21 +323,24 @@ textarea {
     margin: 0 auto;
     float: none;
 }
-/* MODIFYING INDEX PAGE TABLE TO HAVE HEADER SINCE BOOTSTRAP TABLE CLASS DIDN'T INCLUDE IT */
-.top-margin {
-    margin-top: 1rem;
-}
+
 /* CENTERS TITLES IN INDEX PAGE TABLE HEADER (RED) */
 .box-center {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: auto;
     margin-bottom: auto;
+    padding: 5px 5px;
+    /*white-space:pre-wrap;*/
 }
-
-.page-center {
+/* CENTERS SEASON CARDS IN INDEX TABLE ROWS (GREY) */
+.box-center-2 {
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 20px 5px;
+    /*white-space:pre-wrap;*/
 }
 
 /* THESE MANIPULATE THE TEXT ON THE HEADERS */
@@ -357,6 +360,10 @@ textarea {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 18px;
     overflow: hidden;
+    /*max-width: 83.3%;*/
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid var(--dark-color);
@@ -433,10 +440,21 @@ textarea {
 
 /* CONTAINERS THAT HELP COMPARTEMENTALIZE THE FORMS */
 
-.season-container {
-    margin-left: auto;
-    margin-right: auto;
-    border: solid 1px;
+.season-table-row {
+    /*border: solid var(--dark-color);
+    padding: 10px 10px;*/
+    /*margin-top: 20px;*/
+    position: relative;
+    display: -ms-flexbox;
+    display: inline-flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    min-width: 0;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    /*border-radius: 0.25rem;*/
+    word-wrap: break-word;
+    white-space: normal;
     overflow: hidden;
 }
 
@@ -453,10 +471,25 @@ textarea {
     word-wrap: break-word;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+    /*border-radius: 0.25rem;*/
 }
 
-.season-body {
+.season-card-index {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border-radius: 0.25rem;
+    /*border: solid var(--dark-color);
+    padding: 10px 10px;*/
+    overflow: hidden;
+}
+
+.season-card {
     border: 1px solid rgba(0, 0, 0, 0.125);
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
@@ -464,30 +497,32 @@ textarea {
     padding: 5px 5px;
 }
 
-.season-box-index {
-    /*border: solid var(--dark-color);
-    padding: 10px 10px;*/
-    /*margin-top: 20px;*/
-    position: relative;
-    display: -ms-flexbox;
-    display: inline-flex;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    min-width: 0;
-    word-wrap: break-word;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+.season-container{
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 5px 5px;
 }
 
 .season-body-row {
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     min-height: 1px; 
-    padding: 50px 10px;
-    margin-top: auto;
-    margin-bottom:auto;
+    padding: 70px 10px;
+    /*margin-top: auto;
+    margin-bottom:auto;*/
+}
+
+.season-body-row-last {
+    /*border-right: 1px solid rgba(0, 0, 0, 0.125);*/
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 70px 10px;
+    /*margin-top: auto;
+    margin-bottom:auto;*/
 }
 
 .table-box {
@@ -514,7 +549,7 @@ textarea {
     -webkit-transform: scale(2); /* Safari and Chrome */
     -o-transform: scale(2); /* Opera */
     transform: scale(2);
-    padding: 10px;
+    /*padding: 10px;*/
 }
 
 /* MODIFIED BUTTONS TAILORED FOR SEASON MANAGER VIEWS */
