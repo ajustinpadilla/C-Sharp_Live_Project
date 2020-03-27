@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;   // For testing purposes
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
+//using Microsoft.AspNet.Identity;
 
 namespace TheatreCMS.Controllers
 {
@@ -87,6 +89,21 @@ namespace TheatreCMS.Controllers
 
                 db.CastMembers.Add(castMember);
                 db.SaveChanges();
+
+                // If a user was selected, update the CastMemberUserID column in the User table with CastMemberPersonID.
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    // Use the recently added CastMemberPersonID to find the selected User
+                    var selectedUser = db.Users.Find(castMember.CastMemberPersonID);
+
+                    // Update the User's Cast Member Id column with castMemberId
+                    selectedUser.CastMemberUserID = castMember.CastMemberID;
+
+                    // Save the changes
+                    db.Entry(selectedUser).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -96,14 +113,29 @@ namespace TheatreCMS.Controllers
         // GET: CastMembers/Edit/5
         public ActionResult Edit(int? id)
         {
+            // STORY REQUIREMENT: The Edit function should check if the User has been modified(i.e. if the User has been added, 
+            // removed, or changed) and set or reset the User(or Users) value for the appropriate CastMemberId.
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             CastMember castMember = db.CastMembers.Find(id);
+
             if (castMember == null)
             {
                 return HttpNotFound();
+            }
+
+            // Check if the user associated with this CastMember is deleted.  If so, reset value to null.
+            if (db.Users.Where(x => x.Id == castMember.CastMemberPersonID).Count() <= 0)
+            {
+                Debug.WriteLine("\n\n\nDELETED USER DETECTED, Reset Username to N / A\n\n\n");
+                castMember.CastMemberPersonID = null;
+
+                db.Entry(castMember).State = EntityState.Modified;
+                db.SaveChanges();
             }
             // ***still need to get existing value to display as a default in drop-down list***
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", castMember.CastMemberPersonID);
@@ -118,7 +150,6 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
         {
-
             ModelState.Remove("CastMemberPersonID");
             string userId = Request.Form["dbUsers"].ToString();
             if (ModelState.IsValid)
@@ -139,6 +170,16 @@ namespace TheatreCMS.Controllers
                 if (!string.IsNullOrEmpty(userId))
                 {
                     currentCastMember.CastMemberPersonID = db.Users.Find(userId).Id;
+
+                    // Get the selected User.
+                    var selectedUser = db.Users.Find(userId);
+
+                    // Update the User's Cast Member Id column with castMemberId
+                    selectedUser.CastMemberUserID = castMember.CastMemberID;
+
+                    // Save the changes
+                    db.Entry(selectedUser).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
                 else
                 {
