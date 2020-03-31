@@ -296,19 +296,15 @@ textarea {
     -webkit-animation-name: fadeIn;
 }
 
-/* SEASON MANAGER STYLING CLASSES*/
+/* ---------------------------- SEASON MANAGER STYLING CLASSES ---------------------------- */
 
-/* THESE ARE FOR MANAGING COLOR SCHEMES */
-.b-on-w {
-    color: var(--dark-color);
-    background-color: var(--light-color);
-}
-
+/* MAIN COLOR SCHEME*/
 .b-on-g {
     color: var(--dark-color);
     background-color: #bfc5db;
 }
 
+/* COLORING HEADER ON DELETE PAGE */
 .red {
     color: var(--main-bg-color);
 }
@@ -337,20 +333,15 @@ textarea {
 
 /* THESE ARE THE MOST IMPORTANT FORMATTING CLASSES FOR THE SEASON MANAGER VIEWS */
 
+/* BASIC FORMATTING FOR INDEX PAGE */
 .page-format-index {
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 18px;
-    /*display: flex;*/
-    /*margin-left: auto;
-    margin-right: auto;*/
-    
-    /*border: 1px solid var(--dark-color);
-    border-radius: 2px;
-    box-shadow: 1px 1px 5px 1px #888888;*/
 }
 
-.banner-format-index { /*Seperate styling for top banner on Index Page*/
+/*Seperate styling for top banner on Index Page*/
+.banner-format-index { 
     color: var(--dark-color);
     background-color: #bfc5db;
     text-align: center;
@@ -362,7 +353,8 @@ textarea {
     margin-right: auto;   
 }
 
-.page-format-EditCreate { /*Form Container for Both Edit and Delete Pages*/
+/*Form Container for Both Edit and Delete Pages*/
+.page-format-EditCreate { 
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 16px;
@@ -374,7 +366,8 @@ textarea {
     padding: 20px;
 }
 
-.page-format-delete { /*Form Container for Delete Page*/
+/*Form Container for Details and Delete Pages*/
+.page-format-DetailsDelete { 
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 16px;
@@ -385,25 +378,8 @@ textarea {
     padding: 20px;
 }
 
-.page-format-details { /*Form Container for Delete Page*/
-    text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 16px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-    background-color: #bfc5db;
-    padding: 20px;
-}
-
-.formGroup {
-    max-width: 80%;
-    margin-bottom: 1rem;
-    margin-left:auto;
-    margin-right: auto;
-}
-
-.bg_1 { /* Background.  Black and Gold Theater Image  */
+/* Background.  Black and Gold Theater Image  */
+.bg_1 { 
     background-image: url("Images/img2_gold.jpeg");
     height: 100%;
     background-position: center;
@@ -412,7 +388,15 @@ textarea {
     background-color: var(--dark-color);
 }
 
-/* CSS FOR INDEX PAGE */
+/* FORMATTING CREATE AND EDIT PAGES*/
+.formGroup {
+    max-width: 80%;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* FOR INDEX PAGE */
 
 .card-format {
     color: var(--dark-color);
@@ -421,23 +405,19 @@ textarea {
     padding: 20px 0px;
     margin: 20px 20px;
     overflow:hidden;
-    /*display: flex;*/
-}
-
-.banner-grey {
-    background-color: #d2d6e6;
 }
 
 .card-banner {
-    text-align:center;
+    text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.125);
     background-color: #d2d6e6;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     min-height: 1px;
     padding: 15px 5px;
-    /*margin: 0px .15px;*/
 }
+
+/* USED FOR SPACING VARIOUS ELEMENTS MORE FAVOURABLY */
 
 .top-spacer {
     margin-top: 15px;
@@ -451,11 +431,14 @@ textarea {
     margin-bottom: 10px;
 }
 
-/* CSS FOR DETAILS AND DELETE PAGES */
+/* FORMATTING FOR INDEX, DETAILS AND DELETE PAGES */
+
+/* COLORING HEADERS */
+.banner-grey {
+    background-color: #d2d6e6;
+}
 
 .season-box {
-    /*border: solid var(--dark-color);
-    padding: 10px 10px;*/
     margin-top: 20px;
     position: relative;
     display: -ms-flexbox;
@@ -466,7 +449,6 @@ textarea {
     word-wrap: break-word;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
-    /*border-radius: 0.25rem;*/
 }
 
 .season-body {
@@ -484,6 +466,13 @@ textarea {
     padding: 5px 5px;
 }
 
+/* HOVER EFFECT FOR DETAILS PAGE */
+
+div.magnify:hover {
+    font-size: 150%;
+    cursor: zoom-in;
+}
+
 /* Double-sized Checkboxes */
 
 .big-checkbox {
@@ -492,7 +481,6 @@ textarea {
     -webkit-transform: scale(2); /* Safari and Chrome */
     -o-transform: scale(2); /* Opera */
     transform: scale(2);
-    /*padding: 10px;*/
 }
 
 /* MODIFIED BUTTONS TAILORED FOR SEASON MANAGER VIEWS */
@@ -519,7 +507,7 @@ textarea {
     border: 1px solid var(--dark-color);
 }
 
-/* SEASON MANAGER STYLING CLASSES END */
+/* ---------------------------------- SEASON MANAGER STYLING CLASSES END -------------------------------------- */
 
 .formBox {
     display: block;

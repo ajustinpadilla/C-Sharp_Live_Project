@@ -6,11 +6,13 @@
 
 
 
-    <div class="page-format-details nice-border col-sm-8 col-md-5">
+    <div class="page-format-DetailsDelete nice-border col-sm-8 col-md-5">
         <h2 class="card-banner underline bold">Details for Season Manager</h2>
+        <h4 class="bold">** Hover Over Text To Enlarge</h4>
         <br />
         @*<hr />*@
-        <dl class="">
+    <dl class="">
+        <div class="magnify">
             <dt class="season-spacer">
                 @Html.DisplayNameFor(model => model.NumberSeats)
             </dt>
@@ -18,8 +20,9 @@
             <dd>
                 @Html.DisplayFor(model => model.NumberSeats)
             </dd>
-            @*<hr />*@
-            <br />
+        </div>
+        <br />
+        <div class="magnify">
             <dt class="season-spacer">
                 @Html.DisplayNameFor(model => model.BookedCurrent)
             </dt>
@@ -27,102 +30,111 @@
             <dd class="big-checkbox">
                 @Html.DisplayFor(model => model.BookedCurrent)
             </dd>
-            @*<hr />*@
-            <div class="season-box">
-                <div class="banner-grey season-body">
-                    <br />
-                    <h4 class="underline">Fall Production</h4>
-                    <br />
-                </div>
-                <div class="season-body">
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.FallProd)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.FallProd)
-                    </dd>
-
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.FallTime)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.FallTime)
-                    </dd>
-
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.BookedFall)
-                    </dt>
-
-                    <dd class="big-checkbox">
-                        @Html.DisplayFor(model => model.BookedFall)
-                    </dd>
-                </div>
+        </div>
+        <div class="season-body top-spacer">
+            <div class="banner-grey season-body">
+                <br />
+                <h4 class="underline">Fall Production</h4>
+                <br />
             </div>
-            <div class="season-box">
-                <div class="banner-grey season-body">
-                    <br />
-                    <h4 class="underline">Winter Production</h4>
-                    <br />
-                </div>
-                <div class="season-body">
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.WinterProd)
-                    </dt>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.FallProd)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.WinterProd)
-                    </dd>
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.WinterTime)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.WinterTime)
-                    </dd>
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.BookedWinter)
-                    </dt>
-
-                    <dd class="big-checkbox">
-                        @Html.DisplayFor(model => model.BookedWinter)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.FallProd)
+                </dd>
             </div>
-            <div class="season-box">
-                <div class="banner-grey season-body">
-                    <br />
-                    <h4 class="underline">Spring Production</h4>
-                    <br />
-                </div>
-                <div class="season-body">
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.SpringProd)
-                    </dt>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.FallTime)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.SpringProd)
-                    </dd>
-
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.SpringTime)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.SpringTime)
-                    </dd>
-
-                    <dt class="season-spacer">
-                        @Html.DisplayNameFor(model => model.BookedSpring)
-                    </dt>
-
-                    <dd class="big-checkbox">
-                        @Html.DisplayFor(model => model.BookedSpring)
-                    </dd>
-                </div>
-
+                <dd>
+                    @Html.DisplayFor(model => model.FallTime)
+                </dd>
             </div>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.BookedFall)
+                </dt>
+
+                <dd class="big-checkbox">
+                    @Html.DisplayFor(model => model.BookedFall)
+                </dd>
+            </div>
+        </div>
+        <div class="season-body top-spacer">
+            <div class="banner-grey season-body">
+                <br />
+                <h4 class="underline">Winter Production</h4>
+                <br />
+            </div>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.WinterProd)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.WinterProd)
+                </dd>
+            </div>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.WinterTime)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.WinterTime)
+                </dd>
+            </div>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.BookedWinter)
+                </dt>
+
+                <dd class="big-checkbox">
+                    @Html.DisplayFor(model => model.BookedWinter)
+                </dd>
+            </div>
+        </div>
+        <div class="season-body top-spacer">
+            <div class="banner-grey season-body">
+                <br />
+                <h4 class="underline">Spring Production</h4>
+                <br />
+            </div>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.SpringProd)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SpringProd)
+                </dd>
+            </div>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.SpringTime)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SpringTime)
+                </dd>
+            </div>
+            <div class="magnify">
+                <dt class="season-spacer">
+                    @Html.DisplayNameFor(model => model.BookedSpring)
+                </dt>
+
+                <dd class="big-checkbox">
+                    @Html.DisplayFor(model => model.BookedSpring)
+                </dd>
+            </div>
+            </div>
+
+        </div>
             <br />
             <br />
             <p class="card-banner">
@@ -130,6 +142,6 @@
                 @Html.ActionLink("Edit", "Edit", new { id = Model.SeasonManagerId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = Model.SeasonManagerId })
             </p>
-        </dl>
+    </dl>
     </div>
 
