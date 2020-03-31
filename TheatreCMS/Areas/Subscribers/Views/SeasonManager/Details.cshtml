@@ -6,12 +6,12 @@
 
 
 
-    <div class="page-format-details col-md-6">
-        <h2 class="underline bold">Details for Season Manager</h2>
+    <div class="page-format-details nice-border col-sm-8 col-md-5">
+        <h2 class="card-banner underline bold">Details for Season Manager</h2>
         <br />
-        <hr />
+        @*<hr />*@
         <dl class="">
-            <dt>
+            <dt class="season-spacer">
                 @Html.DisplayNameFor(model => model.NumberSeats)
             </dt>
 
@@ -20,7 +20,7 @@
             </dd>
             @*<hr />*@
             <br />
-            <dt>
+            <dt class="season-spacer">
                 @Html.DisplayNameFor(model => model.BookedCurrent)
             </dt>
 
@@ -29,13 +29,13 @@
             </dd>
             @*<hr />*@
             <div class="season-box">
-                <div class="season-body">
+                <div class="banner-grey season-body">
                     <br />
                     <h4 class="underline">Fall Production</h4>
                     <br />
                 </div>
                 <div class="season-body">
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.FallProd)
                     </dt>
 
@@ -43,7 +43,7 @@
                         @Html.DisplayFor(model => model.FallProd)
                     </dd>
 
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.FallTime)
                     </dt>
 
@@ -51,8 +51,7 @@
                         @Html.DisplayFor(model => model.FallTime)
                     </dd>
 
-
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.BookedFall)
                     </dt>
 
@@ -62,27 +61,27 @@
                 </div>
             </div>
             <div class="season-box">
-                <div class="season-body">
+                <div class="banner-grey season-body">
                     <br />
                     <h4 class="underline">Winter Production</h4>
                     <br />
                 </div>
                 <div class="season-body">
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.WinterProd)
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.WinterProd)
                     </dd>
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.WinterTime)
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.WinterTime)
                     </dd>
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.BookedWinter)
                     </dt>
 
@@ -92,13 +91,13 @@
                 </div>
             </div>
             <div class="season-box">
-                <div class="season-body">
+                <div class="banner-grey season-body">
                     <br />
                     <h4 class="underline">Spring Production</h4>
                     <br />
                 </div>
                 <div class="season-body">
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.SpringProd)
                     </dt>
 
@@ -106,7 +105,7 @@
                         @Html.DisplayFor(model => model.SpringProd)
                     </dd>
 
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.SpringTime)
                     </dt>
 
@@ -114,7 +113,7 @@
                         @Html.DisplayFor(model => model.SpringTime)
                     </dd>
 
-                    <dt>
+                    <dt class="season-spacer">
                         @Html.DisplayNameFor(model => model.BookedSpring)
                     </dt>
 
@@ -126,7 +125,7 @@
             </div>
             <br />
             <br />
-            <p>
+            <p class="card-banner">
                 @Html.ActionLink("Back to List", "Index") |
                 @Html.ActionLink("Edit", "Edit", new { id = Model.SeasonManagerId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = Model.SeasonManagerId })
