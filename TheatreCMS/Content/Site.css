@@ -338,6 +338,8 @@ textarea {
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 18px;
+    /*margin-left: auto;
+    margin-right: auto;*/
 }
 
 /*Seperate styling for top banner on Index Page*/
@@ -402,9 +404,9 @@ textarea {
     color: var(--dark-color);
     background-color: #bfc5db;
     opacity: .92;
-    padding: 20px 0px;
+    /*padding: 20px 0px;
     margin: 20px 20px;
-    overflow:hidden;
+    overflow:hidden;*/
 }
 
 .card-banner {
@@ -1114,11 +1116,11 @@ a.dropdown-item:hover {
 }
 
 /*about page container*/
-.container {
+/*.container {
     position: relative;
     text-align: center;
     color: white;
-}
+}*/
 
 /* Centered text */
 .centered {

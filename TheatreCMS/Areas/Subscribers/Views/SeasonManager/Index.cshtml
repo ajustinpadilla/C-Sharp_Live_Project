@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-    <div class="banner-format-index nice-border col-sm-6 col-md-3">
+    <div class="banner-format-index nice-border col-sm-6 col-md-5">
         <h2 class="underline">Season Managers</h2>
         <p>
             @Html.ActionLink("Create New", "Create")
@@ -11,81 +11,88 @@
         </p>
     </div>
 
-                <div class="page-format-index card-deck">
+                <div class="page-format-index">
 
                     @foreach (var item in Model)
                     {
-                    <div class="card card-format nice-border col-md-4">
-                        <h3 class="card-banner b-on-g bold underline">Season Manager @Html.DisplayFor(modelItem => item.SeasonManagerId)</h3>
-                        <h5 class="season-spacer top-spacer2">Seats Available</h5>
-                        <div>
-                            @Html.DisplayFor(modelItem => item.NumberSeats)
+                    <div class="card container card-format nice-border mt-3 col-md-10">
+                        <h3 class="card-banner bold underline mt-3">Season #@Html.DisplayFor(modelItem => item.SeasonManagerId) Manager</h3>
+                        <div class="row">
+                            <div class="mt-3 mb-3 col-md-6">
+                                <h5 class="">Seats Available</h5>
+                                <div>
+                                    @Html.DisplayFor(modelItem => item.NumberSeats)
+                                </div>
+                            </div>
+                            <div class="mt-3 mb-3 col-md-6">
+                                <h5 class="">Currently Booked?</h5>
+                                <div class="big-checkbox">
+                                    @Html.DisplayFor(modelItem => item.BookedCurrent)
+                                </div>
+                            </div>
                         </div>
-                        <h5 class="season-spacer top-spacer2">Currently Booked?</h5>
-                        <div class="big-checkbox">
-                            @Html.DisplayFor(modelItem => item.BookedCurrent)
-                        </div>
+                        <div class="row mt-2">
+                            <div class="col-sm">
+                                <div class="season-body">
+                                    <h4 class="season-body banner-grey underline">Fall Production</h4>
 
-                        <div class="season-spacer top-spacer">
-                            <div class="season-body">
-                                <h4 class="season-body banner-grey underline">Fall Production</h4>
-
-                                <h5>Name</h5>
-                                <div class="">
-                                    @Html.DisplayFor(modelItem => item.FallProd)
+                                    <h5>Name</h5>
+                                    <div class="">
+                                        @Html.DisplayFor(modelItem => item.FallProd)
+                                    </div>
+                                    <h5 class="top-spacer2">Time</h5>
+                                    <div class="">
+                                        @Html.DisplayFor(modelItem => item.FallTime)
+                                    </div>
+                                    <h5 class="top-spacer2">Booked?</h5>
+                                    <div class="bottum-spacer">
+                                        <div class="big-checkbox">
+                                            @Html.DisplayFor(modelItem => item.BookedFall)
+                                        </div>
+                                    </div>
                                 </div>
-                                <h5 class="top-spacer2">Time</h5>
-                                <div class="">
-                                    @Html.DisplayFor(modelItem => item.FallTime)
+                            </div>
+                            <div class="col-sm">
+                                <div class="season-body">
+                                    <h4 class="season-body banner-grey underline">Winter Production</h4>
+                                    <h5>Name</h5>
+                                    <div class="">
+                                        @Html.DisplayFor(modelItem => item.WinterProd)
+                                    </div>
+                                    <h5 class="top-spacer2">Time</h5>
+                                    <div class="">
+                                        @Html.DisplayFor(modelItem => item.WinterTime)
+                                    </div>
+                                    <h5 class="top-spacer2">Booked?</h5>
+                                    <div class="bottum-spacer">
+                                        <div class="big-checkbox">
+                                            @Html.DisplayFor(modelItem => item.BookedWinter)
+                                        </div>
+                                    </div>
                                 </div>
-                                <h5 class="top-spacer2">Booked?</h5>
-                                <div class="bottum-spacer">
-                                    <div class="big-checkbox">
-                                        @Html.DisplayFor(modelItem => item.BookedFall)
+                            </div>
+                            <div class="col-sm">
+                                <div class="season-body">
+                                    <h4 class="season-body banner-grey underline">Spring Production</h4>
+                                    <h5>Name</h5>
+                                    <div class="">
+                                        @Html.DisplayFor(modelItem => item.SpringProd)
+                                    </div>
+                                    <h5 class="top-spacer2">Time</h5>
+                                    <div class="">
+                                        @Html.DisplayFor(modelItem => item.SpringTime)
+                                    </div>
+                                    <h5 class="top-spacer2">Booked?</h5>
+                                    <div class="bottum-spacer">
+                                        <div class="big-checkbox">
+                                            @Html.DisplayFor(modelItem => item.BookedSpring)
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="season-spacer">                            
-                            <div class="season-body">
-                                <h4 class="season-body banner-grey underline">Winter Production</h4>
-                                <h5>Name</h5>
-                                <div class="">
-                                    @Html.DisplayFor(modelItem => item.WinterProd)
-                                </div>
-                                <h5 class="top-spacer2">Time</h5>
-                                <div class="">
-                                    @Html.DisplayFor(modelItem => item.WinterTime)
-                                </div>
-                                <h5 class="top-spacer2">Booked?</h5>
-                                <div class="bottum-spacer">
-                                    <div class="big-checkbox">
-                                        @Html.DisplayFor(modelItem => item.BookedWinter)
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="season-spacer">                            
-                            <div class="season-body">
-                                <h4 class="season-body banner-grey underline">Spring Production</h4>
-                                <h5>Name</h5>
-                                <div class="">
-                                    @Html.DisplayFor(modelItem => item.SpringProd)
-                                </div>
-                                <h5 class="top-spacer2">Time</h5>
-                                <div class="">
-                                    @Html.DisplayFor(modelItem => item.SpringTime)
-                                </div>
-                                <h5 class="top-spacer2">Booked?</h5>
-                                <div class="bottum-spacer">
-                                    <div class="big-checkbox">
-                                        @Html.DisplayFor(modelItem => item.BookedSpring)
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h5>Manage Season</h5>
-                        <div class="card-banner">
+                        @*<h5>Manage Season</h5>*@
+                        <div class="mb-3 mt-3">
                             @Html.ActionLink("Edit", "Edit", new { id = item.SeasonManagerId }) |
                             @Html.ActionLink("Details", "Details", new { id = item.SeasonManagerId }) |
                             @Html.ActionLink("Delete", "Delete", new { id = item.SeasonManagerId })
