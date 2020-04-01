@@ -5,24 +5,50 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Net.Mail;
+using System.Net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using TheatreCMS.Models;
+using System.Configuration;
 
 namespace TheatreCMS
 {
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
+
+
+        [HttpPost]
+        public ViewResult Index(SendMail.Models.MailModel _objModelMail)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            if (ModelState.IsValid)
+            {
+                MailMessage mail = new MailMessage();
+                mail.To.Add(_objModelMail.To);
+                mail.From = new MailAddress(_objModelMail.From);
+                mail.Subject = _objModelMail.Subject;
+                string Body = _objModelMail.Body;
+                mail.Body = Body;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential("username", "password"); // Enter seders User name and password  
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+                return View("Index", _objModelMail);
+            }
+            else
+            {
+                return View();
+            }
         }
     }
-
     public class SmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
@@ -40,7 +66,7 @@ namespace TheatreCMS
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -76,12 +102,12 @@ namespace TheatreCMS
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
             });
-            manager.EmailService = new EmailService();
+            //manager.EmailService = new TheatreCMS.EmailManager();
             manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

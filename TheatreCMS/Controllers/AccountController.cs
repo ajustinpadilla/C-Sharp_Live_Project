@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TheatreCMS.Models;
+using WebMatrix.WebData;
 
 namespace TheatreCMS.Controllers
 {
@@ -34,9 +35,9 @@ namespace TheatreCMS.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -77,7 +78,7 @@ namespace TheatreCMS.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
 
             //LoginViewModel model holds only information entered form user (email, password and remember-me-or-not bool),
-            //However, the built in method used below (SignInManager.PasswordSignInAsync), which verifies login attempts as valid or not, 
+            //However, the built in method used below (SignInManager.PasswordSignInAsync), which verifies login attempts as valid or not,
             //requires the UserName of the user whose email address is model.Email
 
             //So, we can find the user whose Email is model.Email via ->
@@ -86,7 +87,7 @@ namespace TheatreCMS.Controllers
             //and extract their username as a string to pass to SignInManager.PasswordSignInAsync
             string tempUserName = tempUser.UserName;
 
-            
+
             var result = await SignInManager.PasswordSignInAsync(tempUserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -128,9 +129,9 @@ namespace TheatreCMS.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
+            // The following code protects for brute force attacks against the two factor codes.
+            // If a user enters incorrect codes for a specified amount of time then the user account
+            // will be locked out for a specified amount of time.
             // You can configure the account lockout settings in IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
@@ -168,12 +169,12 @@ namespace TheatreCMS.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //Send an email with this link
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -211,28 +212,71 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        //public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        public ActionResult ForgotPassword(string UserName)
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (WebSecurity.UserExists(UserName))
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
+                    string To = UserName, UserID, Password, SMTPPort, Host;
+                    string token = WebSecurity.GeneratePasswordResetToken(UserName);
+                    if (token == null)
+                    {
+                        // If user does not exist or is not confirmed.
+
+                        return View("Index");
+
+                    }
+                    else
+                    {
+                        //Create URL with above token
+
+                        var lnkHref = "<a href='" + Url.Action("ResetPassword", "Account",
+                            new { email = UserName, code = token }, "http") + "'>Reset Password</a>";
+
+
+                        //HTML Template for Send email
+
+                        string subject = "Your changed password";
+
+                        string body = "<b>Please click the Password Reset Link. </b><br/>" + lnkHref;
+
+
+                        //Get and set the AppSettings using configuration manager.
+
+                        EmailService.EmailManager.AppSettings(out UserID, out Password, out SMTPPort, out Host);
+
+
+                        //Call send email methods.
+
+                        EmailService.EmailManager.SendEmail(UserID, subject, body, To, UserID, Password, SMTPPort, Host);
+
+                    }
+
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
+            return View();
+            //var user = await UserManager.FindByNameAsync(model.Email);
+            //if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+            //{
+            //    // Don't reveal that the user does not exist or is not confirmed
+            //    return View("ForgotPasswordConfirmation");
+            //}
+
+            //// For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+            //// Send an email with this link
+            //string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            //var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            //return RedirectToAction("ForgotPasswordConfirmation", "Account");
+
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            //return View(model);
         }
+
 
         //
         // GET: /Account/ForgotPasswordConfirmation
@@ -408,7 +452,7 @@ namespace TheatreCMS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-       
+
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult LoginFailure()
