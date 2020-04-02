@@ -42,7 +42,7 @@
 
         }*@
         @*<img src="img" />*@
-        @*<img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" class="image-carousel" />*@
+        <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" class="image-carousel" />
         <div class="slideText center text-outline">@Html.DisplayFor(modelItem => item.Description)</div>
     </div>
         }

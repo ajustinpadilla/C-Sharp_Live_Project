@@ -158,12 +158,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.7\lib\net45\WebMatrix.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.7\lib\net45\WebMatrix.WebData.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Owin">
@@ -198,7 +192,6 @@
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\ProductionsController.cs" />
     <Compile Include="Controllers\PartController.cs" />
-    <Compile Include="Controllers\SendMailController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Controllers\RentalRequestController.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
@@ -601,8 +594,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\Subscribers\Data\" />
-    <Folder Include="Views\SendMail\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">

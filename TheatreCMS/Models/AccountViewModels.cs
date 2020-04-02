@@ -97,7 +97,7 @@ namespace TheatreCMS.Models
 
         [Display(Name = "StreetAddress")]
         public string StreetAddress { get; set; }
-
+        
         [Display(Name = "City")]
         public string City { get; set; }
 
