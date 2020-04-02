@@ -58,7 +58,7 @@ namespace TheatreCMS.Controllers
 
 
         // POST: Productions/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -98,7 +98,7 @@ namespace TheatreCMS.Controllers
 
 
         // POST: Productions/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
@@ -123,10 +123,20 @@ namespace TheatreCMS.Controllers
                 currentProduction.IsWorldPremiere = production.IsWorldPremiere;
 
                 var productionPhoto = db.ProductionPhotos.Find(proPhotoId);
-                               
+
+
                 currentProduction.DefaultPhoto = productionPhoto;
-                db.Entry(currentProduction.DefaultPhoto).State = EntityState.Modified;
-                db.SaveChanges();
+
+                // Ignoring attempt to update photo specifically until model can handle null values.
+                //try
+                //{
+                //    db.Entry(currentProduction.DefaultPhoto).State = EntityState.Modified;
+                //    db.SaveChanges();
+                //}
+                //catch (System.ArgumentNullException e)
+                //{
+                //    //Allowing this argument to pass
+                //}
 
                 db.Entry(currentProduction).State = EntityState.Modified;
                 db.SaveChanges();
@@ -136,7 +146,7 @@ namespace TheatreCMS.Controllers
                 return View(production);
         }
 
-            
+
         // GET: Productions/Delete/5
         public ActionResult Delete(int? id)
         {
