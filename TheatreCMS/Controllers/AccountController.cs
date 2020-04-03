@@ -10,10 +10,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TheatreCMS.Models;
+using System.Web.Helpers;
 
 namespace TheatreCMS.Controllers
 {
     [Authorize]
+    [ValidateInput(false)]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -235,7 +237,7 @@ namespace TheatreCMS.Controllers
                     System.Diagnostics.Debug.WriteLine("USER IS VERIFIED!");
                     string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking here: " + callbackUrl);
                     return RedirectToAction("ForgotPasswordConfirmation", "Account");
                 }
             }
@@ -271,11 +273,11 @@ namespace TheatreCMS.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("LoginFailure", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
