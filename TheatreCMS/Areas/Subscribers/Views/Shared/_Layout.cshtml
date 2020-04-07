@@ -15,10 +15,10 @@
                 <a class="nav-link sub-navbar-btn" href="@Url.Action("Index", "Dashboard")">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link sub-navbar-btn" href="@Url.Action("Index", "SeasonManager")">Season Manager</a>
+                <a class="nav-link sub-navbar-btn" href="@Url.Action("Index", "SeasonManager")">My Season</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link sub-navbar-btn" href="@Url.Action("Index", "Subscriber")">Manage Subscription</a>
+                <a class="nav-link sub-navbar-btn" href="@Url.Action("Index", "Subscriber")">My Account</a>
             </li>
         </ul>
     </div>
@@ -30,8 +30,18 @@
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item sub-navbar-btn">
-              <a class="navbar-brand mx-auto sub-navbar-btn" href="@Url.Action("Index", "Home", new { area = "" })">Main Site</a>
+          <li class="nav-item">
+            <div class="nav-login text-center">
+               <a class="navbar-brand mx-auto sub-navbar-login" href="@Url.Action("Register", new { area = "" })">Register</a>
+            </div>
+            </li>
+          <li class="nav-item">
+            <div class="nav-login text-center">
+               <a class="navbar-brand mx-5 sub-navbar-login" href="@Url.Action("Login", "Account", new { area = "" })">Login</a>
+            </div>
+            </li> 
+            <li class="nav-item">
+               <a class="navbar-brand mx-auto sub-navbar-btn" href="@Url.Action("Index", "Home", new { area = "" })">Main Site</a>
             </li>
         </ul>
     </div>

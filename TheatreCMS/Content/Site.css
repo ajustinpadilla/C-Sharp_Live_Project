@@ -649,6 +649,10 @@ textarea {
     color: var(--light-color);
 }
 
+.sub-navbar-login {
+    color: blue;
+}
+
 .sub-navbar-btn:hover {
     background-color: var(--secondary-color);
     border-radius: 10%;
