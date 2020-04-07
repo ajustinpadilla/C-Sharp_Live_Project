@@ -173,8 +173,8 @@
 .loginFailureBackdrop {
     background-color: var(--light-color);
     margin: auto;
-    width: 50%;
-    border: dashed 4px var(--main-bg-color);
+    border: solid 4px var(--main-bg-color);
+    border-radius: 8%;
 }
 
 .center-box {
