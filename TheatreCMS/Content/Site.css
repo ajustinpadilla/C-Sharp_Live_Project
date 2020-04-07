@@ -639,6 +639,22 @@ textarea {
 
 /*Begin styling for Subscriber section*/
 
+/*begin styling for Subscriber navbar*/
+
+.sub-navbar-back {
+    background-color: var(--subscriber-main);
+}
+
+.sub-navbar-btn {
+    color: var(--light-color);
+}
+
+.sub-navbar-btn:hover {
+    background-color: var(--secondary-color);
+    border-radius: 10%;
+}
+/*end styling for Subscriber navbar*/
+
 .subsave {
     background-color: var(--subscriber-main);
     border: none;
