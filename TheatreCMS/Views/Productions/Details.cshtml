@@ -22,7 +22,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="card bg-info mr-4" id="cardss">
                         <div class="card-header" id="head">
                             <b>Days Playing</b>
@@ -83,13 +83,13 @@
 
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
 
                     <div class="card text-center bg-white text-black-50 mr-4" id="cardss">
 
                         <h5 class="card-header text-white" id="head"><b>About The Production</b></h5>
 
-                        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' />
+                        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' id="DisplayImg" />
                         <dl class="dl-horizontal justify-content-start col">
 
                             <dt class="col">
@@ -192,4 +192,4 @@
             @Html.ActionLink("Current Productions", "Current") |
             @Html.ActionLink("Back to List", "Index")
         </p>
-        .,
+       
