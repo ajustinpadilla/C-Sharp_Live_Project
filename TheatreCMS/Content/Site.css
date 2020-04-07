@@ -652,6 +652,8 @@ textarea {
 .sub-navbar-btn:hover {
     background-color: var(--secondary-color);
     border-radius: 10%;
+    text-transform: uppercase;
+    color: var(--dark-color);
 }
 /*end styling for Subscriber navbar*/
 
