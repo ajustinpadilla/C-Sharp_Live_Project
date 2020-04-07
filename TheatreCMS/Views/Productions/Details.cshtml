@@ -5,154 +5,154 @@
 
 
 @*old stuff*@
-<div class="container">
+    <div class="container">
 
-    <div>
+        @*<img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' />*@
+        <div>
 
-        <div class="row justify-content-xl-start text-center">
-            <div class="col-12">
-                <dl>
-                    <dd class="col">
-                        <div class="jumbotron mr-4" id="jumbo"><h1><b> @Html.DisplayFor(model => model.Title)</b></h1></div>
-                    </dd>
-
-                </dl>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <div class="card bg-info mr-4" id="cardss">
-                    <div class="card-header" id="head">
-                        <b>Days Playing</b>
-                    </div>
-                    <ul class="list-group list-group-flush text-black-50">
-
-                        <li class="list-group-item">
-                            Opening Day
-                            <dl>
-
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.OpeningDay)
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="list-group-item">
-                            Closing Day
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.ClosingDay)
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card bg-info mr-4" id="cardss">
-                    <div class="card-header" id="head">
-                        <b>Show Time and Length</b>
-                    </div>
-                    <ul class="list-group list-group-flush text-black-50">
-
-                        <li class="list-group-item">
-                            Run Time
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.Runtime)
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="list-group-item">
-                            Evening Show Time
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.ShowtimeEve)
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="list-group-item">
-                            Matinee Show Time
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.ShowtimeMat)
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-
-
-            </div>
-            <div class="col-md">
-
-                <div class="card text-center bg-white text-black-50 mr-4" id="cardss">
-
-                    <h5 class="card-header text-white" id="head"><b>About The Production</b></h5>
-
-                    <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' />
-                    <dl class="dl-horizontal justify-content-start col">
-
-                        <dt class="col">
-                            @Html.DisplayNameFor(model => model.Title)
-                        </dt>
-
+            <div class="row justify-content-xl-start text-center">
+                <div class="col-12">
+                    <dl>
                         <dd class="col">
-                            @Html.DisplayFor(model => model.Title)
+                            <div class="jumbotron mr-4" id="jumbo"><h1><b> @Html.DisplayFor(model => model.Title)</b></h1></div>
                         </dd>
-
-                        <dt class="col">
-                            @Html.DisplayNameFor(model => model.Playwright)
-                        </dt>
-
-                        <dd class="col">
-                            @Html.DisplayFor(model => model.Playwright)
-                        </dd>
-                        <div class="text-center">
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.DefaultPhoto)
-                                </dd>
-                                <dt class="col flex-md-row">
-                                    @Html.DisplayNameFor(model => model.Description)
-                                </dt>
-
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.Description)
-                                </dd>
-
-                                <dt class="col">
-                                    @Html.DisplayNameFor(model => model.Season)
-                                </dt>
-
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.Season)
-                                </dd>
-
-                                <dt class="col">
-                                    @Html.DisplayNameFor(model => model.IsCurrent)
-
-                                </dt>
-
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.IsCurrent)
-                                </dd>
-
-                                <dt class="col">
-                                    @Html.DisplayNameFor(model => model.IsWorldPremiere)
-
-                                </dt>
-
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.IsWorldPremiere)
-                                </dd>
-
-
-                            </dl>
-                        </div>
 
                     </dl>
-                    <div class="card text-center bg-white text-black-50" id="cardss">
-                        <div class="card-body">
-                            <h5 class="card-title">Where To Buy?</h5>
-                            <p class="card-text"
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card bg-info mr-4" id="cardss">
+                        <div class="card-header" id="head">
+                            <b>Days Playing</b>
+                        </div>
+                        <ul class="list-group list-group-flush text-black-50">
+
+                            <li class="list-group-item">
+                                Opening Day
+                                <dl>
+
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.OpeningDay)
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="list-group-item">
+                                Closing Day
+                                <dl>
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.ClosingDay)
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card bg-info mr-4" id="cardss">
+                        <div class="card-header" id="head">
+                            <b>Show Time and Length</b>
+                        </div>
+                        <ul class="list-group list-group-flush text-black-50">
+
+                            <li class="list-group-item">
+                                Run Time
+                                <dl>
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.Runtime)
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="list-group-item">
+                                Evening Show Time
+                                <dl>
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.ShowtimeEve)
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="list-group-item">
+                                Matinee Show Time
+                                <dl>
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.ShowtimeMat)
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+
+                    <div class="card text-center bg-white text-black-50 mr-4" id="cardss">
+
+                        <h5 class="card-header text-white" id="head"><b>About The Production</b></h5>
+
+                        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' />
+                        <dl class="dl-horizontal justify-content-start col">
+
+                            <dt class="col">
+                                @Html.DisplayNameFor(model => model.Title)
+                            </dt>
+
+                            <dd class="col">
+                                @Html.DisplayFor(model => model.Title)
+                            </dd>
+
+                            <dt class="col">
+                                @Html.DisplayNameFor(model => model.Playwright)
+                            </dt>
+
+                            <dd class="col">
+                                @Html.DisplayFor(model => model.Playwright)
+                            </dd>
+                            <div class="text-center">
+                                <dl>
+
+                                    <dt class="col flex-md-row">
+                                        @Html.DisplayNameFor(model => model.Description)
+                                    </dt>
+
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.Description)
+                                    </dd>
+
+                                    <dt class="col">
+                                        @Html.DisplayNameFor(model => model.Season)
+                                    </dt>
+
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.Season)
+                                    </dd>
+
+                                    <dt class="col">
+                                        @Html.DisplayNameFor(model => model.IsCurrent)
+
+                                    </dt>
+
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.IsCurrent)
+                                    </dd>
+
+                                    <dt class="col">
+                                        @Html.DisplayNameFor(model => model.IsWorldPremiere)
+
+                                    </dt>
+
+                                    <dd class="col">
+                                        @Html.DisplayFor(model => model.IsWorldPremiere)
+                                    </dd>
+
+
+                                </dl>
+                            </div>
+
+                        </dl>
+                        <div class="card text-center bg-white text-black-50" id="cardss">
+                            <div class="card-body">
+                                <h5 class="card-title">Where To Buy?</h5>
+                                <p class="card-text"
                                 <dl>
                                     <dd class="col">
                                         Get your tickets online! at @Html.DisplayFor(model => model.TicketLink)
@@ -160,36 +160,36 @@
 
                                 </dl>
                             </p>
-                            <a href="#" class="btn btn-primary">buy now</a>
+                                <a href="#" class="btn btn-primary">buy now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
 
 
-                <div class="justify-content-end col-md-3">
-                    <dl>
-                        @if (Model.Parts.Count != 0)
-                        {
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Parts)
-                            </dt>
-                            foreach (var part in Model.Parts)
+                    <div class="justify-content-end col-md-3">
+                        <dl>
+                            @if (Model.Parts.Count != 0)
                             {
-                                <dd>
-                                    <a href="/Part/Details/@part.PartID">@Html.DisplayFor(model => part.Character)</a>
-                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Parts)
+                                </dt>
+                                foreach (var part in Model.Parts)
+                                {
+                                    <dd>
+                                        <a href="/Part/Details/@part.PartID">@Html.DisplayFor(model => part.Character)</a>
+                                    </dd>
+                                }
                             }
-                        }
-                    </dl>
+                        </dl>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductionId }) |
-        @Html.ActionLink("Current Productions", "Current") |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-    .,
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductionId }) |
+            @Html.ActionLink("Current Productions", "Current") |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        .,
