@@ -151,7 +151,9 @@
 }*/
 
 /*-----Classes and styling for LoginFailure view------*/
-.button-redirect {
+
+/*using button styles from sponsor index to match theme 
+.button-redirect { 
     background-color: var(--secondary-color);
     text-decoration:none;
     font-size: 20px;
@@ -167,12 +169,20 @@
     background: var(--main-bg-color);
     text-decoration:none;
     color:var(--light-color);
+}*/
+.loginFailureBackdrop {
+    background-color: var(--light-color);
+    margin: auto;
+    width: 50%;
+    border: dashed 4px var(--main-bg-color);
 }
+
 .center-box {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    color: var(--dark-color);
 }
 
 #move-oops {
@@ -180,6 +190,7 @@
     top: 10px;
     bottom: 10px;
     border-radius: 50%;
+    border: solid 2px var(--main-bg-color);
 }
 
 /*-----End styling for LoginFailure view-----*/
