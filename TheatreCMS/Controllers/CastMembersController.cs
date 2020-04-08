@@ -129,7 +129,8 @@ namespace TheatreCMS.Controllers
             }
 
             // Check if the user associated with this CastMember is deleted.  If so, reset value to null.
-            if (db.Users.Where(x => x.Id == castMember.CastMemberPersonID).Count() <= 0)
+            // If the user is already null, don't look for matching ids and don't update the database.
+            if (castMember.CastMemberPersonID != null && db.Users.Where(x => x.Id == castMember.CastMemberPersonID).Count() <= 0)
             {
                 Debug.WriteLine("\n\n\nDELETED USER DETECTED, Reset Username to N / A\n\n\n");
                 castMember.CastMemberPersonID = null;
@@ -167,23 +168,28 @@ namespace TheatreCMS.Controllers
                 currentCastMember.CastYearLeft = castMember.CastYearLeft;
                 currentCastMember.DebutYear = castMember.DebutYear;
 
-                if (!string.IsNullOrEmpty(userId))
+                // Detect whether or not the username was changed.  If so, update the database.  If not, ignore.
+                if (currentCastMember.CastMemberPersonID != castMember.CastMemberPersonID)
                 {
-                    currentCastMember.CastMemberPersonID = db.Users.Find(userId).Id;
+                    Debug.WriteLine("\n\n\nChange Detected!!!!  CHANGE DATABASE!\n\n\n");
+                    if (!string.IsNullOrEmpty(userId))
+                    {
+                        currentCastMember.CastMemberPersonID = db.Users.Find(userId).Id;
 
-                    // Get the selected User.
-                    var selectedUser = db.Users.Find(userId);
+                        // Get the selected User.
+                        var selectedUser = db.Users.Find(userId);
 
-                    // Update the User's Cast Member Id column with castMemberId
-                    selectedUser.CastMemberUserID = castMember.CastMemberID;
+                        // Update the User's Cast Member Id column with castMemberId
+                        selectedUser.CastMemberUserID = castMember.CastMemberID;
 
-                    // Save the changes
-                    db.Entry(selectedUser).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                else
-                {
-                    currentCastMember.CastMemberPersonID = null;
+                        // Save the changes
+                        db.Entry(selectedUser).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        currentCastMember.CastMemberPersonID = null;
+                    }
                 }
 
                 if (file != null && file.ContentLength > 0)
