@@ -65,9 +65,11 @@
 
         <dd>
             @{
-                if (Model.DefaultPhoto != null)
+                if (Model.ProductionPhotos != null)
                 {
-                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.DefaultPhoto.Photo)" />
+                    <img src='@Url.Action("UploadImage", "ProductionPhotos", new { id = Model.ProductionPhotos })' />
+
+                    @*<img src="data:image;base64,@System.Convert.ToBase64String(Model.DefaultPhoto.Photo)" />*@
 
                     //byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
                     //var base64 = System.Convert.ToBase64String(thumbBytes);
