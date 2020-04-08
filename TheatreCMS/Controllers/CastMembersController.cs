@@ -73,36 +73,16 @@ namespace TheatreCMS.Controllers
 
 
 
-
-
-
-
-
-
             // IN PROGRESS
 
             // ModelState error to ensure that A user cannot be assigned to multiple cast members.
             // If the CastMemberUserID IS assigned for this user, that means that this user is assigned
             // to another Cast Member: add the ModelState error.
-            if (db.Users.Find(userId).CastMemberUserID != 0)
-            {
-                ModelState.AddModelError("dbUsers", "This user already has a cast member profile");
-            }
+            //if (db.Users.Find(userId).CastMemberUserID != 0)
+            //{
+            //    ModelState.AddModelError("dbUsers", "This user already has a cast member profile");
+            //}
             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -187,10 +167,6 @@ namespace TheatreCMS.Controllers
         {
             ModelState.Remove("CastMemberPersonID");
             string userId = Request.Form["dbUsers"].ToString();
-            Debug.WriteLine("\n\nThe User Id is: " + userId + "\n\n");
-
-
-
 
 
             // IN PROGRESS
@@ -198,19 +174,15 @@ namespace TheatreCMS.Controllers
             // ModelState error to ensure that A user cannot be assigned to multiple cast members.
             // If the CastMemberUserID is NOT assigned for this user, that means that this user is assigned
             // to another Cast Member: add the ModelState error.
-            if (db.Users.Find(userId).CastMemberUserID != 0)
-            {
-                Debug.WriteLine("\n\nThis User is already assigned to a Cast Member\n\n");
-                //ModelState.AddModelError("dbUsers", "This user already has a cast member profile");
-            }
-            else
-            {
-                Debug.WriteLine("\n\nUser assigned to a Cast Member: SUCCESS\n\n");
-            }
-
-
-
-
+            //if (db.Users.Find(userId).CastMemberUserID != 0)
+            //{
+            //    Debug.WriteLine("\n\nThis User is already assigned to a Cast Member\n\n");
+            //    //ModelState.AddModelError("dbUsers", "This user already has a cast member profile");
+            //}
+            //else if (db.Users.Find(userId).CastMemberUserID == 0)
+            //{
+            //    Debug.WriteLine("\n\nUser assigned to a Cast Member: SUCCESS\n\n");
+            //}
 
 
 
@@ -229,16 +201,41 @@ namespace TheatreCMS.Controllers
                 currentCastMember.CastYearLeft = castMember.CastYearLeft;
                 currentCastMember.DebutYear = castMember.DebutYear;
 
-                // Detect whether or not the username was changed.  If so, update the database.  If not, ignore.
-                // If the Username was changed, set the previous User's CastMemberUserID to 0.
-                if (currentCastMember.CastMemberPersonID != castMember.CastMemberPersonID)
-                {
-                    // Set the previous User's CastMemberUserId to 0.
-                    db.Users.Find(currentCastMember.CastMemberPersonID).CastMemberUserID = 0;
+                // Variables to detect whether or not the username was changed.  If so, update the User db.  If not, ignore.
+                string previousUserName = "";
+                string newUserName = "";
+                bool previousUserIsNull = false;
+                bool newUserIsNull = false;
 
+                // If the current cast member has no User associated with it, set previousUserIsNull to true.
+                // Else, get the Username of that User.
+                if (string.IsNullOrEmpty(currentCastMember.CastMemberPersonID))
+                    previousUserIsNull = true;
+                else
+                    previousUserName = db.Users.Find(currentCastMember.CastMemberPersonID).UserName;
+
+                // If the User selected is null, set newUserIsNull to true.
+                // Else, get the Username of that User.
+                if (string.IsNullOrEmpty(userId))
+                    newUserIsNull = true;
+                else
+                    newUserName = db.Users.Find(userId).UserName;
+
+                // If the previous user and the new user have valid Id's, then the User has changed.
+                // null null ==> Don't Update | null !null ==> Update | !null null ==> Update | !null !null ==> Update
+                // If the Username was changed, set the previous User's CastMemberUserID to 0.
+                if ((previousUserName != newUserName) && !(previousUserIsNull && newUserIsNull))
+                {
+                    Debug.WriteLine("\n\nThe Usernames changed!!\n\n");
+                    // Set the previous User's CastMemberUserId to 0 if that User exists.
+                    if (!previousUserIsNull)
+                        db.Users.Find(currentCastMember.CastMemberPersonID).CastMemberUserID = 0;
+
+                    // Only do this if there was a User selected.  Links the Cast Member and
+                    // User together by updated their associated databases.
                     if (!string.IsNullOrEmpty(userId))
                     {
-                        // Set the 
+                        // Link the Cast Member to the User
                         currentCastMember.CastMemberPersonID = db.Users.Find(userId).Id;
 
                         // Get the selected User.
@@ -251,10 +248,9 @@ namespace TheatreCMS.Controllers
                         db.Entry(selectedUser).State = EntityState.Modified;
                         db.SaveChanges();
                     }
+                    // When there is no User selected, remove the reference to the User for this cast member.
                     else
-                    {
                         currentCastMember.CastMemberPersonID = null;
-                    }
                 }
 
                 if (file != null && file.ContentLength > 0)
