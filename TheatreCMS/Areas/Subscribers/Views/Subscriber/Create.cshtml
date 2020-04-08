@@ -27,12 +27,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CurrentSubscriber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CurrentSubscriber, htmlAttributes: new { @class = "control-label col-md-2 testC" })
             <div class="col-md-10">
-                <div class="checkbox">
                     @Html.EditorFor(model => model.CurrentSubscriber)
                     @Html.ValidationMessageFor(model => model.CurrentSubscriber, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
 
