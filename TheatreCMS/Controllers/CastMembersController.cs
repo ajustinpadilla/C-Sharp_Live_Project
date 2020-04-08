@@ -71,20 +71,11 @@ namespace TheatreCMS.Controllers
             //Extract the Guid as type String from user's selected User (from SelectList)
             string userId = Request.Form["dbUsers"].ToString();
 
-
-
-            // IN PROGRESS
-
             // ModelState error to ensure that A user cannot be assigned to multiple cast members.
             // If the CastMemberUserID IS assigned for this user, that means that this user is assigned
             // to another Cast Member: add the ModelState error.
-            //if (db.Users.Find(userId).CastMemberUserID != 0)
-            //{
-            //    ModelState.AddModelError("dbUsers", "This user already has a cast member profile");
-            //}
-            
-
-
+            if (!string.IsNullOrEmpty(userId) && db.Users.Find(userId).CastMemberUserID != 0)
+                ModelState.AddModelError("CastMemberPersonID", $"{db.Users.Find(userId).UserName} already has a cast member profile");
 
             if (ModelState.IsValid)
             {
@@ -119,6 +110,10 @@ namespace TheatreCMS.Controllers
                 }
 
                 return RedirectToAction("Index");
+            }
+            else  // This viewdata is required for the create view
+            {
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
             }
 
             return View(castMember);
@@ -168,23 +163,13 @@ namespace TheatreCMS.Controllers
             ModelState.Remove("CastMemberPersonID");
             string userId = Request.Form["dbUsers"].ToString();
 
-
-            // IN PROGRESS
-
             // ModelState error to ensure that A user cannot be assigned to multiple cast members.
-            // If the CastMemberUserID is NOT assigned for this user, that means that this user is assigned
-            // to another Cast Member: add the ModelState error.
-            //if (db.Users.Find(userId).CastMemberUserID != 0)
-            //{
-            //    Debug.WriteLine("\n\nThis User is already assigned to a Cast Member\n\n");
-            //    //ModelState.AddModelError("dbUsers", "This user already has a cast member profile");
-            //}
-            //else if (db.Users.Find(userId).CastMemberUserID == 0)
-            //{
-            //    Debug.WriteLine("\n\nUser assigned to a Cast Member: SUCCESS\n\n");
-            //}
-
-
+            // If the userId is null, castMemberId is 0, or previous castMemberId is the same as the new CastMemberId,
+            // Then don't add the model error.
+            int oldCastMemberId = db.CastMembers.Find(castMember.CastMemberID).CastMemberID;    // These variables are here to make the 
+            int newCastMemberId = db.Users.Find(userId).CastMemberUserID;                       // if statement below easier to read.
+            if (!(string.IsNullOrEmpty(userId) || newCastMemberId == 0 || oldCastMemberId == newCastMemberId))
+                ModelState.AddModelError("CastMemberPersonID", $"{db.Users.Find(userId).UserName} already has a cast member profile");
 
             if (ModelState.IsValid)
             {
@@ -267,6 +252,10 @@ namespace TheatreCMS.Controllers
                 db.Entry(currentCastMember).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", castMember.CastMemberPersonID);
             }
             
             return View(castMember);
