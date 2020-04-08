@@ -106,16 +106,28 @@ namespace TheatreCMS.Controllers
                 db.Photo.Add(photo);
                 db.SaveChanges();
                 return photo.PhotoId;
-            }            
+            }
         }
-        public ActionResult DisplayPhoto(int id)
-        {
-            //find photo object from db
-            var photo = db.Photo.Find(id);
-            //get byte array 
-            var byteData = photo.PhotoFile;
-            return File(byteData, "image/png");
-        }
+        public ActionResult DisplayPhoto(int? id) //nullable int
+        {            
+            var byteData = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };           
+                if (id.HasValue)
+                {                
+                Photo photo = db.Photo.Find(id);
+                    if (photo == null)
+                    {
+                        return File(byteData, "image/png");
+                    }
+                    else
+                    {
+                        return File(photo.PhotoFile, "image/png");
+                    }                                                                  
+                }
+                else
+                { 
+                    return File(byteData, "image/png");
+                }
+            }
 
         // GET: Photo/Edit/5
         public ActionResult Edit(int? id)

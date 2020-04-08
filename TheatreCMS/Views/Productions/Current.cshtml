@@ -6,9 +6,14 @@
 
 <h2>Current Production</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@*verifies role of user and only displays link if logged in as admin*@
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
 @* Cycle through each object displaying individual results*@
 @foreach (var item in Model)
 {
@@ -33,10 +38,10 @@
                         @Html.DisplayFor(modelItem => item.Title)
                         <small>
                             @*.................................Small text for author*@
-                            by @Html.DisplayFor(modelItem => item.Playwright)<br/>
-                            @if (item.IsWorldPremiere==true)
+                            by @Html.DisplayFor(modelItem => item.Playwright)<br />
+                            @if (item.IsWorldPremiere == true)
                             {
-                            @Html.DisplayNameFor(model => model.IsWorldPremiere)
+                                @Html.DisplayNameFor(model => model.IsWorldPremiere)
                             }
                         </small>
                     </h5>
@@ -49,7 +54,7 @@
                                 {
                                     @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
                                 }
-                                
+
                                 @if (item.ShowtimeMat != null)
                                 {
                                     @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
@@ -62,10 +67,18 @@
                                   <button type="submit" class="get-ticket-btn btn palette-container my-3 text-captialize text-center font-weight-bold">Get Tickets!</button>
                                 @*  @Html.DisplayFor(modelItem => item.TicketLink) ..................Ticket Link Info *@
                         </div>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) | @*This part left in for debugging purposes*@
+                        @*verifies role of user and only displays edit/delete links if logged in as admin*@
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) | @*This part left in for debugging purposes*@
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId }) | 
+                            </p>
+                        }
+                        <p>
                         @Html.ActionLink("Details", "Details", new { id = item.ProductionId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId }) |
                         @Html.ActionLink("Back to List", "Index")
+                        </p>
                     </div>
                 </div>
             </div>

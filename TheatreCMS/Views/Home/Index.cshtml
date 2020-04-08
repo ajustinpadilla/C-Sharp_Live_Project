@@ -27,23 +27,24 @@
 
         @foreach (var item in Model)
         {
-            <div class="slides">
-                <div class="slideTitle">@Html.DisplayFor(modelItem => item.Title)</div>
+    <div class="slides">
+        <div class="slideTitle">@Html.DisplayFor(modelItem => item.Title)</div>
 
-                @{
-                    string img = "";
-                    if (item.Photo != null)
-                    {
-                        byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 400, 400);
-                        var base64 = System.Convert.ToBase64String(thumbBytes);
-                        img = String.Format("data:image/png;base64,{0}", base64);
-                        <img src="@img" class="image-carousel" />
-                    }
+        @*@{
+            string img = "";
+            if (item.Photo != null)
+            {
+                byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 400, 400);
+                var base64 = System.Convert.ToBase64String(thumbBytes);
+                img = String.Format("data:image/png;base64,{0}", base64);
+                <img src="@img" class="image-carousel" />
+            }
 
-                }
-                @*<img src="img" />*@
-                <div class="slideText center text-outline">@Html.DisplayFor(modelItem => item.Description)</div>
-            </div>
+        }*@
+        @*<img src="img" />*@
+        <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" class="image-carousel" />
+        <div class="slideText center text-outline">@Html.DisplayFor(modelItem => item.Description)</div>
+    </div>
         }
         @*<div class="slideTitle">Title for slide 1 here</div>
             <img src="@Url.Content("~/Content/Images/img1.jpg")" style="width:100%" />
