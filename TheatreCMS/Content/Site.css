@@ -645,18 +645,33 @@ textarea {
     background-color: var(--subscriber-main);
 }
 
-.sub-navbar-btn {
+.sub-navbar-btn, .sub-navbar-btn-h {
     color: var(--light-color);
 }
 
+.sub-navbar-register{
+    right: 235px;
+}
+
 .sub-navbar-login {
+    right: 150px;
+}
+
+.sub-navbar-login, .sub-navbar-register {
     color: blue;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .sub-navbar-btn:hover {
     background-color: var(--secondary-color);
     border-radius: 10%;
     text-transform: uppercase;
+    color: var(--dark-color);
+}
+
+.sub-navbar-btn-h:hover {
     color: var(--dark-color);
 }
 /*end styling for Subscriber navbar*/

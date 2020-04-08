@@ -7,9 +7,9 @@
 
     <ul class="nav nav-item navbar-nav">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = ""}, htmlAttributes: new { title = "Manage", @class = "nav-item" })
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = ""}, htmlAttributes: new { title = "Manage", @class = "sub-navbar-register" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
+        <li><a class="sub-navbar-login" href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
     </ul>
     }
 }
@@ -18,11 +18,11 @@ else
     <ul class="nav nav-item navbar-nav">
         <li>
             
-                @Html.ActionLink("Register", "Register", "Account", new { area = ""}, htmlAttributes: new { id = "registerLink", @class = "nav-item"})
+            @Html.ActionLink("Register", "Register", "Account", new { area = ""}, htmlAttributes: new { id = "registerLink", @class = "sub-navbar-register"})
                 
         </li>
         <li>
-            @Html.ActionLink("Log in", "Login", "Account", new { area = ""}, htmlAttributes: new { id = "loginLink", @class = "nav-item"})
+            @Html.ActionLink("Log In", "Login", "Account", new { area = ""}, htmlAttributes: new { id = "loginLink", @class = "sub-navbar-login"})
         </li>
     </ul>
 }
