@@ -24,7 +24,6 @@ namespace TheatreCMS.Controllers
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             foreach (var user in Users)
                 keyValuePairs.Add(user.Id, user.UserName);
-
             ViewBag.Users = keyValuePairs;
             return View(db.CastMembers.ToList());
         }
@@ -71,6 +70,41 @@ namespace TheatreCMS.Controllers
 
             //Extract the Guid as type String from user's selected User (from SelectList)
             string userId = Request.Form["dbUsers"].ToString();
+
+
+
+
+
+
+
+
+
+            // IN PROGRESS
+
+            // ModelState error to ensure that A user cannot be assigned to multiple cast members.
+            // If the CastMemberUserID IS assigned for this user, that means that this user is assigned
+            // to another Cast Member: add the ModelState error.
+            if (db.Users.Find(userId).CastMemberUserID != 0)
+            {
+                ModelState.AddModelError("dbUsers", "This user already has a cast member profile");
+            }
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             if (ModelState.IsValid)
             {
@@ -153,6 +187,33 @@ namespace TheatreCMS.Controllers
         {
             ModelState.Remove("CastMemberPersonID");
             string userId = Request.Form["dbUsers"].ToString();
+            Debug.WriteLine("\n\nThe User Id is: " + userId + "\n\n");
+
+
+
+
+
+            // IN PROGRESS
+
+            // ModelState error to ensure that A user cannot be assigned to multiple cast members.
+            // If the CastMemberUserID is NOT assigned for this user, that means that this user is assigned
+            // to another Cast Member: add the ModelState error.
+            if (db.Users.Find(userId).CastMemberUserID != 0)
+            {
+                Debug.WriteLine("\n\nThis User is already assigned to a Cast Member\n\n");
+                //ModelState.AddModelError("dbUsers", "This user already has a cast member profile");
+            }
+            else
+            {
+                Debug.WriteLine("\n\nUser assigned to a Cast Member: SUCCESS\n\n");
+            }
+
+
+
+
+
+
+
             if (ModelState.IsValid)
             {
                 var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
@@ -169,11 +230,15 @@ namespace TheatreCMS.Controllers
                 currentCastMember.DebutYear = castMember.DebutYear;
 
                 // Detect whether or not the username was changed.  If so, update the database.  If not, ignore.
+                // If the Username was changed, set the previous User's CastMemberUserID to 0.
                 if (currentCastMember.CastMemberPersonID != castMember.CastMemberPersonID)
                 {
-                    Debug.WriteLine("\n\n\nChange Detected!!!!  CHANGE DATABASE!\n\n\n");
+                    // Set the previous User's CastMemberUserId to 0.
+                    db.Users.Find(currentCastMember.CastMemberPersonID).CastMemberUserID = 0;
+
                     if (!string.IsNullOrEmpty(userId))
                     {
+                        // Set the 
                         currentCastMember.CastMemberPersonID = db.Users.Find(userId).Id;
 
                         // Get the selected User.
@@ -234,7 +299,21 @@ namespace TheatreCMS.Controllers
         public ActionResult DeleteConfirmed(int? id)
         {
             CastMember castMember = db.CastMembers.Find(id);
+
+            // Before the cast member is removed.  Set the associated User CastMemberUserId to 0 if a User was assigned.
+            if (castMember.CastMemberPersonID != null)
+                db.Users.Find(castMember.CastMemberPersonID).CastMemberUserID = 0;
+
             db.CastMembers.Remove(castMember);
+
+            // PROBABLY NOT NEEDED
+
+            // Remove the ModelState Error when the cast member is deleted.  Now the user associated with this
+            // Deleted Cast Member can be assigned without creating an error.
+            //string username = db.Users.Where(x => x.CastMemberUserID == id).First().UserName;
+            //if (ModelState.ContainsKey(username))
+            //    ModelState[username].Errors.Clear();
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
