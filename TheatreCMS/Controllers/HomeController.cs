@@ -95,5 +95,26 @@ namespace TheatreCMS.Controllers
             }
 
         }
+        [HttpPost]
+        public ActionResult ArchiveSearch(string SearchByCategory)
+        {
+            switch (SearchByCategory)
+            {
+                case "ArchiveCastMember":
+                    ViewBag.Message = "Searched by Cast Member";
+                    break;
+                case "ArchiveProduction":
+                    ViewBag.Message = "Searched by Production";
+                    break;
+                case "ArchivePart":
+                    ViewBag.Message = "Searched by Part";
+                    break;
+                default:
+                    break;
+            }
+            return View("Archive");
+        }
+
+
     }
 }

@@ -4,103 +4,121 @@
 }
 
 
-        <!--Jumbotron header-->
-        <div class="jumbotron jumbotron-fluid bgimage">
-            <div class="container">
-                <h1 class="display-4">Theatre Vertigo Archive</h1>
-                <p class="">
-                    In 1997, Theatre Vertigo was founded by Paul Floding, Nanette Pettit and Jeff Meyers.  Since then, Theatre Vertigo has performed in numerous spaces including The Russell Street Theater, The Electric Company, Theater!Theatre!, and their current home, The Shoebox Theater.
-                    From 2003 to 2014, Theatre Vertigo produced Anonymous Theatre as a summer fundraiser in collaboration with The Anonymous Theatre Company.  Other past collaborations include defunkt theatre, Stark Raving Theater, and Tears of Joy Theatre.
-                    Theatre Vertigo has worked on world premieres including Faust.Us by Joseph Fisher, 99 Ways to Fuck a Swan by Kim Rosenstock, and The End of Sex by Craig Jessen.
-                    In 2016, Theatre Vertigo produced its first officially commissioned work from a playwright, I Want To Destroy You, by Rob Handel.
-                </p>
+<!--Jumbotron header-->
+<div class="jumbotron jumbotron-fluid bgimage">
+    <div class="container">
+        <h1 class="display-4">Theatre Vertigo Archive</h1>
+        <p class="">
+            In 1997, Theatre Vertigo was founded by Paul Floding, Nanette Pettit and Jeff Meyers.  Since then, Theatre Vertigo has performed in numerous spaces including The Russell Street Theater, The Electric Company, Theater!Theatre!, and their current home, The Shoebox Theater.
+            From 2003 to 2014, Theatre Vertigo produced Anonymous Theatre as a summer fundraiser in collaboration with The Anonymous Theatre Company.  Other past collaborations include defunkt theatre, Stark Raving Theater, and Tears of Joy Theatre.
+            Theatre Vertigo has worked on world premieres including Faust.Us by Joseph Fisher, 99 Ways to Fuck a Swan by Kim Rosenstock, and The End of Sex by Craig Jessen.
+            In 2016, Theatre Vertigo produced its first officially commissioned work from a playwright, I Want To Destroy You, by Rob Handel.
+        </p>
+    </div>
+</div>
+
+<!--Current Productions-->
+<div>
+    <h4>Current Productions</h4>
+    <div class="card-deck">
+        <div class="card">
+            <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top" alt="Ghost">
+            <div class="card-body">
+                <h5 class="card-title">Stupid Ghost</h5>
+                <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
             </div>
         </div>
-
-        <!--Current Productions-->
-        <div>
-            <h4>Current Productions</h4>
-            <div class="card-deck">
-                <div class="card">
-                    <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top" alt="Ghost">
-                    <div class="card-body">
-                        <h5 class="card-title">Stupid Ghost</h5>
-                        <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top" alt="Midas">
-                    <div class="card-body">
-                        <h5 class="card-title">Everything You Touch</h5>
-                        <p class="card-text">A cursed man that ruins everything he touches.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Content/Images/venice.jpg" class="card-img-top" alt="Merchant">
-                    <div class="card-body">
-                        <h5 class="card-title">Merchant of Venice</h5>
-                        <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                    </div>
-                </div>
+        <div class="card">
+            <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top" alt="Midas">
+            <div class="card-body">
+                <h5 class="card-title">Everything You Touch</h5>
+                <p class="card-text">A cursed man that ruins everything he touches.</p>
             </div>
-            <hr />
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+            </div>
         </div>
+        <div class="card">
+            <img src="~/Content/Images/venice.jpg" class="card-img-top" alt="Merchant">
+            <div class="card-body">
+                <h5 class="card-title">Merchant of Venice</h5>
+                <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
 
-        <!--Seach Bar/ Actors,parts, and productions dropdown-->
-        <div class="container" style="align-content:center">
-            <nav class="navbar navbar-expand-xl">
-                <form class="form-inline">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+<!--Seach Bar/ Actors,parts, and productions dropdown-->
+@using (Html.BeginForm("ArchiveSearch", "Home", FormMethod.Post))
+{
+    <div class="container" style="align-content:center">
+        <input class="form-control mr-2" type="search" placeholder="Search" name="ArchiveSearchField">
+        <select id="SearchByCategory" name="SearchByCategory">
+            <option>Search by Category</option>
+            <option value="ArchiveCastMember">Cast Member</option> 
+            <option value="ArchiveProduction">Production</option>
+            <option value="ArchivePart">Part</option>
+        </select>
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+    </div>
 
-                        <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Search by category
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#Cast_Member">Cast Member</a>
-                                <a class="dropdown-item" href="#Part">Part</a>
-                                <a class="dropdown-item" href="#Production">Production</a>
-                            </div>
-                            <button class="btn btn-outline-primary" type="submit">Search</button>
+
+}
+@*<div class="container" style="align-content:center">
+        <nav class="navbar navbar-expand-xl">
+            <form class="form-inline">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+
+                    <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Search by category
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#Cast_Member">Cast Member</a>
+                            <a class="dropdown-item" href="#Part">Part</a>
+                            <a class="dropdown-item" href="#Production">Production</a>
                         </div>
-                        </div>
-                </form>
-            </nav>
-            <div>
-                <p>
-                    <table style="width:100%" class="results">
-                        <tr>
-                            <th>Cast Member</th>
-                            <th>Part</th>
-                            <th>Production</th>
-                        </tr>
-                        <tr>
-                            <td>Aaron Rodgers</td>
-                            <td>Shylock</td>
-                            <td>Merchant of Venice</td>
-                        </tr>
-                    </table>
-                </p>
-            </div>
-        </div>
-                        
-                   
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </nav>
+    </div>*@
+
+<div>
+    <p>
+        <table style="width:100%" class="results">
+            <caption>@ViewBag.Message</caption>
+            <tr>
+                <th>Cast Member</th>
+                <th>Part</th>
+                <th>Production</th>
+            </tr>
+            <tr>
+                <td>Aaron Rodgers</td>
+                <td>Shylock</td>
+                <td>Merchant of Venice</td>
+            </tr>
+        </table>
+    </p>
+</div>
+
+
+
 
 <hr />
 <!--Past Productions-->
