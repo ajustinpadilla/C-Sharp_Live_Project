@@ -191,39 +191,28 @@ namespace TheatreCMS.Controllers
                 currentCastMember.CastYearLeft = castMember.CastYearLeft;
                 currentCastMember.DebutYear = castMember.DebutYear;
 
-                // Variables to detect whether or not the username was changed.  If so, update the User db.  If not, ignore.
-                string previousUserName = "";
-                string newUserName = "";
-                bool previousUserIsNull = false;
-                bool newUserIsNull = false;
+                string previousUserId = "";
+                string newUserId = "";
 
-                // If the current cast member has no User associated with it, set previousUserIsNull to true.
-                // Else, get the Username of that User.
-                if (string.IsNullOrEmpty(currentCastMember.CastMemberPersonID))
-                    previousUserIsNull = true;
-                else
-                    previousUserName = db.Users.Find(currentCastMember.CastMemberPersonID).UserName;
+                // If the Cast Member had a previous User, get that User's Id.
+                if (!string.IsNullOrEmpty(currentCastMember.CastMemberPersonID))
+                    previousUserId = db.Users.Find(currentCastMember.CastMemberPersonID).UserName;
 
-                // If the User selected is null, set newUserIsNull to true.
-                // Else, get the Username of that User.
-                if (string.IsNullOrEmpty(userId))
-                    newUserIsNull = true;
-                else
-                    newUserName = db.Users.Find(userId).UserName;
+                // If the selected UserName is not "(No User Selected)", get that User's Id.
+                if (!string.IsNullOrEmpty(userId))
+                    newUserId = db.Users.Find(userId).UserName;
 
-                // If the previous user and the new user have valid Id's, then the User has changed.
-                // null null ==> Don't Update | null !null ==> Update | !null null ==> Update | !null !null ==> Update
-                // If the Username was changed, set the previous User's CastMemberUserID to 0.
-                if ((previousUserName != newUserName) && !(previousUserIsNull && newUserIsNull))
+                // Only change the Cast Member's and the user's Ids if the Users changed.
+                if (previousUserId != newUserId)
                 {
                     Debug.WriteLine("\n\nThe Usernames changed!!\n\n");
                     // Set the previous User's CastMemberUserId to 0 if that User exists.
-                    if (!previousUserIsNull)
+                    if (previousUserId != "")
                         db.Users.Find(currentCastMember.CastMemberPersonID).CastMemberUserID = 0;
 
                     // Only do this if there was a User selected.  Links the Cast Member and
                     // User together by updated their associated databases.
-                    if (!string.IsNullOrEmpty(userId))
+                    if (newUserId != "")
                     {
                         // Link the Cast Member to the User
                         currentCastMember.CastMemberPersonID = db.Users.Find(userId).Id;
