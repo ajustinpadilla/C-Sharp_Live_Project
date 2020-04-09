@@ -173,10 +173,12 @@ namespace TheatreCMS.Controllers
                 if (!(newCastMemberId == 0 || oldCastMemberId == newCastMemberId))
                     ModelState.AddModelError("CastMemberPersonID", $"{db.Users.Find(userId).UserName} already has a cast member profile");
             }
-                
+
+            // The unmodified Cast Member to be Edited
+            var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
+
             if (ModelState.IsValid)
             {
-                var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
                 byte[] oldPhoto = currentCastMember.Photo;
 
                 currentCastMember.Name = castMember.Name;
@@ -258,9 +260,17 @@ namespace TheatreCMS.Controllers
             }
             else
             {
-                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", castMember.CastMemberPersonID);
+                // If the ModelState is invalid for some reason, make sure to retain the Cast Member's User selection.
+                //ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", db.CastMembers.Find(castMember.CastMemberID).CastMemberPersonID);
+
+                // The same thing can be acheived if I expand this line's scope: var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
+                // and then use new SelectList(db.Users.ToList(), "Id", "UserName", currentCastMember.CastMemberPersonID);
+                // Now that I think of it, I'm using the value of currentCastMember whether or not the ModelState is valid or not,
+                // So I think I'm safe to expand it's scope.
+
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", currentCastMember.CastMemberPersonID);
             }
-            
+
             return View(castMember);
         }
 
