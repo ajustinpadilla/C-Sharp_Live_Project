@@ -65,9 +65,9 @@
 
         <dd>
             @{
-                if (Model.ProductionPhotos != null)
+                if (Model.DefaultPhoto != null)
                 {
-                    <img src='@Url.Action("DisplayPhoto", "./Photo", new { id = Model.DefaultPhoto.PhotoId})' alt="Production promo photo" />
+                    <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId})' alt="Production promo photo" />
 
                     @*<img src="data:image;base64,@System.Convert.ToBase64String(Model.DefaultPhoto.Photo)" />*@
 
