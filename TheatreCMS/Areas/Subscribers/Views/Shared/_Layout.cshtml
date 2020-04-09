@@ -8,10 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-md sub-navbar-back sub-dropdown-content">
-    @*<button class="navbar-toggler sub-navbar-collapse-btn" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>*@
+  <nav class="navbar fixed-top navbar-expand-lg sub-navbar-back sub-dropdown-content">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -25,13 +22,13 @@
             </li>
         </ul>
     </div>
-    <div class="mx-auto order-0">
+    <div class="mx-auto order-first">
         <a class="navbar-brand mx-auto sub-navbar-btn-h" href="@Url.Action("Index", "Dashboard")">SUBSCRIPTION AREA</a>
         <button class="navbar-toggler sub-navbar-collapse-btn" type="button" data-toggle="collapse" data-target=".dual-collapse2">
           <span class="navbar-toggler-icon sub-toggler-icon"><i class="fas fa-align-justify"></i></span>
         </button>
     </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <div class="navbar-collapse collapse w-100 order-1 dual-collapse2">
         <ul class="navbar-nav ml-auto">
           <li>
             <div class="nav-login text-center">
