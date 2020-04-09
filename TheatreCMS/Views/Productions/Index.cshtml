@@ -128,7 +128,7 @@
     @foreach (var item in Model)
     {
         <div class="card production-admin-div">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="~/Content/Images/@Html.DisplayFor(modelItem => item.DefaultPhoto.Title)" alt="Card image cap">
             <div class="card-body">
                 <h3 class="card-title">@item.Title</h3>
                 <h5 class="card-title">@item.Playwright</h5>
