@@ -166,11 +166,10 @@ namespace TheatreCMS.Controllers
             // ModelState error to ensure that A user cannot be assigned to multiple cast members.
             // If the userId is null, castMemberId is 0, or previous castMemberId is the same as the new CastMemberId,
             // Then don't add the model error.
-            int oldCastMemberId = db.CastMembers.Find(castMember.CastMemberID).CastMemberID;    // Only here to make if statement easier to read
             if (!string.IsNullOrEmpty(userId))
             {
-                int newCastMemberId = db.Users.Find(userId).CastMemberUserID;                       // Only here to make if statement easier to read
-                if (!(newCastMemberId == 0 || oldCastMemberId == newCastMemberId))
+                int newCastMemberId = db.Users.Find(userId).CastMemberUserID;
+                if (!(newCastMemberId == 0 || db.CastMembers.Find(castMember.CastMemberID).CastMemberID == newCastMemberId))
                     ModelState.AddModelError("CastMemberPersonID", $"{db.Users.Find(userId).UserName} already has a cast member profile");
             }
 
