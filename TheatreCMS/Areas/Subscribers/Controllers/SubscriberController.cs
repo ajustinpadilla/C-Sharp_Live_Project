@@ -62,7 +62,16 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             ModelState.Remove("SubscriberPerson");
 
             //Extract the Guid as type String from user's selected User (from SelectList)
-            string userId = Request.Form["dbUsers"].ToString();
+            string userId = null;
+
+            if (User.IsInRole("Admin"))
+            {
+                userId = Request.Form["dbUsers"].ToString();
+            }
+            else 
+            { 
+                userId = User.Identity.GetUserId();
+            }
 
             if (ModelState.IsValid)
             {

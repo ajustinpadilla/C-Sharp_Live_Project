@@ -8,19 +8,19 @@
 
  @if (Request.IsAuthenticated)
  {
-   using (Html.BeginForm())
-  {
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+   /*dispays if user is signed in as admin*/
+     if (User.IsInRole("Admin"))
+     {
+       using (Html.BeginForm())
+        {
+         @Html.AntiForgeryToken()
+     <div class="form-horizontal">
       
       <hr />
       @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
       <!--dv for a drop down menu-->
-
-      @if (User.IsInRole("Admin"))
-      { @*only appears when signed in as admin*@
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -29,19 +29,7 @@
                 </div>
             </div>
         </div>
-      } else
-      {
-        <div>
-          @Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2" })
-          <div>
-             @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
-          </div>
-        </div>
-        @*@Html.EditorFor(model => model.SubscriberPerson.SubscriberPerson.SubscriberId)*@
-      }
 
-        @if (User.IsInRole("Admin"))
-        {
           <div class="form-group">
         @Html.LabelFor(model => model.CurrentSubscriber, htmlAttributes: new { @class = "control-label col-md-2 testC" })
         <div class="col-md-10">
@@ -59,7 +47,6 @@
           </div>
         </div>
       </div>
-       }
         
       <div class="form-group">
         @Html.LabelFor(model => model.Newsletter, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -71,8 +58,6 @@
         </div>
       </div>
 
-      @if (User.IsInRole("Admin")) 
-      { @*only appears when signed in as admin*@
         <div class="form-group">
         @Html.LabelFor(model => model.RecentDonor, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -98,7 +83,6 @@
           @Html.ValidationMessageFor(model => model.LastDonationAmt, "", new { @class = "text-danger" })
         </div>
       </div>
-      }
       
       <div class="form-group">
         @Html.LabelFor(model => model.SpecialRequests, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -108,8 +92,6 @@
         </div>
       </div>
 
-      @if (User.IsInRole("Admin"))
-      { @*only appears when signed in as admin*@
         <div class="form-group">
         @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -117,7 +99,6 @@
           @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
         </div>
       </div>
-      }
       
       <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -125,6 +106,50 @@
         </div>
       </div>
     </div>
+     }
+   }
+   else
+   {  /*dispays if user is signed in not as admin*/
+       using (Html.BeginForm())
+        {
+         @Html.AntiForgeryToken()
+      <div class="form-horizontal">
+        <div class="form-group d-none">
+            @Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2 none" })
+            <div class="col-md-10">
+                <div>
+                    @*@Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])*@
+                     @*@using Microsoft.AspNet.Identity;
+                     @HttpContext.Current.User.Identity.GetUserId();*@
+                </div>
+            </div>
+        </div>
+
+     <div class="form-group">
+        @Html.LabelFor(model => model.Newsletter, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+          <div class="checkbox">
+            @Html.EditorFor(model => model.Newsletter)
+            @Html.ValidationMessageFor(model => model.Newsletter, "", new { @class = "text-danger" })
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.SpecialRequests, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+          @Html.EditorFor(model => model.SpecialRequests, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.SpecialRequests, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+      </div>
+    </div>
+    }
    }
  } else /*dispays if user is not signed in*/
  {
