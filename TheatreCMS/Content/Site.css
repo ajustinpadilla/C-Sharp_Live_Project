@@ -666,15 +666,16 @@ textarea {
 }
 
 .sub-navbar-register{
-    right: 80px;
+    right: 190px;
 }
 
 .sub-navbar-login {
-    right: 5px;
+    right: 110px;
 }
 
-#sub-main-btn {
-    right: 140px;
+.sub-btn-main {
+    position: relative;
+    right: -110px;
 }
 
 .sub-navbar-login, .sub-navbar-register {
@@ -733,6 +734,12 @@ textarea {
 @media screen and (max-width: 1000px) {
     .sub-navbar-back {
         padding-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .sub-btn-main {
+        position: initial;
     }
 }
 /*end styling for Subscriber navbar*/
