@@ -21,6 +21,7 @@
       @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
       <!--dv for a drop down menu-->
+        <h3>@ViewBag.SubscriberError</h3>
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -114,16 +115,7 @@
         {
          @Html.AntiForgeryToken()
       <div class="form-horizontal">
-        <div class="form-group d-none">
-            @Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2 none" })
-            <div class="col-md-10">
-                <div>
-                    @*@Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])*@
-                     @*@using Microsoft.AspNet.Identity;
-                     @HttpContext.Current.User.Identity.GetUserId();*@
-                </div>
-            </div>
-        </div>
+        <h3>@ViewBag.SubscriberError</h3>
 
      <div class="form-group">
         @Html.LabelFor(model => model.Newsletter, htmlAttributes: new { @class = "control-label col-md-2" })
