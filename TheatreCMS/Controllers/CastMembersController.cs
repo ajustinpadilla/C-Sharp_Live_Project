@@ -98,8 +98,8 @@ namespace TheatreCMS.Controllers
                 // If a user was selected, update the CastMemberUserID column in the User table with CastMemberPersonID.
                 if (!string.IsNullOrEmpty(userId))
                 {
-                    // Use the recently added CastMemberPersonID to find the selected User
-                    var selectedUser = db.Users.Find(castMember.CastMemberPersonID);
+                    // Find the selected user.
+                    var selectedUser = db.Users.Find(userId);
 
                     // Update the User's Cast Member Id column with castMemberId
                     selectedUser.CastMemberUserID = castMember.CastMemberID;
@@ -169,11 +169,11 @@ namespace TheatreCMS.Controllers
             if (!string.IsNullOrEmpty(userId))
             {
                 int newCastMemberId = db.Users.Find(userId).CastMemberUserID;
-                if (!(newCastMemberId == 0 || db.CastMembers.Find(castMember.CastMemberID).CastMemberID == newCastMemberId))
+                if (!(newCastMemberId == 0 || castMember.CastMemberID == newCastMemberId))
                     ModelState.AddModelError("CastMemberPersonID", $"{db.Users.Find(userId).UserName} already has a cast member profile");
             }
 
-            // The unmodified Cast Member to be Edited
+            // The unmodified Cast Member to be Edited ( The 'previous' Cast Member )
             var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
 
             if (ModelState.IsValid)
@@ -195,11 +195,11 @@ namespace TheatreCMS.Controllers
 
                 // If the Cast Member had a previous User, get that User's Id.
                 if (!string.IsNullOrEmpty(currentCastMember.CastMemberPersonID))
-                    previousUserId = db.Users.Find(currentCastMember.CastMemberPersonID).UserName;
+                    previousUserId = currentCastMember.CastMemberPersonID;
 
                 // If the selected UserName is not "(No User Selected)", get that User's Id.
                 if (!string.IsNullOrEmpty(userId))
-                    newUserId = db.Users.Find(userId).UserName;
+                    newUserId = userId;
 
                 // Only change the Cast Member's and the user's Ids if the Users changed.
                 if (previousUserId != newUserId)
@@ -207,14 +207,14 @@ namespace TheatreCMS.Controllers
                     Debug.WriteLine("\n\nThe Usernames changed!!\n\n");
                     // Set the previous User's CastMemberUserId to 0 if that User exists.
                     if (previousUserId != "")
-                        db.Users.Find(currentCastMember.CastMemberPersonID).CastMemberUserID = 0;
+                        db.Users.Find(previousUserId).CastMemberUserID = 0;
 
                     // Only do this if there was a User selected.  Links the Cast Member and
                     // User together by updated their associated databases.
                     if (newUserId != "")
                     {
                         // Link the Cast Member to the User
-                        currentCastMember.CastMemberPersonID = db.Users.Find(userId).Id;
+                        currentCastMember.CastMemberPersonID = userId;
 
                         // Get the selected User.
                         var selectedUser = db.Users.Find(userId);
