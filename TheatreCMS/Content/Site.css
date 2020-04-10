@@ -666,11 +666,15 @@ textarea {
 }
 
 .sub-navbar-register{
-    right: 235px;
+    right: 80px;
 }
 
 .sub-navbar-login {
-    right: 150px;
+    right: 5px;
+}
+
+#sub-main-btn {
+    right: 140px;
 }
 
 .sub-navbar-login, .sub-navbar-register {
@@ -707,17 +711,28 @@ textarea {
     z-index: 1;
 }
 
+
 @media screen and (max-width: 1000px) {
     .sub-navbar-login {
-        right: 1px;
-        top: 25px;
+        right: auto;
+        margin: 12px;
+        left: 33%;
+        top: auto;
     }
 }
 
 @media screen and (max-width: 1000px) {
     .sub-navbar-register {
-        right: 55px;
-        top: 25px;
+        right: auto;
+        margin: 12px;
+        left: 50%;
+        top: auto;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .sub-navbar-back {
+        padding-bottom: 30px;
     }
 }
 /*end styling for Subscriber navbar*/
