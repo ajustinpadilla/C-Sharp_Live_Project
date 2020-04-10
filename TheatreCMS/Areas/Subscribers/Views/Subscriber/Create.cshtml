@@ -19,8 +19,30 @@
 
       <!--dv for a drop down menu-->
 
-      @if (User.IsInRole("Admin")){ @*only appears when signed in as admin*@
+      @if (User.IsInRole("Admin"))
+      { @*only appears when signed in as admin*@
         <div class="form-group">
+            @Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
+                </div>
+            </div>
+        </div>
+      } else
+      {
+        <div>
+          @Html.LabelFor(model => model.SubscriberPerson, htmlAttributes: new { @class = "control-label col-md-2" })
+          <div>
+             @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
+          </div>
+        </div>
+        @*@Html.EditorFor(model => model.SubscriberPerson.SubscriberPerson.SubscriberId)*@
+      }
+
+        @if (User.IsInRole("Admin"))
+        {
+          <div class="form-group">
         @Html.LabelFor(model => model.CurrentSubscriber, htmlAttributes: new { @class = "control-label col-md-2 testC" })
         <div class="col-md-10">
           @Html.EditorFor(model => model.CurrentSubscriber)
@@ -37,8 +59,8 @@
           </div>
         </div>
       </div>
-      }
-
+       }
+        
       <div class="form-group">
         @Html.LabelFor(model => model.Newsletter, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
