@@ -7,6 +7,276 @@
 }
 
 
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<div class="container">
+    @*Buttons to use for now, eventually link to Calender click events*@
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Open Add Modal</a>
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Open Edit Modal</a>
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#detailsModal">Open Details Modal</a>
+
+    @* Modal box for Add CalenderEvent *@
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="formHeader">CalendarEvent</h4>
+                    <hr />
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                </div>
+
+                <div class="modal-body">
+                    <span aria-hidden="true">&times;</span>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="formContainer2 ">
+                            <div class="form-horizontal">
+                                <div class="inputBox2">
+
+                                    @foreach (var item in Model)
+                                    {
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => item.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-5 formBox">
+                                                @Html.EditorFor(modelItem => item.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => item.Title, "", new { @class = "text-white" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => item.StartDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-5 formBox">
+                                                @Html.EditorFor(modelItem => item.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                                @Html.ValidationMessageFor(modelItem => item.StartDate, "", new { @class = "text-white" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => item.EndDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-5 formBox">
+                                                @Html.EditorFor(modelItem => item.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                                                @Html.ValidationMessageFor(modelItem => item.EndDate, "", new { @class = "text-white" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => item.TicketsAvailable, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-5 formBox">
+                                                @Html.EditorFor(modelItem => item.TicketsAvailable, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => item.TicketsAvailable, "", new { @class = "text-white" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="inputLabel col-md-4"> &nbsp; &nbsp;Production</label>
+                                            <div class="col-md-5 formBox">
+                                                @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(modelItem => item.ProductionId, "", new { @class = "text-white" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="inputLabel col-md-4"> &nbsp; &nbsp;Rental Request</label>
+                                            <div class="col-md-5 formBox">
+
+                                                @Html.DropDownList("RentalRequests", (IEnumerable<SelectListItem>)ViewData["RentalRequests"], "N/A", htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(modelItem => item.RentalRequestId, "", new { @class = "text-white" })
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="iconBtnContainer2">
+                        <button class="iconBtn2">
+                            <i class="fa fa-save fa-fw"></i>Save
+                        </button>
+                        <button class="iconBtn2" href="#" data-dismiss="modal">
+                            <i class="fa fa-window-close fa-fw"></i>Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Modal box for Editing a CalenderEvent *@
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="color:black">Edit Calender Event</h3>
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                </div>
+                <span aria-hidden="true">&times;</span>
+                <div class="modal-body">
+
+                    @using (Html.BeginForm("Edit", "CalendarEvents", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="formContainer2 ">
+                            <div class="form-horizontal">
+
+                                @foreach (var t in Model)
+                                {
+                                    @Html.Hidden("EventId", t.EventId)
+                                    <div class="inputBox2">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => t.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-10 formBox">
+                                                @Html.EditorFor(modelItem => t.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => t.Title, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => t.StartDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-10 formBox">
+                                                @Html.EditorFor(modelItem => t.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => t.StartDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => t.EndDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-10 formBox">
+                                                @Html.EditorFor(modelItem => t.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => t.EndDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => t.TicketsAvailable, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-10 formBox">
+                                                @Html.EditorFor(modelItem => t.TicketsAvailable, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => t.TicketsAvailable, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => t.ProductionId, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-10 formBox">
+                                                @Html.EditorFor(modelItem => t.ProductionId, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => t.ProductionId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => t.RentalRequestId, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                                            <div class="col-md-10 formBox">
+                                                @Html.EditorFor(modelItem => t.RentalRequestId, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => t.RentalRequestId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10 formBox">
+                                                <input type="submit" value="Save" class="submitButton2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="modal-footer">
+                    <div class="iconBtnContainer2">
+                        <button class="iconBtn2">
+                            <i class="fa fa-save fa-fw"></i>Save
+                        </button>
+                        <button class="iconBtn2">
+                            <i class="fa fa-trash-alt fa-fw"></i>Delete
+                        </button>
+                        <button class="iconBtn2" href="#" data-dismiss="modal">
+                            <i class="fa fa-window-close fa-fw"></i>Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @* Modal box for Details from a CalenderEvent *@
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="color:black">Calender Event Details</h3>
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                </div>
+                <span aria-hidden="true">&times;</span>
+                <div class="modal-body" style="color:black">
+                    <p style="color:black">
+                        Link: (text input type)<br>
+                        @foreach (var e in Model)
+                        {
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(modelItem => e.Title)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.StartDate)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(modelItem => e.StartDate)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.EndDate)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(modelItem => e.EndDate)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.RentalRequestId)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(modelItem => e.RentalRequestId)
+
+                                </dd>
+                            </dl>
+                        }
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <div class="iconBtnContainer2">
+                        <button class="iconBtn2"><i class="fa fa-trash-alt fa-fw"></i>Delete</button>
+                        <button class="iconBtn2"><i class="fa fa-edit fa-fw"></i>Edit</button>
+                        <button class="iconBtn2" href="#" data-dismiss="modal">
+                            <i class="fa fa-window-close fa-fw"></i>Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
 <div id="calendar"></div>
 
 @section Scripts {
@@ -17,13 +287,13 @@
                 type: "GET",
                 url: "/calendarEvents/GetCalendarEvents",
                 success: function (data) {
-                //    data[0].start = moment(data[0].start)
-                //    data[0].end = moment(data[0].end)
+                    //    data[0].start = moment(data[0].start)
+                    //    data[0].end = moment(data[0].end)
                     events = data
                     $('#calendar').fullCalendar({
-                // put your options and callbacks here
+                        // put your options and callbacks here
                         events: events,
-                       contentHeight: 550,
+                        contentHeight: 550,
                     })
                     console.log(data);
                     console.log(events);
@@ -64,31 +334,31 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var m in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => m.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
+                @Html.DisplayFor(modelItem => m.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
+                @Html.DisplayFor(modelItem => m.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TicketsAvailable)
+                @Html.DisplayFor(modelItem => m.TicketsAvailable)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductionId)
+                @Html.DisplayFor(modelItem => m.ProductionId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RentalRequestId)
+                @Html.DisplayFor(modelItem => m.RentalRequestId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.EventId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+                @Html.ActionLink("Edit", "Edit", new { id = m.EventId }) |
+                @Html.ActionLink("Details", "Details", new { id = m.EventId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = m.EventId })
             </td>
         </tr>
     }
