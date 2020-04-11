@@ -125,56 +125,68 @@
     </table>*@
 
 
-    @foreach (var item in Model)
-    {
-        <div class="card production-admin-div">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h3 class="card-title">@item.Title</h3>
-                <h5 class="card-title">@item.Playwright</h5>
-                <p class="card-text">@item.Description</p>
-                <table>
-                    <tr class="tr-styling">
-                        <th class="th-styling">
-                            @Html.DisplayNameFor(model => model.OpeningDay)
-                        </th>
-                        <td class="td-styling">
-                            @Html.DisplayFor(modelItem => item.OpeningDay)
-                        </td>
-                    </tr>
-                    <tr class="tr-styling">
-                        <th class="th-styling">
-                            @Html.DisplayNameFor(model => model.ClosingDay)
-                        </th>
-                        <td class="td-styling">
-                            @Html.DisplayFor(modelItem => item.ClosingDay)
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr class="tr-styling">
-                        <th class="th-styling">
-                            @Html.DisplayNameFor(model => model.IsCurrent)
-                        </th>
-                        <td class="td-styling">
-                            @Html.DisplayFor(modelItem => item.IsCurrent)
-                        </td>
-                    </tr>
-                    <tr class="tr-styling">
-                        <th class="th-styling">
-                            @Html.DisplayNameFor(model => model.IsWorldPremiere)
-                        </th>
-                        <td class="td-styling">
-                            @Html.DisplayFor(modelItem => item.IsWorldPremiere)
-                        </td>
-                    </tr>
-                </table>
-                @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }) |
-                @Html.ActionLink("Details", "Details", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }) |
-                @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" })
-            </div>
-        </div>
+@foreach (var item in Model)
+{
+<div class="card production-admin-div">
+    @Html.DisplayFor(modelItem => item.DefaultPhoto)
+    @{
+        if (item.DefaultPhoto != null)
+        {
+            <img class="card-img-top" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+        }
+        else
+        {
+            <img class="card-img-top" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+        }
     }
+    <div class="card-body">
+        <h3 class="card-title">@item.Title</h3>
+        <h5 class="card-title">@item.Playwright</h5>
+        <p class="card-text">@item.Description</p>
+        <table>
+            <tr class="tr-styling">
+                <th class="th-styling">
+                    @Html.DisplayNameFor(model => model.OpeningDay)
+                </th>
+                <td class="td-styling">
+                    @Html.DisplayFor(modelItem => item.OpeningDay)
+                </td>
+            </tr>
+            <tr class="tr-styling">
+                <th class="th-styling">
+                    @Html.DisplayNameFor(model => model.ClosingDay)
+                </th>
+                <td class="td-styling">
+                    @Html.DisplayFor(modelItem => item.ClosingDay)
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr class="tr-styling">
+                <th class="th-styling">
+                    @Html.DisplayNameFor(model => model.IsCurrent)
+                </th>
+                <td class="td-styling">
+                    @Html.DisplayFor(modelItem => item.IsCurrent)
+                </td>
+            </tr>
+            <tr class="tr-styling">
+                <th class="th-styling">
+                    @Html.DisplayNameFor(model => model.IsWorldPremiere)
+                </th>
+                <td class="td-styling">
+                    @Html.DisplayFor(modelItem => item.IsWorldPremiere)
+                </td>
+            </tr>
+        </table>
+        @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }) |
+        @Html.ActionLink("Details", "Details", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }) |
+        @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" })
+    </div>
+</div>
+}
 
-    
+
+
+
 
