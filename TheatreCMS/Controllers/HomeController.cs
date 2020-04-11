@@ -96,18 +96,18 @@ namespace TheatreCMS.Controllers
 
         }
         [HttpPost]
-        public ActionResult ArchiveSearch(string SearchByCategory)
+        public ActionResult ArchiveSearch(string SearchByCategory, string ArchiveSearchField)
         {
             switch (SearchByCategory)
             {
                 case "ArchiveCastMember":
-                    ViewBag.Message = "Searched by Cast Member";
+                    ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Cast Members", ArchiveSearchField);
                     break;
                 case "ArchiveProduction":
-                    ViewBag.Message = "Searched by Production";
+                    ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Productions", ArchiveSearchField);
                     break;
                 case "ArchivePart":
-                    ViewBag.Message = "Searched by Part";
+                    ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Parts", ArchiveSearchField);
                     break;
                 default:
                     break;
@@ -115,6 +115,6 @@ namespace TheatreCMS.Controllers
             return View("Archive");
         }
 
-
+        
     }
 }
