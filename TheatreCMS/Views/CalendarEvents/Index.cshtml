@@ -17,13 +17,13 @@
                 type: "GET",
                 url: "/calendarEvents/GetCalendarEvents",
                 success: function (data) {
-                //    data[0].start = moment(data[0].start)
-                //    data[0].end = moment(data[0].end)
+                    //    data[0].start = moment(data[0].start)
+                    //    data[0].end = moment(data[0].end)
                     events = data
                     $('#calendar').fullCalendar({
-                // put your options and callbacks here
+                        // put your options and callbacks here
                         events: events,
-                       contentHeight: 550,
+                        contentHeight: 550,
                     })
                     console.log(data);
                     console.log(events);
@@ -38,10 +38,13 @@
     </script>
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<table class="table text-white">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
