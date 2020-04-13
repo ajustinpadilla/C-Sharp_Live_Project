@@ -74,12 +74,41 @@ namespace TheatreCMS.Controllers
             string newSettings = JsonConvert.SerializeObject(currentSettings, Formatting.Indented);
             newSettings = newSettings.Replace("T00:00:00", "");
             string filepath = Server.MapPath(Url.Content("~/AdminSettings.json"));
+            string oldSettings = null;
+             
+            using (StreamReader reader = new StreamReader(filepath))
+            {
+               oldSettings = reader.ReadToEnd();
+            }
+
+            dynamic oldJSON = JObject.Parse(oldSettings);
+            dynamic newJSON = JObject.Parse(newSettings);
+
             using (StreamWriter writer = new StreamWriter(filepath))
             {
                 writer.Write(newSettings);
             }
 
+            if (oldJSON.recent_definition != newJSON.recent_definition)
+            {
+                UpdateSubscribers(oldJSON, newJSON);
+            }
+            if (oldJSON.season_productions != newJSON.season_productions)
+            {
+                UpdateProductions(oldJSON, newJSON);
+            }
+
             return RedirectToAction("Dashboard");
+
+        }
+
+        private void UpdateSubscribers(dynamic oldJSON, dynamic newJSON)
+        {
+
+        }
+
+        private void UpdateProductions(dynamic oldJSON, dynamic newJSON)
+        {
 
         }
 
