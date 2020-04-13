@@ -523,6 +523,7 @@ textarea {
     color: var(--light-color);
     font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
     font-size: 120%;
+    padding: 0px;
 }
 
 
@@ -530,26 +531,29 @@ textarea {
 .registerTextHead { 
 	color: var(--light-color);
 	font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
-	font-size: 200%
+	font-size: 200%;
 }
 
-.registerTextHead:hover {
+/*.registerTextHead:hover {
     color: var(--dark-color);
-}
+}*/
 
 .registerInput {
-	width: 80%;
-    border-radius: 0 !important;    
+    width: 70%;
+    min-width: 250px;
+    border-radius: 0;
+    background-clip: border-box;
 }
 
 .registerInput:hover {
     border: solid gray 1px;
     transition: .5s;
+    outline: 0;
 }
 
 
 .registerButton {
-	width: auto;    
+	width: auto;
 }
 
 
