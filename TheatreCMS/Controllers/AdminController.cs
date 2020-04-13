@@ -84,32 +84,58 @@ namespace TheatreCMS.Controllers
             dynamic oldJSON = JObject.Parse(oldSettings);
             dynamic newJSON = JObject.Parse(newSettings);
 
-            using (StreamWriter writer = new StreamWriter(filepath))
+            if (oldJSON.recent_definition.date != newJSON.recent_definition.date)
             {
-                writer.Write(newSettings);
-            }
-
-            if (oldJSON.recent_definition != newJSON.recent_definition)
-            {
-                UpdateSubscribers(oldJSON, newJSON);
+                UpdateSubscribers(newJSON);
             }
             if (oldJSON.season_productions != newJSON.season_productions)
             {
-                UpdateProductions(oldJSON, newJSON);
+                UpdateProductions(newJSON);
+            }
+
+            using (StreamWriter writer = new StreamWriter(filepath))
+            {
+                writer.Write(newSettings);
             }
 
             return RedirectToAction("Dashboard");
 
         }
 
-        private void UpdateSubscribers(dynamic oldJSON, dynamic newJSON)
+        private void UpdateSubscribers(dynamic newJSON)
         {
-
+            DateTime recentDef = newJSON.recent_definition.date;
+            foreach (var subscriber in db.Subscribers)
+            {
+                if (recentDef >= subscriber.LastDonated)
+                {
+                    subscriber.RecentDonor = false;
+                }
+                else
+                {
+                    subscriber.RecentDonor = true;
+                }
+            }
+            db.SaveChanges();
         }
 
-        private void UpdateProductions(dynamic oldJSON, dynamic newJSON)
+        private void UpdateProductions(dynamic newJSON)
         {
-
+            foreach (var production in db.Productions)
+            {
+                int fall = newJSON.season_productions.fall;
+                int winter = newJSON.season_productions.winter;
+                int spring = newJSON.season_productions.spring;
+                if (production.ProductionId == fall || production.ProductionId == winter || production.ProductionId == spring)
+                {
+                    production.IsCurrent = true;
+                }
+                else
+                {
+                    production.IsCurrent = false;
+                }
+            }
+            db.SaveChanges();
         }
 
         public ActionResult DonorList()
