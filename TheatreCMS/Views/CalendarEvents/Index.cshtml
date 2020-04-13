@@ -6,6 +6,33 @@
     ViewBag.Title = "Index";
 }
 
+@*  For this story: elected to create confirm delete modal.
+    
+    Sam's To Do List:
+    
+    [Sam: please erase when completed/addressed]
+    
+    -C#/Razor syntax -linked project data isn't formulating on modals, either bug or formatting issue...
+        Sam left commented out from copying from other .cshtml pages for ease of formatting
+
+    -where does the modal CSS go?
+    -current CSS for all modals matches project guidelines/overall aesthetics
+
+    -need some sort of event data to debug view detailsModal eventclick
+
+    -enable selectable dates on calender to debug view addModal eventclick
+
+    -create update functionality
+    -create save functionality
+    -create delete functionality
+
+    -fix bug: editModal: fix scroll of screen to Modal and not background
+
+
+*@
+
+
+
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -16,11 +43,11 @@
     <button type="button" class="btn btn-primary" id="addbtn">Open Add Modal</button>
     <button type="button" class="btn btn-primary" id="detailbtn">Open Details Modal</button>
 
+
     @* Modal box for Add CalenderEvent *@
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="background-color:black">
-
                 <div class="modal-header">
                     <h3 class="modal-title" style="color:white">CalendarEvent</h3>
                     <hr />
@@ -28,82 +55,80 @@
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
                 </div>
-
                 <div class="modal-body">
                     <span aria-hidden="true"></span>
 
                     @*@using (Html.BeginForm())*@
                     @*{*@
-                        @*//foreach (var item in Model)
+                    @*//foreach (var item in Model)
                         //{*@
-                            @*@Html.AntiForgeryToken()*@
-                            <div class="formContainer2 ">
-                                <div class="form-horizontal">
-                                    <div class="inputBox2">
+                    @*@Html.AntiForgeryToken()*@
+                    <div class="formContainer2 ">
+                        <div class="form-horizontal">
+                            <div class="inputBox2">
 
 
 
-                                        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => item.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <label>Event Title</label>
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => item.Title, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => item.Title, "", new { @class = "text-white" })*@
-                                                <input type="text" id="" placeholder="(text input type)" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => item.StartDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <label>Start time:</label>
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => item.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                                                @Html.ValidationMessageFor(modelItem => item.StartDate, "", new { @class = "text-white" })*@
-                                                <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => item.EndDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <label>End time:</label>
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => item.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
-                                                @Html.ValidationMessageFor(modelItem => item.EndDate, "", new { @class = "text-white" })*@
-                                                <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => item.TicketsAvailable, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <label for="eventtypes">Event type:</label>
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => item.TicketsAvailable, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => item.TicketsAvailable, "", new { @class = "text-white" })*@
-                                                <select id="eventtypes">
-                                                    <option value="production">Production</option>
-                                                    <option value="rental">Facility Rental</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Link:</label>
-                                            <div class="formBox">
-                                                @*@Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(modelItem => item.ProductionId, "", new { @class = "text-white" })*@
-                                                <input type="text" id="" placeholder="(text input type)" />
-                                            </div>
-                                        </div>
-
-
+                                @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => item.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <label>Event Title</label>
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => item.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(modelItem => item.Title, "", new { @class = "text-white" })*@
+                                        <input type="text" id="" placeholder="(text input type)" />
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => item.StartDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <label>Start time:</label>
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => item.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                            @Html.ValidationMessageFor(modelItem => item.StartDate, "", new { @class = "text-white" })*@
+                                        <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => item.EndDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <label>End time:</label>
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => item.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                                            @Html.ValidationMessageFor(modelItem => item.EndDate, "", new { @class = "text-white" })*@
+                                        <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => item.TicketsAvailable, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <label for="eventtypes">Event type:</label>
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => item.TicketsAvailable, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(modelItem => item.TicketsAvailable, "", new { @class = "text-white" })*@
+                                        <select id="eventtypes">
+                                            <option value="production">Production</option>
+                                            <option value="rental">Facility Rental</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Link:</label>
+                                    <div class="formBox">
+                                        @*@Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(modelItem => item.ProductionId, "", new { @class = "text-white" })*@
+                                        <input type="text" id="" placeholder="(text input type)" />
+                                    </div>
+                                </div>
+
+
                             </div>
-                            @*}*@
+                        </div>
+                    </div>
+                    @*}*@
                     @*}*@
                 </div>
-                            
                 <div class="modal-footer">
                     <div class="iconBtnContainer2">
                         <button class="iconBtn2">
@@ -114,8 +139,6 @@
                         </button>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -124,89 +147,89 @@
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="background-color:black">
+
                 <div class="modal-header">
                     <h3 class="modal-title" style="color:white">Edit Calender Event</h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
                 </div>
-                <span aria-hidden="true"></span>
                 <div class="modal-body">
-
+                    <span aria-hidden="true"></span>
                     @*@using (Html.BeginForm("Edit", "CalendarEvents", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        @Html.AntiForgeryToken()*@
-                        <div class="formContainer2 ">
-                            <div class="form-horizontal">
+                        {
+                            @Html.AntiForgeryToken()*@
+                    <div class="formContainer2 ">
+                        <div class="form-horizontal">
 
-                                @*@foreach (var t in Model)
+                            @*@foreach (var t in Model)
                                 {
                                     @Html.Hidden("EventId", t.EventId)*@
-                                    <div class="inputBox2">
-                                        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-                                        <label>Event Title:</label>
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => t.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => t.Title, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => t.Title, "", new { @class = "text-danger" })*@
-                                                
-                                                <input type="text" id="" placeholder="(text input type)" />
-                                            </div>
-                                        </div>
+                            <div class="inputBox2">
+                                @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+                                <label>Event Title:</label>
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => t.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => t.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(modelItem => t.Title, "", new { @class = "text-danger" })*@
 
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => t.StartDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <label>Start time:</label>
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => t.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => t.StartDate, "", new { @class = "text-danger" })*@
-                                                
-                                                <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => t.EndDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <label>End time:</label>
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => t.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => t.EndDate, "", new { @class = "text-danger" })*@
-                                                
-                                                <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => t.TicketsAvailable, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <label for="eventtypes">Event type:</label>
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => t.TicketsAvailable, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => t.TicketsAvailable, "", new { @class = "text-danger" })*@
-                                                <select id="eventtypes">
-                                                    <option value="production">Production</option>
-                                                    <option value="rental">Facility Rental</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @*@Html.LabelFor(modelItem => t.ProductionId, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
-                                            <label>Link:</label>
-                                            <div class="formBox">
-                                                @*@Html.EditorFor(modelItem => t.ProductionId, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => t.ProductionId, "", new { @class = "text-danger" })*@
-                                                
-                                                <input type="text" id="" placeholder="(text input type)" />
-                                            </div>
-                                        </div>
-
-                                        
-                                        
+                                        <input type="text" id="" placeholder="(text input type)" />
                                     </div>
-                                @*}*@
+                                </div>
+
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => t.StartDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <label>Start time:</label>
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => t.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(modelItem => t.StartDate, "", new { @class = "text-danger" })*@
+
+                                        <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => t.EndDate, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <label>End time:</label>
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => t.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(modelItem => t.EndDate, "", new { @class = "text-danger" })*@
+
+                                        <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => t.TicketsAvailable, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <label for="eventtypes">Event type:</label>
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => t.TicketsAvailable, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(modelItem => t.TicketsAvailable, "", new { @class = "text-danger" })*@
+                                        <select id="eventtypes">
+                                            <option value="production">Production</option>
+                                            <option value="rental">Facility Rental</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @*@Html.LabelFor(modelItem => t.ProductionId, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })*@
+                                    <label>Link:</label>
+                                    <div class="formBox">
+                                        @*@Html.EditorFor(modelItem => t.ProductionId, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(modelItem => t.ProductionId, "", new { @class = "text-danger" })*@
+
+                                        <input type="text" id="" placeholder="(text input type)" />
+                                    </div>
+                                </div>
+
+
+
                             </div>
+                            @*}*@
                         </div>
+                    </div>
                     @*}*@
 
                 </div>
@@ -225,26 +248,23 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     @* Modal box for Details from a Calendar Event *@
     <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="background-color:black">
+                <span aria-hidden="true"></span>
                 <div class="modal-header">
                     <h3 class="modal-title" style="color:white">Calender Event Details</h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
                 </div>
-                <span aria-hidden="true"></span>
                 <div class="modal-body">
-                    
                     <div class="formContainer2 ">
-
                         @*@foreach (var e in Model)
-                        {*@
+                            {*@
                         <dl class="dl-horizontal">
                             <dt>
                                 @*@Html.DisplayNameFor(model => model.Title)*@
@@ -300,12 +320,14 @@
 
                         </dl>
                         @*}*@
-                        </div>
                     </div>
+                </div>
                 <div class="modal-footer">
                     <div class="iconBtnContainer2">
-                        <button class="iconBtn2" id="deletebtn" data-dismiss="modal" data-toggle="modal"><i  class="fa fa-trash-alt fa-fw" ></i> Delete</button>
                         <button class="iconBtn2" id="editbtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-edit fa-fw"></i> Edit</button>
+                        <button class="iconBtn2" id="detaildeletebtn" data-dismiss="modal" data-toggle="modal">
+                            <i class="fa fa-trash-alt fa-fw"></i> Delete
+                        </button>
                         <button class="iconBtn2" href="#" data-dismiss="modal">
                             <i class="fa fa-window-close fa-fw"></i> Close
                         </button>
@@ -313,27 +335,26 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     @*Modal box for Deletion Confirmation of Calendar Event*@
     <div class="modal fade" id="confdelModal" tabindex="-1" role="dialog" aria-labelledby="confdelModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="background-color:black">
+                <span aria-hidden="true"></span>
                 <div class="modal-header">
                     <h3 class="modal-title" style="color:white">Confirm Delete Event</h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
                 </div>
-                <span aria-hidden="true"></span>
                 <div class="modal-body">
                     <h1>Delete Event</h1>
                     <p>Are you sure you wish to delete this event?</p>
                 </div>
                 <div class="modal-footer">
                     <div class="iconBtnContainer2">
-                        <button class="iconBtn2" id="deletebtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-trash-alt fa-fw" on></i> Delete</button>
+                        <button class="iconBtn2" id="deletebtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-trash-alt fa-fw"></i> Delete</button>
                         <button class="iconBtn2" href="#" data-dismiss="modal">
                             <i class="fa fa-window-close fa-fw"></i> Close
                         </button>
@@ -387,6 +408,9 @@
                 $("#deletebtn").click(function () {
                     $("#confdelModal").modal({ backdrop: true });
                 });
+                $("#detaildeletebtn").click(function () {
+                    $("#confdelModal").modal({ backdrop: true });
+                });
                 jsEvent.click(function () {
                     $("#detailsModal").modal({ backdrop: true });
                 });
@@ -401,7 +425,7 @@
 
                     jsEvent.click(function () {
                         $("#detailsModal").modal({ backdrop: true });
-                        
+
                     })
                 }
             });
@@ -412,7 +436,7 @@
             $('#calendar').fullCalendar({
                 dayClick: function (date, jsEvent, view, resourceObj) {
                     $("#addModal").modal({ backdrop: false });
-            }
+                }
             });
 
             // to confirm event updated:
@@ -423,7 +447,7 @@
                     $('#calendar').fullCalendar('updateEvent', event);
                 }
             });
-            
+
 
 
 
