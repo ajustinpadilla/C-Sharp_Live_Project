@@ -107,7 +107,7 @@ namespace TheatreCMS.Controllers
             DateTime recentDef = newJSON.recent_definition.date;
             foreach (var subscriber in db.Subscribers)
             {
-                if (recentDef > subscriber.LastDonated)
+                if (recentDef >= subscriber.LastDonated)
                 {
                     subscriber.RecentDonor = false;
                 }
@@ -121,11 +121,11 @@ namespace TheatreCMS.Controllers
 
         private void UpdateProductions(dynamic newJSON)
         {
+            int fall = newJSON.season_productions.fall;
+            int winter = newJSON.season_productions.winter;
+            int spring = newJSON.season_productions.spring;
             foreach (var production in db.Productions)
             {
-                int fall = newJSON.season_productions.fall;
-                int winter = newJSON.season_productions.winter;
-                int spring = newJSON.season_productions.spring;
                 if (production.ProductionId == fall || production.ProductionId == winter || production.ProductionId == spring)
                 {
                     production.IsCurrent = true;
