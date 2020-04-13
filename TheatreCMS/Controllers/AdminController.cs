@@ -107,7 +107,7 @@ namespace TheatreCMS.Controllers
             DateTime recentDef = newJSON.recent_definition.date;
             foreach (var subscriber in db.Subscribers)
             {
-                if (recentDef >= subscriber.LastDonated)
+                if (recentDef > subscriber.LastDonated)
                 {
                     subscriber.RecentDonor = false;
                 }
