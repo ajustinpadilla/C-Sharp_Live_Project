@@ -89,9 +89,21 @@
                 @Html.DisplayFor(modelItem => item.RentalRequestId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.EventId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+                @if (User.IsInRole("Admin"))
+                {
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
+                }
+
+                | @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+
+                @if (User.IsInRole("Admin"))
+                {
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+                }
+
+
             </td>
         </tr>
     }
