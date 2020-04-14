@@ -1,4 +1,4 @@
-﻿@model TheatreCMS.Models.CastMember
+﻿@using TheatreCMS.Models
 @{
     ViewBag.Title = "Archive";
 }
@@ -56,17 +56,17 @@
 </div>
 
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
-@using (Html.BeginForm("ArchiveSearch", "Home", FormMethod.Post))
+@using (Html.BeginForm("Archive", "Home", FormMethod.Post))
 {
     <div class="container" style="align-content:center">
-        <input class="form-control mr-2" type="search" placeholder="Search" name="ArchiveSearchField">
+        @Html.TextBox("ArchiveSearchField")
         <select id="SearchByCategory" name="SearchByCategory">
             <option>Search by Category</option>
             <option value="ArchiveCastMember">Cast Member</option> 
             <option value="ArchiveProduction">Production</option>
             <option value="ArchivePart">Part</option>
         </select>
-        <button class="btn btn-outline-primary" type="submit">Search</button>
+        <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
     </div>
 
 
