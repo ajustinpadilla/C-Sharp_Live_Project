@@ -557,6 +557,11 @@ textarea {
 
 /*Styling for CastMember Index View*/
 
+.castMargin {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .castContainer {
     position: relative;
     width: auto;
