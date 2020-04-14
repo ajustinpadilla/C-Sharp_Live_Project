@@ -101,12 +101,10 @@ namespace TheatreCMS.Controllers
             if (Endtm < (Strtm + hrSecs) && Endtm >= Strtm)    //Doesn't allow rentals < 1hr
             {
                 ModelState.AddModelError(string.Empty, "** Rental must be at least 1 hour.  **");  
-                return View(rentalRequest);
             }
             if (Endtm < Strtm)   //Keeps End time after start time
             {
                 ModelState.AddModelError(string.Empty, "** Start Time cannot occur after End Time.  **");
-                return View(rentalRequest);
             }
             if (ModelState.IsValid)
             {
