@@ -782,6 +782,11 @@ textarea {
     padding: 50px;
 }
 
+/*subscriber create page*/
+.testC {
+    color: black;
+}
+
 /*End styling for Subscriber section*/
 
 /* Dropdown Button */
@@ -962,7 +967,7 @@ a.dropdown-item:hover {
 }
 
 /*about page container*/
-.container {
+.about-container {
     position: relative;
     text-align: center;
     color: white;
