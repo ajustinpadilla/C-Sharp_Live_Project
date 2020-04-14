@@ -673,17 +673,6 @@ textarea {
     color: var(--dark-color);
 }
 
-/*.sub-navbar-register{
-    right: 190px;
-}
-
-.sub-navbar-login {
-    right: 110px;
-}*/
-/*.sub-btn-main {
-    position: relative;
-    right: -110px;
-}*/
 .sub-navbar-btn:hover {
     background-color: var(--secondary-color);
     border-radius: 10%;
@@ -710,35 +699,8 @@ textarea {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-
-
-/*@media screen and (max-width: 1000px) {
-    .sub-navbar-login {
-        right: auto;
-        top: 240px;
-        align-content: center;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .sub-navbar-register {
-        right: auto;
-        top: 215px;
-    }
-}*/
-
-/*@media screen and (max-width: 1000px) {
-    .sub-navbar-back:hover {
-        padding-bottom: 50px;
-    }
-}*/
-
-/*@media screen and (max-width: 1000px) {
-    .sub-btn-main {
-        position: initial;
-    }
-}*/
 /*end styling for Subscriber navbar*/
+
 .subsave {
     background-color: var(--subscriber-main);
     border: none;
