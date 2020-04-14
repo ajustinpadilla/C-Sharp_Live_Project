@@ -665,26 +665,25 @@ textarea {
     margin-right: 6px;
 }
 
-.sub-navbar-register{
+.sub-navbar-btn-login {
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+    color: var(--dark-color);
+}
+
+/*.sub-navbar-register{
     right: 190px;
 }
 
 .sub-navbar-login {
     right: 110px;
-}
-
-.sub-btn-main {
+}*/
+/*.sub-btn-main {
     position: relative;
     right: -110px;
-}
-
-.sub-navbar-login, .sub-navbar-register {
-    color: var(--dark-color);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
+}*/
 .sub-navbar-btn:hover {
     background-color: var(--secondary-color);
     border-radius: 10%;
@@ -713,35 +712,32 @@ textarea {
 }
 
 
-@media screen and (max-width: 1000px) {
+/*@media screen and (max-width: 1000px) {
     .sub-navbar-login {
         right: auto;
-        margin: 12px;
-        left: 33%;
-        top: auto;
+        top: 240px;
+        align-content: center;
     }
 }
 
 @media screen and (max-width: 1000px) {
     .sub-navbar-register {
         right: auto;
-        margin: 12px;
-        left: 50%;
-        top: auto;
+        top: 215px;
     }
-}
+}*/
 
-@media screen and (max-width: 1000px) {
-    .sub-navbar-back {
-        padding-bottom: 30px;
+/*@media screen and (max-width: 1000px) {
+    .sub-navbar-back:hover {
+        padding-bottom: 50px;
     }
-}
+}*/
 
-@media screen and (max-width: 1000px) {
+/*@media screen and (max-width: 1000px) {
     .sub-btn-main {
         position: initial;
     }
-}
+}*/
 /*end styling for Subscriber navbar*/
 .subsave {
     background-color: var(--subscriber-main);
