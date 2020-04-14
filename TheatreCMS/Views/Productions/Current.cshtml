@@ -7,12 +7,20 @@
 <h2>Current Production</h2>
 
 @*verifies role of user and only displays link if logged in as admin*@
-@if (User.IsInRole("Admin"))
-{
+<div class="row currentpro">
+    @if (User.IsInRole("Admin"))
+    {
+      <p>
+          @Html.ActionLink("Create New", "Create") |  
+      </p>
+    }
     <p>
-        @Html.ActionLink("Create New", "Create")
+      @Html.ActionLink("Back to List", "Index")
     </p>
-}
+</div>
+
+
+
 
 @* Cycle through each object displaying individual results*@
 @foreach (var item in Model)
@@ -76,8 +84,7 @@
                             </p>
                         }
                         <p>
-                        @Html.ActionLink("Details", "Details", new { id = item.ProductionId }) |
-                        @Html.ActionLink("Back to List", "Index")
+                        @Html.ActionLink("Details", "Details", new { id = item.ProductionId }) 
                         </p>
                     </div>
                 </div>

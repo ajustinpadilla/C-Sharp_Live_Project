@@ -942,6 +942,11 @@ a.dropdown-item:hover {
     font-size: 20px;
 }
 
+/*Current productions*/
+.currentpro a {
+    margin-left: 15px;
+}
+
 /*Sponsor partial styling*/
 .sponsor-partial-pic {
     width: 100%;
