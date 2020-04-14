@@ -21,13 +21,11 @@
     -need some sort of event data to debug view detailsModal eventclick
 
     -enable selectable dates on calender to debug view addModal eventclick
+        -poss need 'interaction' plugin from FullCalendar
 
     -create update functionality
     -create save functionality
     -create delete functionality
-
-    -fix bug: editModal: fix scroll of screen to Modal and not background
-
 
 *@
 
@@ -131,7 +129,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="iconBtnContainer2">
-                        <button class="iconBtn2">
+                        <button class="iconBtn2" id="savebtn" data-dismiss="modal">
                             <i class="fa fa-save fa-fw"></i> Save
                         </button>
                         <button class="iconBtn2" href="#" data-dismiss="modal">
@@ -144,12 +142,12 @@
     </div>
 
     @* Modal box for Editing a CalenderEvent *@
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="background-color:black">
 
                 <div class="modal-header">
-                    <h3 class="modal-title" style="color:white">Edit Calender Event</h3>
+                    <h3 class="modal-title" id="editModalTitle" style="color:white">Edit Calender Event</h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
@@ -405,6 +403,7 @@
                 $("#editbtn").click(function () {
                     $("#editModal").modal({ backdrop: false });
                 });
+                $('#editModal').modal('handleUpdate');
                 $("#deletebtn").click(function () {
                     $("#confdelModal").modal({ backdrop: true });
                 });
@@ -429,6 +428,13 @@
                     })
                 }
             });
+            // to attempt to fix bug of scrolling background while edit Modal open
+            $('#editModal').on('shown.bs.modal', function () {
+                $('html').css('overflow', 'hidden');
+            }).on('hidden.bs.modal', function () {
+                $('html').css('overflow', 'auto');
+            });
+
 
 
             //to render the add modal from selecting empty space [or date link?]
@@ -445,6 +451,7 @@
                     event.title = "CHANGES SAVED!";
 
                     $('#calendar').fullCalendar('updateEvent', event);
+                    $('#calendar').fullCalendar('renderEvent', event, true);
                 }
             });
 
