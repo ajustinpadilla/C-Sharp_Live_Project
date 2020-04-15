@@ -45,7 +45,13 @@
                         Events
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="@Url.Action("Current", "Productions")">Productions/Current</a></li>
+                      <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="@Url.Action("Index", "Productions")">Productions</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Productions")">All</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Current", "Productions")">Current</a></li>
+                            </ul>
+                        </li>
                         <li><a class="dropdown-item" href="@Url.Action("Index", "CalendarEvents")">Calendar of Events</a></li>
                         <li><a class="dropdown-item" href="@Url.Action("Create", "RentalRequest")">Rentals</a></li>
                     </ul>
