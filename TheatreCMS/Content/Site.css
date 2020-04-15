@@ -1133,21 +1133,23 @@ a.dropdown-item:hover {
     margin: auto;
     /*Avoid modal width reflow */
     padding-right: 15px;
-    overflow-y: hidden;
 }
 
-#calendar { 
-    
-}
 
 /*styling for admin calender details/add/edit modals*/
 
 #fc-modals {
-    
-    background-color: var(--dark-color);
+    background-color: var(--main-bg-color);
     color: var(--light-color);
 }
+
+.modal label {
+    color: var(--light-color);
+}
+
+
 
 #fc-modal-headers {
     font-family: Tahoma, Geneva, sans-serif;
 }
+
