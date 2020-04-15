@@ -57,11 +57,10 @@
                             @(" |")
                         }
 
-                        @Html.ActionLink("Details", "Details", new { id = item.CastMemberID })
+                        @*@Html.ActionLink("Details", "Details", new { id = item.CastMemberID })*@
 
                         @if (User.IsInRole("Admin"))
                         {
-                            @("| ")
                             @Html.ActionLink("Delete", "Delete", new { id = item.CastMemberID })
                         }
                     </p>
