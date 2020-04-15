@@ -5,13 +5,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
 @*  For this story: elected to create confirm delete modal.
-    
+
     Sam's To Do List:
-    
+
     [Sam: please erase when completed/addressed]
-    
+
     -C#/Razor syntax -linked project data isn't formulating on modals, either bug or formatting issue...
         Sam left commented out from copying from other .cshtml pages for ease of formatting
 
@@ -45,7 +44,7 @@
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" id="fc-modals">
-                <div class="modal-header" >
+                <div class="modal-header">
                     <h3 class="modal-title" id="fc-modal-titles">Add a Calendar Event</h3>
                     <hr />
                     <button class="iconBtn2" href="#" data-dismiss="modal">
@@ -365,7 +364,6 @@
 </div>
 
 
-
 <div id="calendar"></div>
 
 @section Scripts {
@@ -381,9 +379,6 @@
                     events = data
                     $('#calendar').fullCalendar({
                         // put your options and callbacks here
-
-
-
                         events: events,
                         contentHeight: 550,
                     })
@@ -391,6 +386,8 @@
                     console.log(events);
                 }
             })
+
+            // page is now ready, initialize the calendar...
 
             $(document).ready(function () {
                 $("#addbtn").click(function () {
@@ -447,22 +444,17 @@
             });
 
 
-
-
-            // page is now ready, initialize the calendar...
-
-
-
-
-
         });
     </script>
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<table class="table text-white">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -485,31 +477,43 @@
         <th></th>
     </tr>
 
-    @foreach (var m in Model)
+    @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => m.Title)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => m.StartDate)
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => m.EndDate)
+                @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => m.TicketsAvailable)
+                @Html.DisplayFor(modelItem => item.TicketsAvailable)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => m.ProductionId)
+                @Html.DisplayFor(modelItem => item.ProductionId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => m.RentalRequestId)
+                @Html.DisplayFor(modelItem => item.RentalRequestId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = m.EventId }) |
-                @Html.ActionLink("Details", "Details", new { id = m.EventId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = m.EventId })
+                @if (User.IsInRole("Admin"))
+                {
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
+                }
+
+                | @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+
+                @if (User.IsInRole("Admin"))
+                {
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+                }
+
+
             </td>
         </tr>
     }
