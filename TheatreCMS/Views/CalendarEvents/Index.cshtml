@@ -15,7 +15,6 @@
     -C#/Razor syntax -linked project data isn't formulating on modals, either bug or formatting issue...
         Sam left commented out from copying from other .cshtml pages for ease of formatting
 
-    -where does the modal CSS go?
     -current CSS for all modals matches project guidelines/overall aesthetics
 
     -need some sort of event data to debug view detailsModal eventclick
@@ -45,9 +44,9 @@
     @* Modal box for Add CalenderEvent *@
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" style="background-color:black">
-                <div class="modal-header">
-                    <h3 class="modal-title" style="color:white">CalendarEvent</h3>
+            <div class="modal-content" id="fc-modals">
+                <div class="modal-header" >
+                    <h3 class="modal-title" id="fc-modal-titles">Add a Calendar Event</h3>
                     <hr />
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
@@ -142,12 +141,12 @@
     </div>
 
     @* Modal box for Editing a CalenderEvent *@
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" style="background-color:black">
+            <div class="modal-content" id="fc-modals">
 
                 <div class="modal-header">
-                    <h3 class="modal-title" id="editModalTitle" style="color:white">Edit Calender Event</h3>
+                    <h3 class="modal-title" id="fc-modal-titles">Edit Calender Event</h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
@@ -251,10 +250,10 @@
     @* Modal box for Details from a Calendar Event *@
     <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModal" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" style="background-color:black">
+            <div class="modal-content" id="fc-modals">
                 <span aria-hidden="true"></span>
                 <div class="modal-header">
-                    <h3 class="modal-title" style="color:white">Calender Event Details</h3>
+                    <h3 class="modal-title" id="fc-modal-titles">Calender Event Details</h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
@@ -338,10 +337,10 @@
     @*Modal box for Deletion Confirmation of Calendar Event*@
     <div class="modal fade" id="confdelModal" tabindex="-1" role="dialog" aria-labelledby="confdelModal" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" style="background-color:black">
+            <div class="modal-content" id="fc-modals">
                 <span aria-hidden="true"></span>
                 <div class="modal-header">
-                    <h3 class="modal-title" style="color:white">Confirm Delete Event</h3>
+                    <h3 class="modal-title" id="fc-modal-titles">Confirm Delete Event</h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
@@ -398,20 +397,20 @@
                     $("#addModal").modal({ backdrop: false });
                 });
                 $('#detailbtn').click(function () {
-                    $("#detailsModal").modal({ backdrop: true });
+                    $("#detailsModal").modal({ backdrop: false });
                 });
                 $("#editbtn").click(function () {
                     $("#editModal").modal({ backdrop: false });
                 });
                 $('#editModal').modal('handleUpdate');
                 $("#deletebtn").click(function () {
-                    $("#confdelModal").modal({ backdrop: true });
+                    $("#confdelModal").modal({ backdrop: false });
                 });
                 $("#detaildeletebtn").click(function () {
-                    $("#confdelModal").modal({ backdrop: true });
+                    $("#confdelModal").modal({ backdrop: false });
                 });
                 jsEvent.click(function () {
-                    $("#detailsModal").modal({ backdrop: true });
+                    $("#detailsModal").modal({ backdrop: false });
                 });
                 jsEvent.click(function () {
                     $("#editModal").modal({ backdrop: false });
@@ -428,14 +427,6 @@
                     })
                 }
             });
-            // to attempt to fix bug of scrolling background while edit Modal open
-            $('#editModal').on('shown.bs.modal', function () {
-                $('html').css('overflow', 'hidden');
-            }).on('hidden.bs.modal', function () {
-                $('html').css('overflow', 'auto');
-            });
-
-
 
             //to render the add modal from selecting empty space [or date link?]
 
