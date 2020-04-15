@@ -435,6 +435,8 @@ textarea {
     border: none;
 }
 
+
+
 .submitButton {
     display: inline-block;
     width: 75%;
@@ -942,6 +944,11 @@ a.dropdown-item:hover {
     font-size: 20px;
 }
 
+/*Current productions*/
+.currentpro a {
+    margin-left: 15px;
+}
+
 /*Sponsor partial styling*/
 .sponsor-partial-pic {
     width: 100%;
@@ -1141,4 +1148,25 @@ a.dropdown-item:hover {
     padding-top: 16px;
     /*Centers calendar*/
     margin: auto;
+}
+
+/*Product Details*/
+
+#jumbo.jumbotron {
+    background-color:#bd1a11;
+    
+}
+#cardss.card {
+    margin-top:20px;
+    border:none;
+
+}
+#head.card-header {
+    background-color: #bd1a11;
+    text-decoration-color:white;
+}
+
+#DisplayImg {
+    width:100%; 
+    height:auto;
 }
