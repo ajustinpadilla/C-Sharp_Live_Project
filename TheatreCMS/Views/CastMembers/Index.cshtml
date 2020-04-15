@@ -11,7 +11,11 @@
 <h1 class="text-center">Cast</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*Create is admin only*@
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 
 
@@ -44,9 +48,21 @@
                         Joined our cast: @Html.DisplayFor(modelItem => item.YearJoined) |
                         Role: @Html.DisplayFor(modelItem => item.MainRole)
                     </p>
-                    <p class="text-center">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CastMemberID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CastMemberID })
+                    <p>
+                        @*Delete and edit are admin only*@
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CastMemberID })
+                            @(" |")
+                        }
+
+                        @*@Html.ActionLink("Details", "Details", new { id = item.CastMemberID })*@
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CastMemberID })
+                        }
                     </p>
                 </div>
             </div>

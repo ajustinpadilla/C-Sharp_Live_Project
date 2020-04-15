@@ -435,6 +435,8 @@ textarea {
     border: none;
 }
 
+
+
 .submitButton {
     display: inline-block;
     width: 75%;
@@ -942,6 +944,11 @@ a.dropdown-item:hover {
     font-size: 20px;
 }
 
+/*Current productions*/
+.currentpro a {
+    margin-left: 15px;
+}
+
 /*Sponsor partial styling*/
 .sponsor-partial-pic {
     width: 100%;
@@ -1020,34 +1027,6 @@ a.dropdown-item:hover {
     color: var(--light-color);
     background-color: var(--main-secondary-color);
 }
-
-/* style for Calender Modal Buttons*/
-
-.iconBtnContainer2 {
-    width:100%;
-    margin: 5px;
-}
-
-.iconBtn2 {
-    width: auto;
-    padding: 5px 10px;
-    margin: 5px;
-    display: inline-block;
-    border: 1px solid var(--light-color);
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: var(--light-color);
-    background-color: var(--main-bg-color);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-    .iconBtn2:hover {
-        color: var(--light-color);
-        background-color: var(--main-secondary-color);
-    }
 
 /*Small Image size for Index page*/
 .thumbnail_size {
@@ -1131,25 +1110,25 @@ a.dropdown-item:hover {
     padding-top: 16px;
     /*Centers calendar*/
     margin: auto;
-    /*Avoid modal width reflow */
-    padding-right: 15px;
 }
 
+/*Product Details*/
 
-/*styling for admin calender details/add/edit modals*/
+#jumbo.jumbotron {
+    background-color:#bd1a11;
+    
+}
+#cardss.card {
+    margin-top:20px;
+    border:none;
 
-#fc-modals {
-    background-color: var(--main-bg-color);
-    color: var(--light-color);
+}
+#head.card-header {
+    background-color: #bd1a11;
+    text-decoration-color:white;
 }
 
-.modal label {
-    color: var(--light-color);
+#DisplayImg {
+    width:100%; 
+    height:auto;
 }
-
-
-
-#fc-modal-headers {
-    font-family: Tahoma, Geneva, sans-serif;
-}
-
