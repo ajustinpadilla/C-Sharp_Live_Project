@@ -18,12 +18,14 @@ namespace TheatreCMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Photo
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Photo.ToList());
         }
 
         // GET: Photo/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace TheatreCMS.Controllers
         }
 
         //file -> byte[]
+        [AllowAnonymous]
         public static byte[] ImageBytes(HttpPostedFileBase file)
         {
             //Convert the file into a System.Drawing.Image type
@@ -51,6 +54,7 @@ namespace TheatreCMS.Controllers
         }
 
         //byte[] -> smaller byte[]
+        [AllowAnonymous]
         public static byte[] ImageThumbnail(byte[] imageBytes, int thumbWidth, int thumbHeight)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -91,6 +95,7 @@ namespace TheatreCMS.Controllers
             return View(photo);
         }
 
+        [AllowAnonymous]
         public static int CreatePhoto(HttpPostedFileBase file, string title)
 
         {
@@ -108,6 +113,7 @@ namespace TheatreCMS.Controllers
                 return photo.PhotoId;
             }
         }
+        [AllowAnonymous]
         public ActionResult DisplayPhoto(int? id) //nullable int
         {            
             var byteData = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };           
@@ -186,7 +192,7 @@ namespace TheatreCMS.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [AllowAnonymous]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
