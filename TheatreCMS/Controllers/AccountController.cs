@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TheatreCMS.Models;
 using System.Web.Helpers;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace TheatreCMS.Controllers
 {
@@ -177,6 +179,7 @@ namespace TheatreCMS.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //  Comment the following line to prevent log in until the user is confirmed.
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -184,6 +187,11 @@ namespace TheatreCMS.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    //Uncomment to utilize SendGrid Email Confirmation
+                    //await Confirmation(user, model);
+                    //ViewBag.Message = "Check your email and confirm your account, you must be confirmed before you can log in";
+                    //return View("Info");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -194,6 +202,34 @@ namespace TheatreCMS.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        // SendGrid Email Confirmation
+        [HttpPost]
+        public async Task<ActionResult> Confirmation(ApplicationUser user, RegisterViewModel model)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            string message = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>";
+            string subject = "Confirm your account";
+            var apiKey = Environment.GetEnvironmentVariable("SendGrid_Key");
+            var client = new SendGridClient(apiKey);
+            var msg = new SendGridMessage()
+            {
+                From = new EmailAddress("r.quetives@gmail.com", "Richard Quetives"),
+                Subject = subject,
+                PlainTextContent = message,
+                HtmlContent = message
+            };
+            msg.AddTo(new EmailAddress(model.Email, "Test User"));
+            var response = await client.SendEmailAsync(msg);
+
+            // Uncomment to debug locally
+            //TempData["ViewBagLink"] = callbackUrl;
+
+            ViewBag.Message = "Check your email and confirm your account, you must be confirmed before you can log in";
+            return View("Info");
+        }
+
 
         //
         // GET: /Account/ConfirmEmail
