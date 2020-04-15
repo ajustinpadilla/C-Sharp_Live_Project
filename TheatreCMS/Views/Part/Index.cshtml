@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Part>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Part";
 }
 
-<h2>Index</h2>
+<h2>Part</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table admin-tables">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Production.Title)

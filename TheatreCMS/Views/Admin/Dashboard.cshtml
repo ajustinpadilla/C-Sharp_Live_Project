@@ -10,38 +10,38 @@
 
 <!DOCTYPE html>
 
-<h1>Dashboard</h1>
+<h1 id="admin-dash-title">Admin Dashboard</h1>
 
 <!-- Admin Nav Top-->
-<div class="container" id="dash">
+<div  id="admin-dash">
     <ul>
         <li>
-            @Html.ActionLink("Info", "Index", "DisplayInfo") 
+            <a class="admin-dash-btn" href="@Url.Action("Index", "DisplayInfo")">Info</a>
         </li>
         <li>
-            @Html.ActionLink("Display Links", "Index", "DisplayLinks") 
+          <a class="admin-dash-btn" href="@Url.Action("Index", "DisplayLinks")">DisplayLinks</a>
         </li>
 
         <li>
-            @Html.ActionLink("Content Section", "Index", "ContentSection")
+          <a class="admin-dash-btn" href="@Url.Action("Index", "ContentSection")">Content Section</a>
         </li>
         <li>
-            @Html.ActionLink("Productions", "Index", "Productions")
+          <a class="admin-dash-btn" href="@Url.Action("Index", "Productions")">Productions</a>
         </li>
         <li>
-            @Html.ActionLink("Cast Members", "Index", "CastMembers")
+          <a class="admin-dash-btn" href="@Url.Action("Index", "CastMembers")">Cast Members</a>
         </li>
         <li>
-            @Html.ActionLink("Part", "Index", "Part")
+          <a class="admin-dash-btn" href="@Url.Action("Index", "Part")">Part</a>
         </li>
         <li>
-            @Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber")
+          <a class="admin-dash-btn" href="@Url.Action("Index", "Subscriber", new { area = "Subscribers" })">Subscriber</a>
         </li>
         <li>
-            @Html.ActionLink("Rental Request", "Index", "RentalRequest")
+          <a class="admin-dash-btn" href="@Url.Action("Index", "RentalRequest")">Rental Request</a>
         </li>
         <li>
-            @Html.ActionLink("Donor List", "Index", "Admin/DonorList")
+          <a class="admin-dash-btn" href="@Url.Action("DonorList", "Admin")">Donor List</a>
         </li>
     </ul>
 </div>
@@ -53,7 +53,7 @@
     <div class="container">
         @using (Html.BeginForm("SettingsUpdate", "Admin", FormMethod.Post))
         {
-        <div id="formspace">
+        <div id="admin-formspace">
             CURRENT SEASON:
             <br />
             <input type="number" name="Current_Season" value="@Html.DisplayFor(model => model.current_season)">
