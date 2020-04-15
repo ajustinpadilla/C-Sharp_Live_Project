@@ -1054,7 +1054,7 @@ a.dropdown-item:hover {
     padding-bottom: 10px;
 }
 
-#admin-dash {
+/*#admin-dash {
     text-align: center;
 }
 
@@ -1064,21 +1064,21 @@ a.dropdown-item:hover {
     padding-left: 0;
 
 }
-#admin-dash ul li:not(:last-child):after {
-    content: "|";
-}
 
 #admin-dash li {
     display: inline-block;
     border: hidden;
-}
+}*/
 
 .admin-dash-btn {
     padding: 4px;
+    margin-left: 3px;
+    margin-right: 3px;
     background-color: var(--main-bg-color);
-    color: var(--dark-color);
+    color: var(--light-color);
     border-radius: 10px;
     font-weight: bold;
+    text-align: center;
 }
 
 .admin-dash-btn:hover {
@@ -1087,17 +1087,24 @@ a.dropdown-item:hover {
     text-decoration: none;
 }
 
-@media only screen and (max-width: 930px) {
-    #admin-dash {
-        line-height: 2.25;
-    }
+.admin-dash-collapse-btn {
+    background-color: var(--main-bg-color);
+    padding: 6px 8px 6px 8px;
 }
 
+.admin-dash-collapse-btn-icon {
+    color: var(--light-color);
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 930px) {
+    .admin-dash-btn {
+        margin-top: 6px;
+    }
+}
 /*End Admin Dashboard list*/
-
-
 /*Admin Dashboard Form*/
-
 #admin-formspace {
     margin: auto;
     border: solid 4px var(--main-bg-color);
@@ -1111,6 +1118,10 @@ a.dropdown-item:hover {
 }
 /*End Admin Dashboard Form*/
 
+.admin-tables {
+    color: var(--light-color);
+}
+
 /*Sponsors Partial View*/
 
 .sponsors-partial-column {
@@ -1118,10 +1129,6 @@ a.dropdown-item:hover {
     display: inline-block;
     margin: 20px;
     vertical-align: middle;
-}
-
-.admin-tables th {
-    color: var(--light-color);
 }
 
 /* Styling for calendar*/
