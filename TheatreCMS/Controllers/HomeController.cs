@@ -98,30 +98,27 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         public ActionResult Archive(string SearchByCategory, string ArchiveSearchField)
         {
-            switch (SearchByCategory)
-            {
-                case "ArchiveCastMember":
-                    ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Cast Members", ArchiveSearchField);
-                    using (var db = new ApplicationDbContext())
-                    {
-                        var results = from m in db.CastMembers
-                                      select m;
-                        if (!String.IsNullOrEmpty(ArchiveSearchField))
-                        {
-                            results = results.Where(s => s.Name.Contains(ArchiveSearchField));
-                        }
-                        return View(results);
-                    }
-                case "ArchiveProduction":
-                    ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Productions", ArchiveSearchField);
-                    break;
-                case "ArchivePart":
-                    ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Parts", ArchiveSearchField);
-                    break;
-                default:
-                    break;
-            }
-            return View("Archive");
+            var db = new ApplicationDbContext();
+            
+                switch (SearchByCategory)
+                {
+                    case "ArchiveCastMember":
+                        ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Cast Members", ArchiveSearchField);
+                        var results = db.CastMembers.Where(x => x.Name.Contains(ArchiveSearchField));
+                        ViewBag.Results = results;
+                        break;
+                    case "ArchiveProduction":
+                        ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Productions", ArchiveSearchField);
+                        break;
+                    case "ArchivePart":
+                        ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Parts", ArchiveSearchField);
+                        break;
+                    default:
+                        break;
+                }
+                return View();
+            
+                
         }
 
         

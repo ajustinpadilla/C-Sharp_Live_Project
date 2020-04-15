@@ -1,5 +1,4 @@
-﻿@using TheatreCMS.Models
-@{
+﻿@{
     ViewBag.Title = "Archive";
 }
 
@@ -103,16 +102,7 @@
     <p>
         <table style="width:100%" class="results">
             <caption>@ViewBag.Message</caption>
-            <tr>
-                <th>Cast Member</th>
-                <th>Part</th>
-                <th>Production</th>
-            </tr>
-            <tr>
-                <td>Aaron Rodgers</td>
-                <td>Shylock</td>
-                <td>Merchant of Venice</td>
-            </tr>
+            @ViewBag.Results
         </table>
     </p>
 </div>
