@@ -1110,7 +1110,26 @@ a.dropdown-item:hover {
     padding-top: 16px;
     /*Centers calendar*/
     margin: auto;
+    /*Avoid modal width reflow */
+    padding-right: 15px;
 }
+
+/*styling for admin calender details/add/edit modals*/
+#fc-modals {
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
+}
+
+.modal label {
+    color: var(--light-color);
+}
+
+
+
+#fc-modal-headers {
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
 
 /*Product Details*/
 
