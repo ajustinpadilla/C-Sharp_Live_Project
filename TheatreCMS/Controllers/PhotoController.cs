@@ -18,14 +18,12 @@ namespace TheatreCMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Photo
-        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Photo.ToList());
         }
 
         // GET: Photo/Details/5
-        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
