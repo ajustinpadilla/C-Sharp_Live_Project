@@ -19,7 +19,7 @@
 </p>
 
 
-<div class="row">
+<div class="row castMargin">
     @foreach (var item in Model)
     {
         <div class="col-md-4">
@@ -39,10 +39,10 @@
                             img = @Url.Content("~/Content/Images/CastMember.jpg");
                         }
                     }
-                    <img class="castImage" src="@img" style="width:100%" />
+                    <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })"> <img class="castImage" src="@img" style="width:100%" /> </a>
                     <div class="castMiddle"><div class="castText">@Html.DisplayFor(modelItem => item.Bio)</div></div>
                 </div>
-                <div class="caption">
+                <div class="caption text-center">
                     <p>
                         @Html.DisplayFor(modelItem => item.Name) |
                         Joined our cast: @Html.DisplayFor(modelItem => item.YearJoined) |

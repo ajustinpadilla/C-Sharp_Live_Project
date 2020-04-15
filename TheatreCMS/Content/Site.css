@@ -557,6 +557,11 @@ textarea {
 
 /*Styling for CastMember Index View*/
 
+.castMargin {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .castContainer {
     position: relative;
     width: auto;
@@ -650,6 +655,56 @@ textarea {
     
 
 /*Begin styling for Subscriber section*/
+
+/*begin styling for Subscriber navbar*/
+
+.sub-navbar-back {
+    background-color: var(--subscriber-main);
+}
+
+.sub-navbar-btn, .sub-navbar-btn-h {
+    color: var(--light-color);
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.sub-navbar-btn-login {
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+    color: var(--dark-color);
+}
+
+.sub-navbar-btn:hover {
+    background-color: var(--secondary-color);
+    border-radius: 10%;
+    color: var(--dark-color);
+}
+
+.sub-navbar-btn-h:hover {
+    color: var(--light-color);
+}
+
+.sub-navbar-collapse-btn {
+    background-color: var(--secondary-color);
+}
+
+.sub-toggler-icon {
+    color: var(--dark-color);
+    height: 100%;
+    width: 100%;
+}
+
+.sub-dropdown-content {
+    text-align: center;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/*end styling for Subscriber navbar*/
 
 .subsave {
     background-color: var(--subscriber-main);

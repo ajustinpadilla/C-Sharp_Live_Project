@@ -2,6 +2,8 @@
 
 
 
+// Script for shrinking logo
+window.onscroll = function () { shrinkFunction() };
 
 //Simple welcome message that prints to the console on App Start
 console.log("Welcome to the theatre!");
@@ -49,13 +51,13 @@ function showSlides(n) {
 //    }
 //}
 
-// Script for shrinking logo
-window.onscroll = function () { shrinkFunction() };
 
 function shrinkFunction() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("logo").style.height = "30px";
+        document.getElementById("logo").style.height = "40px";
+        document.getElementById("menu").style.padding = " 1px 20px";
     } else {
         document.getElementById("logo").style.height = "90px";
+        document.getElementById("menu").style.padding = "20px";
     }
 }
