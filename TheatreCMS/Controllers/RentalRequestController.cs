@@ -100,11 +100,11 @@ namespace TheatreCMS.Controllers
             long Endtm = Convert.ToInt64(rentalRequest.EndTime.Ticks) / sec;
             if (Endtm < (Strtm + hrSecs) && Endtm >= Strtm)    //Doesn't allow rentals < 1hr
             {
-                ModelState.AddModelError(string.Empty, "** Rental must be at least 1 hour.  **");  
+                ModelState.AddModelError("EndTime", "** Rental must be at least 1 hour.  **");  
             }
             if (Endtm < Strtm)   //Keeps End time after start time
             {
-                ModelState.AddModelError(string.Empty, "** Start Time cannot occur after End Time.  **");
+                ModelState.AddModelError("StartTime", "** Start Time cannot occur after End Time.  **");
             }
             if (ModelState.IsValid)
             {
