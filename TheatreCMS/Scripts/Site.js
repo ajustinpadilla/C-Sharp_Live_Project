@@ -1,42 +1,42 @@
-﻿window.onscroll = function () { shrinkFunction() }; //moved shrinkfunction to top of page for access across all pages.
+﻿
 
 
 
+// Script for shrinking logo
+window.onscroll = function () { shrinkFunction() };
 
 //Simple welcome message that prints to the console on App Start
 console.log("Welcome to the theatre!");
 
 //Script for Landing Page
-var slideShow = {}
-if (slideShow.style != null) {
-    var slideIndex = 1;
-    showSlides(slideIndex);
+var slideIndex = 1;
+showSlides(slideIndex);
 
-    function changeSlide(n) {
-        showSlides(slideIndex += n);
+function changeSlide(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("slides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
     }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+}
 
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("slides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-    }
 
-};
 
 ////Script for sticky navbar
 //window.onscroll = function () { stickyNav() };
@@ -51,12 +51,13 @@ if (slideShow.style != null) {
 //    }
 //}
 
-// Script for shrinking logo
 
 function shrinkFunction() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("logo").style.height = "30px";
+        document.getElementById("logo").style.height = "40px";
+        document.getElementById("menu").style.padding = " 1px 20px";
     } else {
         document.getElementById("logo").style.height = "90px";
+        document.getElementById("menu").style.padding = "20px";
     }
 }

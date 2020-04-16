@@ -7,12 +7,20 @@
 <h2>Current Production</h2>
 
 @*verifies role of user and only displays link if logged in as admin*@
-@if (User.IsInRole("Admin"))
-{
+<div class="row currentpro">
+    @if (User.IsInRole("Admin"))
+    {
+      <p>
+          @Html.ActionLink("Create New", "Create") |  
+      </p>
+    }
     <p>
-        @Html.ActionLink("Create New", "Create")
+      @Html.ActionLink("All Productions", "Index")
     </p>
-}
+</div>
+
+
+
 
 @* Cycle through each object displaying individual results*@
 @foreach (var item in Model)
@@ -25,7 +33,7 @@
                 @*Create a card, that hides the corners of the image and is spaced slightly away from each other*@
                 @Html.DisplayFor(modelItem => item.DefaultPhoto)
                 @* This is where we'll need to display the image from the byte[] in the database. *@
-                <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20070821135049%2Fillogicopedia%2Fimages%2Fthumb%2F9%2F91%2FDuck_patrol.JPG%2F500px-Duck_patrol.JPG&f=1&nofb=1" />
+                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20070821135049%2Fillogicopedia%2Fimages%2Fthumb%2F9%2F91%2FDuck_patrol.JPG%2F500px-Duck_patrol.JPG&f=1&nofb=1" /></a>
             </div>
         </div>
         <div class="card col-md-4 col-sm-6 col-l-2  my-2 palette-body">
@@ -72,13 +80,9 @@
                         {
                             <p>
                             @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) | @*This part left in for debugging purposes*@
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId }) | 
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId }) 
                             </p>
                         }
-                        <p>
-                        @Html.ActionLink("Details", "Details", new { id = item.ProductionId }) |
-                        @Html.ActionLink("Back to List", "Index")
-                        </p>
                     </div>
                 </div>
             </div>
