@@ -99,14 +99,14 @@ namespace TheatreCMS.Controllers
         public ActionResult Archive(string SearchByCategory, string ArchiveSearchField)
         {
             var db = new ApplicationDbContext();
-            
-                switch (SearchByCategory)
+            ViewBag.Category = SearchByCategory;
+            switch (SearchByCategory)
                 {
                     case "ArchiveCastMember":
                         ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Cast Members", ArchiveSearchField);
-                        var results = db.CastMembers.Where(x => x.Name.Contains(ArchiveSearchField));
-                        ViewBag.Results = results;
-                        break;
+                        var results = db.CastMembers.Where(x => x.Name.Contains(ArchiveSearchField)).ToList();
+                    ViewBag.Results = results;
+                    break;
                     case "ArchiveProduction":
                         ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Productions", ArchiveSearchField);
                         break;
