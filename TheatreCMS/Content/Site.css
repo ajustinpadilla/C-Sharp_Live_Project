@@ -155,36 +155,50 @@
 .productions-index-th-styling {
     color: var(--main-bg-color);
     text-align: left;
-    font-size: small;
-    width: 50%;
-    padding-bottom: 10px;
 }
 
 .productions-index-td-styling {
     color: var(--light-color);
-    text-align: center;
-    width: 50%;
-    font-size: 15px;
+    text-align: right;
 }
 
-.production-index-card {
+/*.production-index-card {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 30px;
     margin-right: 10px;
     margin-left: 10px;
-}
+}*/
 
-.production-index-card-inner {
+/*.production-index-card-inner {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 30px;
     margin-right: 0;
     margin-left: 0;
-}
+}*/
 
 .production-index-container {
     max-width: 100%;
+}
+
+#production-info-parent {
+    position: relative;
+    display: inline-block;
+}
+
+#production-info-parent #production-info-popup {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    background-color: var(--dark-color);
+    border: solid 4px var(--main-bg-color);
+    padding: 10px;
+    text-align: center;
+}
+
+#production-info-parent:hover #production-info-popup {
+    visibility: visible;
 }
 /*-----Classes and styling for LoginFailure view------*/
 /*using button styles from sponsor index to match theme 
