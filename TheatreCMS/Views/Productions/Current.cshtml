@@ -21,7 +21,7 @@
 
 
 
-
+<div class="container-fluid clearfix">
 @* Cycle through each object displaying individual results*@
 @foreach (var item in Model)
 {   <div class="row flex-col-12 justify-content-center">
@@ -35,12 +35,12 @@
                 <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20070821135049%2Fillogicopedia%2Fimages%2Fthumb%2F9%2F91%2FDuck_patrol.JPG%2F500px-Duck_patrol.JPG&f=1&nofb=1" /></a>
             </div>
         </div>
-        <div class="card my-auto col-md-4 col-sm-5 col-lg-3 palette-body">
+        <div class="card col-md-4 col-sm-5 col-lg-3 palette-body mb-5">
             @*.....Create 'Info' Card...................*@
             <div class="card-body rh-25">
                 @*...............fixes row height......... *@
-                <div class="container position-absolute overflow-auto fixed-top offset-1">
-                    <h5>
+                <div class="container-fluid position-absolute fixed-top overflow-auto">
+                    <h5 class="offset-1">
                         @*.........................................Big text for play*@
                         @Html.DisplayFor(modelItem => item.Title)
                         <small>
@@ -53,7 +53,7 @@
                         </small>
                     </h5>
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-8 offset-1 center">
                             <p>
                                 @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
                                 <br />
@@ -88,7 +88,7 @@
         </div>
     </div>
 }
-
+</div>
 @*<p>..................................................Scaffold Code..............................................
         @Html.ActionLink("Create New", "Create")
     </p>
