@@ -105,13 +105,13 @@ namespace TheatreCMS.Controllers
 
             if (ModelState.IsValid)
             {
-               // ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
-               // ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
 
-                //if (ViewData["Productions"] != null)
-              
+                if (ViewData["Productions"] != null)
 
-                db.CalendarEvent.Add(calendarEvent);
+
+                    db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
