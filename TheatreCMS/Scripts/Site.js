@@ -9,8 +9,13 @@ window.onscroll = function () { shrinkFunction() };
 console.log("Welcome to the theatre!");
 
 //Script for Landing Page
+
 var slideIndex = 1;
-showSlides(slideIndex);
+
+(function () {
+    showSlides(slideIndex);
+});
+
 
 function changeSlide(n) {
     showSlides(slideIndex += n);
@@ -35,6 +40,9 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
+
+
+
 
 
 
