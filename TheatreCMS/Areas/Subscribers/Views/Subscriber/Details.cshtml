@@ -1,88 +1,130 @@
 ﻿@model TheatreCMS.Areas.Subscribers.Models.Subscriber
 
-@{
-    ViewBag.Title = "Details";
-    ViewBag.User = Model.SubscriberPerson.FirstName + " " + Model.SubscriberPerson.LastName;
-}
+<body class="subbody">
+    @{
+        ViewBag.Title = "Details";
+        ViewBag.User = Model.SubscriberPerson.FirstName + " " + Model.SubscriberPerson.LastName;
+    }
 
-<h2>Details:</h2>
-<br />
+    <h2 class="subback1">Details:</h2>
+    <br />
 
-<div>
-    <h4>Subscriber</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label class="font-weight-bold h5">@(ViewBag.User)</label>
-        </dt>
-        <br />
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentSubscriber)
-        </dt>
+    @*<div>
+            <h4>Subscriber</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    <label class="font-weight-bold h5">@(ViewBag.User)</label>
+                </dt>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.CurrentSubscriber)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CurrentSubscriber)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.CurrentSubscriber)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HasRenewed)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.HasRenewed)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HasRenewed)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.HasRenewed)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Newsletter)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Newsletter)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Newsletter)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Newsletter)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RecentDonor)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RecentDonor)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RecentDonor)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.RecentDonor)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastDonated)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastDonated)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastDonated)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.LastDonated)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastDonationAmt)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastDonationAmt)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastDonationAmt)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.LastDonationAmt)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SpecialRequests)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SpecialRequests)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SpecialRequests)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.SpecialRequests)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Notes)
+                </dd>
 
-    </dl>
-</div>
+            </dl>
+        </div>*@
+    
+    <div class="container subback1">
+        <h2>Subscriber</h2>
+        <div class="list-group list-group-flush">
+            <label class="font-weight-bold h3">@(ViewBag.User)</label>
+            <a href="#" class="list-group-item">
+                <h5 class="list-group-item-heading subback2">@Html.DisplayNameFor(model => model.CurrentSubscriber)</h5>
+                <p class="list-group-item-text">@Html.DisplayFor(model => model.CurrentSubscriber)</p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h5 class="list-group-item-heading subback2">@Html.DisplayNameFor(model => model.HasRenewed)</h5>
+                <p class="list-group-item-text">@Html.DisplayFor(model => model.HasRenewed)</p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h5 class="list-group-item-heading subback2">@Html.DisplayNameFor(model => model.Newsletter)</h5>
+                <p class="list-group-item-text">@Html.DisplayFor(model => model.Newsletter)</p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h5 class="list-group-item-heading subback2">@Html.DisplayNameFor(model => model.RecentDonor)</h5>
+                <p class="list-group-item-text">@Html.DisplayFor(model => model.RecentDonor)</p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h5 class="list-group-item-heading subback2">@Html.DisplayNameFor(model => model.LastDonated)</h5>
+                <p class="list-group-item-text list-group-item-action">@Html.DisplayFor(model => model.LastDonated)</p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h5 class="list-group-item-heading subback2">@Html.DisplayNameFor(model => model.LastDonationAmt)</h5>
+                <p class="list-group-item-text list-group-item-action">@Html.DisplayFor(model => model.LastDonationAmt)</p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h5 class="list-group-item-heading subback2">@Html.DisplayNameFor(model => model.SpecialRequests)</h5>
+                <p class="list-group-item-text list-group-item-action">@Html.DisplayFor(model => model.SpecialRequests)</p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h5 class="list-group-item-heading subback2">@Html.DisplayNameFor(model => model.Notes)</h5>
+                <p class="list-group-item-text list-group-item-action">@Html.DisplayFor(model => model.Notes)</p>
+            </a>
+        </div>
+    </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.SubscriberId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+ </body>
