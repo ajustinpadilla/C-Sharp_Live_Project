@@ -150,8 +150,43 @@
     color: var(--dark-color);
 }*/
 
-/*-----Classes and styling for LoginFailure view------*/
+/*production index table styling*/
 
+.productions-index-th-styling {
+    color: var(--main-bg-color);
+    text-align: left;
+    font-size: small;
+    width: 50%;
+    padding-bottom: 10px;
+}
+
+.productions-index-td-styling {
+    color: var(--light-color);
+    text-align: center;
+    width: 50%;
+    font-size: 15px;
+}
+
+.production-index-card {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.production-index-card-inner {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 30px;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.production-index-container {
+    max-width: 100%;
+}
+/*-----Classes and styling for LoginFailure view------*/
 /*using button styles from sponsor index to match theme 
 .button-redirect { 
     background-color: var(--secondary-color);
@@ -965,6 +1000,7 @@ a.dropdown-item:hover {
 /*Production Index button styling*/
 
 .production-admin-btn {
+    padding: 5px;
     margin-top: 5px;
     background-color: var(--main-bg-color) !important;
 }
@@ -974,8 +1010,8 @@ a.dropdown-item:hover {
     background-color: var(--main-secondary-color) !important;
 }
 
-.production-admin-div{
-    width: 350px;
+.production-admin-div {
+    width: 400px;
 }
 
 /*about page container*/

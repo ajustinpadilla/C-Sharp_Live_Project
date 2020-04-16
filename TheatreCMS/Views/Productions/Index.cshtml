@@ -2,10 +2,10 @@
 @using TheatreCMS.Controllers
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Productions";
 }
 
-<h2>Index</h2>
+<h2>Productions</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -125,10 +125,10 @@
     </table>*@
 
 
-@foreach (var item in Model)
+@*@foreach (var item in Model)
 {
 <div class="card production-admin-div">
-    @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
+    @Html.DisplayFor(modelItem => item.DefaultPhoto)   Displays the default photo or Unavailable.jpg
     @{
         if (item.DefaultPhoto != null)
         {
@@ -184,7 +184,76 @@
         @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" })
     </div>
 </div>
-}
+}*@
+
+
+<div class="container production-index-container">
+  <div class="row">
+    @foreach (var item in Model)
+    {
+      <div class="card production-admin-div col-md-3 col-sm-6">
+      @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
+      @{
+        if (item.DefaultPhoto != null)
+        {
+            <img class="card-img-top" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+        }
+        else
+        {
+            <img class="card-img-top" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+        }
+        }
+    <div class="card-body production-index-card-inner">
+        <h4 class="card-title">@item.Title</h4>
+        <h5 class="card-title">@item.Playwright</h5>
+        @*<p class="card-text">@item.Description</p>*@
+        <table>
+            <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.OpeningDay)
+                </th>
+                <td class="productions-index-td-styling">
+                    @*@Html.DisplayFor(modelItem => item.OpeningDay)*@
+                  @Convert.ToString(item.OpeningDay).Replace(":00 PM", "")
+                </td>
+            </tr>
+            <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.ClosingDay)
+                </th>
+                <td class="productions-index-td-styling">
+                  @*@Html.DisplayFor(modelItem => item.ClosingDay)*@
+                  @Convert.ToString(item.ClosingDay).Replace(":00 PM", "")
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.IsCurrent)
+                </th>
+                <td class="productions-index-td-styling">
+                    @Html.DisplayFor(modelItem => item.IsCurrent)
+                </td>
+            </tr>
+            <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.IsWorldPremiere)
+                </th>
+                <td class="productions-index-td-styling">
+                    @Html.DisplayFor(modelItem => item.IsWorldPremiere)
+                </td>
+            </tr>
+        </table>
+        @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }) |
+        @Html.ActionLink("Details", "Details", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }) |
+        @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" })
+    </div>
+  </div>
+   }
+  </div>
+</div>
+
 
 
 
