@@ -128,7 +128,7 @@
 @foreach (var item in Model)
 {
 <div class="card production-admin-div">
-    @Html.DisplayFor(modelItem => item.DefaultPhoto)
+    @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
     @{
         if (item.DefaultPhoto != null)
         {
