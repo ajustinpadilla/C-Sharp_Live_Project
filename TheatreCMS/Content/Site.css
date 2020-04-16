@@ -1072,8 +1072,8 @@ a.dropdown-item:hover {
 
 .admin-dash-btn {
     padding: 4px;
-    margin-left: 3px;
-    margin-right: 3px;
+    margin-left: 2px;
+    margin-right: 2px;
     background-color: var(--main-bg-color);
     color: var(--light-color);
     border-radius: 10px;
@@ -1089,7 +1089,7 @@ a.dropdown-item:hover {
 
 .admin-dash-collapse-btn {
     background-color: var(--main-bg-color);
-    padding: 6px 8px 6px 8px;
+    padding: 6px 12px 6px 12px;
 }
 
 .admin-dash-collapse-btn-icon {
@@ -1098,7 +1098,7 @@ a.dropdown-item:hover {
     height: 100%;
 }
 
-@media only screen and (max-width: 930px) {
+@media only screen and (max-width: 1080px) {
     .admin-dash-btn {
         margin-top: 6px;
     }
