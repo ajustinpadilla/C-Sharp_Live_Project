@@ -1,4 +1,5 @@
-﻿    @{
+﻿    @using TheatreCMS.Models
+    @{
         ViewBag.Title = "Archive";
     }
 
@@ -100,27 +101,69 @@
 
     <div>
         <p>
-            @if (ViewBag.Category == "ArchiveCastMember")
+            @if (ViewData["ResultsList"] != null)
             {
-                <table style="width:100%" class="results">
-                    <tr>
-                        <th>
-                            Cast Member
-                        </th>
-                        <th>
-                            Part
-                        </th>
-                        <th>
-                            Production
-                        </th>
-                    </tr>
-                    <tr>
-                    </tr>
-                    <caption>@ViewBag.Message</caption>
-                    @ViewBag.Results
-                </table>
-            }
-        </p>
+                switch (ViewBag.Category)
+                {
+                    case "ArchiveCastMember":
+                        <table style="width:100%" class="results">
+                            <tr>
+                                <th>Cast Member</th>
+                                <th>Year Joined</th>
+                                <th>Bio</th>
+                            </tr>
+                            @foreach (var item in ViewData["ResultsList"] as List<CastMember>)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.YearJoined</td>
+                                    <td>@item.Bio</td>
+                                </tr>
+                            }
+                            <caption>@ViewBag.Message</caption>
+                        </table>
+                        break;
+                    case "ArchiveProduction":
+                        <table style="width:100%" class="results">
+                            <tr>
+                                <th>Production</th>
+                                <th>Playwright</th>
+                                <th>Description</th>
+                            </tr>
+                            @foreach (var item in ViewData["ResultsList"] as List<Production>)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.Playwright</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                            <caption>@ViewBag.Message</caption>
+                        </table>
+                    break;
+                    case "ArchivePart":
+                        <table style="width:100%" class="results">
+                            <tr>
+                                <th>Part</th>
+                                <th>Production</th>
+                                <th>Cast Member</th>
+                            </tr>
+                            @foreach (var item in ViewData["ResultsList"] as List<Part>)
+                            {
+                                <tr>
+                                    <td>@item.Character</td>
+                                    <td>@item.Production.Title</td>
+                                    <td>@item.Person.Name</td>
+                                </tr>
+
+                            }
+                            <caption>@ViewBag.Message</caption>
+                        </table>
+                    break;
+                }
+
+             }
+</p>
     </div>
 
 
