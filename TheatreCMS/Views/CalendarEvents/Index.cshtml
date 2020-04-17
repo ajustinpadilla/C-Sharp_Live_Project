@@ -365,14 +365,6 @@
                 }
             });
 
-            //to prevent body scrolling bug when modal triggered from another modal
-            $("#editModal").on("show.bs.modal"), function () {
-                $("body").css('position', 'fixed').css('overflow', 'hidden');
-            };
-            $("#editModal").on("hide.bs.modal"), function () {
-                $("body").css('position', 'relative').css('overflow', 'auto');
-            };
-
             // to confirm event updated:
             $('#calendar').fullCalendar({
                 //selectedEvent = calEvent,
@@ -388,7 +380,7 @@
         });
     </script>
 }
-@*Buttons to use for now, eventually link to Calender click events*@
+@*Button to use for now, eventually link to Calender click events*@
 <button type="button" class="btn btn-primary" id="addbtn">Open Add Modal</button>
 
 @if (User.IsInRole("Admin"))
