@@ -540,7 +540,6 @@ textarea {
 
 .registerInput {
     min-width: 300px;
-    max-width: 300px;
     border-radius: 0;
     background-clip: border-box;
 }
