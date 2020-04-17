@@ -7,7 +7,7 @@
 <h2 class="center">Current Production</h2>
 
 @*verifies role of user and only displays link if logged in as admin*@
-<div class="row currentpro">
+<div class="row currentpro justify-content-center">
     @if (User.IsInRole("Admin"))
     {
       <p>
@@ -24,23 +24,23 @@
 <div class="container-fluid clearfix">
 @* Cycle through each object displaying individual results*@
 @foreach (var item in Model)
-{   <div class="row flex-col-12 justify-content-center">
+{   <div class="row justify-content-center">
         @*This Row is used to set the elements of the card side by mx-auto side instead of a classic over under*@
         @*<div class="col-md-5 col-sm-6 col-lg-2"></div>*@ @*This pushes the elements to the center of the view*@
-        <div class="col-md-4 col-sm-5 col-lg-3">
-            <div class="card my-2 rh-25 palette-container overflow-hidden">
+        <div class="flex-row">
+            <div class="prodCenter card my-2 rh-25 palette-container overflow-hidden center-box">
                 @*Create a card, that hides the corners of the image and is spaced slightly away from each other*@
                 @Html.DisplayFor(modelItem => item.DefaultPhoto)
                 @* This is where we'll need to display the image from the byte[] in the database. *@
                 <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20070821135049%2Fillogicopedia%2Fimages%2Fthumb%2F9%2F91%2FDuck_patrol.JPG%2F500px-Duck_patrol.JPG&f=1&nofb=1" /></a>
             </div>
         </div>
-        <div class="card col-md-4 col-sm-5 col-lg-3 palette-body mb-5">
+        <div class="card col-md-4 col-sm-5 col-lg-3 palette-body">
             @*.....Create 'Info' Card...................*@
             <div class="card-body rh-25">
                 @*...............fixes row height......... *@
-                <div class="container-fluid position-absolute fixed-top overflow-auto">
-                    <h5 class="offset-1">
+                <div class="container position-absolute fixed-top overflow-auto">
+                    <h5 class="center">
                         @*.........................................Big text for play*@
                         @Html.DisplayFor(modelItem => item.Title)
                         <small>
@@ -52,8 +52,8 @@
                             }
                         </small>
                     </h5>
-                    <div class="row">
-                        <div class="col-8 offset-1 center">
+                    <div class="center">
+                        <div class="row justify-content-center">
                             <p>
                                 @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
                                 <br />
