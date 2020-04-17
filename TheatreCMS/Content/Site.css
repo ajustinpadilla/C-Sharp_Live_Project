@@ -794,6 +794,14 @@ textarea {
     color: black;
 }
 
+/*subscriber Details page*/
+.sub-detail-bg {
+    height:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /*End styling for Subscriber section*/
 
 /* Dropdown Button */
