@@ -152,7 +152,7 @@
 
 /*-----Classes and styling for LoginFailure view------*/
 
-/*using button styles from sponsor index to match theme 
+using button styles from sponsor index to match theme 
 .button-redirect { 
     background-color: var(--secondary-color);
     text-decoration:none;
@@ -169,7 +169,7 @@
     background: var(--main-bg-color);
     text-decoration:none;
     color:var(--light-color);
-}*/
+}
 .loginFailureBackdrop {
     background-color: var(--light-color);
     margin: auto;
@@ -600,6 +600,24 @@ textarea {
 }
 
 /*ENd Styling for CastMember Index View*/
+
+/*Styling for CastMember Details View*/
+.detailsContainer {
+    background-color: #000000;
+    color: #FFFBFB;
+    font-size: 30px;
+    -webkit-text-stroke-width: .7px;
+    -webkit-text-stroke-color: #DB1A11;
+}
+
+.col-md-9 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/*End Styling for CastMember Index View*/
+
 
 .nav-login li{
     padding-right: 3rem;
