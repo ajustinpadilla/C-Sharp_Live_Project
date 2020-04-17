@@ -150,8 +150,47 @@
     color: var(--dark-color);
 }*/
 
-/*-----Classes and styling for LoginFailure view------*/
+/*production index table styling*/
+.prod-index-l-margin {
+    margin-left: 40px;
+}
 
+.productions-index-th-styling {
+    color: var(--main-bg-color);
+    text-align: left;
+    width: 125px;
+}
+
+.productions-index-td-styling {
+    color: var(--light-color);
+    text-align: left;
+    padding-top: 6px;
+    padding-left: 40px;
+}
+
+.production-index-container {
+    max-width: 100%;
+}
+
+.spaced-btn-1, .spaced-btn-2 {
+    padding: 5px;
+    margin-top: 20px; 
+    background-color: var(--main-bg-color) !important;
+}
+
+.spaced-btn-2 {
+    margin-left: 15px;
+}
+
+.spaced-btn-1 {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.production-index-img {
+    border-radius: 6px;
+}
+/*-----Classes and styling for LoginFailure view------*/
 /*using button styles from sponsor index to match theme 
 .button-redirect { 
     background-color: var(--secondary-color);
@@ -636,7 +675,7 @@ textarea {
     font-weight: bold;
 }
 
-.card-deck, .card, .card-img-top {
+.card-deck, .card, .card-img-top { /*this is a bootstrap class*/
     background-color: var(--dark-color);
 }
 
@@ -968,6 +1007,7 @@ a.dropdown-item:hover {
 /*Production Index button styling*/
 
 .production-admin-btn {
+    padding: 5px;
     margin-top: 5px;
     background-color: var(--main-bg-color) !important;
 }
@@ -977,8 +1017,8 @@ a.dropdown-item:hover {
     background-color: var(--main-secondary-color) !important;
 }
 
-.production-admin-div{
-    width: 350px;
+.production-admin-div {
+    width: 400px;
 }
 
 /*about page container*/
