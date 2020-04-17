@@ -11,8 +11,6 @@
 
     -confirm input/forms of modals are what story requested and not lacking razor initiated syntax.
 
-    -need some sort of event data to debug view detailsModal eventclick
-
     -enable selectable dates on calender to debug view addModal eventclick
         -poss need 'interaction' plugin from FullCalendar
 
@@ -23,16 +21,14 @@
 *@
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
 
 <div class="container">
     @*Buttons to use for now, eventually link to Calender click events*@
     <button type="button" class="btn btn-primary" id="addbtn">Open Add Modal</button>
-    <button type="button" class="btn btn-primary" id="detailbtn">Open Details Modal</button>
-    <button type="button" class="btn btn-primary" id="editbtn">Edit Event Modal</button>
-    <button type="button" class="btn btn-primary" id="deletebtn">Confirm Delete Event Modal</button>
-
 
     @* Modal box for Add CalenderEvent *@
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="fc-modals-titles" aria-hidden="true">
@@ -48,52 +44,52 @@
                 <div class="modal-body">
                     <span aria-hidden="true"></span>
 
-                        <div class="form-horizontal">
-                            <div class="inputBox2">
+                    <div class="form-horizontal">
+                        <div class="inputBox2">
 
-                                <div class="form-group">
-                                    <label>Event Title</label>
-                                    <div class="formBox">                       
-                                        <input type="text" id="" placeholder="(text input type)" />
-                                    </div>
+                            <div class="form-group">
+                                <label>Event Title</label>
+                                <div class="formBox">
+                                    <input type="text" id="addformtitle" placeholder="(text input type)" />
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>Start time:</label>
-                                    <div class="formBox">
-                                        <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
-                                    </div>
+                            <div class="form-group">
+                                <label>Start time:</label>
+                                <div class="formBox">
+                                    <input type="datetime-local" id="addformstarttime" placeholder="(datetime-local input type)" />
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>End time:</label>
-                                    <div class="formBox">
-                                        <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
-                                    </div>
+                            <div class="form-group">
+                                <label>End time:</label>
+                                <div class="formBox">
+                                    <input type="datetime-local" id="addformendtime" placeholder="(datetime-local input type)" />
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="eventtypes">Event type:</label>
-                                    <div class="formBox">
-                                        <select id="eventtypes">
-                                            <option value="production">Production</option>
-                                            <option value="rental">Facility Rental</option>
-                                        </select>
-                                    </div>
+                            <div class="form-group">
+                                <label for="eventtypes">Event type:</label>
+                                <div class="formBox">
+                                    <select id="eventtypes">
+                                        <option value="production" id="addprodopt">Production</option>
+                                        <option value="rental" id="addrentopt">Facility Rental</option>
+                                    </select>
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>Link:</label>
-                                    <div class="formBox">
-                                        <input type="text" id="" placeholder="(text input type)" />
-                                    </div>
+                            <div class="form-group">
+                                <label>Link:</label>
+                                <div class="formBox">
+                                    <input type="text" id="addformlink" placeholder="(text input type)" />
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="iconBtnContainer2">
-                        <button class="iconBtn2" id="savebtn" data-dismiss="modal">
+                        <button class="iconBtn2" id="addsavebtn" data-dismiss="modal">
                             <i class="fa fa-save fa-fw"></i> Save
                         </button>
                         <button class="iconBtn2" href="#" data-dismiss="modal">
@@ -125,21 +121,21 @@
                             <div class="form-group">
                                 <label>Event Title</label>
                                 <div class="formBox">
-                                    <input type="text" id="" placeholder="(text input type)" />
+                                    <input type="text" id="editformtitle" placeholder="(text input type)" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Start time:</label>
                                 <div class="formBox">
-                                    <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
+                                    <input type="datetime-local" id="editformstarttime" placeholder="(datetime-local input type)" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label>End time:</label>
                                 <div class="formBox">
-                                    <input type="datetime-local" id="" placeholder="(datetime-local input type)" />
+                                    <input type="datetime-local" id="editformendtime" placeholder="(datetime-local input type)" />
                                 </div>
                             </div>
 
@@ -147,8 +143,8 @@
                                 <label for="eventtypes">Event type:</label>
                                 <div class="formBox">
                                     <select id="eventtypes">
-                                        <option value="production">Production</option>
-                                        <option value="rental">Facility Rental</option>
+                                        <option value="production" id="editprodopt">Production</option>
+                                        <option value="rental" id="editrentopt">Facility Rental</option>
                                     </select>
                                 </div>
                             </div>
@@ -156,7 +152,7 @@
                             <div class="form-group">
                                 <label>Link:</label>
                                 <div class="formBox">
-                                    <input type="text" id="" placeholder="(text input type)" />
+                                    <input type="text" id="editformlink" placeholder="(text input type)" />
                                 </div>
                             </div>
                         </div>
@@ -187,48 +183,48 @@
             <div class="modal-content" id="fc-modals">
                 <span aria-hidden="true"></span>
                 <div class="modal-header">
-                    <h3 class="modal-title" id="fc-modal-titles">Calender Event Details</h3>
+                    <h3 class="modal-title" id="fc-modal-titles">Event Details</span></h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    Event Title:
-                                </dt>
-                                <dd>
-                                    ( display of text input type)
-                                </dd>
-                                <dt>
-                                    Start time:
-                                </dt>
-                                <dd>
-                                    ( display of datetime-local input type)
-                                </dd>
-                                <dt>
-                                    End time:
-                                </dt>
-                                <dd>
-                                    ( display of datetime-local input type)
-                                </dd>
-                                <dt>
-                                    Event Type:
-                                </dt>
-                                <dd>
-                                    ( display of either option: "Production" or "Facility Rental")
-                                </dd>
-                                <dt>
-                                    Link:
-                                </dt>
-                                <dd>
-                                    ( display of text input type)
-                                </dd>
-                            </dl>
-                        </div>                 
+                        
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Event Title:
+                            </dt>
+                            <dd>
+                                <p id="eventTitle"></p>
+                            </dd>
+                            <dt>
+                                Start time:
+                            </dt>
+                            <dd>
+                                <p id="eventStartDate"></p>
+                            </dd>
+                            <dt>
+                                End time:
+                            </dt>
+                            <dd>
+                                <p id="eventEndDate"></p>
+                            </dd>
+                            <dt>
+                                Id present: Rental/Production:
+                            </dt>
+                            <dd>
+                                <p id="eventRentalRequestId">&times;</p>/<p id="ProductionId">&times;</p>
+                            </dd>
+                            <dt>
+                                Link:
+                            </dt>
+                            <dd>
+                                ( display of text input type)
+                            </dd>
+                        </dl>
                     </div>
+                </div>
                 <div class="modal-footer">
                     <div class="iconBtnContainer2">
                         <span class="modal-trigger"><button class="iconBtn2" id="detaileditbtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-edit fa-fw"></i> Edit</button></span>
@@ -283,100 +279,93 @@
     <script>
         $(document).ready(function () {
             var events = [];
+            var selectedEvent = null;
             $.ajax({
                 type: "GET",
-                url: "/calendarEvents/GetCalendarEvents",
+                url: "/CalendarEvents/GetCalendarEvents",
                 success: function (data) {
-                        data[0].start = moment(data[0].start)
-                        data[0].end = moment(data[0].end)
-                    events = data
-                    $('#calendar').fullCalendar({
-                        // put your options and callbacks here
-                        events: events,
-                        contentHeight: 550,
+                    $.each(data, function () {
+                        events = data
+                        //console.log(data);
+                        console.log(events);
                     })
-                    console.log(data);
-                    console.log(events);
+                    GenerateCalendar(data);
                 }
             })
 
-            // page is now ready, initialize the calendar...
+            function GenerateCalendar(data) {
+                $('#calendar').fullCalendar('destroy');
+                $('#calendar').fullCalendar({
+                    data: events,
+                    contentHeight: 550,
+                    timeFormat: 'h(:mm)a',
+                    events: events,
+                    dayClick: function (date, jsEvent, view) {
+                        $('addModal').modal({ backdrop: false });
+                    },
+                    eventClick: function (calEvent, jsEvent, view) {
+                        selectedEvent = calEvent;
+                        $('#detailsModal #eventId').html(calEvent.id);
+                        $('#detailsModal #eventTitle').html(calEvent.title);
+                        $('#detailsModal #eventStartDate').html(calEvent.start.format("MM-DD-YYYY"));
+                        $('#detailsModal #eventEndDate').html(calEvent.end.format("MM-DD-YYYY"));
+                        $('#detailsModal #eventRentalRequestId').html(calEvent.rentalrequestid);
+                        $('#detailsModal #eventProductionId').html(calEvent.productionid);
+                        //$('#detailsModal #event').html(calEvent.Link);
 
+                        $("#detailsModal").modal({ backdrop: true });
+                    }
+                });
+            };
             
 
-            $(document).ready(function () {
-
-                //modalInstance.rendered.then(function (result) {
-                //    $('.modal .modal-body').css('overflow-y', 'auto');
-                //    $('.modal .modal-body').css('max-height', $(window).height() * 0.7);
-                //    $('.modal .modal-body').css('height', $(window).height() * 0.7);
-                //});
-
-                $("#addbtn").click(function () {
-                    $("#addModal").modal({ backdrop: false });
-                });
-                $('#detailbtn').click(function () {
-                    $("#detailsModal").modal({ backdrop: false });
-                });
-                $("#editbtn").click(function () {
-                    $("#editModal").modal({ backdrop: false });
-                });
-
-                $("#detaileditbtn").click(function () {
-                    $("#editModal").modal({ backdrop: false });
-                });
-
-                //commented out JS for modals when attached to functionality: edit
-                //$('#editModal').modal('handleUpdate');
-
-
-                $("#deletebtn").click(function () {
-                    $("#confdelModal").modal({ backdrop: false });
-                });
-                $("#detaildeletebtn").click(function () {
-                    $("#confdelModal").modal({ backdrop: false });
-                });
-                $("#editdeletebtn").click(function () {
-                    $("#confdelModal").modal({ backdrop: false });
-                });
-
-                //to prevent body scrolling bug when modal triggered from another modal
-                $("#editModal").on("show.bs.modal"), function () {
-                    $("body").css('position', 'fixed').css('overflow', 'hidden');
-                };
-                $("#editModal").on("hide.bs.modal"), function () {
-                    $("body").css('position', 'relative').css('overflow', 'auto');
-                };
-
-                jsEvent.click(function () {
-                    $("#detailsModal").modal({ backdrop: false });
-                });
-                jsEvent.click(function () {
-                    $("#editModal").modal({ backdrop: false });
-                });
-            });
-
-            //to render the details modal from selecting an event
             $('#calendar').fullCalendar({
-                eventClick: function (calEvent, jsEvent, view) {
-
-                    jsEvent.click(function () {
-                        $("#detailsModal").modal({ backdrop: true });
-
-                    })
-                }
+                editable: true,
+                selectable: true
             });
 
-            //to render the add modal from selecting empty space [or date link?]
+            // page is now ready, initialize the calendar...
 
-            $('#calendar').fullCalendar({
-                dayClick: function (date, jsEvent, view, resourceObj) {
-                    $("#addModal").modal({ backdrop: false });
-                }
+
+            $("#addbtn").click(function () {
+                $("#addModal").modal({ backdrop: false });
             });
+            $('addsavebtn').click(function () {
+                //var newEvent = {
+                //    title: 'NEW EVENT',
+                //    start: new Date(y, m, d)
+            });
+            //$('#calendar').fullCalendar("renderEvent", newEvent, true);
+            //});
+
+            $("#detaileditbtn").click(function () {
+                $("#editModal").modal({ backdrop: false });
+            });
+
+            //commented out JS for modals when attached to functionality: edit
+            //$('#editModal').modal('handleUpdate');
+
+
+            $("#detaildeletebtn").click(function () {
+                selectedEvent = calEvent;
+                $("#confdelModal").modal({ backdrop: false });
+            });
+            $("#editdeletebtn").click(function () {
+                selectedEvent = calEvent;
+                $("#confdelModal").modal({ backdrop: false });
+            });
+
+            //to prevent body scrolling bug when modal triggered from another modal
+            $("#editModal").on("show.bs.modal"), function () {
+                $("body").css('position', 'fixed').css('overflow', 'hidden');
+            };
+            $("#editModal").on("hide.bs.modal"), function () {
+                $("body").css('position', 'relative').css('overflow', 'auto');
+            };
 
             // to confirm event updated:
             $('#calendar').fullCalendar({
+                selectedEvent = calEvent;
                 eventClick: function (event, element) {
                     event.title = "CHANGES SAVED!";
 

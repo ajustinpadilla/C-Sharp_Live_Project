@@ -37,7 +37,9 @@ namespace TheatreCMS.Controllers
                 color = x.Color,
                 className = x.ClassName,
                 someKey = x.SomeKey,
-                allDay = false
+                allDay = false,
+                rentalrequestid = x.RentalRequestId,
+                productionid = x.ProductionId,
             }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
