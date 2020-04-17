@@ -5,11 +5,11 @@
     ViewBag.Title = "Productions";
 }
 
-<h2 class= "mt-3 ml-4">Productions</h2>
+<h2 class= "mt-3 prod-index-l-margin">Productions</h2>
 
 @if (User.IsInRole("Admin"))
 {
- <p class="ml-4">
+ <p class="prod-index-l-margin">
     @Html.ActionLink("Create New", "Create")
 </p>
 }

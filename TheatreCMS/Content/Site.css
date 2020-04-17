@@ -151,6 +151,10 @@
 }*/
 
 /*production index table styling*/
+.prod-index-l-margin {
+    margin-left: 40px;
+}
+
 .productions-index-th-styling {
     color: var(--main-bg-color);
     text-align: left;
