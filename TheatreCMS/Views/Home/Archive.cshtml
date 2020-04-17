@@ -1,62 +1,77 @@
-﻿@model TheatreCMS.Models.CastMember
-@{
-    ViewBag.Title = "Archive";
-}
+﻿    @using TheatreCMS.Models
+    @{
+        ViewBag.Title = "Archive";
+    }
 
 
-        <!--Jumbotron header-->
-        <div class="jumbotron jumbotron-fluid bgimage">
-            <div class="container">
-                <h1 class="display-4">Theatre Vertigo Archive</h1>
-                <p class="">
-                    In 1997, Theatre Vertigo was founded by Paul Floding, Nanette Pettit and Jeff Meyers.  Since then, Theatre Vertigo has performed in numerous spaces including The Russell Street Theater, The Electric Company, Theater!Theatre!, and their current home, The Shoebox Theater.
-                    From 2003 to 2014, Theatre Vertigo produced Anonymous Theatre as a summer fundraiser in collaboration with The Anonymous Theatre Company.  Other past collaborations include defunkt theatre, Stark Raving Theater, and Tears of Joy Theatre.
-                    Theatre Vertigo has worked on world premieres including Faust.Us by Joseph Fisher, 99 Ways to Fuck a Swan by Kim Rosenstock, and The End of Sex by Craig Jessen.
-                    In 2016, Theatre Vertigo produced its first officially commissioned work from a playwright, I Want To Destroy You, by Rob Handel.
-                </p>
-            </div>
+    <!--Jumbotron header-->
+    <div class="jumbotron jumbotron-fluid bgimage">
+        <div class="container">
+            <h1 class="display-4">Theatre Vertigo Archive</h1>
+            <p class="">
+                In 1997, Theatre Vertigo was founded by Paul Floding, Nanette Pettit and Jeff Meyers.  Since then, Theatre Vertigo has performed in numerous spaces including The Russell Street Theater, The Electric Company, Theater!Theatre!, and their current home, The Shoebox Theater.
+                From 2003 to 2014, Theatre Vertigo produced Anonymous Theatre as a summer fundraiser in collaboration with The Anonymous Theatre Company.  Other past collaborations include defunkt theatre, Stark Raving Theater, and Tears of Joy Theatre.
+                Theatre Vertigo has worked on world premieres including Faust.Us by Joseph Fisher, 99 Ways to Fuck a Swan by Kim Rosenstock, and The End of Sex by Craig Jessen.
+                In 2016, Theatre Vertigo produced its first officially commissioned work from a playwright, I Want To Destroy You, by Rob Handel.
+            </p>
         </div>
+    </div>
 
-        <!--Current Productions-->
-        <div>
-            <h4>Current Productions</h4>
-            <div class="card-deck">
-                <div class="card">
-                    <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top" alt="Ghost">
-                    <div class="card-body">
-                        <h5 class="card-title">Stupid Ghost</h5>
-                        <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                    </div>
+    <!--Current Productions-->
+    <div>
+        <h4>Current Productions</h4>
+        <div class="card-deck">
+            <div class="card">
+                <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top" alt="Ghost">
+                <div class="card-body">
+                    <h5 class="card-title">Stupid Ghost</h5>
+                    <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
                 </div>
-                <div class="card">
-                    <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top" alt="Midas">
-                    <div class="card-body">
-                        <h5 class="card-title">Everything You Touch</h5>
-                        <p class="card-text">A cursed man that ruins everything he touches.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Content/Images/venice.jpg" class="card-img-top" alt="Merchant">
-                    <div class="card-body">
-                        <h5 class="card-title">Merchant of Venice</h5>
-                        <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                    </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
                 </div>
             </div>
-            <hr />
+            <div class="card">
+                <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top" alt="Midas">
+                <div class="card-body">
+                    <h5 class="card-title">Everything You Touch</h5>
+                    <p class="card-text">A cursed man that ruins everything he touches.</p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="~/Content/Images/venice.jpg" class="card-img-top" alt="Merchant">
+                <div class="card-body">
+                    <h5 class="card-title">Merchant of Venice</h5>
+                    <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                </div>
+            </div>
         </div>
+        <hr />
+    </div>
 
-        <!--Seach Bar/ Actors,parts, and productions dropdown-->
+    <!--Seach Bar/ Actors,parts, and productions dropdown-->
+    @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
+    {
         <div class="container" style="align-content:center">
+            @Html.TextBox("ArchiveSearchField")
+            <select id="SearchByCategory" name="SearchByCategory">
+                <option>Search by Category</option>
+                <option value="ArchiveCastMember">Cast Member</option>
+                <option value="ArchiveProduction">Production</option>
+                <option value="ArchivePart">Part</option>
+            </select>
+            <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
+        </div>
+
+
+    }
+    @*<div class="container" style="align-content:center">
             <nav class="navbar navbar-expand-xl">
                 <form class="form-inline">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,107 +94,159 @@
                             </div>
                             <button class="btn btn-outline-primary" type="submit">Search</button>
                         </div>
-                        </div>
+                    </div>
                 </form>
             </nav>
-            <div>
-                <p>
-                    <table style="width:100%" class="results">
-                        <tr>
-                            <th>Cast Member</th>
-                            <th>Part</th>
-                            <th>Production</th>
-                        </tr>
-                        <tr>
-                            <td>Aaron Rodgers</td>
-                            <td>Shylock</td>
-                            <td>Merchant of Venice</td>
-                        </tr>
-                    </table>
-                </p>
-            </div>
-        </div>
-                        
-                   
+        </div>*@
 
-<hr />
-<!--Past Productions-->
-<div>
     <div>
-        <h4>Past Productions</h4>
-        <hr />
-    </div>
-    <div class="accordion" id="accordionExample">
-        <div class="card">
-            <div class="card-header text-center" id="headingOne">
-                <h2 class="mb-0">
-                    <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        2018-2019
-                    </button>
-                </h2>
-            </div>
+        <p>
+            @if (ViewData["ResultsList"] != null)
+            {
+                switch (ViewBag.Category)
+                {
+                    case "ArchiveCastMember":
+                        <table style="width:100%" class="results">
+                            <tr>
+                                <th>Cast Member</th>
+                                <th>Year Joined</th>
+                                <th>Bio</th>
+                            </tr>
+                            @foreach (var item in ViewData["ResultsList"] as List<CastMember>)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.YearJoined</td>
+                                    <td>@item.Bio</td>
+                                </tr>
+                            }
+                            <caption>@ViewBag.Message</caption>
+                        </table>
+                        break;
+                    case "ArchiveProduction":
+                        <table style="width:100%" class="results">
+                            <tr>
+                                <th>Production</th>
+                                <th>Playwright</th>
+                                <th>Description</th>
+                            </tr>
+                            @foreach (var item in ViewData["ResultsList"] as List<Production>)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.Playwright</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                            <caption>@ViewBag.Message</caption>
+                        </table>
+                    break;
+                    case "ArchivePart":
+                        <table style="width:100%" class="results">
+                            <tr>
+                                <th>Part</th>
+                                <th>Production</th>
+                                <th>Cast Member</th>
+                            </tr>
+                            @foreach (var item in ViewData["ResultsList"] as List<Part>)
+                            {
+                                <tr>
+                                    <td>@item.Character</td>
+                                    <td>@item.Production.Title</td>
+                                    <td>@item.Person.Name</td>
+                                </tr>
 
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            }
+                            <caption>@ViewBag.Message</caption>
+                        </table>
+                    break;
+                }
+
+             }
+</p>
+    </div>
+
+
+
+
+    <hr />
+    <!--Past Productions-->
+    <div>
+        <div>
+            <h4>Past Productions</h4>
+            <hr />
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header text-center" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            2018-2019
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-header text-center" id="headingTwo">
-                <h2 class="mb-0">
-                    <button class="btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        2017-2018
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="card">
+                <div class="card-header text-center" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            2017-2018
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-header text-center" id="headingThree">
-                <h2 class="mb-0">
-                    <button class="btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        2016-2017
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="card">
+                <div class="card-header text-center" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            2016-2017
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-header text-center" id="headingFour">
-                <h2 class="mb-0">
-                    <button class="btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        2015-2016
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="card">
+                <div class="card-header text-center" id="headingFour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            2015-2016
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-header text-center" id="headingFive">
-                <h2 class="mb-0">
-                    <button class="btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" onclick="hardSearch">
-                        2014-2015
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="card">
+                <div class="card-header text-center" id="headingFive">
+                    <h2 class="mb-0">
+                        <button class="btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" onclick="hardSearch">
+                            2014-2015
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
