@@ -154,20 +154,33 @@
 .productions-index-th-styling {
     color: var(--main-bg-color);
     text-align: left;
+    width: 125px;
 }
 
 .productions-index-td-styling {
     color: var(--light-color);
-    text-align: center;
-    width: 65%;
+    text-align: left;
+    padding-top: 6px;
+    padding-left: 40px;
 }
 
 .production-index-container {
     max-width: 100%;
 }
 
-.spaced-btn {
-    margin-left: 20px;
+.spaced-btn-1, .spaced-btn-2 {
+    padding: 5px;
+    margin-top: 20px; 
+    background-color: var(--main-bg-color) !important;
+}
+
+.spaced-btn-2 {
+    margin-left: 15px;
+}
+
+.spaced-btn-1 {
+    padding-left: 13px;
+    padding-right: 13px;
 }
 
 .production-index-img {

@@ -5,20 +5,20 @@
     ViewBag.Title = "Productions";
 }
 
-<h2 class= "mt-3">Productions</h2>
+<h2 class= "mt-3 ml-4">Productions</h2>
 
 @if (User.IsInRole("Admin"))
 {
- <p>
+ <p class="ml-4">
     @Html.ActionLink("Create New", "Create")
 </p>
 }
 
 <div class="container production-index-container">
-  <div class="row">
+  <div class="row mx-2">
     @foreach (var item in Model)
     {
-      <div class="card production-admin-div col-md-4 col-sm-6" id="production-info-parent">
+      <div class="card col-md-6 col-xl-4" id="production-info-parent">
       @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
       @{
         if (item.DefaultPhoto != null)
@@ -35,7 +35,7 @@
             </a>
         }
         }
-    <div class="card-body production-index-card-inner">
+    <div class="card-body production-index-card-inner justify-content-center">
         <h4 class="card-title">@item.Title</h4>
         <h5 class="card-title">@item.Playwright</h5>
         @*<p class="card-text">@item.Description</p>*@
@@ -77,8 +77,8 @@
         </table>
       @if (User.IsInRole("Admin"))
       {
-        @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }); 
-        @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn spaced-btn" });
+        @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-1" }); 
+        @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-2" });
       }
     </div>
   </div>
