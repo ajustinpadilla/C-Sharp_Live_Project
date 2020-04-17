@@ -5,32 +5,15 @@
 @{
     ViewBag.Title = "Index";
 }
-@*  Sam's To Do List:
-
-    -debug issue RE background scrolling when modals triggered from other modals, *least priority
-
-    -confirm input/forms of modals are what story requested and not lacking razor initiated syntax.
-
-    -enable selectable dates on calender to debug view addModal eventclick
-        -poss need 'interaction' plugin from FullCalendar
-
-    -create update functionality
-    -create save functionality
-    -create delete functionality
-
-*@
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
-
-
 <div class="container">
-    @*Buttons to use for now, eventually link to Calender click events*@
-    <button type="button" class="btn btn-primary" id="addbtn">Open Add Modal</button>
 
-    @* Modal box for Add CalenderEvent *@
+
+    @* Modal box for Add Calender Event *@
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="fc-modals-titles" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" id="fc-modals">
@@ -183,14 +166,14 @@
             <div class="modal-content" id="fc-modals">
                 <span aria-hidden="true"></span>
                 <div class="modal-header">
-                    <h3 class="modal-title" id="fc-modal-titles">Event Details</span></h3>
+                    <h3 class="modal-title" id="fc-modal-titles">Event Details</h3>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
                         <i class="fa fa-window-close fa-fw"></i>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-                        
+
                         <dl class="dl-horizontal">
                             <dt>
                                 Event Title:
@@ -229,7 +212,7 @@
                     <div class="iconBtnContainer2">
                         <span class="modal-trigger"><button class="iconBtn2" id="detaileditbtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-edit fa-fw"></i> Edit</button></span>
                         <span class="modal-trigger">
-                            <button class="iconBtn2" id="detaildeletebtn" data-dismiss="modal" data-toggle="modal">
+                            <button class="iconBtn2" id="confdeletebtn" data-dismiss="modal" data-toggle="modal">
                                 <i class="fa fa-trash-alt fa-fw"></i> Delete
                             </button>
                         </span>
@@ -259,7 +242,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="iconBtnContainer2">
-                        <button class="iconBtn2" id="deletebtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-trash-alt fa-fw"></i> Delete</button>
+                        <button class="iconBtn2" id="confdeletebtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-trash-alt fa-fw"></i> Delete</button>
                         <button class="iconBtn2" href="#" data-dismiss="modal">
                             <i class="fa fa-window-close fa-fw"></i> Close
                         </button>
@@ -280,20 +263,25 @@
         $(document).ready(function () {
             var events = [];
             var selectedEvent = null;
-            $.ajax({
-                type: "GET",
-                url: "/CalendarEvents/GetCalendarEvents",
-                success: function (data) {
-                    $.each(data, function () {
-                        events = data
-                        //console.log(data);
-                        console.log(events);
-                    })
-                    GenerateCalendar(data);
-                }
-            })
+            FetchEventAndRenderCalendar();
+            function FetchEventAndRenderCalendar() {
+                var events = [];
+                $.ajax({
+                    type: "GET",
+                    url: "/CalendarEvents/FetchEventAndRenderCalendar",
+                    success: function (data) {
+                        //$.each(data, function () {
+                            events = data
+                            console.log(data);
+                            //console.log(events);
+                        //})
+                        GenerateCalendar(data);
+                    }
+                })
+            };
+            
 
-            function GenerateCalendar(data) {
+            function GenerateCalendar(events) {
                 $('#calendar').fullCalendar('destroy');
                 $('#calendar').fullCalendar({
                     data: events,
@@ -304,7 +292,6 @@
                         $('addModal').modal({ backdrop: false });
                     },
                     eventClick: function (calEvent, jsEvent, view) {
-                        selectedEvent = calEvent;
                         $('#detailsModal #eventId').html(calEvent.id);
                         $('#detailsModal #eventTitle').html(calEvent.title);
                         $('#detailsModal #eventStartDate').html(calEvent.start.format("MM-DD-YYYY"));
@@ -317,7 +304,6 @@
                     }
                 });
             };
-            
 
             $('#calendar').fullCalendar({
                 editable: true,
@@ -325,7 +311,6 @@
             });
 
             // page is now ready, initialize the calendar...
-
 
             $("#addbtn").click(function () {
                 $("#addModal").modal({ backdrop: false });
@@ -347,12 +332,37 @@
 
 
             $("#detaildeletebtn").click(function () {
-                selectedEvent = calEvent;
-                $("#confdelModal").modal({ backdrop: false });
+                selectedEvent = events.eventID;
+                $("#confdelModal").modal({
+                    selectedEvent: events.eventID,
+                    backdrop: false
+                });
             });
             $("#editdeletebtn").click(function () {
                 selectedEvent = calEvent;
                 $("#confdelModal").modal({ backdrop: false });
+            });
+
+            //confirm delete function call
+            $('#confdeletebtn').click(function () {
+                selectedEvent = events.eventID;
+                if (selectedEvent != null) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/CalendarEvents/DeletingEvent',
+                        data: { 'calendarEventID': selectedEvent },
+                        success: function (data) {
+                            if (data.status) {
+                                //refresh the calendar
+                                FetchEventAndRenderCalendar();
+                                $('#confdelModal').modal('hide');
+                            }
+                        },
+                        error: function () {
+                            alert('Failed, Sorry!');
+                        }
+                    })
+                }
             });
 
             //to prevent body scrolling bug when modal triggered from another modal
@@ -365,7 +375,7 @@
 
             // to confirm event updated:
             $('#calendar').fullCalendar({
-                selectedEvent = calEvent;
+                //selectedEvent = calEvent,
                 eventClick: function (event, element) {
                     event.title = "CHANGES SAVED!";
 
@@ -378,6 +388,8 @@
         });
     </script>
 }
+@*Buttons to use for now, eventually link to Calender click events*@
+<button type="button" class="btn btn-primary" id="addbtn">Open Add Modal</button>
 
 @if (User.IsInRole("Admin"))
 {

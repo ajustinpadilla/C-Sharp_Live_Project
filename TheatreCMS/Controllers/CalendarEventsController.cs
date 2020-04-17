@@ -23,7 +23,7 @@ namespace TheatreCMS.Controllers
             return View(db.CalendarEvent.ToList());
         }
 
-        public JsonResult GetCalendarEvents()
+        public JsonResult FetchEventAndRenderCalendar()
         {
             var events = db.CalendarEvent.ToArray();
            
@@ -38,8 +38,8 @@ namespace TheatreCMS.Controllers
                 className = x.ClassName,
                 someKey = x.SomeKey,
                 allDay = false,
-                rentalrequestid = x.RentalRequestId,
-                productionid = x.ProductionId,
+                rentalrequestid = x.RentalRequestId,//added for calendar event modals
+                productionid = x.ProductionId,//added for calendar event modals
             }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
@@ -68,6 +68,43 @@ namespace TheatreCMS.Controllers
             return View();
             
       
+        }
+
+        //POST:Create/Edit CalendarEvents via Modals
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public JsonResult UpdateEvent(CalendarEvent e)
+        {
+            var status = false;
+            {
+                if (e.EventId >0)
+                {
+                    //Update the event if exists
+                    CalendarEvent calendarEvents = db.CalendarEvent.Where(a => a.EventId == e.EventId).FirstOrDefault();
+                    if (calendarEvents != null)
+                    {
+                        calendarEvents.EventId = e.EventId;
+                        calendarEvents.Title = e.Title;
+                        calendarEvents.StartDate = e.StartDate;
+                        calendarEvents.EndDate = e.EndDate;
+                        calendarEvents.TicketsAvailable = e.TicketsAvailable;
+                        calendarEvents.Color = e.Color;
+                        calendarEvents.ClassName = e.ClassName;
+                        calendarEvents.SomeKey = e.SomeKey;
+                        calendarEvents.AllDay = e.AllDay;
+                        calendarEvents.RentalRequestId = e.RentalRequestId;
+                        calendarEvents.ProductionId = e.ProductionId;
+                    }
+                }
+                //Create the event if it does not exist yet
+                else
+                {
+                    db.CalendarEvent.Add(e);
+                }
+                db.SaveChanges();
+                status = true;
+            }
+            return new JsonResult { Data = new { status = status } };
         }
 
         // POST: CalendarEvents/Create
@@ -182,6 +219,27 @@ namespace TheatreCMS.Controllers
             db.CalendarEvent.Remove(calendarEvent);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        // GET: CalendarEvents Delete Btn on Detals & Edit Modals
+        
+        [Authorize(Roles = "Admin")]
+
+
+        // POST: CalendarEvents Confirm Delete Modal
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+       
+        public JsonResult DeletingEvent(int eventID)
+        {
+            var status = false;
+            CalendarEvent eventtodel = db.CalendarEvent.Where(a => a.EventId == eventID).FirstOrDefault();
+            if (eventtodel != null)
+            {
+                db.CalendarEvent.Remove(eventtodel);
+                db.SaveChanges();
+                status = true;
+            }
+            return new JsonResult { Data = new { status = status } };
         }
 
         protected override void Dispose(bool disposing)
