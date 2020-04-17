@@ -95,5 +95,36 @@ namespace TheatreCMS.Controllers
             }
 
         }
+        [HttpPost]
+        public ActionResult Archive(string SearchByCategory, string ArchiveSearchField)
+        {
+            var db = new ApplicationDbContext();
+            ViewBag.Category = SearchByCategory;
+            switch (SearchByCategory)
+            {
+                case "ArchiveCastMember":
+                    ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Cast Members", ArchiveSearchField);
+                    var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    ViewData["ResultsList"] = resultsCast;
+                    break;
+                    case "ArchiveProduction":
+                        ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Productions", ArchiveSearchField);
+                    var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    ViewData["ResultsList"] = resultsProduction;
+                    break;
+                    case "ArchivePart":
+                        ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Parts", ArchiveSearchField);
+                    var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    ViewData["ResultsList"] = resultsPart;
+                    break;
+                    default:
+                        break;
+                }
+                return View();
+            
+                
+        }
+
+        
     }
 }
