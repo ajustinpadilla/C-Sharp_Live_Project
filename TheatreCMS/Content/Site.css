@@ -789,13 +789,15 @@ textarea {
     padding: 50px;
 }
 
-/*subscriber create page*/
-.testC {
-    color: black;
+/*subscriber delete page*/
+.sub-delete-back {
+    background-color: var(--subscriber-main);
 }
 
+.sub-delete-btn {
+    background-color: var(--main-bg-color) !important;
+}
 /*End styling for Subscriber section*/
-
 /* Dropdown Button */
 .dropbtn {
     background-color: var(--dark-color);
