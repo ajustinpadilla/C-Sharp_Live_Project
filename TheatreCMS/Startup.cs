@@ -50,6 +50,7 @@ namespace TheatreCMS
                 user.City = "Atlantis";
                 user.State = "OR";
                 user.ZipCode = "97212";
+                user.Role = "Admin";
 
                 string userPWD = "Passw0rd!";
 
@@ -77,7 +78,8 @@ namespace TheatreCMS
                     City = "Detroit",
                     //State could be Enum later
                     State = "FL",
-                    ZipCode = "12345"
+                    ZipCode = "12345",
+                    Role = "Member"
                 };
 
                 string userPWD = "Ih@ve12cats";
@@ -105,7 +107,8 @@ namespace TheatreCMS
                     StreetAddress = "100 100th St",
                     City = "Shire",
                     State = "MA",
-                    ZipCode = "54321"
+                    ZipCode = "54321",
+                    Role = "Subscriber"
                 };
 
                 string userPWD = "100100St!";
