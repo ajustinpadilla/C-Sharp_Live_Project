@@ -105,6 +105,7 @@
                                 <label>Event Title</label>
                                 <div class="formBox">
                                     <input type="text" id="editformtitle" placeholder="(text input type)" />
+                                    <p id="eeventTitle"></p>
                                 </div>
                             </div>
 
@@ -112,6 +113,7 @@
                                 <label>Start time:</label>
                                 <div class="formBox">
                                     <input type="datetime-local" id="editformstarttime" placeholder="(datetime-local input type)" />
+                                    <p id="eeventStartDate"></p>
                                 </div>
                             </div>
 
@@ -119,6 +121,7 @@
                                 <label>End time:</label>
                                 <div class="formBox">
                                     <input type="datetime-local" id="editformendtime" placeholder="(datetime-local input type)" />
+                                    <p id="eeventEndDate"></p>
                                 </div>
                             </div>
 
@@ -129,6 +132,8 @@
                                         <option value="production" id="editprodopt">Production</option>
                                         <option value="rental" id="editrentopt">Facility Rental</option>
                                     </select>
+                                    <p id="eeventRentalRequestId">&times;</p>/
+                                    <p id="eProductionId">&times;</p>
                                 </div>
                             </div>
 
@@ -136,6 +141,7 @@
                                 <label>Link:</label>
                                 <div class="formBox">
                                     <input type="text" id="editformlink" placeholder="(text input type)" />
+                                    <p id="eeventLinks"></p>
                                 </div>
                             </div>
                         </div>
@@ -179,31 +185,31 @@
                                 Event Title:
                             </dt>
                             <dd>
-                                <p id="eventTitle"></p>
+                                <p id="deventTitle"></p>
                             </dd>
                             <dt>
                                 Start time:
                             </dt>
                             <dd>
-                                <p id="eventStartDate"></p>
+                                <p id="deventStartDate"></p>
                             </dd>
                             <dt>
                                 End time:
                             </dt>
                             <dd>
-                                <p id="eventEndDate"></p>
+                                <p id="deventEndDate"></p>
                             </dd>
                             <dt>
                                 Id present: Rental/Production:
                             </dt>
                             <dd>
-                                <p id="eventRentalRequestId">&times;</p>/<p id="ProductionId">&times;</p>
+                                <p id="deventRentalRequestId">&times;</p>/<p id="deventProductionId">&times;</p>
                             </dd>
                             <dt>
                                 Link:
                             </dt>
                             <dd>
-                                ( display of text input type)
+                               <p id="deventLinks"></p>
                             </dd>
                         </dl>
                     </div>
@@ -292,13 +298,13 @@
                         $('addModal').modal({ backdrop: false });
                     },
                     eventClick: function (calEvent, jsEvent, view) {
-                        $('#detailsModal #eventId').html(calEvent.id);
-                        $('#detailsModal #eventTitle').html(calEvent.title);
-                        $('#detailsModal #eventStartDate').html(calEvent.start.format("MM-DD-YYYY"));
-                        $('#detailsModal #eventEndDate').html(calEvent.end.format("MM-DD-YYYY"));
-                        $('#detailsModal #eventRentalRequestId').html(calEvent.rentalrequestid);
-                        $('#detailsModal #eventProductionId').html(calEvent.productionid);
-                        //$('#detailsModal #event').html(calEvent.Link);
+                        $('#detailsModal #deventId').html(calEvent.id);
+                        $('#detailsModal #deventTitle').html(calEvent.title);
+                        $('#detailsModal #deventStartDate').html(calEvent.start.format("MM-DD-YYYY"));
+                        $('#detailsModal #deventEndDate').html(calEvent.end.format("MM-DD-YYYY"));
+                        $('#detailsModal #deventRentalRequestId').html(calEvent.rentalrequestid);
+                        $('#detailsModal #deventProductionId').html(calEvent.productionid);
+                        //$('#detailsModal #deventEventLinks').html(calEvent.Link);
 
                         $("#detailsModal").modal({ backdrop: true });
                     }
@@ -315,6 +321,9 @@
             $("#addbtn").click(function () {
                 $("#addModal").modal({ backdrop: false });
             });
+            $("#editbtn").click(function () {
+                $("#editModal").modal({ backdrop: false });
+            });
             $('addsavebtn').click(function () {
                 //var newEvent = {
                 //    title: 'NEW EVENT',
@@ -324,11 +333,16 @@
             //});
 
             $("#detaileditbtn").click(function () {
+                $('#editModal #eeventId').html(calEvent.id);
+                $('#editModal #eeventTitle').html(calEvent.title);
+                $('#editModal #eeventStartDate').html(calEvent.start.format("MM-DD-YYYY"));
+                $('#editModal #eeventEndDate').html(calEvent.end.format("MM-DD-YYYY"));
+                $('#editModal #eeventRentalRequestId').html(calEvent.rentalrequestid);
+                $('#editModal #eeventProductionId').html(calEvent.productionid);
+                //$('#editModal #eevent').html(calEvent.Link);
+
                 $("#editModal").modal({ backdrop: false });
             });
-
-            //commented out JS for modals when attached to functionality: edit
-            //$('#editModal').modal('handleUpdate');
 
 
             $("#detaildeletebtn").click(function () {
@@ -382,6 +396,7 @@
 }
 @*Button to use for now, eventually link to Calender click events*@
 <button type="button" class="btn btn-primary" id="addbtn">Open Add Modal</button>
+<button type="button" class="btn btn-primary" id="editbtn">Edit Modal</button>
 
 @if (User.IsInRole("Admin"))
 {
