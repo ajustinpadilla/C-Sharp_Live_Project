@@ -794,8 +794,33 @@ textarea {
     color: black;
 }
 
-/*End styling for Subscriber section*/
+/*Subscriber Edit section*/
+.subbody2 {
+    background-color: var(--dark-color);
+}
 
+.body-content2 {
+    background-color: var(--light-color);
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
+#submit-button {
+    background-color: var(--subscriber-main);
+    width: 100%;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#submit-button:hover {
+    background-color: var(--secondary-color);
+}
+/*End Subscriber Edit Section*/
+/*End styling for Subscriber section*/
 /* Dropdown Button */
 .dropbtn {
     background-color: var(--dark-color);
