@@ -150,8 +150,47 @@
     color: var(--dark-color);
 }*/
 
-/*-----Classes and styling for LoginFailure view------*/
+/*production index table styling*/
+.prod-index-l-margin {
+    margin-left: 40px;
+}
 
+.productions-index-th-styling {
+    color: var(--main-bg-color);
+    text-align: left;
+    width: 125px;
+}
+
+.productions-index-td-styling {
+    color: var(--light-color);
+    text-align: left;
+    padding-top: 6px;
+    padding-left: 40px;
+}
+
+.production-index-container {
+    max-width: 100%;
+}
+
+.spaced-btn-1, .spaced-btn-2 {
+    padding: 5px;
+    margin-top: 20px; 
+    background-color: var(--main-bg-color) !important;
+}
+
+.spaced-btn-2 {
+    margin-left: 15px;
+}
+
+.spaced-btn-1 {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.production-index-img {
+    border-radius: 6px;
+}
+/*-----Classes and styling for LoginFailure view------*/
 /*using button styles from sponsor index to match theme 
 .button-redirect { 
     background-color: var(--secondary-color);
@@ -525,6 +564,7 @@ textarea {
     color: var(--light-color);
     font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
     font-size: 120%;
+    padding: 0px;
 }
 
 
@@ -532,26 +572,28 @@ textarea {
 .registerTextHead { 
 	color: var(--light-color);
 	font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
-	font-size: 200%
+	font-size: 200%;
 }
 
-.registerTextHead:hover {
+/*.registerTextHead:hover {
     color: var(--dark-color);
-}
+}*/
 
 .registerInput {
-	width: 80%;
-    border-radius: 0 !important;    
+    min-width: 16em;
+    border-radius: 0;
+    background-clip: border-box;
 }
 
 .registerInput:hover {
     border: solid gray 1px;
     transition: .5s;
+    outline: 0;
 }
 
 
 .registerButton {
-	width: auto;    
+	width: auto;
 }
 
 
@@ -633,7 +675,7 @@ textarea {
     font-weight: bold;
 }
 
-.card-deck, .card, .card-img-top {
+.card-deck, .card, .card-img-top { /*this is a bootstrap class*/
     background-color: var(--dark-color);
 }
 
@@ -984,6 +1026,7 @@ a.dropdown-item:hover {
 /*Production Index button styling*/
 
 .production-admin-btn {
+    padding: 5px;
     margin-top: 5px;
     background-color: var(--main-bg-color) !important;
 }
@@ -993,8 +1036,8 @@ a.dropdown-item:hover {
     background-color: var(--main-secondary-color) !important;
 }
 
-.production-admin-div{
-    width: 350px;
+.production-admin-div {
+    width: 400px;
 }
 
 /*about page container*/
