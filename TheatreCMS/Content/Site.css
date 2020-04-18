@@ -1178,9 +1178,10 @@ a.dropdown-item:hover {
     width:100%; 
     height:auto;
 }
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 690px){
     .prodCenter {
         position: center;
         overflow: auto;
+        padding: 0 10px 0 10px;
     }
 }

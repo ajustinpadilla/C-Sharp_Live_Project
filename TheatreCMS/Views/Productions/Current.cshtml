@@ -27,8 +27,8 @@
 {   <div class="row justify-content-center">
         @*This Row is used to set the elements of the card side by mx-auto side instead of a classic over under*@
         @*<div class="col-md-5 col-sm-6 col-lg-2"></div>*@ @*This pushes the elements to the center of the view*@
-        <div class="flex-row">
-            <div class="prodCenter card my-2 rh-25 palette-container overflow-hidden center-box">
+        <div class="flex-row prodCenter ">
+            <div class="card my-2 rh-25 palette-container overflow-hidden center-box">
                 @*Create a card, that hides the corners of the image and is spaced slightly away from each other*@
                 @Html.DisplayFor(modelItem => item.DefaultPhoto)
                 @* This is where we'll need to display the image from the byte[] in the database. *@
