@@ -796,6 +796,8 @@ textarea {
 
 .sub-delete-btn {
     background-color: var(--main-bg-color) !important;
+    width: unset !important;
+    padding: 10px;
 }
 
 .sub-delete-table-td {
@@ -803,13 +805,14 @@ textarea {
     padding-top: 10px;
 }
 
-.sub-delete-return-btn {
-    color: var(--light-color);
-    padding-left: 5px;
-    padding-right: 5px;
+.sub-delete-cancel-btn {
+    color: var(--dark-color);
+    padding: 10px;
+    background-color: #4CAF50;
+    border-radius: 4px;
 }
 
-.sub-delete-return-btn:hover {
+.sub-delete-cancel-btn:hover {
     color: var(--dark-color);
     background-color: var(--secondary-color);
     text-decoration: none
