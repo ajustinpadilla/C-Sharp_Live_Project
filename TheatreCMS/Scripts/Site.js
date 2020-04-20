@@ -2,37 +2,44 @@
 
 
 
+// Script for shrinking logo
+window.onscroll = function () { shrinkFunction() };
 
 //Simple welcome message that prints to the console on App Start
 console.log("Welcome to the theatre!");
 
 //Script for Landing Page
-var slideIndex = 1;
-showSlides(slideIndex);
+if (document.getElementById("main-carousel") != null) {
+    var slideIndex = 1;
 
-function changeSlide(n) {
-    showSlides(slideIndex += n);
-}
+    showSlides(slideIndex);
 
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("slides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+    function changeSlide(n) {
+        showSlides(slideIndex += n);
     }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
     }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-}
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+};
+
+
 
 
 
@@ -49,13 +56,13 @@ function showSlides(n) {
 //    }
 //}
 
-// Script for shrinking logo
-window.onscroll = function () { shrinkFunction() };
 
 function shrinkFunction() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("logo").style.height = "30px";
+        document.getElementById("logo").style.height = "40px";
+        document.getElementById("menu").style.padding = " 1px 20px";
     } else {
         document.getElementById("logo").style.height = "90px";
+        document.getElementById("menu").style.padding = "20px";
     }
 }

@@ -150,9 +150,50 @@
     color: var(--dark-color);
 }*/
 
-/*-----Classes and styling for LoginFailure view------*/
+/*production index table styling*/
+.prod-index-l-margin {
+    margin-left: 40px;
+}
 
-using button styles from sponsor index to match theme 
+.productions-index-th-styling {
+    color: var(--main-bg-color);
+    text-align: left;
+    width: 125px;
+}
+
+.productions-index-td-styling {
+    color: var(--light-color);
+    text-align: left;
+    padding-top: 6px;
+    padding-left: 40px;
+}
+
+.production-index-container {
+    max-width: 100%;
+}
+
+.spaced-btn-1, .spaced-btn-2 {
+    padding: 5px;
+    margin-top: 20px; 
+    background-color: var(--main-bg-color) !important;
+}
+
+.spaced-btn-2 {
+    margin-left: 15px;
+}
+
+.spaced-btn-1 {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.production-index-img {
+    border-radius: 6px;
+}
+/*-----Classes and styling for LoginFailure view------*/
+/*using button styles from sponsor index to match theme */
+
+
 .button-redirect { 
     background-color: var(--secondary-color);
     text-decoration:none;
@@ -435,6 +476,8 @@ textarea {
     border: none;
 }
 
+
+
 .submitButton {
     display: inline-block;
     width: 75%;
@@ -523,6 +566,7 @@ textarea {
     color: var(--light-color);
     font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
     font-size: 120%;
+    padding: 0px;
 }
 
 
@@ -530,32 +574,39 @@ textarea {
 .registerTextHead { 
 	color: var(--light-color);
 	font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
-	font-size: 200%
+	font-size: 200%;
 }
 
-.registerTextHead:hover {
+/*.registerTextHead:hover {
     color: var(--dark-color);
-}
+}*/
 
 .registerInput {
-	width: 80%;
-    border-radius: 0 !important;    
+    min-width: 16em;
+    border-radius: 0;
+    background-clip: border-box;
 }
 
 .registerInput:hover {
     border: solid gray 1px;
     transition: .5s;
+    outline: 0;
 }
 
 
 .registerButton {
-	width: auto;    
+	width: auto;
 }
 
 
 /*End style for register form page*/
 
 /*Styling for CastMember Index View*/
+
+.castMargin {
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 .castContainer {
     position: relative;
@@ -644,7 +695,7 @@ textarea {
     font-weight: bold;
 }
 
-.card-deck, .card, .card-img-top {
+.card-deck, .card, .card-img-top { /*this is a bootstrap class*/
     background-color: var(--dark-color);
 }
 
@@ -668,6 +719,56 @@ textarea {
     
 
 /*Begin styling for Subscriber section*/
+
+/*begin styling for Subscriber navbar*/
+
+.sub-navbar-back {
+    background-color: var(--subscriber-main);
+}
+
+.sub-navbar-btn, .sub-navbar-btn-h {
+    color: var(--light-color);
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.sub-navbar-btn-login {
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+    color: var(--dark-color);
+}
+
+.sub-navbar-btn:hover {
+    background-color: var(--secondary-color);
+    border-radius: 10%;
+    color: var(--dark-color);
+}
+
+.sub-navbar-btn-h:hover {
+    color: var(--light-color);
+}
+
+.sub-navbar-collapse-btn {
+    background-color: var(--secondary-color);
+}
+
+.sub-toggler-icon {
+    color: var(--dark-color);
+    height: 100%;
+    width: 100%;
+}
+
+.sub-dropdown-content {
+    text-align: center;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/*end styling for Subscriber navbar*/
 
 .subsave {
     background-color: var(--subscriber-main);
@@ -750,13 +851,43 @@ textarea {
     padding: 50px;
 }
 
-/*subscriber create page*/
-.testC {
-    color: black;
+/*subscriber delete page*/
+.sub-delete-back {
+    background-color: var(--subscriber-main);
+}
+
+.sub-delete-btn {
+    background-color: var(--main-bg-color) !important;
+    width: unset !important;
+    padding: 10px;
+}
+
+.sub-delete-table-td {
+    padding-left: 40px;
+    padding-top: 10px;
+}
+
+.sub-delete-cancel-btn {
+    color: var(--dark-color);
+    padding: 10px;
+    background-color: #4CAF50;
+    border-radius: 4px;
+}
+
+.sub-delete-cancel-btn:hover {
+    color: var(--dark-color);
+    background-color: var(--secondary-color);
+    text-decoration: none
+}
+/*subscriber Details page*/
+.sub-detail-bg {
+    height:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /*End styling for Subscriber section*/
-
 /* Dropdown Button */
 .dropbtn {
     background-color: var(--dark-color);
@@ -905,6 +1036,11 @@ a.dropdown-item:hover {
     font-size: 20px;
 }
 
+/*Current productions*/
+.currentpro a {
+    margin-left: 15px;
+}
+
 /*Sponsor partial styling*/
 .sponsor-partial-pic {
     width: 100%;
@@ -921,6 +1057,7 @@ a.dropdown-item:hover {
 /*Production Index button styling*/
 
 .production-admin-btn {
+    padding: 5px;
     margin-top: 5px;
     background-color: var(--main-bg-color) !important;
 }
@@ -930,8 +1067,8 @@ a.dropdown-item:hover {
     background-color: var(--main-secondary-color) !important;
 }
 
-.production-admin-div{
-    width: 350px;
+.production-admin-div {
+    width: 400px;
 }
 
 /*about page container*/
@@ -1004,34 +1141,79 @@ a.dropdown-item:hover {
 
 
 /*Admin Dashoboard list*/
-#dash ul {
+#admin-dash-title {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/*#admin-dash {
+    text-align: center;
+}
+
+#admin-dash ul {
     list-style: none;
     border: hidden;
-    display: inline-block;
-}
-#dash ul li:not(:last-child):after {
-    content: "|";
+    padding-left: 0;
+
 }
 
-#dash li {
+#admin-dash li {
     display: inline-block;
     border: hidden;
+}*/
+
+.admin-dash-btn {
+    padding: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
 }
 
+.admin-dash-btn:hover {
+    background-color: var(--main-secondary-color);
+    color: var(--dark-color);
+    text-decoration: none;
+}
 
+.admin-dash-collapse-btn {
+    background-color: var(--main-bg-color);
+    padding: 6px 12px 6px 12px;
+}
+
+.admin-dash-collapse-btn-icon {
+    color: var(--light-color);
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 1080px) {
+    .admin-dash-btn {
+        margin-top: 6px;
+    }
+}
 /*End Admin Dashboard list*/
-
-
 /*Admin Dashboard Form*/
-#formspace {
+#admin-formspace {
+    margin: auto;
+    border: solid 4px var(--main-bg-color);
     padding: 100px;
 }
-#formspace {
-    margin: auto;
-    border: dashed;
-    border-color: #F04D44;
+
+@media only screen and (max-width: 750px) {
+    #admin-formspace {
+        padding: 10px;
+    }
 }
 /*End Admin Dashboard Form*/
+
+.admin-tables {
+    color: var(--light-color);
+}
 
 /*Sponsors Partial View*/
 
@@ -1066,4 +1248,25 @@ a.dropdown-item:hover {
     padding-top: 16px;
     /*Centers calendar*/
     margin: auto;
+}
+
+/*Product Details*/
+
+#jumbo.jumbotron {
+    background-color:#bd1a11;
+    
+}
+#cardss.card {
+    margin-top:20px;
+    border:none;
+
+}
+#head.card-header {
+    background-color: #bd1a11;
+    text-decoration-color:white;
+}
+
+#DisplayImg {
+    width:100%; 
+    height:auto;
 }

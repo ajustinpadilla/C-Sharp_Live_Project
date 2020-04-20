@@ -131,11 +131,19 @@
         </dl>
       </div>
     </div>
+</div>
     <div class="col text-center">
       <p>
+    @if (User.IsInRole("Admin"))
+    {
+    
         <button class="button-redirect"> @Html.ActionLink("Edit", "Edit", new { id = Model.CastMemberID }) </button>
-        <button class=" button-redirect"> @Html.ActionLink("Back to List", "Index") </button>
+        
+    }
+    <button class=" button-redirect"> @Html.ActionLink("Back to List", "Index") </button>
       </p>
     </div>
+
+    
   </div>
 </div>
