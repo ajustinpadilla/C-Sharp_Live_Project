@@ -1208,11 +1208,9 @@ a.dropdown-item:hover {
     color: var(--light-color);
 }
 
-.modal label {
+.fc-modal-labels {
     color: var(--light-color);
 }
-
-
 
 #fc-modal-headers {
     font-family: Tahoma, Geneva, sans-serif;

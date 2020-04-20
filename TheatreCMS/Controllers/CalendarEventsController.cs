@@ -23,7 +23,7 @@ namespace TheatreCMS.Controllers
             return View(db.CalendarEvent.ToList());
         }
 
-        public JsonResult FetchEventAndRenderCalendar()
+        public JsonResult FetchEventsAndRenderCalendar()
         {
             var events = db.CalendarEvent.ToArray();
            
@@ -95,6 +95,7 @@ namespace TheatreCMS.Controllers
                         calendarEvents.RentalRequestId = e.RentalRequestId;
                         calendarEvents.ProductionId = e.ProductionId;
                     }
+
                 }
                 //Create the event if it does not exist yet
                 else
@@ -229,10 +230,10 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
        
-        public JsonResult DeletingEvent(int eventID)
+        public JsonResult DeletingEvent(int EventId)
         {
             var status = false;
-            CalendarEvent eventtodel = db.CalendarEvent.Where(a => a.EventId == eventID).FirstOrDefault();
+            CalendarEvent eventtodel = db.CalendarEvent.Where(a => a.EventId == EventId).FirstOrDefault();
             if (eventtodel != null)
             {
                 db.CalendarEvent.Remove(eventtodel);

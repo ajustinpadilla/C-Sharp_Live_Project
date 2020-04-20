@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<TheatreCMS.Models.CalendarEvent>
 
-
-
 @{
     ViewBag.Title = "Index";
 }
@@ -10,255 +8,246 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
-<div class="container">
+@* Modal box for Add Calender Event *@
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="fc-modals-titles" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="fc-modals">
+            <div class="modal-header">
+                <h3 class="modal-title" id="fc-modal-titles">Add a Calendar Event</h3>
+                <hr />
+                <button class="iconBtn2" href="#" data-dismiss="modal">
+                    <i class="fa fa-window-close fa-fw"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span aria-hidden="true"></span>
 
+                <div class="form-horizontal">
+                    <div class="inputBox2">
 
-    @* Modal box for Add Calender Event *@
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="fc-modals-titles" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="fc-modals">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="fc-modal-titles">Add a Calendar Event</h3>
-                    <hr />
-                    <button class="iconBtn2" href="#" data-dismiss="modal">
-                        <i class="fa fa-window-close fa-fw"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <span aria-hidden="true"></span>
+                        <div class="form-group">
+                            <label class="fc-modal-labels">Event Title</label>
+                            <div class="formBox">
+                                <input type="text" id="addformtitle" placeholder="(text input type)" />
 
-                    <div class="form-horizontal">
-                        <div class="inputBox2">
-
-                            <div class="form-group">
-                                <label>Event Title</label>
-                                <div class="formBox">
-                                    <input type="text" id="addformtitle" placeholder="(text input type)" />
-                                </div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label>Start time:</label>
-                                <div class="formBox">
-                                    <input type="datetime-local" id="addformstarttime" placeholder="(datetime-local input type)" />
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels">Start time:</label>
+                            <div class="formBox">
+                                <input type="text" id="addformstarttime" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" placeholder="MM/DD/YYYY --:-- "/>                               
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label>End time:</label>
-                                <div class="formBox">
-                                    <input type="datetime-local" id="addformendtime" placeholder="(datetime-local input type)" />
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels">End time:</label>
+                            <div class="formBox">
+                                <input type="text" id="addformendtime" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"placeholder="MM/DD/YYYY --:-- " />
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="eventtypes">Event type:</label>
-                                <div class="formBox">
-                                    <select id="eventtypes">
-                                        <option value="production" id="addprodopt">Production</option>
-                                        <option value="rental" id="addrentopt">Facility Rental</option>
-                                    </select>
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels" for="eventtypes">Event type:</label>
+                            <div class="formBox">
+                                <select id="eventtypes">
+                                    <option value="production" id="addprodopt">Production</option>
+                                    <option value="rental" id="addrentopt">Facility Rental</option>
+                                </select>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label>Link:</label>
-                                <div class="formBox">
-                                    <input type="text" id="addformlink" placeholder="(text input type)" />
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels">Link:</label>
+                            <div class="formBox">
+                                <input type="text" id="addformlink" placeholder="(text input type)" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="iconBtnContainer2">
-                        <button class="iconBtn2" id="addsavebtn" data-dismiss="modal">
-                            <i class="fa fa-save fa-fw"></i> Save
-                        </button>
-                        <button class="iconBtn2" href="#" data-dismiss="modal">
-                            <i class="fa fa-window-close fa-fw"></i> Close
-                        </button>
-                    </div>
+            </div>
+            <div class="modal-footer">
+                <div class="iconBtnContainer2">
+                    <button class="iconBtn2" id="addsavebtn" data-dismiss="modal">
+                        <i class="fa fa-save fa-fw"></i> Save
+                    </button>
+                    <button class="iconBtn2" href="#" data-dismiss="modal">
+                        <i class="fa fa-window-close fa-fw"></i> Close
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    @* Modal box for Editing a CalenderEvent *@
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="fc-modal-titles" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="fc-modals">
+@* Modal box for Editing a CalenderEvent *@
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="fc-modal-titles" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="fc-modals">
 
-                <div class="modal-header">
-                    <h3 class="modal-title" id="fc-modal-titles">Edit Calender Event</h3>
-                    <button class="iconBtn2" href="#" data-dismiss="modal">
-                        <i class="fa fa-window-close fa-fw"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <span aria-hidden="true"></span>
+            <div class="modal-header">
+                <h3 class="modal-title" id="fc-modal-titles">Edit Calender Event</h3>
+                <button class="iconBtn2" href="#" data-dismiss="modal">
+                    <i class="fa fa-window-close fa-fw"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span aria-hidden="true"></span>
 
-                    <div class="form-horizontal">
-                        <div class="inputBox2">
+                <div class="form-horizontal">
+                    <div class="inputBox2">
 
-                            <div class="form-group">
-                                <label>Event Title</label>
-                                <div class="formBox">
-                                    <input type="text" id="editformtitle" placeholder="(text input type)" />
-                                    <p id="eeventTitle"></p>
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels">Event Title</label>
+                            <div class="formBox">
+                                <input type="text" id="editformtitle" placeholder="(text input type)" />
+                                <p id="eeventTitle"></p>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label>Start time:</label>
-                                <div class="formBox">
-                                    <input type="datetime-local" id="editformstarttime" placeholder="(datetime-local input type)" />
-                                    <p id="eeventStartDate"></p>
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels">Start time:</label>
+                            <div class="formBox">
+                                <input type="datetime-local" id="editformstarttime" placeholder="(datetime-local input type)" />
+                                <p id="eeventStartDate"></p>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label>End time:</label>
-                                <div class="formBox">
-                                    <input type="datetime-local" id="editformendtime" placeholder="(datetime-local input type)" />
-                                    <p id="eeventEndDate"></p>
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels">End time:</label>
+                            <div class="formBox">
+                                <input type="datetime-local" id="editformendtime" placeholder="(datetime-local input type)" />
+                                <p id="eeventEndDate"></p>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="eventtypes">Event type:</label>
-                                <div class="formBox">
-                                    <select id="eventtypes">
-                                        <option value="production" id="editprodopt">Production</option>
-                                        <option value="rental" id="editrentopt">Facility Rental</option>
-                                    </select>
-                                    <p id="eeventRentalRequestId">&times;</p>/
-                                    <p id="eProductionId">&times;</p>
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels" for="editeventtypes">Event type:</label>
+                            <div class="formBox">
+                                <select id="editeventtypes">
+                                    <option value="production" id="editprodopt">Production</option>
+                                    <option value="rental" id="editrentopt">Facility Rental</option>
+                                </select>
+                                <p id="eeventRentalRequestId">&times;</p>/
+                                <p id="eProductionId">&times;</p>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label>Link:</label>
-                                <div class="formBox">
-                                    <input type="text" id="editformlink" placeholder="(text input type)" />
-                                    <p id="eeventLinks"></p>
-                                </div>
+                        <div class="form-group">
+                            <label class="fc-modal-labels">Link:</label>
+                            <div class="formBox">
+                                <input type="text" id="editformlink" placeholder="(text input type)" />
+                                <p id="eeventLinks"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="iconBtnContainer2">
-                        <button class="iconBtn2">
-                            <i class="fa fa-save fa-fw"></i> Save
-                        </button>
-                        <span class="modal-trigger">
-                            <button class="iconBtn2" id="editdeletebtn" data-dismiss="modal" data-toggle="modal">
-                                <i class="fa fa-trash-alt fa-fw"></i> Delete
-                            </button>
-                        </span>
-                        <button class="iconBtn2" href="#" data-dismiss="modal">
-                            <i class="fa fa-window-close fa-fw"></i> Close
-                        </button>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
-
-    @* Modal box for Details from a Calendar Event *@
-    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="fc-modal-titles" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="fc-modals">
-                <span aria-hidden="true"></span>
-                <div class="modal-header">
-                    <h3 class="modal-title" id="fc-modal-titles">Event Details</h3>
+            <div class="modal-footer">
+                <div class="iconBtnContainer2">
+                    <button class="iconBtn2" id="editsavebtn">
+                        <i class="fa fa-save fa-fw"></i> Save
+                    </button>           
+                        <button class="iconBtn2" id="editdeletebtn" data-dismiss="modal" data-toggle="modal">
+                            <i class="fa fa-trash-alt fa-fw"></i> Delete
+                        </button>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
-                        <i class="fa fa-window-close fa-fw"></i>
+                        <i class="fa fa-window-close fa-fw"></i> Close
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Event Title:
-                            </dt>
-                            <dd>
-                                <p id="deventTitle"></p>
-                            </dd>
-                            <dt>
-                                Start time:
-                            </dt>
-                            <dd>
-                                <p id="deventStartDate"></p>
-                            </dd>
-                            <dt>
-                                End time:
-                            </dt>
-                            <dd>
-                                <p id="deventEndDate"></p>
-                            </dd>
-                            <dt>
-                                Id present: Rental/Production:
-                            </dt>
-                            <dd>
-                                <p id="deventRentalRequestId">&times;</p>/<p id="deventProductionId">&times;</p>
-                            </dd>
-                            <dt>
-                                Link:
-                            </dt>
-                            <dd>
-                               <p id="deventLinks"></p>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="iconBtnContainer2">
-                        <span class="modal-trigger"><button class="iconBtn2" id="detaileditbtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-edit fa-fw"></i> Edit</button></span>
-                        <span class="modal-trigger">
-                            <button class="iconBtn2" id="confdeletebtn" data-dismiss="modal" data-toggle="modal">
-                                <i class="fa fa-trash-alt fa-fw"></i> Delete
-                            </button>
-                        </span>
-                        <button class="iconBtn2" href="#" data-dismiss="modal">
-                            <i class="fa fa-window-close fa-fw"></i> Close
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+</div>
 
-    @*Modal box for Deletion Confirmation of Calendar Event*@
-    <div class="modal fade" id="confdelModal" tabindex="-1" role="dialog" aria-labelledby="fc-modals-titles" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="fc-modals">
-                <span aria-hidden="true"></span>
-                <div class="modal-header">
-                    <h3 class="modal-title" id="fc-modal-titles">Confirm Delete Event</h3>
+@* Modal box for Details from a Calendar Event *@
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="fc-modal-titles" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="fc-modals">
+            <span aria-hidden="true"></span>
+            <div class="modal-header">
+                <h3 class="modal-title" id="fc-modal-titles">Event Details</h3>
+                <button class="iconBtn2" href="#" data-dismiss="modal">
+                    <i class="fa fa-window-close fa-fw"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Event Title:
+                        </dt>
+                        <dd>
+                            <p id="deventTitle"></p>
+                        </dd>
+                        <dt>
+                            Start time:
+                        </dt>
+                        <dd>
+                            <p id="deventStartDate"></p>
+                        </dd>
+                        <dt>
+                            End time:
+                        </dt>
+                        <dd>
+                            <p id="deventEndDate"></p>
+                        </dd>
+                        <dt>
+                            Id present: Rental/Production:
+                        </dt>
+                        <dd>
+                            <p id="deventRentalRequestId">&times;</p>/<p id="deventProductionId">&times;</p>
+                        </dd>
+                        <dt>
+                            Link:
+                        </dt>
+                        <dd>
+                            <p id="deventLinks"></p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="iconBtnContainer2">
+                    <button class="iconBtn2" id="detaileditbtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-edit fa-fw"></i> Edit</button>
+                        <button class="iconBtn2" id="detaildeletebtn" data-dismiss="modal" data-toggle="modal">
+                            <i class="fa fa-trash-alt fa-fw"></i> Delete
+                        </button>
                     <button class="iconBtn2" href="#" data-dismiss="modal">
-                        <i class="fa fa-window-close fa-fw"></i>
+                        <i class="fa fa-window-close fa-fw"></i> Close
                     </button>
                 </div>
-                <div class="modal-body">
-                    <h1>Delete Event</h1>
-                    <p>Are you sure you wish to delete this event?</p>
-                </div>
-                <div class="modal-footer">
-                    <div class="iconBtnContainer2">
-                        <button class="iconBtn2" id="confdeletebtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-trash-alt fa-fw"></i> Delete</button>
-                        <button class="iconBtn2" href="#" data-dismiss="modal">
-                            <i class="fa fa-window-close fa-fw"></i> Close
-                        </button>
-                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal box for Deletion Confirmation of Calendar Event*@
+<div class="modal fade" id="confdelModal" tabindex="-1" role="dialog" aria-labelledby="fc-modals-titles" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="fc-modals">
+            <span aria-hidden="true"></span>
+            <div class="modal-header">
+                <h3 class="modal-title" id="fc-modal-titles">Confirm Delete Event</h3>
+                <button class="iconBtn2" href="#" data-dismiss="modal">
+                    <i class="fa fa-window-close fa-fw"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Delete Event</h1>
+                <p>Are you sure you wish to delete this event?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="iconBtnContainer2">
+                    <button class="iconBtn2" id="confdeletebtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-trash-alt fa-fw"></i> Delete</button>
+                    <button class="iconBtn2" href="#" data-dismiss="modal">
+                        <i class="fa fa-window-close fa-fw"></i> Close
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
 
 
@@ -267,94 +256,126 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            var events = [];
-            var selectedEvent = null;
-            FetchEventAndRenderCalendar();
-            function FetchEventAndRenderCalendar() {
-                var events = [];
+            //var selectedEvent = null;
+            FetchEventsAndRenderCalendar();
+            function FetchEventsAndRenderCalendar() {
                 $.ajax({
                     type: "GET",
-                    url: "/CalendarEvents/FetchEventAndRenderCalendar",
+                    url: "/CalendarEvents/FetchEventsAndRenderCalendar",
                     success: function (data) {
-                        //$.each(data, function () {
                             events = data
-                            console.log(data);
+                            //console.log(data);
                             //console.log(events);
-                        //})
-                        GenerateCalendar(data);
+                            GenerateCalendar(events);
                     }
                 })
             };
             
-
-            function GenerateCalendar(events) {
+            function GenerateCalendar(events) { //events: data of events, inherent from FullCalendar?
+                //remove the previous Calendar
                 $('#calendar').fullCalendar('destroy');
+                //Assign properties to the Calendar, and some events
                 $('#calendar').fullCalendar({
-                    data: events,
+                    //data: events,
                     contentHeight: 550,
-                    timeFormat: 'h(:mm)a',
+                    defaultDate: new Date(),
+                    //timeFormat: 'h(:mm)a',
+                    //for ease, remove times of events on EventDisplays
+                    displayEventTime: false,
+                    //allows multiple/stacked events
+                    eventLimit: true,
+                    //default event color: --main-secondary-color
+                    eventColor: '#F04D44',
                     events: events,
-                    dayClick: function (date, jsEvent, view) {
-                        $('addModal').modal({ backdrop: false });
+                    selectable: true,
+                    selectHelper: true,
+                    //if multiple events on same day should be stacked, set to true:
+                    eventLimit: false,
+                    //dayClick only selects a single day, whereas this picks a range of dates if needed by admin:
+                    select: function (startStr, endStr) {
+                        addstarttime = startStr.format("MM-DD-YYYY HH:mm");                      
+                        addendtime = endStr.format("MM-DD-YYYY HH:mm");
+                        $('#addModal #addformstarttime').val(addstarttime);
+                        $('#addModal #addformendtime').val(addendtime);
+
+                        $("#addModal").modal({ backdrop: true });
                     },
-                    eventClick: function (calEvent, jsEvent, view) {
+
+                    eventClick: function (calEvent) {
                         $('#detailsModal #deventId').html(calEvent.id);
                         $('#detailsModal #deventTitle').html(calEvent.title);
-                        $('#detailsModal #deventStartDate').html(calEvent.start.format("MM-DD-YYYY"));
-                        $('#detailsModal #deventEndDate').html(calEvent.end.format("MM-DD-YYYY"));
+                        $('#detailsModal #deventStartDate').html(calEvent.start.format("MM-DD-YYYY HH:mm"));
+                        $('#detailsModal #deventEndDate').html(calEvent.end.format("MM-DD-YYYY HH:mm"));
                         $('#detailsModal #deventRentalRequestId').html(calEvent.rentalrequestid);
                         $('#detailsModal #deventProductionId').html(calEvent.productionid);
                         //$('#detailsModal #deventEventLinks').html(calEvent.Link);
 
                         $("#detailsModal").modal({ backdrop: true });
-                    }
+                    },
+                    
                 });
             };
 
-            $('#calendar').fullCalendar({
-                editable: true,
-                selectable: true
-            });
-
             // page is now ready, initialize the calendar...
 
-            $("#addbtn").click(function () {
-                $("#addModal").modal({ backdrop: false });
-            });
-            $("#editbtn").click(function () {
-                $("#editModal").modal({ backdrop: false });
-            });
             $('addsavebtn').click(function () {
-                //var newEvent = {
-                //    title: 'NEW EVENT',
-                //    start: new Date(y, m, d)
+                selectedEvent = new CalendarEvent({
+                    Title: $('#addmodal #addformtitle').val(),
+                    StartDate: $('#addmodal #addformstarttime').val(),
+                    EndDate: $('#addmodal #addformendtime').val(),
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: '/CalendarEvents/UpdateEvent',
+                    data: { 'calendarEventID': selectedEvent },
+                    success: function (data) {
+                        if (data.status) {
+                            //refresh the calendar
+                            FetchEventAndRenderCalendar();
+                            $('#addModal').modal('hide');
+                        }
+                    },
+                    error: function () {
+                        alert('Failed, Sorry!');
+                    }
+                });
+
+                $('#calendar').fullCalendar('renderEvent', selectedEvent);
             });
-            //$('#calendar').fullCalendar("renderEvent", newEvent, true);
-            //});
 
             $("#detaileditbtn").click(function () {
-                $('#editModal #eeventId').html(calEvent.id);
-                $('#editModal #eeventTitle').html(calEvent.title);
-                $('#editModal #eeventStartDate').html(calEvent.start.format("MM-DD-YYYY"));
-                $('#editModal #eeventEndDate').html(calEvent.end.format("MM-DD-YYYY"));
-                $('#editModal #eeventRentalRequestId').html(calEvent.rentalrequestid);
-                $('#editModal #eeventProductionId').html(calEvent.productionid);
-                //$('#editModal #eevent').html(calEvent.Link);
-
-                $("#editModal").modal({ backdrop: false });
+                openEditForm();
+                
             });
 
+            function openEditForm() {
+                //if (selectedEvent != null) {
+                //    //$('#editModal #editEventId').val(selectedEvent.eventID);
+                //    $('#editModal #editformtitle').val(selectedEvent.eventTitle);
+                //    $('#editModal #editformstarttime').val(selectedEvent.);
+                //    $('#editModal #editformendtime').val(selectedEvent.);
+                //    $('#editModal #editeventtypes').val(selectedEvent.);
+                //    $('#editModal #editformlink').val(selectedEvent.);
+                //}
+                $('#detailsModal').modal('hide');
+                $('#editModal').modal();
+            }
+
+            $('#editsavebtn').click(function () {
+                //validation to save:
+                // need diff code than tutorial to ensure all fields are same/different/filled out
+                //return;
+
+                //call function for submit data on the server
+            })
 
             $("#detaildeletebtn").click(function () {
-                selectedEvent = events.eventID;
-                $("#confdelModal").modal({
-                    selectedEvent: events.eventID,
-                    backdrop: false
-                });
+                $("#confdelModal").modal({backdrop: false});
             });
+
             $("#editdeletebtn").click(function () {
-                selectedEvent = calEvent;
-                $("#confdelModal").modal({ backdrop: false });
+                $("#confdelModal").modal({backdrop: false });
             });
 
             //confirm delete function call
@@ -394,9 +415,7 @@
         });
     </script>
 }
-@*Button to use for now, eventually link to Calender click events*@
-<button type="button" class="btn btn-primary" id="addbtn">Open Add Modal</button>
-<button type="button" class="btn btn-primary" id="editbtn">Edit Modal</button>
+
 
 @if (User.IsInRole("Admin"))
 {
