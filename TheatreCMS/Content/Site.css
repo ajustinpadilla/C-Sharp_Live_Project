@@ -831,13 +831,40 @@ textarea {
     padding: 50px;
 }
 
-/*subscriber create page*/
-.testC {
-    color: black;
+/*subscriber delete page*/
+.sub-delete-back {
+    background-color: var(--subscriber-main);
+}
+
+.sub-delete-btn {
+    background-color: var(--main-bg-color) !important;
+}
+
+.sub-delete-table-td {
+    padding-left: 40px;
+    padding-top: 10px;
+}
+
+.sub-delete-return-btn {
+    color: var(--light-color);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.sub-delete-return-btn:hover {
+    color: var(--dark-color);
+    background-color: var(--secondary-color);
+    text-decoration: none
+}
+/*subscriber Details page*/
+.sub-detail-bg {
+    height:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /*End styling for Subscriber section*/
-
 /* Dropdown Button */
 .dropbtn {
     background-color: var(--dark-color);
