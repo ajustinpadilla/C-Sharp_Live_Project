@@ -100,8 +100,8 @@
                         <div class="form-group">
                             <label class="fc-modal-labels">Event Title</label>
                             <div class="formBox">
-                                <input type="text" id="editformtitle" placeholder="" />
-                                @Html.TextBox("editformtitle", "editformtitle")
+                                @*<input type="text" class="form-control" id="editformtitle" placeholder="" />*@
+                                @Html.TextBox("editformtitle", "", new { @class = "form-control" })
                             </div>
                         </div>
 
@@ -308,11 +308,12 @@
                             $.ajax({
                                 type: "POST",
                                 url: '/CalendarEvents/UpdateEvent',
-                                data: { 'calendarEventID': selectedEvent },
+                                data: { 'e': EventId },
                                 success: function (data) {
                                     if (data.status) {
                                         //refresh the calendar
                                         callback(data);
+                                        $('#calendar').fullCalendar('renderEvent', selectedEvent);
                                         FetchEventAndRenderCalendar();
                                         $('#addModal').modal('hide');
                                     }
@@ -321,7 +322,7 @@
                                     alert('Failed, Sorry!');
                                 }
                             });
-                            $('#calendar').fullCalendar('renderEvent', selectedEvent);
+                            
                         });
                     },
 
@@ -363,14 +364,14 @@
 
                             //send to Confirm to Delete Modal when delete button selected [on edit Modal]
                             $("#editdeletebtn").click(function () {
-                                selectedEvent = events.eventID;
+                                selectedEvent = calEvent.id;
                                 $("#confdelModal").modal({ backdrop: false });
                                 $("#editModal").modal('hide');
                             });
                         });
                         //send to Confirm to Delete Modal when delete button selected [on details Modal]
                         $("#detaildeletebtn").click(function () {
-                            selectedEvent = events.eventID;
+                            selectedEvent = calEvent.id;
                             $("#confdelModal").modal({ backdrop: false });
                             $("#detailsModal").modal('hide');
                         });                                            
@@ -380,14 +381,15 @@
 
             //confirm delete function call
             $('#confdeletebtn').click(function () {
-                selectedEvent = events.eventID;
+                selectedEvent = calEvent.id;
                 if (selectedEvent != null) {
                     $.ajax({
                         type: "POST",
                         url: '/CalendarEvents/DeletingEvent',
-                        data: { 'calendarEventID': selectedEvent },
+                        data: { 'EventId': calEvent.id },
                         success: function (data) {
                             if (data.status) {
+                                calendar.fullCalendar('removeEvents', calEvent.id);
                                 //refresh the calendar
                                 FetchEventAndRenderCalendar();
                                 $('#confdelModal').modal('hide');
