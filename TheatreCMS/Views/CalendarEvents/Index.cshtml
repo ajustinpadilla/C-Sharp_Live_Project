@@ -100,31 +100,30 @@
                         <div class="form-group">
                             <label class="fc-modal-labels">Event Title</label>
                             <div class="formBox">
-                                <input type="text" id="editformtitle" placeholder="(text input type)" />
-                                <p id="eeventTitle"></p>
+                                <input type="text" id="editformtitle" placeholder="" />
+                                @Html.TextBox("editformtitle", "editformtitle")
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="fc-modal-labels">Start time:</label>
                             <div class="formBox">
-                                <input type="datetime-local" id="editformstarttime" placeholder="(datetime-local input type)" />
-                                <p id="eeventStartDate"></p>
+                                <input type="text" id="editformstarttime" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" placeholder="MM/DD/YYYY --:-- " />
+
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="fc-modal-labels">End time:</label>
                             <div class="formBox">
-                                <input type="datetime-local" id="editformendtime" placeholder="(datetime-local input type)" />
-                                <p id="eeventEndDate"></p>
+                                <input type="text" id="editformendtime" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" placeholder="MM/DD/YYYY --:-- " />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="fc-modal-labels" for="editeventtypes">Event type:</label>
                             <div class="formBox">
-                                <select id="editeventtypes">
+                                <select id="editeventtypes" onchange="change_editeventtypes(this.value)">
                                     <option value="production" id="editprodopt">Production</option>
                                     <option value="rental" id="editrentopt">Facility Rental</option>
                                 </select>
@@ -136,8 +135,7 @@
                         <div class="form-group">
                             <label class="fc-modal-labels">Link:</label>
                             <div class="formBox">
-                                <input type="text" id="editformlink" placeholder="(text input type)" />
-                                <p id="eeventLinks"></p>
+                                <input type="text" id="editformlink" />
                             </div>
                         </div>
                     </div>
@@ -255,6 +253,7 @@
 
 @section Scripts {
     <script>
+        var events = [];
         $(document).ready(function () {
             //var selectedEvent = null;
             FetchEventsAndRenderCalendar();
@@ -279,7 +278,6 @@
                     //data: events,
                     contentHeight: 550,
                     defaultDate: new Date(),
-                    //timeFormat: 'h(:mm)a',
                     //for ease, remove times of events on EventDisplays
                     displayEventTime: false,
                     //allows multiple/stacked events
@@ -299,6 +297,32 @@
                         $('#addModal #addformendtime').val(addendtime);
 
                         $("#addModal").modal({ backdrop: true });
+
+                        $('addsavebtn').click(function () {
+                            selectedEvent = new CalendarEvent({
+                                Title: $('#addmodal #addformtitle').val(),
+                                StartDate: $('#addmodal #addformstarttime').val(),
+                                EndDate: $('#addmodal #addformendtime').val(),
+                            });
+
+                            $.ajax({
+                                type: "POST",
+                                url: '/CalendarEvents/UpdateEvent',
+                                data: { 'calendarEventID': selectedEvent },
+                                success: function (data) {
+                                    if (data.status) {
+                                        //refresh the calendar
+                                        callback(data);
+                                        FetchEventAndRenderCalendar();
+                                        $('#addModal').modal('hide');
+                                    }
+                                },
+                                error: function () {
+                                    alert('Failed, Sorry!');
+                                }
+                            });
+                            $('#calendar').fullCalendar('renderEvent', selectedEvent);
+                        });
                     },
 
                     eventClick: function (calEvent) {
@@ -311,72 +335,48 @@
                         //$('#detailsModal #deventEventLinks').html(calEvent.Link);
 
                         $("#detailsModal").modal({ backdrop: true });
-                    },
-                    
+
+                        $("#detaileditbtn").click(function (calEvent) {
+                            $('#editModal #eeventId').html(calEvent.id);                            
+                            $('#editModal #eeventTitle').html(function () {
+                                document.getElementById("editformtitle").defaultValue = calEvent.title;
+                            });
+                            $('#editModal #eeventStartDate').html(function () {
+                                document.getElementById("editformstarttime").defaultValue = calEvent.start;
+                            });
+                            $('#editModal #eeventEndDate').html(function () {
+                                document.getElementById("editformendtime").defaultValue = calEvent.end;
+                            });
+                            $('#editModal #eeventRentalRequestId').html(calEvent.rentalrequestid);
+                            $('#editModal #eProductionId').html(calEvent.productionid);
+                            //$('#editModal #eeventEventLinks').html(function () {
+                            //document.getElementById("editeventtypes").defaultValue = calEvent.Link);
+
+                            //remove previous modal and show edit Modal when edit button selected
+                            $("#editModal").modal('show');
+                            $("#detailsModal").modal('hide');
+
+                            //save changes made in edit Modal
+                            $('#editsavebtn').click(function () {
+                                $("#editModal").modal('hide');
+                            });
+
+                            //send to Confirm to Delete Modal when delete button selected [on edit Modal]
+                            $("#editdeletebtn").click(function () {
+                                selectedEvent = events.eventID;
+                                $("#confdelModal").modal({ backdrop: false });
+                                $("#editModal").modal('hide');
+                            });
+                        });
+                        //send to Confirm to Delete Modal when delete button selected [on details Modal]
+                        $("#detaildeletebtn").click(function () {
+                            selectedEvent = events.eventID;
+                            $("#confdelModal").modal({ backdrop: false });
+                            $("#detailsModal").modal('hide');
+                        });                                            
+                    },                    
                 });
             };
-
-            // page is now ready, initialize the calendar...
-
-            $('addsavebtn').click(function () {
-                selectedEvent = new CalendarEvent({
-                    Title: $('#addmodal #addformtitle').val(),
-                    StartDate: $('#addmodal #addformstarttime').val(),
-                    EndDate: $('#addmodal #addformendtime').val(),
-                });
-
-                $.ajax({
-                    type: "POST",
-                    url: '/CalendarEvents/UpdateEvent',
-                    data: { 'calendarEventID': selectedEvent },
-                    success: function (data) {
-                        if (data.status) {
-                            //refresh the calendar
-                            FetchEventAndRenderCalendar();
-                            $('#addModal').modal('hide');
-                        }
-                    },
-                    error: function () {
-                        alert('Failed, Sorry!');
-                    }
-                });
-
-                $('#calendar').fullCalendar('renderEvent', selectedEvent);
-            });
-
-            $("#detaileditbtn").click(function () {
-                openEditForm();
-                
-            });
-
-            function openEditForm() {
-                //if (selectedEvent != null) {
-                //    //$('#editModal #editEventId').val(selectedEvent.eventID);
-                //    $('#editModal #editformtitle').val(selectedEvent.eventTitle);
-                //    $('#editModal #editformstarttime').val(selectedEvent.);
-                //    $('#editModal #editformendtime').val(selectedEvent.);
-                //    $('#editModal #editeventtypes').val(selectedEvent.);
-                //    $('#editModal #editformlink').val(selectedEvent.);
-                //}
-                $('#detailsModal').modal('hide');
-                $('#editModal').modal();
-            }
-
-            $('#editsavebtn').click(function () {
-                //validation to save:
-                // need diff code than tutorial to ensure all fields are same/different/filled out
-                //return;
-
-                //call function for submit data on the server
-            })
-
-            $("#detaildeletebtn").click(function () {
-                $("#confdelModal").modal({backdrop: false});
-            });
-
-            $("#editdeletebtn").click(function () {
-                $("#confdelModal").modal({backdrop: false });
-            });
 
             //confirm delete function call
             $('#confdeletebtn').click(function () {
@@ -400,19 +400,8 @@
                 }
             });
 
-            // to confirm event updated:
-            $('#calendar').fullCalendar({
-                //selectedEvent = calEvent,
-                eventClick: function (event, element) {
-                    event.title = "CHANGES SAVED!";
-
-                    $('#calendar').fullCalendar('updateEvent', event);
-                    $('#calendar').fullCalendar('renderEvent', event, true);
-                }
-            });
-
-
         });
+        // page is now ready, initialize the calendar...
     </script>
 }
 

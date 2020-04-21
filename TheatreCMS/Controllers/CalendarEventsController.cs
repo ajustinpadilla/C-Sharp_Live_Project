@@ -229,7 +229,6 @@ namespace TheatreCMS.Controllers
         // POST: CalendarEvents Confirm Delete Modal
         [HttpPost]
         [Authorize(Roles = "Admin")]
-       
         public JsonResult DeletingEvent(int EventId)
         {
             var status = false;
