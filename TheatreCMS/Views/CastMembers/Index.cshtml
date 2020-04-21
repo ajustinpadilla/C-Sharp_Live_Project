@@ -40,7 +40,11 @@
                         }
                     }
                     <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })"> <img class="castImage" src="@img" style="width:100%" /> </a>
-                    <div class="castMiddle"><div class="castText">@Html.DisplayFor(modelItem => item.Bio)</div></div>
+                    <div class="castMiddle">
+                        <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })">
+                            <div class="castText">@Html.DisplayFor(modelItem => item.Bio)</div>
+                        </a>
+                    </div>
                 </div>
                 <div class="caption text-center">
                     <p>
