@@ -189,11 +189,11 @@ namespace TheatreCMS.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     //Uncomment to utilize SendGrid Email Confirmation
-                    await EmailCodeSendGrid(user, model);
+                    /*await EmailCodeSendGrid(user, model);
                     ViewBag.Message = "Check your email and confirm your account, you must be confirmed before you can log in";
-                    return View("Info");
+                    return View("Info");*/
 
-                    //return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
                 return View(model);
