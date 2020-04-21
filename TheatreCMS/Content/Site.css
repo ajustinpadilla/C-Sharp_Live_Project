@@ -776,6 +776,8 @@ div.magnify:hover {
 .castImageContainer {
     position: relative;
     width: auto;
+    /*used for text overlay*/
+    overflow: hidden;
 }
 
 .castImage {
@@ -795,6 +797,13 @@ div.magnify:hover {
     opacity: 1;
 }
 
+.castImageContainer:hover .castText {
+    margin-bottom: 1000px;
+    margin-top: 0px
+}
+
+
+
 
 .castText {
     background-color: var(--light-color);
@@ -802,7 +811,14 @@ div.magnify:hover {
     font-size: 22px;
     font-weight: 500;
     padding: 1px 1px;
-    text-decoration: none;
+    text-overflow: clip;
+    margin-top: 400px;
+    margin-bottom: 0px;
+    transition: margin-bottom 10s, margin-top 15s;
+}
+
+.castText:hover {
+    
 }
 
 .castMiddle {
