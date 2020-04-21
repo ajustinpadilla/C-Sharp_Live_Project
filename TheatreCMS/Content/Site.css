@@ -647,6 +647,7 @@ textarea {
     font-size: 22px;
     font-weight: 500;
     padding: 1px 1px;
+    text-decoration: none;
 }
 
 .castMiddle {
