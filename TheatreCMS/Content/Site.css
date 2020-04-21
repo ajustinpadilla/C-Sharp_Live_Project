@@ -1247,3 +1247,14 @@ a.dropdown-item:hover {
     width:100%; 
     height:auto;
 }
+
+/*I added this class to move most of the content of the login page to the left*/ 
+.loginpadding {
+    padding-left: 50px;
+}
+
+/*This class was also added to move certain elements on the login page left*/
+.loginhtwo{
+    padding-left: 65px;
+    padding-top: 50px;
+}
