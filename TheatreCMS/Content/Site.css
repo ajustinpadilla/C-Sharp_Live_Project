@@ -8,7 +8,8 @@
 }
 
 .palette-body {
-    background-color: var(--main-bg-color); /* Applying --main-bg-color to the background of body */
+    background-color: var(--main-bg-color);
+    margin-bottom: auto;/* Applying --main-bg-color to the background of body */
 }
 
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
@@ -150,8 +151,49 @@
     color: var(--dark-color);
 }*/
 
+/*production index table styling*/
+.prod-index-l-margin {
+    margin-left: 40px;
+}
+
+.productions-index-th-styling {
+    color: var(--main-bg-color);
+    text-align: left;
+    width: 125px;
+}
+
+.productions-index-td-styling {
+    color: var(--light-color);
+    text-align: left;
+    padding-top: 6px;
+    padding-left: 40px;
+}
+
+.production-index-container {
+    max-width: 100%;
+}
+
+.spaced-btn-1, .spaced-btn-2 {
+    padding: 5px;
+    margin-top: 20px; 
+    background-color: var(--main-bg-color) !important;
+}
+
+.spaced-btn-2 {
+    margin-left: 15px;
+}
+
+.spaced-btn-1 {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.production-index-img {
+    border-radius: 6px;
+}
 /*-----Classes and styling for LoginFailure view------*/
-.button-redirect {
+/*using button styles from sponsor index to match theme 
+.button-redirect { 
     background-color: var(--secondary-color);
     text-decoration:none;
     font-size: 20px;
@@ -167,18 +209,28 @@
     background: var(--main-bg-color);
     text-decoration:none;
     color:var(--light-color);
+}*/
+.loginFailureBackdrop {
+    background-color: var(--light-color);
+    margin: auto;
+    border: solid 4px var(--main-bg-color);
+    border-radius: 8%;
 }
+
 .center-box {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    color: var(--dark-color);
 }
 
 #move-oops {
     position: relative;
     top: 10px;
     bottom: 10px;
+    border-radius: 50%;
+    border: solid 2px var(--main-bg-color);
 }
 
 /*-----End styling for LoginFailure view-----*/
@@ -578,6 +630,8 @@ div.magnify:hover {
     border: none;
 }
 
+
+
 .submitButton {
     display: inline-block;
     width: 75%;
@@ -666,6 +720,7 @@ div.magnify:hover {
     color: var(--light-color);
     font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
     font-size: 120%;
+    padding: 0px;
 }
 
 
@@ -673,32 +728,39 @@ div.magnify:hover {
 .registerTextHead { 
 	color: var(--light-color);
 	font-family: Arial 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* previously using "Lato"*/
-	font-size: 200%
+	font-size: 200%;
 }
 
-.registerTextHead:hover {
+/*.registerTextHead:hover {
     color: var(--dark-color);
-}
+}*/
 
 .registerInput {
-	width: 80%;
-    border-radius: 0 !important;    
+    min-width: 16em;
+    border-radius: 0;
+    background-clip: border-box;
 }
 
 .registerInput:hover {
     border: solid gray 1px;
     transition: .5s;
+    outline: 0;
 }
 
 
 .registerButton {
-	width: auto;    
+	width: auto;
 }
 
 
 /*End style for register form page*/
 
 /*Styling for CastMember Index View*/
+
+.castMargin {
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 .castContainer {
     position: relative;
@@ -794,6 +856,56 @@ div.magnify:hover {
 
 /*Begin styling for Subscriber section*/
 
+/*begin styling for Subscriber navbar*/
+
+.sub-navbar-back {
+    background-color: var(--subscriber-main);
+}
+
+.sub-navbar-btn, .sub-navbar-btn-h {
+    color: var(--light-color);
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.sub-navbar-btn-login {
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+    color: var(--dark-color);
+}
+
+.sub-navbar-btn:hover {
+    background-color: var(--secondary-color);
+    border-radius: 10%;
+    color: var(--dark-color);
+}
+
+.sub-navbar-btn-h:hover {
+    color: var(--light-color);
+}
+
+.sub-navbar-collapse-btn {
+    background-color: var(--secondary-color);
+}
+
+.sub-toggler-icon {
+    color: var(--dark-color);
+    height: 100%;
+    width: 100%;
+}
+
+.sub-dropdown-content {
+    text-align: center;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/*end styling for Subscriber navbar*/
+
 .subsave {
     background-color: var(--subscriber-main);
     border: none;
@@ -875,8 +987,43 @@ div.magnify:hover {
     padding: 50px;
 }
 
-/*End styling for Subscriber section*/
+/*subscriber delete page*/
+.sub-delete-back {
+    background-color: var(--subscriber-main);
+}
 
+.sub-delete-btn {
+    background-color: var(--main-bg-color) !important;
+    width: unset !important;
+    padding: 10px;
+}
+
+.sub-delete-table-td {
+    padding-left: 40px;
+    padding-top: 10px;
+}
+
+.sub-delete-cancel-btn {
+    color: var(--dark-color);
+    padding: 10px;
+    background-color: #4CAF50;
+    border-radius: 4px;
+}
+
+.sub-delete-cancel-btn:hover {
+    color: var(--dark-color);
+    background-color: var(--secondary-color);
+    text-decoration: none
+}
+/*subscriber Details page*/
+.sub-detail-bg {
+    height:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*End styling for Subscriber section*/
 /* Dropdown Button */
 .dropbtn {
     background-color: var(--dark-color);
@@ -1019,16 +1166,20 @@ a.dropdown-item:hover {
     text-align:center;
 }
 
-#sponsor-text {
+.sponsor-text {
     color: var(--light-color);
     text-align:center;
     font-size: 20px;
 }
 
+/*Current productions*/
+.currentpro a {
+    margin-left: 15px;
+}
+
 /*Sponsor partial styling*/
 .sponsor-partial-pic {
-    width: auto;
-    height: 100px;
+    width: 100%;
 }
 .sponsor-donate-btn {
     margin-top: 20px;
@@ -1042,6 +1193,7 @@ a.dropdown-item:hover {
 /*Production Index button styling*/
 
 .production-admin-btn {
+    padding: 5px;
     margin-top: 5px;
     background-color: var(--main-bg-color) !important;
 }
@@ -1051,16 +1203,16 @@ a.dropdown-item:hover {
     background-color: var(--main-secondary-color) !important;
 }
 
-.production-admin-div{
-    width: 350px;
+.production-admin-div {
+    width: 400px;
 }
 
 /*about page container*/
-/*.container {
+.about-container {
     position: relative;
     text-align: center;
     color: white;
-}*/
+}
 
 /* Centered text */
 .centered {
@@ -1129,31 +1281,139 @@ a.dropdown-item:hover {
 
 
 /*Admin Dashoboard list*/
-#dash ul {
+#admin-dash-title {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/*#admin-dash {
+    text-align: center;
+}
+
+#admin-dash ul {
     list-style: none;
     border: hidden;
-    display: inline-block;
-}
-#dash ul li:not(:last-child):after {
-    content: "|";
+    padding-left: 0;
+
 }
 
-#dash li {
+#admin-dash li {
     display: inline-block;
     border: hidden;
+}*/
+
+.admin-dash-btn {
+    padding: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
 }
 
+.admin-dash-btn:hover {
+    background-color: var(--main-secondary-color);
+    color: var(--dark-color);
+    text-decoration: none;
+}
 
+.admin-dash-collapse-btn {
+    background-color: var(--main-bg-color);
+    padding: 6px 12px 6px 12px;
+}
+
+.admin-dash-collapse-btn-icon {
+    color: var(--light-color);
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 1080px) {
+    .admin-dash-btn {
+        margin-top: 6px;
+    }
+}
 /*End Admin Dashboard list*/
-
-
 /*Admin Dashboard Form*/
-#formspace {
+#admin-formspace {
+    margin: auto;
+    border: solid 4px var(--main-bg-color);
     padding: 100px;
 }
-#formspace {
-    margin: auto;
-    border: dashed;
-    border-color: #F04D44;
+
+@media only screen and (max-width: 750px) {
+    #admin-formspace {
+        padding: 10px;
+    }
 }
 /*End Admin Dashboard Form*/
+
+.admin-tables {
+    color: var(--light-color);
+}
+
+/*Sponsors Partial View*/
+
+.sponsors-partial-column {
+    width: 300px;
+    display: inline-block;
+    margin: 20px;
+    vertical-align: middle;
+}
+
+/* Styling for calendar*/
+
+.palette-container .fc td.fc-today {
+    background-color: darkgray;
+}
+
+.palette-container .fc-content {
+    background-color: red;
+    border: red;
+}
+
+.palette-container .fc-event {
+    background-color: red;
+    border: red;
+}
+
+
+.palette-container .fc {
+    /* Ensures the calendar doesn't become too wide on large screens */
+    max-width: 1000px;
+    /* Lowers calendar*/
+    padding-top: 16px;
+    /*Centers calendar*/
+    margin: auto;
+}
+
+/*Product Details*/
+
+#jumbo.jumbotron {
+    background-color:#bd1a11;
+    
+}
+#cardss.card {
+    margin-top:20px;
+    border:none;
+
+}
+#head.card-header {
+    background-color: #bd1a11;
+    text-decoration-color:white;
+}
+
+#DisplayImg {
+    width:100%; 
+    height:auto;
+}
+@media only screen and (max-width: 690px){
+    .prodCenter {
+        position: center;
+        overflow: auto;
+        padding: 0 10px 0 10px;
+    }
+}

@@ -2,179 +2,92 @@
 @using TheatreCMS.Controllers
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Productions";
 }
 
-<h2>Index</h2>
+<h2 class= "mt-3 prod-index-l-margin">Productions</h2>
 
-<p>
+@if (User.IsInRole("Admin"))
+{
+ <p class="prod-index-l-margin">
     @Html.ActionLink("Create New", "Create")
 </p>
-@*<table class="table-styling">
-    <tr class="tr-styling">
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Playwright)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Runtime)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.OpeningDay)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.ClosingDay)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.DefaultPhoto)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.ShowtimeEve)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.ShowtimeMat)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.TicketLink)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Season)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.IsCurrent)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.IsWorldPremiere)
-        </th>
+}
 
-        <th class="th-styling"></th>
-    </tr>*@
-
-@*@foreach (var item in Model) {
-    <tr class="tr-styling">
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Playwright)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Runtime)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.OpeningDay)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.ClosingDay)
-        </td>
-        <td class="td-styling">
-
-            @Html.DisplayFor(modelItem => item.PromoPhoto)
-            <img src="data:image/png;base64,@System.Convert.ToBase64String(item.PromoPhoto??(new Byte[]{ 0x0 }))" />
-            @{
-                if (item.DefaultPhoto != null)
-                {
-                    <img src="data:image;base64,@System.Convert.ToBase64String(item.DefaultPhoto.Photo)" />
-
-                    //byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
-                    //var base64 = System.Convert.ToBase64String(thumbBytes);
-                    //img = String.Format("data:image/png;base64,{0}", base64);
-                }
-                else
-                {
-                <p>No image yet</p>
-                }
-            }
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.ShowtimeEve)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.ShowtimeMat)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.TicketLink)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Season)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.IsCurrent)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.IsWorldPremiere)
-        </td>
-
-
-        <td class="td-styling">
-            @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ProductionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId }) |
-            @Html.ActionLink("Current Productions", "Current")
-        </td>
-    </tr>
-    }
-    </table>*@
-
-
+<div class="container production-index-container">
+  <div class="row mx-2">
     @foreach (var item in Model)
     {
-        <div class="card production-admin-div">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h3 class="card-title">@item.Title</h3>
-                <h5 class="card-title">@item.Playwright</h5>
-                <p class="card-text">@item.Description</p>
-                <table>
-                    <tr class="tr-styling">
-                        <th class="th-styling">
-                            @Html.DisplayNameFor(model => model.OpeningDay)
-                        </th>
-                        <td class="td-styling">
-                            @Html.DisplayFor(modelItem => item.OpeningDay)
-                        </td>
-                    </tr>
-                    <tr class="tr-styling">
-                        <th class="th-styling">
-                            @Html.DisplayNameFor(model => model.ClosingDay)
-                        </th>
-                        <td class="td-styling">
-                            @Html.DisplayFor(modelItem => item.ClosingDay)
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr class="tr-styling">
-                        <th class="th-styling">
-                            @Html.DisplayNameFor(model => model.IsCurrent)
-                        </th>
-                        <td class="td-styling">
-                            @Html.DisplayFor(modelItem => item.IsCurrent)
-                        </td>
-                    </tr>
-                    <tr class="tr-styling">
-                        <th class="th-styling">
-                            @Html.DisplayNameFor(model => model.IsWorldPremiere)
-                        </th>
-                        <td class="td-styling">
-                            @Html.DisplayFor(modelItem => item.IsWorldPremiere)
-                        </td>
-                    </tr>
-                </table>
-                @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }) |
-                @Html.ActionLink("Details", "Details", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" }) |
-                @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn production-admin-btn" })
-            </div>
-        </div>
-    }
+      <div class="card col-md-6 col-xl-4" id="production-info-parent">
+      @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
+      @{
+        if (item.DefaultPhoto != null)
+        {
+        
+            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+              <img class="card-img-top production-index-img mt-5" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">  
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+              <img class="card-img-top production-index-img mt-5" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+            </a>
+        }
+        }
+    <div class="card-body production-index-card-inner justify-content-center">
+        <h4 class="card-title">@item.Title</h4>
+        <h5 class="card-title">@item.Playwright</h5>
+        @*<p class="card-text">@item.Description</p>*@
+        <table class="w-100">
+            <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.OpeningDay)
+                </th>
+                <td class="productions-index-td-styling">
+                  @Convert.ToString(item.OpeningDay).Replace(":00 PM", "")
+                </td>
+            </tr>
+            <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.ClosingDay)
+                </th>
+                <td class="productions-index-td-styling">
+                  @Convert.ToString(item.ClosingDay).Replace(":00 PM", "")
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.IsCurrent)
+                </th>
+                <td class="productions-index-td-styling">
+                    @Html.DisplayFor(modelItem => item.IsCurrent)
+                </td>
+            </tr>
+            <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.IsWorldPremiere)
+                </th>
+                <td class="productions-index-td-styling">
+                    @Html.DisplayFor(modelItem => item.IsWorldPremiere)
+                </td>
+            </tr>
+        </table>
+      @if (User.IsInRole("Admin"))
+      {
+        @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-1" }); 
+        @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-2" });
+      }
+    </div>
+  </div>
+   }
+  </div>
+</div>
 
-    
+
+
+
+
 

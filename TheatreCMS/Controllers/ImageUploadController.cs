@@ -45,32 +45,32 @@ namespace TheatreCMS.Controllers
         {
             byte[] imgArray = null;
           
-            switch (table)
-            {
-                case "Sponsor":
-                    var sponsor = db.Sponsors.Find(id);
-                    imgArray = sponsor.Logo;
-                    break;
-                case "CastMembers":
-                    var castMembers = db.CastMembers.Find(id);
-                    imgArray = castMembers.Photo;
-                    break;
-                case "DisplayInfo":
-                    var displayInfo = db.DisplayInfo.Find(id);
-                    imgArray = displayInfo.Image;
-                    break;
-                case "Productions":
-                    var production = db.Productions.Find(id);
-                    imgArray = production.DefaultPhoto.Photo;
-                    break;
-                case "ProductionPhotos":
-                    var productionPhotos = db.ProductionPhotos.Find(id);
-                    imgArray = productionPhotos.Photo;
-                    break;
-               
-                default:
-                    break;
-            }
+            //switch (table)
+            //{
+            //    case "Sponsor":
+            //        var sponsor = db.Sponsors.Find(id);
+            //        imgArray = sponsor.Logo;
+            //        break;
+            //    case "CastMembers":
+            //        var castMembers = db.CastMembers.Find(id);
+            //        imgArray = castMembers.Photo;
+            //        break;
+            //    case "DisplayInfo":
+            //        var displayInfo = db.DisplayInfo.Find(id);
+            //        imgArray = displayInfo.Image;
+            //        break;
+            //    case "Productions":
+            //        var production = db.Productions.Find(id);
+            //        imgArray = production.DefaultPhoto.PhotoId;
+            //        break;
+            //    case "ProductionPhotos":
+            //        var productionPhotos = db.ProductionPhotos.Find(id);
+            //        imgArray = productionPhotos.PhotoId;
+            //        break;
+
+            //    default:
+            //        break;
+            //}
             using (MemoryStream ms = new MemoryStream())
             using (Image thumbnail = Image.FromStream(new MemoryStream(imgArray)).GetThumbnailImage(thumbWidth, thumbHeight, null, new IntPtr()))
             {

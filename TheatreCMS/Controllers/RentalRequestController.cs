@@ -31,12 +31,12 @@ namespace TheatreCMS.Controllers
             calendar.EndDate = rentalRequest.EndTime;
             db.CalendarEvent.Add(calendar);
             db.SaveChanges();
-            
+
         }
 
         public void RentalEditCalendar(RentalRequest rentalRequest)
         {
-            
+
             CalendarEvent calendar = db.CalendarEvent.Where(x => x.RentalRequestId == rentalRequest.RentalRequestId).FirstOrDefault();
 
             if (calendar == null)
@@ -51,7 +51,7 @@ namespace TheatreCMS.Controllers
                 db.Entry(calendar).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            
+
         }
 
         public void RentalDeleteCalendar(RentalRequest rentalRequest)
@@ -62,9 +62,9 @@ namespace TheatreCMS.Controllers
                 db.CalendarEvent.Remove(calendar);
                 db.SaveChanges();
             }
-            
+
         }
-        
+
 
         // GET: RentalRequest/Details/5
         public ActionResult Details(int? id)
@@ -88,12 +88,24 @@ namespace TheatreCMS.Controllers
         }
 
         // POST: RentalRequest/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
+            long sec = 10000000;        //DateTime ticks per second
+            long hrSecs = 3600;         //Seconds in an hour
+            long Strtm = Convert.ToInt64(rentalRequest.StartTime.Ticks) / sec;    //divided ticks into seconds
+            long Endtm = Convert.ToInt64(rentalRequest.EndTime.Ticks) / sec;
+            if (Endtm < (Strtm + hrSecs) && Endtm >= Strtm)    //Doesn't allow rentals < 1hr
+            {
+                ModelState.AddModelError("EndTime", "** Rental must be at least 1 hour.  **");  
+            }
+            if (Endtm < Strtm)   //Keeps End time after start time
+            {
+                ModelState.AddModelError("StartTime", "** Start Time cannot occur after End Time.  **");
+            }
             if (ModelState.IsValid)
             {
                 db.RentalRequests.Add(rentalRequest);
@@ -128,17 +140,42 @@ namespace TheatreCMS.Controllers
         }
 
         // POST: RentalRequest/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
+        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
+            long sec = 10000000;        //DateTime ticks per second
+            long hrSecs = 3600;         //Seconds in an hour
+            long Strtm = Convert.ToInt64(rentalRequest.StartTime.Ticks) / sec;    //divided ticks into seconds
+            long Endtm = Convert.ToInt64(rentalRequest.EndTime.Ticks) / sec;
+            if (Endtm < (Strtm + hrSecs) && Endtm >= Strtm)    //Doesn't allow rentals < 1hr
+            {
+                ModelState.AddModelError("EndTime", "** Rental must be at least 1 hour.  **");
+            }
+            if (Endtm < Strtm)   //Keeps End time after start time
+            {
+                ModelState.AddModelError("StartTime", "** Start Time cannot occur after End Time.  **");
+            }
             if (ModelState.IsValid)
             {
-                db.Entry(rentalRequest).State = EntityState.Modified;
+
+                var currentRentalRequest = db.RentalRequests.Find(rentalRequest.RentalRequestId);
+
+                currentRentalRequest.ContactPerson = rentalRequest.ContactPerson;
+                currentRentalRequest.Company = rentalRequest.Company;
+                currentRentalRequest.StartTime = rentalRequest.StartTime;
+                currentRentalRequest.EndTime = rentalRequest.EndTime;
+                currentRentalRequest.ProjectInfo = rentalRequest.ProjectInfo;
+                currentRentalRequest.Requests = rentalRequest.Requests;
+                currentRentalRequest.Accepted = rentalRequest.Accepted;
+                currentRentalRequest.ContractSigned = rentalRequest.ContractSigned;
+
+                db.Entry(currentRentalRequest).State = EntityState.Modified;
                 db.SaveChanges();
+
                 if (rentalRequest.Accepted == true)
                 {
                     RentalEditCalendar(rentalRequest);

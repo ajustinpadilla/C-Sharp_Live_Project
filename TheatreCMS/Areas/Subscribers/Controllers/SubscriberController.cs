@@ -62,7 +62,16 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             ModelState.Remove("SubscriberPerson");
 
             //Extract the Guid as type String from user's selected User (from SelectList)
-            string userId = Request.Form["dbUsers"].ToString();
+            string userId = null;
+
+            if (User.IsInRole("Admin"))
+            {
+                userId = Request.Form["dbUsers"].ToString();
+            }
+            else 
+            { 
+                userId = User.Identity.GetUserId();
+            }
 
             if (ModelState.IsValid)
             {
@@ -81,13 +90,22 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
                 {
                     userManager.AddToRole(userId, "Subscriber");
                 }
-                
-                
+
+
 
                 //Add Subscriber to database, linked with User and save changes
-                db.Subscribers.Add(subscriber);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Subscribers.Add(subscriber);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    ViewBag.SubscriberError = "Sorry, there was an error submitting this form.";
+                    return View("Create");
+                }
+                
                
                
               

@@ -39,6 +39,7 @@ namespace TheatreCMS.Controllers
         }
 
         //file -> byte[]
+        [AllowAnonymous]
         public static byte[] ImageBytes(HttpPostedFileBase file)
         {
             //Convert the file into a System.Drawing.Image type
@@ -51,6 +52,7 @@ namespace TheatreCMS.Controllers
         }
 
         //byte[] -> smaller byte[]
+        [AllowAnonymous]
         public static byte[] ImageThumbnail(byte[] imageBytes, int thumbWidth, int thumbHeight)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -91,6 +93,7 @@ namespace TheatreCMS.Controllers
             return View(photo);
         }
 
+        [AllowAnonymous]
         public static int CreatePhoto(HttpPostedFileBase file, string title)
 
         {
@@ -106,16 +109,29 @@ namespace TheatreCMS.Controllers
                 db.Photo.Add(photo);
                 db.SaveChanges();
                 return photo.PhotoId;
-            }            
+            }
         }
-        public ActionResult DisplayPhoto(int id)
-        {
-            //find photo object from db
-            var photo = db.Photo.Find(id);
-            //get byte array 
-            var byteData = photo.PhotoFile;
-            return File(byteData, "image/png");
-        }
+        [AllowAnonymous]
+        public ActionResult DisplayPhoto(int? id) //nullable int
+        {            
+            var byteData = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };           
+                if (id.HasValue)
+                {                
+                Photo photo = db.Photo.Find(id);
+                    if (photo == null)
+                    {
+                        return File(byteData, "image/png");
+                    }
+                    else
+                    {
+                        return File(photo.PhotoFile, "image/png");
+                    }                                                                  
+                }
+                else
+                { 
+                    return File(byteData, "image/png");
+                }
+            }
 
         // GET: Photo/Edit/5
         public ActionResult Edit(int? id)
@@ -174,7 +190,7 @@ namespace TheatreCMS.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [AllowAnonymous]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

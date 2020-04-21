@@ -1,94 +1,96 @@
 ﻿@model TheatreCMS.Areas.Subscribers.Models.Subscriber
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Subscriber";
     ViewBag.User = Model.SubscriberPerson.FirstName + " " + Model.SubscriberPerson.LastName;
 }
 
-<h2>Delete:</h2>
+<div class="card sub-delete-back">
+  <div class="card-body">
+    <h2 class="card-title text-center">Delete Subscriber</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Subscriber</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label class="font-weight-bold h5">@(ViewBag.User)</label>
-        </dt>
-        <br />
+  <h3 class="text-center">Are you sure you want to delete this?</h3>
+    <div class="card-text">
+      <hr />
+      <h5 class="font-weight-bold text-center">@(ViewBag.User)</h5>
+      <table class="mx-auto">
+          <tr>
+            <th>
+              @Html.DisplayNameFor(model => model.CurrentSubscriber)
+            </th>
+            <td class="sub-delete-table-td">
+              @Html.DisplayFor(model => model.CurrentSubscriber)
+            </td>
+          </tr>
+          <tr>
+              <th>
+                @Html.DisplayNameFor(model => model.HasRenewed)
+              </th>
+              <td class="sub-delete-table-td">
+                @Html.DisplayFor(model => model.HasRenewed)
+              </td>
+          </tr>
+        <tr>
+              <th>
+                @Html.DisplayNameFor(model => model.Newsletter)
+              </th>
+              <td class="sub-delete-table-td">
+                @Html.DisplayFor(model => model.Newsletter)
+              </td>
+        </tr>
+        <tr>
+              <th>
+                @Html.DisplayNameFor(model => model.RecentDonor)
+              </th>
+              <td class="sub-delete-table-td">
+                @Html.DisplayFor(model => model.RecentDonor)
+              </td>
+        </tr>
+        <tr>
+              <th>
+                @Html.DisplayNameFor(model => model.LastDonated)
+              </th>
+              <td class="sub-delete-table-td">
+                @Html.DisplayFor(model => model.LastDonated)
+              </td>
+        </tr>
+        <tr>
+              <th>
+                @Html.DisplayNameFor(model => model.LastDonationAmt)
+              </th>
+              <td class="sub-delete-table-td">
+                @Html.DisplayFor(model => model.LastDonationAmt)
+              </td>
+        </tr>
+        <tr>
+              <th>
+                @Html.DisplayNameFor(model => model.SpecialRequests)
+              </th>
+              <td class="sub-delete-table-td">
+                @Html.DisplayFor(model => model.SpecialRequests)
+              </td>
+        </tr>
+        <tr>
+              <th>
+                @Html.DisplayNameFor(model => model.Notes)
+              </th>
+              <td class="sub-delete-table-td">
+                @Html.DisplayFor(model => model.Notes)
+              </td>
+        </tr>
+      </table>
+      </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentSubscriber)
-        </dt>
+      @using (Html.BeginForm()) {
+          @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.CurrentSubscriber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HasRenewed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HasRenewed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Newsletter)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Newsletter)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecentDonor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RecentDonor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastDonated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastDonated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastDonationAmt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastDonationAmt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SpecialRequests)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SpecialRequests)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+          <div class="form-actions no-color text-center">
+              <input type="submit" value="Delete" class="btn sub-delete-btn my-4" /> <br />
+              <a class="sub-delete-cancel-btn" href="@Url.Action("Index")">Cancel</a>
+              @*<a class="sub-delete-return-btn" href="@Url.Action("Back to List", "Index")">Back to List</a>*@
+          </div>
+      }
+    </div>
+  </div>
+</div>  
+ 
