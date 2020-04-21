@@ -9,32 +9,37 @@ window.onscroll = function () { shrinkFunction() };
 console.log("Welcome to the theatre!");
 
 //Script for Landing Page
-var slideIndex = 1;
-showSlides(slideIndex);
+if (document.getElementById("main-carousel") != null) {
+    var slideIndex = 1;
 
-function changeSlide(n) {
-    showSlides(slideIndex += n);
-}
+    showSlides(slideIndex);
 
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("slides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+    function changeSlide(n) {
+        showSlides(slideIndex += n);
     }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
     }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-}
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+};
+
+
 
 
 
