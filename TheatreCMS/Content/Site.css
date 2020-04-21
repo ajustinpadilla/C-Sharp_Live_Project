@@ -8,7 +8,8 @@
 }
 
 .palette-body {
-    background-color: var(--main-bg-color); /* Applying --main-bg-color to the background of body */
+    background-color: var(--main-bg-color);
+    margin-bottom: auto;/* Applying --main-bg-color to the background of body */
 }
 
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
@@ -1249,4 +1250,11 @@ a.dropdown-item:hover {
 #DisplayImg {
     width:100%; 
     height:auto;
+}
+@media only screen and (max-width: 690px){
+    .prodCenter {
+        position: center;
+        overflow: auto;
+        padding: 0 10px 0 10px;
+    }
 }
