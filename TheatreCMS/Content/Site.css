@@ -816,6 +816,10 @@ div.magnify:hover {
     text-align: center;
 }
 
+.castMiddle a {
+    text-decoration: none;
+}
+
 
 
 /*ENd Styling for CastMember Index View*/
