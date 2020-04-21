@@ -816,6 +816,7 @@ div.magnify:hover {
     text-align: center;
 }
 
+/*gets rid of underlines on text overlay of cast members*/
 .castMiddle a {
     text-decoration: none;
 }
