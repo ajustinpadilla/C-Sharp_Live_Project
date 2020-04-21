@@ -608,6 +608,17 @@ textarea {
 }
 
 .castContainer {
+    padding: 40px;
+}
+
+@media only screen and (max-width: 750px) {
+    .castContainer {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+}
+
+.castImageContainer {
     position: relative;
     width: auto;
 }
@@ -621,11 +632,11 @@ textarea {
     backface-visibility: hidden;
 }
 
-.castContainer:hover .castImage {
+.castImageContainer:hover .castImage {
     opacity: 0.3;
 }
 
-.castContainer:hover .castMiddle {
+.castImageContainer:hover .castMiddle {
     opacity: 1;
 }
 
@@ -648,6 +659,8 @@ textarea {
     -ms-transform: translate(-50%, -50%);
     text-align: center;
 }
+
+
 
 /*ENd Styling for CastMember Index View*/
 
