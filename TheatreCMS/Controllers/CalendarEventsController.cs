@@ -221,18 +221,15 @@ namespace TheatreCMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        // GET: CalendarEvents Delete Btn on Detals & Edit Modals
-        
-        [Authorize(Roles = "Admin")]
 
 
         // POST: CalendarEvents Confirm Delete Modal
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public JsonResult DeletingEvent(int EventId)
+        public JsonResult DeletingEvent(int id)
         {
             var status = false;
-            CalendarEvent eventtodel = db.CalendarEvent.Where(a => a.EventId == EventId).FirstOrDefault();
+            CalendarEvent eventtodel = db.CalendarEvent.Where(a => a.EventId == id).FirstOrDefault();
             if (eventtodel != null)
             {
                 db.CalendarEvent.Remove(eventtodel);
