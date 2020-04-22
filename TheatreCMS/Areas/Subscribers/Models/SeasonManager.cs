@@ -14,7 +14,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         public int SeasonManagerId { get; set; }    // season manager primary key
         [Display(Name = "Number of Seats Available")]
         public int NumberSeats { get; set; }        // number of seats available for book for each production
-        [Display(Name = "Is it Currently Booked?")]
+        [Display(Name = "Season Booking Complete")]
         public bool BookedCurrent { get; set; }
         [Display(Name = "Fall Production Name")]// 
         public string FallProd { get; set; }        // production name for fall (--> string to virtual)
