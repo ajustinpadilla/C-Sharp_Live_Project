@@ -831,9 +831,9 @@ div.magnify:hover {
     font-weight: bold;
 }
 
-/*.card-deck, .card, .card-img-top {
+.arch-card-bgcolor {
     background-color: var(--dark-color);
-}*/
+}
 
 #giraffe {
   
