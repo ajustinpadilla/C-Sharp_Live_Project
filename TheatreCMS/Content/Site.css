@@ -7,6 +7,11 @@
     --subscriber-main: #9D7C39; /* Dark Gold */
 }
 
+/* Generic Custom Classes */
+.bg-black {
+    background-color: var(--dark-color);
+}
+
 .palette-body {
     background-color: var(--main-bg-color);
     margin-bottom: auto;/* Applying --main-bg-color to the background of body */
@@ -829,10 +834,6 @@ div.magnify:hover {
     -webkit-text-stroke-color: black;
     font-size: 50px;
     font-weight: bold;
-}
-
-.arch-card-bgcolor {
-    background-color: var(--dark-color);
 }
 
 #giraffe {
