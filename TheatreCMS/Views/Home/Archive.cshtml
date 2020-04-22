@@ -173,46 +173,261 @@
 <hr />
 <!--Past Productions-->
 <div class="container">
-    <div class="h4">Past Productions</div>
-    </hr>
+    <div class="h4">Past Productions</div> 
     <div class="accordian" id="pastProductions">
-        <div class="card-header text-center" id="heading23">
-            <h2 class="mb-0">
-                <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#season23" aria-expanded="false" aria-controls="season23">
-                    2019-2020
-                </button>
-            </h2>
-        </div>
-        <div id="season23" class="collapse" aria-labelledby="heading23" data-parent="#pastProductions">
-            <div class="card-body">
-                <div class="card-deck">
-                    @foreach (var item in Model)
-                    {
-                        if (item.Season == 1)
+
+        <!-- Season 23 2019-2020 -->
+        <div class="card bg-dark">
+            <!-- header -->
+            <div class="card-header text-center" id="heading23">
+                <h2 class="mb-0">
+                    <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="#season23" aria-expanded="false" aria-controls="season23">
+                        2019-2020
+                    </button>
+                </h2>
+            </div>
+            <!-- Collapsable body -->
+            <div id="season23" class="collapse" aria-labelledby="heading23" data-parent="#pastProductions">
+                <div class="card-body">
+                    <div class="card-deck">
+                        <!-- Iterate through Productions-->
+                        @foreach (var item in Model)
                         {
-                            <div class="card bg-dark">
-                                <div class="embed-responsive-4by3">
-                                    <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top arch-card-img">
+                            if (item.Season == 23)
+                            {
+                                <div class="card bg-dark">
+                                    @if (item.DefaultPhoto != null)
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img">
+                                        </div>
+                                    }
+                                    <div class="card-body bg-dark">
+                                        <h5 class="card-title">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </h5>
+                                        <p class="card-text">
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </p>
+                                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
+                                    </div>
                                 </div>
-                                <div class="card-body bg-dark">
-                                    <h5 class="card-title">
-                                        @Html.DisplayFor(modelItem => item.Title)
-                                    </h5>
-                                    <p class="card-text">
-                                        @Html.DisplayFor(modelItem => item.Description)
-                                    </p>
-                                    <a href="google.com" class="stretched-link"></a>
-                                </div>
-                            </div>
+                            }
                         }
-                    }
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Season 22 2018-2019 -->
+        <div class="card bg-dark">
+            <!-- header -->
+            <div class="card-header text-center" id="heading22">
+                <h2 class="mb-0">
+                    <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="#season22" aria-expanded="false" aria-controls="season22">
+                        2018-2019
+                    </button>
+                </h2>
+            </div>
+            <!-- Collapsable body -->
+            <div id="season22" class="collapse" aria-labelledby="heading22" data-parent="#pastProductions">
+                <div class="card-body">
+                    <div class="card-deck">
+                        <!-- Iterate through Productions-->
+                        @foreach (var item in Model)
+                        {
+                            if (item.Season == 22)
+                            {
+                                <div class="card bg-dark">
+                                    @if (item.DefaultPhoto != null)
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img">
+                                        </div>
+                                    }
+                                    <div class="card-body bg-dark">
+                                        <h5 class="card-title">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </h5>
+                                        <p class="card-text">
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </p>
+                                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Season 21 2017-2018 -->
+        <div class="card bg-dark">
+            <!-- header -->
+            <div class="card-header text-center" id="heading21">
+                <h2 class="mb-0">
+                    <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="#season21" aria-expanded="false" aria-controls="season21">
+                        2017-2018
+                    </button>
+                </h2>
+            </div>
+            <!-- Collapsable body -->
+            <div id="season21" class="collapse" aria-labelledby="heading21" data-parent="#pastProductions">
+                <div class="card-body">
+                    <div class="card-deck">
+                        <!-- Iterate through Productions-->
+                        @foreach (var item in Model)
+                        {
+                            if (item.Season == 21)
+                            {
+                                <div class="card bg-dark">
+                                    @if (item.DefaultPhoto != null)
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img">
+                                        </div>
+                                    }
+                                    <div class="card-body bg-dark">
+                                        <h5 class="card-title">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </h5>
+                                        <p class="card-text">
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </p>
+                                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Season 20 2016-2017 -->
+        <div class="card bg-dark">
+            <!-- header -->
+            <div class="card-header text-center" id="heading20">
+                <h2 class="mb-0">
+                    <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="#season20" aria-expanded="false" aria-controls="season20">
+                        2016-2017
+                    </button>
+                </h2>
+            </div>
+            <!-- Collapsable body -->
+            <div id="season20" class="collapse" aria-labelledby="heading20" data-parent="#pastProductions">
+                <div class="card-body">
+                    <div class="card-deck">
+                        <!-- Iterate through Productions-->
+                        @foreach (var item in Model)
+                        {
+                            if (item.Season == 20)
+                            {
+                                <div class="card bg-dark">
+                                    @if (item.DefaultPhoto != null)
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img">
+                                        </div>
+                                    }
+                                    <div class="card-body bg-dark">
+                                        <h5 class="card-title">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </h5>
+                                        <p class="card-text">
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </p>
+                                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Season 19 2015-2016 -->
+        <div class="card bg-dark">
+            <!-- header -->
+            <div class="card-header text-center" id="heading19">
+                <h2 class="mb-0">
+                    <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="#season19" aria-expanded="false" aria-controls="season19">
+                        2015-2016
+                    </button>
+                </h2>
+            </div>
+            <!-- Collapsable body -->
+            <div id="season19" class="collapse" aria-labelledby="heading19" data-parent="#pastProductions">
+                <div class="card-body">
+                    <div class="card-deck">
+                        <!-- Iterate through Productions-->
+                        @foreach (var item in Model)
+                        {
+                            if (item.Season == 19)
+                            {
+                                <div class="card bg-dark">
+                                    @if (item.DefaultPhoto != null)
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="embed-responsive-4by3">
+                                            <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img">
+                                        </div>
+                                    }
+                                    <div class="card-body bg-dark">
+                                        <h5 class="card-title">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </h5>
+                                        <p class="card-text">
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </p>
+                                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </div>
 </div>
 
-@*<div>
+@*@<div>
     <div>
         <h4>Past Productions</h4>
         <hr />
