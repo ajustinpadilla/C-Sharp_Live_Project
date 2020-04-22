@@ -776,8 +776,8 @@ div.magnify:hover {
 .castImageContainer {
     position: relative;
     width: auto;
-    /*used for text overlay*/
-    overflow: hidden;
+    /*used for text animation*/
+    /*overflow: hidden;*/
 }
 
 .castImage {
@@ -798,27 +798,26 @@ div.magnify:hover {
 }
 
 .castImageContainer:hover .castText {
-    margin-bottom: 1000px;
+    margin-bottom: 0px;
     margin-top: 0px
 }
-
-
-
 
 .castText {
     background-color: var(--light-color);
     color: var(--main-bg-color);
-    font-size: 22px;
+    font-size: 1.5vw;
     font-weight: 500;
     padding: 1px 1px;
-    text-overflow: clip;
-    margin-top: 400px;
+    /*Used for text animation*/
+    /*margin-top: 400px;
     margin-bottom: 0px;
-    transition: margin-bottom 10s, margin-top 15s;
+    transition: margin-bottom 8s, margin-top 8s;*/
 }
 
-.castText:hover {
-    
+@media only screen and (max-width: 750px) {
+    .castText {
+        font-size: 3vw;
+    }
 }
 
 .castMiddle {
@@ -830,6 +829,7 @@ div.magnify:hover {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+    height: auto;
 }
 
 /*gets rid of underlines on text overlay of cast members*/
