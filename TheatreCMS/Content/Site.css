@@ -1417,3 +1417,9 @@ a.dropdown-item:hover {
         padding: 0 10px 0 10px;
     }
 }
+
+.arch-card-img {
+    width:100%;
+    height: 15vw;
+    object-fit: contain;
+}
