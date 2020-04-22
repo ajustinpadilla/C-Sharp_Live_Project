@@ -12,6 +12,10 @@
     background-color: var(--dark-color);
 }
 
+
+/* End generic Custom Classes */
+
+
 .palette-body {
     background-color: var(--main-bg-color);
     margin-bottom: auto;/* Applying --main-bg-color to the background of body */
