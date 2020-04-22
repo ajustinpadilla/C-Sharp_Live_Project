@@ -255,7 +255,7 @@ a.navLink {
     color: white;
     text-decoration: none;
     background-color: transparent;
-    padding-right: 2em;
+    /*padding-right: 2em;*/
 }
 
     a.navLink :hover {
