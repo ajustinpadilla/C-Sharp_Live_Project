@@ -25,6 +25,7 @@ namespace TheatreCMS.Controllers
             foreach (var user in Users)
                 keyValuePairs.Add(user.Id, user.UserName);
             ViewBag.Users = keyValuePairs;
+            
             return View(db.CastMembers.ToList());
         }
 

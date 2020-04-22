@@ -42,6 +42,11 @@
                     <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })"> <img class="castImage" src="@img" style="width:100%" /> </a>
                     <div class="castMiddle">
                         <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })">
+                            @{ if (item.Bio.Length > 90)                           // the max allowable characters can be changed on this line, and 
+                                {
+                                    item.Bio = item.Bio.Substring(0, 90) + "..."; //                                                      this line
+                                }
+                            }
                             <p class="castText">@Html.DisplayFor(modelItem => item.Bio)</p>
                         </a>
                     </div>
