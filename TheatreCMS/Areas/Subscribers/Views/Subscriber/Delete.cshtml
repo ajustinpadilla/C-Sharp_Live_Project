@@ -84,9 +84,10 @@
       @using (Html.BeginForm()) {
           @Html.AntiForgeryToken()
 
-          <div class="form-actions no-color">
-              <input type="submit" value="Delete" class="btn sub-delete-btn" /> 
-              <a class="sub-delete-return-btn" href="@Url.Action("Back to List", "Index")">Back to List</a>
+          <div class="form-actions no-color text-center">
+              <input type="submit" value="Delete" class="btn sub-delete-btn my-4" /> <br />
+              <a class="sub-delete-cancel-btn" href="@Url.Action("Index")">Cancel</a>
+              @*<a class="sub-delete-return-btn" href="@Url.Action("Back to List", "Index")">Back to List</a>*@
           </div>
       }
     </div>
