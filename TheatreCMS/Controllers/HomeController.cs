@@ -68,14 +68,6 @@ namespace TheatreCMS.Controllers
             return View();
         }
 
-        public ActionResult Archive()
-        {
-            var db = new ApplicationDbContext();
-            var productions = db.Productions
-                .Include(i => i.DefaultPhoto);
-            return View(productions.ToList());
-        }
-
         public ActionResult NewsletterSubscribers()
         {
             using (var db = new ApplicationDbContext())
@@ -100,6 +92,15 @@ namespace TheatreCMS.Controllers
             }
 
         }
+
+        public ActionResult Archive()
+        {
+            var db = new ApplicationDbContext();
+            var productions = db.Productions
+                .Include(i => i.DefaultPhoto);
+            return View(productions.ToList());
+        }
+
         [HttpPost]
         public ActionResult Archive(string SearchByCategory, string ArchiveSearchField)
         {
