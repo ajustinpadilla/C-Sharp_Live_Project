@@ -1438,6 +1438,11 @@ a.dropdown-item:hover {
     padding: 10px;
 }
 
+.arch-card-img {
+    width: 100%;
+    height: 15vw;
+    object-fit: contain;
+}
 /*This class was added to move most of the content of the login page to the left*/ 
 .loginpadding {
     padding-left: 50px;
