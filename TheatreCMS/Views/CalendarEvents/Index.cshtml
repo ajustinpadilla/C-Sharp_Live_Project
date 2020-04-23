@@ -35,14 +35,14 @@
                         <div class="form-group">
                             <label class="fc-modal-labels">Start time:</label>
                             <div class="formBox">
-                                <input type="text" id="addformstarttime" />                               
+                                <input type="text" id="addformstarttime" onfocus="(this.type='datetime')" onblur="if(!this.value)this.type='text'"/>                               
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="fc-modal-labels">End time:</label>
                             <div class="formBox">
-                                <input type="text" id="addformendtime" />
+                                <input type="text" id="addformendtime" onfocus="(this.type='datetime')" onblur="if(!this.value)this.type='text'"/>
                             </div>
                         </div>
 
@@ -106,7 +106,7 @@
                         <div class="form-group">
                             <label class="fc-modal-labels">Start time:</label>
                             <div class="formBox">
-                                <input type="text" id="editformstarttime" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" placeholder="MM/DD/YYYY --:-- " />
+                                <input type="text" id="editformstarttime" onfocus="(this.type='datetime')" onblur="if(!this.value)this.type='text'" placeholder="MM/DD/YYYY --:-- " />
 
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                         <div class="form-group">
                             <label class="fc-modal-labels">End time:</label>
                             <div class="formBox">
-                                <input type="text" id="editformendtime" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" placeholder="MM/DD/YYYY --:-- " />
+                                <input type="text" id="editformendtime" onfocus="(this.type='datetime')" onblur="if(!this.value)this.type='text'" placeholder="MM/DD/YYYY --:-- " />
                             </div>
                         </div>
 
@@ -190,10 +190,10 @@
                             <p id="deventEndDate"></p>
                         </dd>
                         <dt>
-                            Id present: Rental/Production:
+                            Event Type:
                         </dt>
                         <dd>
-                            <p id="deventRentalRequestId">&times;</p>/<p id="deventProductionId">&times;</p>
+                            <p id="deventtypes"></p>
                         </dd>
                         <dt>
                             Link:
@@ -289,9 +289,11 @@
                     eventLimit: false,
                     //dayClick only selects a single day, whereas this picks a range of dates if needed by admin:
                     select: function (startStr, endStr) {
-                        var addstarttime = moment.utc(moment(startStr)).format('YYYY-MM-DD HH:mm');                    
+                        //console.log(moment.utc(moment(startStr)).format("LLL"));
+                        var addstarttime = moment(startStr).format("LLL");                    
                         $('#addModal #addformstarttime').val(addstarttime);
-                        var addendtime = moment.utc(moment(endStr)).format('YYYY-MM-DD HH:mm');
+                        //console.log(moment.utc(moment(endStr)).format("LLL"));
+                        var addendtime = moment(endStr).format("LLL");
                         $('#addModal #addformendtime').val(addendtime);
 
                         $("#addModal").modal({ backdrop: true });
@@ -301,13 +303,24 @@
                     eventClick: function (calEvent) {
                         $('#detailsModal #deventId').html(calEvent.id);
                         $('#detailsModal #deventTitle').html(calEvent.title);
-                        var startdatedetail = moment.utc(moment(calEvent.start)).format("MM-DD-YYYY HH:mm");
+                        console.log(moment(calEvent.start).format("LLL"));
+                        var startdatedetail = moment(calEvent.start).format("LLL");
                         $('#detailsModal #deventStartDate').html(startdatedetail);
-                        var enddatedetail = moment.utc(moment(calEvent.end)).format("MM-DD-YYYY HH:mm");
+                        console.log(moment(calEvent.end).format("LLL"));
+                        var enddatedetail = moment(calEvent.end).format("LLL");
                         $('#detailsModal #deventEndDate').html(enddatedetail);
-                        $('#detailsModal #deventRentalRequestId').html(calEvent.rentalrequestid);
-                        $('#detailsModal #deventProductionId').html(calEvent.productionid);
-                        //$('#detailsModal #deventEventLinks').html(calEvent.Link);
+                        if (calEvent.productionid > 0) {
+                            $('#detailsModal #deventtypes').html("Production: " + calEvent.productionid);
+                        }
+                        else if (calEvent.rentalrequestid > 0) {
+                            $('#detailsModal #deventtypes').html("Facility Rental: " + calEvent.rentalrequestid);
+                        }
+                        else
+                        {
+                            $('#detailsModal #deventtypes').html("Unknown");
+                        }
+
+                        $('#detailsModal #deventEventLinks').html(calEvent.eventlinks);
 
                         
                         $("#detailsModal").modal({ backdrop: true });
@@ -356,33 +369,33 @@
             };
 
             //save new event from Add Modal
-            $('#addsavebtn').click(function ( addstarttime, addendtime) {
-                console.log("addsavebtn clicked!")
-
-                var e = ({
-                    'Title': $('#addmodal #addformtitle').val(),
-                    'StartDate': $('#addmodal #addformstarttime').val(),
-                    'EndDate': $('#addmodal #addformendtime').val(),
+            $('#addsavebtn').click(function () {
+                 var e = {
+                    title: $('#addModal #addformtitle').val(),
+                    start: $('#addModal #addformstarttime').val(),
+                    end: $('#addModal #addformendtime').val(),
+                    eventtype : $('#addModal #eventtypes').val(),
+                    eventlinks : $('#addModal #addformlink').val(),
+                };
+                //console.log(e.title + ", " + e.start + ", " + e.end + ".");
+                $.ajax({
+                    type: "POST",
+                    url: '/CalendarEvents/UpdateEvent',
+                    data: { 'e': e },
+                    success: function (data) {
+                        if (data.status) {
+                            //refresh the calendar
+                            console.log(data);
+                            callback(data);
+                            $("#calendar").fullCalendar('renderEvent', e);
+                            FetchEventAndRenderCalendar();
+                            $('#addModal').modal('hide');
+                        }
+                    },
+                    error: function () {
+                        alert('Failed, Sorry!');
+                    }
                 });
-                console.log(e.Title);
-                //$.ajax({
-                //    type: "POST",
-                //    url: '/CalendarEvents/UpdateEvent',
-                //    data: { 'e': e },
-                //    success: function (data) {
-                //        if (data.status) {
-                //            //refresh the calendar
-                //            console.log(data);
-                //            callback(data);
-                //            $("#calendar").fullCalendar('renderEvent', e);
-                //            FetchEventAndRenderCalendar();
-                //            $('#addModal').modal('hide');
-                //        }
-                //    },
-                //    error: function () {
-                //        alert('Failed, Sorry!');
-                //    }
-                //});
             }),
 
 
