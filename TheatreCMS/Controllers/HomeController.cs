@@ -104,6 +104,8 @@ namespace TheatreCMS.Controllers
         public ActionResult Archive(string SearchByCategory, string ArchiveSearchField)
         {
             var db = new ApplicationDbContext();
+            var productions = db.Productions
+                .Include(i => i.DefaultPhoto);
             ViewBag.Category = SearchByCategory;
 
             switch (SearchByCategory)
@@ -126,7 +128,7 @@ namespace TheatreCMS.Controllers
                     default:
                         break;
                 }
-                return View();
+            return View(productions.ToList());
             
                 
         }
