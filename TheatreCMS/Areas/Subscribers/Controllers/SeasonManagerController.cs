@@ -18,7 +18,6 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager
         public ActionResult Index()
         {
-            
             return View(db.SeasonManagers.ToList());
         }
 

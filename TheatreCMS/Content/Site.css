@@ -486,6 +486,10 @@ div.magnify:hover {
     transform: scale(2);
 }
 
+.managerMessage {
+    font-size: 2vw;
+    color: antiquewhite;
+}
 /* MODIFIED BUTTONS TAILORED FOR SEASON MANAGER VIEWS */
 
 .SmBtn {
