@@ -29,7 +29,7 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["seasons"])
+                @Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"])
             </div >
         </div >
 

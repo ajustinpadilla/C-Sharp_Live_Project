@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Areas.Subscribers.Models;
 using TheatreCMS.Models;
+using TheatreCMS.Helpers;
+
 
 namespace TheatreCMS.Areas.Subscribers.Controllers
 {
@@ -40,8 +42,10 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager/Create
         public ActionResult Create()
         {
+            AdminSettings currentSettings = AdminSettingsReader.CurrentSettings();                                      
+            int[] validSeason = new int[] { currentSettings.current_season, currentSettings.current_season + 1 };   //Creates a list of the current season and the next season
+            ViewData["Season"] = new SelectList(validSeason.ToList(), validSeason, "Season");                       //to populate the Season field
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
-            ViewData["seasons"] = new SelectList(db.SeasonManagers.ToList(), "SeasonManagerId", "Season");
             return View();
         }
 
