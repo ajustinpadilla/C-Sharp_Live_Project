@@ -772,13 +772,13 @@ div.magnify:hover {
 }
 
 .castContainer {
-    padding: 60px;
+    padding: 40px;
 }
 
 @media only screen and (max-width: 750px) {
     .castContainer {
-        margin-left: 95px;
-        margin-right: 95px;
+        padding-left: 80px;
+        padding-right: 80px;
     }
 }
 
@@ -823,7 +823,7 @@ div.magnify:hover {
 
 @media only screen and (max-width: 750px) {
     .castText {
-        font-size: 3vw;
+        font-size: 4.25vw;
         margin-bottom: 0px;
     }
 }
