@@ -50,13 +50,15 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SeasonManagerId,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring, SeasonManagerPerson")] SeasonManager seasonManager)
+        public ActionResult Create([Bind(Include = "SeasonManagerId,Season,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring,SeasonManagerPerson")] SeasonManager seasonManager)
         {
             ModelState.Remove("SeasonManagerPerson");
             string userId = Request.Form["dbUsers"].ToString();
 
             if (ModelState.IsValid)
+               
             {
+                
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
                 seasonManager.SeasonManagerPerson = db.Users.Find(userId);
                 db.SeasonManagers.Add(seasonManager);               
