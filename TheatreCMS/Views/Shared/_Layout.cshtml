@@ -9,22 +9,22 @@
     <!-- Lines below (style) added by Dagmar 20200312; submenus functionality changed from hover to click, submenus are stable and do not disappear anymore -->
     <style>
         .dropdown-submenu {
-          position: relative;
+            position: relative;
         }
 
-        .dropdown-submenu a::after {
-          transform: rotate(-90deg);
-          position: absolute;
-          right: 6px;
-          top: .8em;
-        }
+            .dropdown-submenu a::after {
+                transform: rotate(-90deg);
+                position: absolute;
+                right: 6px;
+                top: .8em;
+            }
 
-        .dropdown-submenu .dropdown-menu {
-          top: 0;
-          left: 100%;
-          margin-left: .1rem;
-          margin-right: .1rem;
-        }
+            .dropdown-submenu .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-left: .1rem;
+                margin-right: .1rem;
+            }
     </style>
 </head>
 <body class="palette-body">
@@ -45,7 +45,7 @@
                         Events
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <li class="dropdown-submenu">
+                        <li class="dropdown-submenu">
                             <a class="dropdown-item dropdown-toggle" href="@Url.Action("Index", "Productions")">Productions</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Productions")">All</a></li>
@@ -127,49 +127,45 @@
         @RenderBody()
 
     </div>
-    <footer>
-        <div class="footer-container container-fluid">
-            <div class="text-center">
-                <ul class="list-unstyled">
-                    <li class="footer nav-item">
-                        <a class="navLink" href="#">Opportunities</a>
-                    </li>
-                    <li class="footer nav-item">
-                        <a class="navLink" href="#">News Items</a>
-                    </li>
-                    <li class="footer nav-item">
-                        <a class="navLink" href="#">Contact Info</a>
-                    </li>
-                    <li class="footer nav-item">
-                        <a class="navLink" href="#">Donate</a>
-                    </li>
-                </ul>
+    <footer class="footer">
+        <div class="footer-container container-fluid py-2 pt-4 ">
+            <div class="row text-center text-lg-center justify-content-around">
+                <div class="col-12 col-md-2">
+                    <a class="navLink" href="#">Opportunities</a>
+                </div>
+                <div class="col-12 col-md-2">
+                    <a class="navLink" href="#">News Items</a>
+                </div>
+                <div class="col-12 col-md-2">
+                    <a class="navLink" href="#">Contact Info</a>
+                </div>
+                <div class="col-12 col-md-2">
+                    <a class="navLink" href="#">Donate</a>
+                </div>
             </div>
-            <div class="footer-icons d-flex justify-content-center" id="socialMediaLinks" style="background-color: black">
-                <ul class="footer-list list-group list-group-horizontal" style="background-color: black">
-                    <li class="list-group-item"> <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                    <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
-                    <li class="list-group-item"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
-                    <li class="list-group-item"><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
-                    <li class="list-group-item"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li>
-                </ul>
+            <div class="row d-flex justify-content-center m-md-2" id="socialMediaLinks" style="background-color: black">
+                <div class="col-auto"><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></div>
+                <div class="col-auto"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></div>
+                <div class="col-auto"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></div>
+                <div class="col-auto"><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></div>
+                <div class="col-auto"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></div>
             </div>
-            <div class="text-center">
-                <div id="address">
+            <div class="row d-flex justify-content-center">
+                <div class="pr-2 pl-2" id="address">
                     <p>
                         2110 SE 10th AVE<br />
                         Portland, OR 97214
                     </p>
                 </div>
-                <div id="phoneNumbers">
+                <div class="pl-2" id="phoneNumbers">
                     <p>
                         Phone Number (General)<br />
                         Phone Number (Sales)
                     </p>
                 </div>
-                <div class="col-lg align-content-end">
-                    <p><br />&copy; @DateTime.Now.Year</p>
-                </div>
+            </div>
+            <div class="text-center">
+                <p class="my-0">&copy; @DateTime.Now.Year</p>
             </div>
         </div>
     </footer>
@@ -202,3 +198,11 @@
 
 </body>
 </html>
+
+@*<ul class="footer-list list-group list-group-horizontal" style="background-color: black">
+        <li class="list-group-item"> <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+        <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
+        <li class="list-group-item"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
+        <li class="list-group-item"><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
+        <li class="list-group-item"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li>
+    </ul>*@

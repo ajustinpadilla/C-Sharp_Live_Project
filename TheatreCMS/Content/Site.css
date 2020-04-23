@@ -253,11 +253,14 @@ body {
 footer {
     background-color: black;
     display: flex;
+    position:sticky;
+    bottom: 0;
+    
 }
 
 .footer-container {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 a.navLink {
@@ -295,7 +298,7 @@ footer .list-group-item :hover {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-top: 25px;
+    padding-top: 10px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
