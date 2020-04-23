@@ -115,11 +115,10 @@ namespace TheatreCMS.Controllers
         [AllowAnonymous]
         public ActionResult DisplayPhoto(int? id) //nullable int
         {            
-            var byteData = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
             string filePath = Server.MapPath(Url.Content("~/Content/Images/no-image.png"));
-            Image noImageAvail = Image.FromFile("filePath");
+            Image noImageAvail = Image.FromFile(filePath);
             var converter = new ImageConverter();
-            byteData = (byte[])converter.ConvertTo(noImageAvail, typeof(byte[]));
+            var byteData = (byte[])converter.ConvertTo(noImageAvail, typeof(byte[]));
             if (id.HasValue)
             {                
             Photo photo = db.Photo.Find(id);
