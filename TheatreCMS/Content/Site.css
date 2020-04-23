@@ -258,25 +258,22 @@ footer {
     
 }
 
-.footer-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 a.navLink {
     color: white;
     text-decoration: none;
     background-color: transparent;
+    font-size: smaller;
     /*padding-right: 2em;*/
 }
 
-    a.navLink :hover {
-        font-weight: bolder;
-    }
+
+a.navLink :hover {
+    font-weight: bolder;
+}
 
 footer p {
     color: white;
-    font-size: 1rem;
+    font-size: smaller;
 }
 
 footer #address {
