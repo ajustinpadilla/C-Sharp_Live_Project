@@ -41,6 +41,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         public ActionResult Create()
         {
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
+            ViewData["seasons"] = new SelectList(db.SeasonManagers.ToList(), "SeasonManagerId", "Season");
             return View();
         }
 
