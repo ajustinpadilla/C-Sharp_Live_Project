@@ -1258,3 +1258,8 @@ a.dropdown-item:hover {
     padding-left: 65px;
     padding-top: 50px;
 }
+/*This class was added to move the login button more to the right*/
+.loginhthree{
+    padding-right: 45px;
+    padding-left: 45px;
+}
