@@ -3,19 +3,27 @@
 
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Rental Request";
 }
 
-<h2>Create</h2>
+
 
 
 @using (Html.BeginForm())
 {
+
+    if (User.IsInRole("Admin"))
+    {
+        <div class="text-center">
+            <br />@Html.ActionLink("All Rental Requests", "Index")
+        </div>
+    }
     @Html.AntiForgeryToken()
     <div class="formContainer2 ">
         <div class="form-horizontal">
-            <h4 class="formHeader">RentalRequest</h4>
+            <h4 class="formHeader">Create Rental Request</h4>
             <hr />
+
             <div class="inputBox2">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -101,7 +109,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10 formBox">
-                        <input type="submit" value="Create" class="submitButton2" />
+                        <input type="submit" value="Submit" class="submitButton2" />
                     </div>
                 </div>
             </div>
@@ -109,9 +117,7 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
