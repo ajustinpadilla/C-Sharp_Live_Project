@@ -250,12 +250,30 @@ body {
     padding-bottom: 20px;
 }
 /* ------Footer stylings----- */
+@media screen and (max-width: 900px) {
+    .footer{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 700px) {
+    #footerInner {
+        flex-direction: column-reverse;
+    }
+
+    #navBar,
+    #socialMediaLinks {
+        width: auto;
+    }
+}
+#footerInner{
+    display:flex;
+}
+
 footer {
     background-color: black;
     display: flex;
     position:sticky;
     bottom: 0;
-    
 }
 
 a.navLink {
@@ -276,8 +294,20 @@ footer p {
     font-size: smaller;
 }
 
+#socialMediaLinks{
+    
+}
+
+footer #contactInfo {
+    padding-top: 10px;
+}
+
 footer #address {
-    margin-right: 0;
+    margin-bottom: 0;
+}
+
+footer #phoneNumbers{
+    margin-bottom: 0;
 }
 
 footer .list-group-item {
