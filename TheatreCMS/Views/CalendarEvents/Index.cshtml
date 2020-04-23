@@ -35,14 +35,14 @@
                         <div class="form-group">
                             <label class="fc-modal-labels">Start time:</label>
                             <div class="formBox">
-                                <input type="text" id="addformstarttime" placeholder="MM/DD/YYYY --:-- "/>                               
+                                <input type="text" id="addformstarttime" />                               
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="fc-modal-labels">End time:</label>
                             <div class="formBox">
-                                <input type="text" id="addformendtime" placeholder="MM/DD/YYYY --:-- " />
+                                <input type="text" id="addformendtime" />
                             </div>
                         </div>
 
@@ -289,22 +289,21 @@
                     eventLimit: false,
                     //dayClick only selects a single day, whereas this picks a range of dates if needed by admin:
                     select: function (startStr, endStr) {
-                        var addstarttime = startStr.format("MM-DD-YYYY HH:mm").toString();                    
+                        var addstarttime = moment.utc(moment(startStr)).format('YYYY-MM-DD HH:mm');                    
                         $('#addModal #addformstarttime').val(addstarttime);
-                        var addendtime = endStr.format("MM-DD-YYYY HH:mm").toString();
+                        var addendtime = moment.utc(moment(endStr)).format('YYYY-MM-DD HH:mm');
                         $('#addModal #addformendtime').val(addendtime);
 
                         $("#addModal").modal({ backdrop: true });
                     },
                                         
 
-
                     eventClick: function (calEvent) {
                         $('#detailsModal #deventId').html(calEvent.id);
                         $('#detailsModal #deventTitle').html(calEvent.title);
-                        var startdatedetail = calEvent.start.format("MM-DD-YYYY HH:mm");
+                        var startdatedetail = moment.utc(moment(calEvent.start)).format("MM-DD-YYYY HH:mm");
                         $('#detailsModal #deventStartDate').html(startdatedetail);
-                        var enddatedetail = calEvent.end.format("MM-DD-YYYY HH:mm");
+                        var enddatedetail = moment.utc(moment(calEvent.end)).format("MM-DD-YYYY HH:mm");
                         $('#detailsModal #deventEndDate').html(enddatedetail);
                         $('#detailsModal #deventRentalRequestId').html(calEvent.rentalrequestid);
                         $('#detailsModal #deventProductionId').html(calEvent.productionid);
@@ -360,30 +359,30 @@
             $('#addsavebtn').click(function ( addstarttime, addendtime) {
                 console.log("addsavebtn clicked!")
 
-                e = ({
-                    Title: $('#addmodal #addformtitle').val(),
-                    StartDate: $('#addmodal #addformstarttime').val(),
-                    EndDate: $('#addmodal #addformendtime').val(),
+                var e = ({
+                    'Title': $('#addmodal #addformtitle').val(),
+                    'StartDate': $('#addmodal #addformstarttime').val(),
+                    'EndDate': $('#addmodal #addformendtime').val(),
                 });
                 console.log(e.Title);
-                $.ajax({
-                    type: "POST",
-                    url: '/CalendarEvents/UpdateEvent',
-                    data: { 'e': e },
-                    success: function (data) {
-                        if (data.status) {
-                            //refresh the calendar
-                            console.log(data);
-                            callback(data);
-                            $("#calendar").fullCalendar('renderEvent', e);
-                            FetchEventAndRenderCalendar();
-                            $('#addModal').modal('hide');
-                        }
-                    },
-                    error: function () {
-                        alert('Failed, Sorry!');
-                    }
-                });
+                //$.ajax({
+                //    type: "POST",
+                //    url: '/CalendarEvents/UpdateEvent',
+                //    data: { 'e': e },
+                //    success: function (data) {
+                //        if (data.status) {
+                //            //refresh the calendar
+                //            console.log(data);
+                //            callback(data);
+                //            $("#calendar").fullCalendar('renderEvent', e);
+                //            FetchEventAndRenderCalendar();
+                //            $('#addModal').modal('hide');
+                //        }
+                //    },
+                //    error: function () {
+                //        alert('Failed, Sorry!');
+                //    }
+                //});
             }),
 
 
