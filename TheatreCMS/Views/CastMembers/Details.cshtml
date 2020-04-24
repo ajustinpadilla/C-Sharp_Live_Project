@@ -6,16 +6,16 @@
 }
 
 
-<div class=" container-fluid">
-  <div class=" detailsContainer">
-    <h2 class=" text-center">Castmember Details</h2>
+  <div class=" container-fluid">
+    <div class=" detailsContainer">
+      <h2 class=" text-center">Castmember Details</h2>
 
-    <div>
+      <div>
 
-     
-      <hr />
 
-     
+        <hr />
+
+
 
         <div class="text-center justify-content-start col-md ">
           <div class="col-md">
@@ -39,144 +39,153 @@
 
 
           <div class=" row">
-          <div class="col-md">
-            User Name:
-          </div>
-
-          <div class="col-md">
-            @ViewBag.CurrentUser
-          </div>
+            <div class="col-md">
+              User Name:
             </div>
+
+            <div class="col-md">
+              @ViewBag.CurrentUser
+            </div>
+          </div>
 
           <div class=" row">
-          <div class="col-md">
-            @Html.DisplayNameFor(model => model.Name)
-          </div>
-
-          <div class="col-md">
-            @Html.DisplayFor(model => model.Name)
-          </div>
+            <div class="col-md">
+              @Html.DisplayNameFor(model => model.Name)
             </div>
+
+            <div class="col-md">
+              @Html.DisplayFor(model => model.Name)
+            </div>
+          </div>
 
           <div class="row">
-          <div class=" col-md">
-            @Html.DisplayNameFor(model => model.YearJoined)
-          </div>
-
-          <div class="col-md">
-            @Html.DisplayFor(model => model.YearJoined)
-          </div>
+            <div class=" col-md">
+              @Html.DisplayNameFor(model => model.YearJoined)
             </div>
+
+            <div class="col-md">
+              @Html.DisplayFor(model => model.YearJoined)
+            </div>
+          </div>
           <div class=" row">
-          <div class=" col-md">
-            @Html.DisplayNameFor(model => model.MainRole)
-          </div>
-
-          <div class="col-md">
-            @Html.DisplayFor(model => model.MainRole)
-          </div>
+            <div class=" col-md">
+              @Html.DisplayNameFor(model => model.MainRole)
             </div>
 
-          <div class=" row">
-          <div class=" col-md">
-            @Html.DisplayNameFor(model => model.Bio)
-          </div>
-
-          <div class="col-md">
-            @Html.DisplayFor(model => model.Bio)
-          </div>
+            <div class="col-md">
+              @Html.DisplayFor(model => model.MainRole)
             </div>
-
-          
-         
-
+          </div>
 
           <div class=" row">
-          <div class=" col-md">
-            @Html.DisplayNameFor(model => model.AssociateArtist)
-          </div>
-
-          <div class="col-md">
-            @Html.DisplayFor(model => model.AssociateArtist)
-          </div>
+            <div class=" col-md">
+              @Html.DisplayNameFor(model => model.Bio)
             </div>
-            <div class=" row">
-          <div class=" col-md">
-            @Html.DisplayNameFor(model => model.EnsembleMember)
+
+            <div class="col-md">
+              @Html.DisplayFor(model => model.Bio)
+            </div>
           </div>
 
-          <div class="col-md">
-            @Html.DisplayFor(model => model.EnsembleMember)
+
+
+
+
+          <div class=" row">
+            <div class=" col-md">
+              @Html.DisplayNameFor(model => model.AssociateArtist)
+            </div>
+
+            <div class="col-md">
+              @Html.DisplayFor(model => model.AssociateArtist)
+            </div>
           </div>
-              </div>
+          <div class=" row">
+            <div class=" col-md">
+              @Html.DisplayNameFor(model => model.EnsembleMember)
+            </div>
+
+            <div class="col-md">
+              @Html.DisplayFor(model => model.EnsembleMember)
+            </div>
+          </div>
           <div class=" row ">
-          <div class=" col-md">
-            @Html.DisplayNameFor(model => model.CastYearLeft)
-          </div>
-
-          <div class="col-md">
-            @Html.DisplayFor(model => model.CastYearLeft)
-          </div>
+            <div class=" col-md">
+              @Html.DisplayNameFor(model => model.CastYearLeft)
             </div>
-          <div class=" row">
-          <div class=" col-md">
-            @Html.DisplayNameFor(model => model.DebutYear)
-          </div>
 
-          <div class="col-md">
-            @Html.DisplayFor(model => model.DebutYear)
-          </div>
+            <div class="col-md">
+              @Html.DisplayFor(model => model.CastYearLeft)
             </div>
+          </div>
           <div class=" row">
-          <div class=" col-md">
-            @Html.DisplayNameFor(model => model.CurrentMember)
-          </div>
+            <div class=" col-md">
+              @Html.DisplayNameFor(model => model.DebutYear)
+            </div>
 
-          <div class="col-md">
-            @Html.DisplayFor(model => model.CurrentMember)
+            <div class="col-md">
+              @Html.DisplayFor(model => model.DebutYear)
+            </div>
           </div>
+          <div class=" row">
+            <div class=" col-md">
+              @Html.DisplayNameFor(model => model.CurrentMember)
+            </div>
 
-        </div>
-        <div class="justify-content-end col-md-3">
-          <div>
-            @if (Model.Parts.Count() != 0)
-            {
-              <div>
-                @Html.DisplayNameFor(model => model.Parts)
-              </div>
-              foreach (var role in Model.Parts)
+            <div class="col-md">
+              @Html.DisplayFor(model => model.CurrentMember)
+            </div>
+
+          </div>
+          <div class="justify-content-end col-md">
+            <div>
+              @if (Model.Parts.Count() != 0)
               {
                 <div>
-                  <a href="/Part/Details/@role.PartID">@Html.DisplayFor(model => role.Character)</a>
+                  @Html.DisplayNameFor(model => model.Parts)
                 </div>
+                foreach (var role in Model.Parts)
+                {
+                  <div>
+                    <a href="/Part/Details/@role.PartID">@Html.DisplayFor(model => role.Character)</a>
+                  </div>
+                }
               }
-            }
+            </div>
           </div>
+
         </div>
+        <div class=" mybutton">
+          <p>
+            @if (User.IsInRole("Admin"))
+            {
+
+
+              <button class= "iconBtn ">
+                <div class=" buttonsize">
+
+                  @Html.ActionLink("Edit", "Edit", new { id = Model.CastMemberID })
+                  @(" |")
+
+
+                </div>
+              </button>
+
+
+            }
+
+            <button class=" iconBtn">
+              <div class=" buttonsize">
+                @Html.ActionLink("Back to List", "Index")
+              </div>
+            </button>
+
+        </div>
+        </p>
+      </div>
+     
+
       </div>
     </div>
-    <div class="col-md-9 text-center">
-      <p>
-        @if (User.IsInRole("Admin"))
-        {
-
-          <div class="iconBtnContainer">
-            <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
-              <!-- This button is a link to a different page-->
-              <i class="fa fa-hand-point-left fa-fw"></i>Back To List<!-- This button is a link to a different page -->
-            </button>
-          </div>
-
-        }
-        <div class="iconBtnContainer">
-          <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
-            <!-- This button is a link to a different page-->
-            <i class="fa fa-hand-point-left fa-fw"></i>Back To List<!-- This button is a link to a different page -->
-          </button>
-        </div>
-      </p>
-    </div>
-  </div>
-    
-  </div>
+  
 
