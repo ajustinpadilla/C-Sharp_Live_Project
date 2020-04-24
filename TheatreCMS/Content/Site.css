@@ -194,7 +194,7 @@
 /*using button styles from sponsor index to match theme */
 
 
-.button-redirect { 
+/*.button-redirect { 
     background-color: var(--secondary-color);
     text-decoration:none;
     font-size: 20px;
@@ -210,7 +210,7 @@
     background: var(--main-bg-color);
     text-decoration:none;
     color:var(--light-color);
-}
+}*/
 .loginFailureBackdrop {
     background-color: var(--light-color);
     margin: auto;
@@ -657,8 +657,21 @@ textarea {
     background-color: #000000;
     color: #FFFBFB;
     font-size: 30px;
-    -webkit-text-stroke-width: .7px;
-    -webkit-text-stroke-color: #DB1A11;
+    
+}
+
+.col-md {
+    padding: 10px;
+    margin: 10px;
+    border-spacing: 10px;
+
+   
+}
+.row {
+    border-spacing: 10px;
+    width: auto;
+    margin: 10px;
+    padding:50px;
 }
 
 .col-md-9 {
