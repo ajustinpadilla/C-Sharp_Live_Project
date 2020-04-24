@@ -69,8 +69,8 @@
     background-color: var(--main-secondary-color);
 }
 
-.slideTitle
-{
+
+.slideTitle {
     color: var(--light-color);
     font-size: 72px;
     padding: 20px;
@@ -91,57 +91,68 @@
 
 /*Add Media Queries for responsiveness*/
 
-@media (max-width: 600px) {
-    /* Styles for screen with max width of 600px */
-
+@media (min-width: 900px) {
     .slideTitle {
         color: var(--light-color);
-        font-size: 40px;
-        padding: 40px;
-        position: relative;
-        top: 490px;
-        left: 0px;
-        text-align: center;
+        font-size: 72px;
+        padding: 20px;
+        position: absolute;
+        top: 60px;
+        left: 240px;
     }
 
     .slideText {
         color: var(--light-color);
         font-size: 30px;
         padding: 40px;
-        position: relative;
-        bottom: -10px;
+        position: absolute;
+        bottom: 140px;
         width: 100%;
         font-weight: bold;
-        text-align: center;
+    }
+
+    .slideTitle1 {
+        visibility: hidden;
+    }
+
+    .slideText1 {
+        visibility: hidden;
+    }
+
+    .slideTitle-container {
+        visibility: hidden;
     }
 }
 
-    @media (max-width: 320px) {
-        /* Styles for screen with max width of 320px */
 
-        .slideTitle {
-            color: var(--light-color);
-            font-size: 25px;
-            padding: 5px;
-            position: relative;
-            bottom: -7px;
-            top: 230px;
-            left: 1px;
-            text-align: center;
-        }
 
-        .slideText {
-            color: var(--light-color);
-            font-size: 20px;
-            padding: 4px;
-            position: relative;
-            bottom: -13px;
-            width: 100%;
-            font-weight: bold;
-            text-align: center;
-        }
+@media (max-width: 900px) {
+    /*Styles for screen with max width of 600px*/
+
+    .slideTitle {
+        visibility: hidden;
     }
-        /*END Add Media Queries for responsiveness*/
+
+    .slideText {
+        visibility: hidden;
+    }
+
+    .slideTitle1 {
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .slideText1 {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .slideTitle-container {
+    }
+}
+/*End Media Queries for Responsiveness*/
 
         .dot {
             cursor: pointer;
