@@ -125,8 +125,7 @@
                                     <option value="production" id="editprodopt">Production</option>
                                     <option value="rental" id="editrentopt">Facility Rental</option>
                                 </select>
-                                <p id="eeventRentalRequestId">&times;</p>/
-                                <p id="eProductionId">&times;</p>
+
                             </div>
                         </div>
 
@@ -261,23 +260,20 @@
                     url: "/CalendarEvents/FetchEventsAndRenderCalendar",
                     success: function (data) {
                             events = data
-                            console.log(data);
+                            //console.log(data);
                             //console.log(events);
                             GenerateCalendar(events);
                     }
                 })
             };
             
-            function GenerateCalendar(events) { //events: data of events, inherent from FullCalendar?
+            function GenerateCalendar(events) { 
                 //remove the previous Calendar
                 $('#calendar').fullCalendar('destroy');
                 //Assign properties to the Calendar, and some events
-                $('#calendar').fullCalendar({
-                    //data: events,
+                $('#calendar').fullCalendar({                   
                     contentHeight: 550,
                     defaultDate: new Date(),
-                    //for ease, remove times of events on EventDisplays
-                    displayEventTime: false,
                     //allows multiple/stacked events
                     eventLimit: true,
                     //default event color: --main-secondary-color
@@ -287,28 +283,28 @@
                     selectHelper: true,
                     //if multiple events on same day should be stacked, set to true:
                     eventLimit: false,
-                    //dayClick only selects a single day, whereas this picks a range of dates if needed by admin:
                     select: function (startStr, endStr) {
-                        //console.log(moment.utc(moment(startStr)).format("LLL"));
                         var addstarttime = moment(startStr).format("LLL");                    
                         $('#addModal #addformstarttime').val(addstarttime);
-                        //console.log(moment.utc(moment(endStr)).format("LLL"));
                         var addendtime = moment(endStr).format("LLL");
                         $('#addModal #addformendtime').val(addendtime);
 
                         $("#addModal").modal({ backdrop: true });
                     },
-                                        
+                    dayClick: function (date, jsEvent, view) {
+                        var addstarttime = moment(date).format("LLL");
+                        $('#addModal #addformstarttime').val(addstarttime);
 
+                        $("#addModal").modal({ backdrop: true });
+                    },                    
                     eventClick: function (calEvent) {
                         $('#detailsModal #deventId').html(calEvent.id);
                         $('#detailsModal #deventTitle').html(calEvent.title);
-                        console.log(moment(calEvent.start).format("LLL"));
                         var startdatedetail = moment(calEvent.start).format("LLL");
                         $('#detailsModal #deventStartDate').html(startdatedetail);
-                        console.log(moment(calEvent.end).format("LLL"));
                         var enddatedetail = moment(calEvent.end).format("LLL");
                         $('#detailsModal #deventEndDate').html(enddatedetail);
+                        // display the id of the rentalrequest or production if exists, otherwise "unknown"
                         if (calEvent.productionid > 0) {
                             $('#detailsModal #deventtypes').html("Production: " + calEvent.productionid);
                         }
@@ -319,49 +315,62 @@
                         {
                             $('#detailsModal #deventtypes').html("Unknown");
                         }
-
-                        $('#detailsModal #deventEventLinks').html(calEvent.eventlinks);
-
-                        
+                        //$('#detailsModal #deventEventLinks').html(calEvent.eventlinks);                        
                         $("#detailsModal").modal({ backdrop: true });
 
-                        $("#detaileditbtn").click(function (calEvent) {
-                            console.log(calEvent.id);
-                            $('#editModal #eeventId').html(calEvent.id);                            
-                            $('#editModal #eeventTitle').html(function () {
-                                document.getElementById("editformtitle").defaultValue = calEvent.title;
-                            });
-                            $('#editModal #eeventStartDate').html(function () {
-                                document.getElementById("editformstarttime").defaultValue = calEvent.start;
-                            });
-                            $('#editModal #eeventEndDate').html(function () {
-                                document.getElementById("editformendtime").defaultValue = calEvent.end;
-                            });
-                            $('#editModal #eeventRentalRequestId').html(calEvent.rentalrequestid);
-                            $('#editModal #eProductionId').html(calEvent.productionid);
-                            //$('#editModal #eeventEventLinks').html(function () {
-                            //document.getElementById("editeventtypes").defaultValue = calEvent.Link);
+                        $("#detaileditbtn").click(function () {
+                            $('#editModal #eeventId').html(calEvent.id);
+                            $('#editModal #eeventTitle').html(document.getElementById("editformtitle").defaultValue = calEvent.title);
+                            $('#editModal #eeventStartDate').html(document.getElementById("editformstarttime").defaultValue = calEvent.start);
+                            $('#editModal #eeventEndDate').html(document.getElementById("editformendtime").defaultValue = calEvent.end);
+                            if (calEvent.productionid > 0) {
+                                $('#editModal #editeventtypes').html('#editprodopt');
+                            }
+                            else if (calEvent.rentalrequestid > 0) {
+                                $('#editModalModal #editeventtypes').html("#editrentopt");
+                            }
+                            else {
+                                $('#editModalModal #editeventtypes').html();
+                            }
+                            //$('#editModal #eeventEventLinks').html(document.getElementById("editeventtypes").defaultValue = calEvent.Link);
 
                             //remove previous modal and show edit Modal when edit button selected
-                            $("#editModal").modal('show');
                             $("#detailsModal").modal('hide');
-
+                            window.setTimeout(function ()
+                            {
+                                $("#editModal").modal("show");
+                        }, 500);
+                            
+                            
                             //save changes made in edit Modal
                             $('#editsavebtn').click(function () {
+                                
+                                calEvent = {
+                                    title: $('#editModal #editformtitle').val(),
+                                    start: $('#editModal #editformstarttime').val(),
+                                    end: $('#editModal #editformendtime').val(),
+                                    eventtype: $('#editModal #editeventtypes').val(),                                    
+                                }
+                                $("#calendar").fullCalendar('updateEvent', calEvent, true);
+                                $("#calendar").fullCalendar('renderEvent', calEvent, true);
                                 $("#editModal").modal('hide');
                             });
 
                             //send to Confirm to Delete Modal when delete button selected [on edit Modal]
                             $("#editdeletebtn").click(function () {
                                 selectedEvent = calEvent.id;
-                                $("#confdelModal").modal({ backdrop: false });
+                                window.setTimeout(function () {
+                                    $("#confdelModal").modal("show");
+                                }, 500);
                                 $("#editModal").modal('hide');
                             });
                         });
                         //send to Confirm to Delete Modal when delete button selected [on details Modal]
                         $("#detaildeletebtn").click(function () {
+                            window.setTimeout(function () {
+                                $("#confdelModal").modal("show");
+                            }, 500);
                             selectedEvent = calEvent.id;
-                            $("#confdelModal").modal({ backdrop: false });
                             $("#detailsModal").modal('hide');
                         });                                            
                     },                    
@@ -370,36 +379,39 @@
 
             //save new event from Add Modal
             $('#addsavebtn').click(function () {
-                 var e = {
+                //for front end portion of story: display event on Calendar 
+                var e = {
                     title: $('#addModal #addformtitle').val(),
                     start: $('#addModal #addformstarttime').val(),
                     end: $('#addModal #addformendtime').val(),
                     eventtype : $('#addModal #eventtypes').val(),
-                    eventlinks : $('#addModal #addformlink').val(),
+                 /*eventlinks : $('#addModal #addformlink').val(),*/
                 };
-                //console.log(e.title + ", " + e.start + ", " + e.end + ".");
-                $.ajax({
-                    type: "POST",
-                    url: '/CalendarEvents/UpdateEvent',
-                    data: { 'e': e },
-                    success: function (data) {
-                        if (data.status) {
-                            //refresh the calendar
-                            console.log(data);
-                            callback(data);
-                            $("#calendar").fullCalendar('renderEvent', e);
-                            FetchEventAndRenderCalendar();
-                            $('#addModal').modal('hide');
-                        }
-                    },
-                    error: function () {
-                        alert('Failed, Sorry!');
-                    }
-                });
+
+                $("#calendar").fullCalendar('renderEvent', e, true);
+
+                //Backend Save Event from Add Modal, needs work, seperate create/update functions
+                //$.ajax({
+                //    type: "POST",
+                //    url: '/CalendarEvents/UpdateEvent',
+                //    data: { 'e': e },
+                //    success: function (data) {
+                //        if (data.status) {
+                //            //refresh the calendar
+                //            console.log(data);
+                //            callback(data);
+                //            $("#calendar").fullCalendar('renderEvent', e);
+                //            FetchEventAndRenderCalendar();
+                //            $('#addModal').modal('hide');
+                //        }
+                //    },
+                //    error: function () {
+                //        alert('Failed, Sorry!');
+                //    }
+                //});
             }),
 
-
-            //confirm delete function call
+            //confirm delete function call/fully delete event from db
             $('#confdeletebtn').click(function () {
                 var id = selectedEvent;
                 //console.log(id);
