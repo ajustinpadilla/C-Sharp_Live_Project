@@ -648,7 +648,7 @@ textarea {
     text-align: center;
 }
 
-/*ENd Styling for CastMember Index View*/
+/*End Styling for CastMember Index View*/
 
 .nav-login li{
     padding-right: 3rem;
@@ -867,23 +867,32 @@ textarea {
 /*Subscriber Edit section*/
 .subbody2 {
     background-color: var(--dark-color);
+    text-align: center;
 }
 
 .body-content2 {
     background-color: var(--light-color);
     padding-top: 25px;
     padding-left: 25px;
+    padding-right: 25px;
 }
 
-#submit-button {
+
+
+#submit-button, #btl-button {
     background-color: var(--subscriber-main);
-    width: 100%;
+    display: inline-block;
+    width: 25%;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+#btl-button:hover {
+    background-color: var(--secondary-color);
 }
 
 #submit-button:hover {
