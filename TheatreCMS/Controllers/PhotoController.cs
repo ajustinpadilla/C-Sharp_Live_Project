@@ -83,6 +83,9 @@ namespace TheatreCMS.Controllers
             {
                 byte[] photoArray = ImageBytes(file);
                 photo.PhotoFile = photoArray;
+                Bitmap img = new Bitmap(file.InputStream);
+                photo.OriginalHeight = img.Height;
+                photo.OriginalWidth = img.Width;
 
                 db.Photo.Add(photo);
                 db.SaveChanges();
