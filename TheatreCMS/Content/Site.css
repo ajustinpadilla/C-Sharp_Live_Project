@@ -265,19 +265,14 @@ body {
     
 }
 /* ------Footer stylings----- */
-@media screen and (max-width: 900px) {
+/*@media screen and (max-width: 900px) {
     .footer{
         flex-direction: column;
     }
-}
+}*/
 @media screen and (max-width: 700px) {
     #footerInner {
         flex-direction: column-reverse;
-    }
-
-    #navBar,
-    #socialMediaLinks {
-        width: auto;
     }
 }
 #footerInner{
@@ -310,6 +305,7 @@ footer p {
 }
 
 #socialMediaLinks{
+    display:flex;
     
 }
 
