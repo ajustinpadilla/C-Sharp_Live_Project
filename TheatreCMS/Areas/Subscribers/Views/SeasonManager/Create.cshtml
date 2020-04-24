@@ -23,28 +23,22 @@
                 @Html.LabelFor(model => model.SeasonManagerPerson, htmlAttributes: new { @class = "control-label col-md-12" })
                 
                 <div class="col-centered">
-                    @if (ViewBag.HasAccess)
-                    {
-                        @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
-                    }
+                    @if (ViewBag.HasAccess) {@Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])}
                     else
                     {
-                        @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"], new { disabled = "disabled" })
+                    @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"], new { disabled = "disabled" })
                     }
 
-                    </div>
+                </div>
             </div>
 
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess)
-                {
-                    @Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"])
-                }
+                @if (ViewBag.HasAccess) {@Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"])}
                 else
                 {
-                    @Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"], new { disabled = "disabled" })
+                @Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"], new { disabled = "disabled" })
                 }
             </div>
         </div>
@@ -53,13 +47,10 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.NumberSeats, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess)
-                {
-                    @Html.EditorFor(model => model.NumberSeats, new { htmlAttributes = new { @class = "form-control text-center" } })
-                }
+                @if (ViewBag.HasAccess) {@Html.EditorFor(model => model.NumberSeats, new { htmlAttributes = new { @class = "form-control text-center" } })}
                 else
                 {
-                    @Html.EditorFor(model => model.NumberSeats, new { htmlAttributes = new { @class = "form-control text-center", disabled = "disabled" } })
+                @Html.EditorFor(model => model.NumberSeats, new { htmlAttributes = new { @class = "form-control text-center", disabled = "disabled" } })
                 }
                 @Html.ValidationMessageFor(model => model.NumberSeats, "", new { @class = "text-danger text-center" })
             </div>
@@ -83,13 +74,10 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.FallProd, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess)
-                {
-                    @Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control text-center" } })
-                }
+                @if (ViewBag.HasAccess) {@Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control text-center" } })}
                 else
                 {
-                    @Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control text-center", disbled = "disabled" } })
+                @Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control text-center", disbled = "disabled" } })
 
                 }
                 @Html.ValidationMessageFor(model => model.FallProd, "", new { @class = "text-danger text-center" })
@@ -99,13 +87,10 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.FallTime, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess)
-                {
-                    @Html.EditorFor(model => model.FallTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center" } })
-                }
+                @if (ViewBag.HasAccess) {@Html.EditorFor(model => model.FallTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center" } })}
                 else
                 {
-                    @Html.EditorFor(model => model.FallTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center", disabled = "disabled" } })
+                @Html.EditorFor(model => model.FallTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center", disabled = "disabled" } })
                 }
                 @Html.ValidationMessageFor(model => model.FallTime, "", new { @class = "text-danger text-center" })
             </div>
@@ -127,14 +112,10 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.WinterProd, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess)
-                {
-                    @Html.EditorFor(model => model.WinterProd, new { htmlAttributes = new { @class = "form-control text-center" } })
-                }
+                @if (ViewBag.HasAccess) {@Html.EditorFor(model => model.WinterProd, new { htmlAttributes = new { @class = "form-control text-center" } })}
                 else
                 {
-                    @Html.EditorFor(model => model.WinterProd, new { htmlAttributes = new { @class = "form-control text-center", disabled = "disabled" } })
-
+                @Html.EditorFor(model => model.WinterProd, new { htmlAttributes = new { @class = "form-control text-center", disabled = "disabled" } })
                 }
                 @Html.ValidationMessageFor(model => model.WinterProd, "", new { @class = "text-danger text-center" })
             </div>
@@ -143,13 +124,10 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.WinterTime, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess)
-                {
-                    @Html.EditorFor(model => model.WinterTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center" } })
-                }
+                @if (ViewBag.HasAccess) {@Html.EditorFor(model => model.WinterTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center" } })}
                 else
                 {
-                    @Html.EditorFor(model => model.WinterTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center", disabled = "disabled" } })
+                @Html.EditorFor(model => model.WinterTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center", disabled = "disabled" } })
                 }
                 @Html.ValidationMessageFor(model => model.WinterTime, "", new { @class = "text-danger text-center" })
             </div>
@@ -172,13 +150,10 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.SpringProd, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess)
-                {
-                    @Html.EditorFor(model => model.SpringProd, new { htmlAttributes = new { @class = "form-control text-center" } })
-                }
+                @if (ViewBag.HasAccess) {@Html.EditorFor(model => model.SpringProd, new { htmlAttributes = new { @class = "form-control text-center" } })}
                 else
                 {
-                    @Html.EditorFor(model => model.SpringProd, new { htmlAttributes = new { @class = "form-control text-center", disabled = "disabled" } })
+                @Html.EditorFor(model => model.SpringProd, new { htmlAttributes = new { @class = "form-control text-center", disabled = "disabled" } })
                 }
                 @Html.ValidationMessageFor(model => model.SpringProd, "", new { @class = "text-danger text-center" })
             </div>
@@ -187,13 +162,10 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.SpringTime, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess)
-                {
-                    @Html.EditorFor(model => model.SpringTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center" } })
-                }
+                @if (ViewBag.HasAccess){@Html.EditorFor(model => model.SpringTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center" } })}
                 else
                 {
-                    @Html.EditorFor(model => model.SpringTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center", disabled = "disabled" } })
+                @Html.EditorFor(model => model.SpringTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control text-center", disabled = "disabled" } })
                 }
                 @Html.ValidationMessageFor(model => model.SpringTime, "", new { @class = "text-danger text-center" })
             </div>
