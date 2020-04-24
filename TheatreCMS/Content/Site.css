@@ -13,6 +13,22 @@
 }
 
 
+.thumbnail_size { /*Small Image size for Index page*/
+    height: auto;
+    max-width: 150px;
+}
+
+
+.medium_size { /*Medium size Image for editing and deleting photos*/
+    height: auto;
+    max-width: 350px;
+}
+
+.large_size { /*Large size Image for Details of photo*/
+    height: auto;
+    max-width: 100%;
+}
+
 /* End Generic Custom Classes */
 
 
@@ -1270,25 +1286,6 @@ a.dropdown-item:hover {
     background-color: var(--main-secondary-color);
 }
 
-/*Small Image size for Index page*/
-.thumbnail_size {
-    height: auto;
-    max-width: 150px;
-}
-
-/*Medium size Image for editing and deleting photos*/
-.medium_size {
-    height: auto;
-    max-width: 350px;
-}
-
-/*Large size Image for Details of photo*/
-.large_size {
-    height:auto;
-    max-width: 100%;
-}
-
-
 /*Admin Dashoboard list*/
 #admin-dash-title {
     text-align: center;
@@ -1442,3 +1439,7 @@ a.dropdown-item:hover {
     padding: 10px;
 }
 
+.arch-card-img {
+    width: 100%;
+    height: 15vw;
+    object-fit: contain;

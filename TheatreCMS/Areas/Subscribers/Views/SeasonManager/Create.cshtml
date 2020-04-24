@@ -8,9 +8,8 @@
     <br>*@
 @*Commented out code below is to remove checkboxes from form. Commented it out instead of deleting it. - LR 1/21/20 *@
 
-@if (User.IsInRole("Admin") || User.IsInRole("Subscriber"))
-{
-    using (Html.BeginForm())
+
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
@@ -26,6 +25,14 @@
                     @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
                 </div>
             </div>
+
+            <div class="col-md-10 formGroup">
+                @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-centered">
+                    @Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"])
+                </div>
+            </div>
+
 
             <div class="col-md-10 formGroup">
                 @Html.LabelFor(model => model.NumberSeats, htmlAttributes: new { @class = "control-label col-md-12" })
@@ -152,7 +159,7 @@
         </div>
     }
 
-}
+
 else
 {
     <p class="managerMessage"> You must be either a Subscriber or an Admin to create a Season Manager </p>
