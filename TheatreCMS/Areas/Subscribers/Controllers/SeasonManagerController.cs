@@ -9,7 +9,8 @@ using System.Web.Mvc;
 using TheatreCMS.Areas.Subscribers.Models;
 using TheatreCMS.Models;
 using TheatreCMS.Helpers;
-
+using System.Diagnostics;
+using Microsoft.AspNet.Identity;
 
 namespace TheatreCMS.Areas.Subscribers.Controllers
 {
@@ -42,9 +43,18 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         public ActionResult Create()
         {
             AdminSettings currentSettings = AdminSettingsReader.CurrentSettings();                                      
-            int[] validSeason = new int[] { currentSettings.current_season, currentSettings.current_season + 1 };   //Creates a list of the current season and the next season
-            ViewData["Season"] = new SelectList(validSeason.ToList(), validSeason, "Season");                       //to populate the Season field
-            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
+            int[] validSeason = new int[] { currentSettings.current_season, currentSettings.current_season + 1 };   //Creates a list of the current season and the next season to populate the Season field
+            ViewData["Season"] = new SelectList(validSeason.ToList(), validSeason, "Season");                       //
+            
+            if (User.IsInRole("Admin"))
+            {
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
+            }
+            else
+            {
+                string userName = User.Identity.GetUserName();
+                ViewData["dbUsers"] = new SelectList(db.Users.Where(name => name.UserName == userName) .ToList(), "ID", "UserName");
+            }
             return View();
         }
 
