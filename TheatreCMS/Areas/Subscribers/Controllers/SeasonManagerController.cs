@@ -52,8 +52,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             }
             else
             {
-                string userName = User.Identity.GetUserName();
-                ViewData["dbUsers"] = new SelectList(db.Users.Where(name => name.UserName == userName) .ToList(), "ID", "UserName");
+                ViewData["dbUsers"] = new SelectList(db.Users.Where(name => name.UserName == User.Identity.Name) .ToList(), "ID", "UserName");
             }
             return View();
         }
