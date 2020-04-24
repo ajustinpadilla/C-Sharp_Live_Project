@@ -21,15 +21,31 @@
 
             <div class="col-md-10 formGroup">
                 @Html.LabelFor(model => model.SeasonManagerPerson, htmlAttributes: new { @class = "control-label col-md-12" })
+                
                 <div class="col-centered">
-                    @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
-                </div>
+                    @if (ViewBag.HasAccess)
+                    {
+                        @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"])
+                    }
+                    else
+                    {
+                        @Html.DropDownList("dbUsers", (IEnumerable<SelectListItem>)ViewData["dbUsers"], new { disabled = "disabled" })
+                    }
+
+                    </div>
             </div>
 
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"])
+                @if (ViewBag.HasAccess)
+                {
+                    @Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"])
+                }
+                else
+                {
+                    @Html.DropDownList("Season", (IEnumerable<SelectListItem>)ViewData["Season"], new { disabled = "disabled" })
+                }
             </div>
         </div>
 

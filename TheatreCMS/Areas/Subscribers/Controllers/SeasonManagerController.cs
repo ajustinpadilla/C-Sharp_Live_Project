@@ -54,6 +54,8 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             {
                 ViewData["dbUsers"] = new SelectList(db.Users.Where(name => name.UserName == User.Identity.Name) .ToList(), "ID", "UserName");
             }
+
+            ViewBag.HasAccess = (User.IsInRole("Admin") || User.IsInRole("Subscriber")) ?  true : false;   // this sets a viewbag property which is used to disable forms based on the user's access.
             return View();
         }
 
