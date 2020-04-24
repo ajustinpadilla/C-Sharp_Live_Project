@@ -4,78 +4,145 @@
     ViewBag.Title = "Rental Request";
 }
 
-<h2>Rental Request</h2>
+<div class="container">
+    <div class="h2 m-4">Rental Requests</div>
+    <table class="table-bordered table-responsive-stack" id="rentalRequests">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ContactPerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectInfo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Requests)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentalCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Accepted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ContractSigned)
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table-styling">
-    <tr class="tr-styling">
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.ContactPerson)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Company)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.ProjectInfo)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Requests)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.RentalCode)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Accepted)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.ContractSigned)
-        </th>
-        @*<th class="th-styling"></th>*@
-    </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactPerson)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectInfo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Requests)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RentalCode)
+                    </td>
+                    <td>
+                        @if (item.Accepted)
+                        {
+                            <span class="text-success">Yes</span>
+                        } else
+                        {
+                            <span class="text-warning">No</span>
+                        }
+                        @*Html.DisplayFor(modelItem => item.Accepted)*@
+                    </td>
+                    <td>
+                        @if (item.ContractSigned)
+                        {
+                            <span class="text-success">Yes</span>
+                        } else
+                        {
+                            <span class="text-warning">No</span>
+                        }
+                        @*Html.DisplayFor(modelItem => item.ContractSigned)*@
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }) <br>
+                        @Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }) <br>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-@foreach (var item in Model) {
-    <tr class="tr-styling">
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.ContactPerson)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Company)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.ProjectInfo)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Requests)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.RentalCode)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Accepted)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.ContractSigned)
-        </td>
-        <td class="td-styling">
-            @Html.ActionLink("Edit", "Edit", new { id=item.RentalRequestId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RentalRequestId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RentalRequestId })
-        </td>
-    </tr>
-}
+<!-- Handles stacking when resolution < 992-->
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
 
-</table>
+        //Iterate through <thead>, and prepending each <th> value to to each <td>
+        $('.table-responsive-stack').find("th").each(function (i) {
+            //Check if this <td> is the last-child, if it is do not append ":"
+            if ($('.table-responsive-stack td:last-child')) {
+                $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<span class="table-responsive-stack-thead">' + $(this).text() + '</span> ');
+            } else {
+                $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<span class="table-responsive-stack-thead">' + $(this).text() + ':</span> ');
+            } 
+            //Hide <thead> element
+            $('.table-responsive-stack-thead').hide();
+        });
+
+
+        $('.table-responsive-stack').each(function () {
+            var thCount = $(this).find("th").length;
+            var rowGrow = 100 / thCount + '%';
+            $(this).find("th, td").css('flex-basis', rowGrow);
+        });
+
+        function flexTable() {
+            if ($(window).width() < 992) {
+
+                $(".table-responsive-stack").each(function (i) {
+                    $(this).find(".table-responsive-stack-thead").show();
+                    $(this).find('thead').hide();
+                });
+            } else {
+
+
+                $(".table-responsive-stack").each(function (i) {
+                    $(this).find(".table-responsive-stack-thead").hide();
+                    $(this).find('thead').show();
+                });
+            }
+        }
+
+        flexTable();
+
+        window.onresize = function (event) {
+            flexTable();
+        };
+        
+    });
+</script>
