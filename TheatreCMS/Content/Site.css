@@ -657,28 +657,16 @@ textarea {
     background-color: #000000;
     color: #FFFBFB;
     font-size: 30px;
+    text-align:center;
+    padding-left:400px;
+    padding-right:400px;
     
 }
 
-.col-md {
-    padding: 10px;
-    margin: 10px;
-    border-spacing: 10px;
 
-   
-}
-.row {
-    border-spacing: 10px;
-    width: auto;
-    margin: 10px;
-    padding:50px;
-}
 
-.col-md-9 {
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
-}
+
+
 
 /*End Styling for CastMember Index View*/
 
