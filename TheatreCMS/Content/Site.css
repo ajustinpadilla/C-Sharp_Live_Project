@@ -245,9 +245,8 @@
 /*-----End styling for LoginFailure view-----*/
 
 body {
-
     padding-top: 110px;
-    padding-bottom: 20px;
+    
 }
 /* ------Footer stylings----- */
 @media screen and (max-width: 900px) {
@@ -272,7 +271,7 @@ body {
 footer {
     background-color: black;
     display: flex;
-    position:sticky;
+    
     bottom: 0;
 }
 
