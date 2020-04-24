@@ -114,27 +114,31 @@ namespace TheatreCMS.Controllers
                 return photo.PhotoId;
             }
         }
+
         [AllowAnonymous]
         public ActionResult DisplayPhoto(int? id) //nullable int
         {            
-            var byteData = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };           
-                if (id.HasValue)
-                {                
-                Photo photo = db.Photo.Find(id);
-                    if (photo == null)
-                    {
-                        return File(byteData, "image/png");
-                    }
-                    else
-                    {
-                        return File(photo.PhotoFile, "image/png");
-                    }                                                                  
-                }
-                else
-                { 
+            string filePath = Server.MapPath(Url.Content("~/Content/Images/no-image.png"));
+            Image noImageAvail = Image.FromFile(filePath);
+            var converter = new ImageConverter();
+            var byteData = (byte[])converter.ConvertTo(noImageAvail, typeof(byte[]));
+            if (id.HasValue)
+            {                
+            Photo photo = db.Photo.Find(id);
+                if (photo == null)
+                {
                     return File(byteData, "image/png");
                 }
+                else
+                {
+                    return File(photo.PhotoFile, "image/png");
+                }                                                                  
             }
+            else
+            { 
+                return File(byteData, "image/png");
+            }
+        }
 
         // GET: Photo/Edit/5
         public ActionResult Edit(int? id)
