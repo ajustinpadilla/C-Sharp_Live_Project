@@ -8,18 +8,18 @@
 
   <div class=" container-fluid">
     <div class=" detailsContainer">
-      <h2 class=" text-center">Castmember Details</h2>
+      <div class=" outsideBorder">
+        <h2 class="topPadding text-center"> @Html.DisplayFor(model => model.Name)</h2>
 
-      <div>
+
+
 
 
         <hr />
 
-
-
         <div class="text-center justify-content-start col-md ">
           <div class="col-md">
-          
+
 
             @{
               string img = "";
@@ -31,130 +31,120 @@
               }
             }
 
-            <img src="/Content/Images/CastMember.jpg" class=" large_size" />
+            <img src="/Content/Images/CastMember.jpg" class="imgRouned large_size" />
 
           </div>
 
+          <div class=" text-center">
 
-          <div class=" row">
-            <div class="col-md-6">
-              User Name:
-            </div>
+            <div class=" row">
+              <div class=" col-md-6">
+                User Name:
+              </div>
 
-            <div class="datafont col-md-6">
-              @ViewBag.CurrentUser
-            </div>
-          </div>
-
-          <div class=" row">
-            <div class="col-md-6">
-              @Html.DisplayNameFor(model => model.Name)
-            </div>
-
-           
               <div class="datafont col-md-6">
-                @Html.DisplayFor(model => model.Name)
-
+                @ViewBag.CurrentUser
               </div>
             </div>
-          
 
-          <div class="row">
-            <div class=" col-md-6">
-              @Html.DisplayNameFor(model => model.YearJoined)
+            <div class="row">
+              <div class=" col-md-6">
+                @Html.DisplayNameFor(model => model.YearJoined)
+              </div>
+
+
+              <div class="datafont col-md-6">
+                @Html.DisplayFor(model => model.YearJoined)
+              </div>
             </div>
 
-          
-            <div class="datafont col-md-6">
-              @Html.DisplayFor(model => model.YearJoined)
-            </div>
-            </div>
-         
 
-          <div class=" row">
-            <div class=" col-md-6">
-              @Html.DisplayNameFor(model => model.MainRole)
-            </div>
+            <div class=" row">
+              <div class=" col-md-6">
+                @Html.DisplayNameFor(model => model.MainRole)
+              </div>
 
-            <div class="datafont col-md-6">
-              @Html.DisplayFor(model => model.MainRole)
-            </div>
-          </div>
-
-          <div class=" row">
-            <div class=" col-md-6">
-              @Html.DisplayNameFor(model => model.Bio)
+              <div class="datafont col-md-6">
+                @Html.DisplayFor(model => model.MainRole)
+              </div>
             </div>
 
-            <div class="datafont col-md-6">
-              @Html.DisplayFor(model => model.Bio)
-            </div>
-          </div>
+            <div class=" row">
+              <div class=" col-md-6">
+                @Html.DisplayNameFor(model => model.Bio)
+              </div>
 
+              <div class="datafont col-md-6">
+                @Html.DisplayFor(model => model.Bio)
+              </div>
+            </div>
 
 
 
 
-          <div class=" row">
-            <div class=" col-md-6">
-              @Html.DisplayNameFor(model => model.AssociateArtist)
-            </div>
 
-            <div class="datafont col-md-6">
-              @Html.DisplayFor(model => model.AssociateArtist)
-            </div>
-          </div>
-          <div class=" row">
-            <div class=" col-md-6">
-              @Html.DisplayNameFor(model => model.EnsembleMember)
-            </div>
 
-            <div class="datafont col-md-6">
-              @Html.DisplayFor(model => model.EnsembleMember)
-            </div>
-          </div>
-          <div class=" row ">
-            <div class=" col-md-6">
-              @Html.DisplayNameFor(model => model.CastYearLeft)
-            </div>
+            <div class=" row">
+              <div class=" col-md-6">
+                @Html.DisplayNameFor(model => model.AssociateArtist)
+              </div>
 
-            <div class="datafont col-md-4">
-              @Html.DisplayFor(model => model.CastYearLeft)
+              <div class="datafont col-md-6">
+                @Html.DisplayFor(model => model.AssociateArtist)
+              </div>
             </div>
-          </div>
-          <div class=" row">
-            <div class=" col-md-6">
-              @Html.DisplayNameFor(model => model.DebutYear)
-            </div>
+            <div class=" row">
+              <div class=" col-md-6">
+                @Html.DisplayNameFor(model => model.EnsembleMember)
+              </div>
 
-            <div class="datafont col-md-6">
-              @Html.DisplayFor(model => model.DebutYear)
+              <div class="datafont col-md-6">
+                @Html.DisplayFor(model => model.EnsembleMember)
+              </div>
             </div>
-          </div>
-          <div class=" row">
-            <div class="datafont col-md-6">
-              @Html.DisplayNameFor(model => model.CurrentMember)
-            </div>
+            <div class=" row ">
+              <div class=" col-md-6">
+                @Html.DisplayNameFor(model => model.CastYearLeft)
+              </div>
 
-            <div class="datafont col-md-6">
-              @Html.DisplayFor(model => model.CurrentMember)
+              <div class="datafont col-md-4">
+                @Html.DisplayFor(model => model.CastYearLeft)
+              </div>
             </div>
+            <div class=" row">
+              <div class=" col-md-6">
+                @Html.DisplayNameFor(model => model.DebutYear)
+              </div>
 
-          </div>
-          <div class="justify-content-end col-md-6">
-            <div>
-              @if (Model.Parts.Count() != 0)
-              {
-                <div>
-                  @Html.DisplayNameFor(model => model.Parts)
-                </div>
-                foreach (var role in Model.Parts)
+              <div class="datafont col-md-6">
+                @Html.DisplayFor(model => model.DebutYear)
+              </div>
+            </div>
+            <div class=" row">
+              <div class="datafont col-md-6">
+                @Html.DisplayNameFor(model => model.CurrentMember)
+              </div>
+
+              <div class="datafont col-md-6">
+                @Html.DisplayFor(model => model.CurrentMember)
+              </div>
+
+            </div>
+            <div class="justify-content-end col-md-6">
+              <div>
+                @if (Model.Parts.Count() != 0)
                 {
                   <div>
-                    <a href="/Part/Details/@role.PartID">@Html.DisplayFor(model => role.Character)</a>
+                    @Html.DisplayNameFor(model => model.Parts)
                   </div>
+                  foreach (var role in Model.Parts)
+                  {
+                    <div>
+                      <a href="/Part/Details/@role.PartID">@Html.DisplayFor(model => role.Character)</a>
+                    </div>
+                  }
                 }
-              }
+              </div>
             </div>
           </div>
 
@@ -165,11 +155,11 @@
             {
 
 
-              <button class= "iconBtn ">
+              <button class="iconBtn ">
                 <div class=" buttonsize">
 
-                  @Html.ActionLink("Edit", "Edit", new { id = Model.CastMemberID })
-                
+                <a href=  @Url.Action("Edit", "Edit", new { id = Model.CastMemberID })
+
 
 
                 </div>
@@ -178,18 +168,24 @@
 
             }
 
-            <button class=" iconBtn">
-              <div class=" buttonsize">
-                @Html.ActionLink("Back to List", "Index")
-              </div>
-            </button>
+          <button class=" iconBtn">
+          <div class=" buttonsize">
+
+           <a href='@Url.Action("Index", "CastMembers")'>
+              Back To List
+
+
+            </div>
+             </button>
+          </p>
+            
 
         </div>
-        </p>
+        
       </div>
-     
 
-      </div>
+
     </div>
-  
+    </div>
+ 
 

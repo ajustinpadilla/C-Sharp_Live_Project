@@ -658,34 +658,51 @@ textarea {
     color: #FFFBFB;
     font-size: 30px;
     text-align:center;
-    padding-left:20%;
-    padding-right:20%;
+    margin-left:20%;
+    margin-right:20%;
     
 }
 
 .mybutton{
-    padding-bottom:10px;
+    margin-bottom:10px;
+}   
    
-   
-}
 .buttonsize{
     width:100px;
-    
-  
-}
+}  
 
 .datafont{
     font-size:20px;
-   
+}    
     
+.topPadding{
+    margin-top:5%;
+}   
+    
+.imgRouned{
+    border-radius:10%;
 }
 
+.outsideBorder {
+    border: solid;
+    border-color: #DB1A11;
+    
+}
+  
 
 
 
 
 
-/*End Styling for CastMember Index View*/
+
+
+
+
+
+
+
+
+/*End Styling for CastMember Details View*/
 
 
 .nav-login li{
