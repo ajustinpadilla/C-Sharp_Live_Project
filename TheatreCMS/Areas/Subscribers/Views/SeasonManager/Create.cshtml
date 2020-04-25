@@ -8,7 +8,10 @@
     <br>*@
 @*Commented out code below is to remove checkboxes from form. Commented it out instead of deleting it. - LR 1/21/20 *@
 
-
+@if (!ViewBag.HasAccess)
+{
+    <h3 class="accessMessage">Please purchase a season pass before creating a season manager.</h3>
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

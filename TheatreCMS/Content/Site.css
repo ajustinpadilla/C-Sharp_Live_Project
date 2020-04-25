@@ -502,6 +502,12 @@ div.magnify:hover {
     transform: scale(2);
 }
 
+.accessMessage {
+    font-size: 2.3vw;
+    color: antiquewhite;
+    text-align: center;
+}
+
 .managerMessage {
     font-size: 2vw;
     color: antiquewhite;
