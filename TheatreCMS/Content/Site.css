@@ -587,8 +587,7 @@ textarea {
 }
 
 .registerInput:hover {
-    margin: -1px;
-    border: solid gray 3px;
+    border: solid gray 2px;
     transition: .5s;
     outline: 0;
     box-sizing: content-box;
