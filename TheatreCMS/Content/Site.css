@@ -13,6 +13,22 @@
 }
 
 
+.thumbnail_size { /*Small Image size for Index page*/
+    height: auto;
+    max-width: 150px;
+}
+
+
+.medium_size { /*Medium size Image for editing and deleting photos*/
+    height: auto;
+    max-width: 350px;
+}
+
+.large_size { /*Large size Image for Details of photo*/
+    height: auto;
+    max-width: 100%;
+}
+
 /* End Generic Custom Classes */
 
 
@@ -245,39 +261,64 @@
 /*-----End styling for LoginFailure view-----*/
 
 body {
-
     padding-top: 110px;
-    padding-bottom: 20px;
+    
 }
 /* ------Footer stylings----- */
+/*@media screen and (max-width: 900px) {
+    .footer{
+        flex-direction: column;
+    }
+}*/
+@media screen and (max-width: 700px) {
+    #footerInner {
+        flex-direction: column-reverse;
+    }
+}
+#footerInner{
+    display:flex;
+}
+
 footer {
     background-color: black;
     display: flex;
-}
-
-.footer-container {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    
+    bottom: 0;
 }
 
 a.navLink {
     color: white;
     text-decoration: none;
     background-color: transparent;
-    padding-right: 2em;
+    font-size: smaller;
+    /*padding-right: 2em;*/
 }
 
-    a.navLink :hover {
-        font-weight: bolder;
-    }
+
+a.navLink :hover {
+    font-weight: bolder;
+}
 
 footer p {
     color: white;
-    font-size: 1rem;
+    font-size: smaller;
+}
+
+#socialMediaLinks{
+    display:flex;
+    
+}
+
+footer #contactInfo {
+    padding-top: 10px;
 }
 
 footer #address {
-    margin-right: 0;
+    margin-bottom: 0;
+}
+
+footer #phoneNumbers{
+    margin-bottom: 0;
 }
 
 footer .list-group-item {
@@ -295,7 +336,7 @@ footer .list-group-item :hover {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-top: 25px;
+    padding-top: 10px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -1298,25 +1339,6 @@ a.dropdown-item:hover {
     color: var(--light-color);
     background-color: var(--main-secondary-color);
 }
-
-/*Small Image size for Index page*/
-.thumbnail_size {
-    height: auto;
-    max-width: 150px;
-}
-
-/*Medium size Image for editing and deleting photos*/
-.medium_size {
-    height: auto;
-    max-width: 350px;
-}
-
-/*Large size Image for Details of photo*/
-.large_size {
-    height:auto;
-    max-width: 100%;
-}
-
 
 /*Admin Dashoboard list*/
 #admin-dash-title {
