@@ -12,6 +12,10 @@
     background-color: var(--dark-color);
 }
 
+.text-black {
+    color: var(--dark-color);
+}
+
 
 .thumbnail_size { /*Small Image size for Index page*/
     height: auto;
@@ -1443,8 +1447,13 @@ a.dropdown-item:hover {
 
 #rentalRequests {
     table-layout: fixed;
+    border: none;
     width: 100%;
     border-color: var(--light-color);
+}
+
+.project-info-popover, .project-info-popover:active, .project-info-popover:visited, .project-info-popover:focus {
+    text-decoration: none;
 }
 
 .table-responsive-stack tr {
@@ -1456,6 +1465,7 @@ a.dropdown-item:hover {
     -ms-flex-direction: row;
     flex-direction: row;
     text-align: center;
+    border: none;
 }
 
 
@@ -1469,11 +1479,24 @@ a.dropdown-item:hover {
     flex: 1 1 auto;
     border-color: var(--light-color);
     text-align: center;
+    padding: .15rem;
 }
 
 .table-responsive-stack .table-responsive-stack-thead {
     font-weight: bold;
+    font-size: 1.0625em;
+    display: inline-flex;
+    color: #efeee0;
+    position: relative;
+    top: 3px;
 }
+
+.rental-request-date {
+    position: relative;
+    bottom: 12px;
+}
+
+
 
 @media screen and (max-width: 992px) {
     .table-responsive-stack tr {
@@ -1481,15 +1504,40 @@ a.dropdown-item:hover {
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
-        border-bottom: 5px solid var(--light-color);
+        border: none;
         border-color: var(--light-color);
         display: block;
         text-align: left;
+        padding-bottom: 75px;
         
     }
-    /*  IE9 FIX   */
+    
     .table-responsive-stack td {
         float: left\9;
         width: 100%;
+        border: none;
+        padding: 0;
     }
+
+    .table-responsive-stack br {
+        display: normal;
+    }
+
+    #rental-request-nav-wrapper {
+        padding-top: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .rental-request-nav {
+        display: inline-block;
+        padding: 0px 4px 0px 4px;
+    }
+
+    .rental-request-date {
+        display: inline-flex;
+        position: static;
+    }
+
 }

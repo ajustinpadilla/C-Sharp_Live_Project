@@ -3,12 +3,11 @@
 @{
     ViewBag.Title = "Rental Request";
 }
-
-<div class="container">
+<div class="container-fluid">
     <div class="h2 m-4">Rental Requests</div>
-    <table class="table-bordered table-responsive-stack" id="rentalRequests">
-        <thead>
-            <tr>
+    <table class=" table-responsive-stack" id="rentalRequests">
+        <thead class="bg-light">
+            <tr class="text-black">
                 <th>
                     @Html.DisplayNameFor(model => model.ContactPerson)
                 </th>
@@ -36,81 +35,113 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ContractSigned)
                 </th>
-                <th>
+                <th class="bg-black border-0" id="rental-request-nav-th">
                 </th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ContactPerson)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Company)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EndTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProjectInfo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Requests)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RentalCode)
-                    </td>
-                    <td>
-                        @if (item.Accepted)
-                        {
-                            <span class="text-success">Yes</span>
-                        } else
-                        {
-                            <span class="text-warning">No</span>
-                        }
-                        @*Html.DisplayFor(modelItem => item.Accepted)*@
-                    </td>
-                    <td>
-                        @if (item.ContractSigned)
-                        {
-                            <span class="text-success">Yes</span>
-                        } else
-                        {
-                            <span class="text-warning">No</span>
-                        }
-                        @*Html.DisplayFor(modelItem => item.ContractSigned)*@
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }) <br>
-                        @Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }) <br>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId })
-                    </td>
-                </tr>
+            @{
+                string rentalStartDate;
+                string rentalStartTime;
+                string rentalEndDate;
+                string rentalEndTime;
+
+                foreach (var item in Model)
+                {
+                    rentalStartDate = item.StartTime.ToString("dd-MM-yy");
+                    rentalStartTime = item.StartTime.ToString("HH:mm tt");
+                    rentalEndDate = item.EndTime.ToString("dd-MM-yy");
+                    rentalEndTime = item.EndTime.ToString("HH:mm tt");
+
+                    <tr class="text-light">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ContactPerson)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company)
+                        </td>
+                        <td>
+                            <div class="rental-request-date">@rentalStartDate</div>
+                            <div class="rental-request-date">@rentalStartTime</div>
+                        </td>
+                        <td>
+                            <div class="rental-request-date">@rentalEndDate</div>
+                            <div class="rental-request-date">@rentalEndTime</div>
+                        </td>
+                        <td id="rental-request-project-info">
+                            <a href="#" class="project-info-popover" title="Project Info" data-toggle="project-info" data-trigger="focus" data-content="@Html.DisplayFor(modelItem => item.ProjectInfo)">Click Here</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Requests)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RentalCode)
+                        </td>
+                        <td>
+                            @if (item.Accepted)
+                            {
+                                <span class="text-success">Yes</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">No</span>
+                            }
+                            @*Html.DisplayFor(modelItem => item.Accepted)*@
+                        </td>
+                        <td>
+                            @if (item.ContractSigned)
+                            {
+                                <span class="text-success">Yes</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">No</span>
+                            }
+                            @*Html.DisplayFor(modelItem => item.ContractSigned)*@
+                        </td>
+                        <td id="rental-request-nav-wrapper">
+                            <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }) </div>
+                            <div class="rental-request-nav">@Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }) </div>
+                            <div class="rental-request-nav">@Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId }) </div>
+                        </td>
+                    </tr>
+                }
             }
+
         </tbody>
     </table>
 </div>
 
 <!-- Handles stacking when resolution < 992-->
 @Scripts.Render("~/bundles/jquery")
+<script src="@Url.Content("~/Scripts/umd/popper.min.js")"></script>
 <script>
     $(document).ready(function () {
 
-        //Iterate through <thead>, and prepending each <th> value to to each <td>
+
+        $(function () {
+            $('[data-toggle="project-info"]').popover()
+        })
+
+        $('a.project-info-popover').on('click', function (e) {
+            e.preventDefault();
+            return true;
+        });
+
+        $("html").on("click", function (e) {
+            var l = $(e.target);
+            if (l[0].className.indexOf("popover") == -1) {
+                $(".popover").each(function () {
+                    $(this).popover("destroy");
+                });
+            }
+        });
+
         $('.table-responsive-stack').find("th").each(function (i) {
-            //Check if this <td> is the last-child, if it is do not append ":"
-            if ($('.table-responsive-stack td:last-child')) {
-                $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<span class="table-responsive-stack-thead">' + $(this).text() + '</span> ');
-            } else {
-                $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<span class="table-responsive-stack-thead">' + $(this).text() + ':</span> ');
-            } 
-            //Hide <thead> element
+            if (!$(this).is('#rental-request-nav-th') ) {
+                $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<div class="table-responsive-stack-thead">' + $(this).text() + '</div><br>');
+            }
             $('.table-responsive-stack-thead').hide();
         });
 
@@ -128,12 +159,22 @@
                     $(this).find(".table-responsive-stack-thead").show();
                     $(this).find('thead').hide();
                 });
-            } else {
 
+                $(".popover").each(function () {
+                    $(this).popover("destroy");
+                });
+
+
+
+            } else {
 
                 $(".table-responsive-stack").each(function (i) {
                     $(this).find(".table-responsive-stack-thead").hide();
                     $(this).find('thead').show();
+                });
+
+                $(".popover").each(function () {
+                    $(this).popover("destory");
                 });
             }
         }
@@ -143,6 +184,6 @@
         window.onresize = function (event) {
             flexTable();
         };
-        
+
     });
 </script>
