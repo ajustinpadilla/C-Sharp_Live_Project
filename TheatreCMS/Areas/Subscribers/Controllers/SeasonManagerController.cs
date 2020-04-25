@@ -46,7 +46,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
             int[] validSeason = new int[] { currentSettings.current_season, currentSettings.current_season + 1 };   //Creates a list of the current season and the next season to populate the Season field
             ViewData["Season"] = new SelectList(validSeason.ToList(), validSeason, "Season");                       //
             
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin"))                                                                             // this block is used to send a list of names to the user dropdown. If the user isn't an admin, they just see their name.
             {
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
             }
