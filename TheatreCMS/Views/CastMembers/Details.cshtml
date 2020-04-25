@@ -19,9 +19,7 @@
 
         <div class="text-center justify-content-start col-md ">
           <div class="col-md">
-            <div>
-              @Html.DisplayNameFor(model => model.Photo)
-            </div>
+          
 
             @{
               string img = "";
@@ -43,7 +41,7 @@
               User Name:
             </div>
 
-            <div class="col-md-6">
+            <div class="datafont col-md-6">
               @ViewBag.CurrentUser
             </div>
           </div>
@@ -53,26 +51,32 @@
               @Html.DisplayNameFor(model => model.Name)
             </div>
 
-            <div class="col-md-6">
-              @Html.DisplayFor(model => model.Name)
+           
+              <div class="datafont col-md-6">
+                @Html.DisplayFor(model => model.Name)
+
+              </div>
             </div>
-          </div>
+          
 
           <div class="row">
             <div class=" col-md-6">
               @Html.DisplayNameFor(model => model.YearJoined)
             </div>
 
-            <div class="col-md-6">
+          
+            <div class="datafont col-md-6">
               @Html.DisplayFor(model => model.YearJoined)
             </div>
-          </div>
+            </div>
+         
+
           <div class=" row">
             <div class=" col-md-6">
               @Html.DisplayNameFor(model => model.MainRole)
             </div>
 
-            <div class="col-md-6">
+            <div class="datafont col-md-6">
               @Html.DisplayFor(model => model.MainRole)
             </div>
           </div>
@@ -82,7 +86,7 @@
               @Html.DisplayNameFor(model => model.Bio)
             </div>
 
-            <div class="col-md-6">
+            <div class="datafont col-md-6">
               @Html.DisplayFor(model => model.Bio)
             </div>
           </div>
@@ -96,7 +100,7 @@
               @Html.DisplayNameFor(model => model.AssociateArtist)
             </div>
 
-            <div class="col-md-6">
+            <div class="datafont col-md-6">
               @Html.DisplayFor(model => model.AssociateArtist)
             </div>
           </div>
@@ -105,7 +109,7 @@
               @Html.DisplayNameFor(model => model.EnsembleMember)
             </div>
 
-            <div class="col-md-6">
+            <div class="datafont col-md-6">
               @Html.DisplayFor(model => model.EnsembleMember)
             </div>
           </div>
@@ -114,7 +118,7 @@
               @Html.DisplayNameFor(model => model.CastYearLeft)
             </div>
 
-            <div class="col-md-4">
+            <div class="datafont col-md-4">
               @Html.DisplayFor(model => model.CastYearLeft)
             </div>
           </div>
@@ -123,16 +127,16 @@
               @Html.DisplayNameFor(model => model.DebutYear)
             </div>
 
-            <div class="col-md-6">
+            <div class="datafont col-md-6">
               @Html.DisplayFor(model => model.DebutYear)
             </div>
           </div>
           <div class=" row">
-            <div class=" col-md-6">
+            <div class="datafont col-md-6">
               @Html.DisplayNameFor(model => model.CurrentMember)
             </div>
 
-            <div class="col-md-6">
+            <div class="datafont col-md-6">
               @Html.DisplayFor(model => model.CurrentMember)
             </div>
 
@@ -165,7 +169,7 @@
                 <div class=" buttonsize">
 
                   @Html.ActionLink("Edit", "Edit", new { id = Model.CastMemberID })
-                  @(" |")
+                
 
 
                 </div>
