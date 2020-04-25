@@ -18,20 +18,20 @@
   <div class="row mx-2">
     @foreach (var item in Model)
     {
-      <div class="card col-md-6 col-xl-4" id="production-info-parent">
+      <div class="card col-md-6 col-xl-4 bg-black" id="production-info-parent">
       @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
       @{
         if (item.DefaultPhoto != null)
         {
         
             <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-              <img class="card-img-top production-index-img mt-5" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">  
+              <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">  
             </a>
         }
         else
         {
             <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-              <img class="card-img-top production-index-img mt-5" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+              <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
             </a>
         }
         }
