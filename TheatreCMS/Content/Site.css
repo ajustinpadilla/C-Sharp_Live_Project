@@ -13,6 +13,22 @@
 }
 
 
+.thumbnail_size { /*Small Image size for Index page*/
+    height: auto;
+    max-width: 150px;
+}
+
+
+.medium_size { /*Medium size Image for editing and deleting photos*/
+    height: auto;
+    max-width: 350px;
+}
+
+.large_size { /*Large size Image for Details of photo*/
+    height: auto;
+    max-width: 100%;
+}
+
 /* End Generic Custom Classes */
 
 
@@ -1532,3 +1548,7 @@ textarea {
             padding: 10px;
         }
 
+.arch-card-img {
+    width: 100%;
+    height: 15vw;
+    object-fit: contain;
