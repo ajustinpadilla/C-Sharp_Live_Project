@@ -508,6 +508,12 @@ div.magnify:hover {
     text-align: center;
 }
 
+@media only screen and (max-width: 750px){
+    .accessMessage {
+         font-size: 4.5vw;
+    }
+}
+
 .managerMessage {
     font-size: 2vw;
     color: antiquewhite;
