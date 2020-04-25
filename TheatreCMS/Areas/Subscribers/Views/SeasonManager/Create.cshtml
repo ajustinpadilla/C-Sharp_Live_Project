@@ -74,10 +74,10 @@
         <div class="col-md-10 formGroup">
             @Html.LabelFor(model => model.FallProd, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-centered">
-                @if (ViewBag.HasAccess) {@Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control text-center" } })}
+                @if (ViewBag.HasAccess){@Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control text-center" } })}
                 else
                 {
-                @Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control text-center", disbled = "disabled" } })
+                @Html.EditorFor(model => model.FallProd, new { htmlAttributes = new { @class = "form-control text-center", disabled = "disabled" } })
 
                 }
                 @Html.ValidationMessageFor(model => model.FallProd, "", new { @class = "text-danger text-center" })
