@@ -772,7 +772,7 @@ div.magnify:hover {
 }
 
 .castContainer {
-    padding: 40px;
+    padding: 50px;
 }
 
 @media only screen and (max-width: 770px) {
@@ -815,18 +815,18 @@ div.magnify:hover {
     /*background-color: var(--light-color);*/
     background-color: rgba(255,251,251,.6);
     color: var(--main-bg-color);
-    font-size: 1.4vw;
+    font-size: 16px;
     font-weight: 500;
     padding: 1px 1px;
     font-style: italic;
 }
 
-@media only screen and (max-width: 750px) {
+/*@media only screen and (max-width: 750px) {
     .castText {
         font-size: 4.25vw;
         margin-bottom: 0px;
     }
-}
+}*/
 
 .castMiddle {
     opacity: 0;
