@@ -114,6 +114,8 @@ namespace TheatreCMS.Controllers
                 case "ArchiveCastMember":
                     ViewBag.Message = string.Format("Displaying Results for \"{0}\" in Cast Members", ArchiveSearchField);
                     var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    resultsCast.AddRange(db.CastMembers.Where(x => x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())).ToList());
+                    resultsCast.AddRange(db.CastMembers.Where(x => x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList());
                     ViewData["ResultsList"] = resultsCast;
                     break;
                     case "ArchiveProduction":
