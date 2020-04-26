@@ -116,6 +116,7 @@ namespace TheatreCMS.Controllers
                     var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
                     resultsCast.AddRange(db.CastMembers.Where(x => x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())).ToList());
                     resultsCast.AddRange(db.CastMembers.Where(x => x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList());
+                    resultsCast = resultsCast.Distinct().ToList();
                     ViewData["ResultsList"] = resultsCast;
                     break;
                     case "ArchiveProduction":
