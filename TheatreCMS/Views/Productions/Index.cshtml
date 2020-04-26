@@ -1,93 +1,155 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Production>
 @using TheatreCMS.Controllers
+@using System.Globalization
 
 @{
     ViewBag.Title = "Productions";
-}
-
-<h2 class= "mt-3 prod-index-l-margin">Productions</h2>
-
-@if (User.IsInRole("Admin"))
-{
- <p class="prod-index-l-margin">
-    @Html.ActionLink("Create New", "Create")
-</p>
-}
-
-<div class="container production-index-container">
-  <div class="row mx-2">
-    @foreach (var item in Model)
+    
+    var runTimes = new List<int>();
+    foreach (var item in Model)
     {
-      <div class="card col-md-6 col-xl-4 bg-black" id="production-info-parent">
-      @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
-      @{
-        if (item.DefaultPhoto != null)
+        runTimes.Add(item.Runtime);
+    }
+    runTimes.Sort();
+}
+
+@Scripts.Render("~/bundles/jquery")
+<script src="@Url.Content("~/Scripts/umd/popper.min.js")"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.search-form').hide();
+
+        $('.search-button').click(function () {
+            $('.search-form').slideToggle();
+        });
+
+    });
+
+</script>
+
+<h2 class="prod-index-header">Productions</h2>
+
+<div class="search-container float-right">
+    <button class="search-button" type="button">
+        <img class="search-image" src="@Url.Content("~/Content/Images/search.png")" />
+    </button>
+    <div class="search-form">
+        @using (Html.BeginForm("Index", "Productions", FormMethod.Get))
         {
-        
-            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-              <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">  
-            </a>
+            <p> 
+                @Html.TextBox("SearchString")
+                <select class="search-select" id="month">
+                    <option selected disabled hidden>Month</option>
+                    <option value="any">Any Month</option>
+                    @for (int i = 0; i < 12; i++)
+                    {
+                        <option value="@i">@DateTimeFormatInfo.InvariantInfo.MonthNames[i]</option>
+                    }
+                </select>
+                <select class="search-select" id="day">
+                    <option selected disabled hidden>Any</option>
+                    <option value="any">Any Day</option>
+                    @for (int i = 1; i <= 31; i++)
+                    {
+                        <option value="@i">@i.DisplayWithSuffix()</option>
+                    }
+                </select>
+                <select class="search-select" id="showtime">
+                    <!-- todo -->
+                </select>
+                <select class="search-select">
+                    <option selected disabled hidden>Runtime</option>
+                    <option value="any">Any Runtime</option>
+                    @foreach (var runTime in runTimes)
+                    {
+                        <option value="@runTime">@runTime</option>
+                    }
+                </select>
+                <input id="search-submit" class="btn btn-outline-primary  btn-sm" type="submit" value="Search" />
+            </p>
         }
-        else
-        {
-            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-              <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
-            </a>
-        }
-        }
-    <div class="card-body production-index-card-inner justify-content-center">
-        <h4 class="card-title">@item.Title</h4>
-        <h5 class="card-title">@item.Playwright</h5>
-        @*<p class="card-text">@item.Description</p>*@
-        <table class="w-100">
-            <tr class="production-index-tr-styling">
-                <th class="productions-index-th-styling">
-                    @Html.DisplayNameFor(model => model.OpeningDay)
-                </th>
-                <td class="productions-index-td-styling">
-                  @Convert.ToString(item.OpeningDay).Replace(":00 PM", "")
-                </td>
-            </tr>
-            <tr class="production-index-tr-styling">
-                <th class="productions-index-th-styling">
-                    @Html.DisplayNameFor(model => model.ClosingDay)
-                </th>
-                <td class="productions-index-td-styling">
-                  @Convert.ToString(item.ClosingDay).Replace(":00 PM", "")
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr class="production-index-tr-styling">
-                <th class="productions-index-th-styling">
-                    @Html.DisplayNameFor(model => model.IsCurrent)
-                </th>
-                <td class="productions-index-td-styling">
-                    @Html.DisplayFor(modelItem => item.IsCurrent)
-                </td>
-            </tr>
-            <tr class="production-index-tr-styling">
-                <th class="productions-index-th-styling">
-                    @Html.DisplayNameFor(model => model.IsWorldPremiere)
-                </th>
-                <td class="productions-index-td-styling">
-                    @Html.DisplayFor(modelItem => item.IsWorldPremiere)
-                </td>
-            </tr>
-        </table>
-      @if (User.IsInRole("Admin"))
-      {
-        @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-1" }); 
-        @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-2" });
-      }
     </div>
-  </div>
-   }
-  </div>
 </div>
 
 
 
 
+@if (User.IsInRole("Admin"))
+{
+    <p class="prod-index-create">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
+<div class="container production-index-container">
+    <div class="row mx-2">
+        @foreach (var item in Model)
+        {
+            <div class="card col-md-6 col-xl-4 bg-black" id="production-info-parent">
+                @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
+                @{
+                    if (item.DefaultPhoto != null)
+                    {
 
+                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                            <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                            <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+                        </a>
+                    }
+                }
+                <div class="card-body production-index-card-inner justify-content-center">
+                    <h4 class="card-title">@item.Title</h4>
+                    <h5 class="card-title">@item.Playwright</h5>
+                    @*<p class="card-text">@item.Description</p>*@
+                    <table class="w-100">
+                        <tr class="production-index-tr-styling">
+                            <th class="productions-index-th-styling">
+                                @Html.DisplayNameFor(model => model.OpeningDay)
+                            </th>
+                            <td class="productions-index-td-styling">
+                                @Convert.ToString(item.OpeningDay).Replace(":00 PM", "")
+                            </td>
+                        </tr>
+                        <tr class="production-index-tr-styling">
+                            <th class="productions-index-th-styling">
+                                @Html.DisplayNameFor(model => model.ClosingDay)
+                            </th>
+                            <td class="productions-index-td-styling">
+                                @Convert.ToString(item.ClosingDay).Replace(":00 PM", "")
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr class="production-index-tr-styling">
+                            <th class="productions-index-th-styling">
+                                @Html.DisplayNameFor(model => model.IsCurrent)
+                            </th>
+                            <td class="productions-index-td-styling">
+                                @Html.DisplayFor(modelItem => item.IsCurrent)
+                            </td>
+                        </tr>
+                        <tr class="production-index-tr-styling">
+                            <th class="productions-index-th-styling">
+                                @Html.DisplayNameFor(model => model.IsWorldPremiere)
+                            </th>
+                            <td class="productions-index-td-styling">
+                                @Html.DisplayFor(modelItem => item.IsWorldPremiere)
+                            </td>
+                        </tr>
+                    </table>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-1" });
+                        @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-2" });
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

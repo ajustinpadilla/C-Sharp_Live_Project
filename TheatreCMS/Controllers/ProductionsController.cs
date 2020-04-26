@@ -19,9 +19,17 @@ namespace TheatreCMS.Controllers
 
 
         // GET: Productions
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Productions.ToList());
+            var productions = from p in db.Productions
+                              select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                productions = productions.Where(p => p.Title.Contains(searchString) || p.Playwright.Contains(searchString) || p.Description.Contains(searchString));
+            }
+
+            return View(productions.ToList());
         }
 
         public ActionResult Current()
@@ -180,6 +188,21 @@ namespace TheatreCMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+    }
+
+    public static class IntegerExtensions
+    {
+        public static string DisplayWithSuffix(this int num)
+        {
+            string number = num.ToString();
+            if (number.EndsWith("11")) return number + "th";
+            if (number.EndsWith("12")) return number + "th";
+            if (number.EndsWith("13")) return number + "th";
+            if (number.EndsWith("1")) return number + "st";
+            if (number.EndsWith("2")) return number + "nd";
+            if (number.EndsWith("3")) return number + "rd";
+            return number + "th";
         }
     }
 }

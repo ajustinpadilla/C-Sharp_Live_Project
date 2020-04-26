@@ -242,10 +242,18 @@
 }*/
 
         /*production index table styling*/
-        .prod-index-l-margin {
+        .prod-index-header {
             margin-left: 40px;
+            padding: 16px 0px 8px 0px;
+            display: inline-block;
+            margin-top: 4px;
         }
 
+        .prod-index-create {
+            margin-left: 40px;
+            padding: 16px 0px 8px 0px;
+            display: inline-block;
+        }
         .productions-index-th-styling {
             color: var(--main-bg-color);
             text-align: left;
@@ -1552,3 +1560,44 @@ textarea {
     width: 100%;
     height: 15vw;
     object-fit: contain;
+}
+
+.search-form {
+    display: inline-block;
+    padding: 40px 0px 0px 15px;
+}
+
+.search-button {
+    float: right;
+    background-color: var(--dark-color);
+}
+
+.search-container {
+    padding: 25px 40px 0px 0px;
+    width: 500px;
+}
+
+@media screen and (max-width: 1199px) {
+    .search-container {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .search-form {
+        display: inline-flex;
+    }
+
+    .search-box {
+        display: inline-flex;
+    }
+
+    .search-select: {
+        display: inline-flex;
+    }
+
+}
+
+
+
+
