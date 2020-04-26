@@ -8,7 +8,7 @@
 
   <div class=" container-fluid">
     <div class=" detailsContainer">
-      <div class=" outsideBorder">
+      <div class="topPadding  outsideBorder">
         <h2 class="topPadding text-center"> @Html.DisplayFor(model => model.Name)</h2>
 
 
@@ -18,24 +18,30 @@
         <hr />
 
         <div class="text-center justify-content-start col-md ">
-          <div class="col-md">
+          <div class=" col-md">
+           
 
-
-            @{
-              string img = "";
-              if (Model.Photo != null)
-              {
-                byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Photo, 100, 100);
-                var base64 = System.Convert.ToBase64String(thumbBytes);
-                img = String.Format("data:image/png;base64,{0}", base64);
+              @{
+                string img = "";
+                if (Model.Photo != null)
+                {
+                  byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Photo, 100, 100);
+                  var base64 = System.Convert.ToBase64String(thumbBytes);
+                  img = String.Format("data:image/png;base64,{0}", base64);
+                }
               }
-            }
 
-            <img src="/Content/Images/CastMember.jpg" class="imgRouned large_size" />
-
+              <img src="/Content/Images/CastMember.jpg" class="imgRouned large_size" />
+            
           </div>
+          <p>
+            @*making space between photo and rest of details*@
+          </p>
 
-          <div class=" text-center">
+
+         
+
+          <div class="photoPad text-center">
 
             <div class=" row">
               <div class=" col-md-6">
@@ -107,7 +113,7 @@
                 @Html.DisplayNameFor(model => model.CastYearLeft)
               </div>
 
-              <div class="datafont col-md-4">
+              <div class="datafont col-md-6">
                 @Html.DisplayFor(model => model.CastYearLeft)
               </div>
             </div>
@@ -149,43 +155,44 @@
           </div>
 
         </div>
-        <div class=" mybutton">
+        <div class="mybutton ">
           <p>
             @if (User.IsInRole("Admin"))
             {
 
+            
+              <div class=" iconBtn ">
+                <div class=" buttonsize" ;>
+                  <a href='@Url.Action("Edit", "CastMembers", new { id = Model.CastMemberID })'> Edit </a>
 
-              <button class="iconBtn ">
-                <div class=" buttonsize">
 
-                <a href=  @Url.Action("Edit", "Edit", new { id = Model.CastMemberID })
 
 
 
                 </div>
-              </button>
+              </div>
+            
+              
+
+             
 
 
             }
 
-          <button class=" iconBtn">
-          <div class=" buttonsize">
-
-           <a href='@Url.Action("Index", "CastMembers")'>
-              Back To List
-
-
+          <div class=" iconBtn">
+            <div class=" buttonsize">
+              <a href='@Url.Action("Index", "CastMembers")'> Back To List</a>
             </div>
-             </button>
+          </div>
+
           </p>
             
-
+        </div>
         </div>
         
       </div>
 
 
-    </div>
-    </div>
+    </div> 
  
 

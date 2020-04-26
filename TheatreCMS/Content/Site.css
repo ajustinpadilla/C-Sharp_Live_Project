@@ -661,14 +661,19 @@ textarea {
     margin-left:20%;
     margin-right:20%;
     
+    
 }
 
 .mybutton{
     margin-bottom:10px;
+    margin-top:10px;
+   
 }   
    
 .buttonsize{
     width:100px;
+  
+
 }  
 
 .datafont{
@@ -686,8 +691,12 @@ textarea {
 .outsideBorder {
     border: solid;
     border-color: #DB1A11;
-    
+   
 }
+
+
+
+
   
 
 
