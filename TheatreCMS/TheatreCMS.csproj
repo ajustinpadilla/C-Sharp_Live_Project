@@ -95,6 +95,9 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
+    <Reference Include="SendGrid, Version=9.13.2.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.9.13.2\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -242,8 +245,12 @@
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
     <Content Include="Content\Images\Ellyn-Bye-Logo.png" />
+    <Content Include="Content\Images\img2.jpg" />
+    <Content Include="Content\Images\img2_bw.jpeg" />
+    <Content Include="Content\Images\img2_gold.jpeg" />
     <Content Include="Content\Images\LogoRoundColor.png" />
     <Content Include="Content\Images\Ninkasi-white-text.png" />
+    <Content Include="Content\Images\no-image.png" />
     <Content Include="Content\Images\OCF-logo-in-white-with-tagline-lg.png" />
     <Content Include="Content\Images\RACC2.png" />
     <Content Include="Content\Images\subscriber.jpg" />
@@ -582,6 +589,7 @@
     <Content Include="Views\Shared\_Sponsors.cshtml" />
     <Content Include="Views\Shared\_SponsorsPartial.cshtml" />
     <Content Include="Views\Admin\UserList.cshtml" />
+    <Content Include="Views\Shared\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
