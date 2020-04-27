@@ -856,17 +856,19 @@ textarea {
     color: var(--dark-color);
 }*/
 
-        .registerInput {
-            min-width: 16em;
-            border-radius: 0;
-            background-clip: border-box;
-        }
+.registerInput {
+    min-width: 16em;
+    border: solid white 2px;
+    border-radius: 0;
+    box-sizing: content-box;
+}
 
-            .registerInput:hover {
-                border: solid gray 1px;
-                transition: .5s;
-                outline: 0;
-            }
+.registerInput:hover {
+    border: solid gray 2px;
+    transition: .5s;
+    outline: 0;
+    box-sizing: content-box;
+}
 
 
         .registerButton {
