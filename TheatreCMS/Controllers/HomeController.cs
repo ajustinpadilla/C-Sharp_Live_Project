@@ -131,9 +131,9 @@ namespace TheatreCMS.Controllers
                                                        || x.Production.Title.ToLower().Contains(ArchiveSearchField.ToLower())
                                                        || x.Person.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
-                    if ViewData["ResultsCast"] = resultsCast;
-                    ViewData["ResultsProduction"] = resultsProduction;
-                    ViewData["ResultsPart"] = resultsPart;
+                    if (resultsCast.Count > 0) ViewData["ResultsCast"] = resultsCast;
+                    if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
+                    if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
                     break;
                 case "ArchiveCastMember":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", ArchiveSearchField);
@@ -141,7 +141,7 @@ namespace TheatreCMS.Controllers
                                                          || x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())
                                                          || x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
                     resultsCast = resultsCast.Distinct().ToList();   //prevents duplicate listings
-                    ViewData["ResultsCast"] = resultsCast;
+                    if (resultsCast.Count > 0) ViewData["ResultsCast"] = resultsCast;
                     break;
                 case "ArchiveProduction":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Productions", ArchiveSearchField);
@@ -149,7 +149,7 @@ namespace TheatreCMS.Controllers
                                                                || x.Playwright.ToLower().Contains(ArchiveSearchField.ToLower())
                                                                || x.Description.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
                     resultsProduction = resultsProduction.Distinct().ToList();
-                    ViewData["ResultsProduction"] = resultsProduction;
+                    if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
                     break;
                 case "ArchivePart":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Parts", ArchiveSearchField);
@@ -157,7 +157,7 @@ namespace TheatreCMS.Controllers
                                                    || x.Production.Title.ToLower().Contains(ArchiveSearchField.ToLower())
                                                    || x.Person.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
-                    ViewData["ResultsPart"] = resultsPart;
+                    if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
                     break;
                 default:
                     break;
