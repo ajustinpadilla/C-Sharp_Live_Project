@@ -1552,3 +1552,54 @@ textarea {
     width: 100%;
     height: 15vw;
     object-fit: contain;
+}
+
+@media only screen and (min-width: 992px){
+    .archive-search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .archive-input-container {
+        margin: 0 auto;
+        width: 900px;
+        position: relative;
+    }
+    
+    .archive-input-container input[type="text"]{
+        width: 90%;
+        height: 51px;
+        padding: 12px 20px 12px 20px;
+        margin: 8px;
+    }
+
+    .archive-input-container #SearchByCategory {
+        width:200px;
+        line-height:36px;
+        background-color: #007bff;
+        color: var(--light-color);
+        text-align: center;
+        position: absolute;
+        right: 691px;
+        top: 1px;
+    }
+
+    .archive-input-container .btn {
+        width: 73px;
+        padding: 6px 12px 6px 12px;
+        line-height: 38px;
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        text-align: center;
+        position: absolute;
+        right: 5px;
+        top: 8px;
+    }
+
+    .archive-input-container option {
+        background-color: var(--light-color);
+        color: var(--dark-color);
+    }
+
+}

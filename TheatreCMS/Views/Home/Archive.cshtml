@@ -58,21 +58,24 @@
     </div>
 
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
-@using (Html.BeginForm("Archive", "Home", FormMethod.Post))
-{
-    <div class="container" style="align-content:center">
-        @Html.TextBox("ArchiveSearchField")
-        <select id="SearchByCategory" name="SearchByCategory">
-            <option>Search by Category</option>
-            <option value="ArchiveCastMember">Cast Member</option>
-            <option value="ArchiveProduction">Production</option>
-            <option value="ArchivePart">Part</option>
-        </select>
-        <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
-    </div>
+<div class="archive-search-container">
+    @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
+    {
+        <div class="archive-input-container" style="align-content:center">
+            @Html.TextBox("ArchiveSearchField")
+            <select id="SearchByCategory" class="s" name="SearchByCategory">
+                <option>Search by Category</option>
+                <option value="ArchiveCastMember">Cast Member</option>
+                <option value="ArchiveProduction">Production</option>
+                <option value="ArchivePart">Part</option>
+            </select>
+            <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
+        </div>
 
 
-}
+    }
+</div>
+
 @*<div class="container" style="align-content:center">
         <nav class="navbar navbar-expand-xl">
             <form class="form-inline">
