@@ -7,6 +7,7 @@ using System.IO;
 using TheatreCMS.Controllers;
 using TheatreCMS.Models;
 using TheatreCMS.ViewModels;
+using System.Data.Entity;
 using TheatreCMS.Areas.Subscribers.Models;
 
 namespace TheatreCMS.Controllers
@@ -66,10 +67,6 @@ namespace TheatreCMS.Controllers
             }
             return View();
         }
-        public ActionResult Archive()
-        {
-            return View();
-        }
 
         public ActionResult NewsletterSubscribers()
         {
@@ -95,11 +92,23 @@ namespace TheatreCMS.Controllers
             }
 
         }
+
+        public ActionResult Archive()
+        {
+            var db = new ApplicationDbContext();
+            var productions = db.Productions
+                .Include(i => i.DefaultPhoto);
+            return View(productions.ToList());
+        }
+
         [HttpPost]
         public ActionResult Archive(string SearchByCategory, string ArchiveSearchField)
         {
             var db = new ApplicationDbContext();
+            var productions = db.Productions
+                .Include(i => i.DefaultPhoto);
             ViewBag.Category = SearchByCategory;
+
             switch (SearchByCategory)
             {
                 case "ArchiveCastMember":
@@ -120,7 +129,7 @@ namespace TheatreCMS.Controllers
                     default:
                         break;
                 }
-                return View();
+            return View(productions.ToList());
             
                 
         }
