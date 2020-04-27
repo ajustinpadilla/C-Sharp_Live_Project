@@ -119,12 +119,12 @@
                         @foreach (var item in ViewData["ResultsCast"] as List<CastMember>)
                         {
                             <tr>
-                                <td>@item.Name</td>
+                                <td>@Html.Raw(@item.Name)</td>
                                 <td>@item.YearJoined</td>
-                                <td>@item.Bio</td>
+                                <td>@Html.Raw(@item.Bio.Replace((string)ViewData["SearchKey"], "<span class='.bg-primary'>" + (string)ViewData["SearchKey"] + "</span>"))</td>
                             </tr>
                         }
-                    </table>
+                    </table><br />
                 }
                 if (ViewData["ResultsProduction"] != null)
                 {
@@ -142,8 +142,7 @@
                                 <td>@item.Description</td>
                             </tr>
                         }
-                        <caption>@ViewBag.Message</caption>
-                    </table>
+                    </table><br />
                 }
                 if (ViewData["ResultsPart"] != null)
                 {
@@ -162,10 +161,9 @@
                             </tr>
 
                         }
-                        <caption>@ViewBag.Message</caption>
-                    </table>
+                    </table><br />
                 }
-                <caption>@ViewBag.Message</caption>
+                <p>@ViewBag.Message</p>
 
                 break;
             case "ArchiveCastMember":

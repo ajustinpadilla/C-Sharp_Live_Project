@@ -9,6 +9,7 @@ using TheatreCMS.Models;
 using TheatreCMS.ViewModels;
 using System.Data.Entity;
 using TheatreCMS.Areas.Subscribers.Models;
+using System.Text.RegularExpressions;
 
 namespace TheatreCMS.Controllers
 {
@@ -114,7 +115,7 @@ namespace TheatreCMS.Controllers
         private void ArchiveSearch(ApplicationDbContext db, string SearchByCategory, string ArchiveSearchField)
         {
             ViewBag.Category = SearchByCategory;
-
+            ViewData["SearchKey"] = ArchiveSearchField;
             switch (SearchByCategory)
             {
                 case "ArchiveAll":
@@ -122,7 +123,11 @@ namespace TheatreCMS.Controllers
                     var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())
                                                              || x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())
                                                              || x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
-                    resultsCast = resultsCast.Distinct().ToList();
+                    foreach (CastMember castMember in resultsCast)
+                    {
+                        castMember.Name = castMember.Name.Replace((string)ViewData["SearchKey"], "<span class='bg-primary'>" + (string)ViewData["SearchKey"] + "</span>");
+                    }
+                    resultsCast = resultsCast.Distinct().ToList();//prevents duplicate listings
                     var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(ArchiveSearchField.ToLower())
                                                                    || x.Playwright.ToLower().Contains(ArchiveSearchField.ToLower())
                                                                    || x.Description.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
@@ -131,7 +136,7 @@ namespace TheatreCMS.Controllers
                                                        || x.Production.Title.ToLower().Contains(ArchiveSearchField.ToLower())
                                                        || x.Person.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
-                    if (resultsCast.Count > 0) ViewData["ResultsCast"] = resultsCast;
+                    if (resultsCast.Count > 0) ViewData["ResultsCast"] = resultsCast;                       //sets ViewData value if there were any results
                     if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
                     if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
                     break;
@@ -140,7 +145,7 @@ namespace TheatreCMS.Controllers
                     resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())
                                                          || x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())
                                                          || x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
-                    resultsCast = resultsCast.Distinct().ToList();   //prevents duplicate listings
+                    resultsCast = resultsCast.Distinct().ToList();   
                     if (resultsCast.Count > 0) ViewData["ResultsCast"] = resultsCast;
                     break;
                 case "ArchiveProduction":
