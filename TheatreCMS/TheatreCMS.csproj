@@ -227,6 +227,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\NewsletterListVm.cs" />
+    <Compile Include="ViewModels\ShowtimeListVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\dummy.txt" />
