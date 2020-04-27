@@ -19,55 +19,55 @@
     </div>
 </div>
 
-    <!--Current Productions-->
-    <div>
-        <h4>Current Productions</h4>
-        <div class="card-deck bg-black">
-            <div class="card bg-black">
-                <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black" alt="Ghost">
-                <div class="card-body">
-                    <h5 class="card-title">Stupid Ghost</h5>
-                    <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
+<!--Current Productions-->
+<div>
+    <h4>Current Productions</h4>
+    <div class="card-deck bg-black">
+        <div class="card bg-black">
+            <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black" alt="Ghost">
+            <div class="card-body">
+                <h5 class="card-title">Stupid Ghost</h5>
+                <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
             </div>
-            <div class="card bg-black">
-                <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top bg-black" alt="Midas">
-                <div class="card-body">
-                    <h5 class="card-title">Everything You Touch</h5>
-                    <p class="card-text">A cursed man that ruins everything he touches.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
-            </div>
-            <div class="card bg-black">
-                <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black" alt="Merchant">
-                <div class="card-body">
-                    <h5 class="card-title">Merchant of Venice</h5>
-                    <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
             </div>
         </div>
-        <hr />
+        <div class="card bg-black">
+            <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top bg-black" alt="Midas">
+            <div class="card-body">
+                <h5 class="card-title">Everything You Touch</h5>
+                <p class="card-text">A cursed man that ruins everything he touches.</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+            </div>
+        </div>
+        <div class="card bg-black">
+            <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black" alt="Merchant">
+            <div class="card-body">
+                <h5 class="card-title">Merchant of Venice</h5>
+                <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+            </div>
+        </div>
     </div>
+    <hr />
+</div>
 
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
 <div class="archive-search-container">
     @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
     {
         <div class="archive-input-container" style="align-content:center">
-            @Html.TextBox("ArchiveSearchField")
+            @Html.TextBox("ArchiveSearchField", "", new { placeholder = "Search" })
             <select id="SearchByCategory" class="s" name="SearchByCategory">
                 <option>Search by Category</option>
-                <option value="ArchiveCastMember">Cast Member</option>
-                <option value="ArchiveProduction">Production</option>
-                <option value="ArchivePart">Part</option>
+                <option class="option" value="ArchiveCastMember">Cast Member</option>
+                <option class="option" value="ArchiveProduction">Production</option>
+                <option class="option" value="ArchivePart">Part</option>
             </select>
             <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
         </div>
@@ -145,7 +145,7 @@
                         }
                         <caption>@ViewBag.Message</caption>
                     </table>
-                break;
+                    break;
                 case "ArchivePart":
                     <table style="width:100%" class="results">
                         <tr>
@@ -164,11 +164,11 @@
                         }
                         <caption>@ViewBag.Message</caption>
                     </table>
-                break;
+                    break;
             }
 
-            }
-</p>
+        }
+    </p>
 </div>
 
 
@@ -177,12 +177,12 @@
 <hr />
 
 <!--Past Productions-->
-@{ 
-    var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON 
+@{
+    var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
     int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
     int firstYear = 1997;
     int secondYear = 1998;
-    Dictionary<int, string> seasonYears = new Dictionary<int, string>();    // Create Dictionary containing Seasons and their years    
+    Dictionary<int, string> seasonYears = new Dictionary<int, string>();    // Create Dictionary containing Seasons and their years
     for (int i = 1; i <= currentSeason; i++)
     {
         seasonYears.Add(i, firstYear.ToString() + " - " + secondYear.ToString());
@@ -191,16 +191,16 @@
     }
 }
 <div class="container">
-    <div class="h4">Past Productions</div> 
+    <div class="h4">Past Productions</div>
     <div class="accordian" id="pastProductions">
         <!-- Begin for loop to populate years-->
         @for (int i = currentSeason; i >= 1; i--)
         {
-            string currentHeading = "heading" + i.ToString(); 
+            string currentHeading = "heading" + i.ToString();
             string currentBody = "season" + i.ToString();
             <div class="card bg-black">
                 <!-- header -->
-                <div class="card-header text-center" id="@currentHeading"> 
+                <div class="card-header text-center" id="@currentHeading">
                     <h2 class="mb-0">
                         <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
                             @seasonYears[i]
@@ -236,7 +236,7 @@
                                             <p class="card-text">
                                                 @Html.DisplayFor(modelItem => item.Description)
                                             </p>
-                                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a> 
+                                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
                                         </div>
                                     </div>
                                 }
@@ -248,3 +248,20 @@
         }
     </div>
 </div>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        $('#SearchByCategory').change(function () {
+            if ($('.option').is(":checked")) {
+                $(this).addClass("option-selected");
+            } else {
+                $(this).removeClass("option-selected");
+            }
+        });
+
+        $('#SearchByCategory').click(function () {
+            $(this).addClass("option-focused");
+        });
+    });
+</script>

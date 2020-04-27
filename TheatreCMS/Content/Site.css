@@ -1554,6 +1554,11 @@ textarea {
     object-fit: contain;
 }
 
+.option-selected {
+    background-color: var(--dark-color) !important;
+    color: #007bff !important;
+}
+
 @media only screen and (min-width: 992px){
     .archive-search-container {
         display: flex;
@@ -1572,6 +1577,8 @@ textarea {
         height: 51px;
         padding: 12px 20px 12px 20px;
         margin: 8px;
+        text-indent: 200px;
+        font-size: 20px;
     }
 
     .archive-input-container #SearchByCategory {
