@@ -118,30 +118,46 @@ namespace TheatreCMS.Controllers
             switch (SearchByCategory)
             {
                 case "ArchiveAll":
-                    ViewBag.Message = string.Format("")
-                case "ArchiveCastMember":
-                    ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", ArchiveSearchField);
+                    ViewBag.Message = string.Format("Results for \"{0}\" in Archive", ArchiveSearchField);
                     var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())
                                                              || x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())
                                                              || x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
-                    resultsCast = resultsCast.Distinct().ToList();   //prevents duplicate listings
-                    ViewData["ResultsList"] = resultsCast;
-                    break;
-                case "ArchiveProduction":
-                    ViewBag.Message = string.Format("Results for \"{0}\" in Productions", ArchiveSearchField);
+                    resultsCast = resultsCast.Distinct().ToList();
                     var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(ArchiveSearchField.ToLower())
                                                                    || x.Playwright.ToLower().Contains(ArchiveSearchField.ToLower())
                                                                    || x.Description.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
                     resultsProduction = resultsProduction.Distinct().ToList();
-                    ViewData["ResultsList"] = resultsProduction;
-                    break;
-                case "ArchivePart":
-                    ViewBag.Message = string.Format("Results for \"{0}\" in Parts", ArchiveSearchField);
                     var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(ArchiveSearchField.ToLower())
                                                        || x.Production.Title.ToLower().Contains(ArchiveSearchField.ToLower())
                                                        || x.Person.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
-                    ViewData["ResultsList"] = resultsPart;
+                    if ViewData["ResultsCast"] = resultsCast;
+                    ViewData["ResultsProduction"] = resultsProduction;
+                    ViewData["ResultsPart"] = resultsPart;
+                    break;
+                case "ArchiveCastMember":
+                    ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", ArchiveSearchField);
+                    resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())
+                                                         || x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())
+                                                         || x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    resultsCast = resultsCast.Distinct().ToList();   //prevents duplicate listings
+                    ViewData["ResultsCast"] = resultsCast;
+                    break;
+                case "ArchiveProduction":
+                    ViewBag.Message = string.Format("Results for \"{0}\" in Productions", ArchiveSearchField);
+                    resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(ArchiveSearchField.ToLower())
+                                                               || x.Playwright.ToLower().Contains(ArchiveSearchField.ToLower())
+                                                               || x.Description.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    resultsProduction = resultsProduction.Distinct().ToList();
+                    ViewData["ResultsProduction"] = resultsProduction;
+                    break;
+                case "ArchivePart":
+                    ViewBag.Message = string.Format("Results for \"{0}\" in Parts", ArchiveSearchField);
+                    resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(ArchiveSearchField.ToLower())
+                                                   || x.Production.Title.ToLower().Contains(ArchiveSearchField.ToLower())
+                                                   || x.Person.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    resultsPart = resultsPart.Distinct().ToList();
+                    ViewData["ResultsPart"] = resultsPart;
                     break;
                 default:
                     break;

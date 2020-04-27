@@ -102,19 +102,21 @@
     </div>*@
 
 <div class="resultsContainer">
-    
-        @if (ViewData["ResultsList"] != null)
+
+    @if (ViewData["ResultsCast"] != null || ViewData["ResultsProduction"] != null || ViewData["ResultsPart"] != null)
+    {
+        switch (ViewBag.Category)
         {
-            switch (ViewBag.Category)
-            {
-                case "ArchiveCastMember":
+            case "ArchiveAll":
+                if (ViewData["ResultsCast"] != null)
+                {
                     <table style="width:100%" class="results">
                         <tr>
                             <th>Cast Member</th>
                             <th>Year Joined</th>
                             <th>Bio</th>
                         </tr>
-                        @foreach (var item in ViewData["ResultsList"] as List<CastMember>)
+                        @foreach (var item in ViewData["ResultsCast"] as List<CastMember>)
                         {
                             <tr>
                                 <td>@item.Name</td>
@@ -122,17 +124,17 @@
                                 <td>@item.Bio</td>
                             </tr>
                         }
-                        <caption>@ViewBag.Message</caption>
                     </table>
-                    break;
-                case "ArchiveProduction":
+                }
+                if (ViewData["ResultsProduction"] != null)
+                {
                     <table style="width:100%" class="results">
                         <tr>
                             <th>Production</th>
                             <th>Playwright</th>
                             <th>Description</th>
                         </tr>
-                        @foreach (var item in ViewData["ResultsList"] as List<Production>)
+                        @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
                         {
                             <tr>
                                 <td>@item.Title</td>
@@ -142,15 +144,16 @@
                         }
                         <caption>@ViewBag.Message</caption>
                     </table>
-                break;
-                case "ArchivePart":
+                }
+                if (ViewData["ResultsPart"] != null)
+                {
                     <table style="width:100%" class="results">
                         <tr>
                             <th>Part</th>
                             <th>Production</th>
                             <th>Cast Member</th>
                         </tr>
-                        @foreach (var item in ViewData["ResultsList"] as List<Part>)
+                        @foreach (var item in ViewData["ResultsPart"] as List<Part>)
                         {
                             <tr>
                                 <td>@item.Character</td>
@@ -161,10 +164,68 @@
                         }
                         <caption>@ViewBag.Message</caption>
                     </table>
-                break;
-            }
+                }
+                <caption>@ViewBag.Message</caption>
 
-            }
+                break;
+            case "ArchiveCastMember":
+                <table style="width:100%" class="results">
+                    <tr>
+                        <th>Cast Member</th>
+                        <th>Year Joined</th>
+                        <th>Bio</th>
+                    </tr>
+                    @foreach (var item in ViewData["ResultsCast"] as List<CastMember>)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.YearJoined</td>
+                            <td>@item.Bio</td>
+                        </tr>
+                    }
+                    <caption>@ViewBag.Message</caption>
+                </table>
+                break;
+            case "ArchiveProduction":
+                <table style="width:100%" class="results">
+                    <tr>
+                        <th>Production</th>
+                        <th>Playwright</th>
+                        <th>Description</th>
+                    </tr>
+                    @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Playwright</td>
+                            <td>@item.Description</td>
+                        </tr>
+                    }
+                    <caption>@ViewBag.Message</caption>
+                </table>
+                break;
+            case "ArchivePart":
+                <table style="width:100%" class="results">
+                    <tr>
+                        <th>Part</th>
+                        <th>Production</th>
+                        <th>Cast Member</th>
+                    </tr>
+                    @foreach (var item in ViewData["ResultsPart"] as List<Part>)
+                    {
+                        <tr>
+                            <td>@item.Character</td>
+                            <td>@item.Production.Title</td>
+                            <td>@item.Person.Name</td>
+                        </tr>
+
+                    }
+                    <caption>@ViewBag.Message</caption>
+                </table>
+                break;
+        }
+
+    }
 
 </div>
 
