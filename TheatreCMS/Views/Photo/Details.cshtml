@@ -4,20 +4,29 @@
     ViewBag.Title = "Details";
 }
 
+
+<link href="https://fonts.googleapis.com/css?family=BioRhyme&display=swap" rel="stylesheet">
+
+<div class="photodetailspagedecorating">
+ 
+    
+
+    
+     
 <h2>Details</h2>
 
-<div>
+
+    
+  
     <h4>Photo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.PhotoFile)
         </dt>
-
-        <dd>
+        <dd class="image-spacing">
             <img class="large_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
-        </dd>
-
+            </dd>
         <dt>
             @Html.DisplayNameFor(model => model.OriginalHeight)
         </dt>
@@ -41,10 +50,13 @@
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
-
+        
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+      
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+    
