@@ -56,19 +56,25 @@ namespace TheatreCMS.Models
         public ActionResult Create([Bind(Include = "Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
-
+           
             productionPhotos.PhotoId = PhotoController.CreatePhoto(file, productionPhotos.Title);
 
             if (ModelState.IsValid)
             {
-                var production = db.Productions.Find(productionID);
-
+                Production production = db.Productions.Find(productionID);
                 productionPhotos.Production = production;
+
+                if (production.DefaultPhoto == null)
+                {
+                    production.DefaultPhoto = productionPhotos;
+                }
+
                 db.ProductionPhotos.Add(productionPhotos);
-                db.SaveChanges();
+                db.SaveChanges();      
+
                 return RedirectToAction("Index");
             }
-
+            
             return View(productionPhotos);
         }
 
