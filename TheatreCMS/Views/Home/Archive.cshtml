@@ -58,6 +58,7 @@
     </div>
 
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
+
 @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
 {
     <div class="container" style="align-content:center">
@@ -105,6 +106,7 @@
 
     @if (ViewData["ResultsCast"] != null || ViewData["ResultsProduction"] != null || ViewData["ResultsPart"] != null)
     {
+        <h3>Results</h3>
         switch (ViewBag.Category)
         {
             case "ArchiveAll":
