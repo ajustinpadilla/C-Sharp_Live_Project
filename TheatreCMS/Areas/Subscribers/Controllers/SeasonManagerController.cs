@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Areas.Subscribers.Models;
 using TheatreCMS.Models;
+using TheatreCMS.Helpers;
+using System.Diagnostics;
+using Microsoft.AspNet.Identity;
 
 namespace TheatreCMS.Areas.Subscribers.Controllers
 {
@@ -18,7 +21,6 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager
         public ActionResult Index()
         {
-            
             return View(db.SeasonManagers.ToList());
         }
 
@@ -40,7 +42,20 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager/Create
         public ActionResult Create()
         {
-            ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
+            AdminSettings currentSettings = AdminSettingsReader.CurrentSettings();                                      
+            int[] validSeason = new int[] { currentSettings.current_season, currentSettings.current_season + 1 };   //Creates a list of the current season and the next season to populate the Season field
+            ViewData["Season"] = new SelectList(validSeason.ToList(), validSeason, "Season");                       //
+            
+            if (User.IsInRole("Admin"))                                                                             // this block is used to send a list of names to the user dropdown. If the user isn't an admin, they just see their name.
+            {
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "ID", "UserName");
+            }
+            else
+            {
+                ViewData["dbUsers"] = new SelectList(db.Users.Where(name => name.UserName == User.Identity.Name) .ToList(), "ID", "UserName");
+            }
+
+            ViewBag.HasAccess = (User.IsInRole("Admin") || User.IsInRole("Subscriber")) ?  true : false;   // this sets a viewbag property which is used to disable forms based on the user's access.
             return View();
         }
 
@@ -49,13 +64,15 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SeasonManagerId,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring, SeasonManagerPerson")] SeasonManager seasonManager)
+        public ActionResult Create([Bind(Include = "SeasonManagerId,Season,NumberSeats,BookedCurrent,FallProd,FallTime,BookedFall,WinterProd,WinterTime,BookedWinter,SpringProd,SpringTime,BookedSpring,SeasonManagerPerson")] SeasonManager seasonManager)
         {
             ModelState.Remove("SeasonManagerPerson");
             string userId = Request.Form["dbUsers"].ToString();
 
             if (ModelState.IsValid)
+               
             {
+                
                 ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
                 seasonManager.SeasonManagerPerson = db.Users.Find(userId);
                 db.SeasonManagers.Add(seasonManager);               
