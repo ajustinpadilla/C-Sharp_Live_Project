@@ -137,9 +137,9 @@
                         @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
                         {
                             <tr>
-                                <td>@item.Title</td>
-                                <td>@item.Playwright</td>
-                                <td>@item.Description</td>
+                                <td>@Html.Raw(@item.Title)</td>
+                                <td>@Html.Raw(@item.Playwright)</td>
+                                <td>@Html.Raw(@item.Description)</td>
                             </tr>
                         }
                     </table><br />
@@ -155,9 +155,9 @@
                         @foreach (var item in ViewData["ResultsPart"] as List<Part>)
                         {
                             <tr>
-                                <td>@item.Character</td>
-                                <td>@item.Production.Title</td>
-                                <td>@item.Person.Name</td>
+                                <td>@Html.Raw(@item.Character)</td>
+                                <td>@Html.Raw(@item.Production.Title)</td>
+                                <td>@Html.Raw(@item.Person.Name)</td>
                             </tr>
 
                         }
@@ -176,9 +176,9 @@
                     @foreach (var item in ViewData["ResultsCast"] as List<CastMember>)
                     {
                         <tr>
-                            <td>@item.Name</td>
-                            <td>@item.YearJoined</td>
-                            <td>@item.Bio</td>
+                            <td>@Html.Raw(@item.Name)</td>
+                            <td>@Html.Raw(@item.YearJoined)</td>
+                            <td>@Html.Raw(@item.Bio)</td>
                         </tr>
                     }
                     <caption>@ViewBag.Message</caption>
@@ -194,9 +194,9 @@
                     @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
                     {
                         <tr>
-                            <td>@item.Title</td>
-                            <td>@item.Playwright</td>
-                            <td>@item.Description</td>
+                            <td>@Html.Raw(@item.Title)</td>
+                            <td>@Html.Raw(@item.Playwright)</td>
+                            <td>@Html.Raw(@item.Description)</td>
                         </tr>
                     }
                     <caption>@ViewBag.Message</caption>
@@ -212,9 +212,9 @@
                     @foreach (var item in ViewData["ResultsPart"] as List<Part>)
                     {
                         <tr>
-                            <td>@item.Character</td>
-                            <td>@item.Production.Title</td>
-                            <td>@item.Person.Name</td>
+                            <td>@Html.Raw(@item.Character)</td>
+                            <td>@Html.Raw(@item.Production.Title)</td>
+                            <td>@Html.Raw(@item.Person.Name)</td>
                         </tr>
 
                     }
