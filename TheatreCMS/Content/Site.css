@@ -1408,7 +1408,7 @@ a.dropdown-item:hover {
     font-family: Tahoma, Geneva, sans-serif;
 }
 /*To make modal datetime-local inputs uniform with text inputs*/
-.modal input[type=datetime], select {
+.modal input[type=datetime-local], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
