@@ -306,11 +306,11 @@ namespace TheatreCMS.Controllers
                 string previousYear = (latestYear - 1).ToString();
                 if (i == currentSeason)
                 {
-                    seasonYears.Add(i, "Current (" + previousYear.Substring(year.Length - 2) + ") ~ (" + year.Substring(previousYear.Length - 2) + ")");
+                    seasonYears.Add(i, "Current ('" + previousYear.Substring(year.Length - 2) + " ~ '" + year.Substring(previousYear.Length - 2) + ")");
                 }
                 else
                 {
-                    seasonYears.Add(i, i + " (" + previousYear.Substring(year.Length - 2) + ") ~ (" + year.Substring(previousYear.Length - 2) + ")");
+                    seasonYears.Add(i, i + " ('" + previousYear.Substring(year.Length - 2) + " ~ '" + year.Substring(previousYear.Length - 2) + ")");
                 }
                 latestYear--;
             }
