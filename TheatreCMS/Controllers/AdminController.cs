@@ -86,6 +86,15 @@ namespace TheatreCMS.Controllers
             {
                 UpdateSubscribers(newJSON);
             }
+            //ADDING AUTO CALC ERROR CODE HERE
+            if (oldJSON.current_season == 25)
+                //(oldJSON.current_season != newJSON.current_season)
+            {
+                ModelState.AddModelError("current_season", "You have entered the incorrect Season number.");
+            }
+        
+            //END AUTO CALC ERROR CODE
+            
             if (oldJSON.season_productions != newJSON.season_productions)
             {
                 UpdateProductions(newJSON);
@@ -96,6 +105,7 @@ namespace TheatreCMS.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
+
 
         private void UpdateSubscribers(dynamic newJSON)
         {
