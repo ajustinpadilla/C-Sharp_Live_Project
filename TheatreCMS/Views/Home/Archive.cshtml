@@ -19,43 +19,43 @@
     </div>
 </div>
 
-    <!--Current Productions-->
-    <div>
-        <h4>Current Productions</h4>
-        <div class="card-deck bg-black">
-            <div class="card bg-black">
-                <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black" alt="Ghost">
-                <div class="card-body">
-                    <h5 class="card-title">Stupid Ghost</h5>
-                    <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
+<!--Current Productions-->
+<div>
+    <h4>Current Productions</h4>
+    <div class="card-deck bg-black">
+        <div class="card bg-black">
+            <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black" alt="Ghost">
+            <div class="card-body">
+                <h5 class="card-title">Stupid Ghost</h5>
+                <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
             </div>
-            <div class="card bg-black">
-                <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top bg-black" alt="Midas">
-                <div class="card-body">
-                    <h5 class="card-title">Everything You Touch</h5>
-                    <p class="card-text">A cursed man that ruins everything he touches.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
-            </div>
-            <div class="card bg-black">
-                <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black" alt="Merchant">
-                <div class="card-body">
-                    <h5 class="card-title">Merchant of Venice</h5>
-                    <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
             </div>
         </div>
-        <hr />
+        <div class="card bg-black">
+            <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top bg-black" alt="Midas">
+            <div class="card-body">
+                <h5 class="card-title">Everything You Touch</h5>
+                <p class="card-text">A cursed man that ruins everything he touches.</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+            </div>
+        </div>
+        <div class="card bg-black">
+            <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black" alt="Merchant">
+            <div class="card-body">
+                <h5 class="card-title">Merchant of Venice</h5>
+                <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+            </div>
+        </div>
     </div>
+    <hr />
+</div>
 
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
 
@@ -121,9 +121,19 @@
                         @for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
                         {
                             <tr>
-                                <td>@Html.Raw(ViewBag.ResultsCast[i].Name)</td>
-                                <td>@Html.Raw(ViewBag.YearJoined[i])</td>
-                                <td>@Html.Raw(ViewBag.ResultsCast[i].Bio)</td>
+                                <td>
+                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
+                                        @Html.Raw(ViewBag.ResultsCast[i].Name)
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
+                                        @Html.Raw(ViewBag.YearJoined[i])
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
+                                </td>
                             </tr>
                         }
                     </table><br />
@@ -139,9 +149,15 @@
                         @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
                         {
                             <tr>
-                                <td>@Html.Raw(@item.Title)</td>
-                                <td>@Html.Raw(@item.Playwright)</td>
-                                <td>@Html.Raw(@item.Description)</td>
+                                <td>
+                                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Title)</a>
+                                </td>
+                                <td>
+                                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Playwright)</a>
+                                </td>
+                                <td>
+                                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Description)</a>
+                                </td>
                             </tr>
                         }
                     </table><br />
@@ -157,9 +173,15 @@
                         @foreach (var item in ViewData["ResultsPart"] as List<Part>)
                         {
                             <tr>
-                                <td>@Html.Raw(@item.Character)</td>
-                                <td>@Html.Raw(@item.Production.Title)</td>
-                                <td>@Html.Raw(@item.Person.Name)</td>
+                                <td>
+                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                </td>
+                                <td>
+                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Production.Title)</a>
+                                </td>
+                                <td>
+                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
+                                </td>
                             </tr>
 
                         }
@@ -176,133 +198,157 @@
                         <th>Bio</th>
                     </tr>
                     @for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
-                        {
+                    {
                             <tr>
-                                <td>@Html.Raw(ViewBag.ResultsCast[i].Name)</td>
-                                <td>@Html.Raw(ViewBag.YearJoined[i])</td>
-                                <td>@Html.Raw(ViewBag.ResultsCast[i].Bio)</td>
+                                <td>
+                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
+                                        @Html.Raw(ViewBag.ResultsCast[i].Name)
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
+                                        @Html.Raw(ViewBag.YearJoined[i])
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
+                                        @Html.Raw(ViewBag.ResultsCast[i].Bio)
+                                    </a>
+                                </td>
                             </tr>
-                        }
-                    <caption>@ViewBag.Message</caption>
-                </table>
-                break;
-            case "ArchiveProduction":
-                <table style="width:100%" class="results">
-                    <tr>
-                        <th>Production</th>
-                        <th>Playwright</th>
-                        <th>Description</th>
-                    </tr>
-                    @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
-                    {
-                        <tr>
-                            <td>@Html.Raw(@item.Title)</td>
-                            <td>@Html.Raw(@item.Playwright)</td>
-                            <td>@Html.Raw(@item.Description)</td>
-                        </tr>
-                    }
-                    <caption>@ViewBag.Message</caption>
-                </table>
-                break;
-            case "ArchivePart":
-                <table style="width:100%" class="results">
-                    <tr>
-                        <th>Part</th>
-                        <th>Production</th>
-                        <th>Cast Member</th>
-                    </tr>
-                    @foreach (var item in ViewData["ResultsPart"] as List<Part>)
-                    {
-                        <tr>
-                            <td>@Html.Raw(@item.Character)</td>
-                            <td>@Html.Raw(@item.Production.Title)</td>
-                            <td>@Html.Raw(@item.Person.Name)</td>
-                        </tr>
-
-                    }
-                    <caption>@ViewBag.Message</caption>
-                </table>
-                break;
-        }
-
-    }
-
-</div>
-
-
-
-
-<hr />
-
-<!--Past Productions-->
-@{ 
-    var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON 
-    int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
-    int firstYear = 1997;
-    int secondYear = 1998;
-    Dictionary<int, string> seasonYears = new Dictionary<int, string>();    // Create Dictionary containing Seasons and their years    
-    for (int i = 1; i <= currentSeason; i++)
-    {
-        seasonYears.Add(i, firstYear.ToString() + " - " + secondYear.ToString());
-        firstYear++;
-        secondYear++;
-    }
-}
-<div class="container">
-    <div class="h4">Past Productions</div> 
-    <div class="accordian" id="pastProductions">
-        <!-- Begin for loop to populate years-->
-        @for (int i = currentSeason; i >= 1; i--)
+                            }
+                            <caption>@ViewBag.Message</caption>
+                    </table>
+                    break;
+    case "ArchiveProduction":
+    <table style="width:100%" class="results">
+        <tr>
+            <th>Production</th>
+            <th>Playwright</th>
+            <th>Description</th>
+        </tr>
+        @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
         {
-            string currentHeading = "heading" + i.ToString(); 
-            string currentBody = "season" + i.ToString();
-            <div class="card bg-black">
-                <!-- header -->
-                <div class="card-header text-center" id="@currentHeading"> 
-                    <h2 class="mb-0">
-                        <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
-                            @seasonYears[i]
-                        </button>
-                    </h2>
+            <tr>
+                <td>
+                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Title)</a>
+                </td>
+                <td>
+                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Playwright)</a>
+                </td>
+                <td>
+                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Description)</a>
+                </td>
+            </tr>
+        }
+        <caption>@ViewBag.Message</caption>
+    </table>
+    break;
+case "ArchivePart":
+    <table style="width:100%" class="results">
+        <tr>
+            <th>Part</th>
+            <th>Production</th>
+            <th>Cast Member</th>
+        </tr>
+        @foreach (var item in ViewData["ResultsPart"] as List<Part>)
+        {
+            <tr>
+                <td>
+                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                </td>
+                <td>
+                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Production.Title)</a>
+                </td>
+                <td>
+                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
+                </td>
+            </tr>
+
+        }
+        <caption>@ViewBag.Message</caption>
+    </table>
+    break;
+}
+
+                    }
+
                 </div>
-                <!-- Collapsable body -->
-                <div id="@currentBody" class="collapse" aria-labelledby="@currentHeading" data-parent="#pastProductions">
-                    <div class="card-body">
-                        <div class="card-deck bg-black">
-                            <!-- Iterate through Productions and populate cards-->
-                            @foreach (var item in Model)
-                            {
-                                if (item.Season == i)
-                                {
-                                    <div class="card bg-black">
-                                        @if (item.DefaultPhoto != null)
-                                        {
-                                            <div class="embed-responsive-4by3">
-                                                <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top arch-card-img bg-black">
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="embed-responsive-4by3">
-                                                <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img bg-black">
-                                            </div>
-                                        }
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                @Html.DisplayFor(modelItem => item.Title)
-                                            </h5>
-                                            <p class="card-text">
-                                                @Html.DisplayFor(modelItem => item.Description)
-                                            </p>
-                                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a> 
+
+
+
+
+                <hr />
+
+                <!--Past Productions-->
+                @{
+                    var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
+                    int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
+                    int firstYear = 1997;
+                    int secondYear = 1998;
+                    Dictionary<int, string> seasonYears = new Dictionary<int, string>();    // Create Dictionary containing Seasons and their years
+                    for (int i = 1; i <= currentSeason; i++)
+                    {
+                        seasonYears.Add(i, firstYear.ToString() + " - " + secondYear.ToString());
+                        firstYear++;
+                        secondYear++;
+                    }
+                }
+                <div class="container">
+                    <div class="h4">Past Productions</div>
+                    <div class="accordian" id="pastProductions">
+                        <!-- Begin for loop to populate years-->
+                        @for (int i = currentSeason; i >= 1; i--)
+                        {
+                            string currentHeading = "heading" + i.ToString();
+                            string currentBody = "season" + i.ToString();
+                            <div class="card bg-black">
+                                <!-- header -->
+                                <div class="card-header text-center" id="@currentHeading">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
+                                            @seasonYears[i]
+                                        </button>
+                                    </h2>
+                                </div>
+                                <!-- Collapsable body -->
+                                <div id="@currentBody" class="collapse" aria-labelledby="@currentHeading" data-parent="#pastProductions">
+                                    <div class="card-body">
+                                        <div class="card-deck bg-black">
+                                            <!-- Iterate through Productions and populate cards-->
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Season == i)
+                                                {
+                                                    <div class="card bg-black">
+                                                        @if (item.DefaultPhoto != null)
+                                                        {
+                                                            <div class="embed-responsive-4by3">
+                                                                <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top arch-card-img bg-black">
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="embed-responsive-4by3">
+                                                                <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img bg-black">
+                                                            </div>
+                                                        }
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">
+                                                                @Html.DisplayFor(modelItem => item.Title)
+                                                            </h5>
+                                                            <p class="card-text">
+                                                                @Html.DisplayFor(modelItem => item.Description)
+                                                            </p>
+                                                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
                                         </div>
                                     </div>
-                                }
-                            }
-                        </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-</div>
