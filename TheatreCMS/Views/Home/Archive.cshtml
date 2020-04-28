@@ -259,11 +259,15 @@
                 $(this).removeClass("option-selected");
             }
         });
-        
+
+        $('#SearchByCategory').click(function () {
+            $(this).addClass("option-focused");
+        });
+
         $('#SearchByCategory').change(function () {
             if ($('.search-dropdown').is(":checked")) {
                 $(this).blur();
-            } 
+            }
         });
 
         function changeSearchBtn() {
