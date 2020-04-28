@@ -116,6 +116,7 @@ namespace TheatreCMS.Controllers
         {
             ViewBag.Category = SearchByCategory;
             ViewData["SearchKey"] = SearchKey;
+            string highlightedKey = "<span class='bg-primary'>" + SearchKey + "</span>";   //The value of this variable can be altered to change the highlight color of the match.
             switch (SearchByCategory)
             {
                 case "ArchiveAll":
@@ -127,10 +128,10 @@ namespace TheatreCMS.Controllers
                     var yearJoinedString = new List<string>();
                     for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
                     { 
-                        resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
-                        resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
+                        resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, SearchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, SearchKey, highlightedKey, RegexOptions.IgnoreCase);
                         yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
-                        yearJoinedString[i] = Regex.Replace(yearJoinedString[i], SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
+                        yearJoinedString[i] = Regex.Replace(yearJoinedString[i], SearchKey, highlightedKey, RegexOptions.IgnoreCase);
                     }
                     ViewBag.YearJoined = yearJoinedString;
                     var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(SearchKey.ToLower())
@@ -139,9 +140,9 @@ namespace TheatreCMS.Controllers
                     resultsProduction = resultsProduction.Distinct().ToList();
                     foreach (Production production in resultsProduction)
                     {
-                        production.Title = Regex.Replace(production.Title, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
-                        production.Playwright = Regex.Replace(production.Playwright, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
-                        production.Description = Regex.Replace(production.Description, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        production.Title = Regex.Replace(production.Title, SearchKey, highlightedKey);
+                        production.Playwright = Regex.Replace(production.Playwright, SearchKey, highlightedKey);
+                        production.Description = Regex.Replace(production.Description, SearchKey, highlightedKey);
 
                     }
                     var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(SearchKey.ToLower())
@@ -150,9 +151,9 @@ namespace TheatreCMS.Controllers
                     resultsPart = resultsPart.Distinct().ToList();
                     foreach (Part part in resultsPart)
                     {
-                        part.Character = Regex.Replace(part.Character, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
-                        part.Production.Title = Regex.Replace(part.Production.Title, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
-                        part.Person.Name = Regex.Replace(part.Person.Name, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        part.Character = Regex.Replace(part.Character, SearchKey, highlightedKey);
+                        part.Production.Title = Regex.Replace(part.Production.Title, SearchKey, highlightedKey);
+                        part.Person.Name = Regex.Replace(part.Person.Name, SearchKey, highlightedKey);
                     }
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
                     if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
@@ -167,10 +168,10 @@ namespace TheatreCMS.Controllers
                     yearJoinedString = new List<string>();
                     for (int i = 0; i < resultsCast.Count; i++)
                     {
-                        resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
-                        resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
+                        resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, SearchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, SearchKey, highlightedKey, RegexOptions.IgnoreCase);
                         yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
-                        yearJoinedString[i] = Regex.Replace(yearJoinedString[i], SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
+                        yearJoinedString[i] = Regex.Replace(yearJoinedString[i], SearchKey, highlightedKey, RegexOptions.IgnoreCase);
                     }
                     ViewBag.YearJoined = yearJoinedString;
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;
@@ -184,9 +185,9 @@ namespace TheatreCMS.Controllers
                     if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
                     foreach (Production production in resultsProduction)
                     {
-                        production.Title = Regex.Replace(production.Title, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
-                        production.Playwright = Regex.Replace(production.Playwright, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
-                        production.Description = Regex.Replace(production.Description, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        production.Title = Regex.Replace(production.Title, SearchKey, highlightedKey);
+                        production.Playwright = Regex.Replace(production.Playwright, SearchKey, highlightedKey);
+                        production.Description = Regex.Replace(production.Description, SearchKey, highlightedKey);
                     }
                     break;
                 case "ArchivePart":
@@ -198,9 +199,9 @@ namespace TheatreCMS.Controllers
                     if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
                     foreach (Part part in resultsPart)
                     {
-                        part.Character = Regex.Replace(part.Character, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
-                        part.Production.Title = Regex.Replace(part.Production.Title, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
-                        part.Person.Name = Regex.Replace(part.Person.Name, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        part.Character = Regex.Replace(part.Character, SearchKey, highlightedKey);
+                        part.Production.Title = Regex.Replace(part.Production.Title, SearchKey, highlightedKey);
+                        part.Person.Name = Regex.Replace(part.Person.Name, SearchKey, highlightedKey);
                     }
                     break;
                 default:
