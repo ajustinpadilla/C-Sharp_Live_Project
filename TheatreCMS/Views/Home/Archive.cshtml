@@ -68,6 +68,7 @@
                 <option class="search-dropdown option" value="ArchiveCastMember">Cast Member</option>
                 <option class="search-dropdown option" value="ArchiveProduction">Production</option>
                 <option class="search-dropdown option" value="ArchivePart">Part</option>
+                <option class="dummy" style="display:none">Search by Category</option>
             </select>
             <button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>
         </div>
@@ -259,6 +260,48 @@
                 $(this).removeClass("option-selected");
             }
         });
+
+        var canDo = true;
+
+        $('#SearchByCategory').change(function () {
+            if ($('.search-dropdown').is(":checked")) {
+                $(this).blur();
+            }
+        });
+
+        $('#SearchByCategory').on('focus', function () {
+            $(this).find("option.dummy").text($(this).find("option:selected").text());
+            $(this).find("option.dummy").prop("selected", true);
+            $(this).data('click', true);
+        });
+
+        $('#SearchByCategory').on('change blur', function () {
+            var select = $(this);
+            var text = select.find("option:selected").text();
+
+            $('.dummy').attr('value', select.val()).text(text);
+            doYourThing($(select).val());
+        });
+
+        $('#SearchByCategory option').on('click', function () {
+            if ($(this).data('click')) {
+                $(this).data('click', false);
+                doYourThing($(select).val());
+            } else {
+                $(this).data('click', true);
+            }
+            $(this).parent().blur();
+        });
+
+        function doYourThing(stuff) {
+            if (canDo) {
+                canDo = false;
+                canDoTimeout = setTimeout(function () {
+                    canDo = true;
+                }, 500);
+            }
+        }
+        
 
         function changeSearchBtn() {
             if ($(window).width() < 900) {
