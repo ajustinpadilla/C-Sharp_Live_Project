@@ -1745,6 +1745,12 @@ textarea {
     vertical-align: middle !important;
 }
 
+.project-info-popover:focus, .project-info-popover:active {
+    outline: none;
+    border-style: outset;
+}
+
+
 .rental-request-rows {
     border-bottom: 1px solid var(--light-color) !important;
     margin-top: 10px;
