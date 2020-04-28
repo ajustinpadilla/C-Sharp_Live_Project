@@ -260,16 +260,6 @@
             }
         });
 
-        $('#SearchByCategory').click(function () {
-            $(this).addClass("option-focused");
-        });
-
-        $('#SearchByCategory').change(function () {
-            if ($('.search-dropdown').is(":checked")) {
-                $(this).blur();
-            }
-        });
-
         function changeSearchBtn() {
             if ($(window).width() < 900) {
                 $(".search-btn").each(function (i) {
