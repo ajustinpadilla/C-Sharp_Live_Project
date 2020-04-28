@@ -1609,6 +1609,24 @@ textarea {
     bottom: 12px;
 }
 
+.project-info-popover {
+    background-color: var(--dark-color);
+    border-color: var(--light-color);
+    padding: 7px;
+    border-radius: 5px;
+    border-width: 1px;
+    vertical-align: middle !important;
+}
+
+.rental-request-rows {
+    border-bottom: 1px solid var(--light-color) !important;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.rental-request-nav {
+    margin: 2px 0 2px 0;
+}
 
 
 @media screen and (max-width: 992px) {
@@ -1621,8 +1639,11 @@ textarea {
         border-color: var(--light-color);
         display: block;
         text-align: left;
-        padding-bottom: 75px;
-        
+        margin: 0px 0 50px 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border: 1px solid var(--light-color);
+        margin: 0 -20px 0 -20px 0;
     }
     
     .table-responsive-stack td {
@@ -1636,7 +1657,7 @@ textarea {
         display: normal;
     }
 
-    #rental-request-nav-wrapper {
+    #rental-request-nav-container {
         padding-top: 4px;
         display: flex;
         justify-content: center;
@@ -1645,7 +1666,12 @@ textarea {
 
     .rental-request-nav {
         display: inline-block;
-        padding: 0px 4px 0px 4px;
+        margin: 0 0 0 18px;
+    }
+    
+    .mobile-project-info {
+        display: inline-block;
+        width: 90%;
     }
 
     .rental-request-date {

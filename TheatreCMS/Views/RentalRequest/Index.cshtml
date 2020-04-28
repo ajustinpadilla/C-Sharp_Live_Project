@@ -54,7 +54,7 @@
                     rentalEndDate = item.EndTime.ToString("dd-MM-yy");
                     rentalEndTime = item.EndTime.ToString("HH:mm tt");
 
-                    <tr class="text-light">
+                    <tr class="text-light rental-request-rows">
                         <td>
                             @Html.DisplayFor(modelItem => item.ContactPerson)
                         </td>
@@ -70,7 +70,7 @@
                             <div class="rental-request-date">@rentalEndTime</div>
                         </td>
                         <td id="rental-request-project-info">
-                            <a href="#" class="project-info-popover" title="Project Info" data-toggle="project-info" data-trigger="focus" data-content="@Html.DisplayFor(modelItem => item.ProjectInfo)">Click Here</a>
+                            <button type="button" class="project-info-popover fa fa-search" title="Project Info" data-trigger="hover" data-toggle="project-info" data-content="@Html.DisplayFor(modelItem => item.ProjectInfo)"></button>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Requests)
@@ -100,10 +100,12 @@
                             }
                             @*Html.DisplayFor(modelItem => item.ContractSigned)*@
                         </td>
-                        <td id="rental-request-nav-wrapper">
-                            <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }) </div>
-                            <div class="rental-request-nav">@Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }) </div>
-                            <div class="rental-request-nav">@Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId }) </div>
+                        <td id="rental-request-nav-container">
+                            <div id="rental-request-nav-wrapper">
+                                <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-primary text-black" }) </div>
+                                <div class="rental-request-nav nav-details">@Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-info text-black" }) </div>
+                                <div class="rental-request-nav">@Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -119,24 +121,7 @@
 <script>
     $(document).ready(function () {
 
-
-        $(function () {
-            $('[data-toggle="project-info"]').popover()
-        })
-
-        $('a.project-info-popover').on('click', function (e) {
-            e.preventDefault();
-            return true;
-        });
-
-        $("html").on("click", function (e) {
-            var l = $(e.target);
-            if (l[0].className.indexOf("popover") == -1) {
-                $(".popover").each(function () {
-                    $(this).popover("destroy");
-                });
-            }
-        });
+         $('[data-toggle="project-info"]').popover();
 
         $('.table-responsive-stack').find("th").each(function (i) {
             if (!$(this).is('#rental-request-nav-th') ) {
@@ -160,8 +145,8 @@
                     $(this).find('thead').hide();
                 });
 
-                $(".popover").each(function () {
-                    $(this).popover("destroy");
+                $(".project-info-popover").each(function (i) {
+                    $(this).replaceWith('<span class="mobile-project-info">' + $(this).attr("data-content") + '</span>');
                 });
 
 
@@ -173,8 +158,8 @@
                     $(this).find('thead').show();
                 });
 
-                $(".popover").each(function () {
-                    $(this).popover("destory");
+                $(".mobile-project-info").each(function (i) {
+                    $(this).replaceWith('<button type="button" class="project-info-popover fa fa-search" title="Project Info" data-trigger="hover" data-toggle="project-info" data-content="' + $(this).text() + '"></button>');
                 });
             }
         }
