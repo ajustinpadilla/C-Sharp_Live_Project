@@ -574,7 +574,23 @@ textarea {
             transform: scale(2);
         }
 
-        /* MODIFIED BUTTONS TAILORED FOR SEASON MANAGER VIEWS */
+.accessMessage {
+    font-size: 2.3vw;
+    color: antiquewhite;
+    text-align: center;
+}
+
+@media only screen and (max-width: 750px){
+    .accessMessage {
+         font-size: 4.5vw;
+    }
+}
+
+.managerMessage {
+    font-size: 2vw;
+    color: antiquewhite;
+}
+/* MODIFIED BUTTONS TAILORED FOR SEASON MANAGER VIEWS */
 
         .SmBtn {
             width: auto;
