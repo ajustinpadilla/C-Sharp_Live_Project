@@ -112,89 +112,95 @@ namespace TheatreCMS.Controllers
             return View(productions.ToList());
         }
 
-        private void ArchiveSearch(ApplicationDbContext db, string SearchByCategory, string ArchiveSearchField)
+        private void ArchiveSearch(ApplicationDbContext db, string SearchByCategory, string SearchKey)
         {
             ViewBag.Category = SearchByCategory;
-            ViewData["SearchKey"] = ArchiveSearchField;
+            ViewData["SearchKey"] = SearchKey;
             switch (SearchByCategory)
             {
                 case "ArchiveAll":
-                    ViewBag.Message = string.Format("Results for \"{0}\" in Archive", ArchiveSearchField);
-                    var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                             || x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())
-                                                             || x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
-                    foreach (CastMember castMember in resultsCast)
-                    {
-                        castMember.Name = Regex.Replace(castMember.Name, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>", RegexOptions.IgnoreCase);
-                        //castMember.YearJoined = castMember.YearJoined.Replace((string)ViewData["SearchKey"], "<span class='bg-primary'>" + (string)ViewData["SearchKey"] + "</span>");
-                        castMember.Bio = Regex.Replace(castMember.Bio, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
+                    ViewBag.Message = string.Format("Results for \"{0}\" in Archive", SearchKey);
+                    var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(SearchKey.ToLower())              //Creates a list of cast members where there are search matches in any of those three columns
+                                                             || x.YearJoined.ToString().Contains(SearchKey.ToLower())
+                                                             || x.Bio.ToLower().Contains(SearchKey.ToLower())).ToList();
+                    resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
+                    var yearJoinedString = new List<string>();
+                    for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
+                    { 
+                        resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
+                        resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
+                        yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
+                        yearJoinedString[i] = Regex.Replace(yearJoinedString[i], SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
                     }
-                    resultsCast = resultsCast.Distinct().ToList();//prevents duplicate listings
-                    var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                                   || x.Playwright.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                                   || x.Description.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    ViewBag.YearJoined = yearJoinedString;
+                    var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(SearchKey.ToLower())
+                                                                   || x.Playwright.ToLower().Contains(SearchKey.ToLower())
+                                                                   || x.Description.ToLower().Contains(SearchKey.ToLower())).ToList();
                     resultsProduction = resultsProduction.Distinct().ToList();
                     foreach (Production production in resultsProduction)
                     {
-                        production.Title = Regex.Replace(production.Title, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        production.Playwright = Regex.Replace(production.Playwright, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        production.Description = Regex.Replace(production.Description, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
+                        production.Title = Regex.Replace(production.Title, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        production.Playwright = Regex.Replace(production.Playwright, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        production.Description = Regex.Replace(production.Description, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
 
                     }
-                    var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                       || x.Production.Title.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                       || x.Person.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(SearchKey.ToLower())
+                                                       || x.Production.Title.ToLower().Contains(SearchKey.ToLower())
+                                                       || x.Person.Name.ToLower().Contains(SearchKey.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
                     foreach (Part part in resultsPart)
                     {
-                        part.Character = Regex.Replace(part.Character, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        part.Production.Title = Regex.Replace(part.Production.Title, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        part.Person.Name = Regex.Replace(part.Person.Name, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
+                        part.Character = Regex.Replace(part.Character, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        part.Production.Title = Regex.Replace(part.Production.Title, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        part.Person.Name = Regex.Replace(part.Person.Name, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
                     }
-                    if (resultsCast.Count > 0) ViewData["ResultsCast"] = resultsCast;                       //sets ViewData value if there were any results
-                    if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
-                    if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
+                    if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
+                    if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
+                    if (resultsPart.Count > 0) ViewBag.ResultsPart = resultsPart;
                     break;
                 case "ArchiveCastMember":
-                    ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", ArchiveSearchField);
-                    resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                         || x.YearJoined.ToString().Contains(ArchiveSearchField.ToLower())
-                                                         || x.Bio.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", SearchKey);
+                    resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(SearchKey.ToLower())
+                                                         || x.YearJoined.ToString().Contains(SearchKey.ToLower())
+                                                         || x.Bio.ToLower().Contains(SearchKey.ToLower())).ToList();
                     resultsCast = resultsCast.Distinct().ToList();
-                    if (resultsCast.Count > 0) ViewData["ResultsCast"] = resultsCast;
-                    foreach (CastMember castMember in resultsCast)
+                    yearJoinedString = new List<string>();
+                    for (int i = 0; i < resultsCast.Count; i++)
                     {
-                        castMember.Name = Regex.Replace(castMember.Name, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        //castMember.YearJoined = castMember.YearJoined.Replace((string)ViewData["SearchKey"], "<span class='bg-primary'>" + (string)ViewData["SearchKey"] + "</span>");
-                        castMember.Bio = Regex.Replace(castMember.Bio, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
+                        resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
+                        resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
+                        yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
+                        yearJoinedString[i] = Regex.Replace(yearJoinedString[i], SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>", RegexOptions.IgnoreCase);
                     }
+                    ViewBag.YearJoined = yearJoinedString;
+                    if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;
                     break;
                 case "ArchiveProduction":
-                    ViewBag.Message = string.Format("Results for \"{0}\" in Productions", ArchiveSearchField);
-                    resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                               || x.Playwright.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                               || x.Description.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    ViewBag.Message = string.Format("Results for \"{0}\" in Productions", SearchKey);
+                    resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(SearchKey.ToLower())
+                                                               || x.Playwright.ToLower().Contains(SearchKey.ToLower())
+                                                               || x.Description.ToLower().Contains(SearchKey.ToLower())).ToList();
                     resultsProduction = resultsProduction.Distinct().ToList();
                     if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
                     foreach (Production production in resultsProduction)
                     {
-                        production.Title = Regex.Replace(production.Title, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        production.Playwright = Regex.Replace(production.Playwright, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        production.Description = Regex.Replace(production.Description, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
+                        production.Title = Regex.Replace(production.Title, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        production.Playwright = Regex.Replace(production.Playwright, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        production.Description = Regex.Replace(production.Description, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
                     }
                     break;
                 case "ArchivePart":
-                    ViewBag.Message = string.Format("Results for \"{0}\" in Parts", ArchiveSearchField);
-                    resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                   || x.Production.Title.ToLower().Contains(ArchiveSearchField.ToLower())
-                                                   || x.Person.Name.ToLower().Contains(ArchiveSearchField.ToLower())).ToList();
+                    ViewBag.Message = string.Format("Results for \"{0}\" in Parts", SearchKey);
+                    resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(SearchKey.ToLower())
+                                                   || x.Production.Title.ToLower().Contains(SearchKey.ToLower())
+                                                   || x.Person.Name.ToLower().Contains(SearchKey.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
                     if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
                     foreach (Part part in resultsPart)
                     {
-                        part.Character = Regex.Replace(part.Character, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        part.Production.Title = Regex.Replace(part.Production.Title, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
-                        part.Person.Name = Regex.Replace(part.Person.Name, ArchiveSearchField, "<span class='bg-primary'>" + ArchiveSearchField + "</span>");
+                        part.Character = Regex.Replace(part.Character, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        part.Production.Title = Regex.Replace(part.Production.Title, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
+                        part.Person.Name = Regex.Replace(part.Person.Name, SearchKey, "<span class='bg-primary'>" + SearchKey + "</span>");
                     }
                     break;
                 default:
