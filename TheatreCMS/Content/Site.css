@@ -1714,15 +1714,14 @@ textarea {
 
     .archive-input-container #SearchByCategory {
         width:200px;
-        line-height:37px;
+        height: 50px;
         padding: 12.25px 20px 12.25px 20px;
-        margin: 0;
+        margin: 8px 0px 8px 0px;
         background-color: #007bff;
         color: var(--light-color);
         text-align: center;
         position: absolute;
         right: 850px;
-        top: 8px;
         border: 1px solid var(--light-color);
         border-right: 0px;
         border-radius: 10px 0px 0px 10px;
@@ -1742,9 +1741,8 @@ textarea {
         color: var(--dark-color);
         text-align: center;
         position: absolute;
-        right: 0px;
-        top: 8px;
         border-radius: 0px 10px 10px 0px;
+        margin: 8px 0px 8px 0px;
     }
 
     .archive-input-container .btn:focus {
