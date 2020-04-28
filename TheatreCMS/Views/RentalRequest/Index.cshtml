@@ -161,12 +161,14 @@
                 $(".mobile-project-info").each(function (i) {
                     $(this).replaceWith('<button type="button" class="project-info-popover fa fa-search" title="Project Info" data-trigger="hover" data-toggle="project-info" data-content="' + $(this).text() + '"></button>');
                 });
+                $('[data-toggle="project-info"]').popover();
             }
         }
 
         flexTable();
 
         window.onresize = function (event) {
+            
             flexTable();
         };
 
