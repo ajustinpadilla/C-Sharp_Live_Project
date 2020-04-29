@@ -1039,19 +1039,28 @@ textarea {
             background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
         }
 
-        .resultsContainer{
-            margin: 3em;
-        }
-
-.results {
-    border: 1px black;
+.resultsContainer {
+    margin: 3em;
     background: rgb(240,77,68);
     background: linear-gradient(90deg, rgba(240,77,68,1) 0%, rgba(53,17,15,1) 100%, rgba(0,0,0,1) 100%);
 }
 
-        .results a {
-            color: #fffbfb;
+.results {
+    border: 1px black;
+    
+}
+
+        .results th {
+            margin: 1em;
         }
+        .results a {
+            display: block;
+            border: 1px solid black;
+            margin: 1em;
+            color: #fffbfb;
+
+        }
+        
         /*End styling for Archive page*/
 
 
