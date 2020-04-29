@@ -116,7 +116,7 @@ namespace TheatreCMS.Controllers
         {
             ViewBag.Category = searchByCategory;
             ViewData["SearchKey"] = searchKey;
-            string highlightedKey = "<span class='bg-primary'>" + searchKey + "</span>";   //The value of this variable can be altered to change the highlight color of the match.
+            string highlightedKey = "<span id='highlight'>$&</span>";   //This value is where the css id is applied to the highlighted word.
             string pattern = @"\b" + searchKey + @"\b";
             Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
             switch (searchByCategory)
