@@ -140,12 +140,56 @@ namespace TheatreCMS.Controllers
                     //                   where search.All(f => x.Name.ToLower().Contains(f))
                     //                   select x).ToList();
 
-                    var resultsCast = db.CastMembers.Where(x => x.Name.ToString().Contains(searchKey.ToLower()) //Creates a list of cast members where there are search matches in any of those three columns
-                                                             || x.YearJoined.ToString().Contains(searchKey.ToLower())
-                                                             || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
 
+                    string pattern = @"\b" + searchKey + @"\b";
+                    Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
+                    
+                    var resultsCast = new List<CastMember>();
+                    foreach (CastMember castMember in db.CastMembers)
+                    {
+                        Match matchName = rx.Match(castMember.Name);
+                        Match matchYearJoined = rx.Match(castMember.YearJoined.ToString());
+                        Match matchBio = rx.Match(castMember.Bio);
+                        if (matchName.Success || matchYearJoined.Success || matchBio.Success)
+                        {
+                            resultsCast.Add(castMember);
+                        }
+                    }
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
-                    Highlight(resultsCast, searchKey, highlightedKey); //Applies highlight to matches returned to the view
+                    Highlight(resultsCast, searchKey, highlightedKey); //Applies highlight effect to matches
+                    
+
+
+
+
+
+
+                    //var resultsProduction = new List<Production>();
+                    //foreach (Production production in db.Productions)
+                    //{
+                    //    Match m = rx.Match(castMember.Name);
+                    //    if (m.Success)
+                    //    {
+                    //        resultsCast.Add(castMember);
+                    //    }
+                    //}
+                    //var resultsCast = new List<CastMember>();
+                    //foreach (CastMember castMember in db.CastMembers)
+                    //{
+                    //    Match m = rx.Match(castMember.Name);
+                    //    if (m.Success)
+                    //    {
+                    //        resultsCast.Add(castMember);
+                    //    }
+                    //}
+
+
+                    
+                    //var resultsCast = db.CastMembers.Where(x => x.Name.ToString().Contains(searchKey.ToLower()) //Creates a list of cast members where there are search matches in any of those three columns
+                    //                                         || x.YearJoined.ToString().Contains(searchKey.ToLower())
+                    //                                         || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
+
+                    
                     
                     var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
                                                                    || x.Playwright.ToLower().Contains(searchKey.ToLower())
