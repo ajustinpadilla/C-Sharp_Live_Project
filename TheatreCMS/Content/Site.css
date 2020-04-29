@@ -1738,6 +1738,8 @@ textarea {
     padding: .15rem;
 }
 
+
+
 .table-responsive-stack .table-responsive-stack-thead {
     font-weight: bold;
     font-size: 1.0625em;
@@ -1768,20 +1770,17 @@ textarea {
     border-bottom: 1px solid var(--light-color) !important;
     margin-top: 10px;
     padding-bottom: 10px;
-    width: 10%;
+    flex-basis:;
 }
 
 #rental-request-nav-th {
-    width: 5% !important;
+    flex-basis: 5% !important;
+    margin-left: 5px;
 }
 
 .rental-request-rows #rental-request-nav-container {
     border: none !important;
-    width: 5% !important;
-}
-
-#rental-request-nav-wrapper {
-    margin-left: 20px;
+    flex-basis: 5% !important;
 }
 
 .rental-request-nav {
@@ -1835,13 +1834,10 @@ textarea {
 
     #rental-request-nav-container {
         padding-top: 5px;
+        width: 205px;
         display: flex;
         align-content: center;
         justify-content: center;
-    }
-
-    #rental-request-nav-wrapper {
-        width: 205px;
     }
 
     .rental-request-nav a {
