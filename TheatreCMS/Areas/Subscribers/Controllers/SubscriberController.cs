@@ -44,6 +44,7 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         public ActionResult Create()
         {
             //Pass data into SelectList to display for the user to choose which user subscription relates to
+            
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
             return View();
         }
@@ -55,8 +56,6 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SubscriberId,CurrentSubscriber,HasRenewed,Newsletter,RecentDonor,LastDonated,LastDonationAmt,SpecialRequests,Notes")]  Subscriber subscriber)
         {
-           
-
             //The form sent the user's User selection (from SelectList) into the POST method
             //Remove the SubscriberPerson from ModelState, at dbo.Subscribers has no such column
             ModelState.Remove("SubscriberPerson");
