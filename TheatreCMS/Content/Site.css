@@ -1043,11 +1043,11 @@ textarea {
             margin: 3em;
         }
 
-        .results {
-            
-            border: 1px black;
-            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(14,4,4,1) 0%, rgba(0,0,0,1) 0%, rgba(19,5,5,1) 0%, rgba(54,15,15,1) 5%, rgba(240,68,68,1) 50%, rgba(38,11,11,1) 100%, rgba(38,11,11,1) 100%, rgba(0,0,0,1) 100%);
-        }
+.results {
+    border: 1px black;
+    background: rgb(240,77,68);
+    background: linear-gradient(90deg, rgba(240,77,68,1) 0%, rgba(53,17,15,1) 100%, rgba(0,0,0,1) 100%);
+}
 
         .results a {
             color: #fffbfb;
