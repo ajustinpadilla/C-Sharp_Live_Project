@@ -112,16 +112,17 @@
             case "ArchiveAll":
                 if (ViewData["ResultsCast"] != null)
                 {
-                    <table style="width:100%" class="results">
+                    <table style="width:100%" class="table table-borderless table-hover results">
                         <tr>
-                            <th>Cast Member</th>
-                            <th>Year Joined</th>
-                            <th>Bio</th>
+                            <th scope="col">Cast Member</th>
+                            <th scope="col">Year Joined</th>
+                            <th scope="col">Bio</th>
                         </tr>
                         @for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
                         {
                             <tr>
-                                <td>
+                                
+                                <td scope="row">
                                     <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
                                         @Html.Raw(ViewBag.ResultsCast[i].Name)
                                     </a>
@@ -135,21 +136,27 @@
                                     <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>another header</th>
+                                <th> and another</th>
+                                <th> and another</th>
+                            </tr>
+
                         }
                     </table><br />
                 }
                 if (ViewData["ResultsProduction"] != null)
                 {
-                    <table style="width:100%" class="results">
+                    <table style="width:100%" class="table table-borderless table-hover results">
                         <tr>
-                            <th>Production</th>
-                            <th>Playwright</th>
-                            <th>Description</th>
+                            <th scope="col">Production</th>
+                            <th scope="col">Playwright</th>
+                            <th scope="col">Description</th>
                         </tr>
                         @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
                         {
                             <tr>
-                                <td>
+                                <td scope="row-">
                                     <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Title)</a>
                                 </td>
                                 <td>
@@ -164,11 +171,11 @@
                 }
                 if (ViewData["ResultsPart"] != null)
                 {
-                    <table style="width:100%" class="results">
+                    <table style="width:100%" class="table table-borderless table-hover results">
                         <tr>
-                            <th>Part</th>
-                            <th>Production</th>
-                            <th>Cast Member</th>
+                            <th scope="col">Part</th>
+                            <th scope="col">Production</th>
+                            <th scope="col">Cast Member</th>
                         </tr>
                         @foreach (var item in ViewData["ResultsPart"] as List<Part>)
                         {
@@ -191,11 +198,11 @@
 
                 break;
             case "ArchiveCastMember":
-                <table style="width:100%" class="results">
+                    <table style="width:100%" class="table table-borderless table-hover results">
                     <tr>
-                        <th>Cast Member</th>
-                        <th>Year Joined</th>
-                        <th>Bio</th>
+                        <th scope="col">Cast Member</th>
+                        <th scope="col">Year Joined</th>
+                        <th scope="col">Bio</th>
                     </tr>
                     @for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
                     {
@@ -221,11 +228,11 @@
                 </table>
                 break;
             case "ArchiveProduction":
-                <table style="width:100%" class="results">
+                    <table style="width:100%" class="table table-borderless table-hover results">
                     <tr>
-                        <th>Production</th>
-                        <th>Playwright</th>
-                        <th>Description</th>
+                        <th scope="col">Production</th>
+                        <th scope="col">Playwright</th>
+                        <th scope="col">Description</th>
                     </tr>
                     @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
                     {
@@ -245,11 +252,11 @@
                 </table>
                 break;
             case "ArchivePart":
-                <table style="width:100%" class="results">
+                    <table style="width:100%" class="table table-borderless table-hover results">
                     <tr>
-                        <th>Part</th>
-                        <th>Production</th>
-                        <th>Cast Member</th>
+                        <th scope="col">Part</th>
+                        <th scope="col">Production</th>
+                        <th scope="col">Cast Member</th>
                     </tr>
                     @foreach (var item in ViewData["ResultsPart"] as List<Part>)
                     {
