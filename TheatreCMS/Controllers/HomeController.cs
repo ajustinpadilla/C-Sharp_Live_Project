@@ -117,32 +117,15 @@ namespace TheatreCMS.Controllers
             ViewBag.Category = searchByCategory;
             ViewData["SearchKey"] = searchKey;
             string highlightedKey = "<span class='bg-primary'>" + searchKey + "</span>";   //The value of this variable can be altered to change the highlight color of the match.
+            string pattern = @"\b" + searchKey + @"\b";
+            Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
             switch (searchByCategory)
             {
 
 
                 case "SearchAll": //This case searches across all three tables.
                     ViewBag.Message = string.Format("Results for \"{0}\" in Archive", searchKey);
-
-                    //Regex.Match(x.Name, @"\W" + searchKey + @"\W").Value
-
-                    //var reg = new Regex("\\b" + searchKey + "\\b");
-                    //var castMembers = db.CastMembers;
-                    //var resultsCast = castMembers.Where(word => reg.IsMatch(word.Name)).ToList();  //System.NotSupportedException: 'LINQ to Entities does not recognize the method 'Boolean IsMatch(System.String)' method, and this method cannot be translated into a store expression.'
-
-
-                    //var search = searchKey.ToLower().Split(new[] { ' ' });
-                    //var resultsCast = db.CastMembers.Where(x => search.Any(y => x.Name.Contains(y)||x.YearJoined.ToString().Contains(y)||x.Bio.Contains(y))).ToList();
-
-
-                    //var search = searchKey.ToLower().Split(new[] { ' ' });
-                    //var resultsCast = (from x in db.CastMembers
-                    //                   where search.All(f => x.Name.ToLower().Contains(f))
-                    //                   select x).ToList();
-
-
-                    string pattern = @"\b" + searchKey + @"\b";
-                    Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
+                    
                     
                     var resultsCast = new List<CastMember>();
                     foreach (CastMember castMember in db.CastMembers)
@@ -216,19 +199,35 @@ namespace TheatreCMS.Controllers
 
                 case "SearchCastMembers":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", searchKey);
-                    resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(searchKey.ToLower())
-                                                         || x.YearJoined.ToString().Contains(searchKey.ToLower())
-                                                         || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
-                    resultsCast = resultsCast.Distinct().ToList();
-                    Highlight(resultsCast, searchKey, highlightedKey);
-                    if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;
+                    
+                    resultsCast = new List<CastMember>();
+                    foreach (CastMember castMember in db.CastMembers)
+                    {
+                        Match matchName = rx.Match(castMember.Name);
+                        Match matchYearJoined = rx.Match(castMember.YearJoined.ToString());
+                        Match matchBio = rx.Match(castMember.Bio);
+                        if (matchName.Success || matchYearJoined.Success || matchBio.Success)
+                        {
+                            resultsCast.Add(castMember);
+                        }
+                    }
+                    resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
+                    Highlight(resultsCast, searchKey, highlightedKey); //Applies highlight effect to matches
+                    if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
                     break;
 
                 case "SearchProductions":
-                    ViewBag.Message = string.Format("Results for \"{0}\" in Productions", searchKey);
-                    resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
-                                                               || x.Playwright.ToLower().Contains(searchKey.ToLower())
-                                                               || x.Description.ToLower().Contains(searchKey.ToLower())).ToList();
+                    resultsProduction = new List<Production>();
+                    foreach (Production production in db.Productions)
+                    {
+                        Match matchTitle = rx.Match(production.Title);
+                        Match matchPlaywright = rx.Match(production.Playwright);
+                        Match matchDescription = rx.Match(production.Description);
+                        if (matchTitle.Success || matchPlaywright.Success || matchDescription.Success)
+                        {
+                            resultsProduction.Add(production);
+                        }
+                    }
                     resultsProduction = resultsProduction.Distinct().ToList();
                     Highlight(resultsProduction, searchKey, highlightedKey);
                     if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
@@ -236,9 +235,17 @@ namespace TheatreCMS.Controllers
 
                 case "SearchParts":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Parts", searchKey);
-                    resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
-                                                   || x.Production.Title.ToLower().Contains(searchKey.ToLower())
-                                                   || x.Person.Name.ToLower().Contains(searchKey.ToLower())).ToList();
+                    resultsPart = new List<Part>();
+                    foreach (Part part in db.Parts)
+                    {
+                        Match matchCharacter = rx.Match(part.Character);
+                        Match matchTitle = rx.Match(part.Production.Title);
+                        Match matchName = rx.Match(part.Person.Name);
+                        if (matchCharacter.Success || matchTitle.Success || matchName.Success)
+                        {
+                            resultsPart.Add(part);
+                        }
+                    }
                     resultsPart = resultsPart.Distinct().ToList();
                     Highlight(resultsPart, searchKey, highlightedKey);
                     if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
