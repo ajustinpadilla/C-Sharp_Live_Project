@@ -70,51 +70,11 @@ namespace TheatreCMS.Controllers
       
         }
 
-        ////POST:Edit CalendarEvents via Modals
-        //[HttpPost]
-        //[Authorize(Roles = "Admin")]
-        //public JsonResult CreateNewEvent(CalendarEvent e)
-        //{
-        //    var status = false;
-        //    //var status = false;
-        //    //{
-        //    //    if (e.EventId >0)
-        //    //    {
-        //    //        //Update the event if exists
-        //    //        CalendarEvent calendarEvents = db.CalendarEvent.Where(a => a.EventId == e.EventId).FirstOrDefault();
-        //    //        if (calendarEvents != null)
-        //    //        {
-        //    //            calendarEvents.EventId = e.EventId;
-        //    //            calendarEvents.Title = e.Title;
-        //    //            calendarEvents.StartDate = e.StartDate;
-        //    //            calendarEvents.EndDate = e.EndDate;
-        //    //            calendarEvents.TicketsAvailable = e.TicketsAvailable;
-        //    //            calendarEvents.Color = e.Color;
-        //    //            calendarEvents.ClassName = e.ClassName;
-        //    //            calendarEvents.SomeKey = e.SomeKey;
-        //    //            calendarEvents.AllDay = e.AllDay;
-        //    //            calendarEvents.RentalRequestId = e.RentalRequestId;
-        //    //            calendarEvents.ProductionId = e.ProductionId;
-        //    //        }
-
-        //    //    }
-        //    //    //Create the event if it does not exist yet
-        //    //    else
-        //    //    {
-                    
-        //        //}
-        //    db.CalendarEvent.Add(e);
-        //    db.SaveChanges();
-        //    status = true;
-        //    //}
-        //    return new JsonResult { Data = new { status = status } };
-        //}
-
         // POST: CalendarEvents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for  on, let me show u the 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
         {
@@ -196,12 +156,20 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvents)
-        {     
-            if (ModelState.IsValid)
+        {
+            var isAjax = Request.IsAjaxRequest();
+            if (ModelState.IsValid && !isAjax)
             {                
                 db.Entry(calendarEvents).State = EntityState.Modified;
                 db.SaveChanges();
+                System.Diagnostics.Debug.WriteLine("This call was NOT made from ajax, therefore from Create MVC Page. isAjax: " + isAjax);
                 return RedirectToAction("Index");
+            }
+            if (ModelState.IsValid && isAjax)
+            {
+                System.Diagnostics.Debug.WriteLine("This call was made from Ajax, therefore from Add Modal. isAjax: " + isAjax);
+                db.Entry(calendarEvents).State = EntityState.Modified;
+                db.SaveChanges();               
             }
             return View();
         }
@@ -238,6 +206,7 @@ namespace TheatreCMS.Controllers
         // POST: CalendarEvents Confirm Delete Modal
         [HttpPost]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public JsonResult DeletingEvent(int id)
         {
             var status = false;

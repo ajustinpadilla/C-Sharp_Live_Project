@@ -1629,7 +1629,36 @@ textarea {
             padding-top: 16px;
             /*Centers calendar*/
             margin: auto;
+            /*Avoid modal width reflow */
+            padding-right: 15px;
         }
+
+
+/*styling for admin calender details/add/edit modals*/
+#fc-modals {
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
+}
+
+.fc-modal-labels {
+    color: var(--light-color);
+}
+
+#fc-modal-headers {
+    font-family: Tahoma, Geneva, sans-serif;
+}
+/*To make modal datetime-local inputs uniform with text inputs*/
+.modal input[type=datetime-local], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
 
         /*Product Details*/
 
