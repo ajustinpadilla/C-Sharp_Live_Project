@@ -816,7 +816,7 @@ div.magnify:hover {
     padding: 50px;
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 767px) {
     .castContainer {
         padding-left: 120px;
         padding-right: 120px;
