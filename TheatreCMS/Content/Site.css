@@ -1702,6 +1702,10 @@ textarea {
     color: #007bff !important;
 }
 
+.archive-input-container input[type="text"] {
+    background-color: var(--light-color);
+}
+
 @media only screen and (min-width: 900px){
     .archive-search-container {
         display: flex;
@@ -1720,6 +1724,7 @@ textarea {
         height: 50px;
         padding: 12.5px 20px 12.5px 20px;
         margin: 8px 0px 8px 200px;
+        background-color: var(--light-color);
         font-size: 20px;
         border: none;
         outline: none;
@@ -1739,12 +1744,8 @@ textarea {
         float: left;
         top: 8px;
         border: none;
-        border-radius: 10px 0px 0px 10px;
+        border-radius: 4px 0px 0px 4px;
         outline: none;
-    }
-
-    .archive-input-container #SearchByCategory:focus {
-        border-radius: 10px 0px 0px 0px;
     }
 
     .archive-input-container .btn {
@@ -1756,13 +1757,17 @@ textarea {
         color: var(--dark-color);
         text-align: center;
         position: absolute;
-        border-radius: 0px 10px 10px 0px;
+        border-radius: 0px 4px 4px 0px;
         margin: 8px 0px 8px 0px;
     }
     
 
     .archive-input-container .btn:focus {
         box-shadow: none !important;
+    }
+    
+    .archive-input-container .btn:hover {
+        background-color: var(--light-color);
     }
 
     .archive-input-container option {

@@ -295,47 +295,18 @@
             }
         }
 
-        @* Dropdown doubleclick handler *@
-
-        var previousTarget = null;
-        var targetBeforePrevious = null;
-        var self = null;
-
-        $('#SearchByCategory').on('click', function () {
-            self = this;
-            if (this === targetBeforePrevious) {
-                previousTarget = null;
-                if (this === previousTarget) {
-                    $(this).blur();
-                    targetBeforePrevious = this;
-                } else {
-                    targetBeforePrevious = null;
-                }
-            }
-            if (this === previousTarget) {
-                $(this).blur();
-                targetBeforePrevious = this;
-            }
-            previousTarget = this;
-        });
-
-        $(document).on('click', function () {
-            if (previousTarget == self) {
-                previousTarget = null;
-                targetBeforePrevious = null;
-            }
-        });
+        
 
         
 
         function changeSearchBtn() {
-            if ($(window).width() < 900) {
+            if (window.matchMedia('(max-width: 899px)').matches) {
                 $(".search-btn").each(function (i) {
                     $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
                 });
             } else {
                 $(".mobile-search-btn").each(function (i) {
-                    $(this).replaceWith('<button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>');
+                    $(this).replaceWith('<button class="search-btn btn btn-lg btn-circle fa fa-search color" type="submit" value="search"></button>');
                 });
             }
         }
