@@ -8,7 +8,7 @@
     ViewBag.Title = "Productions";
 
     //Assign ViewBag seasonyears, showtimes, and runtimes to variables
-    Dictionary<int, string> seasonYears = (ViewBag.SeasonYears as Dictionary<int, string>); 
+    Dictionary<int, string> seasonYears = (ViewBag.SeasonYears as Dictionary<int, string>);
     var showTimes = (ViewBag.ShowTimes as IEnumerable<string>).ToList();
     var runTimes = (ViewBag.RunTimes as IEnumerable<int>).ToList();
 }
@@ -28,7 +28,8 @@
                     <!-- Check if searching, if searching hide default selected placeholder option-->
                     @if (String.IsNullOrEmpty(ViewBag.CurrentSeason))
                     {
-                        <option selected disabled hidden>Season</option>    <!-- Hide if ViewBag.CurrentSeason HasValue-->
+                        <option selected disabled hidden>Season</option>
+ <!-- Hide if ViewBag.CurrentSeason HasValue-->
                     }
                     <option value="any">Any Season</option>
                     @for (int i = seasonYears.Count(); i > 0; i--)
@@ -118,7 +119,7 @@
                 </select>
                 @if (!String.IsNullOrEmpty(ViewBag.DayEx))
                 {
-                    @Html.ValidationMessage("day", ViewBag.DayEx as string, new { @class = "text-danger" })     <!-- Day validation error-->
+                    @Html.ValidationMessage("day", ViewBag.DayEx as string, new { @class = "text-danger" }) <!-- Day validation error-->
                 }
                 <select class="search-select" id="showtime" name="showtime">
                     @if (String.IsNullOrEmpty(ViewBag.CurrentShowtime))
@@ -178,7 +179,7 @@
                 </select>
                 World Premiere
                 @if (ViewBag.WorldPremiere ?? false)
-                { 
+                {
                     <input type="checkbox" id="worldpremiere" name="worldpremiere" value="true" checked />
                 }
                 else
@@ -204,11 +205,17 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
-
+@*
+<div class="results-holder">
+    @if ((ViewBag.IsSearching ?? false) && String.IsNullOrEmpty(ViewBag.DayEx)) //Only display if isSearching == true and no day validation error
+    {
+        <span>@ViewBag.Results Results.&nbsp;&nbsp;@Html.ActionLink("Reset search", "Index")</span>
+    }
+</div>*@
 <div class="container production-index-container">
     <div class="row mx-2">
         @foreach (var item in Model)
-                    {
+        {
             <div class="card col-md-6 col-xl-4 bg-black" id="production-info-parent">
                 @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
                 @{

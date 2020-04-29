@@ -1718,6 +1718,12 @@ textarea {
     padding: 0 0 0 8px !important;
     margin: 5px 0 5px 0 !important;
 }
+
+/*
+.results-holder {
+    margin-left: 58px;
+} */
+
 #isSearching {
     display: none;
 }
