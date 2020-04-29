@@ -58,7 +58,6 @@
 </div>
 
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
-
 @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
 {
     <div class="container" style="align-content:center">
@@ -71,8 +70,6 @@
         </select>
         <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
     </div>
-
-
 }
 @*<div class="container" style="align-content:center">
         <nav class="navbar navbar-expand-xl">
@@ -102,6 +99,8 @@
         </nav>
     </div>*@
 
+
+ <!--Search results-->
 <h3 id="archiveResultsTitle">Results</h3>
 <div class="resultsContainer">
 
@@ -109,7 +108,7 @@
     {
         switch (ViewBag.Category)
         {
-            case "SearchAll":
+            case "SearchAll":  //This case combines the three lower cases.
                 <table style="width:100%" class="table table-borderless table-hover results">
                     @if (ViewData["ResultsCast"] != null)
                     {
@@ -121,16 +120,11 @@
                         for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
                         {
                             <tr>
-
                                 <td scope="row">
-                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
-                                        @Html.Raw(ViewBag.ResultsCast[i].Name)
-                                    </a>
+                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Name)</a>
                                 </td>
                                 <td>
-                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
-                                        @Html.Raw(ViewBag.YearJoined[i])
-                                    </a>
+                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.YearJoined[i])</a>
                                 </td>
                                 <td>
                                     <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
@@ -180,7 +174,6 @@
                                     <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
                                 </td>
                             </tr>
-
                         }
                     }
                 </table>
@@ -198,19 +191,13 @@
                     {
                         <tr>
                             <td>
-                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
-                                    @Html.Raw(ViewBag.ResultsCast[i].Name)
-                                </a>
+                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Name)</a>
                             </td>
                             <td>
-                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
-                                    @Html.Raw(ViewBag.YearJoined[i])
-                                </a>
+                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.YearJoined[i])</a >                                
                             </td>
                             <td>
-                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">
-                                    @Html.Raw(ViewBag.ResultsCast[i].Bio)
-                                </a>
+                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
                             </td>
                         </tr>
                     }
@@ -261,19 +248,13 @@
                                 <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
                             </td>
                         </tr>
-
                     }
                     <caption>@ViewBag.Message</caption>
                 </table>
                 break;
         }
-
     }
-
 </div>
-
-
-
 
 <hr />
 

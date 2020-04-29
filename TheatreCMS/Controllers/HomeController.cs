@@ -119,12 +119,31 @@ namespace TheatreCMS.Controllers
             string highlightedKey = "<span class='bg-primary'>" + searchKey + "</span>";   //The value of this variable can be altered to change the highlight color of the match.
             switch (searchByCategory)
             {
+
+
                 case "SearchAll": //This case searches across all three tables.
                     ViewBag.Message = string.Format("Results for \"{0}\" in Archive", searchKey);
-                    
-                    var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(searchKey.ToLower())              //Creates a list of cast members where there are search matches in any of those three columns
+
+                    //Regex.Match(x.Name, @"\W" + searchKey + @"\W").Value
+
+                    //var reg = new Regex("\\b" + searchKey + "\\b");
+                    //var castMembers = db.CastMembers;
+                    //var resultsCast = castMembers.Where(word => reg.IsMatch(word.Name)).ToList();  //System.NotSupportedException: 'LINQ to Entities does not recognize the method 'Boolean IsMatch(System.String)' method, and this method cannot be translated into a store expression.'
+
+
+                    //var search = searchKey.ToLower().Split(new[] { ' ' });
+                    //var resultsCast = db.CastMembers.Where(x => search.Any(y => x.Name.Contains(y)||x.YearJoined.ToString().Contains(y)||x.Bio.Contains(y))).ToList();
+
+
+                    //var search = searchKey.ToLower().Split(new[] { ' ' });
+                    //var resultsCast = (from x in db.CastMembers
+                    //                   where search.All(f => x.Name.ToLower().Contains(f))
+                    //                   select x).ToList();
+
+                    var resultsCast = db.CastMembers.Where(x => x.Name.ToString().Contains(searchKey.ToLower()) //Creates a list of cast members where there are search matches in any of those three columns
                                                              || x.YearJoined.ToString().Contains(searchKey.ToLower())
                                                              || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
+
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
                     Highlight(resultsCast, searchKey, highlightedKey); //Applies highlight to matches returned to the view
                     
@@ -182,6 +201,9 @@ namespace TheatreCMS.Controllers
         //It works by wrapping the search key in a span tag that styles it differently from the rest of the text
         private void Highlight(List<CastMember> resultsCast, string searchKey, string highlightedKey)
         {
+            
+            
+
             var yearJoinedString = new List<string>();
             for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
             {
@@ -195,6 +217,7 @@ namespace TheatreCMS.Controllers
 
         private void Highlight(List<Production> resultsProduction, string searchKey, string highlightedKey)
         {
+            Console.WriteLine("ASDASD");
             foreach (Production production in resultsProduction)
             {
                 production.Title = Regex.Replace(production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
