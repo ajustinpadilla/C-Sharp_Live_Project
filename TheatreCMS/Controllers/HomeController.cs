@@ -119,7 +119,7 @@ namespace TheatreCMS.Controllers
             string highlightedKey = "<span class='bg-primary'>" + searchKey + "</span>";   //The value of this variable can be altered to change the highlight color of the match.
             switch (searchByCategory)
             {
-                case "ArchiveAll":
+                case "SearchAll":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Archive", searchKey);
                     var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(searchKey.ToLower())              //Creates a list of cast members where there are search matches in any of those three columns
                                                              || x.YearJoined.ToString().Contains(searchKey.ToLower())
@@ -159,7 +159,7 @@ namespace TheatreCMS.Controllers
                     if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
                     if (resultsPart.Count > 0) ViewBag.ResultsPart = resultsPart;
                     break;
-                case "ArchiveCastMember":
+                case "SearchCastMembers":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", searchKey);
                     resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(searchKey.ToLower())
                                                          || x.YearJoined.ToString().Contains(searchKey.ToLower())
@@ -176,7 +176,7 @@ namespace TheatreCMS.Controllers
                     ViewBag.YearJoined = yearJoinedString;
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;
                     break;
-                case "ArchiveProduction":
+                case "SearchProductions":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Productions", searchKey);
                     resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
                                                                || x.Playwright.ToLower().Contains(searchKey.ToLower())
@@ -190,7 +190,7 @@ namespace TheatreCMS.Controllers
                         production.Description = Regex.Replace(production.Description, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                     }
                     break;
-                case "ArchivePart":
+                case "SearchParts":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Parts", searchKey);
                     resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
                                                    || x.Production.Title.ToLower().Contains(searchKey.ToLower())

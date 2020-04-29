@@ -64,10 +64,10 @@
     <div class="container" style="align-content:center">
         @Html.TextBox("ArchiveSearchField")
         <select id="SearchByCategory" name="SearchByCategory">
-            <option value="ArchiveAll">Search All</option>
-            <option value="ArchiveCastMember">Cast Member</option>
-            <option value="ArchiveProduction">Production</option>
-            <option value="ArchivePart">Part</option>
+            <option value="SearchAll">Search All</option>
+            <option value="SearchCastMembers">Cast Member</option>
+            <option value="SearchProductions">Production</option>
+            <option value="SearchParts">Part</option>
         </select>
         <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
     </div>
@@ -109,7 +109,7 @@
         <h3>Results</h3>
         switch (ViewBag.Category)
         {
-            case "ArchiveAll":
+            case "SearchAll":
                 <table style="width:100%" class="table table-borderless table-hover results">
                     @if (ViewData["ResultsCast"] != null)
                     {
@@ -187,7 +187,7 @@
                 <p>@ViewBag.Message</p>
 
                 break;
-            case "ArchiveCastMember":
+            case "SearchCastMembers":
                 <table style="width:100%" class="table table-borderless table-hover results">
                     <tr>
                         <th scope="col">Cast Member</th>
@@ -217,7 +217,7 @@
                     <caption>@ViewBag.Message</caption>
                 </table>
                 break;
-            case "ArchiveProduction":
+            case "SearchProductions":
                 <table style="width:100%" class="table table-borderless table-hover results">
                     <tr>
                         <th scope="col">Production</th>
@@ -241,7 +241,7 @@
                     <caption>@ViewBag.Message</caption>
                 </table>
                 break;
-            case "ArchivePart":
+            case "SearchParts":
                 <table style="width:100%" class="table table-borderless table-hover results">
                     <tr>
                         <th scope="col">Part</th>
