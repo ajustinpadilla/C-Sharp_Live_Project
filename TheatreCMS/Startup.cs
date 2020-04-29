@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using Microsoft.AspNet;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
@@ -150,14 +151,14 @@ namespace TheatreCMS
 		//Seeding database with dummy Productions
 		private void SeedProductions()
 		{
-
+            var stupid = context.ProductionPhotos.Where(photo => photo.Description.Contains("Hamilton")).FirstOrDefault();
             var productions = new List<Production>
             {
                 new Production{Title = "Hamilton", Playwright = "Lin-Manuel Miranda", Description = "This is a musical inspired by the biography " +
                 "Alexander Hamilton by historian Ron Chernow. This musical tells the story of American Founding Father Alexander Hamilton through music " +
-                "that draws heavily from hip hop, as well as R&B, pop, soul, and traditional-style show tune. ", OpeningDay = new DateTime(2020, 01, 02, 19, 30, 00),
+                "that draws heavily from hip hop, as well as R&B, pop, soul, and traditional-style show tune. ", ProductionPhotos = context.ProductionPhotos.Where(photo => photo.Description.Contains("Hamilton")).ToArray(), OpeningDay = new DateTime(2020, 01, 02, 19, 30, 00),
                 ClosingDay = new DateTime(2020, 01, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 01, 02, 19, 30, 00) , ShowtimeMat = new DateTime(2020, 01, 02, 22, 30, 00),
-                TicketLink = "ticketsforyou.com", Season = 1, IsCurrent = true, DefaultPhoto = context.ProductionPhotos.Where(photo => photo.ProPhotoId == 2).FirstOrDefault()},
+                TicketLink = "ticketsforyou.com", Season = 1, IsCurrent = true, DefaultPhoto = context.ProductionPhotos.Where(photo => photo.Description.Contains("Hamilton")).FirstOrDefault()},
 
                 new Production{Title = "Phantom of the Opera", Playwright = "Andrew Lloyd Webber & Charles Hart", Description = "Based on a French " +
                 "novel of the same name by Gaston Leroux, its central plot revolves around a beautiful soprano, Christine Daae, who becomes the obesession " +
@@ -180,7 +181,7 @@ namespace TheatreCMS
                 "ambitious J. Pierrepont Finch, who, with the help of the book How to Succeed in Business Without Really Trying, rises from window washer to chairman of " +
                 "the board of the World Wide Wicket Company.", OpeningDay = new DateTime(2019, 12, 01, 19, 30, 00), ClosingDay = new DateTime(2019, 12, 22, 19, 30, 00),
                 ShowtimeEve = new DateTime(2019, 12, 01, 19, 30, 00), ShowtimeMat = new DateTime(2019, 12, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 4,
-                IsCurrent = false, DefaultPhoto = context.ProductionPhotos.Where(photo => photo.ProPhotoId == 10).First()}
+                IsCurrent = false, DefaultPhoto = context.ProductionPhotos.Where(photo => photo.ProPhotoId == 10).FirstOrDefault()}
 			};
 
 
@@ -196,21 +197,23 @@ namespace TheatreCMS
             }
 		}
 
-
+        
         private void SeedProductionPhotos()
         {
             var converter = new ImageConverter();
             // create images first
-            Image image1 = Image.FromFile(@"~\Content\Images\hamiltonFc.png"); //should it be ~\Content\Images\hamiltonFc.png ??
-            Image image2 = Image.FromFile(@"~\Content\Images\hamilton2.png");
-            Image image3 = Image.FromFile(@"~\Content\Images\phantom1.png");
-            Image image4 = Image.FromFile(@"~\Content\Images\phantom2.png");
-            Image image5 = Image.FromFile(@"~\Content\Images\bookofmormon1.png");
-            Image image6 = Image.FromFile(@"~\Content\Images\bookofmormon2.png");
-            Image image7 = Image.FromFile(@"~\Content\Images\wicked1.png");
-            Image image8 = Image.FromFile(@"~\Content\Images\wicked2.png");
-            Image image9 = Image.FromFile(@"~\Content\Images\howtosucceedinbusinesswithoutreallytrying.png");
-            Image image10 = Image.FromFile(@"~\Content\Images\howtosucceedinbusinesswithoutreallytrying2.png");
+            string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
+
+            Image image1 = Image.FromFile(Path.Combine(imagesRoot, @"hamiltonFc.png"));
+            Image image2 = Image.FromFile(Path.Combine(imagesRoot, @"hamilton2.png"));
+            Image image3 = Image.FromFile(Path.Combine(imagesRoot, @"phantom1.png"));
+            Image image4 = Image.FromFile(Path.Combine(imagesRoot, @"phantom2.png"));
+            Image image5 = Image.FromFile(Path.Combine(imagesRoot, @"bookofmormon1.png"));
+            Image image6 = Image.FromFile(Path.Combine(imagesRoot, @"bookofmormon2.png"));
+            Image image7 = Image.FromFile(Path.Combine(imagesRoot, @"wicked1.png"));
+            Image image8 = Image.FromFile(Path.Combine(imagesRoot, @"wicked2.png"));
+            Image image9 = Image.FromFile(Path.Combine(imagesRoot, @"howtosucceedinbusinesswithoutreallytrying.png"));
+            Image image10 = Image.FromFile(Path.Combine(imagesRoot, @"howtosucceedinbusinesswithoutreallytrying2.png"));
 
             var photos = new List<Photo>
             {
@@ -365,6 +368,19 @@ namespace TheatreCMS
                 }
             };
             productionphoto.ForEach(prodphoto => context.ProductionPhotos.AddOrUpdate(p => p.PhotoId, prodphoto));
+            context.SaveChanges();
+
+            // get all production titles
+            // foreach production title in production titles
+            // get production
+            // assign production's default photo to a production photo that contains that title
+
+            var productions = context.Productions.ToList();
+            var productionPhotos = context.ProductionPhotos.ToList();
+            foreach (var production in productions)
+            {
+                production.DefaultPhoto = productionPhotos.Where(productionPhoto => productionPhoto.Production == production).FirstOrDefault();
+            }
             context.SaveChanges();
         }
     }
