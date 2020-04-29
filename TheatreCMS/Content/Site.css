@@ -1778,6 +1778,10 @@ textarea {
     flex-basis: 5% !important;
 }
 
+#rental-request-nav-wrapper {
+    margin-left: 20px;
+}
+
 .rental-request-nav {
     margin: 2px 0 2px 0;
 }
@@ -1785,7 +1789,6 @@ textarea {
 .rental-request-nav a {
     display: inline-block;
     width: 55px;
-    margin-left: 20px;
 }
 
 
