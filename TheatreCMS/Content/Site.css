@@ -1051,14 +1051,19 @@ textarea {
     background: linear-gradient(90deg, rgba(240,77,68,1) 0%, rgba(53,17,15,1) 100%, rgba(0,0,0,1) 100%);
 }
 
-        .results th {
+.results th {
             margin: 1em;
         }
-        .results a {
+        
+.results a {
             display: block;
             color: #fffbfb;
-
         }
+
+#archiveResultsTitle{
+    margin-left: 2em;
+    margin-top: 40px;
+}
         
         /*End styling for Archive page*/
 
