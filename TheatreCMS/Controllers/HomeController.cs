@@ -157,51 +157,58 @@ namespace TheatreCMS.Controllers
                     }
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
                     Highlight(resultsCast, searchKey, highlightedKey); //Applies highlight effect to matches
-                    
 
-
-
-
-
-
-                    //var resultsProduction = new List<Production>();
-                    //foreach (Production production in db.Productions)
-                    //{
-                    //    Match m = rx.Match(castMember.Name);
-                    //    if (m.Success)
-                    //    {
-                    //        resultsCast.Add(castMember);
-                    //    }
-                    //}
-                    //var resultsCast = new List<CastMember>();
-                    //foreach (CastMember castMember in db.CastMembers)
-                    //{
-                    //    Match m = rx.Match(castMember.Name);
-                    //    if (m.Success)
-                    //    {
-                    //        resultsCast.Add(castMember);
-                    //    }
-                    //}
-
-
-                    
-                    //var resultsCast = db.CastMembers.Where(x => x.Name.ToString().Contains(searchKey.ToLower()) //Creates a list of cast members where there are search matches in any of those three columns
-                    //                                         || x.YearJoined.ToString().Contains(searchKey.ToLower())
-                    //                                         || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
-
-                    
-                    
-                    var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
-                                                                   || x.Playwright.ToLower().Contains(searchKey.ToLower())
-                                                                   || x.Description.ToLower().Contains(searchKey.ToLower())).ToList();
+                    var resultsProduction = new List<Production>();
+                    foreach (Production production in db.Productions)
+                    {
+                        Match matchTitle = rx.Match(production.Title);
+                        Match matchPlaywright = rx.Match(production.Playwright);
+                        Match matchDescription = rx.Match(production.Description);
+                        if (matchTitle.Success || matchPlaywright.Success || matchDescription.Success)
+                        {
+                            resultsProduction.Add(production);
+                        }
+                    }
                     resultsProduction = resultsProduction.Distinct().ToList();
                     Highlight(resultsProduction, searchKey, highlightedKey);
                     
-                    var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
-                                                       || x.Production.Title.ToLower().Contains(searchKey.ToLower())
-                                                       || x.Person.Name.ToLower().Contains(searchKey.ToLower())).ToList();
+                    var resultsPart = new List<Part>();
+                    foreach (Part part in db.Parts)
+                    {
+                        Match matchCharacter = rx.Match(part.Character);
+                        Match matchTitle = rx.Match(part.Production.Title);
+                        Match matchName = rx.Match(part.Person.Name);
+                        if (matchCharacter.Success || matchTitle.Success || matchName.Success)
+                        {
+                            resultsPart.Add(part);
+                        }
+                    }
                     resultsPart = resultsPart.Distinct().ToList();
                     Highlight(resultsPart, searchKey, highlightedKey);
+
+
+                    //Below is the original implementation using LINQ. I wasn't able to get it to only return results for whole words so I switched to a different implementation using Regex
+
+                    //var resultsCast = db.CastMembers.Where(x => x.Name.ToString().Contains(searchKey.ToLower()) //Creates a list of cast members where there are search matches in any of those three columns
+                    //                                         || x.YearJoined.ToString().Contains(searchKey.ToLower())
+                    //                                         || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
+                    //resultsCast = resultsCast.Distinct().ToList();
+                    //Highlight(resultsCast, searchKey, highlightedKey);
+
+
+                    //var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
+                    //                                               || x.Playwright.ToLower().Contains(searchKey.ToLower())
+                    //                                               || x.Description.ToLower().Contains(searchKey.ToLower())).ToList();
+                    //resultsProduction = resultsProduction.Distinct().ToList();
+                    //Highlight(resultsProduction, searchKey, highlightedKey);
+
+                    //var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
+                    //                                   || x.Production.Title.ToLower().Contains(searchKey.ToLower())
+                    //                                   || x.Person.Name.ToLower().Contains(searchKey.ToLower())).ToList();
+                    //resultsPart = resultsPart.Distinct().ToList();
+                    //Highlight(resultsPart, searchKey, highlightedKey);
+
+
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
                     if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
                     if (resultsPart.Count > 0) ViewBag.ResultsPart = resultsPart;
