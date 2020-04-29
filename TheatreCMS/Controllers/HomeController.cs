@@ -140,9 +140,9 @@ namespace TheatreCMS.Controllers
                     resultsProduction = resultsProduction.Distinct().ToList();
                     foreach (Production production in resultsProduction)
                     {
-                        production.Title = Regex.Replace(production.Title, searchKey, highlightedKey);
-                        production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey);
-                        production.Description = Regex.Replace(production.Description, searchKey, highlightedKey);
+                        production.Title = Regex.Replace(production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        production.Description = Regex.Replace(production.Description, searchKey, highlightedKey, RegexOptions.IgnoreCase);
 
                     }
                     var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
@@ -151,9 +151,9 @@ namespace TheatreCMS.Controllers
                     resultsPart = resultsPart.Distinct().ToList();
                     foreach (Part part in resultsPart)
                     {
-                        part.Character = Regex.Replace(part.Character, searchKey, highlightedKey);
-                        part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey);
-                        part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey);
+                        part.Character = Regex.Replace(part.Character, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                     }
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
                     if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
@@ -185,9 +185,9 @@ namespace TheatreCMS.Controllers
                     if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
                     foreach (Production production in resultsProduction)
                     {
-                        production.Title = Regex.Replace(production.Title, searchKey, highlightedKey);
-                        production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey);
-                        production.Description = Regex.Replace(production.Description, searchKey, highlightedKey);
+                        production.Title = Regex.Replace(production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        production.Description = Regex.Replace(production.Description, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                     }
                     break;
                 case "ArchivePart":
@@ -199,9 +199,9 @@ namespace TheatreCMS.Controllers
                     if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
                     foreach (Part part in resultsPart)
                     {
-                        part.Character = Regex.Replace(part.Character, searchKey, highlightedKey);
-                        part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey);
-                        part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey);
+                        part.Character = Regex.Replace(part.Character, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                        part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                     }
                     break;
                 default:
