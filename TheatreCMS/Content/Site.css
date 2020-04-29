@@ -1769,8 +1769,13 @@ textarea {
     padding-bottom: 10px;
 }
 
+#rental-request-nav-th {
+    flex-basis: 5% !important;
+}
+
 .rental-request-rows #rental-request-nav-container {
     border: none !important;
+    flex-basis: 5% !important;
 }
 
 .rental-request-nav {
@@ -1779,7 +1784,8 @@ textarea {
 
 .rental-request-nav a {
     display: inline-block;
-    width: 53px;
+    width: 55px;
+    margin-left: 20px;
 }
 
 
@@ -1823,17 +1829,25 @@ textarea {
     }
 
     #rental-request-nav-container {
-        padding-top: 4px;
+        padding-top: 5px;
         display: flex;
+        align-content: center;
         justify-content: center;
-        align-items: center;
+    }
+
+    #rental-request-nav-wrapper {
+        width: 205px;
+    }
+
+    .rental-request-nav a {
+        margin: 0px;
     }
 
     .rental-request-nav {
-        display: inline-block;
-        margin: 5px 5px 0px 5px;
+        display: inline-flex;
+        padding: 2.5px;
     }
-    
+
     .mobile-project-info {
         display: inline-block;
         width: 90%;
