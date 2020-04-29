@@ -196,7 +196,7 @@ namespace TheatreCMS
             // create images first
             string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
 
-            Image image1 = Image.FromFile(Path.Combine(imagesRoot, @"hamiltonFc.png"));
+            Image image1 = Image.FromFile(Path.Combine(imagesRoot, @"hamilton1.png"));
             Image image2 = Image.FromFile(Path.Combine(imagesRoot, @"hamilton2.png"));
             Image image3 = Image.FromFile(Path.Combine(imagesRoot, @"phantom1.png"));
             Image image4 = Image.FromFile(Path.Combine(imagesRoot, @"phantom2.png"));
