@@ -125,36 +125,17 @@ namespace TheatreCMS.Controllers
                                                              || x.YearJoined.ToString().Contains(searchKey.ToLower())
                                                              || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
-                    var yearJoinedString = new List<string>();
-                    for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
-                    { 
-                        resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
-                        yearJoinedString[i] = Regex.Replace(yearJoinedString[i], searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                    }
-                    ViewBag.YearJoined = yearJoinedString;
+                    
                     var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
                                                                    || x.Playwright.ToLower().Contains(searchKey.ToLower())
                                                                    || x.Description.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsProduction = resultsProduction.Distinct().ToList();
-                    foreach (Production production in resultsProduction)
-                    {
-                        production.Title = Regex.Replace(production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        production.Description = Regex.Replace(production.Description, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-
-                    }
+                    
                     var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
                                                        || x.Production.Title.ToLower().Contains(searchKey.ToLower())
                                                        || x.Person.Name.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
-                    foreach (Part part in resultsPart)
-                    {
-                        part.Character = Regex.Replace(part.Character, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                    }
+                    
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
                     if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
                     if (resultsPart.Count > 0) ViewBag.ResultsPart = resultsPart;
@@ -207,6 +188,36 @@ namespace TheatreCMS.Controllers
                 default:
                     break;
             }
+        }
+
+        private void Highlight(List<CastMember> resultsCast, List<Production> resultsProduction, List<Part> resultsPart, string searchKey )
+        {
+            string highlightedKey = "<span class='bg-primary'>" + searchKey + "</span>";
+            
+            var yearJoinedString = new List<string>();
+            for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
+            {
+                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
+                yearJoinedString[i] = Regex.Replace(yearJoinedString[i], searchKey, highlightedKey, RegexOptions.IgnoreCase);
+            }
+            ViewBag.YearJoined = yearJoinedString;
+            foreach (Production production in resultsProduction)
+            {
+                production.Title = Regex.Replace(production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                production.Description = Regex.Replace(production.Description, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+            }
+            foreach (Part part in resultsPart)
+            {
+                part.Character = Regex.Replace(part.Character, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+            }
+
+
+
         }
     }
 }
