@@ -177,6 +177,9 @@ namespace TheatreCMS.Controllers
                     break;
             }
         }
+
+        // This method has overloads for passing in different list types
+        //It works by wrapping the search key in a span tag that styles it differently from the rest of the text
         private void Highlight(List<CastMember> resultsCast, string searchKey, string highlightedKey)
         {
             var yearJoinedString = new List<string>();
