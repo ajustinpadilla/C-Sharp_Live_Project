@@ -62,7 +62,6 @@
     @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
     {
         <div class="archive-input-container" style="align-content:center">
-            @Html.TextBox("ArchiveSearchField", "", new { placeholder = "Search" })
             <select id="SearchByCategory" class="s" name="SearchByCategory">
                 <option class="search-dropdown">Search by Category</option>
                 <option class="search-dropdown option" value="ArchiveCastMember">Cast Member</option>
@@ -70,6 +69,7 @@
                 <option class="search-dropdown option" value="ArchivePart">Part</option>
                 <option class="dummy" style="display:none">Search by Category</option>
             </select>
+            @Html.TextBox("ArchiveSearchField", "", new { placeholder = "Search" })
             <button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>
         </div>
 
@@ -253,13 +253,6 @@
 @Scripts.Render("~/bundles/jquery")
 <script>
     $(document).ready(function () {
-        $('#SearchByCategory').change(function () {
-            if ($('.option').is(":checked")) {
-                $(this).addClass("option-selected");
-            } else {
-                $(this).removeClass("option-selected");
-            }
-        });
 
         var canDo = true;
 
@@ -301,15 +294,47 @@
                 }, 500);
             }
         }
+
+        @* Dropdown doubleclick handler *@
+
+        var previousTarget = null;
+        var targetBeforePrevious = null;
+        var self = null;
+
+        $('#SearchByCategory').on('click', function () {
+            self = this;
+            if (this === targetBeforePrevious) {
+                previousTarget = null;
+                if (this === previousTarget) {
+                    $(this).blur();
+                    targetBeforePrevious = this;
+                } else {
+                    targetBeforePrevious = null;
+                }
+            }
+            if (this === previousTarget) {
+                $(this).blur();
+                targetBeforePrevious = this;
+            }
+            previousTarget = this;
+        });
+
+        $(document).on('click', function () {
+            if (previousTarget == self) {
+                previousTarget = null;
+                targetBeforePrevious = null;
+            }
+        });
+
         
 
         function changeSearchBtn() {
             if ($(window).width() < 900) {
                 $(".search-btn").each(function (i) {
-                    $(this).replaceWith('<button class="search-btn btn btn-outline-primary" type="submit" value="search">' + 'Search' + '</button>');
+                    $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
                 });
             } else {
-                $(".search-btn").each(function (i) {
+                $(".mobile-search-btn").each(function (i) {
                     $(this).replaceWith('<button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>');
                 });
             }
