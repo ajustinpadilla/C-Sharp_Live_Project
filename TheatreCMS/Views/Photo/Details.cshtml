@@ -24,7 +24,7 @@
         <dt>
             @Html.DisplayNameFor(model => model.PhotoFile)
         </dt>
-        <dd class="image-spacing">
+        <dd class="image-spacing" max-width: 500px>
             <img class="large_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
             </dd>
         <dt>
@@ -54,7 +54,7 @@
     </dl>
 </div>
       
-    <p>
+    <p class=" backandeditspacing">
         @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoId }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
