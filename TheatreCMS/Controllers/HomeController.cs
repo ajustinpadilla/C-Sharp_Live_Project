@@ -119,81 +119,66 @@ namespace TheatreCMS.Controllers
             string highlightedKey = "<span class='bg-primary'>" + searchKey + "</span>";   //The value of this variable can be altered to change the highlight color of the match.
             switch (searchByCategory)
             {
-                case "SearchAll":
+                case "SearchAll": //This case searches across all three tables.
                     ViewBag.Message = string.Format("Results for \"{0}\" in Archive", searchKey);
+                    
                     var resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(searchKey.ToLower())              //Creates a list of cast members where there are search matches in any of those three columns
                                                              || x.YearJoined.ToString().Contains(searchKey.ToLower())
                                                              || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
+                    Highlight(resultsCast, searchKey, highlightedKey); //Applies highlight to matches returned to the view
                     
                     var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
                                                                    || x.Playwright.ToLower().Contains(searchKey.ToLower())
                                                                    || x.Description.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsProduction = resultsProduction.Distinct().ToList();
+                    Highlight(resultsProduction, searchKey, highlightedKey);
                     
                     var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
                                                        || x.Production.Title.ToLower().Contains(searchKey.ToLower())
                                                        || x.Person.Name.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
-                    
+                    Highlight(resultsPart, searchKey, highlightedKey);
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
                     if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
                     if (resultsPart.Count > 0) ViewBag.ResultsPart = resultsPart;
                     break;
+
                 case "SearchCastMembers":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", searchKey);
                     resultsCast = db.CastMembers.Where(x => x.Name.ToLower().Contains(searchKey.ToLower())
                                                          || x.YearJoined.ToString().Contains(searchKey.ToLower())
                                                          || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsCast = resultsCast.Distinct().ToList();
-                    yearJoinedString = new List<string>();
-                    for (int i = 0; i < resultsCast.Count; i++)
-                    {
-                        resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
-                        yearJoinedString[i] = Regex.Replace(yearJoinedString[i], searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                    }
-                    ViewBag.YearJoined = yearJoinedString;
+                    Highlight(resultsCast, searchKey, highlightedKey);
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;
                     break;
+
                 case "SearchProductions":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Productions", searchKey);
                     resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
                                                                || x.Playwright.ToLower().Contains(searchKey.ToLower())
                                                                || x.Description.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsProduction = resultsProduction.Distinct().ToList();
+                    Highlight(resultsProduction, searchKey, highlightedKey);
                     if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
-                    foreach (Production production in resultsProduction)
-                    {
-                        production.Title = Regex.Replace(production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        production.Description = Regex.Replace(production.Description, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                    }
                     break;
+
                 case "SearchParts":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Parts", searchKey);
                     resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
                                                    || x.Production.Title.ToLower().Contains(searchKey.ToLower())
                                                    || x.Person.Name.ToLower().Contains(searchKey.ToLower())).ToList();
                     resultsPart = resultsPart.Distinct().ToList();
+                    Highlight(resultsPart, searchKey, highlightedKey);
                     if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
-                    foreach (Part part in resultsPart)
-                    {
-                        part.Character = Regex.Replace(part.Character, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                        part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                    }
                     break;
                 default:
                     break;
             }
         }
-
-        private void Highlight(List<CastMember> resultsCast, List<Production> resultsProduction, List<Part> resultsPart, string searchKey )
+        private void Highlight(List<CastMember> resultsCast, string searchKey, string highlightedKey)
         {
-            string highlightedKey = "<span class='bg-primary'>" + searchKey + "</span>";
-            
             var yearJoinedString = new List<string>();
             for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
             {
@@ -203,21 +188,26 @@ namespace TheatreCMS.Controllers
                 yearJoinedString[i] = Regex.Replace(yearJoinedString[i], searchKey, highlightedKey, RegexOptions.IgnoreCase);
             }
             ViewBag.YearJoined = yearJoinedString;
+        }
+
+        private void Highlight(List<Production> resultsProduction, string searchKey, string highlightedKey)
+        {
             foreach (Production production in resultsProduction)
             {
                 production.Title = Regex.Replace(production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                 production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                 production.Description = Regex.Replace(production.Description, searchKey, highlightedKey, RegexOptions.IgnoreCase);
             }
+        }
+
+        private void Highlight(List<Part> resultsPart, string searchKey, string highlightedKey)
+        {
             foreach (Part part in resultsPart)
             {
                 part.Character = Regex.Replace(part.Character, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                 part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                 part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
             }
-
-
-
         }
     }
 }
