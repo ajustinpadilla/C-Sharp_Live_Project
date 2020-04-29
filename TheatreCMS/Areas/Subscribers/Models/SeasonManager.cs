@@ -16,7 +16,7 @@ namespace TheatreCMS.Areas.Subscribers.Models
         [Display(Name = "Number of Seats Available")]
         public int NumberSeats { get; set; }        // number of seats available to book for each production
         
-        [Display(Name = "Is it Currently Booked?")]
+        [Display(Name = "Season Booking Complete")]
         public bool BookedCurrent { get; set; }
         
         [Display(Name = "Fall Production Name")]// 
