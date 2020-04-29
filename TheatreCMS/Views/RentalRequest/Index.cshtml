@@ -138,7 +138,7 @@
         });
 
         function flexTable() {
-            if ($(window).width() < 992) {
+            if (window.matchMedia('(max-width: 992px)').matches) {
 
                 $(".table-responsive-stack").each(function (i) {
                     $(this).find(".table-responsive-stack-thead").show();

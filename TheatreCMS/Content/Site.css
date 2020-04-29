@@ -1757,6 +1757,7 @@ textarea {
     border-color: var(--light-color);
     border: none;
     vertical-align: middle !important;
+    color: var(--light-color);
 }
 
 .project-info-popover:focus, .project-info-popover:active {
@@ -1767,15 +1768,16 @@ textarea {
     border-bottom: 1px solid var(--light-color) !important;
     margin-top: 10px;
     padding-bottom: 10px;
+    width: 10%;
 }
 
 #rental-request-nav-th {
-    flex-basis: 5% !important;
+    width: 5% !important;
 }
 
 .rental-request-rows #rental-request-nav-container {
     border: none !important;
-    flex-basis: 5% !important;
+    width: 5% !important;
 }
 
 #rental-request-nav-wrapper {
