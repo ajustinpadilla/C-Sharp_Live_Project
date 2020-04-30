@@ -901,23 +901,23 @@ textarea {
             margin-right: 10px;
         }
 
-.castContainer {
-    padding: 50px;
-}
+        .castContainer {
+            padding: 50px;
+        }
 
-@media only screen and (max-width: 767px) {
-    .castContainer {
-        padding-left: 120px;
-        padding-right: 120px;
-    }
-}
+        @media only screen and (max-width: 767px) {
+            .castContainer {
+                padding-left: 120px;
+                padding-right: 120px;
+            }
+        }
 
-.castImageContainer {
-    position: relative;
-    width: auto;
-    /*used for text animation*/
-    /*overflow: hidden;*/
-}
+        .castImageContainer {
+            position: relative;
+            width: auto;
+            /*used for text animation*/
+            /*overflow: hidden;*/
+        }
 
         .castImage {
             opacity: 1;
@@ -928,43 +928,45 @@ textarea {
             backface-visibility: hidden;
         }
 
-.castImageContainer:hover .castImage {
-    opacity: 0.3;
-}
+        .castImageContainer:hover .castImage {
+            opacity: 0.3;
+        }
 
-.castImageContainer:hover .castMiddle {
-    opacity: 1;
-}
+        .castImageContainer:hover .castMiddle {
+            opacity: 1;
+        }
 
-.castImageContainer:hover .castText {
-    margin-bottom: 0px;
-    margin-top: 0px
-}
-
-.castText {
-    /*background-color: var(--light-color);*/
-    background-color: rgba(255,251,251,.6);
-    color: var(--main-bg-color);
-    font-size: 16px;
-    font-weight: 500;
-    padding: 1px 1px;
-    font-style: italic;
-}
-
-
-.castMiddle {
-    opacity: 0;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-    height: auto;
-    bottom: 0%;
-    width: 100%;
-    margin-top: auto;
-}
+        .castImageContainer:hover .castText {
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+        .castImageContainer:hover a {
+            text-decoration: none;
+        }
+        .castText {
+        /*background-color: var(--light-color);*/
+        background-color: rgba(255,251,251,.6);
+        color: var(--main-bg-color);
+        font-size: 16px;
+        font-weight: 500;
+        padding: 1px 1px;
+        font-style: italic;
+        }
 
 
-/*End Styling for CastMember Index View*/
+        .castMiddle {
+            opacity: 0;
+            position: absolute;
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+            height: auto;
+            bottom: 0%;
+            width: 100%;
+            margin-top: auto;
+        }
+
+
+        /*End Styling for CastMember Index View*/
 
         .nav-login li {
             padding-right: 3rem;
