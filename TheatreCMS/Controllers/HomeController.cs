@@ -103,12 +103,12 @@ namespace TheatreCMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Archive(string SearchByCategory, string ArchiveSearchField)
+        public ActionResult Archive(string SearchByCategory, string searchKey)
         {
             var db = new ApplicationDbContext();
             var productions = db.Productions
                 .Include(i => i.DefaultPhoto);
-            ArchiveSearch(db, SearchByCategory, ArchiveSearchField);
+            ArchiveSearch(db, SearchByCategory, searchKey);
             return View(productions.ToList());
         }
 
@@ -265,7 +265,7 @@ namespace TheatreCMS.Controllers
             var yearJoinedString = new List<string>();
             for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
             {
-                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);  /* @"\b" + searchKey + @"\b"*/
                 resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, searchKey, highlightedKey, RegexOptions.IgnoreCase);
                 yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
                 yearJoinedString[i] = Regex.Replace(yearJoinedString[i], searchKey, highlightedKey, RegexOptions.IgnoreCase);

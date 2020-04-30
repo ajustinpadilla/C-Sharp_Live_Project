@@ -61,7 +61,7 @@
 @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
 {
     <div class="container" style="align-content:center">
-        @Html.TextBox("ArchiveSearchField")
+        @Html.TextBox("searchKey")
         <select id="SearchByCategory" name="SearchByCategory">
             <option value="SearchAll">Search All</option>
             <option value="SearchCastMembers">Cast Member</option>
