@@ -139,7 +139,7 @@ namespace TheatreCMS.Controllers
                         }
                     }
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
-                    Highlight(resultsCast, searchKey, highlightedKey); //Applies highlight effect to matches
+                    Highlight(resultsCast, searchKey, highlightedKey); //Highlight MUST be used on resultsCast. The other results don't require it.
 
                     var resultsProduction = new List<Production>();
                     foreach (Production production in db.Productions)
