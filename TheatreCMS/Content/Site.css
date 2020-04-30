@@ -1407,13 +1407,15 @@ textarea {
     width: 100%;
 }*/
 
+        /*I adjusted the speed at which the navbar and logo shrinks and expands while scrolling*/
+
         #menu {
-            transition: 0.2s;
+            transition: 0.8s;
             padding: 20px;
         }
 
         #logo {
-            transition: 0.2s;
+            transition: 0.8s;
         }
 
         /*Styling for sponsor logos*/
@@ -1899,4 +1901,16 @@ textarea {
 .backandeditspacing{
     padding-left: 40px;
     padding-bottom: 10px;
+}
+
+/*#navbarDropdownMenuLink{
+    color: black;
+}*/
+
+/*Ids should only occur one time on an HTML page*/
+
+/*Added a .class1.class2 selector*/
+
+#navbarSupportedContent .color {
+    color: #212529
 }
