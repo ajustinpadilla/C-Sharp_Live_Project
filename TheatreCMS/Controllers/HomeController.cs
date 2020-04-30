@@ -115,7 +115,7 @@ namespace TheatreCMS.Controllers
         private void ArchiveSearch(ApplicationDbContext db, string searchByCategory, string searchKey)
         {
             ViewBag.Category = searchByCategory;
-            string highlightedKey = "<span id='highlight'>$&</span>";   //This value is where the css id is applied to the highlighted word.
+            string highlightedKey = "<span id='highlight'>$&</span>";   //highlightedKey is where the css id is applied to the highlighted word.  $& swaps the search key with the original text to keep the casing intact.
             string pattern = searchKey;                                // For whole word search, pattern = @"\b" + searchKey + @"\b"; For substring matching, pattern = searchkey;
             Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
             switch (searchByCategory)

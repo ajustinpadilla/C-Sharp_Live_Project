@@ -109,94 +109,99 @@
         switch (ViewBag.Category)
         {
             case "SearchAll":  //This case combines the three lower cases.
-                <table style="width:100%" class="table table-borderless table-hover results">
-                    @if (ViewData["ResultsCast"] != null)
-                    {
-                        <tr>
-                            <th scope="col">Cast Member</th>
-                            <th scope="col">Year Joined</th>
-                            <th scope="col">Bio</th>
-                        </tr>
-                        for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
-                        {
-                            <tr>
-                                <td scope="row">
-                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Name)</a>
-                                </td>
-                                <td>
-                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.YearJoined[i])</a>
-                                </td>
-                                <td>
-                                    <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    @if (ViewData["ResultsProduction"] != null)
-                    {
-                        <tr>
-                            <th scope="col">Production</th>
-                            <th scope="col">Playwright</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                        foreach (var item in ViewData["ResultsProduction"] as List<Production>)
-                        {
-                            <tr>
-                                <td scope="row">
-                                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Title)</a>
-                                </td>
-                                <td>
-                                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Playwright)</a>
-                                </td>
-                                <td>
-                                    <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Description)</a>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    @if (ViewData["ResultsPart"] != null)
-                    {
-                        <tr>
-                            <th scope="col">Part</th>
-                            <th scope="col">Production</th>
-                            <th scope="col">Cast Member</th>
-                        </tr>
-                        foreach (var item in ViewData["ResultsPart"] as List<Part>)
-                        {
-                            <tr>
-                                <td>
-                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                </td>
-                                <td>
-                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Production.Title)</a>
-                                </td>
-                                <td>
-                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
-                                </td>
-                            </tr>
-                        }
-                    }
-                </table>
+    <table class="table table-borderless table-hover results">
+        @if (ViewData["ResultsCast"] != null)
+        {
+            <thead>
+                <tr class="d-flex">
+                    <th scope="col" class="col-lg-2">Cast Member</th>
+                    <th scope="col" class="col-lg-2">Year Joined</th>
+                    <th scope="col" class="col-lg-8">Bio</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                @for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
+                {
+                <tr class="d-flex">
+                    <td class="col-lg-2">
+                        <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Name)</a>
+                    </td>
+                    <td class="col-lg-2">
+                        <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.YearJoined[i])</a>
+                    </td>
+                    <td class="col-lg-8">
+                        <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
+                    </td>
+                </tr>
+                }
+                </tbody>
+            }
+        @if (ViewData["ResultsProduction"] != null)
+        {
+            <tr class="d-flex">
+                <th scope="col" class="col-lg-2">Production</th>
+                <th scope="col" class="col-lg-2">Playwright</th>
+                <th scope="col" class="col-lg-8">Description</th>
+            </tr>
+            foreach (var item in ViewData["ResultsProduction"] as List<Production>)
+            {
+                <tr class="d-flex">
+                    <td class="col-lg-2">
+                        <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Title)</a>
+                    </td>
+                    <td class ="col-lg-2">
+                        <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Playwright)</a>
+                    </td>
+                    <td class="col-lg-8">
+                        <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Description)</a>
+                    </td>
+                </tr>
+            }
+        }
+        @if (ViewData["ResultsPart"] != null)
+        {
+            <tr class="d-flex">
+                <th scope="col" class="col-lg-2">Part</th>
+                <th scope="col" class="col-lg-2">Production</th>
+                <th scope="col" class="col-lg-8">Cast Member</th>
+            </tr>
+            foreach (var item in ViewData["ResultsPart"] as List<Part>)
+            {
+                <tr class="d-flex">
+                    <td class="col-lg-2">
+                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                    </td>
+                    <td class="col-lg-2">
+                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Production.Title)</a>
+                    </td>
+                    <td class="col-lg-8">
+                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
                 <p>@ViewBag.Message</p>
 
                 break;
             case "SearchCastMembers":
-                <table style="width:100%" class="table table-borderless table-hover results">
-                    <tr>
-                        <th scope="col">Cast Member</th>
-                        <th scope="col">Year Joined</th>
-                        <th scope="col">Bio</th>
+                <table class="table table-borderless table-hover results">
+                    <tr class="d-flex">
+                        <th scope="col" class="col-lg-2">Cast Member</th>
+                        <th scope="col" class="col-lg-2">Year Joined</th>
+                        <th scope="col" class="col-lg-8">Bio</th>
                     </tr>
                     @for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
                     {
-                        <tr>
-                            <td>
+                        <tr class="d-flex">
+                            <td class="col-lg-2">
                                 <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Name)</a>
                             </td>
-                            <td>
+                            <td class="col-lg-2">
                                 <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.YearJoined[i])</a >                                
                             </td>
-                            <td>
+                            <td class="col-lg-8">
                                 <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
                             </td>
                         </tr>
@@ -205,22 +210,22 @@
                 </table>
                 break;
             case "SearchProductions":
-                <table style="width:100%" class="table table-borderless table-hover results">
-                    <tr>
-                        <th scope="col">Production</th>
-                        <th scope="col">Playwright</th>
-                        <th scope="col">Description</th>
+                <table class="table table-borderless table-hover results">
+                    <tr class="d-flex">
+                        <th scope="col" class="col-lg-2">Production</th>
+                        <th scope="col" class="col-lg-2">Playwright</th>
+                        <th scope="col" class="col-lg-8">Description</th>
                     </tr>
                     @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
                     {
-                        <tr>
-                            <td>
+                        <tr class="d-flex">
+                            <td class="col-lg-2">
                                 <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Title)</a>
                             </td>
-                            <td>
+                            <td class="col-lg-2">
                                 <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Playwright)</a>
                             </td>
-                            <td>
+                            <td class="col-lg-8">
                                 <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Description)</a>
                             </td>
                         </tr>
@@ -229,28 +234,28 @@
                 </table>
                 break;
             case "SearchParts":
-                <table style="width:100%" class="table table-borderless table-hover results">
-                    <tr>
-                        <th scope="col">Part</th>
-                        <th scope="col">Production</th>
-                        <th scope="col">Cast Member</th>
+                <table class="table table-borderless table-hover results">
+                    <tr class="d-flex">
+                        <th scope="col" class="col-lg-2">Part</th>
+                        <th scope="col" class="col-lg-2">Production</th>
+                        <th scope="col" class="col-lg-8">Cast Member</th>
                     </tr>
                     @foreach (var item in ViewData["ResultsPart"] as List<Part>)
                     {
-                        <tr>
-                            <td>
+                        <tr class="d-flex">
+                            <td class="col-lg-2">
                                 <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
                             </td>
-                            <td>
+                            <td class="col-lg-2">
                                 <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Production.Title)</a>
                             </td>
-                            <td>
+                            <td class="col-lg-8">
                                 <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
                             </td>
                         </tr>
                     }
-                    <caption>@ViewBag.Message</caption>
                 </table>
+                    <caption>@ViewBag.Message</caption>
                 break;
         }
     }

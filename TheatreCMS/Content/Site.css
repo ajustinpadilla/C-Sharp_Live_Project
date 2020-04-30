@@ -1068,36 +1068,36 @@ textarea {
         }
 
         .resultsContainer {
-        margin: 3em;
-        background: rgb(240,77,68);
-        background: linear-gradient(90deg, rgba(240,77,68,1) 0%, rgba(53,17,15,1) 100%, rgba(0,0,0,1) 100%);
-
+        margin-left: 3em;
+        margin-right: 3em;
+        border: 1px solid #007bff;
+        border-color: #007bff;
         }
 
         .results {
         border: 1px black;
-        background: rgb(240,77,68);
-        background: linear-gradient(90deg, rgba(240,77,68,1) 0%, rgba(53,17,15,1) 100%, rgba(0,0,0,1) 100%);
         }
 
         .results th {
            font-size: 22px;
-        }
-        
-        .results a {
-            display: block;
-            color: #fffbfb;
-            max-width: 800px;
-            font-size: 18px;
+           color: #007bff
         }
 
+            .results a {
+                display: block;
+                color: #fffbfb;
+                max-width: 800px;
+                font-size: 18px;
+            }
+
 #highlight {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: #007bff;
 }
 
         #archiveResultsTitle{
-        margin-left: 2em;
+        margin-left: 1em;
         margin-top: 40px;
+        font-size: 50px;
         }
         
         /*End styling for Archive page*/
