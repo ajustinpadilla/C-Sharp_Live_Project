@@ -1860,3 +1860,36 @@ textarea {
     }
 
 }
+
+/*This class was added to put spacing between the photo and the text on the Photo Details page*/
+.image-spacing{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 10px;
+    border-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    max-width: 500px;
+}
+
+.details-spacing{
+    padding-top: 25px;
+}
+
+/*This class was added to give visual flair to the text on the Photo Details page*/
+.photodetailspagedecorating {
+    font-family: 'BioRhyme';
+    text-decoration-line: underline;
+    text-decoration-style: inherit;
+    text-decoration-color: crimson;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+}
+
+.backandeditspacing{
+    padding-left: 40px;
+    padding-bottom: 10px;
+}
