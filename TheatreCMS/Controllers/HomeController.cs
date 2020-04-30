@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace TheatreCMS.Controllers
 {
+    [HandleError]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -108,9 +109,17 @@ namespace TheatreCMS.Controllers
             var db = new ApplicationDbContext();
             var productions = db.Productions
                 .Include(i => i.DefaultPhoto);
-            ArchiveSearch(db, SearchByCategory, searchKey);
+            try
+            {
+                ArchiveSearch(db, SearchByCategory, searchKey);
+            }
+
+            catch (HttpRequestValidationException) 
+            {
+                ViewBag.Message = "Sorry, that wasn't a valid search term. Try again!";
+            }
             return View(productions.ToList());
-        }
+            }
 
         private void ArchiveSearch(ApplicationDbContext db, string searchByCategory, string searchKey)
         {
