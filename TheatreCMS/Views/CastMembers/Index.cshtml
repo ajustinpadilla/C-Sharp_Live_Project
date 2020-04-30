@@ -22,9 +22,9 @@
 <div class="row castMargin">
     @foreach (var item in Model)
     {
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4 castContainer">
             <div class="thumbnail">
-                <div class="castContainer">
+                <div class="castImageContainer">
                     @*<img class="castImage" src="@Url.Content("~/Content/Images/CastMember.jpg")" style="width:100%">*@
                     @{
                         string img = "";
@@ -40,7 +40,16 @@
                         }
                     }
                     <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })"> <img class="castImage" src="@img" style="width:100%" /> </a>
-                    <div class="castMiddle"><div class="castText">@Html.DisplayFor(modelItem => item.Bio)</div></div>
+                    <div class="castMiddle">
+                        <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })">
+                            @{ if (item.Bio.Length > 90)                           // the max allowable characters can be changed on this line, and 
+                                {
+                                    item.Bio = item.Bio.Substring(0, 90) + "..."; //                                                      this line
+                                }
+                            }
+                            <p class="castText">@Html.DisplayFor(modelItem => item.Bio)</p>         @*this tag is the bio popup*@
+                        </a>
+                    </div>
                 </div>
                 <div class="caption text-center">
                     <p>
