@@ -13,7 +13,6 @@ using System.Text.RegularExpressions;
 
 namespace TheatreCMS.Controllers
 {
-    [HandleError]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -104,6 +103,7 @@ namespace TheatreCMS.Controllers
         }
 
         [HttpPost]
+        [HandleError]
         public ActionResult Archive(string SearchByCategory, string searchKey)
         {
             var db = new ApplicationDbContext();
