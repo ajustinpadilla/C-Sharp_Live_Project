@@ -1,6 +1,7 @@
 ﻿namespace TheatreCMS.Migrations
 {
     using System;
+    using TheatreCMS.Models;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
