@@ -100,8 +100,7 @@
 
       <input type="number" name="Current_Season" value="@Html.DisplayFor(model => model.current_season)">
       <!--Add Alert Message for Season Error-->
-      @Html.ValidationMessageFor(model => model.current_season, "Please enter the valid current" +
-   " season.", new { @class = "text-danger" })
+      @Html.ValidationMessageFor(model => model.current_season, "", new { @class = "text-danger" })
       <span class="error" id="Current_Season_error"></span>
       @{ 
           foreach (ModelState modelState in ViewData.ModelState.Values)
