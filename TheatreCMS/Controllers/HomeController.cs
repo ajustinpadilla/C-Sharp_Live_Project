@@ -115,7 +115,6 @@ namespace TheatreCMS.Controllers
         private void ArchiveSearch(ApplicationDbContext db, string searchByCategory, string searchKey)
         {
             ViewBag.Category = searchByCategory;
-            ViewData["SearchKey"] = searchKey;
             string highlightedKey = "<span id='highlight'>$&</span>";   //This value is where the css id is applied to the highlighted word.
             string pattern = @"\b" + searchKey + @"\b";
             Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
@@ -265,10 +264,10 @@ namespace TheatreCMS.Controllers
             var yearJoinedString = new List<string>();
             for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
             {
-                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);  /* @"\b" + searchKey + @"\b"*/
-                resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase); @"\b" + searchKey + @"\b"
+                resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
                 yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
-                yearJoinedString[i] = Regex.Replace(yearJoinedString[i], searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                yearJoinedString[i] = Regex.Replace(yearJoinedString[i], @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
             }
             ViewBag.YearJoined = yearJoinedString;
         }
@@ -278,9 +277,9 @@ namespace TheatreCMS.Controllers
             Console.WriteLine("ASDASD");
             foreach (Production production in resultsProduction)
             {
-                production.Title = Regex.Replace(production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                production.Playwright = Regex.Replace(production.Playwright, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                production.Description = Regex.Replace(production.Description, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                production.Title = Regex.Replace(production.Title, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
+                production.Playwright = Regex.Replace(production.Playwright, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
+                production.Description = Regex.Replace(production.Description, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
             }
         }
 
@@ -288,9 +287,9 @@ namespace TheatreCMS.Controllers
         {
             foreach (Part part in resultsPart)
             {
-                part.Character = Regex.Replace(part.Character, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                part.Production.Title = Regex.Replace(part.Production.Title, searchKey, highlightedKey, RegexOptions.IgnoreCase);
-                part.Person.Name = Regex.Replace(part.Person.Name, searchKey, highlightedKey, RegexOptions.IgnoreCase);
+                part.Character = Regex.Replace(part.Character, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
+                part.Production.Title = Regex.Replace(part.Production.Title, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
+                part.Person.Name = Regex.Replace(part.Person.Name, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
             }
         }
     }
