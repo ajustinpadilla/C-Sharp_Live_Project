@@ -116,7 +116,7 @@ namespace TheatreCMS.Controllers
         {
             ViewBag.Category = searchByCategory;
             string highlightedKey = "<span id='highlight'>$&</span>";   //This value is where the css id is applied to the highlighted word.
-            string pattern = @"\b" + searchKey + @"\b";
+            string pattern = searchKey;                                // For whole word search, pattern = @"\b" + searchKey + @"\b"; For substring matching, pattern = searchkey;
             Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
             switch (searchByCategory)
             {
@@ -138,7 +138,7 @@ namespace TheatreCMS.Controllers
                         }
                     }
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
-                    Highlight(resultsCast, searchKey, highlightedKey); //Highlight MUST be used on resultsCast. The other results don't require it.
+                    Highlight(resultsCast, pattern, highlightedKey); //Highlight MUST be used on resultsCast. The other results don't require it.
 
                     var resultsProduction = new List<Production>();
                     foreach (Production production in db.Productions)
@@ -152,7 +152,7 @@ namespace TheatreCMS.Controllers
                         }
                     }
                     resultsProduction = resultsProduction.Distinct().ToList();
-                    Highlight(resultsProduction, searchKey, highlightedKey);
+                    Highlight(resultsProduction, pattern, highlightedKey);
                     
                     var resultsPart = new List<Part>();
                     foreach (Part part in db.Parts)
@@ -166,7 +166,7 @@ namespace TheatreCMS.Controllers
                         }
                     }
                     resultsPart = resultsPart.Distinct().ToList();
-                    Highlight(resultsPart, searchKey, highlightedKey);
+                    Highlight(resultsPart, pattern, highlightedKey);
 
 
                     //Below is the original implementation using LINQ. I wasn't able to get it to only return results for whole words so I switched to a different implementation using Regex
@@ -175,20 +175,20 @@ namespace TheatreCMS.Controllers
                     //                                         || x.YearJoined.ToString().Contains(searchKey.ToLower())
                     //                                         || x.Bio.ToLower().Contains(searchKey.ToLower())).ToList();
                     //resultsCast = resultsCast.Distinct().ToList();
-                    //Highlight(resultsCast, searchKey, highlightedKey);
+                    //Highlight(resultsCast, pattern, highlightedKey);
 
 
                     //var resultsProduction = db.Productions.Where(x => x.Title.ToLower().Contains(searchKey.ToLower())
                     //                                               || x.Playwright.ToLower().Contains(searchKey.ToLower())
                     //                                               || x.Description.ToLower().Contains(searchKey.ToLower())).ToList();
                     //resultsProduction = resultsProduction.Distinct().ToList();
-                    //Highlight(resultsProduction, searchKey, highlightedKey);
+                    //Highlight(resultsProduction, pattern, highlightedKey);
 
                     //var resultsPart = db.Parts.Where(x => x.Character.ToLower().Contains(searchKey.ToLower())
                     //                                   || x.Production.Title.ToLower().Contains(searchKey.ToLower())
                     //                                   || x.Person.Name.ToLower().Contains(searchKey.ToLower())).ToList();
                     //resultsPart = resultsPart.Distinct().ToList();
-                    //Highlight(resultsPart, searchKey, highlightedKey);
+                    //Highlight(resultsPart, pattern, highlightedKey);
 
 
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
@@ -211,7 +211,7 @@ namespace TheatreCMS.Controllers
                         }
                     }
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
-                    Highlight(resultsCast, searchKey, highlightedKey); //Applies highlight effect to matches
+                    Highlight(resultsCast, pattern, highlightedKey); //Applies highlight effect to matches
                     if (resultsCast.Count > 0) ViewBag.ResultsCast = resultsCast;                       //sets ViewData value if there were any results
                     break;
 
@@ -228,7 +228,7 @@ namespace TheatreCMS.Controllers
                         }
                     }
                     resultsProduction = resultsProduction.Distinct().ToList();
-                    Highlight(resultsProduction, searchKey, highlightedKey);
+                    Highlight(resultsProduction, pattern, highlightedKey);
                     if (resultsProduction.Count > 0) ViewData["ResultsProduction"] = resultsProduction;
                     break;
 
@@ -246,7 +246,7 @@ namespace TheatreCMS.Controllers
                         }
                     }
                     resultsPart = resultsPart.Distinct().ToList();
-                    Highlight(resultsPart, searchKey, highlightedKey);
+                    Highlight(resultsPart, pattern, highlightedKey);
                     if (resultsPart.Count > 0) ViewData["ResultsPart"] = resultsPart;
                     break;
                 default:
@@ -256,7 +256,7 @@ namespace TheatreCMS.Controllers
 
         // This method has overloads for passing in different list types
         //It works by wrapping the search key in a span tag that styles it differently from the rest of the text
-        private void Highlight(List<CastMember> resultsCast, string searchKey, string highlightedKey)
+        private void Highlight(List<CastMember> resultsCast, string pattern, string highlightedKey)
         {
             
             
@@ -264,32 +264,32 @@ namespace TheatreCMS.Controllers
             var yearJoinedString = new List<string>();
             for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
             {
-                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
-                resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
+                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, pattern, highlightedKey, RegexOptions.IgnoreCase);
+                resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, pattern, highlightedKey, RegexOptions.IgnoreCase);
                 yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
-                yearJoinedString[i] = Regex.Replace(yearJoinedString[i], @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
+                yearJoinedString[i] = Regex.Replace(yearJoinedString[i], pattern, highlightedKey, RegexOptions.IgnoreCase);
             }
             ViewBag.YearJoined = yearJoinedString;
         }
 
-        private void Highlight(List<Production> resultsProduction, string searchKey, string highlightedKey)
+        private void Highlight(List<Production> resultsProduction, string pattern, string highlightedKey)
         {
             Console.WriteLine("ASDASD");
             foreach (Production production in resultsProduction)
             {
-                production.Title = Regex.Replace(production.Title, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
-                production.Playwright = Regex.Replace(production.Playwright, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
-                production.Description = Regex.Replace(production.Description, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
+                production.Title = Regex.Replace(production.Title, pattern, highlightedKey, RegexOptions.IgnoreCase);
+                production.Playwright = Regex.Replace(production.Playwright, pattern, highlightedKey, RegexOptions.IgnoreCase);
+                production.Description = Regex.Replace(production.Description, pattern, highlightedKey, RegexOptions.IgnoreCase);
             }
         }
 
-        private void Highlight(List<Part> resultsPart, string searchKey, string highlightedKey)
+        private void Highlight(List<Part> resultsPart, string pattern, string highlightedKey)
         {
             foreach (Part part in resultsPart)
             {
-                part.Character = Regex.Replace(part.Character, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
-                part.Production.Title = Regex.Replace(part.Production.Title, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
-                part.Person.Name = Regex.Replace(part.Person.Name, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
+                part.Character = Regex.Replace(part.Character, pattern, highlightedKey, RegexOptions.IgnoreCase);
+                part.Production.Title = Regex.Replace(part.Production.Title, pattern, highlightedKey, RegexOptions.IgnoreCase);
+                part.Person.Name = Regex.Replace(part.Person.Name, pattern, highlightedKey, RegexOptions.IgnoreCase);
             }
         }
     }
