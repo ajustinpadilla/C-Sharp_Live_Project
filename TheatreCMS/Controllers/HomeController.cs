@@ -264,7 +264,7 @@ namespace TheatreCMS.Controllers
             var yearJoinedString = new List<string>();
             for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
             {
-                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase); @"\b" + searchKey + @"\b"
+                resultsCast[i].Name = Regex.Replace(resultsCast[i].Name, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
                 resultsCast[i].Bio = Regex.Replace(resultsCast[i].Bio, @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
                 yearJoinedString.Add(resultsCast[i].YearJoined.ToString());
                 yearJoinedString[i] = Regex.Replace(yearJoinedString[i], @"\b" + searchKey + @"\b", highlightedKey, RegexOptions.IgnoreCase);
