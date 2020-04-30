@@ -906,8 +906,21 @@ textarea {
         }
 
         .castContainer {
+            padding: 50px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .castContainer {
+                padding-left: 120px;
+                padding-right: 120px;
+            }
+        }
+
+        .castImageContainer {
             position: relative;
             width: auto;
+            /*used for text animation*/
+            /*overflow: hidden;*/
         }
 
         .castImage {
@@ -919,35 +932,45 @@ textarea {
             backface-visibility: hidden;
         }
 
-        .castContainer:hover .castImage {
+        .castImageContainer:hover .castImage {
             opacity: 0.3;
         }
 
-        .castContainer:hover .castMiddle {
+        .castImageContainer:hover .castMiddle {
             opacity: 1;
         }
 
-
-        .castText {
-            background-color: var(--light-color);
-            color: var(--main-bg-color);
-            font-size: 22px;
-            font-weight: 500;
-            padding: 1px 1px;
+        .castImageContainer:hover .castText {
+            margin-bottom: 0px;
+            margin-top: 0px;
         }
+        .castImageContainer:hover a {
+            text-decoration: none;
+        }
+        .castText {
+        /*background-color: var(--light-color);*/
+        background-color: rgba(255,251,251,.6);
+        color: var(--main-bg-color);
+        font-size: 16px;
+        font-weight: 500;
+        padding: 1px 1px;
+        font-style: italic;
+        }
+
 
         .castMiddle {
-            transition: .5s ease;
             opacity: 0;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             text-align: center;
+            height: auto;
+            bottom: 0%;
+            width: 100%;
+            margin-top: auto;
         }
 
-/*End Styling for CastMember Index View*/
+
+        /*End Styling for CastMember Index View*/
 
         .nav-login li {
             padding-right: 3rem;
@@ -1004,23 +1027,7 @@ textarea {
 
 
 
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*End Styling for CastMember Details View*/
-
+/*ENd Styling for CastMember Index View*/
 
 .nav-login li{
     padding-right: 3rem;
