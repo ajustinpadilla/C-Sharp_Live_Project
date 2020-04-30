@@ -1630,16 +1630,17 @@ textarea {
         .palette-container .fc td.fc-today {
             background-color: darkgray;
         }
-
+         /*this styles the event color*/
+         /*overwritten in Javascript depending on type of event*/
         .palette-container .fc-content {
-            background-color: red;
-            border: red;
-        }
-
+                    background-color: var(--secondary-color);
+                    border: var(--secondary-color);
+                }
+        /*affects some sort of background detail, set to content color*/
         .palette-container .fc-event {
-            background-color: red;
-            border: red;
-        }
+            background-color: var(--secondary-color);
+            border: var(--secondary-color);
+}
 
 
         .palette-container .fc {
@@ -1677,14 +1678,25 @@ textarea {
     border-radius: 4px;
     box-sizing: border-box;
 }
-
-
-
-        /*Product Details*/
-
-        #jumbo.jumbotron {
-            background-color: #bd1a11;
-        }
+/*styling for modal btns, modeled after today button provided by full calendar*/
+.iconBtn2 {
+    /* dimensions */
+    margin: 0;
+    border: none;
+    background-color:lightgrey;
+    height: 2.1em;
+    padding: 0 .6em;
+    /* text & cursor */
+    font-size: 1em;
+    /* normalize */
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 4px;
+}
+/*Product Details*/
+#jumbo.jumbotron {
+    background-color: #bd1a11;
+}
 
         #cardss.card {
             margin-top: 20px;

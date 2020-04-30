@@ -51,9 +51,14 @@
                                     <div class="form-group">
                                         <label class="fc-modal-labels" for="eventtypes">Event type:</label>
                                         <div class="formBox">
-                                            <select id="eventtypes">
-                                                <option value="production" id="addprodopt">Production</option>
-                                                <option value="rental" id="addrentopt">Facility Rental</option>
+                                            <select id="eventtypes">                                               
+                                                <option>Choose an Event</option>
+                                                <optgroup label="Productions" id="addprodopt">
+                                                    <option value="production" ></option>
+                                                </optgroup>
+                                                <optgroup label="Facility Rentals" id="addrentopt">
+                                                    <option value="rental"></option>
+                                                </optgroup>
                                             </select>
                                         </div>
                                     </div>
@@ -86,73 +91,79 @@
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="fc-modal-titles" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="fc-modals">
-            <form id="_ajaxEditToken" method="post">@Html.AntiForgeryToken()</form>
-            <div class="modal-header">
-                <h3 class="modal-title" id="fc-modal-titles">Edit Calender Event</h3>
-                <button class="iconBtn2" href="#" data-dismiss="modal">
-                    <i class="fa fa-window-close fa-fw"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <span aria-hidden="true"></span>
+            <form id="_ajaxEditToken" method="post">
+                @Html.AntiForgeryToken()
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="fc-modal-titles">Edit Calender Event</h3>
+                            <button class="iconBtn2" href="#" data-dismiss="modal">
+                                <i class="fa fa-window-close fa-fw"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <span aria-hidden="true"></span>
 
-                <div class="form-horizontal">
-                    <div class="inputBox2">
-                        <div class="form-group">
-                            <label class="fc-modal-labels">Event Title</label>
-                            <div class="formBox">
-                                <input type="text" class="form-control" id="editformtitle" />
+                            <div class="form-horizontal">
+                                <div class="inputBox2">
+                                    <div class="form-group">
+                                        <label class="fc-modal-labels">Event Title</label>
+                                        <div class="formBox">
+                                            <input type="text" class="form-control" id="editformtitle" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="fc-modal-labels">Start time:</label>
+                                        <div class="formBox">
+                                            <input type="datetime-local" id="editformstarttime" value="" />
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="fc-modal-labels">End time:</label>
+                                        <div class="formBox">
+                                            <input type="datetime-local" id="editformendtime" value="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="fc-modal-labels" for="editeventtypes">Event type:</label>
+                                        <div class="formBox">
+                                            <select id="eventtypes">
+                                                <option>Choose an Event</option>
+                                                <optgroup label="Productions" id="editprodopt">
+                                                    <option value="production">Production id some #</option>
+                                                </optgroup>
+                                                <optgroup label="Facility Rentals" id="editrentopt">
+                                                    <option value="rental" >Facility Rental id some #</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="fc-modal-labels">Link:</label>
+                                        <div class="formBox">
+                                            <input type="text" id="editformlink" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="fc-modal-labels">Start time:</label>
-                            <div class="formBox">
-                                <input type="datetime-local" id="editformstarttime" value="" />
-
+                        <div class="modal-footer">
+                            <div class="iconBtnContainer2">
+                                <button class="iconBtn2" id="editsavebtn">
+                                    <i class="fa fa-save fa-fw"></i> Save
+                                </button>
+                                <button class="iconBtn2" id="editdeletebtn" data-dismiss="modal" data-toggle="modal">
+                                    <i class="fa fa-trash-alt fa-fw"></i> Delete
+                                </button>
+                                <button class="iconBtn2" href="#" data-dismiss="modal">
+                                    <i class="fa fa-window-close fa-fw"></i> Close
+                                </button>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="fc-modal-labels">End time:</label>
-                            <div class="formBox">
-                                <input type="datetime-local" id="editformendtime" value="" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="fc-modal-labels" for="editeventtypes">Event type:</label>
-                            <div class="formBox">
-                                <select id="editeventtypes" onchange="change_editeventtypes(this.value)">
-                                    <option value="production" id="editprodopt">Production</option>
-                                    <option value="rental" id="editrentopt">Facility Rental</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="fc-modal-labels">Link:</label>
-                            <div class="formBox">
-                                <input type="text" id="editformlink" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="iconBtnContainer2">
-                    <button class="iconBtn2" id="editsavebtn">
-                        <i class="fa fa-save fa-fw"></i> Save
-                    </button>
-                    <button class="iconBtn2" id="editdeletebtn" data-dismiss="modal" data-toggle="modal">
-                        <i class="fa fa-trash-alt fa-fw"></i> Delete
-                    </button>
-                    <button class="iconBtn2" href="#" data-dismiss="modal">
-                        <i class="fa fa-window-close fa-fw"></i> Close
-                    </button>
-                </div>
-            </div>
+                    </form>
         </div>
     </div>
 </div>
@@ -194,7 +205,7 @@
                             Event Type:
                         </dt>
                         <dd>
-                            <p id="deventtypes"></p>
+                            <p id="deventtypes"></p>,<p id="dtypeevent"></p>
                         </dd>
                         <dt>
                             Link:
@@ -225,7 +236,8 @@
     <div class="modal-dialog">
         <div class="modal-content" id="fc-modals">
             <span aria-hidden="true"></span>
-            <form id="_ajaxDeleteToken" method="post">@Html.AntiForgeryToken()</form>
+            <form id="_ajaxDeleteToken" method="post">
+                @Html.AntiForgeryToken()
                         <div class="modal-header">
                             <h3 class="modal-title" id="fc-modal-titles">Confirm Delete Event</h3>
                             <button class="iconBtn2" href="#" data-dismiss="modal">
@@ -244,7 +256,8 @@
                                 </button>
                             </div>
                         </div>
-</div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -255,7 +268,6 @@
     <script>
         var events = [];
         $(document).ready(function () {
-            //var selectedEvent = null;
             GetCalendarEvents();
             function GetCalendarEvents() {
                 $.ajax({
@@ -263,8 +275,6 @@
                     url: "/CalendarEvents/GetCalendarEvents",
                     success: function (data) {
                         events = data
-                        //console.log(data);
-                        //console.log(events);
                         GenerateCalendar(events);
                     }
                 })
@@ -280,9 +290,17 @@
                     defaultDate: new Date(),
                     //allows multiple/stacked events
                     eventLimit: true,
-                    //default event color: --main-secondary-color
-                    eventColor: '#F04D44',
-                    events: events,
+                    //default event color: --main-secondary-color                                      
+                    events: events, 
+                    //render appropriate eventcolor to calendar based on type of event
+                    eventRender: function (events, element) {
+                        if (events.productionid > 0) {
+                            element.css('palette-container .fc-content', 'var(--main-bg-color)');
+                        }
+                        if (events.rentalrequestid > 0) {
+                            element.css('palette-container .fc-content', 'var(--subscriber-main)');
+                        }
+                    },
                     selectable: true,
                     selectHelper: true,
                     //if multiple events on same day should be stacked, set to true:
@@ -301,6 +319,16 @@
                         getAddStartT();
                         getAddEndT();
 
+                        //to populate dropdowns on modals with productions and rental requests existing in db
+
+                        //$('#addModal').on('show.bs.modal', function () {
+                        //    var 1 = $().data('id');
+                        //    var 2 = $().data('id');
+                        //    $("#production").val(1);
+                        //    $("#rental").val(2);
+                        //});
+
+                        $("#addModal").modal({ backdrop: true });
                         //Call CalendarEvents/Create New Event
                         $.ajax({
                             type: "GET",
@@ -318,7 +346,7 @@
                                 alert('Failed, Sorry!');
                             }
                         });
-                        $("#addModal").modal({ backdrop: true });
+                        $("#calendar").fullCalendar('unselect', jsEvent, view);
                     },
 
                     eventClick: function (calEvent) {
@@ -363,6 +391,8 @@
                                 $("#editModal").modal("show");
                             }, 500);
 
+                            
+
                             //save changes made in edit Modal
                             $('#editsavebtn').click(function () {
                                 var antiForgeryToken = $('#editModal input[name="__RequestVerificationToken"]').val();
@@ -388,26 +418,24 @@
                                         alert('Failed, Sorry!');
                                     }
                                 });
-                                $("#calendar").fullCalendar('updateEvent', calendarEvent, true);;
-                            });
-                            //send to Confirm to Delete Modal when delete button selected [on edit Modal]
-                            $("#editdeletebtn").click(function () {
-                                selectedEvent = calEvent.id;
-                                selectedTitle = calEvent.title;
-                                window.setTimeout(function () {
-                                    $("#confdelModal").modal("show");
-                                }, 500);
-                                $("#editModal").modal('hide');
+                                $("#calendar").fullCalendar('unselect', jsEvent, view);
+                                $("#calendar").fullCalendar('updateEvent', calendarEvent, true);
                             });
                         });
+                                           
                         //send to Confirm to Delete Modal when delete button selected [on details Modal]
                         $("#detaildeletebtn").click(function () {
                             window.setTimeout(function () {
                                 $("#confdelModal").modal("show");
                             }, 500);
                             selectedEvent = calEvent.id;
-                            selectedTitle = calEvent.title;
                             $("#detailsModal").modal('hide');
+                        });
+
+                        //send to Confirm to Delete Modal when delete button selected [on edit Modal]
+                        $("#editdeletebtn").click(function () {
+                            $("#confdelModal").modal("show");
+                            selectedEvent = calEvent.id;
                         });
                     }
                 });
@@ -444,24 +472,24 @@
             $('#confdeletebtn').click(function () {
                 var antiForgeryToken = $('#confdelModal input[name="__RequestVerificationToken"]').val();                    
                 selectedEvent = {
-                    EventId: selectedEvent.EventId,
+                    id: selectedEvent,
                     '__RequestVerificationToken': antiForgeryToken
                 };
                 $.ajax({
                     type: "POST",
                     url: '/CalendarEvents/DeletingEvent',
                     data: selectedEvent,
-                        success: function (data) {
-                            if (data.status) {
-                                $("#calendar").fullCalendar('removeEvents', EventId);
-                                GetCalendarEvents();
-                                $('#confdelModal').modal('hide');
-                            }
-                        },
-                        error: function () {
-                            alert('Failed, Sorry!');
+                    success: function (data) {
+                        if (data.status) {
+                            $("#calendar").fullCalendar('removeEvents', selectedEvent.id);
+                            GetCalendarEvents();
+                            $('#confdelModal').modal('hide');
                         }
-                    })
+                    },
+                    error: function () {
+                        alert('Failed, Sorry!');
+                    }
+                });
             });
         });
             // page is now ready, initialize the calendar...

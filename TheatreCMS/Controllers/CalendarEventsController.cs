@@ -109,14 +109,14 @@ namespace TheatreCMS.Controllers
             var isAjax = Request.IsAjaxRequest();
             if (ModelState.IsValid && !isAjax)
             {
-                
-                //ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
-                //ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
 
-                //if (ViewData["Productions"] != null)
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+
+                if (ViewData["Productions"] != null)
 
 
-                db.CalendarEvent.Add(calendarEvent);
+                    db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
                 System.Diagnostics.Debug.WriteLine("This call was NOT made from ajax, therefore from Create MVC Page. isAjax: " + isAjax);
                 return RedirectToAction("Index");              
@@ -169,7 +169,8 @@ namespace TheatreCMS.Controllers
             {
                 System.Diagnostics.Debug.WriteLine("This call was made from Ajax, therefore from Add Modal. isAjax: " + isAjax);
                 db.Entry(calendarEvents).State = EntityState.Modified;
-                db.SaveChanges();               
+                db.SaveChanges();
+                return Json(new { success = true });
             }
             return View();
         }
