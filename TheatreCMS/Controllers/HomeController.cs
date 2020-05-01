@@ -125,7 +125,9 @@ namespace TheatreCMS.Controllers
         {
             ViewBag.Category = searchByCategory;
             string highlightedKey = "<span id='highlight'>$&</span>";   //highlightedKey is where the css id is applied to the highlighted word.  $& swaps the search key with the original text to keep the casing intact.
-            string pattern = searchKey;                                // For whole word search, pattern = @"\b" + searchKey + @"\b"; For substring matching, pattern = searchkey;
+            
+            string pattern = string.Format(searchKey);                             // For whole word search, pattern = @"\b" + searchKey + @"\b"; For substring matching, pattern = searchkey;
+            pattern = Regex.Escape(pattern);
             Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
             switch (searchByCategory)
             {
