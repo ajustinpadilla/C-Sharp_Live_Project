@@ -9,6 +9,8 @@ namespace TheatreCMS.Models
 {
 	public class AdminSettings
 	{
+		public static DateTime Now { get; }  //Add for current season auto calculation
+		[Required(ErrorMessage = "Please enter current season number")]			// for current season validation
 		public int current_season { get; set; }		// the theater season number for the current season
 		public seasonProductions season_productions { get; set; }	// holds 3 production ID's for current season
 		public recentDefinition recent_definition { get; set; }		// holds recent span and date
