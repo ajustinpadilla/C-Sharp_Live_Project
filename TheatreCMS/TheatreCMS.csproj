@@ -245,7 +245,13 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\Images\bookofmormon1.png" />
+    <Content Include="Content\Images\bookofmormon2.png" />
     <Content Include="Content\Images\Ellyn-Bye-Logo.png" />
+    <Content Include="Content\Images\hamilton1.png" />
+    <Content Include="Content\Images\hamilton2.png" />
+    <Content Include="Content\Images\howtosucceedinbusinesswithoutreallytrying.png" />
+    <Content Include="Content\Images\howtosucceedinbusinesswithoutreallytrying2.png" />
     <Content Include="Content\Images\img2.jpg" />
     <Content Include="Content\Images\img2_bw.jpeg" />
     <Content Include="Content\Images\img2_gold.jpeg" />
@@ -253,8 +259,12 @@
     <Content Include="Content\Images\Ninkasi-white-text.png" />
     <Content Include="Content\Images\no-image.png" />
     <Content Include="Content\Images\OCF-logo-in-white-with-tagline-lg.png" />
+    <Content Include="Content\Images\phantom1.png" />
+    <Content Include="Content\Images\phantom2.png" />
     <Content Include="Content\Images\RACC2.png" />
     <Content Include="Content\Images\subscriber.jpg" />
+    <Content Include="Content\Images\wicked1.png" />
+    <Content Include="Content\Images\wicked2.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
