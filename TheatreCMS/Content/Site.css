@@ -1064,7 +1064,7 @@ textarea {
         /*Begin Styling for Archive Page*/
 
         .bgimage {
-            background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
+        background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
         }
 
         .resultsContainer {
@@ -1079,22 +1079,25 @@ textarea {
         }
 
         .results th {
-           font-size: 22px;
-           color: #007bff
+            font-size: 22px;
+            color: #007bff
         }
 
-            .results a {
-                display: block;
-                color: #fffbfb;
-                max-width: 800px;
-                font-size: 18px;
-            }
+        .results a {
+            color: #fffbfb;
+            max-width: 800px;
+            font-size: 18px;
+        }
 
-#highlight {
-    background-color: #007bff;
-}
+        .results a:hover {
+            text-decoration: none;
+        }
 
-        #archiveResultsTitle{
+        #highlight {
+        background-color: #007bff;
+        }
+
+        #archiveResultsTitle {
         margin-left: 1em;
         margin-top: 40px;
         font-size: 50px;

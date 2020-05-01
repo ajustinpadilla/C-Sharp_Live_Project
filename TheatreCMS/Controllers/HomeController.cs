@@ -110,7 +110,6 @@ namespace TheatreCMS.Controllers
             var productions = db.Productions
                 .Include(i => i.DefaultPhoto);
             ArchiveSearch(db, SearchByCategory, searchKey);
-            ViewBag.Message = "Sorry, that wasn't a valid search term. Try again!";
             return View(productions.ToList());
         }
 
