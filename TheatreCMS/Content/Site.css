@@ -12,6 +12,7 @@
     background-color: var(--dark-color);
 }
 
+
 .text-black {
     color: var(--dark-color);
 }
@@ -1909,12 +1910,12 @@ textarea {
     padding-left: 40px;
     padding-bottom: 10px;
 }
-    object-fit: contain;
-}
+
+/* Start Produtions Index Search */
 
 .search-form {
     display: inline-block;
-    padding: 40px 0px 0px 15px;
+    padding: 20px 0px 0px 15px;
 }
 
 .search-button {
@@ -1922,7 +1923,21 @@ textarea {
     background-color: var(--dark-color);
 }
 
+.search-icon {
+    color: var(--light-color);
+    border: none;
+}
+
+/* Gradient coloring for search button when it's active*/
+.active-search-button {
+    background: -moz-radial-gradient(center, ellipse cover, rgba(219,26,17,0.55) 0%, rgba(219,26,17,0.55) 1%, rgba(0,0,0,1) 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(219,26,17,0.55) 0%,rgba(219,26,17,0.55) 1%,rgba(0,0,0,1) 100%);
+    background: radial-gradient(ellipse at center, rgba(219,26,17,0.55) 0%,rgba(219,26,17,0.55) 1%,rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8cdb1a11', endColorstr='#000000',GradientType=1 );
+}
+
 .search-container {
+    float: right;
     padding: 25px 40px 0px 0px;
     width: 300px;
 }
@@ -1940,22 +1955,46 @@ textarea {
     padding: 0 0 0 8px !important;
     margin: 5px 0 5px 0 !important;
 }
-
-/*
-.results-holder {
-    margin-left: 58px;
-} */
-
-#isSearching {
-    display: none;
-}
-
-@media screen and (max-width: 767px) {
+/* Styling for lower resolutions*/
+@media screen and (max-width: 768px) {
     .search-container {
-        width: 220px;
+        display: block;
+        float: none;
+        width: 100% !important;
+        position: relative;
+        bottom: 82px;
+
     }
 
+    .search-form {
+        padding: 40px 0px 0px 40px;
+    }
+
+    .search-text, .search-select {
+        display: inline-block !important;
+        width: 49% !important;
+    }
+} 
+
+@media screen and (max-width: 450px) {
+    .prod-index-create { 
+        display: block;
+        position: relative;
+        bottom: 20px;
+    }
+    
+    .search-container {
+        bottom: 138px;
+        left: 1px;
+    }
+
+    .search-form {
+        position: relative;
+        top: 35px;
+    }
 }
+
+/* End Productions Index Search*/
 
 
 

@@ -353,7 +353,7 @@ namespace TheatreCMS.Controllers
             var showTimes = new List<String>();
             foreach (var item in orderedShowtimeList)       //Convert each value to string in format "hh:mm am/pm"
             {
-                if (!showTimes.Contains(item.ToShortTimeString()))
+                if (!showTimes.Contains(item.ToShortTimeString()))          //Check if showTimes list contains showtime already
                 {
                     showTimes.Add(item.ToShortTimeString());
                 }
@@ -366,7 +366,9 @@ namespace TheatreCMS.Controllers
             var runTimes = new List<int>(); //Sort runtimes in ascending order
             foreach (var item in runTimesList.ToList())
             {
-                runTimes.Add(item);
+                if (!runTimes.Contains(item)){          //Check if runTimes list contains runtime already
+                    runTimes.Add(item);
+                }
             }
             runTimes.Sort();
             return runTimes;

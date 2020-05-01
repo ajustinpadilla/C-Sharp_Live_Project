@@ -262,6 +262,8 @@
     <Content Include="Content\Images\phantom1.png" />
     <Content Include="Content\Images\phantom2.png" />
     <Content Include="Content\Images\RACC2.png" />
+    <Content Include="Content\Images\search.png" />
+    <Content Include="Content\Images\searchFocus.png" />
     <Content Include="Content\Images\subscriber.jpg" />
     <Content Include="Content\Images\wicked1.png" />
     <Content Include="Content\Images\wicked2.png" />
