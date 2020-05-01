@@ -20,11 +20,11 @@
 </div>
 
 <!--Current Productions-->
-<div>
+<div id="current-productions">
     <h4>Current Productions</h4>
     <div class="card-deck bg-black">
         <div class="card bg-black">
-            <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black" alt="Ghost">
+            <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black current-production-img" alt="Ghost">
             <div class="card-body">
                 <h5 class="card-title">Stupid Ghost</h5>
                 <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="card bg-black">
-            <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top bg-black" alt="Midas">
+            <img src="~/Content/Images/Midas-gold.jpg" class=" img-fluid card-img-top bg-black current-production-img" alt="Midas">
             <div class="card-body">
                 <h5 class="card-title">Everything You Touch</h5>
                 <p class="card-text">A cursed man that ruins everything he touches.</p>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="card bg-black">
-            <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black" alt="Merchant">
+            <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black current-production-img" alt="Merchant">
             <div class="card-body">
                 <h5 class="card-title">Merchant of Venice</h5>
                 <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
@@ -61,19 +61,16 @@
 <div class="archive-search-container">
     @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
     {
-        <div class="archive-input-container" style="align-content:center">
-            <select id="SearchByCategory" class="s" name="SearchByCategory">
+        <div class="archive-input-container">
+            <select id="SearchByCategory" name="SearchByCategory">
                 <option class="search-dropdown">Search by Category</option>
                 <option class="search-dropdown option" value="ArchiveCastMember">Cast Member</option>
                 <option class="search-dropdown option" value="ArchiveProduction">Production</option>
                 <option class="search-dropdown option" value="ArchivePart">Part</option>
-                <option class="dummy" style="display:none">Search by Category</option>
             </select>
             @Html.TextBox("ArchiveSearchField", "", new { placeholder = "Search" })
             <button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>
         </div>
-
-
     }
 </div>
 
@@ -253,54 +250,9 @@
 @Scripts.Render("~/bundles/jquery")
 <script>
     $(document).ready(function () {
-
-        var canDo = true;
-
-        $('#SearchByCategory').change(function () {
-            if ($('.search-dropdown').is(":checked")) {
-                $(this).blur();
-            }
-        });
-
-        $('#SearchByCategory').on('focus', function () {
-            $(this).find("option.dummy").text($(this).find("option:selected").text());
-            $(this).find("option.dummy").prop("selected", true);
-            $(this).data('click', true);
-        });
-
-        $('#SearchByCategory').on('change blur', function () {
-            var select = $(this);
-            var text = select.find("option:selected").text();
-
-            $('.dummy').attr('value', select.val()).text(text);
-            doYourThing($(select).val());
-        });
-
-        $('#SearchByCategory option').on('click', function () {
-            if ($(this).data('click')) {
-                $(this).data('click', false);
-                doYourThing($(select).val());
-            } else {
-                $(this).data('click', true);
-            }
-            $(this).parent().blur();
-        });
-
-        function doYourThing(stuff) {
-            if (canDo) {
-                canDo = false;
-                canDoTimeout = setTimeout(function () {
-                    canDo = true;
-                }, 500);
-            }
-        }
-
-        
-
-        
-
+        @* Swap search button for mobile view, if > 900px use fontawesome magnifying glass, if < 900 use standard "Search" button" *@
         function changeSearchBtn() {
-            if (window.matchMedia('(max-width: 899px)').matches) {
+            if (window.matchMedia('(max-width: 899px)').matches) { @* matchMedia syncs with CSS media query *@
                 $(".search-btn").each(function (i) {
                     $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
                 });
@@ -311,10 +263,13 @@
             }
         }
 
-        changeSearchBtn();
+        @* Call changeSearchBtn() when page is loaded *@
+        changeSearchBtn(); 
 
+        @* If window is resized, call changeSearchBtn()*@
         window.onresize = function (event) {
             changeSearchBtn();
         };
+
     });
 </script>

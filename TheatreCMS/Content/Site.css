@@ -1697,28 +1697,44 @@ textarea {
     object-fit: contain;
 }
 
-.option-selected {
-    background-color: var(--dark-color) !important;
-    color: #007bff !important;
+/* Archive Current Productions */
+#current-productions {
+    padding: 0px 20px;
 }
 
-.archive-input-container input[type="text"] {
-    background-color: var(--light-color);
+/* Resize Current Productions Image */
+#current-productions .current-production-img {
+    height: 30vw;
+    object-fit: cover;
 }
+
+/* Current Productions Image Responsive Resizing*/
+@media only screen and (max-width: 575px) {
+    #current-productions .current-production-img {
+        height: 60vw;
+        object-fit: cover;
+    }
+}
+
+/* Start Archive Search Bar */
 
 @media only screen and (min-width: 900px){
+   
+    /* Search container for centering Input Container*/
     .archive-search-container {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
+    /* Input Container: Input field, Category Dropdown, Search button*/
     .archive-input-container {
         margin: 0 auto;
         width: 850px;
         position: relative;
     }
-    
+
+    /* Archive Search Text*/
     .archive-input-container input[type="text"]{
         width: 600px;
         height: 50px;
@@ -1732,6 +1748,7 @@ textarea {
         border-radius: 0px;
     }
 
+    /* Arhive Search Category Dropdown */
     .archive-input-container #SearchByCategory {
         width:200px;
         height: 50px;
@@ -1748,6 +1765,7 @@ textarea {
         outline: none;
     }
 
+    /* Archive Search Button*/
     .archive-input-container .btn {
         height: 50px;
         width: 50px;
@@ -1761,7 +1779,6 @@ textarea {
         margin: 8px 0px 8px 0px;
     }
     
-
     .archive-input-container .btn:focus {
         box-shadow: none !important;
     }
@@ -1776,3 +1793,11 @@ textarea {
     }
 
 }
+
+@media only screen and (max-width: 900px) {
+    .archive-input-container {
+        padding: 0px 20px;
+    }
+}
+
+/* End Archive Search Bar*/
