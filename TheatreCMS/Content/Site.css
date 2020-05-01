@@ -1908,13 +1908,13 @@ textarea {
     padding: 0px 20px;
 }
 
-/* Resize Current Productions Image */
+/* Resize Archive Current Productions Image */
 #current-productions .current-production-img {
     height: 30vw;
     object-fit: cover;
 }
 
-/* Current Productions Image Responsive Resizing*/
+/* Archive Current Productions Image Responsive Resizing */
 @media only screen and (max-width: 575px) {
     #current-productions .current-production-img {
         height: 60vw;
