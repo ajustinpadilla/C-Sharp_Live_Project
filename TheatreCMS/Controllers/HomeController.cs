@@ -17,8 +17,8 @@ namespace TheatreCMS.Controllers
     {
         public ActionResult Index()
         {
-            ApplicationDbContext db = new ApplicationDbContext();            
-            var proPhotos = db.ProductionPhotos.ToList();            
+            ApplicationDbContext db = new ApplicationDbContext();
+            var proPhotos = db.ProductionPhotos.ToList();
             return View(proPhotos);
         }
 
@@ -40,7 +40,7 @@ namespace TheatreCMS.Controllers
         //File upload GET and POST controls
         public ActionResult UploadImage()
         {
-            
+
             return View();
         }
         [HttpPost]
@@ -109,24 +109,20 @@ namespace TheatreCMS.Controllers
             var db = new ApplicationDbContext();
             var productions = db.Productions
                 .Include(i => i.DefaultPhoto);
-            try
-            {
-                ArchiveSearch(db, SearchByCategory, searchKey);
-            }
-
-            catch (HttpRequestValidationException) 
-            {
-                ViewBag.Message = "Sorry, that wasn't a valid search term. Try again!";
-            }
+            ArchiveSearch(db, SearchByCategory, searchKey);
+            ViewBag.Message = "Sorry, that wasn't a valid search term. Try again!";
             return View(productions.ToList());
-            }
+        }
 
         private void ArchiveSearch(ApplicationDbContext db, string searchByCategory, string searchKey)
         {
             ViewBag.Category = searchByCategory;
+            if (searchKey == "")
+            {
+                return;
+            }
             string highlightedKey = "<span id='highlight'>$&</span>";   //highlightedKey is where the css id is applied to the highlighted word.  $& swaps the search key with the original text to keep the casing intact.
-            
-            string pattern = string.Format(searchKey);                             // For whole word search, pattern = @"\b" + searchKey + @"\b"; For substring matching, pattern = searchkey;
+            string pattern = string.Format(searchKey);                                // For whole word search, pattern = @"\b" + searchKey + @"\b"; For substring matching, pattern = searchkey;
             pattern = Regex.Escape(pattern);
             Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
             switch (searchByCategory)
@@ -135,8 +131,8 @@ namespace TheatreCMS.Controllers
 
                 case "SearchAll": //This case searches across all three tables.
                     ViewBag.Message = string.Format("Results for \"{0}\" in Archive", searchKey);
-                    
-                    
+
+
                     var resultsCast = new List<CastMember>();
                     foreach (CastMember castMember in db.CastMembers)
                     {
@@ -164,7 +160,7 @@ namespace TheatreCMS.Controllers
                     }
                     resultsProduction = resultsProduction.Distinct().ToList();
                     Highlight(resultsProduction, pattern, highlightedKey);
-                    
+
                     var resultsPart = new List<Part>();
                     foreach (Part part in db.Parts)
                     {
@@ -209,7 +205,7 @@ namespace TheatreCMS.Controllers
 
                 case "SearchCastMembers":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Cast Members", searchKey);
-                    
+
                     resultsCast = new List<CastMember>();
                     foreach (CastMember castMember in db.CastMembers)
                     {
@@ -269,8 +265,8 @@ namespace TheatreCMS.Controllers
         //It works by wrapping the search key in a span tag that styles it differently from the rest of the text
         private void Highlight(List<CastMember> resultsCast, string pattern, string highlightedKey)
         {
-            
-            
+
+
 
             var yearJoinedString = new List<string>();
             for (int i = 0; i < resultsCast.Count; i++)   //YearJoined must be converted to text to highlight it properly. A separate list is created, then added to the viewbag.
