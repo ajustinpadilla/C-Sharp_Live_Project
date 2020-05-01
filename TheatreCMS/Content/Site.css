@@ -1700,6 +1700,9 @@ textarea {
     cursor: pointer;
     border-radius: 4px;
 }
+
+/*Styling for dropdown Menus on Add & Edit Modals*/
+
 /*Product Details*/
 #jumbo.jumbotron {
     background-color: #bd1a11;

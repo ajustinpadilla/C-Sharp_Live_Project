@@ -19,7 +19,8 @@ namespace TheatreCMS.Controllers
         // GET: CalendarEvents
         public ActionResult Index()
         {
-
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
             return View(db.CalendarEvent.ToList());
         }
 
@@ -63,11 +64,10 @@ namespace TheatreCMS.Controllers
         public ActionResult Create()
         {
 
-            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId","Title");
-            ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
-            return View();
-            
-      
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+                return View();
+
         }
 
         // POST: CalendarEvents/Create

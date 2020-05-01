@@ -5,86 +5,112 @@
 }
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 
 @* Modal box for Add Calender Event *@
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="fc-modals-titles" aria-hidden="true">
+
     <div class="modal-dialog">
         <div class="modal-content" id="fc-modals">
             <form id="_ajaxAddToken" method="post">
                 @Html.AntiForgeryToken()
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="fc-modal-titles">Add a Calendar Event</h3>
-                            <hr />
-                            <button class="iconBtn2" href="#" data-dismiss="modal">
-                                <i class="fa fa-window-close fa-fw"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <span aria-hidden="true"></span>
-                            <div class="form-horizontal">
-                                <div class="inputBox2">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="fc-modal-titles">Add a Calendar Event</h3>
+                    <hr />
+                    <button class="iconBtn2" href="#" data-dismiss="modal">
+                        <i class="fa fa-window-close fa-fw"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span aria-hidden="true"></span>
+                    <div class="form-horizontal">
+                        <div class="inputBox2">
 
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels">Event Title</label>
-                                        <div class="formBox">
-                                            <input type="text" id="addformtitle" placeholder="(text input type)" />
+                            <div class="form-group">
+                                <label class="fc-modal-labels">Event Title</label>
+                                <div class="formBox">
+                                    <input type="text" id="addformtitle" placeholder="(text input type)" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="fc-modal-labels">Start time:</label>
+                                <div class="formBox">
+                                    <input type="datetime-local" id="addformstarttime" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="fc-modal-labels">End time:</label>
+                                <div class="formBox">
+                                    <input type="datetime-local" id="addformendtime" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="fc-modal-labels" for="eventtypes">Event type:</label>
+                                <div class="formBox">
+                                    <div class="dropdown">
+                                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Select an Event Type
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a tabindex="-1" href="#">Productions</a></li>
+                                            <li><a tabindex="-1" href="#">Facility Rental</a></li>
+                                        </ul>
+                                    </div>                                    
+                                    <div>
+                                        <div class="dropdown-menu" id="addprodopt">
+                                            <div class="mdpdown">
+                                                <select id="addprodopt">
+                                                    @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "ID=DPProductionsList", htmlAttributes: new { @class = "form-control" })
+                                                    <option>Production Example</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels">Start time:</label>
-                                        <div class="formBox">
-                                            <input type="datetime-local" id="addformstarttime" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels">End time:</label>
-                                        <div class="formBox">
-                                            <input type="datetime-local" id="addformendtime" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels" for="eventtypes">Event type:</label>
-                                        <div class="formBox">
-                                            <select id="eventtypes">                                               
-                                                <option>Choose an Event</option>
-                                                <optgroup label="Productions" id="addprodopt">
-                                                    <option value="production" ></option>
-                                                </optgroup>
-                                                <optgroup label="Facility Rentals" id="addrentopt">
-                                                    <option value="rental"></option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels">Link:</label>
-                                        <div class="formBox">
-                                            <input type="text" id="addformlink" placeholder="(text input type)" />
+                                    <div>
+                                        <div class="dropdown-menu" id="addrentopt">
+                                            <div class="mdpdown">
+                                                <select id="addrentopt">
+                                                    <option value="">Choose Facility Rental Company</option>
+                                                    @Html.DropDownList("RentalRequests", (IEnumerable<SelectListItem>)ViewData["RentalRequests"], "ID=DPRentalReqList", htmlAttributes: new { @class = "form-control" })
+                                                    <option>Facility Rental Example</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="fc-modal-labels">Link:</label>
+                                <div class="formBox">
+                                    <input type="text" id="addformlink" placeholder="(text input type)" />
+                                </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <div class="iconBtnContainer2">
-                                <button class="iconBtn2" id="addsavebtn" data-dismiss="modal">
-                                    <i class="fa fa-save fa-fw"></i> Save
-                                </button>
-                                <button class="iconBtn2" href="#" data-dismiss="modal">
-                                    <i class="fa fa-window-close fa-fw"></i> Close
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="iconBtnContainer2">
+                        <button class="iconBtn2" id="addsavebtn" data-dismiss="modal">
+                            <i class="fa fa-save fa-fw"></i> Save
+                        </button>
+                        <button class="iconBtn2" href="#" data-dismiss="modal">
+                            <i class="fa fa-window-close fa-fw"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+
 </div>
 
 @* Modal box for Editing a CalenderEvent *@
@@ -93,77 +119,87 @@
         <div class="modal-content" id="fc-modals">
             <form id="_ajaxEditToken" method="post">
                 @Html.AntiForgeryToken()
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="fc-modal-titles">Edit Calender Event</h3>
-                            <button class="iconBtn2" href="#" data-dismiss="modal">
-                                <i class="fa fa-window-close fa-fw"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <span aria-hidden="true"></span>
+                <div class="modal-header">
+                    <h3 class="modal-title" id="fc-modal-titles">Edit Calender Event</h3>
+                    <button class="iconBtn2" href="#" data-dismiss="modal">
+                        <i class="fa fa-window-close fa-fw"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span aria-hidden="true"></span>
 
-                            <div class="form-horizontal">
-                                <div class="inputBox2">
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels">Event Title</label>
-                                        <div class="formBox">
-                                            <input type="text" class="form-control" id="editformtitle" />
-                                        </div>
-                                    </div>
+                    <div class="form-horizontal">
+                        <div class="inputBox2">
+                            <div class="form-group">
+                                <label class="fc-modal-labels">Event Title</label>
+                                <div class="formBox">
+                                    <input type="text" class="form-control" id="editformtitle" />
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels">Start time:</label>
-                                        <div class="formBox">
-                                            <input type="datetime-local" id="editformstarttime" value="" />
+                            <div class="form-group">
+                                <label class="fc-modal-labels">Start time:</label>
+                                <div class="formBox">
+                                    <input type="datetime-local" id="editformstarttime" value="" />
 
-                                        </div>
-                                    </div>
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels">End time:</label>
-                                        <div class="formBox">
-                                            <input type="datetime-local" id="editformendtime" value="" />
-                                        </div>
-                                    </div>
+                            <div class="form-group">
+                                <label class="fc-modal-labels">End time:</label>
+                                <div class="formBox">
+                                    <input type="datetime-local" id="editformendtime" value="" />
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels" for="editeventtypes">Event type:</label>
-                                        <div class="formBox">
-                                            <select id="eventtypes">
-                                                <option>Choose an Event</option>
-                                                <optgroup label="Productions" id="editprodopt">
-                                                    <option value="production">Production id some #</option>
-                                                </optgroup>
-                                                <optgroup label="Facility Rentals" id="editrentopt">
-                                                    <option value="rental" >Facility Rental id some #</option>
-                                                </optgroup>
+                            <div class="form-group">
+                                <label class="fc-modal-labels" for="editeventtypes">Event type:</label>
+                                <div class="formBox">
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="" id="eventtypes">
+                                        Choose an Event
+                                    </ul>
+                                    <ul class="dropdown-submenu" id="addprodopt">
+                                        <li>
+                                            <select id="addprodopt">
+                                                <option value=""> - - - </option>
+                                                <option value="production">Example Production</option>
                                             </select>
-                                        </div>
-                                    </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="dropdown-submenu" id="addrentopt">
+                                        <li>
+                                            <select id="addrentopt">
+                                                <option value=""> - - - </option>
+                                                <option value="rental">Example Facility Rental</option>
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <label class="fc-modal-labels">Link:</label>
-                                        <div class="formBox">
-                                            <input type="text" id="editformlink" />
-                                        </div>
-                                    </div>
+                            <div class="form-group">
+                                <label class="fc-modal-labels">Link:</label>
+                                <div class="formBox">
+                                    <input type="text" id="editformlink" />
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <div class="iconBtnContainer2">
-                                <button class="iconBtn2" id="editsavebtn">
-                                    <i class="fa fa-save fa-fw"></i> Save
-                                </button>
-                                <button class="iconBtn2" id="editdeletebtn" data-dismiss="modal" data-toggle="modal">
-                                    <i class="fa fa-trash-alt fa-fw"></i> Delete
-                                </button>
-                                <button class="iconBtn2" href="#" data-dismiss="modal">
-                                    <i class="fa fa-window-close fa-fw"></i> Close
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="iconBtnContainer2">
+                        <button class="iconBtn2" id="editsavebtn">
+                            <i class="fa fa-save fa-fw"></i> Save
+                        </button>
+                        <button class="iconBtn2" id="editdeletebtn" data-dismiss="modal" data-toggle="modal">
+                            <i class="fa fa-trash-alt fa-fw"></i> Delete
+                        </button>
+                        <button class="iconBtn2" href="#" data-dismiss="modal">
+                            <i class="fa fa-window-close fa-fw"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -238,24 +274,24 @@
             <span aria-hidden="true"></span>
             <form id="_ajaxDeleteToken" method="post">
                 @Html.AntiForgeryToken()
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="fc-modal-titles">Confirm Delete Event</h3>
-                            <button class="iconBtn2" href="#" data-dismiss="modal">
-                                <i class="fa fa-window-close fa-fw"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h1>Delete Event</h1>
-                            <p>Are you sure you wish to delete this event?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="iconBtnContainer2">
-                                <button class="iconBtn2" id="confdeletebtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-trash-alt fa-fw"></i> Delete</button>
-                                <button class="iconBtn2" href="#" data-dismiss="modal">
-                                    <i class="fa fa-window-close fa-fw"></i> Close
-                                </button>
-                            </div>
-                        </div>
+                <div class="modal-header">
+                    <h3 class="modal-title" id="fc-modal-titles">Confirm Delete Event</h3>
+                    <button class="iconBtn2" href="#" data-dismiss="modal">
+                        <i class="fa fa-window-close fa-fw"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1>Delete Event</h1>
+                    <p>Are you sure you wish to delete this event?</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="iconBtnContainer2">
+                        <button class="iconBtn2" id="confdeletebtn" data-dismiss="modal" data-toggle="modal"><i class="fa fa-trash-alt fa-fw"></i> Delete</button>
+                        <button class="iconBtn2" href="#" data-dismiss="modal">
+                            <i class="fa fa-window-close fa-fw"></i> Close
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -290,8 +326,8 @@
                     defaultDate: new Date(),
                     //allows multiple/stacked events
                     eventLimit: true,
-                    //default event color: --main-secondary-color                                      
-                    events: events, 
+                    //default event color: --main-secondary-color
+                    events: events,
                     //render appropriate eventcolor to calendar based on type of event
                     eventRender: function (events, element) {
                         if (events.productionid > 0) {
@@ -306,8 +342,8 @@
                     //if multiple events on same day should be stacked, set to true:
                     eventLimit: false,
                     select: function (startStr, endStr) {
-                        var addstarttime = moment(moment.utc(startStr)).format().substring(0,19);
-                        var addendtime = moment(moment.utc(endStr)).format().substring(0,19);
+                        var addstarttime = moment(moment.utc(startStr)).format().substring(0, 19);
+                        var addendtime = moment(moment.utc(endStr)).format().substring(0, 19);
                         //setting the selected start and end date/times to default in Add Modal inputs
 
                         function getAddStartT() {
@@ -329,6 +365,8 @@
                         //});
 
                         $("#addModal").modal({ backdrop: true });
+                        // Populate lists of Productions/Rental Requests on Add modal
+                        $('')
                         //Call CalendarEvents/Create New Event
                         $.ajax({
                             type: "GET",
@@ -346,7 +384,7 @@
                                 alert('Failed, Sorry!');
                             }
                         });
-                        $("#calendar").fullCalendar('unselect', jsEvent, view);
+                        $("#calendar").fullCalendar('unselect');
                     },
 
                     eventClick: function (calEvent) {
@@ -391,7 +429,7 @@
                                 $("#editModal").modal("show");
                             }, 500);
 
-                            
+
 
                             //save changes made in edit Modal
                             $('#editsavebtn').click(function () {
@@ -403,7 +441,7 @@
                                     "EndDate": $('#editModal #editformendtime').val(),
                                     '__RequestVerificationToken': antiForgeryToken,
                                     //eventtype: $('#editModal #editeventtypes').val(),
-                                }                        
+                                }
                                 $.ajax({
                                     type: "POST",
                                     url: '/CalendarEvents/Edit',
@@ -422,7 +460,7 @@
                                 $("#calendar").fullCalendar('updateEvent', calendarEvent, true);
                             });
                         });
-                                           
+
                         //send to Confirm to Delete Modal when delete button selected [on details Modal]
                         $("#detaildeletebtn").click(function () {
                             window.setTimeout(function () {
@@ -449,17 +487,17 @@
                     "Title": $('#addModal #addformtitle').val(),
                     "StartDate": savestart,
                     "EndDate": saveend,
-                    '__RequestVerificationToken': antiForgeryToken 
+                    '__RequestVerificationToken': antiForgeryToken
                 };
                 $.ajax({
                     type: "POST",
                     url: '/CalendarEvents/Create',
-                    data: calendarEvent, 
+                    data: calendarEvent,
                     success: function (data) {
-                            //refresh the calendar
-                            console.log(data);
-                            GetCalendarEvents();
-                            $('#addModal').modal('hide');
+                        //refresh the calendar
+                        console.log(data);
+                        GetCalendarEvents();
+                        $('#addModal').modal('hide');
                     },
                     error: function () {
                         alert('Failed, Sorry!');
@@ -468,31 +506,31 @@
                 $("#calendar").fullCalendar('renderEvent', calendarEvent);
             }),
 
-            //confirm delete function call/fully delete event from db
-            $('#confdeletebtn').click(function () {
-                var antiForgeryToken = $('#confdelModal input[name="__RequestVerificationToken"]').val();                    
-                selectedEvent = {
-                    id: selectedEvent,
-                    '__RequestVerificationToken': antiForgeryToken
-                };
-                $.ajax({
-                    type: "POST",
-                    url: '/CalendarEvents/DeletingEvent',
-                    data: selectedEvent,
-                    success: function (data) {
-                        if (data.status) {
-                            $("#calendar").fullCalendar('removeEvents', selectedEvent.id);
-                            GetCalendarEvents();
-                            $('#confdelModal').modal('hide');
+                //confirm delete function call/fully delete event from db
+                $('#confdeletebtn').click(function () {
+                    var antiForgeryToken = $('#confdelModal input[name="__RequestVerificationToken"]').val();
+                    selectedEvent = {
+                        id: selectedEvent,
+                        '__RequestVerificationToken': antiForgeryToken
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: '/CalendarEvents/DeletingEvent',
+                        data: selectedEvent,
+                        success: function (data) {
+                            if (data.status) {
+                                $("#calendar").fullCalendar('removeEvents', selectedEvent.id);
+                                GetCalendarEvents();
+                                $('#confdelModal').modal('hide');
+                            }
+                        },
+                        error: function () {
+                            alert('Failed, Sorry!');
                         }
-                    },
-                    error: function () {
-                        alert('Failed, Sorry!');
-                    }
+                    });
                 });
-            });
         });
-            // page is now ready, initialize the calendar...
+                        // page is now ready, initialize the calendar...
     </script>
 }
 
