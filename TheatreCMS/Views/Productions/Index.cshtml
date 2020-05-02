@@ -237,7 +237,6 @@
         @foreach (var item in Model)
         {
             <div class="card col-md-6 col-xl-4 bg-black" id="production-info-parent">
-                @Html.DisplayFor(modelItem => item.DefaultPhoto)   @*Displays the default photo or Unavailable.jpg*@
                 @{
                     if (item.DefaultPhoto != null)
                     {
@@ -308,8 +307,8 @@
 <script src="@Url.Content("~/Scripts/umd/popper.min.js")"></script>
 
 <!-- Toggle for search button, if currently searching show search form else hide search form  -->
+<!-- Scroll function for search form -->
 <script>
-
     $(document).ready(function () {
         $(document).scroll(function () {
             if ($(window).scrollTop() > 0 && window.matchMedia('(min-width: 769px)').matches) {
@@ -320,7 +319,6 @@
             }
             
         });
-
 
         var currentlySearching = "@((ViewBag.IsSearching).ToString())"
 
@@ -341,5 +339,4 @@
         });
 
     });
-
 </script>
