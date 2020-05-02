@@ -600,6 +600,8 @@
     <Content Include="Views\Shared\_SponsorsPartial.cshtml" />
     <Content Include="Views\Admin\UserList.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="webfonts\BebasNeue-Regular.ttf" />
+    <Content Include="webfonts\BebasNeue-Regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

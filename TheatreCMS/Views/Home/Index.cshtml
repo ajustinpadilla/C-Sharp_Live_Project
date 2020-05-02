@@ -1,134 +1,69 @@
-﻿@{
+﻿@model IEnumerable<TheatreCMS.Models.Production>
+@using TheatreCMS.Controllers
+@using TheatreCMS.Models
+
+@{
     ViewBag.Title = "Home Page";
+    int i = 1;
 }
 
 @Styles.Render("~/Content/Site.css")
 @Scripts.Render("~/Scripts/Site.js")
-@using TheatreCMS.Models
-@using TheatreCMS.Controllers
-@model IEnumerable<TheatreCMS.Models.ProductionPhotos>
-@*@model List<Sponsor>*@
-
-@*carousel section*@
-<div id="main-carousel">
-  <div class="slideshow-container">
-
-      @{
-        if (!Model.Any())
-        {
-          <div class="slideTitle">Test Title</div>
-          <img class="image-carousel" src="@Url.Content("~/Content/Images/img1.jpg")" />
-          <div class="slideText center text-outline">Test Description</div>
-          <div class="slideTitle1"></div>
-          <div class="slideText1 center text-outline"></div>
-          <div class="slideTitle-container">
-            <div class="row">
-              <div class="col-lg-1 bg-black center">
-                <h1>Test Title</h1>
-              </div>
-              <div class="col-lg-1 bg-black center">
-                <h3>Test Description</h3>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="dot-container">
-            <span class="dot" onclick="currentSlide(1)"></span>
-          </div>
-        }
-      }
 
 
-    @foreach (var item in Model)
-    {
-      <div class="slides">
-        <div class="slideTitle">@Html.DisplayFor(modelItem => item.Title)</div>
-
-        @*@{
-            string img = "";
-            if (item.Photo != null)
-            {
-                byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 400, 400);
-                var base64 = System.Convert.ToBase64String(thumbBytes);
-                img = String.Format("data:image/png;base64,{0}", base64);
-                <img src="@img" class="image-carousel" />
-            }
-
-        }*@
-        @*<img src="img" />*@
-        <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" class="image-carousel" />
-        <div class="slideText center text-outline">@Html.DisplayFor(modelItem => item.Description)</div>
-      </div>
-    }
-    @*<div class="slideTitle">Title for slide 1 here</div>
-    <img src="@Url.Content("~/Content/Images/img1.jpg")" style="width:100%" />
-    <div class="slideText center text-outline">Context for slide 1 here</div>
-
-    <div class="slides">
-        <div class="slideTitle">Title for slide 2 here</div>
-        <img src="@Url.Content("~/Content/Images/img2.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 2 here</div>
-    </div>
-    <div class="slides">
-        <div class="slideTitle">Title for slide 3 here</div>
-        <img src="@Url.Content("~/Content/Images/img3.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 3 here</div>
-    </div>
-    <div class="slides">
-        <div class="slideTitle">Title for slide 4 here</div>
-        <img src="@Url.Content("~/Content/Images/img4.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 4 here</div>
-    </div>
-    <div class="slides">
-        <div class="slideTitle">Title for slide 5 here</div>
-        <img src="@Url.Content("~/Content/Images/img5.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 5 here</div>
-    </div>*@
-    @*The left and right buttons*@
-    <a class="left text-outline" onclick="changeSlide(-1)">&#10094;</a>
-    <a class="right text-outline" onclick="changeSlide(1)">&#10095;</a>
-  </div>
-    <br />
-    @*The dots for navigation*@
-    <div style="text-align:center">
-        @*@{
-                foreach (var item in Model)
+<div>
+    <div>
+        <main id="home-main">
+            <div class="home-container">
+                @foreach (var item in Model)
                 {
-                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <div id="index-block-@i" class="home-block">
+                        <figure class="home-inner">
+                            <div class="home-tint-overlay home-tint-overlay-show"></div>
+                            @{
+                                if (item.DefaultPhoto != null)
+                                {
+                                    <div class="home-img">
+                                        <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = (item.DefaultPhoto.PhotoId + 1) }))"></div> @* TODO: insert unique img*@
+                                    </div>
+                                    <div class="home-mobile-img">
+                                        <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = (item.DefaultPhoto.PhotoId + 1) }))"></div> @* TODO: insert unique img*@
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="home-img">
+                                        <div style="background-image: url(~/Content/Images/Unavailable.png)"></div> @* TODO: insert unique img*@
+                                    </div>
+                                    <div class="home-mobile-img">
+                                        <div style="background-image: url(~/Content/Images/Unavailable.png)"></div> @* TODO: insert unique img*@
+                                    </div>
+                                }
+                            }
+                            <figcaption class="home-content home-content-show">
+                                <div class="home-content-inner" data-aos="fade-up">
+                                    @{
+                                        <h6 class="home-tag-line">Home Tag Line</h6>
+                                        <h2 role="heading" class="home-title">@item.Title</h2>
+                                        <p class="home-date">@item.OpeningDay.ToString("dddd, MMMM dd") - @item.ClosingDay.ToString("dddd, MMMM, dd")</p>
+                                        <div class="home-btn">
+                                            <a class="btn-primary" href="#">Details</a>
+                                        </div>
+                                    }
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    i++;
                 }
-            }*@
-        @{
-
-
-            for (int i = 0; i < Model.ToList().Count; i++)
-            {
-                <span class="dot" onclick="currentSlide(@(i+1))"></span>
-
-            }
-            @*<span class="dot" onclick="currentSlide(i)"></span>*@
-
-        }
-
-
-        @*<span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>*@
+            </div>
+        </main>
     </div>
 </div>
 
-@*text section*@
-<div id="main-body">
-    <div class="synopsisTitle center">Title for body text here</div>
-    <div class="synopsisBody center">
-        <p>Body text here.</p>
-    </div>
-</div>
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
 
-@*Sponsor section*@
-@*<div>
-        @Html.Partial("_SponsorsPartial")
-    </div>*@
-@{Html.RenderAction("List", "Sponsors");}
+    });
+</script>

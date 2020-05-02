@@ -14,11 +14,17 @@ namespace TheatreCMS.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            ApplicationDbContext db = new ApplicationDbContext();            
-            var proPhotos = db.ProductionPhotos.ToList();            
-            return View(proPhotos);
+            var current = from p in db.Productions
+                          select p;
+
+            var currentDate = DateTime.Now;
+
+            current = current.Where(p => (p.OpeningDay <= currentDate && p.ClosingDay >= currentDate) || (p.OpeningDay >= currentDate));
+            return View(current.ToList());
         }
 
         public ActionResult About()
