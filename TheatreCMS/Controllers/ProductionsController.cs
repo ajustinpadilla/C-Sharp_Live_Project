@@ -47,8 +47,8 @@ namespace TheatreCMS.Controllers
             ViewBag.CurrentRuntime = runtime;
             ViewBag.WorldPremiere = worldPremiere;
 
-
-            if (!String.IsNullOrEmpty(month) && month != "any" && !String.IsNullOrEmpty(day) && day != "any") // If day && month HasValue
+            /*
+            if (!String.IsNullOrEmpty(month) && month != "any" && !String.IsNullOrEmpty(day) && day != "any") // If day && month HasValue // If day && month HasValue
             {
                 var monthInt32 = Int32.Parse(month);
                 monthInt32 += 1;                        // Add one to month for db comparison, value passed from view is 0-11 with 0:Jan 1:Feb etc...
@@ -83,8 +83,46 @@ namespace TheatreCMS.Controllers
                     productions = productions.Where(p => p.ShowtimeEve.Value.Day == dayInt32 || p.ShowtimeMat.Value.Day == dayInt32);
                     isSearching = true;
                 }
+            } */
+
+
+            if (!String.IsNullOrEmpty(month) && month != "any" && !String.IsNullOrEmpty(day) && day != "any") // If day && month HasValue // If day && month HasValue
+            {
+                var monthInt32 = Int32.Parse(month);
+                monthInt32 += 1;                        // Add one to month for db comparison, value passed from view is 0-11 with 0:Jan 1:Feb etc...
+                var dayInt32 = Int32.Parse(day);
+                if (!IsValidDay(dayInt32, monthInt32))  // Call day validation check
+                {
+                    ViewBag.DayEx = "Invalid Date";
+                    isSearching = true;
+                    ViewBag.IsSearching = isSearching;
+                    return View(productions.ToList());
+                }
+                else
+                {
+                    productions = productions.Where(p => p.OpeningDay.Month <= monthInt32 && p.ClosingDay.Month >= monthInt32);
+                    productions = productions.Where(p => p.OpeningDay.Day <= dayInt32 && p.ClosingDay.Day >= dayInt32);
+                    isSearching = true;
+
+                }
             }
-            
+            else
+            {
+                if (!String.IsNullOrEmpty(month) && month != "any")
+                {
+                    var monthInt32 = Int32.Parse(month);
+                    monthInt32 += 1;
+                    productions = productions.Where(p => p.OpeningDay.Month <= monthInt32 && p.ClosingDay.Month >= monthInt32);
+                    isSearching = true;
+                }
+                if (!String.IsNullOrEmpty(day) && day != "any")
+                {
+                    var dayInt32 = Int32.Parse(day);
+                    productions = productions.Where(p => p.OpeningDay.Day <= dayInt32 && p.ClosingDay.Day >= dayInt32);
+                    isSearching = true;
+                }
+            }
+
             //Comapare values passed from view to values in productions
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -117,13 +155,20 @@ namespace TheatreCMS.Controllers
                 isSearching = true;
             }
             
-            if(isSearching.HasValue && isSearching == true) //Pass isSearch boolean to ViewBag
+            if(isSearching.HasValue && isSearching == true) //Pass isSearching boolean to ViewBag
             {
                 ViewBag.IsSearching = isSearching;
-            } else
+            }
+            else if (season == "any" || month == "any" || day == "any" || showtime == "any" || runtime == "any")
+            {
+                ViewBag.IsSearching = true;
+            }
+            else
             {
                 ViewBag.IsSearching = false;
             }
+
+            
 
             ViewBag.Results = productions.Count();  //Total search results
 

@@ -57,6 +57,10 @@
                                         <option value="@i">@seasonYears[i]</option>
                                     }
                                 }
+                                else
+                                {
+                                    <option value="@i">@seasonYears[i]</option>
+                                }
                             }
                             else
                             {
@@ -87,6 +91,10 @@
                                     <option value="@i">@DateTimeFormatInfo.InvariantInfo.MonthNames[i]</option>
                                 }
                             }
+                            else
+                            {
+                                <option value="@i">@DateTimeFormatInfo.InvariantInfo.MonthNames[i]</option>
+                            }
                         }
                         else
                         {
@@ -116,6 +124,10 @@
                                     <option value="@i">@i.DisplayWithSuffix()</option>
                                 }
                             }
+                            else
+                            {
+                                <option value="@i">@i.DisplayWithSuffix()</option>
+                            }
                         }
                         else
                         {
@@ -132,7 +144,7 @@
                     {
                         <option selected disabled hidden>Showtime</option>
                     }
-                    <option value="">Any Showtime</option>
+                    <option value="any">Any Showtime</option>
                     @foreach (var item in showTimes)
                     {
                         if (!String.IsNullOrEmpty(ViewBag.CurrentShowtime))
@@ -147,6 +159,9 @@
                                 {
                                     <option value="@item">@item</option>
                                 }
+                            } else
+                            {
+                                <option value="@item">@item</option>
                             }
                         }
                         else
@@ -160,7 +175,7 @@
                     {
                         <option selected disabled hidden>Runtime</option>
                     }
-                    <option value="">Any Runtime</option>
+                    <option value="any">Any Runtime</option>
                     @foreach (var runTime in runTimes)
                     {
                         if (!String.IsNullOrEmpty(ViewBag.CurrentRuntime))
@@ -175,6 +190,10 @@
                                 {
                                     <option value="@runTime">@runTime</option>
                                 }
+                            }
+                            else
+                            {
+                                <option value="@runTime">@runTime</option>
                             }
                         }
                         else
@@ -292,6 +311,16 @@
 <script>
 
     $(document).ready(function () {
+        $(document).scroll(function () {
+            if ($(window).scrollTop() > 0) {
+                $(".search-container").css({ top: '64px' });
+            }
+            if ($(window).scrollTop() === 0) {
+                $('.search-container').removeAttr('style');
+            }
+            
+        });
+
 
         var currentlySearching = "@((ViewBag.IsSearching).ToString())"
 
