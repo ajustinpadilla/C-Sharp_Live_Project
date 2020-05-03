@@ -1,4 +1,5 @@
-﻿@font-face {
+﻿@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+@font-face {
     font-family: 'BebasNeue';
     src: url('../webfonts/BebasNeue-Regular.woff2') format('woff2');
     font-weight: normal;
@@ -200,9 +201,9 @@
             width: 100%;
         }
 
-        .active, .dot:hover {
+        /*.active, .dot:hover {
             background-color: var(--main-secondary-color);
-        }
+        } */
 
         .synopsisTitle {
             font-weight: bold;
@@ -2016,6 +2017,13 @@ textarea {
 
 /* Start Homepage */
 
+.home-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
 
 #home-main {
     display: block;
@@ -2025,6 +2033,7 @@ textarea {
     line-height: 1.5;
     overflow-x: hidden;
 }
+
 
 .home-block, .home-inner {
     margin: 0;
@@ -2086,19 +2095,14 @@ textarea {
     z-index: 10;
     background: -webkit-gradient(linear,left top,left bottom,color-stop(53.92%,rgba(35,31,32,0)),color-stop(72.5%,rgba(35,31,32,.6)));
     background: linear-gradient(rgba(35,31,32,0) 53.92%,rgba(35,31,32,.6) 72.5%);
-    opacity: 0;
     -webkit-transition: inherit;
-    transition: inherit;
+    transition: opacity ease-in-out 3s;
 }
 
 @media only screen and (max-width: 48em){
     .home-tint-overlay {
         display: none;
     }
-}
-
-.home-tint-overlay-show {
-    opacity: 1;
 }
 
 .home-content {
@@ -2116,9 +2120,6 @@ textarea {
     color: #fff;
     margin-bottom: 2.5rem;
     z-index: 100;
-    opacity: 0;
-    -webkit-transition: inherit;
-    transition: inherit;
     width: 100%;
     max-width: 92rem;
     margin-left: auto;
@@ -2160,9 +2161,6 @@ textarea {
     width: 100%;
 }
 
-.home-content-show {
-    opacity: 1;
-}
 
 .home-tag-line {
     margin-bottom: -2.5rem;
@@ -2187,29 +2185,19 @@ textarea {
     }
 }
 
-.home-title, h1 {
-    font-size: 6.5rem;
+.home-content-inner h2 {
+    display: block;
     line-height: 1;
-    font-family: BebasNeue;
-    font-weight: 700
-}
-
-h2 {
     font-weight: 400;
-    margin-bottom: 1.25rem;
+    background:transparent;
     margin: 0;
-    padding:0;
-    border:0;
-    outline:0;
-    font-size:100%;
-    vertical-align:baseline;
-    background:transparent
 }
 
 .home-title {
-    font-size: 13.5rem;
+    font-size: 13rem;
     font-weight: 400;
     color: var(--light-color);
+    text-shadow: var(--dark-color) 0px 0px 10px;
 }
 
 @media only screen and (max-width: 80em) {
@@ -2226,20 +2214,21 @@ h2 {
 
 @media only screen and (max-width: 48em) {
     .home-title {
-        font-size: 2.75rem;
+        font-size: 2.5rem;
         color: var(--light-color);
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
     }
 }
 
-.home-btn{
-    margin-top: 2rem;
-}
 
 @media only screen and (max-width: 48em) {
     .home-title+.home-btns {
         margin-top: .625rem;
     }
+}
+
+.home-content-inner .home-date {
+    font-family: Arial, sans-serif;
 }
 
 .home-date {
@@ -2257,9 +2246,10 @@ h2 {
 
 .home-content-inner .btn-primary {
     display: inline-block;
+    font-weight: 700;
     margin-bottom: 1rem;
     padding: .75rem 1rem;
-    font-family: inherit;
+    font-family: Arial;
     text-decoration: none;
     text-transform: uppercase;
     text-align: center;
@@ -2287,3 +2277,156 @@ h2 {
         color: var(--dark-color);
     }
 }
+
+#home-nav{
+    position: fixed;
+    top: 50%;
+    right: 2.5rem;
+    color: #fff;
+    z-index: 100;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width:48em){
+    #home-nav{
+        display:none;
+    }
+}
+
+#home-nav a{
+    display: block;
+    border-bottom: none;
+    margin-bottom: .5rem;
+    background-color: #fff;
+    width: .75rem;
+    height: .75rem;
+    border: 1px solid var(--dark-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#home-nav a:hover{
+    background-color: var(--secondary-color);
+}
+
+#home-nav li.active a{
+    background-color: var(--main-bg-color);
+}
+
+#home-nav a:focus {
+    box-shadow: 0px 2px 0 0 var(--dark-color) !important;
+    outline: 0;
+}
+
+
+/* End Homepage */
+
+/* Start Ribbons */
+
+.corner-ribbon{
+    font-family: Arial, sans-serif;
+    width: 200px;
+    background: #e43;
+    position: absolute;
+    top: 25px;
+    left: -50px;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 1px;
+    color: #f0f0f0;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.corner-ribbon.sticky {
+    position: fixed;
+}
+
+.corner-ribbon.shadow {
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
+}
+
+/* Different positions */
+
+.corner-ribbon.top-left {
+    top: 25px;
+    left: -50px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.corner-ribbon.top-right {
+    top: 25px;
+    right: -50px;
+    left: auto;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.corner-ribbon.bottom-left {
+    top: auto;
+    bottom: 25px;
+    left: -50px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.corner-ribbon.bottom-right {
+    top: auto;
+    right: -50px;
+    bottom: 25px;
+    left: auto;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+/* Colors */
+
+.corner-ribbon.main {
+    background: var(--main-bg-color);
+}
+
+.corner-ribbon.white {
+    background: #f0f0f0;
+    color: #555;
+}
+
+.corner-ribbon.black {
+    background: #333;
+}
+
+.corner-ribbon.grey {
+    background: #999;
+}
+
+.corner-ribbon.blue {
+    background: #39d;
+}
+
+.corner-ribbon.green {
+    background: #2c7;
+}
+
+.corner-ribbon.turquoise {
+    background: #1b9;
+}
+
+.corner-ribbon.purple {
+    background: #95b;
+}
+
+.corner-ribbon.red {
+    background: #e43;
+}
+
+.corner-ribbon.orange {
+    background: #e82;
+}
+
+.corner-ribbon.yellow {
+    background: #ec0;
+}
+
+/* End Ribbons */

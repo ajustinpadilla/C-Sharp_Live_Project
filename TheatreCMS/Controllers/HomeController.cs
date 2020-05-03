@@ -23,7 +23,12 @@ namespace TheatreCMS.Controllers
 
             var currentDate = DateTime.Now;
 
-            current = current.Where(p => (p.OpeningDay <= currentDate && p.ClosingDay >= currentDate) || (p.OpeningDay >= currentDate));
+            //Filter list by current and future productions
+            current = current.Where(p => p.IsCurrent == true || p.OpeningDay >= currentDate);
+            //Sort by Opening Day, and then by isCurrent. So that the most current will be at the top of list and the list will be sorted descending by opening day.
+            current = current.OrderBy(p => p.OpeningDay)
+                .ThenBy(p => p.IsCurrent == true);
+            
             return View(current.ToList());
         }
 
