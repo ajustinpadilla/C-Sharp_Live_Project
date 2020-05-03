@@ -183,26 +183,26 @@ namespace TheatreCMS.Controllers
 
         public ActionResult UserList(string requestedSort = "UserName", string currentSortOrder = "")
         {
-            ViewBag.SortOrder = currentSortOrder;
+            string newSortOrder = currentSortOrder;
             var users = db.Users.AsNoTracking().ToList();
             
-            if (currentSortOrder.Contains(requestedSort))
+            if (newSortOrder.Contains(requestedSort))
             {
-                if (currentSortOrder.Contains("_desc"))
+                if (newSortOrder.Contains("_desc"))
                 {
-                    currentSortOrder = currentSortOrder.Replace("_desc", "");
+                    newSortOrder = newSortOrder.Replace("_desc", "");
                 }
                 else
                 {
-                    currentSortOrder += "_desc";
+                    newSortOrder += "_desc";
                 }
             }
             else
             {
-                currentSortOrder = requestedSort;
+                newSortOrder = requestedSort;
             }
 
-            switch (currentSortOrder)
+            switch (newSortOrder)
             {
                 case "UserName":
                     // do some sorting
@@ -234,11 +234,12 @@ namespace TheatreCMS.Controllers
                     break;
                 default:
                     // if it's not a recognized case (sort order)
+                    ViewBag.SortOrder = currentSortOrder;
                     return View(users);
             }
             
 
-            ViewBag.SortOrder = currentSortOrder;
+            ViewBag.SortOrder = newSortOrder;
             return View(users);
         }
 
