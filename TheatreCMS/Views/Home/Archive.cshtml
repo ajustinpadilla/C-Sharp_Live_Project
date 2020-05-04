@@ -19,60 +19,61 @@
     </div>
 </div>
 
-    <!--Current Productions-->
-    <div>
-        <h4>Current Productions</h4>
-        <div class="card-deck bg-black">
-            <div class="card bg-black">
-                <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black" alt="Ghost">
-                <div class="card-body">
-                    <h5 class="card-title">Stupid Ghost</h5>
-                    <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
+<!--Current Productions-->
+<div id="current-productions">
+    <h4>Current Productions</h4>
+    <div class="card-deck bg-black">
+        <div class="card bg-black">
+            <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black current-production-img" alt="Ghost">
+            <div class="card-body">
+                <h5 class="card-title">Stupid Ghost</h5>
+                <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
             </div>
-            <div class="card bg-black">
-                <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top bg-black" alt="Midas">
-                <div class="card-body">
-                    <h5 class="card-title">Everything You Touch</h5>
-                    <p class="card-text">A cursed man that ruins everything he touches.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
-            </div>
-            <div class="card bg-black">
-                <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black" alt="Merchant">
-                <div class="card-body">
-                    <h5 class="card-title">Merchant of Venice</h5>
-                    <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
             </div>
         </div>
-        <hr />
+        <div class="card bg-black">
+            <img src="~/Content/Images/Midas-gold.jpg" class=" img-fluid card-img-top bg-black current-production-img" alt="Midas">
+            <div class="card-body">
+                <h5 class="card-title">Everything You Touch</h5>
+                <p class="card-text">A cursed man that ruins everything he touches.</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+            </div>
+        </div>
+        <div class="card bg-black">
+            <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black current-production-img" alt="Merchant">
+            <div class="card-body">
+                <h5 class="card-title">Merchant of Venice</h5>
+                <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+            </div>
+        </div>
     </div>
+    <hr />
+</div>
 
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
-@using (Html.BeginForm("Archive", "Home", FormMethod.Post))
-{
-    <div class="container" style="align-content:center">
-        @Html.TextBox("ArchiveSearchField")
-        <select id="SearchByCategory" name="SearchByCategory">
-            <option>Search by Category</option>
-            <option value="ArchiveCastMember">Cast Member</option>
-            <option value="ArchiveProduction">Production</option>
-            <option value="ArchivePart">Part</option>
-        </select>
-        <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
-    </div>
+<div class="archive-search-container">
+    @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
+    {
+        <div class="archive-input-container">
+            <select id="SearchByCategory" name="SearchByCategory">
+                <option class="search-dropdown">Search by Category</option>
+                <option class="search-dropdown option" value="ArchiveCastMember">Cast Member</option>
+                <option class="search-dropdown option" value="ArchiveProduction">Production</option>
+                <option class="search-dropdown option" value="ArchivePart">Part</option>
+            </select>
+            @Html.TextBox("ArchiveSearchField", "", new { placeholder = "Search" })
+            <button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>
+        </div>
+    }
+</div>
 
-
-}
 @*<div class="container" style="align-content:center">
         <nav class="navbar navbar-expand-xl">
             <form class="form-inline">
@@ -142,7 +143,7 @@
                         }
                         <caption>@ViewBag.Message</caption>
                     </table>
-                break;
+                    break;
                 case "ArchivePart":
                     <table style="width:100%" class="results">
                         <tr>
@@ -161,11 +162,11 @@
                         }
                         <caption>@ViewBag.Message</caption>
                     </table>
-                break;
+                    break;
             }
 
-            }
-</p>
+        }
+    </p>
 </div>
 
 
@@ -174,12 +175,12 @@
 <hr />
 
 <!--Past Productions-->
-@{ 
-    var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON 
+@{
+    var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
     int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
     int firstYear = 1997;
     int secondYear = 1998;
-    Dictionary<int, string> seasonYears = new Dictionary<int, string>();    // Create Dictionary containing Seasons and their years    
+    Dictionary<int, string> seasonYears = new Dictionary<int, string>();    // Create Dictionary containing Seasons and their years
     for (int i = 1; i <= currentSeason; i++)
     {
         seasonYears.Add(i, firstYear.ToString() + " - " + secondYear.ToString());
@@ -188,16 +189,16 @@
     }
 }
 <div class="container">
-    <div class="h4">Past Productions</div> 
+    <div class="h4">Past Productions</div>
     <div class="accordian" id="pastProductions">
         <!-- Begin for loop to populate years-->
         @for (int i = currentSeason; i >= 1; i--)
         {
-            string currentHeading = "heading" + i.ToString(); 
+            string currentHeading = "heading" + i.ToString();
             string currentBody = "season" + i.ToString();
             <div class="card bg-black">
                 <!-- header -->
-                <div class="card-header text-center" id="@currentHeading"> 
+                <div class="card-header text-center" id="@currentHeading">
                     <h2 class="mb-0">
                         <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
                             @seasonYears[i]
@@ -233,7 +234,7 @@
                                             <p class="card-text">
                                                 @Html.DisplayFor(modelItem => item.Description)
                                             </p>
-                                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a> 
+                                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
                                         </div>
                                     </div>
                                 }
@@ -245,3 +246,30 @@
         }
     </div>
 </div>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        @* Swap search button for mobile view, if > 900px use fontawesome magnifying glass, if < 900 use standard "Search" button" *@
+        function changeSearchBtn() {
+            if (window.matchMedia('(max-width: 899px)').matches) { @* matchMedia syncs with CSS media query *@
+                $(".search-btn").each(function (i) {
+                    $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
+                });
+            } else {
+                $(".mobile-search-btn").each(function (i) {
+                    $(this).replaceWith('<button class="search-btn btn btn-lg btn-circle fa fa-search color" type="submit" value="search"></button>');
+                });
+            }
+        }
+
+        @* Call changeSearchBtn() when page is loaded *@
+        changeSearchBtn(); 
+
+        @* If window is resized, call changeSearchBtn()*@
+        window.onresize = function (event) {
+            changeSearchBtn();
+        };
+
+    });
+</script>
