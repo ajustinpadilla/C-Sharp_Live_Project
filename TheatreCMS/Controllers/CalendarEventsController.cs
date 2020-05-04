@@ -76,54 +76,49 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
-        {
-
-            
-            //ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
-            //ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
-
-            //var productionID = Request.Form["Productions"];
-            //var rentalID = Request.Form["RentalRequests"];
-
-            //if (productionID == "" && rentalID == "")
-            //{
-            //    var validationMessage = "Please select a Production or a Rental Request.";
-            //    this.ModelState.AddModelError("ProductionId", validationMessage);
-            //    this.ModelState.AddModelError("RentalRequestId", validationMessage);
-            //}
-            //else if (productionID != "" && rentalID == "")
-            //{
-            //calendarEvent.ProductionId = Convert.ToInt32(productionID);
-            //}
-            //else if (productionID == "" && rentalID != "")
-            //{
-            //calendarEvent.RentalRequestId = Convert.ToInt32(rentalID);
-            //}
-            //else
-            //{
-            //    var validationMessage = "You can only select either Production or Rental Request, please try again.";
-            //    this.ModelState.AddModelError("ProductionId", validationMessage);
-            //    this.ModelState.AddModelError("RentalRequestId", validationMessage);
-            //}
-            var isAjax = Request.IsAjaxRequest();
+        public ActionResult Create([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,Color,ProductionId,RentalRequestId")] CalendarEvent calendarEvent)
+        {          
+           var isAjax = Request.IsAjaxRequest();
             if (ModelState.IsValid && !isAjax)
             {
-
                 ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
                 ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+
+                var productionID = Request.Form["Productions"];
+                var rentalID = Request.Form["RentalRequests"];
+
+                if (productionID == "" && rentalID == "")
+                {
+                    var validationMessage = "Please select a Production or a Rental Request.";
+                    this.ModelState.AddModelError("ProductionId", validationMessage);
+                    this.ModelState.AddModelError("RentalRequestId", validationMessage);
+                }
+                else if (productionID != "" && rentalID == "")
+                {
+                    calendarEvent.ProductionId = Convert.ToInt32(productionID);
+                }
+                else if (productionID == "" && rentalID != "")
+                {
+                    calendarEvent.RentalRequestId = Convert.ToInt32(rentalID);
+                }
+                else
+                {
+                    var validationMessage = "You can only select either Production or Rental Request, please try again.";
+                    this.ModelState.AddModelError("ProductionId", validationMessage);
+                    this.ModelState.AddModelError("RentalRequestId", validationMessage);
+                }
 
                 if (ViewData["Productions"] != null)
 
 
                     db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
-                System.Diagnostics.Debug.WriteLine("This call was NOT made from ajax, therefore from Create MVC Page. isAjax: " + isAjax);
+                //System.Diagnostics.Debug.WriteLine("This call was NOT made from ajax, therefore from Create MVC Page. isAjax: " + isAjax);
                 return RedirectToAction("Index");              
             }
-            if (ModelState.IsValid && isAjax)
-            {
-                System.Diagnostics.Debug.WriteLine("This call was made from Ajax, therefore from Add Modal. isAjax: " + isAjax);
+            if (ModelState.IsValid && isAjax){
+                
+                //System.Diagnostics.Debug.WriteLine("This call was made from Ajax, therefore from Add Modal. isAjax: " + isAjax);
                 db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
                 return Json(new { success = true });
@@ -155,7 +150,7 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvents)
+        public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,Color,ProductionId,RentalRequestId")] CalendarEvent calendarEvents)
         {
             var isAjax = Request.IsAjaxRequest();
             if (ModelState.IsValid && !isAjax)

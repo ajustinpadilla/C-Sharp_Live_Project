@@ -54,40 +54,21 @@
                             <div class="form-group">
                                 <label class="fc-modal-labels" for="eventtypes">Event type:</label>
                                 <div class="formBox">
-                                    <div class="dropdown">
-                                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Select an Event Type
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuButton">
-                                            <li><a tabindex="-1" href="#">Productions</a></li>
-                                            <li><a tabindex="-1" href="#">Facility Rental</a></li>
-                                        </ul>
-                                    </div>                                    
                                     <div>
-                                        <div class="dropdown-menu" id="addprodopt">
-                                            <div class="mdpdown">
-                                                <select id="addprodopt">
-                                                    @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "ID=DPProductionsList", htmlAttributes: new { @class = "form-control" })
-                                                    <option>Production Example</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        <select class="form-control" id="eventtypes" onchange=""name="EventTypes">
+                                            <option id="selType" value="">Select an Event Type</option>
+                                            <option value="prod_type">Productions</option>
+                                            <option value="rent_type">Facility Rental</option>
+                                        </select>                                      
                                     </div>
-                                    <div>
-                                        <div class="dropdown-menu" id="addrentopt">
-                                            <div class="mdpdown">
-                                                <select id="addrentopt">
-                                                    <option value="">Choose Facility Rental Company</option>
-                                                    @Html.DropDownList("RentalRequests", (IEnumerable<SelectListItem>)ViewData["RentalRequests"], "ID=DPRentalReqList", htmlAttributes: new { @class = "form-control" })
-                                                    <option>Facility Rental Example</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                    <div id="ProductionsMenu">
+                                        @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "Choose Production", htmlAttributes: new { @class = "form-control" })
+                                    </div>                                       
+                                    <div id="RentalsMenu">
+                                        @Html.DropDownList("RentalRequests", (IEnumerable<SelectListItem>)ViewData["RentalRequests"], "Choose Rental Request", htmlAttributes: new { @class = "form-control" })
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="form-group">
                                 <label class="fc-modal-labels">Link:</label>
                                 <div class="formBox">
@@ -155,25 +136,21 @@
                             <div class="form-group">
                                 <label class="fc-modal-labels" for="editeventtypes">Event type:</label>
                                 <div class="formBox">
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="" id="eventtypes">
-                                        Choose an Event
-                                    </ul>
-                                    <ul class="dropdown-submenu" id="addprodopt">
-                                        <li>
-                                            <select id="addprodopt">
-                                                <option value=""> - - - </option>
-                                                <option value="production">Example Production</option>
+                                    <div class="formBox">
+                                        <div>
+                                            <select class="form-control" id="editeventtypes"  name="EventTypes">
+                                                <option id="e_selType" value="">Select an Event Type</option>
+                                                <option id="e_prod_type" value="e_prod_type">Productions</option>
+                                                <option id="e_rent_type" value="e_rent_type">Facility Rental</option>
                                             </select>
-                                        </li>
-                                    </ul>
-                                    <ul class="dropdown-submenu" id="addrentopt">
-                                        <li>
-                                            <select id="addrentopt">
-                                                <option value=""> - - - </option>
-                                                <option value="rental">Example Facility Rental</option>
-                                            </select>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                        <div id="e_ProductionsMenu">
+                                            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "", htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div id="e_RentalsMenu">
+                                            @Html.DropDownList("RentalRequests", (IEnumerable<SelectListItem>)ViewData["RentalRequests"], "", htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -241,7 +218,7 @@
                             Event Type:
                         </dt>
                         <dd>
-                            <p id="deventtypes"></p>,<p id="dtypeevent"></p>
+                            <p id="deventtypes"></p><p id="dtypeevent"></p>
                         </dd>
                         <dt>
                             Link:
@@ -325,18 +302,9 @@
                     timezone: "local",
                     defaultDate: new Date(),
                     //allows multiple/stacked events
-                    eventLimit: true,
-                    //default event color: --main-secondary-color
+                    eventLimit: true,               
                     events: events,
-                    //render appropriate eventcolor to calendar based on type of event
-                    eventRender: function (events, element) {
-                        if (events.productionid > 0) {
-                            element.css('palette-container .fc-content', 'var(--main-bg-color)');
-                        }
-                        if (events.rentalrequestid > 0) {
-                            element.css('palette-container .fc-content', 'var(--subscriber-main)');
-                        }
-                    },
+                    //render appropriate eventcolor to calendar based on type of event                  
                     selectable: true,
                     selectHelper: true,
                     //if multiple events on same day should be stacked, set to true:
@@ -355,18 +323,28 @@
                         getAddStartT();
                         getAddEndT();
 
-                        //to populate dropdowns on modals with productions and rental requests existing in db
-
-                        //$('#addModal').on('show.bs.modal', function () {
-                        //    var 1 = $().data('id');
-                        //    var 2 = $().data('id');
-                        //    $("#production").val(1);
-                        //    $("#rental").val(2);
-                        //});
-
                         $("#addModal").modal({ backdrop: true });
-                        // Populate lists of Productions/Rental Requests on Add modal
-                        $('')
+
+                        $("#addModal #ProductionsMenu").hide();
+                        $("#addModal #RentalsMenu").hide();
+
+                       
+                        $("#addModal #eventtypes").change(function () {
+                            var type = $(this).val();
+                            if (type == "prod_type") {
+                                $("#addModal #ProductionsMenu").show();
+                                $("#addModal #RentalsMenu").hide();
+                            }
+                            else if (type == "rent_type") {
+                                $("#addModal #RentalsMenu").show();
+                                $("#addModal #ProductionsMenu").hide();
+                            }
+                            else {
+                                $("#addModal #ProductionsMenu").hide();
+                                $("#addModal #RentalsMenu").hide();
+                            };
+                        }),
+
                         //Call CalendarEvents/Create New Event
                         $.ajax({
                             type: "GET",
@@ -394,44 +372,40 @@
                         $('#detailsModal #deventStartDate').html(startdatedetail);
                         var enddatedetail = moment.utc(calEvent.end).local().format("MM-DD-YYYY HH:mm a");
                         $('#detailsModal #deventEndDate').html(enddatedetail);
-                        // display the id of the rentalrequest or production if exists, otherwise "unknown"
+                        
                         if (calEvent.productionid > 0) {
                             $('#detailsModal #deventtypes').html("Production: " + calEvent.productionid);
                         }
                         else if (calEvent.rentalrequestid > 0) {
                             $('#detailsModal #deventtypes').html("Facility Rental: " + calEvent.rentalrequestid);
-                        }
-                        else {
-                            $('#detailsModal #deventtypes').html("Unknown");
-                        }
+                        }                        
                         //$('#detailsModal #deventEventLinks').html(calEvent.eventlinks);
                         $("#detailsModal").modal({ backdrop: true });
 
-                        $("#detaileditbtn").click(function () {
+                        $("#detaileditbtn").click(function () {                           
                             $('#editModal #eeventId').html(calEvent.id);
                             $('#editModal #eeventTitle').html(document.getElementById("editformtitle").defaultValue = calEvent.title);
                             $('#editModal #eeventStartDate').html(document.getElementById("editformstarttime").defaultValue = moment(moment.utc(calEvent.start)).local().format().substring(0, 19));
                             $('#editModal #eeventEndDate').html(document.getElementById("editformendtime").defaultValue = moment(moment.utc(calEvent.end)).local().format().substring(0, 19));
+
                             if (calEvent.productionid > 0) {
-                                $('#editModal #editeventtypes').html('#editprodopt');
+                                $("#editModal #editeventtypes").val("e_prod_type");
+                                $('#editModal #Productions').val(calEvent.productionid);
+                                $("#editModal #e_RentalsMenu").hide();
                             }
                             else if (calEvent.rentalrequestid > 0) {
-                                $('#editModalModal #editeventtypes').html("#editrentopt");
+                                $("#editModal #editeventtypes").val("e_rent_type");
+                                $('#editModal #RentalRequests').val(calEvent.rentalrequestid)
+                                $("#editModal #e_ProductionsMenu").hide();
                             }
-                            else {
-                                $('#editModalModal #editeventtypes').html();
-                            }
-                            //$('#editModal #eeventEventLinks').html(document.getElementById("editeventtypes").defaultValue = calEvent.Link);
-
+                                                       
                             //remove previous modal and show edit Modal when edit button selected
                             $("#detailsModal").modal('hide');
                             window.setTimeout(function () {
                                 $("#editModal").modal("show");
                             }, 500);
 
-
-
-                            //save changes made in edit Modal
+                           //save changes made in edit Modal
                             $('#editsavebtn').click(function () {
                                 var antiForgeryToken = $('#editModal input[name="__RequestVerificationToken"]').val();
                                 calendarEvent = {
@@ -439,8 +413,11 @@
                                     "Title": $('#editModal #editformtitle').val(),
                                     "StartDate": $('#editModal #editformstarttime').val(),
                                     "EndDate": $('#editModal #editformendtime').val(),
-                                    '__RequestVerificationToken': antiForgeryToken,
-                                    //eventtype: $('#editModal #editeventtypes').val(),
+                                    "TicketsAvailable": null,
+                                    "ProductionId": $("#editModal #Productions").val(),
+                                    "RentalRequestId": $("editModal #RentalRequests").val(),
+
+                                    '__RequestVerificationToken': antiForgeryToken,                                    
                                 }
                                 $.ajax({
                                     type: "POST",
@@ -480,15 +457,37 @@
             };
             //save new event from Add Modal to db
             $('#addsavebtn').click(function () {
-                var savestart = $('#addModal #addformstarttime').val();
-                var saveend = $('#addModal #addformendtime').val();;
                 var antiForgeryToken = $('#addModal input[name="__RequestVerificationToken"]').val();
+                var savestart = $('#addModal #addformstarttime').val();
+                var saveend = $('#addModal #addformendtime').val();
+                var prod_id = $("#addModal #Productions").val();
+                var rent_id = $("#addModal #RentalRequests").val();
+
+                if (prod_id > 0) {
+                    var productionid = prod_id;                    
+                    var rentalrequestid = null;
+                    var color = '#DB1A11';
+                }
+                else if (rent_id > 0) {
+                    var productionid = null;
+                    var rentalrequestid = rent_id;   
+                    var color = '#9D7C39';
+                }
+                else {
+                    alert("You must choose a Production or Facility Rental to post an event to the calendar.");
+                };
+                
                 var calendarEvent = {
                     "Title": $('#addModal #addformtitle').val(),
                     "StartDate": savestart,
                     "EndDate": saveend,
+                    "TicketsAvailable": null,
+                    "RentalRequestId": rentalrequestid,
+                    "ProductionId": productionid,
+                    "Color": color,
                     '__RequestVerificationToken': antiForgeryToken
                 };
+
                 $.ajax({
                     type: "POST",
                     url: '/CalendarEvents/Create',

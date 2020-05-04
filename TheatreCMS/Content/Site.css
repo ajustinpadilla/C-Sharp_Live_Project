@@ -1637,17 +1637,17 @@ textarea {
         .palette-container .fc td.fc-today {
             background-color: darkgray;
         }
-         /*this styles the event color*/
-         /*overwritten in Javascript depending on type of event*/
-        .palette-container .fc-content {
+
+         /*overwritten as event data has color attribute/determines color*/
+        /*.palette-container .fc-content {
                     background-color: var(--secondary-color);
                     border: var(--secondary-color);
-                }
-        /*affects some sort of background detail, set to content color*/
+                }*/
+        /*affects some sort of background detail, set to content color
         .palette-container .fc-event {
             background-color: var(--secondary-color);
             border: var(--secondary-color);
-}
+}*/
 
 
         .palette-container .fc {
