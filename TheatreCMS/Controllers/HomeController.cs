@@ -18,18 +18,53 @@ namespace TheatreCMS.Controllers
 
         public ActionResult Index()
         {
-            var current = from p in db.Productions
+            var productions = from p in db.Productions
                           select p;
 
-            var currentDate = DateTime.Now;
 
             //Filter list by current and future productions
-            current = current.Where(p => p.IsCurrent == true || p.OpeningDay >= currentDate);
-            //Sort by Opening Day, and then by isCurrent. So that the most current will be at the top of list and the list will be sorted descending by opening day.
-            current = current.OrderBy(p => p.OpeningDay)
-                .ThenBy(p => p.IsCurrent == true);
-            
-            return View(current.ToList());
+            var query = productions.Where(p => p.OpeningDay > DateTime.Now || p.IsCurrent == true || (p.OpeningDay <= DateTime.Now && p.ClosingDay >= DateTime.Now))
+                .OrderBy(p => p.OpeningDay);
+
+            List<Production> unorderedProductions = query.ToList();
+            var orderedProductions = SortProductions(unorderedProductions);
+
+            return View(orderedProductions);
+        }
+
+        private List<Production> SortProductions(List<Production> list)
+        {
+            var sorted = new List<Production>();
+            var onStage = new List<Production>();
+            var current = new List<Production>();
+            var comingSoon = new List<Production>();
+
+            foreach (var item in list)
+            {
+                if (item.OpeningDay <= DateTime.Now && item.ClosingDay >= DateTime.Now)
+                {
+                    onStage.Add(item);
+                }
+            }
+            sorted.AddRange(onStage);
+            foreach (var item in list)
+            {
+                if (item.IsCurrent && !sorted.Contains(item))
+                {
+                    current.Add(item);
+                }
+            }
+            sorted.AddRange(current);
+            foreach (var item in list)
+            {
+                if (item.OpeningDay > DateTime.Now && !sorted.Contains(item))
+                {
+                    comingSoon.Add(item);
+                }
+            }
+            sorted.AddRange(comingSoon);
+
+            return sorted;
         }
 
         public ActionResult About()

@@ -5,6 +5,7 @@
 @{
     ViewBag.Title = "Home Page";
     int i = 1; //counter for hash tag links
+
 }
 
 @Styles.Render("~/Content/Site.css")
@@ -28,7 +29,7 @@
                                 <div class="home-mobile-img">
                                     <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = (item.DefaultPhoto.PhotoId + 1) }))"></div>
                                 </div>
-                                if (item.IsCurrent)
+                                if (item.OpeningDay <= DateTime.Now && item.ClosingDay >= DateTime.Now)
                                 {
                                     <div class="corner-ribbon top-right main">
                                         On Stage

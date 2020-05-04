@@ -2222,7 +2222,7 @@ textarea {
 
 
 @media only screen and (max-width: 48em) {
-    .home-title+.home-btns {
+    .home-title+.home-btn {
         margin-top: .625rem;
     }
 }
@@ -2270,6 +2270,19 @@ textarea {
     box-shadow: none;
 }
 
+
+.home-content-inner .btn-primary:active:hover {
+    background-color: rgba(0, 0, 0, .6);
+    color: var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+    box-shadow: none !important;
+}
+
+.home-content-inner .btn-primary:hover {
+    background-color: rgba(219, 26, 17, .7);
+}
+
+
 @media only screen and (max-width: 48em) {
     .home-content-inner .btn-primary {
         font-size: .875rem;
@@ -2289,7 +2302,7 @@ textarea {
     margin: 0;
 }
 
-@media (max-width:48em){
+@media only screen and (max-width:48em){
     #home-nav{
         display:none;
     }
@@ -2319,6 +2332,10 @@ textarea {
     box-shadow: 0px 2px 0 0 var(--dark-color) !important;
     outline: 0;
 }
+
+
+
+
 
 
 /* End Homepage */
@@ -2386,6 +2403,12 @@ textarea {
 
 .corner-ribbon.main {
     background: var(--main-bg-color);
+}
+
+@media only screen and (max-width: 48em) {
+    .corner-ribbon.main {
+        background: rgba(219, 26, 17, .3);
+    }
 }
 
 .corner-ribbon.white {
