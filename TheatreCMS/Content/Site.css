@@ -355,6 +355,8 @@
         footer {
             background-color: black;
             display: flex;
+            position: absolute;
+            width: 100%;
         }
 
         .footer-container {
@@ -395,6 +397,9 @@
             color: red;
         }
 
+        #socialMediaLinks {
+
+        }
         /* Set padding to keep content from hitting the edges */
         .body-content {
             padding-top: 25px;
