@@ -13,6 +13,11 @@
 }
 
 
+.text-black {
+    color: var(--dark-color);
+}
+
+
 .thumbnail_size { /*Small Image size for Index page*/
     height: auto;
     max-width: 150px;
@@ -242,10 +247,18 @@
 }*/
 
         /*production index table styling*/
-        .prod-index-l-margin {
+        .prod-index-header {
             margin-left: 40px;
+            padding: 16px 0px 8px 0px;
+            display: inline-block;
+            margin-top: 4px;
         }
 
+        .prod-index-create {
+            margin-left: 40px;
+            padding: 16px 0px 8px 0px;
+            display: inline-block;
+        }
         .productions-index-th-styling {
             color: var(--main-bg-color);
             text-align: left;
@@ -261,6 +274,7 @@
 
         .production-index-container {
             max-width: 100%;
+            min-height: 400px;
         }
 
         .spaced-btn-1, .spaced-btn-2 {
@@ -902,8 +916,21 @@ textarea {
         }
 
         .castContainer {
+            padding: 50px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .castContainer {
+                padding-left: 120px;
+                padding-right: 120px;
+            }
+        }
+
+        .castImageContainer {
             position: relative;
             width: auto;
+            /*used for text animation*/
+            /*overflow: hidden;*/
         }
 
         .castImage {
@@ -915,35 +942,45 @@ textarea {
             backface-visibility: hidden;
         }
 
-        .castContainer:hover .castImage {
+        .castImageContainer:hover .castImage {
             opacity: 0.3;
         }
 
-        .castContainer:hover .castMiddle {
+        .castImageContainer:hover .castMiddle {
             opacity: 1;
         }
 
-
-        .castText {
-            background-color: var(--light-color);
-            color: var(--main-bg-color);
-            font-size: 22px;
-            font-weight: 500;
-            padding: 1px 1px;
+        .castImageContainer:hover .castText {
+            margin-bottom: 0px;
+            margin-top: 0px;
         }
+        .castImageContainer:hover a {
+            text-decoration: none;
+        }
+        .castText {
+        /*background-color: var(--light-color);*/
+        background-color: rgba(255,251,251,.6);
+        color: var(--main-bg-color);
+        font-size: 16px;
+        font-weight: 500;
+        padding: 1px 1px;
+        font-style: italic;
+        }
+
 
         .castMiddle {
-            transition: .5s ease;
             opacity: 0;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             text-align: center;
+            height: auto;
+            bottom: 0%;
+            width: 100%;
+            margin-top: auto;
         }
 
-/*End Styling for CastMember Index View*/
+
+        /*End Styling for CastMember Index View*/
 
         .nav-login li {
             padding-right: 3rem;
@@ -1000,23 +1037,7 @@ textarea {
 
 
 
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*End Styling for CastMember Details View*/
-
+/*ENd Styling for CastMember Index View*/
 
 .nav-login li{
     padding-right: 3rem;
@@ -1396,13 +1417,15 @@ textarea {
     width: 100%;
 }*/
 
+        /*I adjusted the speed at which the navbar and logo shrinks and expands while scrolling*/
+
         #menu {
-            transition: 0.2s;
+            transition: 0.8s;
             padding: 20px;
         }
 
         #logo {
-            transition: 0.2s;
+            transition: 0.8s;
         }
 
         /*Styling for sponsor logos*/
@@ -1696,6 +1719,423 @@ textarea {
     height: 15vw;
     object-fit: contain;
 }
+
+#rentalRequests {
+    table-layout: fixed;
+    border: none;
+    width: 100%;
+    border-color: var(--light-color);
+}
+
+.project-info-popover, .project-info-popover:active, .project-info-popover:visited, .project-info-popover:focus {
+    text-decoration: none;
+}
+
+.table-responsive-stack tr {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    text-align: center;
+    border: none;
+}
+
+
+.table-responsive-stack td,
+.table-responsive-stack th {
+    width: 10%;
+    display: block;
+    /*      
+   flex-grow | flex-shrink | flex-basis   */
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    border-color: var(--light-color);
+    text-align: center;
+    padding: .15rem;
+}
+
+
+
+.table-responsive-stack .table-responsive-stack-thead {
+    font-weight: bold;
+    font-size: 1.0625em;
+    display: inline-flex;
+    color: #efeee0;
+    position: relative;
+    top: 3px;
+}
+
+.rental-request-date {
+    position: relative;
+    bottom: 9px;
+}
+
+.project-info-popover {
+    background-color: var(--dark-color);
+    border-color: var(--light-color);
+    border: none;
+    vertical-align: middle !important;
+    color: var(--light-color);
+}
+
+.project-info-popover:focus, .project-info-popover:active {
+    outline: none;
+}
+
+.rental-request-rows td {
+    border-bottom: 1px solid var(--light-color) !important;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    flex-basis:;
+}
+
+#rental-request-nav-th {
+    flex-basis: 5% !important;
+    margin-left: 5px;
+}
+
+.rental-request-rows #rental-request-nav-container {
+    border: none !important;
+    flex-basis: 5% !important;
+}
+
+.rental-request-nav {
+    margin: 2px 0 2px 0;
+}
+
+.rental-request-nav a {
+    display: inline-block;
+    width: 55px;
+}
+
+
+@media screen and (max-width: 992px) {
+    .table-responsive-stack tr {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        border: none;
+        border-color: var(--light-color);
+        display: block;
+        text-align: left;
+        margin: 0px 0 50px 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border: 1px solid var(--light-color);
+        margin: 0 -20px 0 -20px 0;
+    }
+
+    .rental-request-rows {
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .rental-request-rows td {
+        border: none !important;
+        margin: auto;
+        padding: 0;
+    }
+    
+    .table-responsive-stack td {
+        float: left\9;
+        width: 100%;
+        border: none;
+        padding: 0;
+    }
+
+    .table-responsive-stack br {
+        display: normal;
+    }
+
+    #rental-request-nav-container {
+        padding-top: 5px;
+        width: 205px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .rental-request-nav a {
+        margin: 0px;
+    }
+
+    .rental-request-nav {
+        display: inline-flex;
+        padding: 2.5px;
+    }
+
+    .mobile-project-info {
+        display: inline-block;
+        width: 90%;
+    }
+
+    .rental-request-date {
+        display: inline-flex;
+        position: static;
+    }
+
+}
+
+/*This class was added to put spacing between the photo and the text on the Photo Details page*/
+.image-spacing{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 10px;
+    border-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    max-width: 500px;
+}
+
+.details-spacing{
+    padding-top: 25px;
+}
+
+/*This class was added to give visual flair to the text on the Photo Details page*/
+.photodetailspagedecorating {
+    font-family: 'BioRhyme';
+    text-decoration-line: underline;
+    text-decoration-style: inherit;
+    text-decoration-color: crimson;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+}
+
+.backandeditspacing{
+    padding-left: 40px;
+    padding-bottom: 10px;
+}
+
+/* Archive Current Productions */
+#current-productions {
+    padding: 0px 20px;
+}
+
+/* Resize Archive Current Productions Image */
+#current-productions .current-production-img {
+    height: 30vw;
+    object-fit: cover;
+}
+
+/* Archive Current Productions Image Responsive Resizing */
+@media only screen and (max-width: 575px) {
+    #current-productions .current-production-img {
+        height: 60vw;
+        object-fit: cover;
+    }
+}
+
+/* Start Archive Search Bar */
+
+@media only screen and (min-width: 900px){
+   
+    /* Search container for centering Input Container*/
+    .archive-search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Input Container: Input field, Category Dropdown, Search button*/
+    .archive-input-container {
+        margin: 0 auto;
+        width: 850px;
+        position: relative;
+    }
+
+    /* Archive Search Text*/
+    .archive-input-container input[type="text"]{
+        width: 600px;
+        height: 50px;
+        padding: 12.5px 20px 12.5px 20px;
+        margin: 8px 0px 8px 200px;
+        background-color: var(--light-color);
+        font-size: 20px;
+        border: none;
+        outline: none;
+        border-right: 0px;
+        border-radius: 0px;
+    }
+
+    /* Arhive Search Category Dropdown */
+    .archive-input-container #SearchByCategory {
+        width:200px;
+        height: 50px;
+        margin: 0px;
+        padding: 12.5px 20px 12.5px 20px;
+        background-color: #007bff;
+        color: var(--light-color);
+        text-align: center;
+        position: absolute;
+        float: left;
+        top: 8px;
+        border: none;
+        border-radius: 4px 0px 0px 4px;
+        outline: none;
+    }
+
+    /* Archive Search Button*/
+    .archive-input-container .btn {
+        height: 50px;
+        width: 50px;
+        border: none;
+        padding: 12.5px 0px;
+        background-color: var(--light-color);
+        color: var(--dark-color);
+        text-align: center;
+        position: absolute;
+        border-radius: 0px 4px 4px 0px;
+        margin: 8px 0px 8px 0px;
+    }
+    
+    .archive-input-container .btn:focus {
+        box-shadow: none !important;
+    }
+    
+    .archive-input-container .btn:hover {
+        background-color: var(--light-color);
+    }
+
+    .archive-input-container option {
+        background-color: var(--light-color);
+        color: var(--dark-color);
+    }
+
+}
+
+@media only screen and (max-width: 900px) {
+    .archive-input-container {
+        padding: 0px 20px;
+    }
+}
+/* End Archive Search Bar*/
+
+/* Start Produtions Index Search */
+/* Gradient coloring for search button when it's active*/
+.active-search-button {
+    background: -moz-radial-gradient(center, ellipse cover, rgba(219,26,17,0.55) 0%, rgba(219,26,17,0.55) 1%, rgba(0,0,0,1) 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(219,26,17,0.55) 0%,rgba(219,26,17,0.55) 1%,rgba(0,0,0,1) 100%);
+    background: radial-gradient(ellipse at center, rgba(219,26,17,0.55) 0%,rgba(219,26,17,0.55) 1%,rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8cdb1a11', endColorstr='#000000',GradientType=1 );
+}
+
+.search-container {
+    float: right;
+    padding: 25px 40px 0px 0px;
+    width: 300px;
+}
+
+.search-select {
+    font-size: 15px !important;
+    height: 30px !important;
+    padding: 0 0 0 4px !important;
+    margin: 5px 0 5px 0 !important;
+}
+
+.search-text {
+    font-size: 15px !important;
+    height: 30px !important;
+    padding: 0 0 0 8px !important;
+    margin: 5px 0 5px 0 !important;
+}
+
+.search-button {
+    float: right;
+    background-color: var(--dark-color);
+}
+
+.search-icon {
+    color: var(--light-color);
+    border: none;
+}
+
+/* Styling for wide screen */
+@media screen and (min-width: 769px) {
+    .search-container {
+        position: fixed;
+        z-index: 9;
+        top: 160px;
+        right: 40px;
+        padding: 0px;
+    }
+
+    .search-button {
+        position: relative;
+        background-color: var(--dark-color);
+    }
+
+    .search-form {
+        background-color: rgba(0, 0, 0, 0.7);
+        position: relative;
+        display: inline-block;
+        padding: 10px 10px 0px 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        height: 340px;
+    }
+}
+
+/* Styling for lower resolutions*/
+@media screen and (max-width: 768px) {
+    .search-container {
+        display: block;
+        float: none;
+        width: 100% !important;
+        position: relative;
+        bottom: 82px;
+
+    }
+
+    .search-form {
+        display: inline-block;
+        padding: 40px 0px 0px 40px;
+    }
+
+    .search-text, .search-select {
+        display: inline-block !important;
+        width: 49% !important;
+    }
+} 
+
+@media screen and (max-width: 450px) {
+    .prod-index-create { 
+        display: block;
+        position: relative;
+        bottom: 20px;
+    }
+    
+    .search-container {
+        bottom: 138px;
+        left: 1px;
+    }
+
+    .search-form {
+        position: relative;
+        top: 35px;
+    }
+}
+/* End Productions Index Search*/
+}
+
+/*#navbarDropdownMenuLink{
+    color: black;
+}*/
+
+/*Ids should only occur one time on an HTML page*/
+
+/*Added a .class1.class2 selector*/
+
+#navbarSupportedContent .color {
+    color: #212529
+}
+
 /*This class was added to move most of the content of the login page to the left*/ 
 .loginpadding {
     padding-left: 50px;

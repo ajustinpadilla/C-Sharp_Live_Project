@@ -13,6 +13,7 @@ using TheatreCMS.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Net;
+using System.Web.UI.WebControls.Expressions;
 
 namespace TheatreCMS.Controllers
 {
@@ -68,9 +69,26 @@ namespace TheatreCMS.Controllers
         //    return RedirectToAction("Dashboard");
         //}
 
+
+        //AUTO CALCULATION OF SEASON CODE
+        public int AutoCalculateCurrentSeason()
+        {
+            DateTime season = new DateTime(1996, 6, 1);
+            DateTime now = DateTime.Now;
+            int currentSeason = now.Year - season.Year;
+
+            if (now.Month < season.Month || (now.Month == season.Month && now.Day < season.Day))
+                currentSeason--;
+
+            return currentSeason;
+        }
+        //END AUTO CALCULATION OF SEASON CODE
+
         [HttpPost]
         public ActionResult SettingsUpdate(AdminSettings currentSettings)
         {
+            List<SelectListItem> productionList = GetSelectListItems();
+            ViewData["ProductionList"] = productionList;
             string newSettings = JsonConvert.SerializeObject(currentSettings, Formatting.Indented);
             newSettings = newSettings.Replace("T00:00:00", "");
             string filepath = Server.MapPath(Url.Content("~/AdminSettings.json"));
@@ -86,6 +104,18 @@ namespace TheatreCMS.Controllers
             {
                 UpdateSubscribers(newJSON);
             }
+            int thisSeason = AutoCalculateCurrentSeason();
+            //ADDING AUTO CALC ERROR CODE HERE
+            if (newJSON.current_season != thisSeason)
+                //(oldJSON.current_season == 23)
+                //(oldJSON.current_season != newJSON.current_season)
+            {
+                ModelState.AddModelError("current_season", "You have entered the incorrect Season number."); 
+            }
+            
+          
+            //END AUTO CALC ERROR CODE
+
             if (oldJSON.season_productions != newJSON.season_productions)
             {
                 UpdateProductions(newJSON);
@@ -93,9 +123,10 @@ namespace TheatreCMS.Controllers
             using (StreamWriter writer = new StreamWriter(filepath))
             {
                 writer.Write(newSettings);
-                return RedirectToAction("Dashboard");
+                return View("Dashboard", currentSettings); 
             }
         }
+
 
         private void UpdateSubscribers(dynamic newJSON)
         {
