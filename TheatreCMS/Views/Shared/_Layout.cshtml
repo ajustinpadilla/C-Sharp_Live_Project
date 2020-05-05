@@ -131,22 +131,8 @@
         <div class="container-fluid py-2">
             <div id="footerInner">
                 <div class="row">
-                    <ul class="list-group list-group-horizontal" id="navBar">
-                        <ul class="list-group-item">
-                            <a class="navLink" href="#">Opportunities</a>
-                        </ul>
-                        <ul class="list-group-item">
-                            <a class="navLink" href="#">News Items</a>
-                        </ul>
-                        <ul class="list-group-item">
-                            <a class="navLink" href="#">Contact Info</a>
-                        </ul>
-                        <ul class="list-group-item">
-                            <a class="navLink" href="#">Donate</a>
-                        </ul>
-                    </ul>
-                    <div class="footerSocial">
-                        <ul class="row ml-sm-auto" id="socialMediaLinks" style="background-color: black">
+                    <div class="socialMediaContainer order-md-12">
+                        <ul class="row ml-sm-auto list-group-horizontal" id="socialMediaLinks" style="background-color: black">
                             <li class="list-group-item"><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
                             <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
                             <li class="list-group-item"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
@@ -154,22 +140,38 @@
                             <li class="list-group-item"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li>
                         </ul>
                     </div>
+                    <div class="footerNavContainer order-md-1">
+                        <ul class="list-group list-group-horizontal" id="navBar">
+                            <li class="list-group-item">
+                                <a class="navLink" href="#">Opportunities</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a class="navLink" href="#">News Items</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a class="navLink" href="#">Contact Info</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a class="navLink" href="#">Donate</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-                <div class="row text-left text-lg-left" id="contactInfo">
-                    <div class="col-lg-auto" id="address">
-                        <p>
-                            2110 SE 10th AVE<br />
-                            Portland, OR 97214
-                        </p>
-                    </div>
-                    <div class="col-lg-auto" id="phoneNumbers">
-                        <p>
-                            Phone Number (General)<br />
-                            Phone Number (Sales)
-                        </p>
-                    </div>
+            <div class="row text-left text-lg-left" id="contactInfo">
+                <div class="col-lg-auto" id="address">
+                    <p>
+                        2110 SE 10th AVE<br />
+                        Portland, OR 97214
+                    </p>
                 </div>
+                <div class="col-lg-auto" id="phoneNumbers">
+                    <p>
+                        Phone Number (General)<br />
+                        Phone Number (Sales)
+                    </p>
+                </div>
+            </div>
             <div class="text-left">
                 <p class="my-0">&copy; @DateTime.Now.Year</p>
             </div>
