@@ -389,9 +389,7 @@
             font-size: 1rem;
         }
 
-        footer #address {
-            margin-right: 0;
-        }
+   
 
         footer .list-group-item {
             background-color: black;
@@ -419,6 +417,17 @@
 
 #socialMediaLinks li {
     padding-left: 0px;
+}
+
+#contactInfo {
+    flex-wrap: nowrap;
+}
+
+#address {
+    margin-right: 0;
+    float: left;
+    margin-left:15px;
+    margin-right: 40px;
 }
         /* Set padding to keep content from hitting the edges */
         .body-content {
