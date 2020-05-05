@@ -364,21 +364,26 @@
             padding-bottom: 30px;
         }
 
-        #socialMediaContainer {
-
+        .footerNavContainer{
+            padding-left: 0px;
         }
-
+        
+        #navBar li {
+            padding-left: 0px;
+        }
         a.navLink {
             color: white;
             text-decoration: none;
             background-color: transparent;
-            padding-right: 2em;
         }
 
             a.navLink :hover {
                 font-weight: bolder;
             }
 
+        #footerInner {
+            margin: auto;
+        }
         footer p {
             color: white;
             font-size: 1rem;
@@ -401,9 +406,20 @@
             color: red;
         }
 
-        #socialMediaLinks {
+.socialMediaContainer {
+    text-align:right;
+}
 
-        }
+.navItem {
+    margin-left: 0px;
+}   
+#socialMediaLinks {
+    padding-left: 0px;
+}
+
+#socialMediaLinks li {
+    padding-left: 0px;
+}
         /* Set padding to keep content from hitting the edges */
         .body-content {
             padding-top: 25px;
