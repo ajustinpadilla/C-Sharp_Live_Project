@@ -404,31 +404,35 @@
             color: red;
         }
 
-.socialMediaContainer {
-    text-align:right;
-}
+        .socialMediaContainer {
+            text-align:right;
+        }
 
-.navItem {
-    margin-left: 0px;
-}   
-#socialMediaLinks {
-    padding-left: 0px;
-}
+        .navItem {
+            margin-left: 0px;
+        }   
+        #socialMediaLinks {
+            padding-left: 0px;
+        }
 
-#socialMediaLinks li {
-    padding-left: 0px;
-}
+        #socialMediaLinks li {
+            padding-left: 0px;
+        }
 
-#contactInfo {
-    flex-wrap: nowrap;
-}
+        #contactInfo {
+            flex-wrap: nowrap;
+        }
 
-#address {
-    margin-right: 0;
-    float: left;
-    margin-left:15px;
-    margin-right: 40px;
-}
+        #address {
+            margin-right: 0;
+            float: left;
+            margin-left:15px;
+            margin-right: 40px;
+        }
+
+        /* End Footer Styling */
+
+
         /* Set padding to keep content from hitting the edges */
         .body-content {
             padding-top: 25px;
