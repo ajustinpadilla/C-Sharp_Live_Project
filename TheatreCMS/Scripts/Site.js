@@ -39,8 +39,26 @@ if (document.getElementById("main-carousel") != null) {
     }
 };
 
+//Script for ~/Photo/Index modal
 
 
+    var modal = document.getElementById("photo-modal");
+
+    var img = document.getElementById("photo-index-img");
+    var modalImg = document.getElementById("photo-modal--content");
+
+    img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+    }
+
+    var span = document.getElementById("photo-modal--close");
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+
+//End script for ~/Photo/Index modal
 
 
 ////Script for sticky navbar
