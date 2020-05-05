@@ -34,7 +34,7 @@
         
         
         <td class="td-styling">
-            <img id="photo-index-img" class="thumbnail_size"  src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
+            <img id="photo-index-img" class="thumbnail_size" onclick="ShowModel(@item.PhotoId)"  src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
         <div id="photo-modal">
             <span id="photo-modal--close">&times;</span>
             <img id="photo-modal--content"/>

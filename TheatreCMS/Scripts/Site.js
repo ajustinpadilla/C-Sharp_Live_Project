@@ -41,6 +41,7 @@ if (document.getElementById("main-carousel") != null) {
 
 //Script for ~/Photo/Index modal
 
+function ShowModel(id) {
 
     var modal = document.getElementById("photo-modal");
 
@@ -56,6 +57,7 @@ if (document.getElementById("main-carousel") != null) {
     span.onclick = function () {
         modal.style.display = "none";
     }
+}
 
 
 //End script for ~/Photo/Index modal
