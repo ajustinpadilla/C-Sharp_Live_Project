@@ -28,9 +28,22 @@
 
 @foreach (var item in Model) {
     <tr class="tr-styling">
+        
+        
+        
+        
+        
         <td class="td-styling">
             <img class="thumbnail_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
         </td>
+        <div id="photo-modal">
+            <span id="photo-modal--close">&times;</span>
+            <img id="photo-modal--content" />
+        </div>
+        
+        
+        
+        
         <td class="td-styling">
             @Html.DisplayFor(modelItem => item.OriginalHeight)
         </td>
