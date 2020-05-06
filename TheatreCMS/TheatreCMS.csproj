@@ -354,6 +354,7 @@
     <Content Include="Scripts\fullcalendar\locale\vi.js" />
     <Content Include="Scripts\fullcalendar\locale\zh-cn.js" />
     <Content Include="Scripts\fullcalendar\locale\zh-tw.js" />
+    <Content Include="Scripts\gumshoe.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -383,6 +384,7 @@
     <Content Include="Areas\Subscribers\Views\SeasonManager\Details.cshtml" />
     <Content Include="Areas\Subscribers\Views\SeasonManager\Edit.cshtml" />
     <Content Include="Areas\Subscribers\Views\SeasonManager\Index.cshtml" />
+    <Content Include="Scripts\smooth-scroll.polyfills.js" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
@@ -603,6 +605,8 @@
     <Content Include="Views\Shared\_SponsorsPartial.cshtml" />
     <Content Include="Views\Admin\UserList.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="webfonts\BebasNeue-Regular.ttf" />
+    <Content Include="webfonts\BebasNeue-Regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
