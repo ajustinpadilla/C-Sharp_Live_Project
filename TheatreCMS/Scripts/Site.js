@@ -43,17 +43,18 @@ if (document.getElementById("main-carousel") != null) {
 
 function ShowModel(id) {
 
-    var modal = document.getElementById("photo-modal");
 
-    var img = document.getElementById("photo-index-img");
-    var modalImg = document.getElementById("photo-modal--content");
+    var modal = document.getElementById("photo-modal-" + id);
 
-    img.onclick = function () {
-        modal.style.display = "block";
-        modalImg.src = this.src;
-    }
+    var img = document.getElementById("photo-index-img-" + id);
+    var modalImg = document.getElementById("photo-modal--content-" + id);
 
-    var span = document.getElementById("photo-modal--close");
+    
+    modal.style.display = "block";
+    modalImg.src = img.src;
+   
+
+    var span = document.getElementById("photo-modal--close-" + id);
     span.onclick = function () {
         modal.style.display = "none";
     }

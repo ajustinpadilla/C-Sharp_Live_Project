@@ -1916,15 +1916,15 @@ textarea {
 
 /* Begin Styling of Photo Index Page */
 
-#photo-index-img {
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+.photo-index-img {
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
 }
 
-#photo-index-img:hover {opacity: 0.7;}
+.photo-index-img:hover {opacity: 0.7;}
 
-#photo-modal {
+.photo-modal {
     display: none; 
     position: fixed; 
     z-index: 1;
@@ -1939,7 +1939,7 @@ textarea {
 }
 
 
-#photo-modal--content{
+.photo-modal--content{
     margin: auto;
     display: block;
     width: 80%;
@@ -1953,7 +1953,7 @@ textarea {
     to {transform:scale(1)}
 }
 
-#photo-modal--close {
+.photo-modal--close {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -1963,15 +1963,15 @@ textarea {
     transition: 0.3s;
 }
 
-#photo-modal--close:hover,
-#photo-modal--close:focus {
+.photo-modal--close:hover,
+.photo-modal--close:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
 }
 
 @media only screen and (max-width: 700px) {
-    #photo-modal--content {
+    .photo-modal--content {
     }
 }
 /* End styling of Photo Index Page */
