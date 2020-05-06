@@ -1953,8 +1953,8 @@ transition: 0.3s;
     margin: 3em auto;
     margin-top: 150px;
     display: block;
-    /*width: 80%;*/
     max-width: 60%;
+    max-height: 70%;
     animation-name: zoom;
     animation-duration: 0.6s;
 }
