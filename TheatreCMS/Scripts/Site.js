@@ -43,21 +43,17 @@ if (document.getElementById("main-carousel") != null) {
 
 function ShowModel(id) {
 
-
     var modal = document.getElementById("photo-modal-" + id);
-
     var img = document.getElementById("photo-index-img-" + id);
     var modalImg = document.getElementById("photo-modal--content-" + id);
-
     
     modal.style.display = "inline";
     modalImg.src = img.src;
     
     var span = document.getElementById("photo-modal--close-" + id);
-    span.onclick = function () {
-        var modal = document.getElementById("photo-modal-" + id);
+
+    span.onclick = modal.onclick = function () {
         modal.style.display = "none";
-        console.log("printsomestuff");
     }
 }
 
