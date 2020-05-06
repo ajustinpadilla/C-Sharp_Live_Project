@@ -38,8 +38,8 @@
                 <img id="photo-index-img-@item.PhotoId" class="thumbnail_size photo-index-img" 
                      onclick="ShowModel(@item.PhotoId)" src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
                 <div id="photo-modal-@item.PhotoId" class="photo-modal">
-                    <span id="photo-modal--close-@item.PhotoId" class="photo-modal--close">&times;</span>
                     <img id="photo-modal--content-@item.PhotoId" class="photo-modal--content" />
+                    <span id="photo-modal--close-@item.PhotoId" class="photo-modal--close">&times;</span>
                 </div>
             </td>
 
