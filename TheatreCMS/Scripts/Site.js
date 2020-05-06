@@ -42,21 +42,12 @@ if (document.getElementById("main-carousel") != null) {
 //Script for ~/Photo/Index modal
 
 function ShowModel(id) {
-
-    var modal = document.getElementById("photo-modal-" + id);
-    var img = document.getElementById("photo-index-img-" + id);
-    var modalImg = document.getElementById("photo-modal--content-" + id);
-    
-    modal.style.display = "inline";
-    modalImg.src = img.src;
-    
-    var span = document.getElementById("photo-modal--close-" + id);
-
-    span.onclick = modal.onclick = function () {
-        modal.style.display = "none";
+    document.getElementById("photo-modal-" + id).style.display = "inline";
+    document.getElementById("photo-modal--content-" + id).src = document.getElementById("photo-index-img-" + id).src;
+    document.getElementById("photo-modal--close-" + id).onclick = document.getElementById("photo-modal-" + id).onclick = function () {
+        document.getElementById("photo-modal-" + id).style.display = "none";
     }
 }
-
 
 //End script for ~/Photo/Index modal
 

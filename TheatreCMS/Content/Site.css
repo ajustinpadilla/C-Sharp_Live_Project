@@ -1930,7 +1930,10 @@ cursor: pointer;
 transition: 0.3s;
 }
 
-.photo-index-img:hover {opacity: 0.7;}
+.photo-index-img:hover {
+    opacity: 0.7;
+
+}
 
 .photo-modal {
     display: none; 
@@ -1986,7 +1989,10 @@ transition: 0.3s;
     .photo-modal--content {
     }
 }
+
 /* End styling of Photo Index Page */
+
+
 /*This class was added to put spacing between the photo and the text on the Photo Details page*/
 .image-spacing {
     margin-top: 10px;

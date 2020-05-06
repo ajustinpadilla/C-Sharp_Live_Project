@@ -29,11 +29,6 @@
     @foreach (var item in Model)
     {
         <tr class="tr-styling">
-
-
-
-
-
             <td class="td-styling">
                 <img id="photo-index-img-@item.PhotoId" class="thumbnail_size photo-index-img" 
                      onclick="ShowModel(@item.PhotoId)" src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
@@ -42,10 +37,6 @@
                     <span id="photo-modal--close-@item.PhotoId" class="photo-modal--close">&times;</span>
                 </div>
             </td>
-
-
-
-
             <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.OriginalHeight)
             </td>
