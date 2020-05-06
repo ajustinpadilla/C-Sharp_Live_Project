@@ -1941,7 +1941,7 @@ transition: 0.3s;
 
 .photo-modal--content{
     margin: auto;
-    /*margin-top: 100px*/;
+    /*margin-top: 100px;*/
     display: block;
     /*width: 80%;*/
     max-width: 100%;
