@@ -66,35 +66,45 @@
                         <li><a class="dropdown-item" href="@Url.Action("Index", "CastMembers")">Current Members</a></li>
                     </ul>
                 </li>
-                <!--Admin-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle color" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="@Url.Action("Dashboard","Admin")">Dashboard</a></li>
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item dropdown-toggle" href="@Url.Action("Index", "Manage")">Manage Productions</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "Productions")">Productions</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "CastMembers")">Cast Members</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "Part")">Roles</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "ProductionPhotos")">Images</a></li>
 
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item dropdown-toggle" href="#">Manage Content</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "Sponsors")">Sponsors</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "DisplayInfo")">Info</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "DisplayLinks")">Links</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="@Url.Action("Index", "RentalRequest")">Manage Rentals</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("UserList", "Admin")">User List</a></li>
-                    </ul>
-                </li>
+                <!--Admin-->
+                <!--Admin button made dynamic-->
+                @if (User.Identity.IsAuthenticated) 
+                {
+
+                     if (User.IsInRole("Admin"))
+
+                     {
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle color" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             Admin
+                             </a>
+                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                 <li><a class="dropdown-item" href="@Url.Action("Dashboard","Admin")">Dashboard</a></li>
+                                 <li class="dropdown-submenu">
+                                     <a class="dropdown-item dropdown-toggle" href="@Url.Action("Index", "Manage")">Manage Productions</a>
+                                     <ul class="dropdown-menu">
+                                         <li><a class="dropdown-item" href="@Url.Action("Index", "Productions")">Productions</a></li>
+                                         <li><a class="dropdown-item" href="@Url.Action("Index", "CastMembers")">Cast Members</a></li>
+                                         <li><a class="dropdown-item" href="@Url.Action("Index", "Part")">Roles</a></li>
+                                         <li><a class="dropdown-item" href="@Url.Action("Index", "ProductionPhotos")">Images</a></li>
+                                     </ul>
+                                 </li>
+                                 <li class="dropdown-submenu">
+                                     <a class="dropdown-item dropdown-toggle" href="#">Manage Content</a>
+                                     <ul class="dropdown-menu">
+                                         <li><a class="dropdown-item" href="@Url.Action("Index", "Sponsors")">Sponsors</a></li>
+                                         <li><a class="dropdown-item" href="@Url.Action("Index", "DisplayInfo")">Info</a></li>
+                                         <li><a class="dropdown-item" href="@Url.Action("Index", "DisplayLinks")">Links</a></li>
+                                     </ul>
+                                 </li>
+                                 <li><a class="dropdown-item" href="@Url.Action("Index", "RentalRequest")">Manage Rentals</a></li>
+                                 <li><a class="dropdown-item" href="@Url.Action("UserList", "Admin")">User List</a></li>
+                             </ul>
+                         </li>
+                     }
+                }
+
                 <!--Subscriber-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle color" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -108,8 +118,8 @@
 
 
                         @*<li>@Html.ActionLink("Dashboard", "Index", "Subscribers/Dashboard", new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>*@
+                <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
+                <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>*@
 
                     </ul>
                 </li>
