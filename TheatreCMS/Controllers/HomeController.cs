@@ -103,7 +103,7 @@ namespace TheatreCMS.Controllers
         }
 
         [HttpPost]
-        [HandleError]
+        //[HandleError]  This annotation can be used when custom errors is enabled. Its purpose is to protect from injection attacks.
         public ActionResult Archive(string SearchByCategory, string searchKey)
         {
             var db = new ApplicationDbContext();
