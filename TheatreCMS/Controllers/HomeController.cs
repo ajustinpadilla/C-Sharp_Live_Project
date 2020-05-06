@@ -157,7 +157,7 @@ namespace TheatreCMS.Controllers
                     if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
 
                     var resultsPart = new List<Part>();
-                    foreach (Part part in db.Parts)
+                    foreach (Part part in db.Parts.ToList())
                     {
                         Match matchCharacter = rx.Match(part.Character);
                         Match matchTitle = rx.Match(part.Production.Title);
@@ -239,7 +239,7 @@ namespace TheatreCMS.Controllers
                 case "SearchParts":
                     ViewBag.Message = string.Format("Results for \"{0}\" in Parts", searchKey);
                     resultsPart = new List<Part>();
-                    foreach (Part part in db.Parts)
+                    foreach (Part part in db.Parts.ToList())
                     {
                         Match matchCharacter = rx.Match(part.Character);
                         Match matchTitle = rx.Match(part.Production.Title);
