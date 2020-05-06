@@ -50,13 +50,14 @@ function ShowModel(id) {
     var modalImg = document.getElementById("photo-modal--content-" + id);
 
     
-    modal.style.display = "block";
+    modal.style.display = "inline";
     modalImg.src = img.src;
-   
-
+    
     var span = document.getElementById("photo-modal--close-" + id);
     span.onclick = function () {
+        var modal = document.getElementById("photo-modal-" + id);
         modal.style.display = "none";
+        console.log("printsomestuff");
     }
 }
 

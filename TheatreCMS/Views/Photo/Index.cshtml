@@ -26,39 +26,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr class="tr-styling">
-        
-        
-        
-        
-        
-        <td class="td-styling" onclick="ShowModel(@item.PhotoId)">
-            <img id="photo-index-img-@item.PhotoId" class="thumbnail_size photo-index-img"  src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
-        <div id="photo-modal-@item.PhotoId" class="photo-modal">
-            <span id="photo-modal--close-@item.PhotoId" class="photo-modal--close">&times;</span>
-            <img id="photo-modal--content-@item.PhotoId" class="photo-modal--content"/>
-        </div>
-        </td>
-        
-        
-        
-        
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.OriginalHeight)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.OriginalWidth)
-        </td>
-        <td class="td-styling">
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td class="td-styling">
-            @Html.ActionLink("Edit", "Edit", new { id=item.PhotoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PhotoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PhotoId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="tr-styling">
+
+
+
+
+
+            <td class="td-styling" onclick="ShowModel(@item.PhotoId)">
+                <img id="photo-index-img-@item.PhotoId" class="thumbnail_size photo-index-img" src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
+                <div id="photo-modal-@item.PhotoId" class="photo-modal">
+                    <span id="photo-modal--close-@item.PhotoId" class="photo-modal--close">&times;</span>
+                    <img id="photo-modal--content-@item.PhotoId" class="photo-modal--content" />
+                </div>
+            </td>
+
+
+
+
+            <td class="td-styling">
+                @Html.DisplayFor(modelItem => item.OriginalHeight)
+            </td>
+            <td class="td-styling">
+                @Html.DisplayFor(modelItem => item.OriginalWidth)
+            </td>
+            <td class="td-styling">
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td class="td-styling">
+                @Html.ActionLink("Edit", "Edit", new { id = item.PhotoId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PhotoId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PhotoId })
+            </td>
+        </tr>
+    }
 
 </table>
