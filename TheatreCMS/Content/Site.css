@@ -1938,7 +1938,7 @@ transition: 0.3s;
 .photo-modal {
     display: none; 
     position: fixed; 
-    z-index: 1;
+    z-index: 1050;
     padding-top: 100px;
     left: 0;
     top: 0;
