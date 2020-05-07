@@ -90,7 +90,7 @@ function PhotoScroll() {
 function GetData(pageIndex, pageSize) {
     $.ajax({
         type: 'GET',
-        url: '/Photo/GetData',
+        url: '/Photo/GetPhotos',
         data: { "pageindex": pageIndex, "pagesize": pageSize },
         dataType: 'json',
         success: function (data) {
