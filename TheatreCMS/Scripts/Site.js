@@ -42,10 +42,10 @@ if (document.getElementById("main-carousel") != null) {
 //Script for ~/Photo/Index modal
 
 function ShowModel(id) {
-    document.getElementById("photo-modal-" + id).style.display = "inline";
-    document.getElementById("photo-modal--content-" + id).src = document.getElementById("photo-index-img-" + id).src;
-    document.getElementById("photo-modal--close-" + id).onclick = document.getElementById("photo-modal-" + id).onclick = function () {
-        document.getElementById("photo-modal-" + id).style.display = "none";
+    document.getElementById("photo-modal").style.display = "inline";
+    document.getElementById("photo-modal--content").src = document.getElementById("photo-index-img-" + id).src;
+    document.getElementById("photo-modal").onclick = function () {
+        document.getElementById("photo-modal").style.display = "none";
     }
 }
 
