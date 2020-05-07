@@ -69,7 +69,9 @@ function shrinkFunction() {
 
 // Infinite scrolling for Photo/Index page
 
+onload(PhotoScroll());
 function PhotoScroll() {
+    console.log("sdf");
     var pageIndex = 0;
     var pageSize = 10;
 

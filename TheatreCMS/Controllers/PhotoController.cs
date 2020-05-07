@@ -23,6 +23,16 @@ namespace TheatreCMS.Controllers
             return View(db.Photo.ToList());
         }
 
+        // Action method for displaying infinite scroll 
+        public ActionResult GetPhotos(int pageIndex, int pageSize)
+        {
+            System.Threading.Thread.Sleep(4000);
+            var query = (from photo in db.Photo
+                         orderby photo.PhotoId ascending
+                         select photo).Skip(pageIndex * pageSize).Take(pageSize);
+            return Json(query.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Photo/Details/5
         public ActionResult Details(int? id)
         {
