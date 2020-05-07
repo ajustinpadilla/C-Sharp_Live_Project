@@ -95,8 +95,9 @@ function GetData(pageIndex, pageSize) {
         success: function (data) {
             if (data != null) {
                 console.log("sdf");
+                console.log(data);
                 for (var i = 0; i < data.length; i++) {
-                    $("#scroll-container").append("data[i].PhotoId")
+                    $("#scroll-container").append(data[i].PhotoId)
                 }
                 pageIndex++;
             }
