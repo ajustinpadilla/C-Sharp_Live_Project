@@ -74,12 +74,13 @@ namespace TheatreCMS.Controllers
             return View(part);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Part/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Part part = db.Parts.Find(id);
             if (part == null)
