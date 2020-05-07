@@ -66,3 +66,47 @@ function shrinkFunction() {
         document.getElementById("menu").style.padding = "20px";
     }
 }
+
+// Infinite scrolling for Photo/Index page
+
+function PhotoScroll() {
+    var pageIndex = 0;
+    var pageSize = 10;
+
+    $(document).ready(function () {
+        GetData(pageIndex, pageSize);
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() ==
+                $(document).height() - $(window).height()) {
+                GetData(pageIndex, pageSize);
+            }
+        });
+    });
+}
+
+function GetData(pageIndex, pageSize) {
+    $.ajax({
+        type: 'GET',
+        url: '/Photo/GetData',
+        data: { "pageindex": pageIndex, "pagesize": pageSize },
+        dataType: 'json',
+        success: function (data) {
+            if (data != null) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#container").append(data[i].PhotoId)
+                }
+                pageIndex++;
+            }
+        },
+        beforeSend: function () {
+            $("progress").show();
+        },
+        complete: function () {
+            $('$progress').hide();
+        },
+        error: function () {
+            alert("Error while retrieving data!");
+        }
+    });
+}
