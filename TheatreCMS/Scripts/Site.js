@@ -69,7 +69,7 @@ function shrinkFunction() {
 
 // Infinite scrolling for Photo/Index page
 
-onload(PhotoScroll());
+$(document).ready(PhotoScroll());
 function PhotoScroll() {
     console.log("sdf");
     var pageIndex = 0;
@@ -102,10 +102,10 @@ function GetData(pageIndex, pageSize) {
             }
         },
         beforeSend: function () {
-            $("progress").show();
+            $("#progress").show();
         },
         complete: function () {
-            $('$progress').hide();
+            $("#progress").hide();
         },
         error: function () {
             alert("Error while retrieving data!");
