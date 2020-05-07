@@ -30,7 +30,7 @@ namespace TheatreCMS.Controllers
             var query = (from photo in db.Photo
                          orderby photo.PhotoId ascending
                          select photo).Skip(pageIndex * pageSize).Take(pageSize);
-            return Json(query.ToList(), JsonRequestBehavior.AllowGet);
+            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Photo/Details/5
