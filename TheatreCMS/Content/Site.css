@@ -363,8 +363,6 @@
         footer {
             background-color: black;
             display: flex;
-            position: absolute;
-            width: 100%;
         }
 
         .footer-container {
@@ -372,32 +370,25 @@
             padding-bottom: 30px;
         }
 
-        .footerNavContainer{
-            padding-left: 0px;
-        }
-        
-        #navBar li {
-            padding-left: 0px;
-        }
         a.navLink {
             color: white;
             text-decoration: none;
             background-color: transparent;
+            padding-right: 2em;
         }
 
-            a.navLink :hover {
-                font-weight: bolder;
-            }
-
-        #footerInner {
-            margin: auto;
+        a.navLink :hover {
+            font-weight: bolder;
         }
+
         footer p {
             color: white;
             font-size: 1rem;
         }
 
-   
+        footer #address {
+            margin-right: 0;
+        }
 
         footer .list-group-item {
             background-color: black;
@@ -412,31 +403,6 @@
             color: red;
         }
 
-.socialMediaContainer {
-    text-align:right;
-}
-
-.navItem {
-    margin-left: 0px;
-}   
-#socialMediaLinks {
-    padding-left: 0px;
-}
-
-#socialMediaLinks li {
-    padding-left: 0px;
-}
-
-#contactInfo {
-    flex-wrap: nowrap;
-}
-
-#address {
-    margin-right: 0;
-    float: left;
-    margin-left:15px;
-    margin-right: 40px;
-}
         /* Set padding to keep content from hitting the edges */
         .body-content {
             padding-top: 25px;
