@@ -183,8 +183,16 @@ namespace TheatreCMS.Controllers
 
         public ActionResult UserList(string requestedSort = "UserName", string currentSortOrder = "")
         {
-            string newSortOrder = currentSortOrder;
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var users = db.Users.AsNoTracking().ToList();
+            foreach (var user in users)
+            {
+                var role = userManager.GetRoles(user.Id).FirstOrDefault();
+                user.Role = role.ToString();
+            }
+
+            /// start of sort-order logic
+            string newSortOrder = currentSortOrder;
             
             if (newSortOrder.Contains(requestedSort))
             {

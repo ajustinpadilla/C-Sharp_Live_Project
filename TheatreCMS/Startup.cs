@@ -362,11 +362,6 @@ namespace TheatreCMS
             productionphoto.ForEach(prodphoto => context.ProductionPhotos.AddOrUpdate(p => p.PhotoId, prodphoto));
             context.SaveChanges();
 
-            // get all production titles
-            // foreach production title in production titles
-            // get production
-            // assign production's default photo to a production photo that contains that title
-
             var productions = context.Productions.ToList();
             var productionPhotos = context.ProductionPhotos.ToList();
             foreach (var production in productions)

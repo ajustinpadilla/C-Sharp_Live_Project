@@ -6,12 +6,11 @@
     {
         if (ViewBag.SortOrder.Contains(fieldName))
         {
-            string caret = ViewBag.SortOrder.Contains("_desc") ? "v" : "^";
-            return fieldName + " " + caret;
+            string caret = ViewBag.SortOrder.Contains("_desc") ? "&#9662;" : "&#9652;";
+            return caret;
         }
-        return fieldName;
+        return null;
     }
-}
 }
 
 <h2>UserList</h2>
@@ -22,16 +21,20 @@
 <table class="table-styling">
     <tr class="tr-styling">
         <th class="th-styling">
-            @Html.ActionLink(DecideCaret(Html.DisplayNameFor(model => model.UserName).ToString()), "UserList", "Admin", new { requestedSort = "UserName" , currentSortOrder = ViewBag.SortOrder }, null)
+            @Html.Raw(DecideCaret(Html.DisplayNameFor(model => model.UserName).ToString()))
+            @Html.ActionLink(Html.DisplayNameFor(model => model.UserName).ToString(), "UserList", "Admin", new { requestedSort = "UserName", currentSortOrder = ViewBag.SortOrder }, new { @style = "color:#FFFFFF;" })
         </th>
         <th class="th-styling">
-            @Html.ActionLink(DecideCaret(Html.DisplayNameFor(model => model.FirstName).ToString()), "UserList", "Admin", new { requestedSort = "FirstName", currentSortOrder = ViewBag.SortOrder }, null)
+            @Html.Raw(DecideCaret(Html.DisplayNameFor(model => model.FirstName).ToString()))
+            @Html.ActionLink(Html.DisplayNameFor(model => model.FirstName).ToString(), "UserList", "Admin", new { requestedSort = "FirstName", currentSortOrder = ViewBag.SortOrder }, new { @style = "color:#FFFFFF;" })
         </th>
         <th class="th-styling">
-            @Html.ActionLink(DecideCaret(Html.DisplayNameFor(model => model.LastName).ToString()), "UserList", "Admin", new { requestedSort = "LastName", currentSortOrder = ViewBag.SortOrder }, null)
+            @Html.Raw(DecideCaret(Html.DisplayNameFor(model => model.LastName).ToString()))
+            @Html.ActionLink(Html.DisplayNameFor(model => model.LastName).ToString(), "UserList", "Admin", new { requestedSort = "LastName", currentSortOrder = ViewBag.SortOrder }, new { @style = "color:#FFFFFF;" })
         </th>
         <th class="th-styling">
-            @Html.ActionLink(DecideCaret(Html.DisplayNameFor(model => model.Role).ToString()), "UserList", "Admin", new { requestedSort = "Role", currentSortOrder = ViewBag.SortOrder }, null)
+            @Html.Raw(DecideCaret(Html.DisplayNameFor(model => model.Role).ToString()))
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Role).ToString(), "UserList", "Admin", new { requestedSort = "Role", currentSortOrder = ViewBag.SortOrder }, new { @style = "color:#FFFFFF;" })
         </th>
         <th class="th-styling">
             Options
