@@ -20,11 +20,11 @@
 </div>
 
 <!--Current Productions-->
-<div>
+<div id="current-productions">
     <h4>Current Productions</h4>
     <div class="card-deck bg-black">
         <div class="card bg-black">
-            <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black" alt="Ghost">
+            <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black current-production-img" alt="Ghost">
             <div class="card-body">
                 <h5 class="card-title">Stupid Ghost</h5>
                 <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="card bg-black">
-            <img src="~/Content/Images/Midas-gold.jpg" class="card-img-top bg-black" alt="Midas">
+            <img src="~/Content/Images/Midas-gold.jpg" class=" img-fluid card-img-top bg-black current-production-img" alt="Midas">
             <div class="card-body">
                 <h5 class="card-title">Everything You Touch</h5>
                 <p class="card-text">A cursed man that ruins everything he touches.</p>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="card bg-black">
-            <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black" alt="Merchant">
+            <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black current-production-img" alt="Merchant">
             <div class="card-body">
                 <h5 class="card-title">Merchant of Venice</h5>
                 <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
@@ -58,19 +58,22 @@
 </div>
 
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
-@using (Html.BeginForm("Archive", "Home", FormMethod.Post))
-{
-    <div class="container" style="align-content:center">
-        @Html.TextBox("searchKey")
-        <select id="SearchByCategory" name="SearchByCategory">
-            <option value="SearchAll">Search All</option>
-            <option value="SearchCastMembers">Cast Member</option>
-            <option value="SearchProductions">Production</option>
-            <option value="SearchParts">Part</option>
-        </select>
-        <button class="btn btn-outline-primary" type="submit" value="search">Search</button>
-    </div>
-}
+<div class="archive-search-container">
+    @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
+    {
+        <div class="archive-input-container">
+            <select id="SearchByCategory" name="SearchByCategory">
+                <option class="search-dropdown" value="SearchAll">Search All</option>
+                <option class="search-dropdown option" value="SearchCastMembers">Cast Member</option>
+                <option class="search-dropdown option" value="SearchProductions">Production</option>
+                <option class="search-dropdown option" value="SearchParts">Part</option>
+            </select>
+            @Html.TextBox("searchKey", "", new { placeholder = "Search" })
+            <button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>
+        </div>
+    }
+</div>
+
 @*<div class="container" style="align-content:center">
         <nav class="navbar navbar-expand-xl">
             <form class="form-inline">
@@ -335,3 +338,30 @@
         }
     </div>
 </div>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        @* Swap search button for mobile view, if > 900px use fontawesome magnifying glass, if < 900 use standard "Search" button" *@
+        function changeSearchBtn() {
+            if (window.matchMedia('(max-width: 899px)').matches) { @* matchMedia syncs with CSS media query *@
+                $(".search-btn").each(function (i) {
+                    $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
+                });
+            } else {
+                $(".mobile-search-btn").each(function (i) {
+                    $(this).replaceWith('<button class="search-btn btn btn-lg btn-circle fa fa-search color" type="submit" value="search"></button>');
+                });
+            }
+        }
+
+        @* Call changeSearchBtn() when page is loaded *@
+        changeSearchBtn(); 
+
+        @* If window is resized, call changeSearchBtn()*@
+        window.onresize = function (event) {
+            changeSearchBtn();
+        };
+
+    });
+</script>
