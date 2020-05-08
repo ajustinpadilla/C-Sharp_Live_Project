@@ -370,16 +370,19 @@
         
         #navBar li {
             padding-left: 0px;
+            margin-right: 20px;
         }
+
+        .socialMediaContainer li ~ li {
+            margin-left: 20px;
+        }
+
         a.navLink {
             color: white;
             text-decoration: none;
             background-color: transparent;
         }
 
-        .copywrite {
-
-        }
             a.navLink :hover {
                 font-weight: bolder;
             }
@@ -387,6 +390,8 @@
         #footerInner {
             margin: auto;
         }
+
+        
         footer p {
             color: white;
             font-size: 1rem;
@@ -416,6 +421,7 @@
         }   
         #socialMediaLinks {
             padding-left: 0px;
+            margin-left: auto;
         }
 
         #socialMediaLinks li {
