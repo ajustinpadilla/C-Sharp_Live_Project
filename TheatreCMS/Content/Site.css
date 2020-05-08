@@ -351,7 +351,9 @@
             padding-top: 110px;
             padding-bottom: 20px;
         }
+        
         /* ------Footer stylings----- */
+        
         footer {
             background-color: black;
             display: flex;
@@ -383,21 +385,18 @@
             background-color: transparent;
         }
 
-            a.navLink :hover {
-                font-weight: bolder;
-            }
+        a.navLink :hover {
+            font-weight: bolder;
+        }
 
         #footerInner {
             margin: auto;
         }
-
         
         footer p {
             color: white;
             font-size: 1rem;
         }
-
-   
 
         footer .list-group-item {
             background-color: black;
