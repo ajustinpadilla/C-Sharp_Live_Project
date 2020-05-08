@@ -41,6 +41,13 @@ namespace TheatreCMS.Controllers
             }
         }
 
+        public static byte[] InsertPhoto(Image image)
+        {
+            var converter = new ImageConverter();
+            byte[] imageBytes = (byte[])converter.ConvertTo(image, typeof(byte[]));
+            return imageBytes;
+        }
+
         public FileContentResult ImageView(int id, string table, int thumbWidth, int thumbHeight)
         {
             byte[] imgArray = null;
