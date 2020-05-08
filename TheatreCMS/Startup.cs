@@ -20,10 +20,6 @@ namespace TheatreCMS
     {
         public void Configuration(IAppBuilder app)
         {
-            using (var context2 = new ApplicationDbContext())
-            {
-                context2.Database.ExecuteSqlCommand("TRUNCATE TABLE [CastMembers]");
-            }
             ConfigureAuth(app);
             createRolesandUsers();
             SeedCastMembers();
