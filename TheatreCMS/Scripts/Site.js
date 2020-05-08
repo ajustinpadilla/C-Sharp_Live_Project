@@ -72,7 +72,7 @@ function shrinkFunction() {
 $(document).ready(PhotoScroll());
 function PhotoScroll() {
     var pageIndex = 0;
-    var pageSize = 2;
+    var pageSize = 4;
 
     $(document).ready(function () {
         GetData(pageIndex, pageSize);
@@ -94,9 +94,10 @@ function GetData(pageIndex, pageSize) {
         dataType: 'json',
         success: function (data) {
             if (data != null) {
+                var photos = jQuery.parseJSON(data);
                 console.log("sdf");
-                console.log(data);
-                for (var i = 0; i < data.length; i++) {
+                console.log(photos.length);
+                for (var i = 0; i < 2; i++) {
                     $("#scroll-container").append(data[i].PhotoId)
                 }
                 pageIndex++;
