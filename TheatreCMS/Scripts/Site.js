@@ -50,6 +50,7 @@ $('.photo-index-image').on('click', function () {
 $('#photo-modal').on('click', function () {
     setTimeout(function () {
         $('#photo-modal').toggleClass('photo-modal--animation');
+        $('#photo-modal').toggleClass('photo-modal--close-animation');
     }, 100);
 });
 function ShowModel(id) {

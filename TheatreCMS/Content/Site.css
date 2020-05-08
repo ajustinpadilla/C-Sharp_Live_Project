@@ -1911,14 +1911,18 @@ transition: 0.3s;
     height: 100%; 
     overflow: auto; 
     background-color: rgba(0,0,0,0.0);
-    transition: background-color 1s;
+    transition: background-color 0.6s;
 }
 
 
 .photo-modal--animation {
     background-color: rgba(0,0,0,0.9);
-    transition: background-color 1s;
+    transition: background-color 0.6s;
 }
+
+/*.photo-modal--close-animation{
+    background-color: rgba(0,0,0,0.0);
+}*/
 
 .photo-modal--content{
     margin: 3em auto;
