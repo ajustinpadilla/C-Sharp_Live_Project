@@ -97,8 +97,11 @@ function GetData(pageIndex, pageSize) {
                 var photos = jQuery.parseJSON(data);
                 console.log("sdf");
                 console.log(photos.length);
-                for (var i = 0; i < 2; i++) {
-                    $("#scroll-container").append(data[i].PhotoId)
+                for (var i = 0; i < photos.length; i++) {
+                    $(".scroll--container").append("<li>" + photos[i].PhotoFile + "</li>")
+                    $(".scroll--container").append("<li>" + photos[i].OriginalHeight + "</li>")
+                    $(".scroll--container").append("<li>" + photos[i].OriginalWidth + "</li>")
+                    $(".scroll--container").append("<li>" + photos[i].Title + "</li>")
                 }
                 pageIndex++;
             }
