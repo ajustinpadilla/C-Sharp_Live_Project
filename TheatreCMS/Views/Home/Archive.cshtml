@@ -26,35 +26,41 @@
         @{
             var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
             int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
-            
+
             foreach (var item in Model)
             {
-                <div class="card bg-black">
-                    @{
+                if (item.Season == currentSeason)
+                {
+                    <div class="card bg-black">
+                        @{
 
-                        if (item.DefaultPhoto != null)
-                        {
-                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
-                            </a>
+                            if (item.DefaultPhoto != null)
+                            {
+                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+                                </a>
+                            }
                         }
-                        else
-                        {
-                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
-                            </a>
-                        }
-                    }
-                    <div class="card-body production-index-card-inner justify-content-center">
-                        <h4 class="card-title">@item.Title</h4>
-                        <h5 class="card-title">@item.Playwright</h5>
-                        <h6 class="card-title">Season: @item.Season</h6>
-                        @*<p class="card-text">@item.Description</p>*@
+                        <div class="card-body production-index-card-inner justify-content-center">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Playwright</p>
+                            @*<h6 class="card-title">Season: @item.Season</h6>*@
+                            @*<p class="card-text">@item.Description</p>*@
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
             }
-            }
-        </div>
+        }
+    </div>
 </div>
 
     <!--Current Productions-->
@@ -95,8 +101,48 @@
         <hr />
     </div>*@
 
-    <!--Future Productions referencing database-->
 
+<!--Future Productions referencing database-->
+
+<div id="future-productions">
+    <h4>Future Productions</h4>
+    <div class="card-deck bg-black">
+        @{
+            foreach (var item in Model)
+            {
+                if (item.Season >= currentSeason)
+                {
+                    <div class="card bg-black">
+                        @{
+
+                            if (item.DefaultPhoto != null)
+                            {
+                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+                                </a>
+                            }
+                        }
+                        <div class="card-body production-index-card-inner justify-content-center">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Playwright</p>
+                            <p class="card-text">Season: @item.Season</p>
+                            @*<p class="card-text">@item.Description</p>*@
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
 
     <!--Seach Bar/ Actors,parts, and productions dropdown-->
     <div class="archive-search-container">
