@@ -36,13 +36,13 @@
                     if (item.DefaultPhoto != null)
                     {
                         <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                            <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+                            <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Url.Action(item.Title)"}>
                         </a>
                     }
                     else
                     {
                         <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                            <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+                            <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Url.Action(item.Title)">
                         </a>
                     }
                     }
@@ -118,13 +118,13 @@
                         if (item.DefaultPhoto != null)
                         {
                             <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+                                <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Url.Action(item.Title)">
                             </a>
                         }
                         else
                         {
                             <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+                                <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Url.Action(item.Title)">
                             </a>
                         }
                     }
@@ -398,7 +398,7 @@
                                             @if (item.DefaultPhoto != null)
                                             {
                                                 <div class="embed-responsive-4by3">
-                                                    <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top arch-card-img bg-black">
+                                                    <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" class="card-img-top arch-card-img bg-black" alt="@Url.Action(item.Title)">
                                                 </div>
                                             }
                                             else
