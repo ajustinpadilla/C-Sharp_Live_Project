@@ -133,7 +133,7 @@ namespace TheatreCMS
 
             var castMembers = new List<CastMember>
             {
-                new CastMember{Name = "London Bauman", YearJoined= 2000, MainRole = Enum.PositionEnum.Actor,
+                new CastMember{Name = "London Bauman", MainRole = Enum.PositionEnum.Actor,
                 Bio = "London Bauman is an actor, writer, sound designer, and Theatre Vertigo company member. " +
                 "As an artist, he is interested in immersive physical theatre, magical realism, and new collaborative works." +
                 " Selected work includes the role of Torch in Beirut (The Steep & Thorny Way to Heaven), " +
@@ -143,7 +143,7 @@ namespace TheatreCMS
                 Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"London_Bauman.png"))),
                 CurrentMember = true,},
 
-                new CastMember{Name = "Jacquelle Davis", YearJoined= 2000, MainRole = Enum.PositionEnum.Actor,
+                new CastMember{Name = "Jacquelle Davis", MainRole = Enum.PositionEnum.Actor,
                 Bio = "Jacquelle Davis is a proud Portland native and member of Theatre Vertigo. " +
                 "She studied acting at Willamette University. Jacquelle performs regularly with her beloved improv group, " +
                 "No Filter. Her favorite roles include Jane Fonda in That Pretty Pretty; " +
@@ -151,7 +151,7 @@ namespace TheatreCMS
                 Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"JacQuelle_Davis.jpg"))),
                 CurrentMember = true, },
 
-                new CastMember{Name = "Adriana Gantzer", YearJoined= 2000, MainRole = Enum.PositionEnum.Actor,
+                new CastMember{Name = "Adriana Gantzer", MainRole = Enum.PositionEnum.Actor,
                 Bio = "Adriana has been a huge fan of Theatre Vertigo for many years and feels so fortunate to become " +
                 "a part of this incredible company. She has been acting on stage for over a decade and has been a " +
                 "full-time voiceover actor for over 4 years. Some favorite past roles include: Andy in A Dark Sky " +
@@ -162,7 +162,7 @@ namespace TheatreCMS
                 Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Adriana_Gantzer.jpg"))),
                 CurrentMember = true, },
 
-                new CastMember{Name = "Clara-Liis Hillier", YearJoined= 2000, MainRole = Enum.PositionEnum.Actor,
+                new CastMember{Name = "Clara-Liis Hillier", MainRole = Enum.PositionEnum.Actor,
                 Bio = "Clara-Liis is a graduate of Reed College. A proud company member of Theatre Vertigo, " +
                 "she is also a past resident actor for Bag&Baggage. She was last seen in Caucasian Chalk Circle " +
                 "at Shaking the Tree, Gyspy at Broadway Rose, Godspell at Lakewood Theater " +
@@ -177,7 +177,7 @@ namespace TheatreCMS
                 Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Clara_Liis_Hillier.jpg"))),
                 CurrentMember = true, },
 
-                new CastMember{Name = "Kaia Maarja Hillier", YearJoined= 2000, MainRole = Enum.PositionEnum.Actor,
+                new CastMember{Name = "Kaia Maarja Hillier", MainRole = Enum.PositionEnum.Actor,
                 Bio = "Kaia is a current Theatre Vertigo company member, a Board and Company member of the Pulp Stage, " +
                 "a No Filter Improv Troupe member, and Costume Designer. Past acting credits include: Jessica in A Maze" +
                 " (Theatre Vertigo); Nora in Assistance (Theatre Vertigo); and April in The Best of Everything (Bag &Baggage)." +
@@ -189,7 +189,7 @@ namespace TheatreCMS
                 Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Kaia_Maarja_Hillier.jpg"))),
                 CurrentMember = true, },
 
-                new CastMember{Name = "Heath Hyun Houghton", YearJoined= 2000, MainRole = Enum.PositionEnum.Actor,
+                new CastMember{Name = "Heath Hyun Houghton", MainRole = Enum.PositionEnum.Actor,
                 Bio = "A Korean American actor, writer and director.  He previously appeared with Theatre Vertigo in Assistance;" +
                 " other Portland credits include work with Imago Theatre, Portland Shakespeare Project, Broadway Rose Theatre" +
                 ", and many more.  Exploring the relationships between the sciences and the arts is a focal point of his work" +
@@ -197,7 +197,7 @@ namespace TheatreCMS
                 Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Heath_Hyun_Houghton.jpg"))),
                 CurrentMember = true, },
 
-                new CastMember{Name = "Tom Mounsey", YearJoined= 2000, MainRole = Enum.PositionEnum.Actor,
+                new CastMember{Name = "Tom Mounsey", YearJoined= 2012, MainRole = Enum.PositionEnum.Actor,
                 Bio = "Tom found a passion for theatre and performance in his late 20s thanks to a class at Portland" +
                 " Actors Conservatory, and has been acting in and around Portland since his graduation in 2008. " +
                 "You might have seen him on stage at places like defunkt theatre, Imago Theatre, Northwest Classical " +
@@ -207,7 +207,7 @@ namespace TheatreCMS
                 Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Tom_Mounsey.jpg"))),
                 CurrentMember = true, },
 
-                new CastMember{Name = "Devon Roberts", YearJoined= 2000, MainRole = Enum.PositionEnum.Actor,
+                new CastMember{Name = "Devon Roberts", MainRole = Enum.PositionEnum.Actor,
                 Bio = "Devon Roberts is a born and raised Portland director and actor. He holds a BA of Theater Arts " +
                 "from Portland State University and is an alumnus of the Orchard Project Core Company. He has worked" +
                 " with local companies: Boom Arts, Fuse Theatre Ensemble, Portland Center Stage at The Armory and out" +
