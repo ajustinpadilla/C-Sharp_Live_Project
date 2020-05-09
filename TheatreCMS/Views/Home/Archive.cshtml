@@ -24,41 +24,41 @@
     <h4>Current Productions</h4>
     <div class="card-deck bg-black">
         @{
-            var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
-            int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
+        var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
+        int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
 
-            foreach (var item in Model)
+        foreach (var item in Model)
+        {
+            if (item.Season == currentSeason)
             {
-                if (item.Season == currentSeason)
-                {
-                    <div class="card bg-black">
-                        @{
-
-                            if (item.DefaultPhoto != null)
-                            {
-                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
-                                </a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
-                                </a>
-                            }
-                        }
-                        <div class="card-body production-index-card-inner justify-content-center">
-                            <h5 class="card-title">@item.Title</h5>
-                            <p class="card-text">@item.Playwright</p>
-                            @*<h6 class="card-title">Season: @item.Season</h6>*@
-                            @*<p class="card-text">@item.Description</p>*@
-                            <div class="card-footer">
-                                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                            </div>
-                        </div>
+                <div class="card bg-black">
+                    @{
+                    if (item.DefaultPhoto != null)
+                    {
+                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                            <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                            <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+                        </a>
+                    }
+                    }
+                    <div class="card-body production-index-card-inner justify-content-center">
+                        <h5 class="card-title">
+                            @item.Title
+                            <span class="badge badge-pill badge-primary">Season: @item.Season</span>
+                        </h5>
+                        <p class="card-text">@item.Description</p>
                     </div>
-                }
+                    <div class="card-footer align-bottom">
+                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                    </div>
+                </div>
             }
+        }
         }
     </div>
 </div>
@@ -112,32 +112,33 @@
             {
                 if (item.Season > currentSeason)
                 {
-                    <div class="card bg-black">
-                        @{
+                <div class="card bg-black">
+                    @{
 
-                            if (item.DefaultPhoto != null)
-                            {
-                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
-                                </a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
-                                </a>
-                            }
+                        if (item.DefaultPhoto != null)
+                        {
+                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+                            </a>
                         }
-                        <div class="card-body production-index-card-inner justify-content-center">
-                            <h5 class="card-title">@item.Title</h5>
-                            <p class="card-text">@item.Playwright</p>
-                            <p class="card-text">Season: @item.Season</p>
-                            @*<p class="card-text">@item.Description</p>*@
-                            <div class="card-footer">
-                                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                            </div>
-                        </div>
+                        else
+                        {
+                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+                            </a>
+                        }
+                    }
+                    <div class="card-body production-index-card-inner justify-content-center">
+                        <h5 class="card-title">
+                            @item.Title
+                            <span class="badge badge-pill badge-primary">Season: @item.Season</span>
+                        </h5>
+                        <p class="card-text">@item.Description</p>
                     </div>
+                    @*<div class="card-footer align-bottom">
+                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                    </div>*@
+                </div>
                 }
             }
         }
@@ -406,15 +407,17 @@
                                                     <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img bg-black">
                                                 </div>
                                             }
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    @Html.DisplayFor(modelItem => item.Title)
-                                                </h5>
-                                                <p class="card-text">
-                                                    @Html.DisplayFor(modelItem => item.Description)
-                                                </p>
-                                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
-                                            </div>
+                                        <div class="card-body">
+                                            @*<h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>*@
+                                            <h5 class="card-title">
+                                                @item.Title
+                                                <span class="badge badge-pill badge-info">Season: @item.Season</span>
+                                            </h5>
+                                            <p class="card-text">
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </p>
+                                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
+                                        </div>
                                         </div>
                                     }
                                 }
