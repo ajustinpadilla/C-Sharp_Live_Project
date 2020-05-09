@@ -361,9 +361,10 @@
             width: 100%;
         }
 
-        .footer-container {
-            padding-top: 30px;
-            padding-bottom: 30px;
+        @media only screen and (min-width: 992px) {
+            #footer--container {
+                max-width: 80%;
+            }
         }
 
         .footerNavContainer{
