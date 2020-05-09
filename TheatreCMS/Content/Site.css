@@ -1492,6 +1492,11 @@ textarea {
             font-size: 20px;
         }
 
+        #sponsor-preview {
+            width: 45px;
+            height: 45px;
+        }
+
         /*Current productions*/
         .currentpro a {
             margin-left: 15px;
