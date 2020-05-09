@@ -11,13 +11,11 @@ namespace TheatreCMS.Models
         [Key]
         public int SponsorId { get; set; }  // sponsor primary key
         public string Name { get; set; }    // sponsor name
-        //public byte[] Logo { get; set; }    // sponsor logo image
-        [Display(Name ="Logo Image")]
-        public int LogoId { get; set; }
+        [Display(Name ="Logo Image")]       
+        public int LogoId { get; set; }     // ID of photo.cs object
         public int? Height { get; set; }    // logo display height (may be different from original)
         public int? Width { get; set; }     // logo display width (may be different from original)
         public bool Current { get; set; }   // active sponsor
-
-        public string Link { get; set; }
+        public string Link { get; set; }        //url of sponsor website
     }
 } 
