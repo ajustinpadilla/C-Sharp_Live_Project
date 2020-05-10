@@ -31,10 +31,12 @@
 
                 <div class="form-group">
                     <label class="control-label col-md-4 inputLabel">Current Logo</label>
-                    <img class="sponsor-pic" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.LogoId })" />
                     <br />
-
-                    @Html.LabelFor(model => model.LogoId, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                    <img class="medium_size" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.LogoId })" />
+                    <br />
+                    <br />
+                     
+                    <label class="control-label col-md-4 inputLabel">New Logo</label>
                     <div class="form-row justify-content-center">
                         <div class="col-md-auto align-self-center">
                             <img id="sponsor-preview" />

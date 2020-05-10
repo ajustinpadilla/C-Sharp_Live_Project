@@ -91,7 +91,7 @@
             </td>
             <td class="td-styling">
 
-                <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.LogoId })" />
+                <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.LogoId })" class="thumbnail_size" />
                 @*//  id = item.SponsorId, table="Sponsor", path = item.Logo
 
 
@@ -117,7 +117,8 @@
                 @Html.DisplayFor(modelItem => item.Current)
             </td>
             <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Link)
+                <a href="@item.Link" target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
+                
             </td>
 
 
