@@ -1920,6 +1920,12 @@ transition: 0.3s;
     transition: background-color 0.6s;
 }
 
+@keyframes modal-close {
+    0% {background-color: rgba(0,0,0,0.9)}
+    100% {backgound-color: rgba(0,0,0,0.9)}
+}
+
+
 /*.photo-modal--close-animation{
     background-color: rgba(0,0,0,0.0);
 }*/
