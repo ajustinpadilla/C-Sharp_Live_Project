@@ -72,7 +72,7 @@ function shrinkFunction() {
 $(document).ready(PhotoScroll());
 function PhotoScroll() {
     var pageIndex = 0;
-    var pageSize = 4;
+    var pageSize = 5;
 
     $(document).ready(function () {
         GetData(pageIndex, pageSize);
@@ -95,17 +95,15 @@ function GetData(pageIndex, pageSize) {
         success: function (data) {
             if (data != null) {
                 var photos = jQuery.parseJSON(data);
-                
-                console.log("sdf");
-                console.log(photos.length);
-                for (var i = 0; i < photos.length; i++) {
-                    $("table").append("<tr class='tr-styling scroll--container'")
-                    $(".scroll--container").append("<td>" + photos[i].PhotoId + "</td>")
-                    $(".scroll--container").append("<td>" + photos[i].OriginalHeight + "</td>")
-                    $(".scroll--container").append("<td>" + photos[i].OriginalWidth + "</td>")
-                    $(".scroll--container").append("<td>" + photos[i].Title + "</td>")
-                    $("table").append("</tr>")
 
+
+                for (var i = 0; i < photos.length; i++) {
+                    $("table").append("<tr class='tr-styling scroll--container'>" +
+                                        "<td td-styling> <img class='thumbnail_size' src='@Url.Action(\"DisplayPhoto\", \"Photo\", new { id = item." + photos[i].PhotoId + " })' /></td>" +
+                                        "<td td-styling>" + photos[i].OriginalHeight + "</td>" +
+                                        "<td td-styling>" + photos[i].OriginalWidth + "</td>" +
+                                        "<td td-styling>" + photos[i].Title + "</td>" +
+                                      "</tr>")
                 }
                 pageIndex++;
             }
