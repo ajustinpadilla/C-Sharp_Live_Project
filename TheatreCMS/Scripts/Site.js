@@ -42,17 +42,13 @@ if (document.getElementById("main-carousel") != null) {
 //Script for ~/Photo/Index modal
 
 $('.photo-index-image').on('click', function () {
-    
         $('#photo-modal').toggleClass('photo-modal--animation');
         $("body").css('overflow', 'hidden') // removes scrollbar when modal is open
-    
 });
 
 $('#photo-modal').on('click', function () {
-    
         $('#photo-modal').toggleClass('photo-modal--animation');
         $('body').css('overflow', 'auto')
-    
 });
 function ShowModel(id) {
     document.getElementById("photo-modal").style.display = "flex";
