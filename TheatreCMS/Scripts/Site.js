@@ -56,7 +56,7 @@ $('#photo-modal').on('click', function () {
     }, 100);
 });
 function ShowModel(id) {
-    document.getElementById("photo-modal").style.display = "inline";
+    document.getElementById("photo-modal").style.display = "flex";
     document.getElementById("photo-modal--content").src = document.getElementById("photo-index-img-" + id).src;
     document.getElementById("photo-modal").onclick = function () {
         document.getElementById("photo-modal").style.display = "none";
