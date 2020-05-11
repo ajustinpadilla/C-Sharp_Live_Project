@@ -99,7 +99,7 @@ function GetData(pageIndex, pageSize) {
 
                 for (var i = 0; i < photos.length; i++) {
                     $("table").append("<tr class='tr-styling scroll--container'>" +
-                                        "<td td-styling> <img class='thumbnail_size' src='@Url.Action(\"DisplayPhoto\", \"Photo\", new { id = item." + photos[i].PhotoId + " })' /></td>" +
+                                        "<td td-styling> <img class='thumbnail_size' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
                                         "<td td-styling>" + photos[i].OriginalHeight + "</td>" +
                                         "<td td-styling>" + photos[i].OriginalWidth + "</td>" +
                                         "<td td-styling>" + photos[i].Title + "</td>" +
