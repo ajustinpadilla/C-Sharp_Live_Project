@@ -1910,23 +1910,24 @@ transition: 0.3s;
     width: 100%; 
     height: 100%; 
     background-color: rgba(0,0,0,0.0);
-    transition: background-color 0.6s;
+    /*transition: background-color 0.6s;*/
 }
 
 
 .photo-modal--animation {
+    animation: modal-fade 0.6s forwards;
     background-color: rgba(0,0,0,0.9);
-    transition: background-color 0.6s;
+    /*transition: background-color 0.6s;*/
 }
 
-@keyframes modal-close {
-    0% {background-color: rgba(0,0,0,0.9)}
-    100% {backgound-color: rgba(0,0,0,0.9)}
+@keyframes modal-fade {
+    0% {background-color: rgba(0,0,0,0.0)}
+    100% {background-color: rgba(0,0,0,0.9)}
 }
 
 
-/*.photo-modal--close-animation{
-    background-color: rgba(0,0,0,0.0);
+/*.photo-modal--animation-close{
+    animation: modal-fade 0.6s backwards;
 }*/
 
 .photo-modal--content{
