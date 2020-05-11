@@ -97,17 +97,14 @@ function GetData(pageIndex, pageSize) {
         success: function (data) {
             if (data != null) {
                 var photos = jQuery.parseJSON(data);
-
-
                 for (var i = 0; i < photos.length; i++) {
                     $("table").append("<tr class='tr-styling scroll--container'>" +
-                                        "<td td-styling> <img class='thumbnail_size' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
-                                        "<td td-styling>" + photos[i].OriginalHeight + "</td>" +
-                                        "<td td-styling>" + photos[i].OriginalWidth + "</td>" +
-                                        "<td td-styling>" + photos[i].Title + "</td>" +
+                                        "<td class='td-styling'> <img class='thumbnail_size' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
+                                        "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
+                                        "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
+                                        "<td class='td-styling'>" + photos[i].Title + "</td>" +
                                       "</tr>")
                 }
-                //pageIndex++;
             }
         },
         beforeSend: function () {
