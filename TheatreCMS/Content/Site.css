@@ -1078,15 +1078,49 @@ textarea {
             background-repeat: no-repeat;
         }
         /*End SubmitRequest CSS*/
+
+        /*Begin Styling for Archive Page*/
+
         .bgimage {
-            background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
+        background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
+        }
+
+        .resultsContainer {
+        margin-left: 3em;
+        margin-right: 3em;
+        border: 1px solid #007bff;
+        border-color: #007bff;
         }
 
         .results {
-            color: black;
-            background-color: white;
-            border: 1px black;
+        border: 1px black;
         }
+
+        .results th {
+            font-size: 22px;
+            color: #007bff
+        }
+
+        .results a {
+            color: #fffbfb;
+            max-width: 800px;
+            font-size: 18px;
+        }
+
+        .results a:hover {
+            text-decoration: none;
+        }
+
+        #highlight {
+        background-color: #007bff;
+        }
+
+        #archiveResultsTitle {
+        margin-left: 1em;
+        margin-top: 40px;
+        font-size: 50px;
+        }
+        
         /*End styling for Archive page*/
 
 
