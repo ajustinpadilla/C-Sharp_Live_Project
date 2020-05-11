@@ -44,6 +44,7 @@ if (document.getElementById("main-carousel") != null) {
 $('.photo-index-image').on('click', function () {
     setTimeout(function () {
         $('#photo-modal').toggleClass('photo-modal--animation');
+        $("body").css('overflow', 'hidden') // removes scrollbar when modal is open
     }, 100);
 });
 
@@ -51,6 +52,7 @@ $('#photo-modal').on('click', function () {
     setTimeout(function () {
         $('#photo-modal').toggleClass('photo-modal--animation');
         $('#photo-modal').toggleClass('photo-modal--close-animation');
+        $('body').css('overflow', 'auto')
     }, 100);
 });
 function ShowModel(id) {
