@@ -95,13 +95,17 @@ function GetData(pageIndex, pageSize) {
         success: function (data) {
             if (data != null) {
                 var photos = jQuery.parseJSON(data);
+                
                 console.log("sdf");
                 console.log(photos.length);
                 for (var i = 0; i < photos.length; i++) {
-                    $(".scroll--container").append("<li>" + photos[i].PhotoId + "</li>")
-                    $(".scroll--container").append("<li>" + photos[i].OriginalHeight + "</li>")
-                    $(".scroll--container").append("<li>" + photos[i].OriginalWidth + "</li>")
-                    $(".scroll--container").append("<li>" + photos[i].Title + "</li>")
+                    $("table").append("<tr class='tr-styling scroll--container'")
+                    $(".scroll--container").append("<td>" + photos[i].PhotoId + "</td>")
+                    $(".scroll--container").append("<td>" + photos[i].OriginalHeight + "</td>")
+                    $(".scroll--container").append("<td>" + photos[i].OriginalWidth + "</td>")
+                    $(".scroll--container").append("<td>" + photos[i].Title + "</td>")
+                    $("table").append("</tr>")
+
                 }
                 pageIndex++;
             }
