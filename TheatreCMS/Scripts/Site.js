@@ -98,7 +98,7 @@ function GetData(pageIndex, pageSize) {
                 console.log("sdf");
                 console.log(photos.length);
                 for (var i = 0; i < photos.length; i++) {
-                    $(".scroll--container").append("<li>" + photos[i].PhotoFile + "</li>")
+                    $(".scroll--container").append("<li>" + photos[i].PhotoId + "</li>")
                     $(".scroll--container").append("<li>" + photos[i].OriginalHeight + "</li>")
                     $(".scroll--container").append("<li>" + photos[i].OriginalWidth + "</li>")
                     $(".scroll--container").append("<li>" + photos[i].Title + "</li>")

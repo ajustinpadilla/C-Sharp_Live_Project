@@ -29,7 +29,8 @@ namespace TheatreCMS.Controllers
             System.Threading.Thread.Sleep(4000);
             var query = (from photo in db.Photo
                          orderby photo.PhotoId ascending
-                         select photo).Skip(pageIndex * pageSize).Take(pageSize);
+                         select new { photo.PhotoId, photo.OriginalHeight, photo.OriginalWidth, photo.Title }).Skip(pageIndex * pageSize).Take(pageSize);
+
             return Json(Newtonsoft.Json.JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
         }
 
