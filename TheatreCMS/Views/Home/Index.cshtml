@@ -1,134 +1,162 @@
-﻿@{
+﻿@model IEnumerable<TheatreCMS.Models.Production>
+@using TheatreCMS.Controllers
+@using TheatreCMS.Models
+
+@{
     ViewBag.Title = "Home Page";
+    int i = 1; //counter for hash tag links
+
 }
 
 @Styles.Render("~/Content/Site.css")
 @Scripts.Render("~/Scripts/Site.js")
-@using TheatreCMS.Models
-@using TheatreCMS.Controllers
-@model IEnumerable<TheatreCMS.Models.ProductionPhotos>
-@*@model List<Sponsor>*@
-
-@*carousel section*@
-<div id="main-carousel">
-  <div class="slideshow-container">
-
-      @{
-        if (!Model.Any())
-        {
-          <div class="slideTitle">Test Title</div>
-          <img class="image-carousel" src="@Url.Content("~/Content/Images/img1.jpg")" />
-          <div class="slideText center text-outline">Test Description</div>
-          <div class="slideTitle1"></div>
-          <div class="slideText1 center text-outline"></div>
-          <div class="slideTitle-container">
-            <div class="row">
-              <div class="col-lg-1 bg-black center">
-                <h1>Test Title</h1>
-              </div>
-              <div class="col-lg-1 bg-black center">
-                <h3>Test Description</h3>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="dot-container">
-            <span class="dot" onclick="currentSlide(1)"></span>
-          </div>
-        }
-      }
 
 
-    @foreach (var item in Model)
-    {
-      <div class="slides">
-        <div class="slideTitle">@Html.DisplayFor(modelItem => item.Title)</div>
-
-        @*@{
-            string img = "";
-            if (item.Photo != null)
+<div class="home-body">
+    <main id="home-main">
+        <div class="home-container">
+            @foreach (var item in Model)
             {
-                byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 400, 400);
-                var base64 = System.Convert.ToBase64String(thumbBytes);
-                img = String.Format("data:image/png;base64,{0}", base64);
-                <img src="@img" class="image-carousel" />
+                <div id="index-block-@i" class="home-block">
+                    <figure class="home-inner">
+                        <div class="home-tint-overlay"></div>
+                        @{
+                            if (item.DefaultPhoto != null)
+                            {
+                                <div class="home-img">
+                                    <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = (item.DefaultPhoto.PhotoId + 1) }))"></div>
+                                </div>
+                                <div class="home-mobile-img">
+                                    <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = (item.DefaultPhoto.PhotoId + 1) }))"></div>
+                                </div>
+                                if (item.OpeningDay <= DateTime.Now && item.ClosingDay >= DateTime.Now)
+                                {
+                                    <div class="corner-ribbon top-right main">
+                                        On Stage
+                                    </div>
+                                }
+                                else if (item.OpeningDay > DateTime.Now)
+                                {
+                                    <div class="corner-ribbon top-right main">
+                                        Coming Soon
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="home-img">
+                                    <div style="background-image: url(~/Content/Images/Unavailable.png)"></div>
+                                </div>
+                                <div class="home-mobile-img">
+                                    <div style="background-image: url(~/Content/Images/Unavailable.png)"></div>
+                                </div>
+                            }
+                        }
+                        <figcaption class="home-content">
+                            <div class="home-content-inner">
+                                @{
+                                    @*<h6 class="home-tag-line">Home Tag Line</h6>*@
+                                    <h2 role="heading" class="home-title">@item.Title</h2>
+                                    <p class="home-date">@item.OpeningDay.ToString("dddd, MMMM %d, yyyy") - @item.ClosingDay.ToString("dddd, MMMM %d, yyyy")</p>
+                                    <div class="home-btn">
+                                        <a class="btn-primary" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">Details</a>
+                                    </div>
+                                }
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+                i++;
             }
-
-        }*@
-        @*<img src="img" />*@
-        <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" class="image-carousel" />
-        <div class="slideText center text-outline">@Html.DisplayFor(modelItem => item.Description)</div>
-      </div>
-    }
-    @*<div class="slideTitle">Title for slide 1 here</div>
-    <img src="@Url.Content("~/Content/Images/img1.jpg")" style="width:100%" />
-    <div class="slideText center text-outline">Context for slide 1 here</div>
-
-    <div class="slides">
-        <div class="slideTitle">Title for slide 2 here</div>
-        <img src="@Url.Content("~/Content/Images/img2.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 2 here</div>
-    </div>
-    <div class="slides">
-        <div class="slideTitle">Title for slide 3 here</div>
-        <img src="@Url.Content("~/Content/Images/img3.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 3 here</div>
-    </div>
-    <div class="slides">
-        <div class="slideTitle">Title for slide 4 here</div>
-        <img src="@Url.Content("~/Content/Images/img4.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 4 here</div>
-    </div>
-    <div class="slides">
-        <div class="slideTitle">Title for slide 5 here</div>
-        <img src="@Url.Content("~/Content/Images/img5.jpg")" style="width:100%" />
-        <div class="slideText center text-outline">Context for slide 5 here</div>
-    </div>*@
-    @*The left and right buttons*@
-    <a class="left text-outline" onclick="changeSlide(-1)">&#10094;</a>
-    <a class="right text-outline" onclick="changeSlide(1)">&#10095;</a>
-  </div>
-    <br />
-    @*The dots for navigation*@
-    <div style="text-align:center">
-        @*@{
-                foreach (var item in Model)
+        </div>
+        <nav>
+            <ul id="home-nav">
+                @{ i = 1; }
+                @foreach (var item in Model)
                 {
-                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <li>
+                        <a class="home-nav-link" href="#index-block-@i"></a>
+                    </li>
+                    i++;
                 }
-            }*@
-        @{
+            </ul> 
+        </nav>
+    </main>
+</div>
 
 
-            for (int i = 0; i < Model.ToList().Count; i++)
-            {
-                <span class="dot" onclick="currentSlide(@(i+1))"></span>
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/gumshoe.js"></script>
+<script>
+    $(document).ready(function () {
+        resizeTitle();
 
-            }
-            @*<span class="dot" onclick="currentSlide(i)"></span>*@
+        $(".home-nav-link").on('click', function (event) {
 
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // Store hash
+                var hash = this.hash;
+
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top - 52 //Subtract offset for header
+                }, 500, function () {
+
+                });
+            } // End if
+        });
+        //Offset for fixed header
+        var spy = new Gumshoe('#home-nav a', {
+            offset: 52
+        });
+        //Check home-title text length and resize based on screen size
+        var textLength;
+        function resizeTitle() {
+            $('.home-title').each(function () {
+                textLength = ($(this).text().length);
+                if (window.matchMedia('(min-width: 80.0625em)').matches) {
+                    if (textLength >= 20 && textLength < 30) {
+                        $(this).css('font-size', '10rem');
+                    }
+                    if (textLength > 30) {
+                        $(this).css('font-size', '8rem');
+                    }
+                }
+
+                if (window.matchMedia('(max-width: 80em)').matches) {
+                    if (textLength >= 20 && textLength < 30) {
+                        $(this).css('font-size', '7rem');
+                    }
+                    if (textLength > 30) {
+                        $(this).css('font-size', '6rem');
+                    }
+
+                    if (window.matchMedia('(max-width: 64.0625em)').matches) {
+                        if (textLength >= 20 && textLength < 30) {
+                            $(this).css('font-size', '6.5rem');
+                        }
+                        if (textLength > 30) {
+                            $(this).css('font-size', '5.5rem');
+                        }
+
+                        if (window.matchMedia('(max-width: 48em)').matches) {
+                            if (textLength >= 20 && textLength < 30) {
+                                $(this).css('font-size', '2.75rem');
+                            }
+                            if (textLength > 30) {
+                                $(this).css('font-size', '2.75rem');
+                            }
+                        }
+                    }
+                }
+            })
         }
 
-
-        @*<span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>*@
-    </div>
-</div>
-
-@*text section*@
-<div id="main-body">
-    <div class="synopsisTitle center">Title for body text here</div>
-    <div class="synopsisBody center">
-        <p>Body text here.</p>
-    </div>
-</div>
-
-@*Sponsor section*@
-@*<div>
-        @Html.Partial("_SponsorsPartial")
-    </div>*@
-@{Html.RenderAction("List", "Sponsors");}
+        $(window).resize(resizeTitle);
+    });
+</script>

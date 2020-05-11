@@ -63,12 +63,12 @@
     {
         <div class="archive-input-container">
             <select id="SearchByCategory" name="SearchByCategory">
-                <option class="search-dropdown">Search by Category</option>
-                <option class="search-dropdown option" value="ArchiveCastMember">Cast Member</option>
-                <option class="search-dropdown option" value="ArchiveProduction">Production</option>
-                <option class="search-dropdown option" value="ArchivePart">Part</option>
+                <option class="search-dropdown" value="SearchAll">Search All</option>
+                <option class="search-dropdown option" value="SearchCastMembers">Cast Member</option>
+                <option class="search-dropdown option" value="SearchProductions">Production</option>
+                <option class="search-dropdown option" value="SearchParts">Part</option>
             </select>
-            @Html.TextBox("ArchiveSearchField", "", new { placeholder = "Search" })
+            @Html.TextBox("searchKey", "", new { placeholder = "Search" })
             <button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>
         </div>
     }
@@ -102,75 +102,167 @@
         </nav>
     </div>*@
 
-<div>
-    <p>
-        @if (ViewData["ResultsList"] != null)
+
+ <!--Search results-->
+<h3 id="archiveResultsTitle">Results</h3>
+
+<div class="resultsContainer">
+    @if (ViewData["ResultsCast"] != null || ViewData["ResultsProduction"] != null || ViewData["ResultsPart"] != null)
+    {
+        switch (ViewBag.Category)
         {
-            switch (ViewBag.Category)
-            {
-                case "ArchiveCastMember":
-                    <table style="width:100%" class="results">
-                        <tr>
-                            <th>Cast Member</th>
-                            <th>Year Joined</th>
-                            <th>Bio</th>
-                        </tr>
-                        @foreach (var item in ViewData["ResultsList"] as List<CastMember>)
-                        {
-                            <tr>
-                                <td>@item.Name</td>
-                                <td>@item.YearJoined</td>
-                                <td>@item.Bio</td>
-                            </tr>
-                        }
-                        <caption>@ViewBag.Message</caption>
-                    </table>
-                    break;
-                case "ArchiveProduction":
-                    <table style="width:100%" class="results">
-                        <tr>
-                            <th>Production</th>
-                            <th>Playwright</th>
-                            <th>Description</th>
-                        </tr>
-                        @foreach (var item in ViewData["ResultsList"] as List<Production>)
-                        {
-                            <tr>
-                                <td>@item.Title</td>
-                                <td>@item.Playwright</td>
-                                <td>@item.Description</td>
-                            </tr>
-                        }
-                        <caption>@ViewBag.Message</caption>
-                    </table>
-                    break;
-                case "ArchivePart":
-                    <table style="width:100%" class="results">
-                        <tr>
-                            <th>Part</th>
-                            <th>Production</th>
-                            <th>Cast Member</th>
-                        </tr>
-                        @foreach (var item in ViewData["ResultsList"] as List<Part>)
-                        {
-                            <tr>
-                                <td>@item.Character</td>
-                                <td>@item.Production.Title</td>
-                                <td>@item.Person.Name</td>
-                            </tr>
-
-                        }
-                        <caption>@ViewBag.Message</caption>
-                    </table>
-                    break;
+            case "SearchAll":  //This case combines the three lower cases.
+    <table class="table table-borderless table-hover results">
+        @if (ViewData["ResultsCast"] != null)
+        {
+            <thead>
+                <tr class="d-flex">
+                    <th scope="col" class="col-lg-2">Cast Member</th>
+                    <th scope="col" class="col-lg-2">Year Joined</th>
+                    <th scope="col" class="col-lg-8">Bio</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                @for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
+                {
+                <tr class="d-flex">
+                    <td class="col-lg-2">
+                        <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Name)</a>
+                    </td>
+                    <td class="col-lg-2">
+                        <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.YearJoined[i])</a>
+                    </td>
+                    <td class="col-lg-8">
+                        <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
+                    </td>
+                </tr>
+                }
+                </tbody>
             }
-
+        @if (ViewData["ResultsProduction"] != null)
+        {
+            <tr class="d-flex">
+                <th scope="col" class="col-lg-2">Production</th>
+                <th scope="col" class="col-lg-2">Playwright</th>
+                <th scope="col" class="col-lg-8">Description</th>
+            </tr>
+            foreach (var item in ViewData["ResultsProduction"] as List<Production>)
+            {
+                <tr class="d-flex">
+                    <td class="col-lg-2">
+                        <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Title)</a>
+                    </td>
+                    <td class ="col-lg-2">
+                        <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Playwright)</a>
+                    </td>
+                    <td class="col-lg-8">
+                        <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Description)</a>
+                    </td>
+                </tr>
+            }
         }
-    </p>
+        @if (ViewData["ResultsPart"] != null)
+        {
+            <tr class="d-flex">
+                <th scope="col" class="col-lg-2">Part</th>
+                <th scope="col" class="col-lg-2">Production</th>
+                <th scope="col" class="col-lg-8">Cast Member</th>
+            </tr>
+            foreach (var item in ViewData["ResultsPart"] as List<Part>)
+            {
+                <tr class="d-flex">
+                    <td class="col-lg-2">
+                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                    </td>
+                    <td class="col-lg-2">
+                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Production.Title)</a>
+                    </td>
+                    <td class="col-lg-8">
+                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+                <p>@ViewBag.Message</p>
+
+                break;
+            case "SearchCastMembers":
+                <table class="table table-borderless table-hover results">
+                    <tr class="d-flex">
+                        <th scope="col" class="col-lg-2">Cast Member</th>
+                        <th scope="col" class="col-lg-2">Year Joined</th>
+                        <th scope="col" class="col-lg-8">Bio</th>
+                    </tr>
+                    @for (int i = 0; i < ViewBag.ResultsCast.Count; i++)  //This is a for instead of a for each, because YearJoined is a separate list from ResultsCast.
+                    {
+                        <tr class="d-flex">
+                            <td class="col-lg-2">
+                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Name)</a>
+                            </td>
+                            <td class="col-lg-2">
+                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.YearJoined[i])</a >                                
+                            </td>
+                            <td class="col-lg-8">
+                                <a href="/CastMembers/Details/@ViewBag.ResultsCast[i].CastMemberID">@Html.Raw(ViewBag.ResultsCast[i].Bio)</a>
+                            </td>
+                        </tr>
+                    }
+                    <caption>@ViewBag.Message</caption>
+                </table>
+                break;
+            case "SearchProductions":
+                <table class="table table-borderless table-hover results">
+                    <tr class="d-flex">
+                        <th scope="col" class="col-lg-2">Production</th>
+                        <th scope="col" class="col-lg-2">Playwright</th>
+                        <th scope="col" class="col-lg-8">Description</th>
+                    </tr>
+                    @foreach (var item in ViewData["ResultsProduction"] as List<Production>)
+                    {
+                        <tr class="d-flex">
+                            <td class="col-lg-2">
+                                <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Title)</a>
+                            </td>
+                            <td class="col-lg-2">
+                                <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Playwright)</a>
+                            </td>
+                            <td class="col-lg-8">
+                                <a href="/Productions/Details/@item.ProductionId">@Html.Raw(@item.Description)</a>
+                            </td>
+                        </tr>
+                    }
+                    <caption>@ViewBag.Message</caption>
+                </table>
+                break;
+            case "SearchParts":
+                <table class="table table-borderless table-hover results">
+                    <tr class="d-flex">
+                        <th scope="col" class="col-lg-2">Part</th>
+                        <th scope="col" class="col-lg-2">Production</th>
+                        <th scope="col" class="col-lg-8">Cast Member</th>
+                    </tr>
+                    @foreach (var item in ViewData["ResultsPart"] as List<Part>)
+                    {
+                        <tr class="d-flex">
+                            <td class="col-lg-2">
+                                <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                            </td>
+                            <td class="col-lg-2">
+                                <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Production.Title)</a>
+                            </td>
+                            <td class="col-lg-8">
+                                <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Person.Name)</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                    <caption>@ViewBag.Message</caption>
+                break;
+        }
+    }
 </div>
-
-
-
 
 <hr />
 
