@@ -28,7 +28,10 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @*This is the initial implementation for populating the table. I saved it, because 
+    it's used in an active story that creates a modal.'*@
+
+@*@foreach (var item in Model) {
     <tr class="tr-styling">
         <td class="td-styling">
             <img class="thumbnail_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
@@ -48,14 +51,10 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.PhotoId })
         </td>
     </tr>
-}
+}*@
  
-    @*<tr class="tr-styling scroll--container">
-        <td class="td-styling" id="scroll--image"></td>
-        <td class="td-styling" id="scroll--height"></td>
-        <td class="td-styling" id="scroll--width"></td>
-        <td class="td-styling" id="scroll--title"></td>
-    </tr>*@
+
+
 
 </table>
 <div id="progress" style="display:none">

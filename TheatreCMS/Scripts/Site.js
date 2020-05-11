@@ -72,7 +72,7 @@ function shrinkFunction() {
 $(document).ready(PhotoScroll());
 function PhotoScroll() {
     var pageIndex = 0;
-    var pageSize = 2;
+    var pageSize = 5;
 
     $(document).ready(function () {
         GetData(pageIndex, pageSize);
