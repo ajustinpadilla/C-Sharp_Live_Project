@@ -59,7 +59,7 @@ function ShowModel(id) {
     document.getElementById("photo-modal").style.display = "flex";
     document.getElementById("photo-modal--content").src = document.getElementById("photo-index-img-" + id).src;
     document.getElementById("photo-modal").onclick = function () {
-        $('.photo-modal').fadeToggle("slow");
+        $('.photo-modal').fadeToggle(600);
         //document.getElementById("photo-modal").style.display = "none";
     }
 }
