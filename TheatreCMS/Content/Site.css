@@ -2683,3 +2683,27 @@ textarea {
     padding-left: 5px;
     /* End Peter O.*/
 }
+
+/* Scrollbar Styling*/
+
+
+*::-webkit-scrollbar { /* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
+    width: 12px; /* This section effects only the width of the scrollbar*/
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--light-color); /* This section effects only the color of the track*/
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--main-bg-color); /* This section effects only the color of the thumb*/
+}
+
+/* this section is applicable only to the styling of the scrollbar on Firefox. Used in conjunction with webkit for better compatibility*/
+
+* {
+    scrollbar-width: auto; /* This shows a message that it is not a known CSS property but is supported in FireFox and will show as expected when launched with that browser. */
+    scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track*/
+}
+
+/* End scrollbar Styling*/
