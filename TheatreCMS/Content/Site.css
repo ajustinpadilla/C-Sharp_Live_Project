@@ -2213,6 +2213,18 @@ textarea {
 /* End Productions Index Search*/
 
 
+/*ProductionPhoto (Production Photos) Styling*/
+
+/*set initial card-footer links to be not visible*/
+.prodphoto-cards .card .card-footer {
+    opacity: 0;
+}
+
+
+
+
+
+
 
 /* Start Homepage */
 
