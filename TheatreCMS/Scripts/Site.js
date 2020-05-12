@@ -80,11 +80,14 @@ function PhotoScroll() {
         console.log("1st get data")
 
         $(window).scroll(function () {
-            if ($(window).scrollTop() ==
+            console.log("1: " + $(window).scrollTop())
+            console.log("2: " + $(document).height())
+            console.log("3: " + $(window).height())
+            if (Math.round($(window).scrollTop()) ==
                 $(document).height() - $(window).height()) {
+                console.log("2nd get data")
                 GetData(pageIndex, pageSize);
                 pageIndex++;
-                console.log("2nd get data")
 
             }
         });
