@@ -72,17 +72,20 @@ function shrinkFunction() {
 $(document).ready(PhotoScroll());
 function PhotoScroll() {
     var pageIndex = 0;
-    var pageSize = 5;
+    var pageSize = 10;
 
     $(document).ready(function () {
         GetData(pageIndex, pageSize);
         pageIndex++;
+        console.log("1st get data")
 
         $(window).scroll(function () {
             if ($(window).scrollTop() ==
                 $(document).height() - $(window).height()) {
                 GetData(pageIndex, pageSize);
                 pageIndex++;
+                console.log("2nd get data")
+
             }
         });
     });
