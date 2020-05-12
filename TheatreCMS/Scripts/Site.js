@@ -77,12 +77,14 @@ function PhotoScroll() {
     $(document).ready(function () {
         GetData(pageIndex, pageSize);
         pageIndex++;
+        console.log("get data 1")
 
         $(window).scroll(function () {
             if ($(window).scrollTop() ==
                 $(document).height() - $(window).height()) {
                 GetData(pageIndex, pageSize);
                 pageIndex++;
+                console.log("get data 2");
             }
         });
     });
@@ -103,6 +105,11 @@ function GetData(pageIndex, pageSize) {
                                         "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
                                         "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
                                         "<td class='td-styling'>" + photos[i].Title + "</td>" +
+                                        "<td class='td-styling'>" +
+                                            "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit</a>" +
+                                            "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details</a>" +
+                                            "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
+                                        "</td>" +
                                       "</tr>")
                 }
             }
