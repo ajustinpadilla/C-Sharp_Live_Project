@@ -19,7 +19,14 @@ namespace TheatreCMS.Models
         // GET: ProductionPhotos
         public ActionResult Index()
         {
-            return View(db.ProductionPhotos.ToList());
+            var filteredList = db.Productions.OrderBy(i => i.OpeningDay).Select(i => new SelectListItem
+            {
+                Value = i.ProductionId.ToString(),
+                Text = i.Title + " (" + i.Season + ")"
+            });
+            ViewData["ProductionList"] = new SelectList(filteredList, "Value", "Text");
+
+            return View(db.ProductionPhotos.OrderBy(i => i.Production.OpeningDay).ToList());
         }
 
         // GET: ProductionPhotos/Details/5

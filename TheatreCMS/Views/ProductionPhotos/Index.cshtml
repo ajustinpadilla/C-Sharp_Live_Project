@@ -7,42 +7,77 @@
 
 <h2>Index</h2>
 
+<label>Filter by Production</label>
+@Html.DropDownList("ProductionList", (IEnumerable<SelectListItem>)ViewData["ProductionList"], "All")
+
 <p>
     @Html.ActionLink("Create New", "Create")
+
 </p>
-<table class="table-styling">
-    <tr class="tr-styling">
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.PhotoId )
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model) {
+@foreach (var pro in Model.Select(i => i.Production).Distinct())
+{
+    
+        <h3>@pro.Title <span class="badge badge-pill badge-light">@pro.Season</span></h3>
+        <div class="card-group">
+            @foreach (var item in Model.Where(i => i.Production.Title == pro.Title))
+            {
+                <div class="card">
+                    <img class="card-img-top" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">@Html.DisplayFor(modelItem => item.Title)</h5>
+                        <p class="card-text text-secondary">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                    <div class="card-footer">
+                        @*<a href="@Html.ActionLink("Details", "Details", new { id = item.ProPhotoId })" class="btn btn-primary">Link</a>*@
+                        @Html.ActionLink("Details", "Details", new { id = item.ProPhotoId }, new { @class = "badge badge-pill badge-danger" })
+
+                    </div>
+                </div>
+
+            }
+        </div>
+        <br /><br />
+}
+
+
+
+@*  old code
+    <table class="table-styling">
         <tr class="tr-styling">
-            @*@Html.DisplayFor(modelItem => item.PhotoId)*@
-            <td class="td-styling">             
-                <img src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
-            </td>
-
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td class="td-styling">
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProPhotoId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProPhotoId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProPhotoId })
-            </td>
+            <th class="th-styling">
+                @Html.DisplayNameFor(model => model.PhotoId)
+            </th>
+            <th class="th-styling">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th class="th-styling">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr class="tr-styling">
+                /@/*/@Html.DisplayFor(modelItem => item.PhotoId)/*/@/
+                <td class="td-styling">
+                    <img src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
+                </td>
+
+                <td class="td-styling">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td class="td-styling">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td class="td-styling">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProPhotoId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProPhotoId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProPhotoId })
+                </td>
+                </tr>
+                }
+
+                </table>
+*@
