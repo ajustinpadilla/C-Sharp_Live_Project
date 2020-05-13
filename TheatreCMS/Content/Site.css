@@ -2215,15 +2215,64 @@ textarea {
 
 /*ProductionPhoto (Production Photos) Styling*/
 
+.prodphoto-search-container {
+    display: inline-block;
+    float: right;
+}
+
+.prodphoto-search-container input[type=text] {
+    width: 250px;
+    border: 0;
+    height: 50px;
+    padding: 0px 25px;
+    border-radius: 25px;
+    outline: none;
+    color: var(--secondary-color);
+}
+
+.prodphoto-searchbtn {
+    position: relative;
+    top: 0px;
+    right: 50px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    z-index: 5;
+    outline: none;
+    font-size: 24px;
+    color: var(--secondary-color);
+}
+
+
 /*set initial card-footer links to be not visible*/
 .prodphoto-cards .card .card-footer {
     opacity: 0;
 }
 
+.prodphoto-cards .card {
+    max-width: 30%;
+    min-width: 15%;
+}
+
+.prodphoto-cards .card-title {
+    color: var(--main-secondary-color);
+}
 
 
+.prodphoto-content {
+    margin: 10px 20px;
+}
 
+.prodphoto-cards .card-group {
+    justify-content: center;
+} 
 
+.prodphoto-filter {
+    color: var(--secondary-color);
+}
 
 
 /* Start Homepage */
