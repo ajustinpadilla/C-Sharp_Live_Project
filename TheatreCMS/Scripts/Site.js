@@ -77,7 +77,7 @@ if (document.getElementById("scroll-container") != null) {
         var pageSize = 20;         //this variable is used to set the number of retrieved items
 
         $(document).ready(function () {   //this block fires off the initial ajax call to populate the table
-            GetData(pageIndex, pageSize, ajaxCompleted);
+            GetData(pageIndex, pageSize);
             pageIndex++;
             console.log("1st get data")
 
@@ -106,19 +106,19 @@ if (document.getElementById("scroll-container") != null) {
                     var photos = jQuery.parseJSON(data);
                     for (var i = 0; i < photos.length; i++) {
                         $("table").append("<tr class='tr-styling scroll--container'>" +
-                            "<td class='td-styling'> <img class='thumbnail_size' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
-                            "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
-                            "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
-                            "<td class='td-styling'>" + photos[i].Title + "</td>" +
-                            "<td class='td-styling'>" +
-                            "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit | </a>" +
-                            "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details | </a>" +
-                            "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
-                            "</td>" +
-                            "</tr>")
+                                                "<td class='td-styling'> <img class='thumbnail_size' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
+                                                "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
+                                                "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
+                                                "<td class='td-styling'>" + photos[i].Title + "</td>" +
+                                                "<td class='td-styling'>" +
+                                                    "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit | </a>" +
+                                                    "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details | </a>" +
+                                                    "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
+                                                "</td>" +
+                                          "</tr>")
                     }
                     ajaxCompleted = true;
-                    if (photos.length == 0) {
+                    if (photos.length == 0) {  // this prevents the function from being called when there are no photos left to display
                         ajaxCompleted = false;
                     }
                 }
