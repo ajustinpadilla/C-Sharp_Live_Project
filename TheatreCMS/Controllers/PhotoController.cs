@@ -26,10 +26,10 @@ namespace TheatreCMS.Controllers
         // Action method for displaying infinite scroll 
         public ActionResult GetPhotos(int pageIndex, int pageSize)
         {
-            //System.Threading.Thread.Sleep(4000); // used for debugging
+            //System.Threading.Thread.Sleep(4000);  //sets a delay on loading. Used for debugging.
             var query = (from photo in db.Photo
                          orderby photo.PhotoId ascending
-                         select new { photo.PhotoId, photo.OriginalHeight, photo.OriginalWidth, photo.Title }).Skip(pageIndex * pageSize).Take(pageSize);
+                         select new { photo.PhotoId, photo.OriginalHeight, photo.OriginalWidth, photo.Title }).Skip(pageIndex * pageSize).Take(pageSize);  // selecting anonymous type is done to prevent passing the byte array in the PhotFile attribute 
 
             return Json(Newtonsoft.Json.JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
         }
