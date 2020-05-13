@@ -70,7 +70,7 @@ function shrinkFunction() {
 // Infinite scrolling for Photo/Index page
 
 var pageIndex = 0;
-var pageSize = 2;
+var pageSize = 20;         //this variable is used to set the number of retrieved items
 var getDataIsReady = true; //this variable is used to ensure that the GetData function is only called once per server ping.
 $(document).ready(PhotoScroll());
 function PhotoScroll() {
@@ -88,8 +88,6 @@ function PhotoScroll() {
                 $(document).height() - $(window).height() && getDataIsReady) {
                 GetData();
                 pageIndex++;
-                //pageIndex++;
-                
             }
         });
     //});
@@ -114,13 +112,17 @@ function GetData() {
                                         "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
                                         "<td class='td-styling'>" + photos[i].Title + "</td>" +
                                         "<td class='td-styling'>" +
-                                            "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit</a>" +
-                                            "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details</a>" +
+                                            "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit | </a>" +
+                                            "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details | </a>" +
                                             "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
                                         "</td>" +
                                       "</tr>")
                 }
+                console.log("photos.length: " + photos.length)
                 getDataIsReady = true;
+                if (photos.length == 0) {
+                    getDataIsReady = false;
+                }
             }
         },  
         beforeSend: function () {
