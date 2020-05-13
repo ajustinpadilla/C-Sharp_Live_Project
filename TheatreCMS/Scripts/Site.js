@@ -100,10 +100,10 @@ if (document.getElementById("scroll-container") != null) {
             url: '/Photo/GetPhotos',
             data: { "pageIndex": pageIndex, "pageSize": pageSize },
             dataType: 'json',
-            success: function (data) {
+            success: function (photos) {
                 console.log("%index: " + pageIndex);
-                if (data != null) {
-                    var photos = jQuery.parseJSON(data);
+                if (photos != null) {
+                    photos = jQuery.parseJSON(photos);
                     for (var i = 0; i < photos.length; i++) {
                         $("table").append("<tr class='tr-styling scroll--container'>" +
                                                 "<td class='td-styling'> <img class='thumbnail_size' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
