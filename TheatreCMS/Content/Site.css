@@ -359,15 +359,31 @@
             padding-top: 110px;
             padding-bottom: 20px;
         }
+        
         /* ------Footer stylings----- */
+        
         footer {
             background-color: black;
             display: flex;
         }
 
-        .footer-container {
-            padding-top: 30px;
-            padding-bottom: 30px;
+        @media only screen and (min-width: 992px) {
+            #footer--container {
+                max-width: 80%;
+            }
+        }
+
+        .footerNavContainer{
+            padding-left: 0px;
+        }
+        
+        #navBar li {
+            padding-left: 0px;
+            margin-right: 20px;
+        }
+
+        .socialMediaContainer li ~ li {
+            margin-left: 20px;
         }
 
         a.navLink {
@@ -381,13 +397,13 @@
             font-weight: bolder;
         }
 
+        #footerInner {
+            margin: auto;
+        }
+        
         footer p {
             color: white;
             font-size: 1rem;
-        }
-
-        footer #address {
-            margin-right: 0;
         }
 
         footer .list-group-item {
@@ -402,6 +418,36 @@
         footer .list-group-item :hover {
             color: red;
         }
+
+        .socialMediaContainer {
+            text-align:right;
+        }
+
+        .navItem {
+            margin-left: 0px;
+        }   
+        #socialMediaLinks {
+            padding-left: 0px;
+            margin-left: auto;
+        }
+
+        #socialMediaLinks li {
+            padding-left: 0px;
+        }
+
+        #contactInfo {
+            flex-wrap: nowrap;
+        }
+
+        #address {
+            margin-right: 0;
+            float: left;
+            margin-left:15px;
+            margin-right: 40px;
+        }
+
+        /* End Footer Styling */
+
 
         /* Set padding to keep content from hitting the edges */
         .body-content {
