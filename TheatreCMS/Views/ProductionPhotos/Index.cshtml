@@ -4,11 +4,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<style>
-  
 
-
-</style>
 <h2 class="m-3">Index</h2>
 
 <div class="prodphoto-bar m-3">
@@ -28,7 +24,7 @@
 </p>
 
 <div class="prodphoto-content my-3">
-    @*sort by production season in descending order , then by opening day in descending order*@
+    @*sort by production season in descending order , then by opening day in ascending order*@
     @foreach (var pro in Model.Select(i => i.Production).Distinct())
     {
         <div id="@pro.ProductionId-prodphoto-show" class="prodphoto-cards">
