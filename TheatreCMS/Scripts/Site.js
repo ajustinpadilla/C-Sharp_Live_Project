@@ -69,34 +69,42 @@ function shrinkFunction() {
 
 // Infinite scrolling for Photo/Index page
 
+var pageIndex = 0;
+var pageSize = 2;
+var getDataIsReady = true; //this variable is used to ensure that the GetData function is only called once per server ping.
 $(document).ready(PhotoScroll());
 function PhotoScroll() {
-    var pageIndex = 0;
-    var pageSize = 2;
 
-    $(document).ready(function () {
-        GetData(pageIndex, pageSize);
-        pageIndex++;
-        console.log("get data 1")
+    //$(document).ready(function () {
+    //    GetData();
+    //    //pageIndex++;
+    //    console.log("get data 1")
 
         $(window).scroll(function () {
-            if ($(window).scrollTop() ==
-                $(document).height() - $(window).height()) {
-                GetData(pageIndex, pageSize);
+            //console.log("1: " + $(window).scrollTop())
+            //console.log("2: " + $(document).height())
+            //console.log("3: " + $(window).height())
+            if (Math.ceil($(window).scrollTop()) >=
+                $(document).height() - $(window).height() && getDataIsReady) {
+                GetData();
                 pageIndex++;
-                console.log("get data 2");
+                //pageIndex++;
+                
             }
         });
-    });
+    //});
 }
 
-function GetData(pageIndex, pageSize) {
+function GetData() {
+    console.log("index: " + pageIndex + " pagesize: " + pageSize + " photos.length: "/* + photos.length*/);
+    getDataIsReady = false;
     $.ajax({
         type: 'GET',
         url: '/Photo/GetPhotos',
-        data: { "pageindex": pageIndex, "pagesize": pageSize },
+        data: { "pageIndex": pageIndex, "pageSize": pageSize },
         dataType: 'json',
         success: function (data) {
+            console.log("%index: " + pageIndex);
             if (data != null) {
                 var photos = jQuery.parseJSON(data);
                 for (var i = 0; i < photos.length; i++) {
@@ -112,8 +120,9 @@ function GetData(pageIndex, pageSize) {
                                         "</td>" +
                                       "</tr>")
                 }
+                getDataIsReady = true;
             }
-        },
+        },  
         beforeSend: function () {
             $("#progress").show();
         },
