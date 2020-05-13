@@ -69,33 +69,29 @@ function shrinkFunction() {
 
 // Infinite scrolling for Photo/Index page
 
-var pageIndex = 0;
-var pageSize = 20;         //this variable is used to set the number of retrieved items
-var getDataIsReady = true; //this variable is used to ensure that the GetData function is only called once per server ping.
+var ajaxCompleted = true; //this variable is used to ensure that the GetData function is only called once per server ping.
 $(document).ready(PhotoScroll());
 function PhotoScroll() {
+var pageIndex = 0;
+var pageSize = 20;         //this variable is used to set the number of retrieved items
 
-    //$(document).ready(function () {
-    //    GetData();
-    //    //pageIndex++;
-    //    console.log("get data 1")
+    $(document).ready(function () {   //this block fires off the initial ajax call to populate the table
+        GetData(pageIndex, pageSize, ajaxCompleted);
+        pageIndex++;
 
-        $(window).scroll(function () {
-            //console.log("1: " + $(window).scrollTop())
-            //console.log("2: " + $(document).height())
-            //console.log("3: " + $(window).height())
-            if (Math.ceil($(window).scrollTop()) >=
-                $(document).height() - $(window).height() && getDataIsReady) {
-                GetData();
+        $(window).scroll(function () {  //this block sends out subsequent calls to append the table with more results when the scrollbar reaches the bottom.
+            if (Math.ceil($(window).scrollTop()) >=  // window scrolltop is rounded up with math.ceil() because it was returning inconsistent values. That's also why it's set to >= instead of ==
+                $(document).height() - $(window).height() && ajaxCompleted) {
+                GetData(pageIndex, pageSize);
                 pageIndex++;
             }
         });
-    //});
+    });
 }
 
-function GetData() {
+function GetData(pageIndex, pageSize) {
     console.log("index: " + pageIndex + " pagesize: " + pageSize + " photos.length: "/* + photos.length*/);
-    getDataIsReady = false;
+    ajaxCompleted = false;
     $.ajax({
         type: 'GET',
         url: '/Photo/GetPhotos',
@@ -118,10 +114,9 @@ function GetData() {
                                         "</td>" +
                                       "</tr>")
                 }
-                console.log("photos.length: " + photos.length)
-                getDataIsReady = true;
+                ajaxCompleted = true;
                 if (photos.length == 0) {
-                    getDataIsReady = false;
+                    ajaxCompleted = false;
                 }
             }
         },  
@@ -136,3 +131,5 @@ function GetData() {
         }
     });
 }
+
+// End infinite scrolling for Photo/Index page
