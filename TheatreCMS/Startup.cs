@@ -15,6 +15,7 @@ using System.Drawing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.Ajax.Utilities;
+using System.Web.Caching;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
 namespace TheatreCMS
@@ -28,7 +29,6 @@ namespace TheatreCMS
             SeedCastMembers();
             SeedProductions();
             SeedProductionPhotos();
-            UpdateAdminSettings();
         }
 
 
@@ -455,31 +455,6 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-        // updates the AdminSettings.json file with list of current Production IDs
-        private void UpdateAdminSettings()
-        {
-            List<int> currentProd = AdminController.FindCurrentProductions();
-            //var json_entry = new { current_productions = currentProd };
-            string currentProd_json = JsonConvert.SerializeObject(currentProd, Formatting.Indented);
-
-            string json_path = HttpContext.Current.Server.MapPath("~/AdminSettings.json");
-            string json_string = null;
-
-            using (StreamReader reader = new StreamReader(json_path))
-            {
-                json_string = reader.ReadToEnd();
-            }
-
-            JObject json_content = (JObject)JsonConvert.DeserializeObject(json_string);
-            json_content.Property("current_productions").Value = currentProd_json;
-            string updated_json = JsonConvert.SerializeObject(json_content);
-
-            using (StreamWriter writer = new StreamWriter(json_path))
-            {
-                writer.Write(updated_json);
-            }
-
-        }
 
     }
 }
