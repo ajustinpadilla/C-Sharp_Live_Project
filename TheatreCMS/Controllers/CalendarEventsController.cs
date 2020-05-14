@@ -197,7 +197,7 @@ namespace TheatreCMS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult BulkAdd()
         {
-            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId","Title");
+            ViewData["Productions"] = new SelectList(db.Productions.OrderByDescending(x => x.Season).ToList(), "ProductionId","Title");
             return View();
         }       
     }
