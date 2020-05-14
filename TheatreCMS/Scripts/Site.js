@@ -66,3 +66,26 @@ function shrinkFunction() {
         document.getElementById("menu").style.padding = "20px";
     }
 }
+
+    // Begin script for Bulk Add
+
+if (document.getElementById("generate-showtimes-section") != null) {
+    console.log("sdf");
+
+    $("#generate__production-field").click(function () {
+        var production = $("#generate__production-field").val();
+        console.log(production);
+
+    });
+    
+}
+
+
+
+
+
+
+
+
+
+    //End script for Bulk Add

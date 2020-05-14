@@ -12,7 +12,13 @@
         <div class="form-group">
             <label class="bulk-add--label col-md-4">Production</label>
             <div class="col-md-10 formBox">
-                @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control" })
+                @*<select id="generate__production-field", class="form-control", name="productions">
+                    
+                    <option value="12">Hamilton</option>  
+                    <option value="14">Hamilton</option>  
+                  </select>*@
+                    
+                @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control", @id="generate__production-field"})
                 @Html.ValidationMessageFor(model => model.ProductionId, "", new { @class = "text-white" })
             </div>
         </div>
