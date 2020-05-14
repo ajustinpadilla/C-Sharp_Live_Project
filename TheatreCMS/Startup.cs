@@ -12,6 +12,9 @@ using TheatreCMS.Controllers;
 using System;
 using System.Linq;
 using System.Drawing;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Microsoft.Ajax.Utilities;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
 namespace TheatreCMS
@@ -23,8 +26,9 @@ namespace TheatreCMS
             ConfigureAuth(app);
             createRolesandUsers();
             SeedCastMembers();
-			SeedProductions();
+            SeedProductions();
             SeedProductionPhotos();
+            UpdateAdminSettings();
         }
 
 
@@ -223,10 +227,10 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-		//Seeding database with dummy Productions
-		private void SeedProductions()
-		{
-            
+        //Seeding database with dummy Productions
+        private void SeedProductions()
+        {
+
             var productions = new List<Production>
             {
                 new Production{Title = "Hamilton", Playwright = "Lin-Manuel Miranda", Description = "This is a musical inspired by the biography " +
@@ -247,24 +251,24 @@ namespace TheatreCMS
                 ShowtimeEve = new DateTime(2021, 01, 02, 19, 30, 00), ShowtimeMat = new DateTime(2021, 01, 02, 22, 30, 00), TicketLink = "ticketsforyou.com", Season = 2,
                 IsCurrent = false},
 
-				new Production{Title = "Wicked", Playwright = "Stephen Schwartz", Description = "This musical is told from the perspective of the witches of " +
-				"the Land of Oz; its plot begins before and continues after Dorothy Gale arrives in Oz from Kansas, and includes several references to the 1939 film.",
-				OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00),
-				ShowtimeMat = new DateTime(2020, 10, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 4, IsCurrent = false},
+                new Production{Title = "Wicked", Playwright = "Stephen Schwartz", Description = "This musical is told from the perspective of the witches of " +
+                "the Land of Oz; its plot begins before and continues after Dorothy Gale arrives in Oz from Kansas, and includes several references to the 1939 film.",
+                OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2020, 10, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 4, IsCurrent = false},
 
-				new Production{Title = "How to Succeed in Business Without Really Trying", Playwright = "Frank Loesser", Description = "This story concerns young, " +
+                new Production{Title = "How to Succeed in Business Without Really Trying", Playwright = "Frank Loesser", Description = "This story concerns young, " +
                 "ambitious J. Pierrepont Finch, who, with the help of the book How to Succeed in Business Without Really Trying, rises from window washer to chairman of " +
                 "the board of the World Wide Wicket Company.", OpeningDay = new DateTime(2020, 04, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 05, 31, 19, 30, 00),
                 ShowtimeEve = new DateTime(2020, 04, 01, 19, 30, 00), ShowtimeMat = new DateTime(2020, 04, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 4,
                 IsCurrent = true}
-			};
-            
+            };
+
             productions.ForEach(Production => context.Productions.AddOrUpdate(d => d.Title, Production));
             context.SaveChanges();
 
         }
 
-        
+
         private void SeedProductionPhotos()
         {
             var converter = new ImageConverter();
@@ -450,5 +454,32 @@ namespace TheatreCMS
             }
             context.SaveChanges();
         }
+
+        // updates the AdminSettings.json file with list of current Production IDs
+        private void UpdateAdminSettings()
+        {
+            List<int> currentProd = AdminController.FindCurrentProductions();
+            //var json_entry = new { current_productions = currentProd };
+            string currentProd_json = JsonConvert.SerializeObject(currentProd, Formatting.Indented);
+
+            string json_path = HttpContext.Current.Server.MapPath("~/AdminSettings.json");
+            string json_string = null;
+
+            using (StreamReader reader = new StreamReader(json_path))
+            {
+                json_string = reader.ReadToEnd();
+            }
+
+            JObject json_content = (JObject)JsonConvert.DeserializeObject(json_string);
+            json_content.Property("current_productions").Value = currentProd_json;
+            string updated_json = JsonConvert.SerializeObject(json_content);
+
+            using (StreamWriter writer = new StreamWriter(json_path))
+            {
+                writer.Write(updated_json);
+            }
+
+        }
+
     }
 }

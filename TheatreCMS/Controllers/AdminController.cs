@@ -217,6 +217,25 @@ namespace TheatreCMS.Controllers
 
             return selectList;
         }
+
+        //returns a list of Production IDs of current season
+        public static List<int> FindCurrentProductions()
+        {
+            var admin = new AdminController();
+            int currentSeason = AdminSettingsReader.CurrentSettings().current_season;
+            List<int> result = admin.db.Productions.Where(prod => prod.Season == currentSeason).OrderBy(prod => prod.OpeningDay).
+                Select(prod => prod.ProductionId).ToList();
+            return result;
+        }
+
+        //returns a Lis<Production> from a List<int> of current productions
+        public static List<Production> GetCurrentProductions()
+        {
+            var admin = new AdminController();
+            List<int> currentProdId = AdminSettingsReader.CurrentSettings().current_productions;
+            List<Production> currentProd = admin.db.Productions.Where(p => currentProdId.Contains(p.ProductionId)).ToList();
+            return currentProd;
+        }
     }
 }
 
