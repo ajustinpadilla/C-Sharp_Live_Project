@@ -6,16 +6,32 @@
 
     <h2>Create Bulk Production Calendar Events</h2>
 
-<section id="generate-showtimes-section">
-    <header>Generate Showtimes</header>
+    <section id="generate-showtimes-section">
+        <header>Generate Showtimes</header>
 
-    <div class="form-group">
-        <label class="bulk-add--label col-md-4"> &nbsp; &nbsp;Production</label>
-        <div class="col-md-10 formBox">
-            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ProductionId, "", new { @class = "text-white" })
+        <div class="form-group">
+            <label class="bulk-add--label col-md-4">Production</label>
+            <div class="col-md-10 formBox">
+                @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductionId, "", new { @class = "text-white" })
+            </div>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label class="bulk-add--label col-md-4">Start Date</label>
+            <div class="col-md-10 formBox">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-white" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="bulk-add--label col-md-4">End Date</label>
+            <div class="col-md-10 formBox">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-white" })
+            </div>
+        </div>
 
 
 
@@ -31,9 +47,7 @@
 
 
 
-
-
-</section>
+    </section>
 
 <section id="review-showtimes-section">
     <header>Review Showtimes</header>
