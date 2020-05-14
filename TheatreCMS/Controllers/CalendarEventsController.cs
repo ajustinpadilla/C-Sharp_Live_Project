@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Windows.Documents;
 using TheatreCMS.Models;
 using System.Web.Mvc.Html;
+using System.Web.UI.WebControls;
 
 namespace TheatreCMS.Controllers
 {
@@ -190,5 +191,13 @@ namespace TheatreCMS.Controllers
             }
             base.Dispose(disposing);
         }
+    
+        // GET: CalendarEvents/BulkAdd
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult BulkAdd()
+        {
+            return View();
+        }       
     }
 }

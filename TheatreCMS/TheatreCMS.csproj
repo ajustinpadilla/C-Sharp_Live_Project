@@ -607,6 +607,7 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="webfonts\BebasNeue-Regular.ttf" />
     <Content Include="webfonts\BebasNeue-Regular.woff2" />
+    <Content Include="Views\CalendarEvents\BulkAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
