@@ -79,14 +79,12 @@ if (document.getElementById("scroll-container") != null) {
         $(document).ready(function () {   //this block fires off the initial ajax call to populate the table
             GetData(pageIndex, pageSize);
             pageIndex++;
-            console.log("1st get data")
 
             $(window).scroll(function () {  //this block sends out subsequent calls to append the table with more results when the scrollbar reaches the bottom.
                 if (Math.ceil($(window).scrollTop()) >=  // window scrolltop is rounded up with math.ceil() because it was returning inconsistent values. That's also why it's set to >= instead of ==
                     $(document).height() - $(window).height() && ajaxCompleted) {
                     GetData(pageIndex, pageSize);
                     pageIndex++;
-
                 }
             });
         });
@@ -102,7 +100,7 @@ if (document.getElementById("scroll-container") != null) {
             dataType: 'json',
             success: function (photos) {
                 console.log("%index: " + pageIndex);
-                if (photos != null) {
+                if (photos != "[]") {
                     photos = jQuery.parseJSON(photos);
                     for (var i = 0; i < photos.length; i++) {
                         $("table").append("<tr class='tr-styling scroll--container'>" +
@@ -118,9 +116,6 @@ if (document.getElementById("scroll-container") != null) {
                                           "</tr>")
                     }
                     ajaxCompleted = true;
-                    if (photos.length == 0) {  // this prevents the function from being called when there are no photos left to display
-                        ajaxCompleted = false;
-                    }
                 }
             },
             beforeSend: function () {
