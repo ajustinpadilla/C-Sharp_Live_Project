@@ -25,6 +25,7 @@ namespace TheatreCMS
             SeedCastMembers();
 			SeedProductions();
             SeedProductionPhotos();
+            SeedParts();
         }
 
 
@@ -448,6 +449,30 @@ namespace TheatreCMS
             {
                 production.DefaultPhoto = productionPhotos.Where(productionPhoto => productionPhoto.Production == production).FirstOrDefault();
             }
+            context.SaveChanges();
+        }
+
+        //Seeding database with dummy Parts
+        private void SeedParts()
+        {
+            var production = context.Productions.ToList();
+            var cast = context.CastMembers.ToList();
+
+            var parts = new List<Part>
+            {
+                new Part{Production= production[0], Character="Alexander Hamilton", Type=Enum.PositionEnum.Actor, Person= cast[5]},
+                new Part{Production= production[0], Type=Enum.PositionEnum.Director, Person= cast[7]},
+                new Part{Production= production[1], Character="Christine Daaé", Type=Enum.PositionEnum.Actor, Person= cast[2]},
+                new Part{Production= production[1],  Type=Enum.PositionEnum.Director, Person= cast[7]},
+                new Part{Production= production[2], Character="Arnold Cunningham", Type=Enum.PositionEnum.Actor, Person= cast[6]},
+                new Part{Production= production[2],  Type=Enum.PositionEnum.Director, Person= cast[7]},
+                new Part{Production= production[3], Character="Glinda the Good Witch", Type=Enum.PositionEnum.Actor, Person= cast[1]},
+                new Part{Production= production[3],  Type=Enum.PositionEnum.Director, Person= cast[7]},
+                new Part{Production= production[4], Character="J. Pierrepont Finch", Type=Enum.PositionEnum.Actor, Person= cast[0]},
+                new Part{Production= production[4],  Type=Enum.PositionEnum.Director, Person= cast[7]},
+            };
+
+            parts.ForEach(Part => context.Parts.AddOrUpdate(p => p.Production, Part));
             context.SaveChanges();
         }
     }
