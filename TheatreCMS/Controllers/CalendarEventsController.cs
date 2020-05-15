@@ -202,10 +202,11 @@ namespace TheatreCMS.Controllers
         }
         
         [Authorize(Roles = "Admin")]
-        public ActionResult GetDates(int productionId)
+        public ActionResult GetDates(int productionId = 0)
         {
+            int id = Convert.ToInt32(productionId);
             var query = (from production in db.Productions
-                         where production.ProductionId == productionId
+                         where production.ProductionId == id
                          select new { production.OpeningDay, production.ClosingDay });
 
             //var query = db.Productions;

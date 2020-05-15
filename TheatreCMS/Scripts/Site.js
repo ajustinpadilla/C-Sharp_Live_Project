@@ -72,15 +72,17 @@ function shrinkFunction() {
 if (document.getElementById("generate-showtimes-section") != null) {
     console.log("sdf");
 
-    $("#generate__production-field").click(function () {
+    $("#generate__production-field").change(function () {
         console.log("clicked");
+
         var productionId = $("#generate__production-field").val();
-        console.log(productionId);
+        console.log("productionId: " + productionId);
+        
 
         $.ajax({
             method: 'GET',
             url: '/CalendarEvents/GetDates',
-            //data: productionId,
+            data: { "productionId": productionId },
             dataType: 'json',
             success: function (data) {
                 console.log(data);
