@@ -2712,7 +2712,7 @@ textarea {
 
 /* Up Arrow*/
 ::-webkit-scrollbar-button:vertical:decrement {
-    border-width: 0 7px 14px 7px; /* If the Width of the scroll bar is adjusted this must also be adjusted*/
+    border-width: 0px 7px 6px 7px; /* If the Width of the scroll bar is adjusted this must also be adjusted*/
     border-color: var(--light-color) var(--light-color) var(--main-bg-color) var(--light-color); 
 }
 
@@ -2723,7 +2723,7 @@ textarea {
 
 /* Down Arrow*/
 ::-webkit-scrollbar-button:vertical:increment {
-    border-width: 14px 7px 0 7px; /* if the width of the scroll bar is adjusted this must also be adjusted*/
+    border-width: 6px 7px 0 7px; /* if the width of the scroll bar is adjusted this must also be adjusted*/
     border-color: var(--main-bg-color) var(--light-color) var(--light-color) var(--light-color);
 }
 
@@ -2737,5 +2737,6 @@ textarea {
     scrollbar-width: auto; /* This shows a message that it is not a known CSS property but is supported in FireFox and will show as expected when launched with that browser. */
     scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track*/
 }
+
 
 /* End scrollbar Styling*/
