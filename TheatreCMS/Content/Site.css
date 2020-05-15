@@ -2700,6 +2700,9 @@ textarea {
 ::-webkit-scrollbar-thumb {
     background: var(--main-bg-color); 
 }
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-secondary-color);
+}
 
 /* Buttons */
 ::-webkit-scrollbar-button {
@@ -2714,7 +2717,7 @@ textarea {
 }
 
 ::-webkit-scrollbar-button:vertical:decrement:hover {
-    border-color: transparent transparent var(--light-color) transparent;
+    border-color: var(--light-color) var(--light-color) var(--main-secondary-color) var(--light-color);
 }
 
 
@@ -2725,7 +2728,7 @@ textarea {
 }
 
 ::-webkit-scrollbar-button:vertical:increment:hover {
-    border-color: var(--light-color) transparent transparent transparent;
+    border-color: var(--main-secondary-color) var(--light-color) var(--light-color) var(--light-color);
 }
 
 /* this section is applicable only to the styling of the scrollbar on Firefox. Used in conjunction with webkit for better compatibility*/
