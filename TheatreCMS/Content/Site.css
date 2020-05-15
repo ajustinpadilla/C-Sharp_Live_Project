@@ -2686,17 +2686,46 @@ textarea {
 
 /* Scrollbar Styling*/
 
-
-*::-webkit-scrollbar { /* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
-    width: 12px; /* This section effects only the width of the scrollbar*/
+/* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
+::-webkit-scrollbar { /* This effects the width of the scrollbar. If the width is adjusted the buttons (arrows) must be adjusted as well*/
+    width: 14px;  
 }
 
-*::-webkit-scrollbar-track {
-    background: var(--light-color); /* This section effects only the color of the track*/
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--light-color); 
 }
 
-*::-webkit-scrollbar-thumb {
-    background-color: var(--main-bg-color); /* This section effects only the color of the thumb*/
+/* Thumb */
+::-webkit-scrollbar-thumb {
+    background: var(--main-bg-color); 
+}
+
+/* Buttons */
+::-webkit-scrollbar-button {
+    border-style: solid;
+    height: 14px;
+}
+
+/* Up Arrow*/
+::-webkit-scrollbar-button:vertical:decrement {
+    border-width: 0 7px 14px 7px; /* If the Width of the scroll bar is adjusted this must also be adjusted*/
+    border-color: var(--light-color) var(--light-color) var(--main-bg-color) var(--light-color); 
+}
+
+::-webkit-scrollbar-button:vertical:decrement:hover {
+    border-color: transparent transparent var(--light-color) transparent;
+}
+
+
+/* Down Arrow*/
+::-webkit-scrollbar-button:vertical:increment {
+    border-width: 14px 7px 0 7px; /* if the width of the scroll bar is adjusted this must also be adjusted*/
+    border-color: var(--main-bg-color) var(--light-color) var(--light-color) var(--light-color);
+}
+
+::-webkit-scrollbar-button:vertical:increment:hover {
+    border-color: var(--light-color) transparent transparent transparent;
 }
 
 /* this section is applicable only to the styling of the scrollbar on Firefox. Used in conjunction with webkit for better compatibility*/
