@@ -455,10 +455,10 @@ namespace TheatreCMS
         //Seeding database with dummy Parts
         private void SeedParts()
         {
-            var production = context.Productions.ToList();
-            var cast = context.CastMembers.ToList();
+            var production = context.Productions.ToList(); //add the context of Productions to a list
+            var cast = context.CastMembers.ToList(); //add the context of CastMembers to a list
 
-            var parts = new List<Part>
+            var parts = new List<Part> // The var production and cast are used below to reference the index within the list to assign the production and cast member
             {
                 new Part{Production= production[0], Character="Alexander Hamilton", Type=Enum.PositionEnum.Actor, Person= cast[5]},
                 new Part{Production= production[0], Type=Enum.PositionEnum.Director, Person= cast[7]},
@@ -472,7 +472,7 @@ namespace TheatreCMS
                 new Part{Production= production[4],  Type=Enum.PositionEnum.Director, Person= cast[7]},
             };
 
-            parts.ForEach(Part => context.Parts.AddOrUpdate(p => p.Production, Part));
+            parts.ForEach(Part => context.Parts.AddOrUpdate(p => p.PartID, Part)); //update the Parts context
             context.SaveChanges();
         }
     }
