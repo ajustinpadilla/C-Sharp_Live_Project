@@ -1,5 +1,4 @@
-﻿import { moment } from "./fullcalendar/fullcalendar";
-type = "module";
+﻿
 
 
 
@@ -73,6 +72,9 @@ function shrinkFunction() {
 if (document.getElementById("generate-showtimes-section") != null) {
     $("#generate__production-field").change(function () {
         var productionId = $("#generate__production-field").val();
+        console.log("productionId: " + productionId);
+        
+
         $.ajax({
             method: 'GET',
             url: '/CalendarEvents/GetDates',
@@ -82,10 +84,10 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 console.log(data);
                 if (data != "[]") {
                     var production = jQuery.parseJSON(data);
-                    var openingDay = moment(production[0].OpeningDay)
-                    console.log(openingDay);
-                    $("#generate__start-date-field").val(production[0].OpeningDay); //code for adding a date to the start date field
-                    $("#generate__end_date_field").val("3434-34-34");
+                    var openingDay = production[0].OpeningDay.substr(0, 10);
+                    var closingDay = production[0].ClosingDay.substr(0, 10);
+                    $("#generate__start-date-field").val(openingDay); //code for adding a date to the start date field
+                    $("#generate__end-date-field").val(closingDay);
 
                     ajaxCompleted = true;
                 }
