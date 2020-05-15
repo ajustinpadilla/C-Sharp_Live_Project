@@ -73,8 +73,40 @@ if (document.getElementById("generate-showtimes-section") != null) {
     console.log("sdf");
 
     $("#generate__production-field").click(function () {
-        var production = $("#generate__production-field").val();
-        console.log(production);
+        var productionId = $("#generate__production-field").val();
+        console.log(productionId);
+
+        $.ajax({
+            method: 'GET',
+            url: '/CalendarEvents/GetDates',
+            data: productionId,
+            dataType: 'json',
+            success: function (data) {
+                
+                if (data != "[]") {
+                    var production = jQuery.parseJSON(data);
+                    $("#generate__start-date-field").val("1212-12-12"); //code for adding a date to the start date field
+                    $("#generate__end_date_field").val("3434-34-34");
+
+                    ajaxCompleted = true;
+                }
+            },
+            beforeSend: function () {
+                $("#progress").show();
+            },
+            complete: function () {
+                $("#progress").hide();
+            },
+            error: function () {
+                alert("Error while retrieving data!");
+            }
+        });
+
+
+
+
+
+
 
     });
     

@@ -199,6 +199,14 @@ namespace TheatreCMS.Controllers
         {
             ViewData["Productions"] = new SelectList(db.Productions.OrderByDescending(x => x.Season).ToList(), "ProductionId","Title");
             return View();
-        }       
+        }
+        
+        public ActionResult GetDates(int productionId)
+        {
+            var query = (from production in db.Productions
+                         where production.ProductionId == productionId
+                         select new { production.OpeningDay, production.ClosingDay });
+            return Json(Newtonsoft.Json.JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
+        }
     }
 }
