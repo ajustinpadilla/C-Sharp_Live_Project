@@ -201,11 +201,14 @@ namespace TheatreCMS.Controllers
             return View();
         }
         
+        [Authorize(Roles = "Admin")]
         public ActionResult GetDates(int productionId)
         {
             var query = (from production in db.Productions
                          where production.ProductionId == productionId
                          select new { production.OpeningDay, production.ClosingDay });
+
+            //var query = db.Productions;
             return Json(Newtonsoft.Json.JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
         }
     }

@@ -73,16 +73,17 @@ if (document.getElementById("generate-showtimes-section") != null) {
     console.log("sdf");
 
     $("#generate__production-field").click(function () {
+        console.log("clicked");
         var productionId = $("#generate__production-field").val();
         console.log(productionId);
 
         $.ajax({
             method: 'GET',
             url: '/CalendarEvents/GetDates',
-            data: productionId,
+            //data: productionId,
             dataType: 'json',
             success: function (data) {
-                
+                console.log(data);
                 if (data != "[]") {
                     var production = jQuery.parseJSON(data);
                     $("#generate__start-date-field").val("1212-12-12"); //code for adding a date to the start date field
@@ -91,12 +92,12 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     ajaxCompleted = true;
                 }
             },
-            beforeSend: function () {
-                $("#progress").show();
-            },
-            complete: function () {
-                $("#progress").hide();
-            },
+            //beforeSend: function () {
+            //    $("#progress").show();
+            //},
+            //complete: function () {
+            //    $("#progress").hide();
+            //},
             error: function () {
                 alert("Error while retrieving data!");
             }
