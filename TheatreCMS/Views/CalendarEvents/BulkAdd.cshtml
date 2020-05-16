@@ -33,14 +33,27 @@
             </div>
         </div>
 
+        <div class="form-group show-times">
+            <label for="matinee">
+                Matinee
+                <input type="checkbox" id="matinee" name="matinee" />
+            </label>
+            <label for="evening">
+                Evening
+                <input type="checkbox" id="evening" name="evening" />
+            </label>
+            <label for="other">
+                Other
+                @Html.DropDownList("Times", new SelectList(ViewData["Times"] as List<string>), "select", new { @class = "dropdown" })
+            </label>
+        </div>
+
+
         <div class="form-group">
-            
-                
                 <label>
                     Monday
                     @Html.CheckBox("Monday", false)
                 </label>
-                
                 <label>
                     Tuesday
                     @Html.CheckBox("Tuesday", false)
@@ -65,10 +78,9 @@
                     Sunday
                     @Html.CheckBox("Sunday", false)
                 </label>
-            
-            
-
         </div>
+
+
 
 
 

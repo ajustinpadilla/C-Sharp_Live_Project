@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using TheatreCMS.Models;
 using System.Web.Mvc.Html;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 
 namespace TheatreCMS.Controllers
 {
@@ -198,6 +199,7 @@ namespace TheatreCMS.Controllers
         public ActionResult BulkAdd()
         {
             ViewData["Productions"] = new SelectList(db.Productions.OrderByDescending(x => x.Season).ToList(), "ProductionId","Title");
+            ViewData["Times"] = GetTimeIntervals();
             return View();
         }
         
@@ -208,9 +210,24 @@ namespace TheatreCMS.Controllers
             var query = (from production in db.Productions
                          where production.ProductionId == id
                          select new { production.OpeningDay, production.ClosingDay });
-
-            //var query = db.Productions;
             return Json(Newtonsoft.Json.JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
+            
+        }
+
+        public List<string> GetTimeIntervals()
+        {
+            List<string> timeIntervals = new List<string>();
+            TimeSpan startTime = new TimeSpan(8, 0, 0);
+            DateTime startDate = new DateTime(DateTime.MinValue.Ticks); // Date to be used to get shortTime format.
+            for (int i = 0; i < 29; i++)
+            {
+                int minutesToBeAdded = 30 * i;      // Increasing minutes by 30 minutes interval
+                TimeSpan timeToBeAdded = new TimeSpan(0, minutesToBeAdded, 0);
+                TimeSpan t = startTime.Add(timeToBeAdded);
+                DateTime result = startDate + t;
+                timeIntervals.Add(result.ToShortTimeString());      // Use Date.ToShortTimeString() method to get the desired format                
+            }
+            return timeIntervals;
         }
     }
 }

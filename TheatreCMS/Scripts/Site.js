@@ -84,6 +84,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 console.log(data);
                 if (data != "[]") {
                     var production = jQuery.parseJSON(data);
+                    console.log(production[0].OpeningDay)
                     var openingDay = production[0].OpeningDay.substr(0, 10);
                     var closingDay = production[0].ClosingDay.substr(0, 10);
                     $("#generate__start-date-field").val(openingDay); //code for adding a date to the start date field
