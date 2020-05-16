@@ -69,7 +69,7 @@ namespace TheatreCMS.Controllers
             {
                 db.News.Add(news);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Published");
             }
 
             return View(news);

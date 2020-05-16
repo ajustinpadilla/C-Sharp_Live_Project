@@ -6,93 +6,117 @@
 
 <h2>Published</h2>
 
-<p class="badge badge-pill badge-danger">
-    @Html.ActionLink("Add", "Create")
-</p>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Add Modal
-</button>
+@if (!User.IsInRole("Admin"))
+{
+    <div class="my-4">
+        @foreach (var item in Model)
+        {
+            <div class="card text-dark bg-light my-4 mx-auto" style="width: 1000px;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Headline</h5>
+                    <p class="card-text">@item.Content</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Posted on @item.PublishDate.GetValueOrDefault().ToString("d")</small>
+                </div>
+            </div>
+        }
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-dark" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-dark">
-               Modal Body Text
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+    </div>
+}
+else
+{
+    <!--Button trigger modal -->
+    <div class="mx-auto">
+        <button type="button" class="btn btn-primary news-addModal-btn" data-url="@Url.Action("Create")">
+            Add Post
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="news-addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="news-addModal-Label">Add News Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-dark">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="my-4">
+        @foreach (var item in Model)
+        {
 
-<table class="table text-light">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Headline)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastSaveDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmailDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hidden)
-        </th>
-        <th></th>
-    </tr>
+            <div class="admin-card text-primary bg-light my-4 mx-auto" style="width: 1000px;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Headline <span class="badge badge-pill badge-primary" style="display:none">Edit</span></h5>
+                    <p class="card-text">@item.Content <span class="badge badge-pill badge-secondary" style="display:none">Edit</span></p>
+                </div>
+                <div class="card-footer">
+                    @if (item.PublishDate.HasValue)
+                    {
+                        <small class="text-muted">Posted on @item.PublishDate.GetValueOrDefault().ToString("d") <span> | </span> </small>
+                    }
+                    @if (item.CreateDate.HasValue)
+                    {
+                <small class="text-muted">Created on @item.CreateDate.GetValueOrDefault().ToString("d") <span> | </span> </small>
+                    }
+                    @if (item.LastSaveDate.HasValue)
+                    {
+                <small class="text-muted">Last saved on @item.LastSaveDate.GetValueOrDefault().ToString("d") <span> | </span> </small>
+                    }
+                    @if (item.EmailDate.HasValue)
+                    {
+                <small class="text-muted">Email sent on @item.EmailDate.GetValueOrDefault().ToString("d") <span> | </span> </small>
+                    }
+                    <small class="text-muted">Hidden: @item.Hidden</small>
+                    <p class="card-actions mt-3">
+                        <span class="badge badge-pill badge-info">Publish</span>
+                        <span class="badge badge-pill badge-danger">Delete</span>
+                        <span class="badge badge-pill badge-warning">Hide</span>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+}
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Headline)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastSaveDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublishDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hidden)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.NewsId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.NewsId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.NewsId })
-            </td>
-        </tr>
-    }
+@*@Html.ActionLink("Edit", "Edit", new { id = item.NewsId }) |
+    @Html.ActionLink("Details", "Details", new { id = item.NewsId }) |
+    @Html.ActionLink("Delete", "Delete", new { id = item.NewsId })*@
 
-</table>
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $('.news-addModal-btn').on('click', function () {
+        var createUrl = $(this).attr("data-url");
+        $('.modal-body').load(createUrl + " .news-createForm", function () {
+            $('#news-addModal').modal({ show: true });
+        });
+    });
+
+    $(".admin-card .card-title").hover(
+        function () {
+            $(this).find(".badge").show();
+        },
+        function () {
+            $(this).find(".badge").hide();
+        },
+    );
+
+    $(".admin-card .card-text").hover(
+        function () {
+            $(this).find(".badge").show();
+        },
+        function () {
+            $(this).find(".badge").hide();
+        },
+    );
+
+</script>

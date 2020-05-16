@@ -10,13 +10,13 @@ namespace TheatreCMS.Models
     public class News
     {
         [Key]
-        public int NewsId { get; set; }
-        public string Headline { get; set; }
-        public string Content { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public DateTime? LastSaveDate { get; set; }
-        public DateTime? PublishDate { get; set; }
-        public DateTime? EmailDate { get; set; }
-        public bool Hidden { get; set; }
+        public int NewsId { get; set; }                 //News primary key
+        public string Headline { get; set; }            //News headline
+        public string Content { get; set; }             //news content
+        public DateTime? CreateDate { get; set; }       //create date of news article (nullable)
+        public DateTime? LastSaveDate { get; set; }     //last date of edit of news article (nullable)
+        public DateTime? PublishDate { get; set; }      //publish date of news article (nullable)
+        public DateTime? EmailDate { get; set; }        //sent email date to subsribers (nullable)
+        public bool Hidden { get; set; }                //hidden from non-admin users
     }
 }
