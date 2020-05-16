@@ -42,7 +42,7 @@
                 Evening
                 <input type="checkbox" id="evening" name="evening" />
             </label>
-            <label for="other">
+            <label for="other" id="showtime-dropdown">
                 Other
                 @Html.DropDownList("Times", new SelectList(ViewData["Times"] as List<string>), "select", new { @class = "dropdown" })
             </label>

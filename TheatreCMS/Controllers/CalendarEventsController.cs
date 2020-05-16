@@ -214,6 +214,8 @@ namespace TheatreCMS.Controllers
             
         }
 
+        // This method generates times for the show time dropdown
+        
         public List<string> GetTimeIntervals()
         {
             List<string> timeIntervals = new List<string>();
