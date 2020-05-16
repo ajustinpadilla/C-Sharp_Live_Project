@@ -192,6 +192,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageUploadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\ProductionsController.cs" />
     <Compile Include="Controllers\PartController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Models\AdminSettings.cs" />
     <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\CastMember.cs" />
+    <Compile Include="Models\News.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\ContentSection.cs" />
@@ -607,6 +609,11 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="webfonts\BebasNeue-Regular.ttf" />
     <Content Include="webfonts\BebasNeue-Regular.woff2" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
