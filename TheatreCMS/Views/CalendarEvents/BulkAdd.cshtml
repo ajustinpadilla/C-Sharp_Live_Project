@@ -35,11 +35,11 @@
 
         <div class="form-group show-times">
             <label for="matinee">
-                Matinee
+                Matinee <span id="matinee-time"></span>
                 <input type="checkbox" id="matinee" name="matinee" />
             </label>
             <label for="evening">
-                Evening
+                Evening <span id="evening-time"></span>
                 <input type="checkbox" id="evening" name="evening" />
             </label>
             <label for="other" id="showtime-dropdown">
@@ -79,20 +79,6 @@
                     @Html.CheckBox("Sunday", false)
                 </label>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </section>

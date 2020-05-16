@@ -208,8 +208,14 @@ namespace TheatreCMS.Controllers
         {
             int id = Convert.ToInt32(productionId);
             var query = (from production in db.Productions
-                         where production.ProductionId == id
-                         select new { production.OpeningDay, production.ClosingDay });
+                        where production.ProductionId == id
+                        select new { production.OpeningDay, production.ClosingDay, production.ShowtimeMat, production.ShowtimeEve}).ToDictionary(x => 0); /*ShowtimeMat = production.ShowtimeMat.Value.ToString("hh:mm tt"), ShowtimeEve = production.ShowtimeEve.Value.ToString*/
+
+            query[0].ShowtimeMat.Value.ToString("hh:mm tt");
+            query[0].ShowtimeEve.Value.ToString("hh:mm tt");
+
+
+
             return Json(Newtonsoft.Json.JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
             
         }

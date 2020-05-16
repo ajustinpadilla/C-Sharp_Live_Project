@@ -84,11 +84,12 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 console.log(data);
                 if (data != "[]") {
                     var production = jQuery.parseJSON(data);
-                    console.log(production[0].OpeningDay)
-                    var openingDay = production[0].OpeningDay.substr(0, 10);
+                    console.log(production[0].ShowtimeMat)
+                    var openingDay = production[0].OpeningDay.substr(0, 10); // Removes the time from the date
                     var closingDay = production[0].ClosingDay.substr(0, 10);
                     $("#generate__start-date-field").val(openingDay); //code for adding a date to the start date field
                     $("#generate__end-date-field").val(closingDay);
+                    $("#matinee-time").append(production[0].ShowtimeMat);
 
                     ajaxCompleted = true;
                 }
@@ -103,13 +104,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 alert("Error while retrieving data!");
             }
         });
-
-
-
-
-
-
-
     });
     
 }
