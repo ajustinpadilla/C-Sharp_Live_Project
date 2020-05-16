@@ -213,6 +213,7 @@ namespace TheatreCMS.Controllers
 
             query[0].ShowtimeMat.Value.ToString("hh:mm tt");
             query[0].ShowtimeEve.Value.ToString("hh:mm tt");
+            
 
 
 
