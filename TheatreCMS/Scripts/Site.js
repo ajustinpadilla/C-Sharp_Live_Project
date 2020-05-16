@@ -89,7 +89,9 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     var closingDay = production[0].ClosingDay.substr(0, 10);
                     $("#generate__start-date-field").val(openingDay); //code for adding a date to the start date field
                     $("#generate__end-date-field").val(closingDay);
-                    $("#matinee-time").append(production[0].ShowtimeMat);
+                    $("#matinee-time").html(moment(production[0].ShowtimeMat).format('h:mm a'));
+                    $("#evening-time").html(moment(production[0].ShowtimeEve).format('h:mm a'));
+                    
 
                     ajaxCompleted = true;
                 }
