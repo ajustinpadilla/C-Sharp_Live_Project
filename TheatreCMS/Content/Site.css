@@ -2683,3 +2683,17 @@ textarea {
     padding-left: 5px;
     /* End Peter O.*/
 }
+
+/* News Published Html Styling */
+.admin-card .badge {
+    cursor: pointer;
+}
+
+.card-news {
+    width: 800px;
+}
+
+.admin-card .card-body .badge {
+    display: none;
+}
+/* End News Published Html Styling */

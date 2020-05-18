@@ -63,10 +63,12 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewsId,Headline,Content,CreateDate,LastSaveDate,PublishDate,EmailDate,Hidden")] News news)
+        public ActionResult Create([Bind(Include = "NewsId,Headline,Content,PublishDate,EmailDate,Hidden")] News news)
         {
             if (ModelState.IsValid)
             {
+                news.CreateDate = DateTime.Now;
+                news.LastSaveDate = DateTime.Now;
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Published");
