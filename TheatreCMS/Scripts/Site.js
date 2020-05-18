@@ -70,6 +70,8 @@ function shrinkFunction() {
     // Begin script for Bulk Add
 
 if (document.getElementById("generate-showtimes-section") != null) {
+    $("#showtimes-container").hide();
+
     $("#generate__production-field").change(function () {
         var productionId = $("#generate__production-field").val();
         console.log("productionId: " + productionId);
@@ -107,8 +109,16 @@ if (document.getElementById("generate-showtimes-section") != null) {
             }
         });
     });
-    
+
+    $("#generate-button").click(function () {
+        $("#showtimes-container").show();
+
+    })
+
+
 }
+
+
 
 
 
