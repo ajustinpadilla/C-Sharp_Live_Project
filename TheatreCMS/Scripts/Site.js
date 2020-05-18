@@ -67,35 +67,27 @@ function shrinkFunction() {
     }
 }
 
-    // Begin script for Bulk Add
+// Begin script for Bulk Add
 
 if (document.getElementById("generate-showtimes-section") != null) {
     $("#showtimes-container").hide();
 
     $("#generate__production-field").change(function () {
         var productionId = $("#generate__production-field").val();
-        console.log("productionId: " + productionId);
-        
-
         $.ajax({
             method: 'GET',
             url: '/CalendarEvents/GetDates',
             data: { "productionId": productionId },
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 if (data != "[]") {
                     var production = jQuery.parseJSON(data);
-                    console.log(production[0].ShowtimeMat)
                     var openingDay = production[0].OpeningDay.substr(0, 10); // Removes the time from the date
                     var closingDay = production[0].ClosingDay.substr(0, 10);
                     $("#generate__start-date-field").val(openingDay); //code for adding a date to the start date field
                     $("#generate__end-date-field").val(closingDay);
                     $("#matinee-time").html(moment(production[0].ShowtimeMat).format('h:mm a'));
                     $("#evening-time").html(moment(production[0].ShowtimeEve).format('h:mm a'));
-                    
-
-                    ajaxCompleted = true;
                 }
             },
             //beforeSend: function () {
@@ -110,13 +102,24 @@ if (document.getElementById("generate-showtimes-section") != null) {
         });
     });
 
-    $("#generate-button").click(function () {
-        $("#showtimes-container").show();
+    class CalendarEvent {
+        constructor(production, date, dayOfWeek, startTime) {
+            this.production = production;
+            this.date = date;
+            this.dayOfWeek = dayOfWeek;
+            this.startTime = startTime;
+        }
 
-    })
 
 
-}
+    }
+        $("#generate-button").click(function() {
+            $("#showtimes-container").show();
+            var 
+
+
+
+        });
 
 
 
