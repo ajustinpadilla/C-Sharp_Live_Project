@@ -4,88 +4,107 @@
     ViewBag.Title = "Create Bulk Production Calendar Events";
 }
 
-    <h2>Create Bulk Production Calendar Events</h2>
+<h2>Create Bulk Production Calendar Events</h2>
 
-    <section id="generate-showtimes-section">
-        <header>Generate Showtimes</header>
+<section id="generate-showtimes-section">
+    <header>Generate Showtimes</header>
 
-        <div class="form-group">
-            <label class="bulk-add--label col-md-4">Production</label>
-            <div class="col-md-10 formBox">
-                @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control", @id="generate__production-field"})
-                @Html.ValidationMessageFor(model => model.ProductionId, "", new { @class = "text-white" })
-            </div>
+    <div class="form-group">
+        <label class="bulk-add--label col-md-4">Production</label>
+        <div class="col-md-10 formBox">
+            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control", @id = "generate__production-field" })
+            @Html.ValidationMessageFor(model => model.ProductionId, "", new { @class = "text-white" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <label class="bulk-add--label col-md-4">Start Date</label>
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @id="generate__start-date-field", @type = "date" } })
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-white" })
-            </div>
+    <div class="form-group">
+        <label class="bulk-add--label col-md-4">Start Date</label>
+        <div class="col-md-10 formBox">
+            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @id = "generate__start-date-field", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-white" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <label class="bulk-add--label col-md-4">End Date</label>
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @id="generate__end-date-field", @type = "date" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-white" })
-            </div>
+    <div class="form-group">
+        <label class="bulk-add--label col-md-4">End Date</label>
+        <div class="col-md-10 formBox">
+            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @id = "generate__end-date-field", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-white" })
         </div>
+    </div>
 
-        <div class="form-group show-times">
-            <label for="matinee">
-                <input type="checkbox" id="matinee" name="matinee" />
-                Matinee <span id="matinee-time"></span>
-            </label>
-            <label for="evening">
-                <input type="checkbox" id="evening" name="evening" />
-                Evening <span id="evening-time"></span>
-            </label>
-            <label for="other" id="showtime-dropdown">
-                Other
-                @Html.DropDownList("Times", new SelectList(ViewData["Times"] as List<string>), "select", new { @class = "dropdown" })
-            </label>
-        </div>
-
-
-        <div class="form-group">
-                <label>
-                    Monday
-                    @Html.CheckBox("Monday", false)
-                </label>
-                <label>
-                    Tuesday
-                    @Html.CheckBox("Tuesday", false)
-                </label>
-                <label>
-                    Wednesday
-                    @Html.CheckBox("Wednesday", false)
-                </label>
-                <label>
-                    Thursday
-                    @Html.CheckBox("Thursday", false)
-                </label>
-                <label>
-                    Friday
-                    @Html.CheckBox("Friday", false)
-                </label>
-                <label>
-                    Saturday
-                    @Html.CheckBox("Saturday", false)
-                </label>
-                <label>
-                    Sunday
-                    @Html.CheckBox("Sunday", false)
-                </label>
-        </div>
+    <div class="form-group show-times">
+        <label for="matinee">
+            <input type="checkbox" id="matinee" name="matinee" />
+            Matinee <span id="matinee-time"></span>
+        </label>
+        <label for="evening">
+            <input type="checkbox" id="evening" name="evening" />
+            Evening <span id="evening-time"></span>
+        </label>
+        <label for="other" id="showtime-dropdown">
+            Other
+            @Html.DropDownList("Times", new SelectList(ViewData["Times"] as List<string>), "select", new { @class = "dropdown" })
+        </label>
+    </div>
 
 
-    </section>
+    <div class="form-group">
+        <label>
+            Monday
+            @Html.CheckBox("Monday", false)
+        </label>
+        <label>
+            Tuesday
+            @Html.CheckBox("Tuesday", false)
+        </label>
+        <label>
+            Wednesday
+            @Html.CheckBox("Wednesday", false)
+        </label>
+        <label>
+            Thursday
+            @Html.CheckBox("Thursday", false)
+        </label>
+        <label>
+            Friday
+            @Html.CheckBox("Friday", false)
+        </label>
+        <label>
+            Saturday
+            @Html.CheckBox("Saturday", false)
+        </label>
+        <label>
+            Sunday
+            @Html.CheckBox("Sunday", false)
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            Interval
+            <select id="interval">
+                <option value="1">One Week</option>
+                <option value="1">Two Weeks</option>
+                <option value="1">Three Weeks</option>
+                <option value="1">Four Weeks</option>
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <button type="button">Generate Showtimes</button>
+    </div>
+
+
+</section>
 
 <section id="review-showtimes-section">
     <header>Review Showtimes</header>
 
+    <div id="showtimes-container">
+
+    </div>
 
 
 </section>
@@ -108,28 +127,28 @@
 
 
 
-@*@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>CalendarEvent</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>CalendarEvent</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
-
-     
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}*@
+    }*@
