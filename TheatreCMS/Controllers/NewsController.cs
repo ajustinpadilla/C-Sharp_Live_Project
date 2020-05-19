@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace TheatreCMS.Controllers
 {

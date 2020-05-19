@@ -40,7 +40,7 @@ else
 
     <!-- Modal for Adding Post -->
     <div class="modal fade" id="news-addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-dark" id="news-addModal-Label">Add News Post</h5>
@@ -49,6 +49,79 @@ else
                     </button>
                 </div>
                 <div class="modal-body text-dark">
+                    @*@using (Html.BeginForm("Create", "News", FormMethod.Post, new { enctype = "multipart/form-data", @class = "news-createForm" }))*@
+                    <form>
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="col w-100 control-label" for="Headline">Headline</label>
+                                <div id="add-headline-sn" class="col w-100">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col w-100 control-label" for="Content">Content</label>
+                                <div class="col w-100" id="add-content-sn">
+                                </div>
+                            </div>
+
+                            <div class="form-row mx-3">
+                                <label class="col-md-4 control-label" for="PublishDate">Publish this post?</label>
+                                <div class="col-md-6">
+                                    <label class="radio-inline" for="PublishDate">
+                                        <input type="radio" name="PublishDate" id="PublishDate1" value="@DateTime.Now">
+                                        Yes
+                                    </label>
+                                    <label class="radio-inline" for="PublishDate">
+                                        <input type="radio" name="PublishDate" id="PublishDate2" value="" checked="checked">
+                                        No
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="form-row mx-3">
+                                <label class="col-md-4 control-label" for="Hidden">Hide this post?</label>
+                                <div class="col-md-4">
+                                    <label class="radio-inline" for="Hidden">
+                                        <input type="radio" name="Hidden" id="Hidden1" value="true">
+                                        Yes
+                                    </label>
+                                    <label class="radio-inline" for="Hidden">
+                                        <input type="radio" name="Hidden" id="Hidden2" value="false" checked="checked">
+                                        No
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="form-row mx-3">
+                                <label class="col-md-4 control-label" for="EmailDate">Send as email?</label>
+                                <div class="col-md-4">
+                                    <label class="radio-inline" for="EmailDate">
+                                        <input type="radio" name="EmailDate" id="EmailDate1" value="@DateTime.Now">
+                                        Yes
+                                    </label>
+                                    <label class="radio-inline" for="EmailDate">
+                                        <input type="radio" name="EmailDate" id="EmailDate2" value="" checked="checked">
+                                        No
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-4 mx-auto text-center">
+                                    <button type="button" class="btn btn-primary mt-4 news-add">Create</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -61,19 +134,17 @@ else
             <div class="admin-card text-primary bg-light mt-5 mx-auto card-news">
                 <div class="card-body">
                     <div class="news-headline-container">
-                        <div id="headline-sn" style="display:inline-block">
-                            <h5 class="card-title" id="@item.NewsId-headline">
-                                @item.Headline
-                            </h5>
+                        <div class="card-title headline-sn" id="@item.NewsId-headline" style="display:inline-block">
+                            @item.Headline
+
                         </div>
                         <span class="badge badge-pill badge-success title-save" action="@Url.Action("Edit", new { id = item.NewsId })" id="@item.NewsId">Save</span>
                         <span class="badge badge-pill badge-primary title-edit">Edit</span>
                     </div>
                     <div class="news-content-container">
-                        <div id="content-sn" style="display:inline-block">
-                            <p class="card-text" id="@item.NewsId-content">
-                                @item.Content
-                            </p>
+                        <div class="card-text content-sn" id="@item.NewsId-content" style="display:inline-block">
+                            @item.Content
+
                         </div>
                         <span class="badge badge-pill badge-success content-save" action="@Url.Action("Edit", new { id = item.NewsId })" id="@item.NewsId">Save</span>
                         <span class="badge badge-pill badge-primary content-edit">Edit</span>
@@ -110,7 +181,12 @@ else
                         }
                         else
                         {
-                            <span class="badge badge-pill badge-secondary news-hide" action="@Url.Action("Edit", new { id = item.NewsId })" id="@item.NewsId">Hide</span>
+                            <span class="badge badge-pill badge-primary news-hide" action="@Url.Action("Edit", new { id = item.NewsId })" id="@item.NewsId">Hide</span>
+                        }
+                        @if (!item.EmailDate.HasValue)
+                        {
+                            @*The button has no functionality currently*@
+                            <span class="badge badge-pill badge-secondary news-email" action="@Url.Action("Edit", new { id = item.NewsId })" id="@item.NewsId">Email</span>
                         }
                     </p>
                 </div>
@@ -136,37 +212,75 @@ else
     //adds post via modal by loading 'news/create.cshtml' and routing through it
     $('.news-addModal-btn').on('click', function () {
         var createUrl = $(this).attr("data-url");
-        $('.modal-body').load(createUrl + " .news-createForm", function () {
-            $('#news-addModal').modal({ show: true });
-        });
+        $("#add-headline-sn").summernote();
+        $("#add-content-sn").summernote();
+        $('#news-addModal').modal('show');
+
     });
+
+
+    //add: add a post by POSTing a request to /news/create
+    $(document).ready(function () {
+        $(".news-add").on('click', function () {
+
+            var headCode = $("#add-headline-sn").summernote('code');
+            var contCode = $("#add-content-sn").summernote('code');
+            $("#add-headline-sn").summernote('destroy');
+            $("#add-content-sn").summernote('destroy');
+
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("Create", "News")",
+                data: {
+                    "__RequestVerificationToken":
+                        $("input[name=__RequestVerificationToken]").val(),
+                    Headline: $("#add-headline-sn").html(headCode).text().trim(),
+                    Content: $("#add-content-sn").html(contCode).text().trim(),
+                    EmailDate: $("input[name='EmailDate']:checked").val(),
+                    PublishDate: $("input[name='PublishDate']:checked").val(),
+                    Hidden: $("input[name='Hidden']:checked").val()
+                },
+                success: function () {
+                    $('#news-addModal').modal('hide');
+                    setTimeout(function () { location.reload() }, 100);
+                },
+                error: function () {
+                    alert("An error has occurred.");
+                }
+
+            });
+        });
+    })
+
+
+
 
     //toggles edit badge upon hover of post headline
     $(".admin-card .news-headline-container").hover(
         function () {
-            $(this).find(".title-edit").show();
+            $(this).find(".title-edit").show(250);
         },
         function () {
-            $(this).find(".title-edit").hide();
+            $(this).find(".title-edit").hide(250);
         },
     );
 
     //toggles edit badge upon hover of post content
     $(".admin-card .news-content-container").hover(
         function () {
-            $(this).find(".content-edit").show();
+            $(this).find(".content-edit").show(250);
         },
         function () {
-            $(this).find(".content-edit").hide();
+            $(this).find(".content-edit").hide(250);
         },
     );
 
     //edit - summernote editor for headline
     $(document).ready(function () {
         $(".admin-card .title-edit").on('click', function () {
-            $(this).siblings("#headline-sn").summernote({ focus: true });
-            $(this).siblings(".title-save").show();
-            console.log("headline edit button clicked");
+            $(this).siblings(".headline-sn").summernote({ focus: true });
+            $(this).siblings(".title-save").show(250);
+
         });
 
     });
@@ -174,44 +288,13 @@ else
     //save - summernote editor for headline
     $(document).ready(function () {
         $(".admin-card .title-save").on('click', function () {
-            var markup = $(this).siblings("#headline-sn").summernote('code');
-            $(this).siblings("#headline-sn").summernote('destroy');
+            var markup = $(this).siblings(".headline-sn").summernote('code');
+            $(this).siblings(".headline-sn").summernote('destroy');
             $(this).hide();
 
             //clicking the save button posts a HttpPost request to /News/Edit/NewsID to update headline
-            saveEdit(this);
-        });
-
-    });
-
-    //edit - summernote editor for content
-    $(document).ready(function () {
-        $(".admin-card .content-edit").on('click', function () {
-            $(this).siblings("#content-sn").summernote({ focus: true });
-            $(this).siblings(".content-save").show();
-            console.log("content edit button clicked");
-        });
-
-    });
-
-    //save - summernote editor for content
-    $(document).ready(function () {
-        $(".admin-card .content-save").on('click', function () {
-            var markup = $(this).siblings("#content-sn").summernote('code');
-            $(this).siblings("#content-sn").summernote('destroy');
-            $(this).hide();
-
-            //clicking the save button posts a HttpPost request to /News/Edit/NewsID to update content
-            saveEdit(this);
-        });
-
-    });
-
-
-    //function to POST a request to /News/Edit/NewsID and set LastSaveDate to Now
-    function saveEdit(obj) {
-            var targetUrl = $(obj).attr("action");
-            var targetId = $(obj).attr("id");
+            var targetUrl = $(this).attr("action");
+            var targetId = $(this).attr("id");
             $.ajax({
                 type: 'POST',
                 url: targetUrl,
@@ -219,8 +302,8 @@ else
                     "__RequestVerificationToken":
                         $("input[name=__RequestVerificationToken]").val(),
                     NewsId: targetId,
-                    Headline: $("#" + targetId + "-headline").text(),
-                    Content: $("#" + targetId + "-content").text(),
+                    Headline: $("#" + targetId + "-headline").html(markup).text().trim(),
+                    Content: $("#" + targetId + "-content").html(),
                     CreateDate: $("#" + targetId + "-create").attr("data-news"),
                     LastSaveDate: "@DateTime.Now",
                     EmailDate: $("#" + targetId + "-email").attr("data-news"),
@@ -235,8 +318,56 @@ else
                 }
 
             });
-    }
+        });
 
+    });
+
+    //edit - summernote editor for content
+    $(document).ready(function () {
+        $(".admin-card .content-edit").on('click', function () {
+            $(this).siblings(".content-sn").summernote({ focus: true });
+            $(this).siblings(".content-save").show(250);
+
+        });
+
+    });
+
+    //save - summernote editor for content
+    $(document).ready(function () {
+        $(".admin-card .content-save").on('click', function () {
+            var markup = $(this).siblings(".content-sn").summernote('code');
+            $(this).siblings(".content-sn").summernote('destroy');
+            $(this).hide();
+
+            //clicking the save button posts a HttpPost request to /News/Edit/NewsID to update content
+            var targetUrl = $(this).attr("action");
+            var targetId = $(this).attr("id");
+            $.ajax({
+                type: 'POST',
+                url: targetUrl,
+                data: {
+                    "__RequestVerificationToken":
+                        $("input[name=__RequestVerificationToken]").val(),
+                    NewsId: targetId,
+                    Headline: $("#" + targetId + "-headline").html(),
+                    Content: $("#" + targetId + "-content").html(markup).text().trim(),
+                    CreateDate: $("#" + targetId + "-create").attr("data-news"),
+                    LastSaveDate: "@DateTime.Now",
+                    EmailDate: $("#" + targetId + "-email").attr("data-news"),
+                    PublishDate: $("#" + targetId + "-publish").attr("data-news"),
+                    Hidden: $("#" + targetId + "-hidden").attr("data-news")
+                },
+                success: function () {
+                    setTimeout(function () { location.reload() }, 100);
+                },
+                error: function () {
+                    alert("An error has occurred.");
+                }
+
+            });
+        });
+
+    });
 
 
     //delete: deletes the post upon clicking the delete badge by posting a request to /news/delete/NewsId
