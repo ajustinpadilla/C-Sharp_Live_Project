@@ -203,18 +203,25 @@ namespace TheatreCMS.Controllers
                     if (resultsProduction.Count > 0) ViewBag.ResultsProduction = resultsProduction;
 
                     var resultsPart = new List<Part>();
-                    foreach (Part part in db.Parts.ToList())
-                    {
-                        Match matchCharacter = rx.Match(part.Character);
-                        Match matchTitle = rx.Match(part.Production.Title);
-                        Match matchName = rx.Match(part.Person.Name);
-                        if (matchCharacter.Success || matchTitle.Success || matchName.Success)
+                        foreach (Part part in db.Parts.ToList())
                         {
-                            resultsPart.Add(part);
+                            try // try catch added to handle the null Exception so it throws an exception to the console but still conducts the search.
+                            {
+                                Match matchCharacter = rx.Match(part.Character);
+                                Match matchTitle = rx.Match(part.Production.Title);
+                                Match matchName = rx.Match(part.Person.Name);
+                                if (matchCharacter.Success || matchTitle.Success || matchName.Success)
+                                {
+                                    resultsPart.Add(part);
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e);
+                            }
                         }
-                    }
-                    resultsPart = resultsPart.Distinct().ToList();
-                    if (resultsPart.Count > 0) ViewBag.ResultsPart = resultsPart;
+                        resultsPart = resultsPart.Distinct().ToList();
+                    if (resultsPart.Count > 0) ViewBag.ResultsPart = resultsPart;  
 
                     Highlight(resultsCast, resultsProduction, resultsPart, pattern, highlightedKey); //applies highlight effect to search matches
 
