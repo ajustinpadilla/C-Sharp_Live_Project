@@ -2688,7 +2688,8 @@ textarea {
 
 /* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
 ::-webkit-scrollbar { /* This effects the width of the scrollbar. If the width is adjusted the buttons (arrows) must be adjusted as well*/
-    width: 14px;  
+    width: 14px; /* Horizontal Scrollbar*/
+    height: 14px; /* Vertical Scrollbar */
 }
 
 /* Track */
@@ -2706,7 +2707,8 @@ textarea {
 
 /* Buttons */
 ::-webkit-scrollbar-button {
-    height: 18px;
+    height: 18px; /* Horizontal Scrollbar*/
+    width: 18px; /* Vertical Scrollbar */
 }
 
 /* The below code is to recreate the arrow shape of the buttons*/
