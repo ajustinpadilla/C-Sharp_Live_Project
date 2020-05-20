@@ -2002,20 +2002,20 @@ textarea {
     padding-bottom: 10px;
 }
 
-/* Archive Current Productions */
-#current-productions {
+/* Archive Current Productions and Archive Future Productions*/
+#current-productions #future-productions {
     padding: 0px 20px;
 }
 
-/* Resize Archive Current Productions Image */
-#current-productions .current-production-img {
+/* Resize Archive Current Productions Image and Archive Future Productions Image*/
+#current-productions .current-production-img #future-productions .future-production-img{
     height: 30vw;
     object-fit: cover;
 }
 
-/* Archive Current Productions Image Responsive Resizing */
+/* Archive Current and Future Productions Image Responsive Resizing */
 @media only screen and (max-width: 575px) {
-    #current-productions .current-production-img {
+    #current-productions .current-production-img #future-productions .future-production-img{
         height: 60vw;
         object-fit: cover;
     }
