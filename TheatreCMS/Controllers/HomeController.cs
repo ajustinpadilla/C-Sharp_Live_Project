@@ -177,12 +177,18 @@ namespace TheatreCMS.Controllers
                     var resultsCast = new List<CastMember>();
                     foreach (CastMember castMember in db.CastMembers)
                     {
-                        Match matchName = rx.Match(castMember.Name);
-                        Match matchYearJoined = rx.Match(castMember.YearJoined.ToString());
-                        Match matchBio = rx.Match(castMember.Bio);
-                        if (matchName.Success || matchYearJoined.Success || matchBio.Success)
+                        try // try catch added to handle the null Exception so it throws an exception to the console but still conducts the search.
                         {
-                            resultsCast.Add(castMember);
+                            Match matchName = rx.Match(castMember.Name);
+                            Match matchYearJoined = rx.Match(castMember.YearJoined.ToString());
+                            Match matchBio = rx.Match(castMember.Bio);
+                            if (matchName.Success || matchYearJoined.Success || matchBio.Success)
+                            {
+                                resultsCast.Add(castMember);
+                            }
+                        }
+                        catch (Exception e)
+                        {
                         }
                     }
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
@@ -191,12 +197,18 @@ namespace TheatreCMS.Controllers
                     var resultsProduction = new List<Production>();
                     foreach (Production production in db.Productions)
                     {
-                        Match matchTitle = rx.Match(production.Title);
-                        Match matchPlaywright = rx.Match(production.Playwright);
-                        Match matchDescription = rx.Match(production.Description);
-                        if (matchTitle.Success || matchPlaywright.Success || matchDescription.Success)
+                        try // try catch added to handle the null Exception so it throws an exception to the console but still conducts the search.
                         {
-                            resultsProduction.Add(production);
+                            Match matchTitle = rx.Match(production.Title);
+                            Match matchPlaywright = rx.Match(production.Playwright);
+                            Match matchDescription = rx.Match(production.Description);
+                            if (matchTitle.Success || matchPlaywright.Success || matchDescription.Success)
+                            {
+                                resultsProduction.Add(production);
+                            }
+                        }
+                        catch (Exception e)
+                        {
                         }
                     }
                     resultsProduction = resultsProduction.Distinct().ToList();
@@ -217,7 +229,6 @@ namespace TheatreCMS.Controllers
                             }
                             catch (Exception e)
                             {
-                                Console.WriteLine(e);
                             }
                         }
                         resultsPart = resultsPart.Distinct().ToList();
@@ -271,7 +282,6 @@ namespace TheatreCMS.Controllers
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e);
                         }
                     }
                     resultsCast = resultsCast.Distinct().ToList();//Prevents duplicate listings
@@ -295,7 +305,6 @@ namespace TheatreCMS.Controllers
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e);
                         }
                     }
                     resultsProduction = resultsProduction.Distinct().ToList();
@@ -320,7 +329,6 @@ namespace TheatreCMS.Controllers
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e);
                         }
                     }
                     resultsPart = resultsPart.Distinct().ToList();
