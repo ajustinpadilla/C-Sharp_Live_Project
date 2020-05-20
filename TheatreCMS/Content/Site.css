@@ -359,35 +359,52 @@
             padding-top: 110px;
             padding-bottom: 20px;
         }
+        
         /* ------Footer stylings----- */
+        
         footer {
             background-color: black;
             display: flex;
+            position: absolute;
+            width: 100%;
         }
 
-        .footer-container {
-            padding-top: 30px;
-            padding-bottom: 30px;
+        @media only screen and (min-width: 992px) {
+            #footer--container {
+                max-width: 80%;
+            }
+        }
+
+        .footerNavContainer{
+            padding-left: 0px;
+        }
+        
+        #navBar li {
+            padding-left: 0px;
+            margin-right: 20px;
+        }
+
+        .socialMediaContainer li ~ li {
+            margin-left: 20px;
         }
 
         a.navLink {
             color: white;
             text-decoration: none;
             background-color: transparent;
-            padding-right: 2em;
         }
 
-            a.navLink :hover {
-                font-weight: bolder;
-            }
+        a.navLink :hover {
+            font-weight: bolder;
+        }
 
+        #footerInner {
+            margin: auto;
+        }
+        
         footer p {
             color: white;
             font-size: 1rem;
-        }
-
-        footer #address {
-            margin-right: 0;
         }
 
         footer .list-group-item {
@@ -402,6 +419,36 @@
         footer .list-group-item :hover {
             color: red;
         }
+
+        .socialMediaContainer {
+            text-align:right;
+        }
+
+        .navItem {
+            margin-left: 0px;
+        }   
+        #socialMediaLinks {
+            padding-left: 0px;
+            margin-left: auto;
+        }
+
+        #socialMediaLinks li {
+            padding-left: 0px;
+        }
+
+        #contactInfo {
+            flex-wrap: nowrap;
+        }
+
+        #address {
+            margin-right: 0;
+            float: left;
+            margin-left:15px;
+            margin-right: 40px;
+        }
+
+        /* End Footer Styling */
+
 
         /* Set padding to keep content from hitting the edges */
         .body-content {
@@ -1078,15 +1125,49 @@ textarea {
             background-repeat: no-repeat;
         }
         /*End SubmitRequest CSS*/
+
+        /*Begin Styling for Archive Page*/
+
         .bgimage {
-            background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
+        background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('Images/img2.jpg');
+        }
+
+        .resultsContainer {
+        margin-left: 3em;
+        margin-right: 3em;
+        border: 1px solid #007bff;
+        border-color: #007bff;
         }
 
         .results {
-            color: black;
-            background-color: white;
-            border: 1px black;
+        border: 1px black;
         }
+
+        .results th {
+            font-size: 22px;
+            color: #007bff
+        }
+
+        .results a {
+            color: #fffbfb;
+            max-width: 800px;
+            font-size: 18px;
+        }
+
+        .results a:hover {
+            text-decoration: none;
+        }
+
+        #highlight {
+        background-color: #007bff;
+        }
+
+        #archiveResultsTitle {
+        margin-left: 1em;
+        margin-top: 40px;
+        font-size: 50px;
+        }
+        
         /*End styling for Archive page*/
 
 
@@ -2602,3 +2683,81 @@ textarea {
     padding-left: 5px;
     /* End Peter O.*/
 }
+
+/* Scrollbar Styling*/
+
+/* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
+::-webkit-scrollbar { /* This effects the width of the scrollbar. If the width is adjusted the buttons (arrows) must be adjusted as well*/
+    width: 14px; /* Horizontal Scrollbar*/
+    height: 14px; /* Vertical Scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--light-color); 
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+    background: var(--main-bg-color); 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-secondary-color);
+}
+
+/* Buttons */
+::-webkit-scrollbar-button {
+    height: 18px; /* Horizontal Scrollbar*/
+    width: 18px; /* Vertical Scrollbar */
+}
+
+/* The below code is to recreate the arrow shape of the buttons*/
+::-webkit-scrollbar-button:vertical:start:decrement {
+    background: linear-gradient(120deg, var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(240deg, 
+    var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(0deg, var(--light-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement:hover {
+    background-color: var(--main-secondary-color);
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+    background: linear-gradient(300deg, var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(60deg, 
+    var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(180deg, var(--light-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-button:vertical:end:increment:hover {
+    background-color: var(--main-secondary-color);
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+    background: linear-gradient(210deg, var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(330deg, 
+    var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(90deg, var(--light-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment:hover {
+    background-color: var(--main-secondary-color);
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
+    background: linear-gradient(30deg, var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(150deg, 
+    var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(270deg, var(--light-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement:hover {
+    background-color: var(--main-secondary-color);
+}
+
+/* this section is applicable only to the styling of the scrollbar on Firefox. Used in conjunction with webkit for better compatibility*/
+
+* {
+    scrollbar-width: auto; /* This shows a message that it is not a known CSS property but is supported in FireFox and will show as expected when launched with that browser. */
+    scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track*/
+}
+
+
+/* End scrollbar Styling*/
