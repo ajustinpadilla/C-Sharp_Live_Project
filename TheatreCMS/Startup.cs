@@ -455,53 +455,100 @@ namespace TheatreCMS
         //Seeding database with dummy Parts
         private void SeedParts()
         {
-            var production = context.Productions.ToList(); //add the context of Productions to a list
-            var cast = context.CastMembers.ToList(); //add the context of CastMembers to a list
-
-            var parts = new List<Part> // The var production and cast are used below to reference the index within the list to assign the production and cast member
+            var parts = new List<Part> 
             {
-                new Part{Production= production[0], Character="Alexander Hamilton", Type=Enum.PositionEnum.Actor, Person= cast[5], 
-                Details="The ten-dollar Founding Father without a father, Alexander Hamilton starts out as a penniless immigrant but " +
-                "rises up in the ranks and becomes an aide to George Washington himself. After the American Revolution, he becomes one of " +
-                "the most prominent politicians of the young United States, creating USA's financial system, writing in defense of the " +
-                "Constitution and founding the Federalist Party."},
-                new Part{Production= production[0], Character="Director", Type=Enum.PositionEnum.Director, Person= cast[7],
-                Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
-                "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
-                "artistic aspects"},
-                new Part{Production= production[1], Character="Christine Daaé", Type=Enum.PositionEnum.Actor, Person= cast[2],
-                Details="A young Swedish soprano who becomes torn between her loyalty for her mentor Erik, and her love for her childhood friend " +
-                "Raoul de Chagny."},
-                new Part{Production= production[1], Character="Director", Type=Enum.PositionEnum.Director, Person= cast[7],
-                Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
-                "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
-                "artistic aspects"},
-                new Part{Production= production[2], Character="Arnold Cunningham", Type=Enum.PositionEnum.Actor, Person= cast[6],
-                Details="Elder Arnold Cunningham is an enthusiastic but childish young Mormon who's excited to go out and proselytize with his " +
-                "new best friend... even though he hasn't actually read the Book of Mormon. He also has a very active imagination - that is to say, " +
-                "he lies a lot. This causes problems in the remote Ugandan village they've been assigned to."},
-                new Part{Production= production[2], Character="Director", Type=Enum.PositionEnum.Director, Person= cast[7],
-                Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
-                "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
-                "artistic aspects"},
-                new Part{Production= production[3], Character="Glinda the Good Witch", Type=Enum.PositionEnum.Actor, Person= cast[1],
-                Details="Glinda is a very bubbly, perky, and popular girl. Unlike in The Wonderful Wizard of Oz she has blonde hair instead of red " +
-                "hair and a blue dress instead of a light pink dress."},
-                new Part{Production= production[3], Character="Director", Type=Enum.PositionEnum.Director, Person= cast[7],
-                Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
-                "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
-                "artistic aspects"},
-                new Part{Production= production[4], Character="J. Pierrepont Finch", Type=Enum.PositionEnum.Actor, Person= cast[0],
-                Details="Our story's protagonist. An irrepressible, clear-eyed, almost puckish hero, he is a window washer who applies for a job at " +
-                "the World Wide Wicket Company and attempts to climb the 'ladder of success' using instruction from his little book called How to Succeed " +
-                "in Business Without Really Trying"},
-                new Part{Production= production[4], Character="Director", Type=Enum.PositionEnum.Director, Person= cast[7],
-                Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
-                "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
-                "artistic aspects"},
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "Hamilton").FirstOrDefault(), 
+                    Character="Alexander Hamilton", 
+                    Type=Enum.PositionEnum.Actor, 
+                    Person= context.CastMembers.Where(c => c.Name == "London Bauman").FirstOrDefault(), 
+                    Details="The ten-dollar Founding Father without a father, Alexander Hamilton starts out as a penniless immigrant but " +
+                    "rises up in the ranks and becomes an aide to George Washington himself. After the American Revolution, he becomes one of " +
+                    "the most prominent politicians of the young United States, creating USA's financial system, writing in defense of the " +
+                    "Constitution and founding the Federalist Party."},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "Hamilton").FirstOrDefault(),
+                    Character="Devon Roberts",
+                    Type=Enum.PositionEnum.Director,
+                    Person= context.CastMembers.Where(c => c.Name == "Devon Roberts").FirstOrDefault(),
+                    Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
+                    "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
+                    "artistic aspects"},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault(),
+                    Character="Christine Daaé", 
+                    Type=Enum.PositionEnum.Actor,
+                    Person= context.CastMembers.Where(c => c.Name == "Jacquelle Davis").FirstOrDefault(),
+                    Details="A young Swedish soprano who becomes torn between her loyalty for her mentor Erik, and her love for her childhood friend " +
+                    "Raoul de Chagny."},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault(),
+                    Character="Devon Roberts",
+                    Type=Enum.PositionEnum.Director,
+                    Person= context.CastMembers.Where(c => c.Name == "Devon Roberts").FirstOrDefault(),
+                    Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
+                    "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
+                    "artistic aspects"},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "The Book of Mormon").FirstOrDefault(),
+                    Character="Arnold Cunningham", 
+                    Type=Enum.PositionEnum.Actor,
+                    Person= context.CastMembers.Where(c => c.Name == "Heath Hyun Houghton").FirstOrDefault(),
+                    Details="Elder Arnold Cunningham is an enthusiastic but childish young Mormon who's excited to go out and proselytize with his " +
+                    "new best friend... even though he hasn't actually read the Book of Mormon. He also has a very active imagination - that is to say, " +
+                    "he lies a lot. This causes problems in the remote Ugandan village they've been assigned to."},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "The Book of Mormon").FirstOrDefault(),
+                    Character="Devon Roberts",
+                    Type=Enum.PositionEnum.Director,
+                    Person= context.CastMembers.Where(c => c.Name == "Devon Roberts").FirstOrDefault(),
+                    Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
+                    "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
+                    "artistic aspects"},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "Wicked").FirstOrDefault(),
+                    Character="Glinda the Good Witch", 
+                    Type=Enum.PositionEnum.Actor,
+                    Person= context.CastMembers.Where(c => c.Name == "Adriana Gantzer").FirstOrDefault(),
+                    Details="Glinda is a very bubbly, perky, and popular girl. Unlike in The Wonderful Wizard of Oz she has blonde hair instead of red " +
+                    "hair and a blue dress instead of a light pink dress."},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "Wicked").FirstOrDefault(),
+                    Character="Devon Roberts",
+                    Type=Enum.PositionEnum.Director,
+                    Person= context.CastMembers.Where(c => c.Name == "Devon Roberts").FirstOrDefault(),
+                    Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
+                    "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
+                    "artistic aspects"},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "How to Succeed in Business Without Really Trying").FirstOrDefault(),
+                    Character="J. Pierrepont Finch", 
+                    Type=Enum.PositionEnum.Actor,
+                    Person= context.CastMembers.Where(c => c.Name == "Tom Mounsey").FirstOrDefault(),
+                    Details="Our story's protagonist. An irrepressible, clear-eyed, almost puckish hero, he is a window washer who applies for a job at " +
+                    "the World Wide Wicket Company and attempts to climb the 'ladder of success' using instruction from his little book called How to Succeed " +
+                    "in Business Without Really Trying"},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "How to Succeed in Business Without Really Trying").FirstOrDefault(),
+                    Character="Devon Roberts",
+                    Type=Enum.PositionEnum.Director,
+                    Person= context.CastMembers.Where(c => c.Name == "Devon Roberts").FirstOrDefault(),
+                    Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
+                    "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
+                    "artistic aspects"},
+
             };
 
-            parts.ForEach(Part => context.Parts.AddOrUpdate(p => p.PartID, Part)); //update the Parts context
+            parts.ForEach(Part => context.Parts.AddOrUpdate(p => p.Character, Part)); //update the Parts context
             context.SaveChanges();
         }
     }
