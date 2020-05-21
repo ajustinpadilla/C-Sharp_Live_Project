@@ -486,6 +486,18 @@ namespace TheatreCMS
 
                 new Part{
                     Production= context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault(),
+                    Character="Erik",
+                    Type=Enum.PositionEnum.Actor,
+                    Person= context.CastMembers.Where(c => c.Name == "Tom Mounsey").FirstOrDefault(),
+                    Details="Known as “P. of the Opera,” “the ghost,” “the Voice” and “the Master of the Traps,” Erik is the antagonist " +
+                    "of the novel and a tragic, violent, and ultimately mysterious figure. Although the narrator asserts that Erik is a " +
+                    "human being, he displays characteristics that suggest he might be more supernatural than purely human: his " +
+                    "appearance as a skeleton covered in rotten skin, his extraordinary singing abilities, and his capacity for " +
+                    "ventriloquism, which allows him to project his voice anywhere he pleases, making it seem as though he is in various" +
+                    " places at once."},
+
+                new Part{
+                    Production= context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault(),
                     Character="Devon Roberts",
                     Type=Enum.PositionEnum.Director,
                     Person= context.CastMembers.Where(c => c.Name == "Devon Roberts").FirstOrDefault(),
@@ -545,11 +557,17 @@ namespace TheatreCMS
                     Details="The director manages the creative aspects of the production. They direct the making of a film by visualizing the " +
                     "script while guiding the actors and technical crew to capture the vision for the screen. They control the film's dramatic and " +
                     "artistic aspects"},
-
             };
 
-            parts.ForEach(Part => context.Parts.AddOrUpdate(p => p.Character, Part)); //update the Parts context
+            parts.ForEach(Part => // iterate through the list Parts
+            {
+                var tempPart = context.Parts.Where(p => p.Production.Title == Part.Production.Title && p.Character == Part.Character && p.Type == Part.Type).FirstOrDefault(); // Where the production title, Character, and part Type match it will return the query data or null if it doesn't exist
+                if (tempPart == null) // if the variable tempPart returns Null for its comparison
+                {
+                context.Parts.AddOrUpdate(p => p.PartID, Part); //It will then Add it to the Database
+                }
+            }); 
             context.SaveChanges();
-        }
+        }   
     }
 }
