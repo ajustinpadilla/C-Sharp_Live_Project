@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace TheatreCMS.Models
 {
@@ -11,7 +12,11 @@ namespace TheatreCMS.Models
     {
         [Key]
         public int NewsId { get; set; }                 //News primary key
+        
+        [AllowHtml]
         public string Headline { get; set; }            //News headline
+
+        [AllowHtml]
         public string Content { get; set; }             //news content
         public DateTime? CreateDate { get; set; }       //create date of news article (nullable)
         public DateTime? LastSaveDate { get; set; }     //last date of edit of news article (nullable)

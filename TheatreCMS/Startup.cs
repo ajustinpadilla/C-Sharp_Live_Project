@@ -25,7 +25,6 @@ namespace TheatreCMS
             SeedCastMembers();
 			SeedProductions();
             SeedProductionPhotos();
-            SeedNews();
         }
 
 
@@ -452,29 +451,6 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-        private void SeedNews()
-        {
-            var initial_news = new List<News>{
-                new News{
-                    Headline = "News Headline 1",
-                    Content = "Content 1",
-                    CreateDate = DateTime.Now,
-                    LastSaveDate = DateTime.Now,
-                    PublishDate = DateTime.Now,
-                    Hidden = false,
-                },
-                new News{
-                    Headline = "News Headline 2",
-                    Content = "Content 2",
-                    CreateDate = DateTime.Now,
-                    LastSaveDate = DateTime.Now,
-                    PublishDate = DateTime.Now,
-                    Hidden = true,
-                }
-            };
 
-            initial_news.ForEach(News => context.News.AddOrUpdate(d => d.Headline, News));
-            context.SaveChanges();
-        }
     }
 }

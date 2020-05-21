@@ -7,8 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheatreCMS.Models;
-using System.Net;
-using System.Net.Mail;
+using System.Diagnostics;
 
 namespace TheatreCMS.Controllers
 {
@@ -49,6 +48,8 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            news.Headline = HttpUtility.HtmlDecode(news.Headline);
+            news.Content = HttpUtility.HtmlDecode(news.Content);
             return View(news);
         }
 
@@ -69,6 +70,8 @@ namespace TheatreCMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                news.Headline = HttpUtility.HtmlEncode(news.Headline);
+                news.Content = HttpUtility.HtmlEncode(news.Content);
                 news.CreateDate = DateTime.Now;
                 news.LastSaveDate = DateTime.Now;
                 db.News.Add(news);
@@ -92,6 +95,8 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            news.Headline = HttpUtility.HtmlDecode(news.Headline);
+            news.Content = HttpUtility.HtmlDecode(news.Content);
             return View(news);
         }
 
@@ -105,6 +110,8 @@ namespace TheatreCMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                news.Headline = HttpUtility.HtmlEncode(news.Headline);
+                news.Content = HttpUtility.HtmlEncode(news.Content);
                 db.Entry(news).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -125,6 +132,8 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            news.Headline = HttpUtility.HtmlDecode(news.Headline);
+            news.Content = HttpUtility.HtmlDecode(news.Content);
             return View(news);
         }
 

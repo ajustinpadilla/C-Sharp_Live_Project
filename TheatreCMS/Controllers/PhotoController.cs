@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Media.Animation;
 using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
@@ -115,16 +116,40 @@ namespace TheatreCMS.Controllers
             }
         }
 
+        //Takes an image file and title string and returns the PhotoId as string
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string GetPhotoId(HttpPostedFileBase file, string title)
+        {
+            if (ModelState.IsValid)
+            {
+                var photo = new Photo();
+                photo.Title = title;
+                Image image = Image.FromStream(file.InputStream, true, true);
+                photo.OriginalHeight = image.Height;
+                photo.OriginalWidth = image.Width;
+                var converter = new ImageConverter();
+                photo.PhotoFile = (byte[])converter.ConvertTo(image, typeof(byte[]));
+                db.Photo.Add(photo);
+                db.SaveChanges();
+                return (photo.PhotoId).ToString();
+    
+            }
+
+            return null;
+        }
+
+
         [AllowAnonymous]
         public ActionResult DisplayPhoto(int? id) //nullable int
-        {            
+        {
             string filePath = Server.MapPath(Url.Content("~/Content/Images/no-image.png"));
             Image noImageAvail = Image.FromFile(filePath);
             var converter = new ImageConverter();
             var byteData = (byte[])converter.ConvertTo(noImageAvail, typeof(byte[]));
             if (id.HasValue)
-            {                
-            Photo photo = db.Photo.Find(id);
+            {
+                Photo photo = db.Photo.Find(id);
                 if (photo == null)
                 {
                     return File(byteData, "image/png");
@@ -132,10 +157,10 @@ namespace TheatreCMS.Controllers
                 else
                 {
                     return File(photo.PhotoFile, "image/png");
-                }                                                                  
+                }
             }
             else
-            { 
+            {
                 return File(byteData, "image/png");
             }
         }

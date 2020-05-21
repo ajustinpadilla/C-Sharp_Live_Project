@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Published";
 }
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+
 
 <h2 class="m-3">Published</h2>
 @Html.AntiForgeryToken()
@@ -14,10 +14,10 @@
     <div>
         @foreach (var item in Model)
         {
-            <div class="card text-dark bg-light mt-5 mx-auto card-news">
+            <div class="card text-dark bg-light mt-5 mx-auto news-card">
                 <div class="card-body">
-                    <h5 class="card-title">@item.Headline</h5>
-                    <p class="card-text">@item.Content</p>
+                    <h5 class="card-title">@Html.Raw(HttpUtility.HtmlDecode(item.Headline))</h5>
+                    <p class="card-text">@Html.Raw(HttpUtility.HtmlDecode(item.Content))</p>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Posted on @item.PublishDate.GetValueOrDefault().ToString("d")</small>
@@ -32,7 +32,7 @@
 else
 {
     <!--Button trigger modal -->
-    <div class="mx-5">
+    <div class="news-card mx-auto">
         <button type="button" class="btn btn-primary news-addModal-btn" data-url="@Url.Action("Create")">
             Add Post
         </button>
@@ -49,7 +49,6 @@ else
                     </button>
                 </div>
                 <div class="modal-body text-dark">
-                    @*@using (Html.BeginForm("Create", "News", FormMethod.Post, new { enctype = "multipart/form-data", @class = "news-createForm" }))*@
                     <form>
                         @Html.AntiForgeryToken()
 
@@ -60,7 +59,6 @@ else
                                 <div id="add-headline-sn" class="col w-100">
                                 </div>
                             </div>
-
 
                             <div class="form-group">
                                 <label class="col w-100 control-label" for="Content">Content</label>
@@ -131,11 +129,11 @@ else
         @foreach (var item in Model)
         {
 
-            <div class="admin-card text-primary bg-light mt-5 mx-auto card-news">
+            <div class="admin-card text-dark bg-light mt-5 mx-auto news-card">
                 <div class="card-body">
                     <div class="news-headline-container">
-                        <div class="card-title headline-sn" id="@item.NewsId-headline" style="display:inline-block">
-                            @item.Headline
+                        <div class="card-title headline-sn h5" id="@item.NewsId-headline" style="display:inline-block">
+                            @Html.Raw(HttpUtility.HtmlDecode(item.Headline))
 
                         </div>
                         <span class="badge badge-pill badge-success title-save" action="@Url.Action("Edit", new { id = item.NewsId })" id="@item.NewsId">Save</span>
@@ -143,7 +141,7 @@ else
                     </div>
                     <div class="news-content-container">
                         <div class="card-text content-sn" id="@item.NewsId-content" style="display:inline-block">
-                            @item.Content
+                            @Html.Raw(HttpUtility.HtmlDecode(item.Content))
 
                         </div>
                         <span class="badge badge-pill badge-success content-save" action="@Url.Action("Edit", new { id = item.NewsId })" id="@item.NewsId">Save</span>
@@ -196,35 +194,59 @@ else
 }
 
 
-@* <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="~/Scripts/popper.js" defer></script>
-    @Scripts.Render("~/bundles/summernote")*@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
-
-<script src="https://unpkg.com/%40popperjs/core@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js" defer></script>
+<script src="~/Scripts/umd/popper.js"></script>
+<script src="~/Scripts/summernote/summernote.js" defer></script>
 
 
 <script>
 
-    //adds post via modal by loading 'news/create.cshtml' and routing through it
-    $('.news-addModal-btn').on('click', function () {
-        var createUrl = $(this).attr("data-url");
-        $("#add-headline-sn").summernote();
-        $("#add-content-sn").summernote();
-        $('#news-addModal').modal('show');
-
+    //shows modal and summernote editor to add post
+    $(document).ready(function () {
+        $('.news-addModal-btn').on('click', function () {
+            $("#add-headline-sn").summernote();
+            $("#add-content-sn").summernote({
+                height: 150,
+                callbacks: {
+                    onImageUpload: function (files) {
+                            sendFile(files[0], this);
+                    }
+                }
+            });
+            $('#news-addModal').modal('show');
+        });
     });
+
+    //sends image file to Photo/GetPhotoId/ and routes the returned Id string to /Photo/DisplayPhoto/Id to create new <img>
+    function sendFile(file, el) {
+        data = new FormData();
+        data.append("__RequestVerificationToken",
+            $("input[name=__RequestVerificationToken]").val());
+        data.append("file", file);
+        data.append("title", file.name);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "@Url.Action("GetPhotoId", "Photo")",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (photoId) {
+                $(el).summernote('insertImage', '/Photo/DisplayPhoto/' + photoId);
+            },
+            error: function () {
+                alert("Error: image could be saved successfully.");
+            }
+        });   
+    }
 
 
     //add: add a post by POSTing a request to /news/create
     $(document).ready(function () {
         $(".news-add").on('click', function () {
 
-            var headCode = $("#add-headline-sn").summernote('code');
-            var contCode = $("#add-content-sn").summernote('code');
             $("#add-headline-sn").summernote('destroy');
             $("#add-content-sn").summernote('destroy');
 
@@ -234,8 +256,8 @@ else
                 data: {
                     "__RequestVerificationToken":
                         $("input[name=__RequestVerificationToken]").val(),
-                    Headline: $("#add-headline-sn").html(headCode).text().trim(),
-                    Content: $("#add-content-sn").html(contCode).text().trim(),
+                    Headline: $("#add-headline-sn").html(),
+                    Content: $("#add-content-sn").html(),
                     EmailDate: $("input[name='EmailDate']:checked").val(),
                     PublishDate: $("input[name='PublishDate']:checked").val(),
                     Hidden: $("input[name='Hidden']:checked").val()
@@ -251,8 +273,6 @@ else
             });
         });
     })
-
-
 
 
     //toggles edit badge upon hover of post headline
@@ -288,7 +308,6 @@ else
     //save - summernote editor for headline
     $(document).ready(function () {
         $(".admin-card .title-save").on('click', function () {
-            var markup = $(this).siblings(".headline-sn").summernote('code');
             $(this).siblings(".headline-sn").summernote('destroy');
             $(this).hide();
 
@@ -302,7 +321,7 @@ else
                     "__RequestVerificationToken":
                         $("input[name=__RequestVerificationToken]").val(),
                     NewsId: targetId,
-                    Headline: $("#" + targetId + "-headline").html(markup).text().trim(),
+                    Headline: $("#" + targetId + "-headline").html(),
                     Content: $("#" + targetId + "-content").html(),
                     CreateDate: $("#" + targetId + "-create").attr("data-news"),
                     LastSaveDate: "@DateTime.Now",
@@ -325,23 +344,28 @@ else
     //edit - summernote editor for content
     $(document).ready(function () {
         $(".admin-card .content-edit").on('click', function () {
-            $(this).siblings(".content-sn").summernote({ focus: true });
+            $(this).siblings(".content-sn").summernote({
+                focus: true,
+                callbacks: {
+                    onImageUpload: function (files) {
+                        sendFile(files[0], this);
+                    }
+                }
+            });
             $(this).siblings(".content-save").show(250);
-
         });
-
     });
 
     //save - summernote editor for content
     $(document).ready(function () {
         $(".admin-card .content-save").on('click', function () {
-            var markup = $(this).siblings(".content-sn").summernote('code');
             $(this).siblings(".content-sn").summernote('destroy');
             $(this).hide();
 
             //clicking the save button posts a HttpPost request to /News/Edit/NewsID to update content
             var targetUrl = $(this).attr("action");
             var targetId = $(this).attr("id");
+
             $.ajax({
                 type: 'POST',
                 url: targetUrl,
@@ -350,7 +374,7 @@ else
                         $("input[name=__RequestVerificationToken]").val(),
                     NewsId: targetId,
                     Headline: $("#" + targetId + "-headline").html(),
-                    Content: $("#" + targetId + "-content").html(markup).text().trim(),
+                    Content: $("#" + targetId + "-content").html(),
                     CreateDate: $("#" + targetId + "-create").attr("data-news"),
                     LastSaveDate: "@DateTime.Now",
                     EmailDate: $("#" + targetId + "-email").attr("data-news"),
@@ -363,10 +387,8 @@ else
                 error: function () {
                     alert("An error has occurred.");
                 }
-
             });
         });
-
     });
 
 

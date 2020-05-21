@@ -2684,16 +2684,25 @@ textarea {
     /* End Peter O.*/
 }
 
-/* News Published Html Styling */
+/* News Published Page Styling */
 .admin-card .badge {
     cursor: pointer;
 }
 
-.card-news {
+.news-card {
     width: 800px;
+    border-radius: 20px;
 }
 
 .admin-card .card-body .badge {
     display: none;
 }
-/* End News Published Html Styling */
+
+.admin-card .news-hide {
+    background-color: var(--secondary-color);
+}
+
+.news-card .card-title {
+    color: var(--main-secondary-color)
+}
+/* End News Published Page Styling */
