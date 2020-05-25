@@ -4,6 +4,7 @@
 @using System.Globalization
 @using TheatreCMS.ViewModels
 
+
 @{
     ViewBag.Title = "Productions";
 
@@ -13,7 +14,8 @@
     var runTimes = (ViewBag.RunTimes as IEnumerable<int>).ToList();
 }
 
-<h2 class="prod-index-header">Productions</h2>
+<h2 class="prod-index-header">Productions <i class="btn btn-light far fa-calendar-alt py-1 px-2" style="font-size:22px"></i></h2>
+<div id="calendar" class="prod-index-cal"></div>
 
 @if (User.IsInRole("Admin"))
 {
@@ -35,7 +37,8 @@
                     <!-- Check if searching, if searching hide default selected placeholder option-->
                     @if (String.IsNullOrEmpty(ViewBag.CurrentSeason))
                     {
-                        <option selected disabled hidden>Season</option>  @* Hide if ViewBag.CurrentSeason HasValue *@
+                        <option selected disabled hidden>Season</option>
+                        @* Hide if ViewBag.CurrentSeason HasValue *@
                     }
                     <option value="any">Any Season</option>
                     @for (int i = seasonYears.Count(); i > 0; i--)
@@ -159,7 +162,8 @@
                                 {
                                     <option value="@item">@item</option>
                                 }
-                            } else
+                            }
+                            else
                             {
                                 <option value="@item">@item</option>
                             }
@@ -236,7 +240,7 @@
     <div class="row mx-2">
         @foreach (var item in Model)
         {
-            <div class="card col-md-6 col-xl-4 bg-black" id="production-info-parent">
+            <div class="card col-md-6 col-xl-4 bg-black prod-@item.ProductionId" id="production-info-parent">
                 @{
                     if (item.DefaultPhoto != null)
                     {
@@ -262,7 +266,8 @@
                                 @Html.DisplayNameFor(model => model.OpeningDay)
                             </th>
                             <td class="productions-index-td-styling">
-                                @Convert.ToString(item.OpeningDay).Replace(":00 PM", "")
+                                @item.OpeningDay.ToShortDateString()
+                                @*@Convert.ToString(item.OpeningDay).Replace(":00 PM", "")*@
                             </td>
                         </tr>
                         <tr class="production-index-tr-styling">
@@ -270,9 +275,33 @@
                                 @Html.DisplayNameFor(model => model.ClosingDay)
                             </th>
                             <td class="productions-index-td-styling">
-                                @Convert.ToString(item.ClosingDay).Replace(":00 PM", "")
+                                @item.OpeningDay.ToShortDateString()
+                                @*@Convert.ToString(item.ClosingDay).Replace(":00 PM", "")*@
                             </td>
                         </tr>
+                        @if (item.ShowtimeMat.HasValue)
+                        {
+                            <tr class="production-index-tr-styling">
+                                <th class="productions-index-th-styling">
+                                    @Html.DisplayNameFor(model => model.ShowtimeMat)
+                                </th>
+                                <td class="productions-index-td-styling">
+                                    @item.ShowtimeMat.GetValueOrDefault().ToShortTimeString()
+                                </td>
+                            </tr>
+                        }
+
+                        @if (item.ShowtimeEve.HasValue)
+                        {
+                            <tr class="production-index-tr-styling">
+                                <th class="productions-index-th-styling">
+                                    @Html.DisplayNameFor(model => model.ShowtimeEve)
+                                </th>
+                                <td class="productions-index-td-styling">
+                                    @item.ShowtimeEve.GetValueOrDefault().ToShortTimeString()
+                                </td>
+                            </tr>
+                        }
                     </table>
                     <table>
                         <tr class="production-index-tr-styling">
@@ -306,37 +335,79 @@
 @Scripts.Render("~/bundles/jquery")
 <script src="@Url.Content("~/Scripts/umd/popper.min.js")"></script>
 
-<!-- Toggle for search button, if currently searching show search form else hide search form  -->
-<!-- Scroll function for search form -->
-<script>
-    $(document).ready(function () {
-        $(document).scroll(function () {
-            if ($(window).scrollTop() > 0 && window.matchMedia('(min-width: 769px)').matches) {
-                $(".search-container").css({ top: '64px' });
-            }
-            if ($(window).scrollTop() === 0) {
-                $('.search-container').removeAttr('style');
-            }
-            
+@section Scripts {
+    <!-- Toggle for search button, if currently searching show search form else hide search form  -->
+    <!-- Scroll function for search form -->
+    <script>
+            $(document).ready(function () {
+                $(document).scroll(function () {
+                    if ($(window).scrollTop() > 0 && window.matchMedia('(min-width: 769px)').matches) {
+                        $(".search-container").css({ top: '64px' });
+                    }
+                    if ($(window).scrollTop() === 0) {
+                        $('.search-container').removeAttr('style');
+                    }
+
+                });
+
+                var currentlySearching = "@((ViewBag.IsSearching).ToString())"
+
+                if (currentlySearching != "False") {
+                    $('.search-form').show();
+                    $('.search-button').addClass('active-search-button');
+                } else {
+                    $('.search-form').hide();
+                }
+
+                $('.search-button').click(function () {
+                    $('.search-form').slideToggle();
+                    if ($('.search-button').hasClass('active-search-button')) {
+                        $('.search-button').removeClass('active-search-button');
+                    } else {
+                        $('.search-button').addClass('active-search-button');
+                    }
+                });
+
+            });
+
+        //display calendar upon click of calendar icon
+        $(document).ready(function () {
+            var events = [];
+            //var proArray = @Model.Select(p => p.ProductionId).ToArray();
+            $(".fa-calendar-alt").on("click", function () {
+                //$.ajax({
+                //    type: "GET",
+                //    url: "@Url.Action("GetCalendarEventsWithProd", "CalendarEvents")",
+                //    success: function (data) {
+                        //    data[0].start = moment(data[0].start)
+                        //    data[0].end = moment(data[0].end)
+                //        events = data;
+                //        console.log(events);
+
+                        
+                //    },
+                //    error: function () {
+                //        alert("An error has occured.");
+                //    }
+                //});
+
+                $('#calendar').fullCalendar({
+                    header: { center: 'month,agendaWeek' },
+                    views: {
+                        week: {
+                            allDaySlot: false
+                        }
+                    },
+                    events: events,
+                    //eventColor: 'var(--secondary-color)',
+                    eventClick: function(calEvent) {
+                        $(this).css('border', '2px solid var(--main-secondary-color)');
+                        $('.prod-' + calEvent.prod).css('border', '2px solid var(--main-secondary-color)');
+                    }
+                });
+            })
         });
 
-        var currentlySearching = "@((ViewBag.IsSearching).ToString())"
 
-        if (currentlySearching != "False") {
-            $('.search-form').show();
-            $('.search-button').addClass('active-search-button');
-        } else {
-            $('.search-form').hide();
-        }
-
-        $('.search-button').click(function () {
-            $('.search-form').slideToggle();
-            if ($('.search-button').hasClass('active-search-button')) {
-                $('.search-button').removeClass('active-search-button');
-            } else {
-                $('.search-button').addClass('active-search-button');
-            }
-        });
-
-    });
-</script>
+    </script>
+}

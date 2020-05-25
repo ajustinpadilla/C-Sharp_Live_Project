@@ -113,8 +113,8 @@ namespace TheatreCMS.Controllers
                 productions = productions.Where(p => p.IsWorldPremiere == true);
                 isSearching = true;
             }
-            
-            if(isSearching.HasValue && isSearching == true) //Pass isSearching boolean to ViewBag
+
+            if (isSearching.HasValue && isSearching == true) //Pass isSearching boolean to ViewBag
             {
                 ViewBag.IsSearching = isSearching;
             }
@@ -129,7 +129,29 @@ namespace TheatreCMS.Controllers
 
             ViewBag.Results = productions.Count();  //Total search results
 
-            return View(productions.ToList());
+            // var prodId = productions.Select(i => i.ProductionId).ToList();
+
+            // //var eventArray = CalendarEventsController.GetCalendarEventsWithProd();
+
+            // var eventList = db.CalendarEvent.Where(x => prodId.Contains(x.ProductionId.GetValueOrDefault())).Select(x => new
+            // {
+            //     id = x.EventId,
+            //     title = x.Title,
+            //     start = x.StartDate,
+            //     end = x.EndDate,
+            //     seats = x.TicketsAvailable,
+            //     color = x.Color,
+            //     className = x.ClassName,
+            //     someKey = x.SomeKey,
+            //     allDay = false,
+            //     prod = x.ProductionId
+            // }) ;
+
+            //ViewData["events"] = eventList;
+
+            //eventList = eventList.Where(x => prodId.Contains(x.prod)).ToArray();
+
+            return View(productions.OrderByDescending(p => p.OpeningDay).ToList());
         }
 
         public ActionResult Current()
@@ -251,7 +273,7 @@ namespace TheatreCMS.Controllers
 
                 return RedirectToAction("Index");
             }
-                return View(production);
+            return View(production);
         }
 
 
@@ -324,7 +346,7 @@ namespace TheatreCMS.Controllers
             var year = DateTime.Now.Year;
             bool b = false;
             var currentSeason = SeasonYears().Count();
-            
+
             for (int i = currentSeason; i >= 0; i--)        //Using currentseason, loop through theatre years, if dd/mm exists in any of those years, bool is valid.
             {
                 if (day <= DateTime.DaysInMonth(year, month))
@@ -332,7 +354,7 @@ namespace TheatreCMS.Controllers
                     b = true;
                 }
                 year--;
-            } 
+            }
             return b;
         }
 
@@ -368,7 +390,8 @@ namespace TheatreCMS.Controllers
             var runTimes = new List<int>(); //Sort runtimes in ascending order
             foreach (var item in runTimesList.ToList())
             {
-                if (!runTimes.Contains(item)){          //Check if runTimes list contains runtime already
+                if (!runTimes.Contains(item))
+                {          //Check if runTimes list contains runtime already
                     runTimes.Add(item);
                 }
             }

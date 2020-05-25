@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using TheatreCMS.Models;
 using System.Web.Mvc.Html;
 
+
 namespace TheatreCMS.Controllers
 {
     public class CalendarEventsController : Controller
@@ -26,7 +27,7 @@ namespace TheatreCMS.Controllers
         public JsonResult GetCalendarEvents()
         {
             var events = db.CalendarEvent.ToArray();
-           
+
             return Json(db.CalendarEvent.Select(x => new
             {
                 id = x.EventId,
@@ -40,6 +41,50 @@ namespace TheatreCMS.Controllers
                 allDay = false
             }).ToArray(), JsonRequestBehavior.AllowGet);
         }
+
+        //only get calendar events associated with a production and sends the prod title along with the rest of the info
+        //public static Array GetCalendarEventsWithProd()
+        //{
+        //    var newCont = new CalendarEventsController();
+        //    var starttimes = newCont.db.CalendarEvent.Select(i => i.StartDate).FirstOrDefault();
+        //    var orig = starttimes.ToString();
+        //    var shorttime = starttimes.ToShortTimeString();
+        //    Debug.WriteLine("orig: " + orig + ", shorttime: " + shorttime);
+        //    return newCont.db.CalendarEvent.Where(x => x.ProductionId.HasValue).Select(x => new
+        //    {
+        //        id = x.EventId,
+        //        title = x.Title,
+        //        start = x.StartDate,
+        //        end = x.EndDate,
+        //        seats = x.TicketsAvailable,
+        //        color = x.Color,
+        //        className = x.ClassName,
+        //        someKey = x.SomeKey,
+        //        allDay = false,
+        //        prod = x.ProductionId
+        //    }).ToArray();
+        //}
+
+        //public JsonResult GetCalendarEventsWithProd2()
+        //{
+        //    var starttimes =db.CalendarEvent.Select(i => i.StartDate).FirstOrDefault();
+        //    var orig = starttimes.ToString();
+        //    var shorttime = starttimes.ToShortTimeString();
+        //    Debug.WriteLine("orig: " + orig + ", shorttime: " + shorttime);
+        //    return Json(db.CalendarEvent.Where(x => x.ProductionId.HasValue).Select(x => new
+        //    {
+        //        id = x.EventId,
+        //        title = x.Title,
+        //        start = x.StartDate,
+        //        end = x.EndDate,
+        //        seats = x.TicketsAvailable,
+        //        color = x.Color,
+        //        className = x.ClassName,
+        //        someKey = x.SomeKey,
+        //        allDay = false,
+        //        prod = x.ProductionId
+        //    }).ToArray(), JsonRequestBehavior.AllowGet);
+        //}
 
         // GET: CalendarEvents/Details/5
         public ActionResult Details(int? id)
@@ -61,11 +106,11 @@ namespace TheatreCMS.Controllers
         public ActionResult Create()
         {
 
-            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId","Title");
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
             ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
             return View();
-            
-      
+
+
         }
 
         // POST: CalendarEvents/Create
@@ -105,11 +150,11 @@ namespace TheatreCMS.Controllers
 
             if (ModelState.IsValid)
             {
-               // ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
-               // ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+                // ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                // ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
 
                 //if (ViewData["Productions"] != null)
-              
+
 
                 db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
@@ -123,13 +168,13 @@ namespace TheatreCMS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CalendarEvent calendarEvents = db.CalendarEvent.Find(id);
-            
+
             if (calendarEvents == null)
             {
                 return HttpNotFound();
@@ -144,9 +189,9 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvents)
-        {     
+        {
             if (ModelState.IsValid)
-            {                
+            {
                 db.Entry(calendarEvents).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
