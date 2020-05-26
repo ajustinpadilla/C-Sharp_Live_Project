@@ -66,14 +66,14 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SponsorId,Name,Logo,Height,Width,Current")] Sponsor sponsor, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "SponsorId,Name,Height,Width,Current,Link")] Sponsor sponsor, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    var logo = ImageUploadController.ImageBytes(upload, out string _64);
-                    sponsor.Logo = logo;
+                    //takes upload file and creates a photo.cs object from it and returns (int)photo.ID  
+                    sponsor.LogoId = PhotoController.CreatePhoto(upload, "SponsorLogo_" + sponsor.Name);
                 }
                 db.Sponsors.Add(sponsor);
                 db.SaveChanges();
@@ -81,6 +81,7 @@ namespace TheatreCMS.Controllers
             }
 
             return View(sponsor);
+
         }
 
         [Authorize(Roles = "Admin")]
@@ -105,15 +106,15 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SponsorId,Name,Logo,Height,Width,Current")] Sponsor sponsor, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "SponsorId,Name,LogoId,Height,Width,Current,Link")] Sponsor sponsor, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    var logo = ImageUploadController.ImageBytes(upload, out string convertedLogo);
-                    sponsor.Logo = logo;
+                    sponsor.LogoId = PhotoController.CreatePhoto(upload, "SponsorLogo_" + sponsor.Name);
                 }
+
                 db.Entry(sponsor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
