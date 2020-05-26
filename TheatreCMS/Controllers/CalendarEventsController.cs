@@ -42,50 +42,6 @@ namespace TheatreCMS.Controllers
             }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        //only get calendar events associated with a production and sends the prod title along with the rest of the info
-        //public static Array GetCalendarEventsWithProd()
-        //{
-        //    var newCont = new CalendarEventsController();
-        //    var starttimes = newCont.db.CalendarEvent.Select(i => i.StartDate).FirstOrDefault();
-        //    var orig = starttimes.ToString();
-        //    var shorttime = starttimes.ToShortTimeString();
-        //    Debug.WriteLine("orig: " + orig + ", shorttime: " + shorttime);
-        //    return newCont.db.CalendarEvent.Where(x => x.ProductionId.HasValue).Select(x => new
-        //    {
-        //        id = x.EventId,
-        //        title = x.Title,
-        //        start = x.StartDate,
-        //        end = x.EndDate,
-        //        seats = x.TicketsAvailable,
-        //        color = x.Color,
-        //        className = x.ClassName,
-        //        someKey = x.SomeKey,
-        //        allDay = false,
-        //        prod = x.ProductionId
-        //    }).ToArray();
-        //}
-
-        //public JsonResult GetCalendarEventsWithProd2()
-        //{
-        //    var starttimes =db.CalendarEvent.Select(i => i.StartDate).FirstOrDefault();
-        //    var orig = starttimes.ToString();
-        //    var shorttime = starttimes.ToShortTimeString();
-        //    Debug.WriteLine("orig: " + orig + ", shorttime: " + shorttime);
-        //    return Json(db.CalendarEvent.Where(x => x.ProductionId.HasValue).Select(x => new
-        //    {
-        //        id = x.EventId,
-        //        title = x.Title,
-        //        start = x.StartDate,
-        //        end = x.EndDate,
-        //        seats = x.TicketsAvailable,
-        //        color = x.Color,
-        //        className = x.ClassName,
-        //        someKey = x.SomeKey,
-        //        allDay = false,
-        //        prod = x.ProductionId
-        //    }).ToArray(), JsonRequestBehavior.AllowGet);
-        //}
-
         // GET: CalendarEvents/Details/5
         public ActionResult Details(int? id)
         {

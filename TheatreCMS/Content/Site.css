@@ -304,7 +304,7 @@
             border-radius: 6px;
         }
 
-        /* Productions Index Calendar Styling*/
+/* Productions Index Calendar Styling*/
 
 .palette-container .prod-index-cal .fc-event {
     background-color: var(--secondary-color);
@@ -317,7 +317,9 @@
     border: initial;
 }
 
-
+.production-index-container .card {
+    border: 2px solid rgba(0, 0, 0, 0.125);
+}
 
 
 

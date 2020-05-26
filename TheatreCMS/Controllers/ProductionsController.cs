@@ -21,7 +21,7 @@ namespace TheatreCMS.Controllers
 
 
         // GET: Productions
-        public ActionResult Index(string searchString, string season, string month, string day, string showtime, string runtime, bool? worldPremiere, bool? isSearching)
+        public ActionResult Index(string searchString, string season, string month, string day, string showtime, string runtime, bool? worldPremiere, bool? isSearching, string calBool)
         {
             var productions = from p in db.Productions
                               select p;
@@ -129,27 +129,26 @@ namespace TheatreCMS.Controllers
 
             ViewBag.Results = productions.Count();  //Total search results
 
-            // var prodId = productions.Select(i => i.ProductionId).ToList();
+            //check if calendar is displayed before this GET Request
+            ViewData["calDisplay"] = calBool;
+            
+            var prodId = productions.Select(i => i.ProductionId).ToList();
 
-            // //var eventArray = CalendarEventsController.GetCalendarEventsWithProd();
+            //return only calendar events that are associated with the filtered results
+            var eventList = db.CalendarEvent.Where(x => prodId.Contains(x.ProductionId ?? 0)).ToList();
 
-            // var eventList = db.CalendarEvent.Where(x => prodId.Contains(x.ProductionId.GetValueOrDefault())).Select(x => new
-            // {
-            //     id = x.EventId,
-            //     title = x.Title,
-            //     start = x.StartDate,
-            //     end = x.EndDate,
-            //     seats = x.TicketsAvailable,
-            //     color = x.Color,
-            //     className = x.ClassName,
-            //     someKey = x.SomeKey,
-            //     allDay = false,
-            //     prod = x.ProductionId
-            // }) ;
+            var eventArray = eventList.Select(x => new []
+            {
+                x.EventId.ToString(),
+                x.Title,
+                x.StartDate.ToString("o"),
+                x.EndDate.ToString("o"),
+                x.TicketsAvailable.ToString(),
+                x.Color,
+                x.ProductionId.ToString()
+            }).ToArray();
 
-            //ViewData["events"] = eventList;
-
-            //eventList = eventList.Where(x => prodId.Contains(x.prod)).ToArray();
+            ViewData["events"] = eventArray;
 
             return View(productions.OrderByDescending(p => p.OpeningDay).ToList());
         }
