@@ -1542,8 +1542,35 @@ textarea {
 
         /*Current productions*/
         .currentpro a {
-            margin-left: 15px;
+            /*margin-left: 15px;*/
+            /*color: #DB1A11;*/
+            color: white;
+            background-color: #DB1A11;
+            display: inline-block;
+            border-radius: 25px;
+            padding: 15px 32px;
+            text-decoration: none;
+            transition: 0.3s;
+            
         }
+
+        .currentpro a:hover{
+            transform: scale(1.25, 1.25);
+            background-color: #f04d44;
+        }
+
+        .currentptitle  {
+            color: white;
+            text-decoration: none;
+        }
+
+        .currentptitle:hover  {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /*.currentptitle*/
+
 
         /*Sponsor partial styling*/
         .sponsor-partial-pic {

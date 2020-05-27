@@ -4,14 +4,14 @@
     ViewBag.Title = "Current Production";
 }
 
-<h2 class="center">Current Production</h2>
+<h2 class="center">Current Productions</h2>
 
 @*verifies role of user and only displays link if logged in as admin*@
 <div class="row currentpro justify-content-center">
     @if (User.IsInRole("Admin"))
     {
       <p>
-          @Html.ActionLink("Create New", "Create") |  
+          @Html.ActionLink("Create New", "Create") &nbsp; | &nbsp;
       </p>
     }
     <p>
@@ -21,73 +21,99 @@
 
 
 
-<div class="container-fluid clearfix">
+<div class="container-fluid production-index-container">
 @* Cycle through each object displaying individual results*@
-@foreach (var item in Model)
-{   <div class="row justify-content-center">
-        @*This Row is used to set the elements of the card side by mx-auto side instead of a classic over under*@
-        @*<div class="col-md-5 col-sm-6 col-lg-2"></div>*@ @*This pushes the elements to the center of the view*@
-        <div class="flex-row prodCenter ">
-            <div class="card my-2 rh-25 palette-container overflow-hidden center-box">
-                @*Create a card, that hides the corners of the image and is spaced slightly away from each other*@
-                @Html.DisplayFor(modelItem => item.DefaultPhoto)
-                @* This is where we'll need to display the image from the byte[] in the database. *@
-                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20070821135049%2Fillogicopedia%2Fimages%2Fthumb%2F9%2F91%2FDuck_patrol.JPG%2F500px-Duck_patrol.JPG&f=1&nofb=1" /></a>
-            </div>
-        </div>
-        <div class="card col-md-4 col-sm-5 col-lg-3 palette-body">
-            @*.....Create 'Info' Card...................*@
-            <div class="card-body rh-25">
-                @*...............fixes row height......... *@
-                <div class="container position-absolute fixed-top overflow-auto">
-                    <h5 class="center">
-                        @*.........................................Big text for play*@
-                        @Html.DisplayFor(modelItem => item.Title)
-                        <small>
-                            @*.................................Small text for author*@
-                            by @Html.DisplayFor(modelItem => item.Playwright)<br />
-                            @if (item.IsWorldPremiere == true)
-                            {
-                                @Html.DisplayNameFor(model => model.IsWorldPremiere)
-                            }
-                        </small>
-                    </h5>
-                    <div class="center">
-                        <div class="row justify-content-center">
-                            <p>
-                                @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
-                                <br />
-                                @if (item.ShowtimeEve != null)
-                                {
-                                    @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
-                                }
+  
+  <div class="row mx-2">
+    @foreach (var item in Model)
+    {
+    <div class="card col-md-6 col-xl-4 bg-black" id="production-info-parent">
+      @{
+        if (item.DefaultPhoto != null)
+        {
 
-                                @if (item.ShowtimeMat != null)
-                                {
-                                    @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
-                                }
+          <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+            <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+          </a>
+        }
+        else
+        {
+          <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+            <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+          </a>
+        }
+      }
+      @*This Row is used to set the elements of the card side by mx-auto side instead of a classic over under*@
+      @*<div class="col-md-5 col-sm-6 col-lg-2"></div>*@ @*This pushes the elements to the center of the view*@
 
-                            </p>
-                        </div>
-                        <div class="col-4">
-                            @*Large button that sits halfway down the card
-                                  <button type="submit" class="get-ticket-btn btn palette-container my-3 text-captialize text-center font-weight-bold">Get Tickets!</button>
-                                @*  @Html.DisplayFor(modelItem => item.TicketLink) ..................Ticket Link Info *@
-                        </div>
-                        @*verifies role of user and only displays edit/delete links if logged in as admin*@
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <p>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) | @*This part left in for debugging purposes*@
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId }) 
-                            </p>
-                        }
-                    </div>
-                </div>
-            </div>
+
+      <!--<div class="flex-row prodCenter ">
+        <div class="card my-2 rh-25 palette-container overflow-hidden center-box">-->
+          @*Create a card, that hides the corners of the image and is spaced slightly away from each other*@
+          <!--@Html.DisplayFor(modelItem => item.DefaultPhoto)-->
+          @* This is where we'll need to display the image from the byte[] in the database. *@
+          <!--<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg3.wikia.nocookie.net%2F__cb20070821135049%2Fillogicopedia%2Fimages%2Fthumb%2F9%2F91%2FDuck_patrol.JPG%2F500px-Duck_patrol.JPG&f=1&nofb=1" /></a>
         </div>
+      </div>-->
+
+
+      <div class="card col-md-auto col-sm-auto col-lg-auto palette-container">
+        @*.....Create 'Info' Card...................*@
+        <div class="card-body">
+          @*...............fixes row height......... *@
+          <div class="container-fluid position-relative overflow-auto">
+            <h4 class="center"><a class="currentptitle" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+              @*.........................................Big text for play*@
+              @Html.DisplayFor(modelItem => item.Title)
+              </a>
+            </h4>
+              <h5 class="center">
+                <small>
+                  @*.................................Small text for author*@
+                  by @Html.DisplayFor(modelItem => item.Playwright)<br />
+                  @if (item.IsWorldPremiere == true)
+                  {
+                    @Html.DisplayNameFor(model => model.IsWorldPremiere)
+                  }
+                </small>
+              </h5>
+            <div class="center">
+              <div class="row justify-content-center">
+                <p>
+                  @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
+                  <br />
+                  @if (item.ShowtimeEve != null)
+                  {
+                    @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
+                  }
+
+                  @if (item.ShowtimeMat != null)
+                  {
+                    @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
+                  }
+
+                </p>
+              </div>
+              <div class="col-4">
+                @*Large button that sits halfway down the card
+                <button type="submit" class="get-ticket-btn btn palette-container my-3 text-captialize text-center font-weight-bold">Get Tickets!</button>
+              @*  @Html.DisplayFor(modelItem => item.TicketLink) ..................Ticket Link Info *@
+              </div>
+              @*verifies role of user and only displays edit/delete links if logged in as admin*@
+              @if (User.IsInRole("Admin"))
+              {
+                <p>
+                  @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) | @*This part left in for debugging purposes*@
+                  @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId })
+                </p>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-}
+    }
+  </div>
 </div>
 @*<p>..................................................Scaffold Code..............................................
         @Html.ActionLink("Create New", "Create")
