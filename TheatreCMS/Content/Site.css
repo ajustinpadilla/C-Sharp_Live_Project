@@ -1541,6 +1541,16 @@ textarea {
 
 
         /*Current productions*/
+
+        .curpro {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+
+        }
+
+
+
         .currentpro a {
             /*margin-left: 15px;*/
             /*color: #DB1A11;*/

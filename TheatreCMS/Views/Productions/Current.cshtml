@@ -4,14 +4,14 @@
     ViewBag.Title = "Current Production";
 }
 
-<h2 class="center">Current Productions</h2>
+<h2 class="curpro">Current Productions</h2>
 
 @*verifies role of user and only displays link if logged in as admin*@
 <div class="row currentpro justify-content-center">
     @if (User.IsInRole("Admin"))
     {
       <p>
-          @Html.ActionLink("Create New", "Create") &nbsp; | &nbsp;
+          @Html.ActionLink("Create New", "Create") &nbsp;
       </p>
     }
     <p>
@@ -77,37 +77,38 @@
                   }
                 </small>
               </h5>
-            <div class="center">
-              <div class="row justify-content-center">
-                <p>
-                  @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
-                  <br />
-                  @if (item.ShowtimeEve != null)
-                  {
-                    @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
-                  }
+              <div class="center">
+                <div class="row justify-content-center">
+                  <p>
+                    @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
+                    <br />
+                    @if (item.ShowtimeEve != null)
+                    {
+                      @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
+                    }
 
-                  @if (item.ShowtimeMat != null)
-                  {
-                    @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
-                  }
+                    @if (item.ShowtimeMat != null)
+                    {
+                      @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
+                    }
 
-                </p>
+                  </p>
+                </div>
+                <h4>Final Showing: @item.ClosingDay.ToString("MM/dd") at</h4> @if (item.ShowtimeMat != null) { <h4>@item.ShowtimeMat.Value.ToString("hh:mm tt")</h4>}
+                <div class="col-4">
+                  @*Large button that sits halfway down the card
+        <button type="submit" class="get-ticket-btn btn palette-container my-3 text-captialize text-center font-weight-bold">Get Tickets!</button>
+      @*  @Html.DisplayFor(modelItem => item.TicketLink) ..................Ticket Link Info *@
+                </div>
+                @*verifies role of user and only displays edit/delete links if logged in as admin*@
+                @if (User.IsInRole("Admin"))
+                {
+                  <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) | @*This part left in for debugging purposes*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId })
+                  </p>
+                }
               </div>
-              <div class="col-4">
-                @*Large button that sits halfway down the card
-                <button type="submit" class="get-ticket-btn btn palette-container my-3 text-captialize text-center font-weight-bold">Get Tickets!</button>
-              @*  @Html.DisplayFor(modelItem => item.TicketLink) ..................Ticket Link Info *@
-              </div>
-              @*verifies role of user and only displays edit/delete links if logged in as admin*@
-              @if (User.IsInRole("Admin"))
-              {
-                <p>
-                  @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId }) | @*This part left in for debugging purposes*@
-                  @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId })
-                </p>
-              }
-            </div>
           </div>
         </div>
       </div>
