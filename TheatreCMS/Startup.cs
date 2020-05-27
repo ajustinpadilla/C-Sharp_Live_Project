@@ -455,10 +455,11 @@ namespace TheatreCMS
         //Seeding database with dummy Parts
         private void SeedParts()
         {
+
             var parts = new List<Part> 
             {
                 new Part{
-                    Production= context.Productions.Where(p => p.Title == "Hamilton").FirstOrDefault(), 
+                    Production = context.Productions.Where(p => p.Title == "Hamilton").FirstOrDefault(), 
                     Character="Alexander Hamilton", 
                     Type=Enum.PositionEnum.Actor, 
                     Person= context.CastMembers.Where(c => c.Name == "London Bauman").FirstOrDefault(), 
@@ -550,6 +551,7 @@ namespace TheatreCMS
                     "in Business Without Really Trying"},
 
                 new Part{
+
                     Production= context.Productions.Where(p => p.Title == "How to Succeed in Business Without Really Trying").FirstOrDefault(),
                     Character="Devon Roberts",
                     Type=Enum.PositionEnum.Director,
@@ -559,13 +561,14 @@ namespace TheatreCMS
                     "artistic aspects"},
             };
 
-            parts.ForEach(Part => // iterate through the list Parts
+            parts.ForEach(x => // iterate through the list Parts
             {
-                var tempPart = context.Parts.Where(p => p.Production.Title == Part.Production.Title && p.Character == Part.Character && p.Type == Part.Type).FirstOrDefault(); // Where the production title, Character, and part Type match it will return the query data or null if it doesn't exist
-                if (tempPart == null) // if the variable tempPart returns Null for its comparison
+                var tempPart = context.Parts.Where(p => p.Production.Title == x.Production.Title && p.Character == x.Character && p.Type == x.Type).FirstOrDefault(); // Where the production title, Character, and part Type match it will return the query data or null if it doesn't exist
+                if (tempPart != null) // where it does not return null
                 {
-                context.Parts.AddOrUpdate(p => p.PartID, Part); //It will then Add it to the Database
+                    x.PartID = tempPart.PartID; // update the partID with the ID assigned to tempPart
                 }
+                context.Parts.AddOrUpdate(p => p.PartID, x); // runs the addorupdate- if tempPart returns null a new record will be added if it returned not null it will update based off of the PartID assigned in the if statement
             }); 
             context.SaveChanges();
         }   
