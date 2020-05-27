@@ -6,7 +6,7 @@
 
 <h2>Part</h2>
 
-@if (Roles.IsUserInRole(User.Identity.Name, "Admin"))
+@if (User.IsInRole("Admin"))
 {
   <p>
     @Html.ActionLink("Create New", "Create")
@@ -50,17 +50,28 @@
       <td>
         @Html.DisplayFor(modelItem => item.Details)
       </td>
-      @if (Roles.IsUserInRole(User.Identity.Name, "Admin"))
-      {
-        <td>
+@*      <td>
+        @if (User.IsInRole("Admin"))
+        {
           @Html.ActionLink("Edit", "Edit", new { id = item.PartID }) |
-          @Html.ActionLink("Delete", "Delete", new { id = item.PartID })
-        </td>
+          @Html.ActionLink("Delete", "Delete", new { id = item.PartID })|
+        }
+        @Html.ActionLink("Details", "Details", new { id = item.PartID })
+      </td>*@
+      @if (User.IsInRole("Admin"))
+      {
+    <td>
+      @Html.ActionLink("Edit", "Edit", new { id = item.PartID }) |
+      @Html.ActionLink("Delete", "Delete", new { id = item.PartID }) |
+      @Html.ActionLink("Details", "Details", new { id = item.PartID })
+    </td>
       }
-
+      @if (!User.IsInRole("Admin"))
+      {
       <td>
         @Html.ActionLink("Details", "Details", new { id = item.PartID }) 
       </td>
+      }
     </tr>
   }
 
