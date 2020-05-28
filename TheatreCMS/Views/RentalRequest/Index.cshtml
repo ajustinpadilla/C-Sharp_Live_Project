@@ -102,7 +102,7 @@
                             @*Html.DisplayFor(modelItem => item.ContractSigned)*@
                         </td>
                         <td id="rental-request-nav-container">
-                            <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
+                            <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black"}) </div>
                             <div class="rental-request-nav">@Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
                             <div class="rental-request-nav">@Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
                         </td>
@@ -170,6 +170,15 @@
             
             flexTable();
         };
+
+        $('.rental-request-rows').hover(
+            function () {
+                $(this).find('.rental-request-nav').fadeTo(400, 1);
+            },
+            function () {
+                $(this).find('.rental-request-nav').fadeTo(400, 0);
+            }
+        );
 
     });
 </script>

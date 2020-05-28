@@ -1894,6 +1894,7 @@ textarea {
 
 .rental-request-nav {
     margin: 2px 0 2px 0;
+    opacity: 0;
 }
 
 .rental-request-nav a {
