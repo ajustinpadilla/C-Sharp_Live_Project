@@ -1555,7 +1555,7 @@ textarea {
             /*margin-left: 15px;*/
             /*color: #DB1A11;*/
             color: white;
-            background-color: #DB1A11;
+            background-color: #BD1A11;
             display: inline-block;
             border-radius: 25px;
             padding: 15px 32px;
@@ -1577,6 +1577,15 @@ textarea {
         .currentptitle:hover  {
             color: white;
             text-decoration: none;
+        }
+
+        .curprodimgtran {
+            z-index: 1;
+            transition: .3s;
+        }
+
+        .curprodimgtran:hover {
+            transform: scale(1.1, 1.1);
         }
         
         /*.currentptitle*/
@@ -2043,6 +2052,7 @@ textarea {
 /* Archive Current Productions and Archive Future Productions*/
 #current-productions #future-productions {
     padding: 0px 20px;
+
 }
 
 /* Resize Archive Current Productions Image and Archive Future Productions Image*/
