@@ -23,7 +23,7 @@ namespace TheatreCMS
             ConfigureAuth(app);
             createRolesandUsers();
             SeedCastMembers();
-			SeedProductions();
+            SeedProductions();
             SeedProductionPhotos();
         }
 
@@ -223,10 +223,10 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-		//Seeding database with dummy Productions
-		private void SeedProductions()
-		{
-            
+        //Seeding database with dummy Productions
+        private void SeedProductions()
+        {
+
             var productions = new List<Production>
             {
                 new Production{Title = "Hamilton", Playwright = "Lin-Manuel Miranda", Description = "This is a musical inspired by the biography " +
@@ -247,24 +247,163 @@ namespace TheatreCMS
                 ShowtimeEve = new DateTime(2021, 01, 02, 19, 30, 00), ShowtimeMat = new DateTime(2021, 01, 02, 22, 30, 00), TicketLink = "ticketsforyou.com", Season = 24,
                 IsCurrent = false},
 
-				new Production{Title = "Wicked", Playwright = "Stephen Schwartz", Description = "This musical is told from the perspective of the witches of " +
-				"the Land of Oz; its plot begins before and continues after Dorothy Gale arrives in Oz from Kansas, and includes several references to the 1939 film.",
-				OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00),
-				ShowtimeMat = new DateTime(2020, 10, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 24, IsCurrent = false},
+                new Production{Title = "Wicked", Playwright = "Stephen Schwartz", Description = "This musical is told from the perspective of the witches of " +
+                "the Land of Oz; its plot begins before and continues after Dorothy Gale arrives in Oz from Kansas, and includes several references to the 1939 film.",
+                OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2020, 10, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 24, IsCurrent = false},
 
-				new Production{Title = "How to Succeed in Business Without Really Trying", Playwright = "Frank Loesser", Description = "This story concerns young, " +
+                new Production{Title = "How to Succeed in Business Without Really Trying", Playwright = "Frank Loesser", Description = "This story concerns young, " +
                 "ambitious J. Pierrepont Finch, who, with the help of the book How to Succeed in Business Without Really Trying, rises from window washer to chairman of " +
                 "the board of the World Wide Wicket Company.", OpeningDay = new DateTime(2020, 04, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 05, 31, 19, 30, 00),
-                ShowtimeEve = new DateTime(2020, 04, 01, 19, 30, 00), ShowtimeMat = new DateTime(2020, 04, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 23,
-                IsCurrent = true}
-			};
-            
+                ShowtimeEve = new DateTime(2020, 04, 01, 19, 30, 00), ShowtimeMat = new DateTime(2020, 04, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 23, IsCurrent = true},
+
+                // productions for season 20
+                new Production{Title = "Assistance", Playwright = "Leslye Headland", Description = "The small army of administrative assistants belonging to Daniel " +
+                "Weisinger, a famous and powerful business mogul, are a mixed bag of motives: suave, aggressive Vince despises his boss; the underdogs, clumsy Heather " +
+                "and bitter Justin, are devoted to their jobs; obnoxiously competent Jenny is eager and confident that she will surpass her co-workers. Nick and Nora flirt " +
+                "and joke to distract themselves from their unhappiness. But each assistant shares a deep ambition, desire for status, and twisted allegiance to their abusive" +
+                " boss, even in the face of volatile power plays, unreasonable demands, and physical injury. Leslye Headland’s biting, fast-paced comedy Assistance, part of " +
+                "her “Seven Deadly Sins” play cycle, explores greed and power both professional and personal, and the terrible, if hilarious, toll they can take on those who " +
+                "are caught up in their pursuit and practice.",
+                OpeningDay = new DateTime(2012, 05, 30, 14, 30, 00), ClosingDay = new DateTime(2012, 08, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 05, 30, 19, 30, 00),
+                ShowtimeMat = new DateTime(2012, 05, 30, 15, 30, 00), TicketLink = "ticketsforyou.com", Season = 20, IsCurrent = false, Runtime = 120},
+
+                new Production{Title = "Carnivora", Playwright = "Matthew B. Zrebski", Description = "Some of the dangerous seductions in “Carnivora” come courtesy of a very" +
+                " un-mythic, albeit charismatic, cult leader (played by Dunkin) whose obsession is yet another fear, of sorts, that Zrebski has addressed. “Texting the Sun,”" +
+                " a 2010 piece for the OCT/Kaiser Permanente Educational Theatre Program, dealt with concerns about a generation growing up fully immersed in interactive " +
+                "technology and social media. In “Carnivora,” add in suspicions about the egocentric dynamics of an all-pervasive celebrity culture, and you have a " +
+                "semi-coherent vision of society on the brink. Serve that up with an unhealthy dose of messianism, to folks frustrated by weakening economic and social-value" +
+                " structures around them, and a bizarre cult web snags even the well-educated and well-meaning Lorraine.",
+                OpeningDay = new DateTime(2012, 09, 01, 14, 30, 00), ClosingDay = new DateTime(2012, 12, 30, 19, 30, 00), ShowtimeEve = new DateTime(2012, 09, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2012, 12, 30, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 20, IsCurrent = false},
+
+                new Production{Title = "A Maze", Playwright = "Rob Handel", Description = "There are two kinds of mazes - a fairy tale-like king explains to his queen in " +
+                "Rob Handel's \"A Maze\" - the kind you try to get through from one side to the other, and the kind where you either try to get from the entrance to the " +
+                "center or from the center to the exit. The confounding and stimulating beauty of Handel's \"Maze\" is that it manages to be all those at once, and something" +
+                " altogether different - a maze in which three paths may intersect or even merge.",
+                OpeningDay = new DateTime(2013, 01, 02, 14, 30, 00), ClosingDay = new DateTime(2013, 03, 30, 15, 30, 00), ShowtimeEve = new DateTime(2012, 01, 02, 19, 30, 00),
+                ShowtimeMat = new DateTime(2013, 01, 02, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 20, IsCurrent = false},
+
+                // productions for season 19
+                new Production{Title = "The Drunken City", Playwright = "Adam Bock", Description = "Off on the bar crawl to end all crawls, three twenty-something brides-to-be" +
+                " find their lives going topsy-turvy when one of them begins to question her future after a chance encounter with a recently jilted handsome stranger. " +
+                "The Drunken City is a wildly theatrical take on the mystique of marriage and the ever-shifting nature of love and identity in a city that never sleeps.",
+                OpeningDay = new DateTime(2013, 05, 30, 14, 30, 00), ClosingDay = new DateTime(2013, 08, 30, 19, 30, 00), ShowtimeEve = new DateTime(2013, 05, 30, 19, 30, 00),
+                ShowtimeMat = new DateTime(2013, 05, 30, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 19, IsCurrent = false},
+
+                new Production{Title = "I Want to Destroy You", Playwright = "Rob Handel", Description = "Life’s not going especially well for Harold, a sort-of-famous artist" +
+                " who’s now teaching grad students at a richer-than-thou private college, and he really likes it, actually, but there are … problems. His ex-wife is out of " +
+                "the picture somewhere – California, it sounds like – and his teenage daughter, Micki, comes to visit, prodding him for more of a relationship than he seems" +
+                " willing to commit to. His roof’s got a bad leak, and he’s unfortunately seriously ticked off the roofer, Andy. He’s up for tenure, but his friend and mentor" +
+                " Bob is in a hospital, dying, and the school dean, a crafty-smooth politico named Stephanie (everyone’s on a chummy first-name basis around here, even when " +
+                "they’re decidedly not chums), seems strangely unsympathetic: downright threatening, you might say. Then there’s Mark, the weirdo grad student, who comes to" +
+                " class to give a presentation on a conceptual piece, and in the process starts waving a handgun around. Which very much freaks out the other students, earnest" +
+                " Ilich and leafy Leaf, and throws a serious scare into Harold, which is both completely understandable and a tad ironic, because, after all, the work that " +
+                "made Harold famous and a prize catch for the richer-than-thou college in the first place was the performance piece where he had himself shot. With a rifle." +
+                " What goes around, as they say, comes around. And on the other end of things, it looks scary.",
+                OpeningDay = new DateTime(2013, 09, 01, 14, 30, 00), ClosingDay = new DateTime(2013, 12, 30, 19, 30, 00), ShowtimeEve = new DateTime(2013, 09, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2013, 09, 01, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 19, IsWorldPremiere= true, IsCurrent = false},
+
+                new Production{Title = "Love and Information", Playwright = "Caryl Churchill", Description = "Someone sneezes. Someone can’t get a signal. Someone won’t " +
+                "answer the door. Someone put an elephant on the stairs. Someone’s not ready to talk. Someone is her brother’s mother. Someone hates irrational numbers. " +
+                "Someone told the police. Someone got a message from the traffic light. Someone’s never felt like this before.\n In this fast moving kaleidoscope, more " +
+                "than a hundred characters try to make sense of what they know.",
+                OpeningDay = new DateTime(2014, 01, 02, 14, 30, 00), ClosingDay = new DateTime(2014, 03, 30, 19, 30, 00), ShowtimeEve = new DateTime(2014, 01, 02, 19, 30, 00),
+                ShowtimeMat = new DateTime(2014, 01, 02, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 19, IsCurrent = false},
+
+                // productions for season 18
+                new Production{Title = "Bob: A Life in Five Acts", Playwright = "Peter Sinn Nachtrieb", Description = "BOB chronicles the highly unusual life of Bob and his" +
+                " lifelong quest to become a “Great Man.” Born and abandoned in the bathroom of a fast food restaurant, Bob energetically embarks on an epic journey across" +
+                " America and encounters inspiring generosity, crushing hardships, blissful happiness, stunning coincidences, wrong turns, lucky breaks, true love and " +
+                "heartbreaking loss. Along the way, Bob meets a myriad of fellow countrymen all struggling to find their own place in the hullaballoo of it all. Will Bob’s" +
+                " real life ever be able to live up to his dream? BOB is a comedic exploration of American mythology and values, the treacherous pursuit of happiness, and" +
+                " discovering what it means to be truly “great.\"",
+                OpeningDay = new DateTime(2014, 05, 30, 14, 30, 00), ClosingDay = new DateTime(2014, 08, 30, 19, 30, 00), ShowtimeEve = new DateTime(2014, 05, 30, 19, 30, 00),
+                ShowtimeMat = new DateTime(2014, 05, 30, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 18, IsCurrent = false},
+
+                new Production{Title = "Sexual Neuroses of Our Parents", Playwright = "(translated from Lukas Bärfuss) by Neil Blackadder", Description = "Dora has been " +
+                "taking tranquilizers for years because otherwise her behavior was uncontrollably wild. The drugs have kept her in a semi-comatose state, and now Dora’s" +
+                " mother wants to know what her daughter is really like and convinces their doctor to take Dora off the drugs. Dora develops an enormous hunger for life," +
+                " demonstrates her own will, and, above all, discovers her sexuality—to a degree which far exceeds adult ideas about how she should live.",
+                OpeningDay = new DateTime(2014, 09, 01, 14, 30, 00), ClosingDay = new DateTime(2014, 12, 30, 19, 30, 00), ShowtimeEve = new DateTime(2012, 09, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2014, 09, 01, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 18, IsCurrent = false},
+
+                new Production{Title = "The School for Lies", Playwright = "David Ives", Description = "Adapted from Le Misanthrope by Molière. It’s 1666 and the brightest," +
+                " wittiest salon in Paris is that of Celimene, a beautiful young widow so known for her satiric tongue she’s being sued for it. Surrounded by shallow " +
+                "suitors, whom she lives off of without surrendering to, Celimene has managed to evade love since her beloved husband died—until today, when Frank appears. " +
+                "A traveler from England known for his own coruscating wit and acidic misanthropy, Frank turns Celimene’s world upside-down, taking on her suitors," +
+                " matching her barb for barb, and teaching her how to live again. (Never mind that their love affair has been engineered by a couple of well-placed lies.) " +
+                "This wild farce of furious tempo and stunning verbal display, all in very contemporary couplets, runs variations on Molière’s The Misanthrope, which " +
+                "inspired it. Another incomparable romp from the brilliant author of All in the Timing.",
+                OpeningDay = new DateTime(2015, 01, 02, 14, 30, 00), ClosingDay = new DateTime(2015, 03, 30, 19, 30, 00), ShowtimeEve = new DateTime(2015, 01, 02, 19, 30, 00),
+                ShowtimeMat = new DateTime(2015, 01, 02, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 18, IsCurrent = false},
+
+                // productions for season 17
+                new Production{Title = "Dr. Jekyll and Mr. Hyde", Playwright = "Jeffrey Hatcher", Description = "Some of the strongest scenes here are between Hyde and his" +
+                " love interestt, a fiery chambermaid named Elizabeth. In a twist on the Jekyll and Hyde story added by playwright Jeffrey Hatcher, Elizabeth sees through" +
+                " Hyde’s anger and falls hopelessly in love with him. Their romantic scenes let us see a new and highly relatable side of Jekyll’s alter ego as the character " +
+                "struggles to overcome his fears to be with the person he loves. It helps that Wennstrom and Koerschgen, whose interactions are backed only by the sound of" +
+                " a pounding heartbeat, have palpable, natural chemistry.",
+                OpeningDay = new DateTime(2015, 05, 30, 14, 30, 00), ClosingDay = new DateTime(2015, 08, 30, 19, 30, 00), ShowtimeEve = new DateTime(2015, 05, 30, 19, 30, 00),
+                ShowtimeMat = new DateTime(2015, 05, 30, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 17, IsCurrent = false},
+
+                new Production{Title = "The End of Sex", Playwright = "Craig Jessen", Description = "The story centers around Sam (Stephanie Cordell) who is the head of " +
+                "one team in a research lab, attempting to find a safe cream or pill that will increase sexual activity for those having trouble in that area.  She is " +
+                "aided by her able assistant, Zoe (Beth Thompson) and, together, are trying to be the first team to find that secret, so that they will get the fame and " +
+                "monies due them.",
+                OpeningDay = new DateTime(2015, 09, 01, 14, 30, 00), ClosingDay = new DateTime(2015, 12, 30, 19, 30, 00), ShowtimeEve = new DateTime(2015, 09, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2015, 09, 01, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 17, IsCurrent = false},
+
+                new Production{Title = "pool (no water)", Playwright = "Mark Ravenhill", Description = "A famous artist invites her old friends to her luxurious new home." +
+                " For one night only, the group is back together. But celebrations come to an abrupt end when the host suffers an horrific accident. As the victim lies in" +
+                " a coma, an almost unthinkable plan starts to take shape: could her suffering be their next work of art? Pool (No Water) is a visceral and shocking new" +
+                " play about the fragility of friendship and the jealousy and resentment inspired by success.",
+                OpeningDay = new DateTime(2016, 01, 02, 14, 30, 00), ClosingDay = new DateTime(2016, 03, 30, 19, 30, 00), ShowtimeEve = new DateTime(2016, 01, 02, 19, 30, 00),
+                ShowtimeMat = new DateTime(2016, 01, 02, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 17, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre:  The Crucible", Playwright = "Arthur Miller", Description = "Salem, Massachusetts—1692.  Rigid piety huddles on" +
+                " the edge of the new world’s wilderness.\nIts inhabitants believe unquestioningly in their own sanctity, but in Arthur Miller’s edgy masterpiece, that very" +
+                " belief will have poisonous consequences when a vengeful teenager accuses a rival of witchcraft—and then those accusations multiply to consume the entire village.",
+                OpeningDay = new DateTime(2016, 04, 01, 14, 30, 00), ClosingDay = new DateTime(2016, 05, 29, 19, 30, 00), ShowtimeEve = new DateTime(2016, 04, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2016, 04, 01, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 17, IsCurrent = false},
+
+                // productions for season 16
+                new Production{Title = "Mother Courage & Her Children", Playwright = "(translated from Bertolt Brecht) by Tony Kushner", Description = "The indomitable" +
+                " Mother Courage follows one luckless army after another across a war-torn world in her canteen wagon. She’ll do anything to hold onto her money-making " +
+                "wagon, even if it means the loss of her children.",
+                OpeningDay = new DateTime(2016, 05, 30, 14, 30, 00), ClosingDay = new DateTime(2016, 08, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 08, 30, 19, 30, 00),
+                ShowtimeMat = new DateTime(2016, 05, 30, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 16, IsCurrent = false},
+
+                new Production{Title = "The Velvet Sky", Playwright = "Roberto Aguirre-Sacasa", Description = "Poor Bethany Palmer hasn’t slept in thirteen years. When her" +
+                " husband, Warren, steals their son, Andrew, away in the middle of the night, her already fragile grip on reality starts to weaken—even as she sets off after" +
+                " them on a nightmarish phantasmagoria through an urban dreamscape. Chronicling Bethany’s desperate flight, THE VELVET SKY is a dark fairytale for grown-ups," +
+                " about the stories and lies adults tell children to keep them safe from the things that lurk in the dark. Things like the macabre Sandman, who is hungry to" +
+                " steal the innocent gleam from young Andrew’s eyes…",
+                OpeningDay = new DateTime(2016, 09, 01, 14, 30, 00), ClosingDay = new DateTime(2016, 12, 30, 19, 30, 00), ShowtimeEve = new DateTime(2016, 09, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2016, 09, 01, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 16, IsCurrent = false},
+
+                new Production{Title = "Aloha, Say the Pretty Girls", Playwright = "Naomi Iizuka", Description = "Aloha, Say the Pretty Girls is a quirky journey that " +
+                "follows a bunch of twenty-somethings in their quest for love and identity. Strangers, friends, lovers, and acquaintances travel the globe from Alaska to" +
+                " Hawaii and from New York City to Inner Borneo, exploring themes of migration, evolution, and interconnectivity. Babies, wild dogs, komodo dragons, and" +
+                " hula dancers abound in this hilarious play about finding your tribe in a world gone haywire.",
+                OpeningDay = new DateTime(2017, 01, 02, 14, 30, 00), ClosingDay = new DateTime(2017, 03, 30, 19, 30, 00), ShowtimeEve = new DateTime(2017, 01, 02, 19, 30, 00),
+                ShowtimeMat = new DateTime(2017, 01, 02, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 16, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre:  The Skin of Our Teeth", Playwright = "Thornton Wilder", Description = "This comedic masterpiece spans the " +
+                "entirety of history, with one ordinary American family who lives through it all. Dad’s just invented the wheel, Cain is throwing rocks at the neighbor " +
+                "kid, mammoths and dinosaurs lounge in the family room and mom frets about how to get all those animals on the boat two by two.\nThrough Ice Ages, biblical " +
+                "floods and political conventions, the Antrobus family of Excelsior, New Jersey perseveres. With a giant cast and time-set across the ages, this theatrical" +
+                " allegory captures the human spirit – of brilliance, idiocy and ultimately sweet survival.",
+                OpeningDay = new DateTime(2017, 04, 01, 14, 30, 00), ClosingDay = new DateTime(2017, 05, 28, 19, 30, 00), ShowtimeEve = new DateTime(2017, 04, 01, 19, 30, 00),
+                ShowtimeMat = new DateTime(2017, 04, 01, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 16, IsCurrent = false},
+            };
+
             productions.ForEach(Production => context.Productions.AddOrUpdate(d => d.Title, Production));
             context.SaveChanges();
 
         }
 
-        
+
         private void SeedProductionPhotos()
         {
             var converter = new ImageConverter();
@@ -281,6 +420,28 @@ namespace TheatreCMS
             Image image8 = Image.FromFile(Path.Combine(imagesRoot, @"wicked2.png"));
             Image image9 = Image.FromFile(Path.Combine(imagesRoot, @"howtosucceedinbusinesswithoutreallytrying.png"));
             Image image10 = Image.FromFile(Path.Combine(imagesRoot, @"howtosucceedinbusinesswithoutreallytrying2.png"));
+            // images for season 20
+            Image image11 = Image.FromFile(Path.Combine(imagesRoot, @"assistance.jpg"));
+            Image image12 = Image.FromFile(Path.Combine(imagesRoot, @"carnivora.jpg"));
+            Image image13 = Image.FromFile(Path.Combine(imagesRoot, @"maze.jpg"));
+            // images for season 19
+            Image image14 = Image.FromFile(Path.Combine(imagesRoot, @"drunkenCity.jpg"));
+            Image image15 = Image.FromFile(Path.Combine(imagesRoot, @"destroy.jpg"));
+            Image image16 = Image.FromFile(Path.Combine(imagesRoot, @"love_and_information.jpg"));
+            // images for season 18
+            Image image17 = Image.FromFile(Path.Combine(imagesRoot, @"bob5.jpg"));
+            Image image18 = Image.FromFile(Path.Combine(imagesRoot, @"sexual.jpg"));
+            Image image19 = Image.FromFile(Path.Combine(imagesRoot, @"school_for_lies.jpg"));
+            // images for season 17
+            Image image20 = Image.FromFile(Path.Combine(imagesRoot, @"Hyde.jpg"));
+            Image image21 = Image.FromFile(Path.Combine(imagesRoot, @"endsex.jpg"));
+            Image image22 = Image.FromFile(Path.Combine(imagesRoot, @"pool.jpg"));
+            Image image23 = Image.FromFile(Path.Combine(imagesRoot, @"crucible.jpg"));
+            // images for season 16
+            Image image24 = Image.FromFile(Path.Combine(imagesRoot, @"mother.jpg"));
+            Image image25 = Image.FromFile(Path.Combine(imagesRoot, @"velvet.jpg"));
+            Image image26 = Image.FromFile(Path.Combine(imagesRoot, @"aloha.jpg"));
+            Image image27 = Image.FromFile(Path.Combine(imagesRoot, @"The_skin_of_our_teeth.jpg"));
 
             var photos = new List<Photo>
             {
@@ -354,10 +515,135 @@ namespace TheatreCMS
                     PhotoFile = (byte[])converter.ConvertTo(image10, typeof(byte[])),
                     Title = "How to Succeed in Business Without Really Trying Image 2"
                 },
+                // Production photos for season 20
+                new Photo
+                {
+                    OriginalHeight = image11.Height,
+                    OriginalWidth = image11.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image11, typeof(byte[])),
+                    Title = "Assistance Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image12.Height,
+                    OriginalWidth = image12.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image12, typeof(byte[])),
+                    Title = "Carnivora Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image13.Height,
+                    OriginalWidth = image13.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image13, typeof(byte[])),
+                    Title = "A Maze Image"
+                },
+                // Production photos for season 19
+                new Photo
+                {
+                    OriginalHeight = image14.Height,
+                    OriginalWidth = image14.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image14, typeof(byte[])),
+                    Title = "The Drunken City Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image15.Height,
+                    OriginalWidth = image15.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image15, typeof(byte[])),
+                    Title = "I Want to Destroy You Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image16.Height,
+                    OriginalWidth = image16.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image16, typeof(byte[])),
+                    Title = "Love and Information Image"
+                },
+                // Production photos for season 18
+                new Photo
+                {
+                    OriginalHeight = image17.Height,
+                    OriginalWidth = image17.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image17, typeof(byte[])),
+                    Title = "Bob: A Life in Five Acts Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image18.Height,
+                    OriginalWidth = image18.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image18, typeof(byte[])),
+                    Title = "Sexual Neuroses of Our Parents Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image19.Height,
+                    OriginalWidth = image19.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image19, typeof(byte[])),
+                    Title = "The School for Lies Image"
+                },
+                // Production photos for season 17
+                new Photo
+                {
+                    OriginalHeight = image20.Height,
+                    OriginalWidth = image20.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image20, typeof(byte[])),
+                    Title = "Dr. Jekyll and Mr. Hyde Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image21.Height,
+                    OriginalWidth = image21.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image21, typeof(byte[])),
+                    Title = "The End of Sex Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image22.Height,
+                    OriginalWidth = image22.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image22, typeof(byte[])),
+                    Title = "pool (no water) Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image23.Height,
+                    OriginalWidth = image23.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image23, typeof(byte[])),
+                    Title = "Anonymous Theatre:  The Crucible Image"
+                },
+                // Production photos for season 16
+                new Photo
+                {
+                    OriginalHeight = image24.Height,
+                    OriginalWidth = image24.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image24, typeof(byte[])),
+                    Title = "Mother Courage & Her Children Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image25.Height,
+                    OriginalWidth = image25.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image25, typeof(byte[])),
+                    Title = "The Velvet Sky Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image26.Height,
+                    OriginalWidth = image26.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image26, typeof(byte[])),
+                    Title = "Aloha, Say the Pretty Girls Image"
+                },
+                new Photo
+                {
+                    OriginalHeight = image27.Height,
+                    OriginalWidth = image27.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image27, typeof(byte[])),
+                    Title = "Anonymous Theatre:  The Skin of Our Teeth Image"
+                },
 
             };
             photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
             context.SaveChanges();
+
 
 
 
@@ -432,6 +718,130 @@ namespace TheatreCMS
                     Title = "How to Succeed in Business Without Really Trying",
                     Description = "Daniel Radcliffe as Pierrepont Finch.",
                     Production = context.Productions.Where(name => name.Title == "How to Succeed in Business Without Really Trying").FirstOrDefault()
+                },
+                // Production photos for season 20
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Assistance Image").FirstOrDefault().PhotoId,
+                    Title = "Assistance",
+                    Description = "Assistance cover",
+                    Production = context.Productions.Where(name => name.Title == "Assistance").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Carnivora Image").FirstOrDefault().PhotoId,
+                    Title = "Carnivora",
+                    Description = "Carnivora cover",
+                    Production = context.Productions.Where(name => name.Title == "Carnivora").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "A Maze Image").FirstOrDefault().PhotoId,
+                    Title = "A Maze",
+                    Description = "A Maze cover",
+                    Production = context.Productions.Where(name => name.Title == "A Maze").FirstOrDefault()
+                },
+                // Production photos for season 19
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Drunken City Image").FirstOrDefault().PhotoId,
+                    Title = "The Drunken City",
+                    Description = "The Drunken City cover",
+                    Production = context.Productions.Where(name => name.Title == "The Drunken City").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "I Want to Destroy You Image").FirstOrDefault().PhotoId,
+                    Title = "I Want to Destroy You",
+                    Description = "I Want to Destroy You cover",
+                    Production = context.Productions.Where(name => name.Title == "I Want to Destroy You").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Love and Information Image").FirstOrDefault().PhotoId,
+                    Title = "Love and Information",
+                    Description = "Love and Information cover",
+                    Production = context.Productions.Where(name => name.Title == "Love and Information").FirstOrDefault()
+                },
+                // Production photos for season 18
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Bob: A Life in Five Acts Image").FirstOrDefault().PhotoId,
+                    Title = "Bob: A Life in Five Acts",
+                    Description = "Bob: A Life in Five Acts cover",
+                    Production = context.Productions.Where(name => name.Title == "Bob: A Life in Five Acts").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Sexual Neuroses of Our Parents Image").FirstOrDefault().PhotoId,
+                    Title = "Sexual Neuroses of Our Parents",
+                    Description = "Sexual Neuroses of Our Parents cover",
+                    Production = context.Productions.Where(name => name.Title == "Sexual Neuroses of Our Parents").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The School for Lies Image").FirstOrDefault().PhotoId,
+                    Title = "The School for Lies",
+                    Description = "The School for Lies cover",
+                    Production = context.Productions.Where(name => name.Title == "The School for Lies").FirstOrDefault()
+                },
+                // Production photos for season 17
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Dr. Jekyll and Mr. Hyde Image").FirstOrDefault().PhotoId,
+                    Title = "Dr. Jekyll and Mr. Hyde",
+                    Description = "Dr. Jekyll and Mr. Hyde cover",
+                    Production = context.Productions.Where(name => name.Title == "Dr. Jekyll and Mr. Hyde").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The End of Sex Image").FirstOrDefault().PhotoId,
+                    Title = "The End of Sex",
+                    Description = "The End of Sex cover",
+                    Production = context.Productions.Where(name => name.Title == "The End of Sex").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "pool (no water) Image").FirstOrDefault().PhotoId,
+                    Title = "pool (no water)",
+                    Description = "pool (no water) cover",
+                    Production = context.Productions.Where(name => name.Title == "pool (no water)").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre:  The Crucible Image").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre:  The Crucible",
+                    Description = "Anonymous Theatre:  The Crucible cover",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre:  The Crucible").FirstOrDefault()
+                },
+                // Production photos for season 16
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Mother Courage & Her Children Image").FirstOrDefault().PhotoId,
+                    Title = "Mother Courage & Her Children",
+                    Description = "Mother Courage & Her Children cover",
+                    Production = context.Productions.Where(name => name.Title == "Mother Courage & Her Children").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Velvet Sky Image").FirstOrDefault().PhotoId,
+                    Title = "The Velvet Sky",
+                    Description = "The Velvet Sky cover",
+                    Production = context.Productions.Where(name => name.Title == "The Velvet Sky").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Aloha, Say the Pretty Girls Image").FirstOrDefault().PhotoId,
+                    Title = "Aloha, Say the Pretty Girls",
+                    Description = "Aloha, Say the Pretty Girls cover",
+                    Production = context.Productions.Where(name => name.Title == "Aloha, Say the Pretty Girls").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre:  The Skin of Our Teeth Image").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre:  The Skin of Our Teeth",
+                    Description = "Anonymous Theatre:  The Skin of Our Teeth cover",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre:  The Skin of Our Teeth").FirstOrDefault()
                 }
             };
             productionphoto.ForEach(prodphoto => context.ProductionPhotos.AddOrUpdate(p => p.PhotoId, prodphoto));
