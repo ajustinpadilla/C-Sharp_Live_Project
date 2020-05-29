@@ -155,7 +155,11 @@ namespace TheatreCMS.Controllers
             var db = new ApplicationDbContext();
             var productions = db.Productions
                 .Include(i => i.DefaultPhoto);
-            ArchiveSearch(db, SearchByCategory, searchKey);
+
+            using (var dbSearch = new ApplicationDbContext() )
+            {
+                ArchiveSearch(dbSearch, SearchByCategory, searchKey);
+            }
             return View(productions.ToList());
         }
 
