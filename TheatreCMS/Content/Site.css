@@ -1551,7 +1551,7 @@ textarea {
 
 
 
-        .currentpro a {
+        .currentpro-btn a {
             /*margin-left: 15px;*/
             /*color: #DB1A11;*/
             color: white;
@@ -1561,12 +1561,16 @@ textarea {
             padding: 15px 32px;
             text-decoration: none;
             transition: 0.3s;
+            margin-top: 20px;
+            z-index: 3;
+            opacity: 1;
             
         }
 
-        .currentpro a:hover{
-            transform: scale(1.25, 1.25);
+        .currentpro-btn a:hover{
+            transform: scale(1.15, 1.15);
             background-color: #f04d44;
+            opacity: 2;
         }
 
         .currentptitle  {
@@ -1582,12 +1586,22 @@ textarea {
         .curprodimgtran {
             z-index: 1;
             transition: .3s;
+            opacity: 1;
         }
 
         .curprodimgtran:hover {
             transform: scale(1.1, 1.1);
+            opacity: 0.2;
+            z-index: 2;
         }
-        
+
+
+        .curtext {
+            text-align: center;
+            margin-top: -45%;
+            font-size: 145%;
+        }
+
         /*.currentptitle*/
 
 

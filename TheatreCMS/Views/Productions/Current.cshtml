@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Production>
 
+
+
 @{
     ViewBag.Title = "Current Production";
 }
@@ -7,7 +9,7 @@
 <h2 class="curpro">Current Productions</h2>
 
 @*verifies role of user and only displays link if logged in as admin*@
-<div class="row currentpro justify-content-center">
+<div class="row currentpro-btn justify-content-center" >
     @if (User.IsInRole("Admin"))
     {
       <p>
@@ -19,15 +21,20 @@
     </p>
 </div>
 
+<style>
+  body {
+    overflow-x: hidden;
+  }
+</style>
 
 
-<div class="container-fluid production-index-container">
+<div class="container-fluid">
 @* Cycle through each object displaying individual results*@
   
   <div class="row mx-2">
     @foreach (var item in Model)
     {
-    <div class="card col-md-6 col-xl-4 bg-black" id="production-info-parent">
+    <div class="card col-md-6 col-xl-6 bg-black curprodinfo">
       <h4 class="center">
         <a class="currentptitle" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
           @*.........................................Big text for play*@
@@ -38,17 +45,56 @@
         if (item.DefaultPhoto != null)
         {
 
-          <a class="current-production-img curprodimgtran" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-            <img class="card-img-top production-index-img mt-3 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+          <a class="current-production-img curprodimgtran curprodimg" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+            <img class="card-img-top production-index-img mt-3 bg-black " src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
           </a>
         }
         else
         {
-          <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+          <a class="curprodimg curprodimgtran" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
             <img class="card-img-top production-index-img mt-3 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
           </a>
         }
       }
+      <div class="curmiddle">
+        <div class="curtext">
+          <h5 class="center">
+            by @Html.DisplayFor(modelItem => item.Playwright)
+            <small>
+              @*.................................Small text for author*@
+              <br />
+              @if (item.IsWorldPremiere == true)
+              {
+                @Html.DisplayNameFor(model => model.IsWorldPremiere)
+              }
+              @Html.DisplayFor(modelItem => item.Description)
+            </small>
+          </h5>
+          <div class="row justify-content-center">
+            <p>
+              @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
+              <br />
+              @if (item.ShowtimeEve != null)
+              {
+                @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
+              }
+
+              @if (item.ShowtimeMat != null)
+              {
+                @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
+              }
+
+            </p>
+          </div>
+          <h5>
+            Final Showing: @item.ClosingDay.DayOfWeek @item.ClosingDay.ToString("MM/dd") at @if (item.ShowtimeMat != null)
+            {@item.ShowtimeMat.Value.ToString("hh:mm tt")}
+          </h5>
+          <p class="currentpro-btn">
+            @Html.ActionLink("Buy Tickets Now!", "TicketLink", new { id = item.ProductionId })  
+          </p>
+        </div>
+      </div>
       @*This Row is used to set the elements of the card side by mx-auto side instead of a classic over under*@
       @*<div class="col-md-5 col-sm-6 col-lg-2"></div>*@ @*This pushes the elements to the center of the view*@
 
@@ -68,44 +114,11 @@
         <div class="card-body">
           @*...............fixes row height......... *@
           <div class="container-fluid position-relative overflow-auto">
-            <h5 class="center">
-              <small>
-                @*.................................Small text for author*@
-                by @Html.DisplayFor(modelItem => item.Playwright)<br />
-                @if (item.IsWorldPremiere == true)
-                {
-                  @Html.DisplayNameFor(model => model.IsWorldPremiere)
-                }
-              </small>
-            </h5>
             <div class="center">
-              <div class="row justify-content-center">
-                <p>
-                  @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
-                  <br />
-                  @if (item.ShowtimeEve != null)
-                  {
-                    @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
-                  }
-
-                  @if (item.ShowtimeMat != null)
-                  {
-                    @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
-                  }
-
-                </p>
-              </div>
-              <h5>Final Showing: @item.ClosingDay.DayOfWeek @item.ClosingDay.ToString("MM/dd") at @if (item.ShowtimeMat != null)
-              {@item.ShowtimeMat.Value.ToString("hh:mm tt")}</h5> 
-              <div class="col-4">
-                @*Large button that sits halfway down the card
-                <button type="submit" class="get-ticket-btn btn palette-container my-3 text-captialize text-center font-weight-bold">Get Tickets!</button>
-              @*  @Html.DisplayFor(modelItem => item.TicketLink) ..................Ticket Link Info *@
-              </div>
               @*verifies role of user and only displays edit/delete links if logged in as admin*@
               @if (User.IsInRole("Admin"))
               {
-                <p class="currentpro">
+                <p class="currentpro-btn">
                   @Html.ActionLink("Edit", "Edit", new { id = item.ProductionId })  @*This part left in for debugging purposes*@
                   @Html.ActionLink("Delete", "Delete", new { id = item.ProductionId })
                 </p>
@@ -118,6 +131,24 @@
     }
   </div>
 </div>
+
+
+<script>
+  var slideIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > x.length) {slideIndex = 1}
+  x[slideIndex-1].style.display = "block";
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
 @*<p>..................................................Scaffold Code..............................................
         @Html.ActionLink("Create New", "Create")
     </p>
