@@ -9,23 +9,27 @@
 <h2 class="curpro">Current Productions</h2>
 
 @*verifies role of user and only displays link if logged in as admin*@
-<div class="row currentpro-btn justify-content-center" >
+<div class="center currentpro-btn justify-content-center" >
     @if (User.IsInRole("Admin"))
     {
       <p>
-          @Html.ActionLink("Create New", "Create") &nbsp;
+          @Html.ActionLink("Create New", "Create")
+          @Html.ActionLink("All Productions", "Index")
       </p>
     }
-    <p>
-      @Html.ActionLink("All Productions", "Index")
-    </p>
+    @if (!User.IsInRole("Admin"))
+    {
+      <p>
+          @Html.ActionLink("All Productions", "Index")
+      </p>
+    }
 </div>
 
-<style>
+@*<style>
   body {
     overflow-x: hidden;
   }
-</style>
+</style>*@
 
 
 <div class="container-fluid">
@@ -70,7 +74,7 @@
               @Html.DisplayFor(modelItem => item.Description)
             </small>
           </h5>
-          <div class="row justify-content-center">
+          <div class="">
             <p>
               @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
               <br />
@@ -109,11 +113,11 @@
   </div>-->
 
 
-      <div class="card col-md-auto col-sm-auto col-lg-auto palette-container">
+      <div class="card palette-container">
         @*.....Create 'Info' Card...................*@
         <div class="card-body">
           @*...............fixes row height......... *@
-          <div class="container-fluid position-relative overflow-auto">
+          <div class="position-relative">
             <div class="center">
               @*verifies role of user and only displays edit/delete links if logged in as admin*@
               @if (User.IsInRole("Admin"))
