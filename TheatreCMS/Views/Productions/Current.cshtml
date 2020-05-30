@@ -48,8 +48,8 @@
       @{
         if (item.DefaultPhoto != null)
         {
-
-          <a class="current-production-img curprodimgtran curprodimg" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+            @*adds resize effect on hover and shows info on the show*@
+          <a class="current-production-img curprodimgtran curprodimg" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">  
             <img class="card-img-top production-index-img mt-3 bg-black " src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
           </a>
         }
@@ -60,7 +60,7 @@
           </a>
         }
       }
-      <div class="curmiddle">
+      <div class="curmiddle">  @*classes for hover effect*@
         <div class="curtext">
           <h5 class="center">
             by @Html.DisplayFor(modelItem => item.Playwright)
