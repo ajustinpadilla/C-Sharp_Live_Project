@@ -1600,6 +1600,14 @@ textarea {
             margin-bottom: 25px;
         }
 
+        .prodphoto-img-dimensions {
+            color: #000000;
+        }
+
+        .prodphoto-img-dimvalue {
+            color: #ffffff;
+        }
+
 
 
 
