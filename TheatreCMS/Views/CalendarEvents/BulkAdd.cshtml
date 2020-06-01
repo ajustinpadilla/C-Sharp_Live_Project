@@ -43,8 +43,8 @@
             Evening <span id="evening-time"></span>
         </label>
         <label for="other" id="showtime-dropdown">
-            Other
-            @Html.DropDownList("Times", new SelectList(ViewData["Times"] as List<string>), "select", new { @class = "dropdown" })
+            Custom
+            @Html.DropDownList("custom-time", new SelectList(ViewData["Times"] as List<string>), "", new { @class = "dropdown" })
         </label>
     </div>
 
@@ -85,9 +85,9 @@
             Interval
             <select id="interval">
                 <option value="1">One Week</option>
-                <option value="1">Two Weeks</option>
-                <option value="1">Three Weeks</option>
-                <option value="1">Four Weeks</option>
+                <option value="2">Two Weeks</option>
+                <option value="3">Three Weeks</option>
+                <option value="4">Four Weeks</option>
             </select>
         </label>
     </div>

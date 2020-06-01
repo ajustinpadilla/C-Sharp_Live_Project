@@ -81,9 +81,9 @@ if (document.getElementById("generate-showtimes-section") != null) {
             dataType: 'json',
             success: function (data) {
                 if (data != "[]") {
-                    var production = jQuery.parseJSON(data);
-                    var openingDay = production[0].OpeningDay.substr(0, 10); // Removes the time from the date
-                    var closingDay = production[0].ClosingDay.substr(0, 10);
+                    let production = jQuery.parseJSON(data);
+                    let openingDay = production[0].OpeningDay.substr(0, 10); // Removes the time from the date
+                    let closingDay = production[0].ClosingDay.substr(0, 10);
                     $("#generate__start-date-field").val(openingDay); //code for adding a date to the start date field
                     $("#generate__end-date-field").val(closingDay);
                     $("#matinee-time").html(moment(production[0].ShowtimeMat).format('h:mm a'));
@@ -113,15 +113,44 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
 
     }
-        $("#generate-button").click(function() {
-            $("#showtimes-container").show();
-            var 
+    $("#generate-button").click(function () {
+        $("#showtimes-container").text();
+        let production = $("#generate__production-field").children("option").filter(":selected").text();
+        let startDate = moment($("#generate__start-date-field").val());
+        let endDate = moment($("#generate__end-date-field").val());
+        let dateRange = endDate.diff(startDate, 'days');
+        let startTimes = [];
+        if ($('#matinee').is(':checked')) {
+            startTimes.push($('#matinee-time').text());
+        }
+        if ($('#evening').is(':checked')) {
+            startTimes.push($('#evening-time').text());
+        }
+        if ($('#custom-time').val() != "") {
+            startTimes.push($('#custom-time').val());
+        }
+
+
+        
+
+
+        //startTimes = [moment($("#matinee-time").text()), moment($("#matinee-time").text()), moment($("#matinee-time").text())];
 
 
 
-        });
+
+        let daysOfWeek;
+        let interval = $("#interval").children("option").filter(":selected").val();
+        //var dateRange = $("#generate__start-date-field").val().moment.diff($("#generate__end-date-field").val());
+
+        
 
 
+
+
+    });
+
+}
 
 
 
