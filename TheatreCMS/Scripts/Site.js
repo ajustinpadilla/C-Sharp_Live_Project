@@ -119,6 +119,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
         let startDate = moment($("#generate__start-date-field").val());
         let endDate = moment($("#generate__end-date-field").val());
         let dateRange = endDate.diff(startDate, 'days');
+        let interval = $("#interval").children("option").filter(":selected").val();
         let startTimes = [];
             if ($('#matinee').is(':checked')) {
                 startTimes.push($('#matinee-time').text());
@@ -130,46 +131,34 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 startTimes.push($('#custom-time').val());
             }
 
-        let showDays = [];
-        if ($('#monday').is(':checked')) {
-            showDays.push('monday');
+        let productionDays = [];
+            if ($('#monday').is(':checked')) {
+                productionDays.push('monday');
+            }
+            if ($('#tuesday').is(':checked')) {
+                productionDays.push('tuesday');
+            }
+            if ($('#wednesday').is(':checked')) {
+                productionDays.push('wednesday');
+            }
+            if ($('#thursday').is(':checked')) {
+                productionDays.push('thursday');
+            }
+            if ($('#friday').is(':checked')) {
+                productionDays.push('friday');
+            }
+            if ($('#saturday').is(':checked')) {
+                productionDays.push('saturday');
+            }
+            if ($('#sunday').is(':checked')) {
+                productionDays.push('sunday');
         }
-        if ($('#tuesday').is(':checked')) {
-            showDays.push('tuesday');
+
+            console.log(startDate.format('ll'))
+        for (i = startDate.day(); i < dateRange; i += 7) {
+            console.log(startDate.add('7', 'days').format('ll'))
+            
         }
-        if ($('#wednesday').is(':checked')) {
-            showDays.push('wednesday');
-        }
-        if ($('#thursday').is(':checked')) {
-            showDays.push('thursday');
-        }
-        if ($('#friday').is(':checked')) {
-            showDays.push('friday');
-        }
-        if ($('#saturday').is(':checked')) {
-            showDays.push('saturday');
-        }
-        if ($('#sunday').is(':checked')) {
-            showDays.push('sunday');
-        }
-
-        
-
-
-        //startTimes = [moment($("#matinee-time").text()), moment($("#matinee-time").text()), moment($("#matinee-time").text())];
-
-
-
-
-        let daysOfWeek;
-        let interval = $("#interval").children("option").filter(":selected").val();
-        //var dateRange = $("#generate__start-date-field").val().moment.diff($("#generate__end-date-field").val());
-
-        
-
-
-
-
     });
 
 }
