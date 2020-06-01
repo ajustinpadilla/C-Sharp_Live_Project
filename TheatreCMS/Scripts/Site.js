@@ -120,16 +120,38 @@ if (document.getElementById("generate-showtimes-section") != null) {
         let endDate = moment($("#generate__end-date-field").val());
         let dateRange = endDate.diff(startDate, 'days');
         let startTimes = [];
-        if ($('#matinee').is(':checked')) {
-            startTimes.push($('#matinee-time').text());
-        }
-        if ($('#evening').is(':checked')) {
-            startTimes.push($('#evening-time').text());
-        }
-        if ($('#custom-time').val() != "") {
-            startTimes.push($('#custom-time').val());
-        }
+            if ($('#matinee').is(':checked')) {
+                startTimes.push($('#matinee-time').text());
+            }
+            if ($('#evening').is(':checked')) {
+                startTimes.push($('#evening-time').text());
+            }
+            if ($('#custom-time').val() != "") {
+                startTimes.push($('#custom-time').val());
+            }
 
+        let showDays = [];
+        if ($('#monday').is(':checked')) {
+            showDays.push('monday');
+        }
+        if ($('#tuesday').is(':checked')) {
+            showDays.push('tuesday');
+        }
+        if ($('#wednesday').is(':checked')) {
+            showDays.push('wednesday');
+        }
+        if ($('#thursday').is(':checked')) {
+            showDays.push('thursday');
+        }
+        if ($('#friday').is(':checked')) {
+            showDays.push('friday');
+        }
+        if ($('#saturday').is(':checked')) {
+            showDays.push('saturday');
+        }
+        if ($('#sunday').is(':checked')) {
+            showDays.push('sunday');
+        }
 
         
 
