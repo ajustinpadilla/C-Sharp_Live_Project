@@ -189,7 +189,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                         console.log(startTimes[k])
                         console.log(eventDate.format('ll'));
                         const event = new CalendarEvent(production, eventDate.format('ll'), productionDays[i], startTimes[k]);
-                        console.log(event);
+                        eventList.push(event);
                     }
                 }
                 eventDate.add((7 * interval).toString(), 'days').format('ll');
@@ -197,6 +197,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
             startDate = moment($("#generate__start-date-field").val());
             eventDate = startDate;
         }
+        console.log(eventList);
     });
 
 
