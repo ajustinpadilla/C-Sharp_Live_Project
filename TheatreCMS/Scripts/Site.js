@@ -155,34 +155,46 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
         let productionDays = [];
         if ($('#monday').is(':checked')) {
-            productionDays.push('monday');
+            productionDays.push(1);
         }
         if ($('#tuesday').is(':checked')) {
-            productionDays.push('tuesday');
+            productionDays.push(2);
         }
         if ($('#wednesday').is(':checked')) {
-            productionDays.push('wednesday');
+            productionDays.push(3);
         }
         if ($('#thursday').is(':checked')) {
-            productionDays.push('thursday');
+            productionDays.push(4);
         }
         if ($('#friday').is(':checked')) {
-            productionDays.push('friday');
+            productionDays.push(5);
         }
         if ($('#saturday').is(':checked')) {
-            productionDays.push('saturday');
+            productionDays.push(6);
         }
         if ($('#sunday').is(':checked')) {
-            productionDays.push('sunday');
+            productionDays.push(0);
         }
 
 
         let firstDay = startDate.day();
-        for (i = 0; i <= dateRange; i += 7) {
-            if (eventDate.isBetween(startDate, endDate, undefined, '[]')) {
-                console.log(eventDate.format('ll'));
+
+        for (i = 0; i < productionDays.length; i++) {
+            if (productionDays[i] < startDate.day()) {
+                console.log('prodDays[i] ' + productionDays[i] + ' startdate.day() ' + startDate.day())
+                productionDays[i] += 7;
             }
-            eventDate.add('7', 'days').format('ll');
+            console.log(productionDays[i])
+            startDate.day(productionDays[i]);
+            eventDate = startDate;
+            for (j = productionDays[i]; j <= dateRange + 7; j += 7) {
+                if (eventDate.isBetween(startDate, endDate, undefined, '[]')) { //check for the eventDate to be within start and end date. The '[]' argument sets it to be inclusive of the start and end date.
+                    console.log(eventDate.format('ll'));
+                }
+                eventDate.add('7', 'days').format('ll');
+            }
+            startDate = moment($("#generate__start-date-field").val());
+            eventDate = startDate;
         }
     });
 
@@ -190,7 +202,12 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
 
 
-
+//for (i = 0; i <= dateRange; i += 7) {
+//    if (eventDate.isBetween(startDate, endDate, undefined, '[]')) {
+//        console.log(eventDate.format('ll'));
+//    }
+//    eventDate.add('7', 'days').format('ll');
+//}
 
 
 
