@@ -123,17 +123,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
         });
     });
 
-    class CalendarEvent {
-        constructor(production, date, dayOfWeek, startTime) {
-            this.production = production;
-            this.date = date;
-            this.dayOfWeek = dayOfWeek;
-            this.startTime = startTime;
-        }
-
-
-
-    }
+    
     $("#generate-button").click(function () {
         $("#showtimes-container").text();
         let production = $("#generate__production-field").children("option").filter(":selected").text();
@@ -181,23 +171,31 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
         for (i = 0; i < productionDays.length; i++) {
             if (productionDays[i] < startDate.day()) {
-                console.log('prodDays[i] ' + productionDays[i] + ' startdate.day() ' + startDate.day())
                 productionDays[i] += 7;
             }
             console.log(productionDays[i])
             startDate.day(productionDays[i]);
             eventDate = startDate;
-            for (j = productionDays[i]; j <= dateRange + 7; j += 7) {
+            for (j = productionDays[i]; j <= dateRange + 7; j += 7 * interval) {
                 if (eventDate.isBetween(startDate, endDate, undefined, '[]')) { //check for the eventDate to be within start and end date. The '[]' argument sets it to be inclusive of the start and end date.
                     console.log(eventDate.format('ll'));
                 }
-                eventDate.add('7', 'days').format('ll');
+                eventDate.add((7 * interval).toString(), 'days').format('ll');
             }
             startDate = moment($("#generate__start-date-field").val());
             eventDate = startDate;
         }
     });
 
+
+    class CalendarEvent {
+        constructor(production, date, dayOfWeek, startTime) {
+            this.production = production;
+            this.date = date;
+            this.dayOfWeek = dayOfWeek;
+            this.startTime = startTime;
+        }
+    }
 }
 
 
