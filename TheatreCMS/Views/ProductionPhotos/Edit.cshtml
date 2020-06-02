@@ -40,9 +40,9 @@
                 <div class="form-group">
                     Choose New @Html.LabelFor(model => model.PhotoId, htmlAttributes: new { @class = "control-label inputLabel" })
                     <div class="col-md-10 formBox">
-                        <input class="fileSelect" type="file" name="file" id="input1" accept="image/*" />
+                        <input class="fileSelect" type="file" name="file" id="input1" accept="image/*" onchange="loadFile(event)" />
                           <img id="imagepreview1" class="medium_size" />
-                            <p><span class="prodphoto-img-dimensions" id="wrdheight"></span><span class="prodphoto-img-dimvalue" id="imgheight"></span><span class="prodphoto-img-dimensions" id="wrdwidth"></span><span class="prodphoto-img-dimvalue" id="imgwidth"></span></p>
+                          <p><span class="prodphoto-img-dimensions" id="wrdheight"></span> <span class="prodphoto-img-dimvalue" id="imgheight"></span>&nbsp; <span class="prodphoto-img-dimensions" id="wrdwidth"></span> <span class="prodphoto-img-dimvalue" id="imgwidth"></span></p>
                         <hr />
                         @Html.ValidationMessageFor(model => model.PhotoId, "", new { @class = "text-danger" })
                     </div>
@@ -86,6 +86,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
+  const EL_input1 = document.getElementById('input1');
+
+
   function readURL(input) {
 
     if (input.files && input.files[0]) {
@@ -99,10 +102,7 @@
     }
 }
 
-$("#input1").change(function () {
-    readURL(this);
-    $('#imagepreview1').show();
-});
+
 
   var _URL = window.URL || window.webkitURL;
   $("#input1").change(function (e) {
@@ -120,5 +120,27 @@ $("#input1").change(function () {
       img.src = objectUrl;
     }
   });
+
+  $("#input1").change(function () {
+    readURL(this);
+    $('#imagepreview1').show();
+  });
+
+  $("#input1").change(function () {
+    readURL(this);
+    $('#imagepreview1').hide();
+  });
+
+  EL_input1.addEventListener('change', ev => {
+    const files = ev.target.files;
+    if (!files || !files[0]) {
+      document.getElementById("wrdheight").innerHTML = ("");
+      document.getElementById("wrdwidth").innerHTML = ("");
+      document.getElementById("imgheight").innerHTML = ("");
+      document.getElementById("imgwidth").innerHTML = ("");
+    }
+    [...files].forEach(readImage);
+  });
+
 
 </script>
