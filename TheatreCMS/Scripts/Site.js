@@ -132,6 +132,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
         let eventDate = startDate;
         let dateRange = endDate.diff(startDate, 'days');
         let interval = $("#interval").children("option").filter(":selected").val();
+        let eventList = [];
         let startTimes = [];
         if ($('#matinee').is(':checked')) {
             startTimes.push($('#matinee-time').text());
@@ -166,6 +167,15 @@ if (document.getElementById("generate-showtimes-section") != null) {
             productionDays.push(0);
         }
 
+        class CalendarEvent {
+            constructor(production, date, dayOfWeek, startTime) {
+                this.production = production;
+                this.date = date;
+                this.dayOfWeek = dayOfWeek;
+                this.startTime = startTime;
+            }
+        }
+
         for (i = 0; i < productionDays.length; i++) {
             if (productionDays[i] < startDate.day()) {
                 productionDays[i] += 7;
@@ -177,7 +187,9 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 if (eventDate.isBetween(startDate, endDate, undefined, '[]')) { //check for the eventDate to be within start and end date. The '[]' argument sets it to be inclusive of the start and end date.
                     for (k = 0; k < startTimes.length; k++) {
                         console.log(startTimes[k])
-                    console.log(eventDate.format('ll'));
+                        console.log(eventDate.format('ll'));
+                        const event = new CalendarEvent(production, eventDate.format('ll'), productionDays[i], startTimes[k]);
+                        console.log(event);
                     }
                 }
                 eventDate.add((7 * interval).toString(), 'days').format('ll');
@@ -188,14 +200,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
     });
 
 
-    class CalendarEvent {
-        constructor(production, date, dayOfWeek, startTime) {
-            this.production = production;
-            this.date = date;
-            this.dayOfWeek = dayOfWeek;
-            this.startTime = startTime;
-        }
-    }
 }
 
 
