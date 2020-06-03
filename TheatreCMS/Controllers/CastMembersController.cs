@@ -82,7 +82,10 @@ namespace TheatreCMS.Controllers
             {
                 if (file != null && file.ContentLength > 0)
                 {
-                    PhotoController.CreatePhoto(file, castMember.Name);
+                    //byte[] photo = ImageUploadController.ImageBytes(file, out string _64);
+                    //currentCastMember.photo = photo;
+                    
+                    PhotoController.CreatePhoto(file, castMember.Name); //Call CreatePhoto method from Photocontroller
                     
                 }
                 string photoId = Request.Form["PhotoId"].ToString();
@@ -93,7 +96,6 @@ namespace TheatreCMS.Controllers
                     castMember.CastMemberPersonID = db.Users.Find(userId).Id;
                 }
                 //ModelState.Remove("PhotoId");
-                castMember.PhotoId = Convert.ToInt32(photoId);
                 db.CastMembers.Add(castMember);
                 db.SaveChanges();
 
@@ -155,115 +157,120 @@ namespace TheatreCMS.Controllers
             return View(castMember);
         }
 
-        //// POST: CastMembers/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,PhotoId,CurrentMember,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
-        //{
-        //    ModelState.Remove("CastMemberPersonID");
-        //    string userId = Request.Form["dbUsers"].ToString();
+        // POST: CastMembers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,PhotoId,CurrentMember,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
+        {
+            ModelState.Remove("CastMemberPersonID");
+            string userId = Request.Form["dbUsers"].ToString();
 
-        //    // ModelState error to ensure that A user cannot be assigned to multiple cast members.
-        //    // If the userId is null, castMemberId is 0, or previous castMemberId is the same as the new CastMemberId,
-        //    // Then don't add the model error.
-        //    if (!string.IsNullOrEmpty(userId))
-        //    {
-        //        int newCastMemberId = db.Users.Find(userId).CastMemberUserID;
-        //        if (!(newCastMemberId == 0 || castMember.CastMemberID == newCastMemberId))
-        //            ModelState.AddModelError("CastMemberPersonID", $"{db.Users.Find(userId).UserName} already has a cast member profile");
-        //    }
+            // ModelState error to ensure that A user cannot be assigned to multiple cast members.
+            // If the userId is null, castMemberId is 0, or previous castMemberId is the same as the new CastMemberId,
+            // Then don't add the model error.
+            if (!string.IsNullOrEmpty(userId))
+            {
+                int newCastMemberId = db.Users.Find(userId).CastMemberUserID;
+                if (!(newCastMemberId == 0 || castMember.CastMemberID == newCastMemberId))
+                    ModelState.AddModelError("CastMemberPersonID", $"{db.Users.Find(userId).UserName} already has a cast member profile");
+            }
 
-        //    // The unmodified Cast Member to be Edited ( The 'previous' Cast Member )
-        //    var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
+            // The unmodified Cast Member to be Edited ( The 'previous' Cast Member )
+            var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        //byte[] oldPhoto = currentCastMember.Photo;
+            if (ModelState.IsValid)
+            {
+                //byte[] oldPhoto = currentCastMember.Photo;
+                int oldPhotoId = currentCastMember.PhotoId;
 
-        //        currentCastMember.Name = castMember.Name;
-        //        currentCastMember.PhotoId = castMember.PhotoId;
-        //        currentCastMember.YearJoined = castMember.YearJoined;
-        //        currentCastMember.MainRole = castMember.MainRole;
-        //        currentCastMember.Bio = castMember.Bio;
-        //        currentCastMember.CurrentMember = castMember.CurrentMember;
-        //        currentCastMember.AssociateArtist = castMember.AssociateArtist;
-        //        currentCastMember.EnsembleMember = castMember.EnsembleMember;
-        //        currentCastMember.CastYearLeft = castMember.CastYearLeft;
-        //        currentCastMember.DebutYear = castMember.DebutYear;
+                currentCastMember.Name = castMember.Name;
+                currentCastMember.YearJoined = castMember.YearJoined;
+                currentCastMember.MainRole = castMember.MainRole;
+                currentCastMember.Bio = castMember.Bio;
+                currentCastMember.CurrentMember = castMember.CurrentMember;
+                currentCastMember.AssociateArtist = castMember.AssociateArtist;
+                currentCastMember.EnsembleMember = castMember.EnsembleMember;
+                currentCastMember.CastYearLeft = castMember.CastYearLeft;
+                currentCastMember.DebutYear = castMember.DebutYear;
 
-        //        string previousUserId = "";
-        //        string newUserId = "";
+                string previousUserId = "";
+                string newUserId = "";
 
-        //        // If the Cast Member had a previous User, get that User's Id.
-        //        if (!string.IsNullOrEmpty(currentCastMember.CastMemberPersonID))
-        //            previousUserId = currentCastMember.CastMemberPersonID;
+                // If the Cast Member had a previous User, get that User's Id.
+                if (!string.IsNullOrEmpty(currentCastMember.CastMemberPersonID))
+                    previousUserId = currentCastMember.CastMemberPersonID;
 
-        //        // If the selected UserName is not "(No User Selected)", get that User's Id.
-        //        if (!string.IsNullOrEmpty(userId))
-        //            newUserId = userId;
+                // If the selected UserName is not "(No User Selected)", get that User's Id.
+                if (!string.IsNullOrEmpty(userId))
+                    newUserId = userId;
 
-        //        // Only change the Cast Member's and the user's Ids if the Users changed.
-        //        if (previousUserId != newUserId)
-        //        {
-        //            Debug.WriteLine("\n\nThe Usernames changed!!\n\n");
-        //            // Set the previous User's CastMemberUserId to 0 if that User exists.
-        //            if (previousUserId != "")
-        //                db.Users.Find(previousUserId).CastMemberUserID = 0;
+                // Only change the Cast Member's and the user's Ids if the Users changed.
+                if (previousUserId != newUserId)
+                {
+                    Debug.WriteLine("\n\nThe Usernames changed!!\n\n");
+                    // Set the previous User's CastMemberUserId to 0 if that User exists.
+                    if (previousUserId != "")
+                        db.Users.Find(previousUserId).CastMemberUserID = 0;
 
-        //            // Only do this if there was a User selected.  Links the Cast Member and
-        //            // User together by updated their associated databases.
-        //            if (newUserId != "")
-        //            {
-        //                // Link the Cast Member to the User
-        //                currentCastMember.CastMemberPersonID = userId;
+                    // Only do this if there was a User selected.  Links the Cast Member and
+                    // User together by updated their associated databases.
+                    if (newUserId != "")
+                    {
+                        // Link the Cast Member to the User
+                        currentCastMember.CastMemberPersonID = userId;
 
-        //                // Get the selected User.
-        //                var selectedUser = db.Users.Find(userId);
+                        // Get the selected User.
+                        var selectedUser = db.Users.Find(userId);
 
-        //                // Update the User's Cast Member Id column with castMemberId
-        //                selectedUser.CastMemberUserID = castMember.CastMemberID;
+                        // Update the User's Cast Member Id column with castMemberId
+                        selectedUser.CastMemberUserID = castMember.CastMemberID;
 
-        //                // Save the changes
-        //                db.Entry(selectedUser).State = EntityState.Modified;
-        //                db.SaveChanges();
-        //            }
-        //            // When there is no User selected, remove the reference to the User for this cast member.
-        //            else
-        //                currentCastMember.CastMemberPersonID = null;
-        //        }
+                        // Save the changes
+                        db.Entry(selectedUser).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    // When there is no User selected, remove the reference to the User for this cast member.
+                    else
+                        currentCastMember.CastMemberPersonID = null;
+                }
 
-        //        if (file != null && file.ContentLength > 0)
-        //        {
-        //            byte[] newPhoto = ImageUploadController.ImageBytes(file, out string _64);
-        //            currentCastMember.Photo = newPhoto;
-        //        }
-        //        else
-        //        {
-        //            currentCastMember.PhotoId = oldPhotoId;
-        //        }
-        //        //castMember.CastMemberPersonID = db.Users.Find(userId).Id;
-        //        //db.Entry(castMember).State = EntityState.Modified;
-        //        db.Entry(currentCastMember).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        // If the ModelState is invalid for some reason, make sure to retain the Cast Member's User selection.
-        //        //ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", db.CastMembers.Find(castMember.CastMemberID).CastMemberPersonID);
+                if (file != null && file.ContentLength > 0)
+                {
+                    //byte[] newPhoto = ImageUploadController.ImageBytes(file, out string _64);
+                    //currentCastMember.Photo = newPhoto;
+                    Photo photo = db.Photo.Find(castMember.PhotoId); // Delete old castmember photo
+                    db.Photo.Remove(photo);
+                    db.SaveChanges();
+                    PhotoController.CreatePhoto(file, castMember.Name); //Call CreatePhoto method from Photocontroller
+                }
+                else
+                {
+                    //currentCastMember.Photo = oldPhoto;
+                    currentCastMember.PhotoId = oldPhotoId; //new attribute PhotoId
+                }
+                //castMember.CastMemberPersonID = db.Users.Find(userId).Id;
+                //db.Entry(castMember).State = EntityState.Modified;
+                db.Entry(currentCastMember).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // If the ModelState is invalid for some reason, make sure to retain the Cast Member's User selection.
+                //ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", db.CastMembers.Find(castMember.CastMemberID).CastMemberPersonID);
 
-        //        // The same thing can be acheived if I expand this line's scope: var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
-        //        // and then use new SelectList(db.Users.ToList(), "Id", "UserName", currentCastMember.CastMemberPersonID);
-        //        // Now that I think of it, I'm using the value of currentCastMember whether or not the ModelState is valid or not,
-        //        // So I think I'm safe to expand it's scope.
+                // The same thing can be acheived if I expand this line's scope: var currentCastMember = db.CastMembers.Find(castMember.CastMemberID);
+                // and then use new SelectList(db.Users.ToList(), "Id", "UserName", currentCastMember.CastMemberPersonID);
+                // Now that I think of it, I'm using the value of currentCastMember whether or not the ModelState is valid or not,
+                // So I think I'm safe to expand it's scope.
 
-        //        ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", currentCastMember.CastMemberPersonID);
-        //    }
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName", currentCastMember.CastMemberPersonID);
+            }
 
-        //    return View(castMember);
-        //}
+            return View(castMember);
+        }
 
         // GET: CastMembers/Delete/5
         public ActionResult Delete(int? id)
