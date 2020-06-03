@@ -129,11 +129,21 @@ if (document.getElementById("generate-showtimes-section") != null) {
     $("#generate-button").click(function () {
 
         var modal = $('#bulk-add-modal'),
-            btnYes = document.getElementById('bulk-add-modal_yes'),
-            btnNo = document.getElementById('bulk-add-modal_no')
+            btnYes = $('#bulk-add-modal_yes'),
+            btnNo = $('#bulk-add-modal_no');
 
         modal.show();
+        btnNo.click(function () {
+            modal.hide()
+        });
+        btnYes.click(function () {
+            generateShowtimes();
+            modal.hide();
+        })
+         
 
+
+        function generateShowtimes() {
 
         let production = $("#generate__production-field").children("option").filter(":selected").text(),
             startDate = moment($("#generate__start-date-field").val()),
@@ -216,28 +226,29 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
         // This block handles rendering the showtimes table
         $("#showtimes-container").show();
-        var columns = 3,
-            count = 0,
-            table = document.createElement("table"),
+        //var columns = 3,
+        //    count = 0,
+        var table = document.createElement("table"),
             row = table.insertRow();
 
         for (i = 0; i < eventList.length; i++) {
             var cell = row.insertCell();
             cell.innerHTML = eventList[i].date.format('ll');
-            count++;
+            //count++;
             cell = row.insertCell();
             cell.innerHTML = eventList[i].dayOfWeek;
-            count++;
+            //count++;
             cell = row.insertCell();
             cell.innerHTML = eventList[i].startTime;
-            count++;
-            if (count % columns == 0) {
-                row = table.insertRow();
-            }
+            //count++;
+            row = table.insertRow();
+            //if (count % columns == 0) {
+            //}
         }
 
         document.getElementById('showtimes-container').appendChild(table);
         //$("#showtimes-container").text();
+        }
     });
 }
     //End script for Bulk Add
