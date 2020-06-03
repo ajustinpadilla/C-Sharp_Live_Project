@@ -31,7 +31,7 @@
         {
             if (item.Season == currentSeason)
             {
-              <div class="archivecard bg-black"> <!-- add mx-auto to center cards -->
+              <div class="card mx-auto archivecard bg-black"> <!-- add mx-auto to center cards -->
                 @{
                   if (item.DefaultPhoto != null)
                   {
@@ -112,7 +112,7 @@
             {
                 if (item.Season > currentSeason)
                 {
-                <div class="archivecard mx-auto bg-black"> <!-- add mx-auto to center cards -->
+                <div class="card mx-auto archivecard bg-black"> <!-- add mx-auto to center cards -->
                     @{
 
                         if (item.DefaultPhoto != null)

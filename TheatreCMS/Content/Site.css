@@ -2005,16 +2005,13 @@ textarea {
 
 /* Archive Current Productions and Archive Future Productions*/
 
-/* Card styling to create responsiveness */
-/*.card {
-    min-width: 30rem;
-    max-width: 40rem;
-}
-*/
+
+/* add custom class for local styling */
 .archivecard {
     min-width: 30rem;
     max-width: 40rem;
 }
+
 /**/
 #current-productions #future-productions {
     padding: 0px 20px;
