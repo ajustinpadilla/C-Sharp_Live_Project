@@ -173,6 +173,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 this.date = date;
                 this.dayOfWeek = dayOfWeek;
                 this.startTime = startTime;
+                this.dateString = date;
             }
         }
 
@@ -188,8 +189,9 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     for (k = 0; k < startTimes.length; k++) {
                         console.log(startTimes[k])
                         console.log(eventDate.format('ll'));
-                        const event = new CalendarEvent(production, eventDate.format('ll'), eventDate.format('dddd'), startTimes[k]);
+                        const event = new CalendarEvent(production, moment(eventDate), eventDate.format('dddd'), startTimes[k], eventDate.format('ll'));
                         eventList.push(event);
+                        
                     }
                 }
                 eventDate.add((7 * interval).toString(), 'days').format('ll');
@@ -197,6 +199,8 @@ if (document.getElementById("generate-showtimes-section") != null) {
             startDate = moment($("#generate__start-date-field").val());
             eventDate = startDate;
         }
+        eventList.sort((a, b) => a.date - b.date);
+        
         console.log(eventList);
         $("#showtimes-container").show();
         var columns = 3,
@@ -206,7 +210,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
         for (i = 0; i < eventList.length; i++) {
             var cell = row.insertCell();
-            cell.innerHTML = eventList[i].date;
+            cell.innerHTML = eventList[i].date.format('ll');
             count++;
             cell = row.insertCell();
             cell.innerHTML = eventList[i].dayOfWeek;
