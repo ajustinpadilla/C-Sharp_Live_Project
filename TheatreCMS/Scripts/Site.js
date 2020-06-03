@@ -123,10 +123,19 @@ if (document.getElementById("generate-showtimes-section") != null) {
         });
     });
 
-    
+
+    // 
+
     $("#generate-button").click(function () {
-        
-        let production = $("#generate__production-field").children("option").filter(":selected").text();
+
+        var modal = $('#bulk-add-modal'),
+            btnYes = document.getElementById('bulk-add-modal_yes'),
+            btnNo = document.getElementById('bulk-add-modal_no')
+
+        modal.show();
+
+
+        let production = $("#generate__production-field").children("option").filter(":selected").text(),
             startDate = moment($("#generate__start-date-field").val()),
             endDate = moment($("#generate__end-date-field").val()),
             eventDate = startDate,
@@ -200,8 +209,12 @@ if (document.getElementById("generate-showtimes-section") != null) {
             eventDate = startDate;
         }
         eventList.sort((a, b) => a.date - b.date);
-        
         console.log(eventList);
+
+        // end block
+
+
+        // This block handles rendering the showtimes table
         $("#showtimes-container").show();
         var columns = 3,
             count = 0,
