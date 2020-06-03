@@ -46,7 +46,7 @@
 
 
 .palette-body {
-    background-color: black;
+    background-color: var(--main-bg-color);
     margin-bottom: auto;/* Applying --main-bg-color to the background of body */
 }
 
@@ -2669,22 +2669,22 @@ textarea {
 }
 
 /*This class was added to move most of the content of the login page to the left*/
-.loginpadding {
+/*.loginpadding {
     padding-left: 50px;
-    /*padding-right: 25px;*/
-}
+    padding-right: 25px;                --Login page CSS coded out and replaced with Boostrap classes--
+}*/
 
 /*This class was also added to move certain elements on the login page left*/
-.loginhtwo {
-    padding-left: 65px;
+/*.loginhtwo {
+    padding-left: 50px;
     padding-top: 50px;
-}
+}*/
 /*This class was added to move the login button more to the right*/
 .loginhthree {
     padding-right: 45px;
     padding-left: 5px;
-    /* End Peter O.*/
 }
+/* End Peter O.*/
 
 /* Scrollbar Styling*/
 
