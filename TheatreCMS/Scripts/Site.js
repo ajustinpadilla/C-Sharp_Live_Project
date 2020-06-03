@@ -127,22 +127,22 @@ if (document.getElementById("generate-showtimes-section") != null) {
     $("#generate-button").click(function () {
         
         let production = $("#generate__production-field").children("option").filter(":selected").text();
-        let startDate = moment($("#generate__start-date-field").val());
-        let endDate = moment($("#generate__end-date-field").val());
-        let eventDate = startDate;
-        let dateRange = endDate.diff(startDate, 'days');
-        let interval = $("#interval").children("option").filter(":selected").val();
-        let eventList = [];
-        let startTimes = [];
-            if ($('#matinee').is(':checked')) {
-                startTimes.push($('#matinee-time').text());
-            }
-            if ($('#evening').is(':checked')) {
-                startTimes.push($('#evening-time').text());
-            }
-            if ($('#custom-time').val() != "") {
-                startTimes.push($('#custom-time').val());
-            }
+            startDate = moment($("#generate__start-date-field").val()),
+            endDate = moment($("#generate__end-date-field").val()),
+            eventDate = startDate,
+            dateRange = endDate.diff(startDate, 'days'),
+            interval = $("#interval").children("option").filter(":selected").val(),
+            eventList = [],
+            startTimes = [];
+                if ($('#matinee').is(':checked')) {
+                    startTimes.push($('#matinee-time').text());
+                }
+                if ($('#evening').is(':checked')) {
+                    startTimes.push($('#evening-time').text());
+                }
+                if ($('#custom-time').val() != "") {
+                    startTimes.push($('#custom-time').val());
+                }
 
         let productionDays = [];
             if ($('#sunday').is(':checked')) {
@@ -198,15 +198,29 @@ if (document.getElementById("generate-showtimes-section") != null) {
             eventDate = startDate;
         }
         console.log(eventList);
+        $("#showtimes-container").show();
+        var columns = 3,
+            count = 0,
+            table = document.createElement("table"),
+            row = table.insertRow();
 
-        var tblBody = document.getElementsByTagName("tbody")[0];
-        var row = document.createElement('tr');
         for (i = 0; i < eventList.length; i++) {
-            row.innerText = 'text ' + i;
-            tblBody.append(row);
-            console.log('sd');
+            var cell = row.insertCell();
+            cell.innerHTML = eventList[i].date;
+            count++;
+            cell = row.insertCell();
+            cell.innerHTML = eventList[i].dayOfWeek;
+            count++;
+            cell = row.insertCell();
+            cell.innerHTML = eventList[i].startTime;
+            count++;
+            if (count % columns == 0) {
+                row = table.insertRow();
+            }
         }
-        $("#showtimes-container").text();
+
+        document.getElementById('showtimes-container').appendChild(table);
+        //$("#showtimes-container").text();
     });
 }
     //End script for Bulk Add
