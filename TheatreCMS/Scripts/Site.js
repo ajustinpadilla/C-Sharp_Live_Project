@@ -134,38 +134,38 @@ if (document.getElementById("generate-showtimes-section") != null) {
         let interval = $("#interval").children("option").filter(":selected").val();
         let eventList = [];
         let startTimes = [];
-        if ($('#matinee').is(':checked')) {
-            startTimes.push($('#matinee-time').text());
-        }
-        if ($('#evening').is(':checked')) {
-            startTimes.push($('#evening-time').text());
-        }
-        if ($('#custom-time').val() != "") {
-            startTimes.push($('#custom-time').val());
-        }
+            if ($('#matinee').is(':checked')) {
+                startTimes.push($('#matinee-time').text());
+            }
+            if ($('#evening').is(':checked')) {
+                startTimes.push($('#evening-time').text());
+            }
+            if ($('#custom-time').val() != "") {
+                startTimes.push($('#custom-time').val());
+            }
 
         let productionDays = [];
-        if ($('#monday').is(':checked')) {
-            productionDays.push(1);
-        }
-        if ($('#tuesday').is(':checked')) {
-            productionDays.push(2);
-        }
-        if ($('#wednesday').is(':checked')) {
-            productionDays.push(3);
-        }
-        if ($('#thursday').is(':checked')) {
-            productionDays.push(4);
-        }
-        if ($('#friday').is(':checked')) {
-            productionDays.push(5);
-        }
-        if ($('#saturday').is(':checked')) {
-            productionDays.push(6);
-        }
-        if ($('#sunday').is(':checked')) {
-            productionDays.push(0);
-        }
+            if ($('#sunday').is(':checked')) {
+                productionDays.push(0);
+            }
+            if ($('#monday').is(':checked')) {
+                productionDays.push(1);
+            }
+            if ($('#tuesday').is(':checked')) {
+                productionDays.push(2);
+            }
+            if ($('#wednesday').is(':checked')) {
+                productionDays.push(3);
+            }
+            if ($('#thursday').is(':checked')) {
+                productionDays.push(4);
+            }
+            if ($('#friday').is(':checked')) {
+                productionDays.push(5);
+            }
+            if ($('#saturday').is(':checked')) {
+                productionDays.push(6);
+            }
 
         class CalendarEvent {
             constructor(production, date, dayOfWeek, startTime) {
@@ -188,7 +188,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     for (k = 0; k < startTimes.length; k++) {
                         console.log(startTimes[k])
                         console.log(eventDate.format('ll'));
-                        const event = new CalendarEvent(production, eventDate.format('ll'), productionDays[i], startTimes[k]);
+                        const event = new CalendarEvent(production, eventDate.format('ll'), eventDate.format('dddd'), startTimes[k]);
                         eventList.push(event);
                     }
                 }
@@ -199,21 +199,5 @@ if (document.getElementById("generate-showtimes-section") != null) {
         }
         console.log(eventList);
     });
-
-
 }
-
-
-
-//for (i = 0; i <= dateRange; i += 7) {
-//    if (eventDate.isBetween(startDate, endDate, undefined, '[]')) {
-//        console.log(eventDate.format('ll'));
-//    }
-//    eventDate.add('7', 'days').format('ll');
-//}
-
-
-
-
-
     //End script for Bulk Add
