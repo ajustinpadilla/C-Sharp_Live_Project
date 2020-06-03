@@ -83,10 +83,9 @@ namespace TheatreCMS.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     //byte[] photo = ImageUploadController.ImageBytes(file, out string _64);
-                    //currentCastMember.photo = photo;
+                    //castMember.photo = photo;
                     
-                    PhotoController.CreatePhoto(file, castMember.Name); //Call CreatePhoto method from Photocontroller
-                    castMember.PhotoId = PhotoController.CreatePhoto(file, castMember.Name); // Assign return value (int photo.PhotoId) of CreatePhoto to castMember.PhotoId
+                    castMember.PhotoId = PhotoController.CreatePhoto(file, castMember.Name); // Call CreatePhoto method from Photocontroller and assign return value (int photo.PhotoId) to castMember.PhotoId
                 }
                
 
@@ -241,8 +240,8 @@ namespace TheatreCMS.Controllers
                 {
                     //byte[] newPhoto = ImageUploadController.ImageBytes(file, out string _64);
                     //currentCastMember.Photo = newPhoto;
-                    PhotoController.CreatePhoto(file, castMember.Name); //Call CreatePhoto method from Photocontroller
-                    currentCastMember.PhotoId = PhotoController.CreatePhoto(file, castMember.Name); // Assign return value (int photo.PhotoId) of CreatePhoto to castMember.PhotoId
+                   
+                    currentCastMember.PhotoId = PhotoController.CreatePhoto(file, castMember.Name); // Call CreatePhoto method from Photocontroller and assign return value (int photo.PhotoId) to currentCastMember.PhotoId
                 }
                 else
                 {
