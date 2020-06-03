@@ -2004,6 +2004,15 @@ textarea {
 }
 
 /* Archive Current Productions and Archive Future Productions*/
+
+
+/* add custom class for local styling */
+.archivecard {
+    min-width: 30rem;
+    max-width: 40rem;
+}
+
+/**/
 #current-productions #future-productions {
     padding: 0px 20px;
 }
