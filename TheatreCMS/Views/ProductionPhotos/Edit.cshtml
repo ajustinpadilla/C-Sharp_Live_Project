@@ -98,9 +98,9 @@
             $('#imagepreview1').prop('src', e.target.result).show();
         }
 
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(input.files[0]);      
     }
-}
+}                                                     @*Detect uploaded image when a file is input*@
 
 
 
@@ -116,19 +116,19 @@
         document.getElementById("imgheight").innerHTML = (this.height);
         document.getElementById("imgwidth").innerHTML = (this.width);
         _URL.revokeObjectURL(objectUrl);
-      };
+      };                                                                @* If there is a change and a file is detected, create height/width elements based on image dimensions *@
       img.src = objectUrl;
     }
   });
 
   $("#input1").change(function () {
     readURL(this);
-    $('#imagepreview1').show();
+    $('#imagepreview1').show();            @*If there is a change and file is detected, show detected file*@
   });
 
   $("#input1").change(function () {
     readURL(this);
-    $('#imagepreview1').hide();
+    $('#imagepreview1').hide();           @* If there is a change and no file is detected, hide any previously detected file *@
   });
 
   EL_input1.addEventListener('change', ev => {
@@ -140,7 +140,7 @@
       document.getElementById("imgwidth").innerHTML = ("");
     }
     [...files].forEach(readImage);
-  });
+  });                                                          @* If there is a change and no file is detected, hide dimension elements *@
 
 
 </script>
