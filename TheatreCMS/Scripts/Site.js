@@ -228,9 +228,8 @@ if (document.getElementById("generate-showtimes-section") != null) {
         $("#showtimes-container").show();
         //var columns = 3,
         //    count = 0,
-        var table = document.createElement("table"),
+        var table = document.getElementById("showtimes-table"),
             row = table.insertRow();
-
         for (i = 0; i < eventList.length; i++) {
             var cell = row.insertCell();
             cell.innerHTML = eventList[i].date.format('ll');
