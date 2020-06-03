@@ -1604,6 +1604,14 @@ textarea {
             font-size: 145%;
         }
 
+        .curtxthover {
+            opacity: 0;
+        }
+
+        .curprodimgtran:hover + .curtxthover {
+            opacity: 1;
+        }
+
         /*.currentptitle*/
 
 

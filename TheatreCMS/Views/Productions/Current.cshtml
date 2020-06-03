@@ -38,7 +38,7 @@
   <div class="row mx-2">
     @foreach (var item in Model)
     {
-    <div class="card col-md-6 col-xl-6 bg-black curprodinfo">
+    <div class="card col-md-6 col-xl-6 bg-black">
       <h4 class="center">
         <a class="currentptitle" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
           @*.........................................Big text for play*@
@@ -60,45 +60,43 @@
           </a>
         }
       }
-      <div class="curmiddle">  @*classes for hover effect*@
-        <div class="curtext">
-          <h5 class="center">
-            by @Html.DisplayFor(modelItem => item.Playwright)
-            <small>
-              @*.................................Small text for author*@
-              <br />
-              @if (item.IsWorldPremiere == true)
-              {
-                @Html.DisplayNameFor(model => model.IsWorldPremiere)
-              }
-              @Html.DisplayFor(modelItem => item.Description)
-            </small>
-          </h5>
-          <div class="">
-            <p>
-              @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
-              <br />
-              @if (item.ShowtimeEve != null)
-              {
-                @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
-              }
+    <div class="curtxthover">
+      @*classes for hover effect*@
+      <div class="curtext">
+        <h5 class="center">
+          by @Html.DisplayFor(modelItem => item.Playwright)
+          <small>
+            @*.................................Small text for author*@
+            <br />
+            @if (item.IsWorldPremiere == true)
+            {
+              @Html.DisplayNameFor(model => model.IsWorldPremiere)
+            }
+            @Html.DisplayFor(modelItem => item.Description)
+          </small>
+        </h5>
+        <div class="">
+          <p>
+            @item.OpeningDay.ToString("M/d/yy") - @item.ClosingDay.ToString("M/d/yy")<br /> @*shows open to close*@
+            <br />
+            @if (item.ShowtimeEve != null)
+            {
+              @Html.DisplayNameFor(model => model.ShowtimeEve) <span> : </span> @item.ShowtimeEve.Value.ToString("hh:mm tt")<br />
+            }
 
-              @if (item.ShowtimeMat != null)
-              {
-                @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
-              }
+            @if (item.ShowtimeMat != null)
+            {
+              @Html.DisplayNameFor(model => model.ShowtimeMat) <span> : </span> @item.ShowtimeMat.Value.ToString("hh:mm tt")<br />
+            }
 
-            </p>
-          </div>
-          <h5>
-            Final Showing: @item.ClosingDay.DayOfWeek @item.ClosingDay.ToString("MM/dd") at @if (item.ShowtimeMat != null)
-            {@item.ShowtimeMat.Value.ToString("hh:mm tt")}
-          </h5>
-          <p class="currentpro-btn">
-            @Html.ActionLink("Buy Tickets Now!", "TicketLink", new { id = item.ProductionId })  
           </p>
         </div>
+        <h5>
+          Final Showing: @item.ClosingDay.DayOfWeek @item.ClosingDay.ToString("MM/dd") at @if (item.ShowtimeMat != null)
+          {@item.ShowtimeMat.Value.ToString("hh:mm tt")}
+        </h5>
       </div>
+    </div>
       @*This Row is used to set the elements of the card side by mx-auto side instead of a classic over under*@
       @*<div class="col-md-5 col-sm-6 col-lg-2"></div>*@ @*This pushes the elements to the center of the view*@
 
@@ -119,6 +117,9 @@
           @*...............fixes row height......... *@
           <div class="position-relative">
             <div class="center">
+              <p class="currentpro-btn">
+                @Html.ActionLink("Buy Tickets Now!", "TicketLink", new { id = item.ProductionId })
+              </p>
               @*verifies role of user and only displays edit/delete links if logged in as admin*@
               @if (User.IsInRole("Admin"))
               {
@@ -137,22 +138,6 @@
 </div>
 
 
-<script>
-  var slideIndex = 0;
-carousel();
-
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > x.length) {slideIndex = 1}
-  x[slideIndex-1].style.display = "block";
-  setTimeout(carousel, 2000); // Change image every 2 seconds
-}
-</script>
 @*<p>..................................................Scaffold Code..............................................
         @Html.ActionLink("Create New", "Create")
     </p>
