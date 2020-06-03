@@ -2776,7 +2776,7 @@ textarea {
 }
 /*******Header************/
 #Isaiah_RentalHeader {
-    display: inline-block !important; /*This is here so I am able to display my pill btn next to the header*/
+    display: inline-block; /*This is here so I am able to display my pill btn next to the header*/
 }
 
 /*******************End Rental Request Index Page***************************/
