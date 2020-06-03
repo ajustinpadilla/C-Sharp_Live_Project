@@ -125,7 +125,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
     
     $("#generate-button").click(function () {
-        $("#showtimes-container").text();
+        
         let production = $("#generate__production-field").children("option").filter(":selected").text();
         let startDate = moment($("#generate__start-date-field").val());
         let endDate = moment($("#generate__end-date-field").val());
@@ -198,6 +198,15 @@ if (document.getElementById("generate-showtimes-section") != null) {
             eventDate = startDate;
         }
         console.log(eventList);
+
+        var tblBody = document.getElementsByTagName("tbody")[0];
+        var row = document.createElement('tr');
+        for (i = 0; i < eventList.length; i++) {
+            row.innerText = 'text ' + i;
+            tblBody.append(row);
+            console.log('sd');
+        }
+        $("#showtimes-container").text();
     });
 }
     //End script for Bulk Add
