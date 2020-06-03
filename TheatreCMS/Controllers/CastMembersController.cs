@@ -86,9 +86,10 @@ namespace TheatreCMS.Controllers
                     //currentCastMember.photo = photo;
                     
                     PhotoController.CreatePhoto(file, castMember.Name); //Call CreatePhoto method from Photocontroller
-                    
+                    castMember.PhotoId = PhotoController.CreatePhoto(file, castMember.Name); // Assign return value (int photo.PhotoId) of CreatePhoto to castMember.PhotoId
                 }
-                string photoId = Request.Form["PhotoId"].ToString();
+               
+
                 //ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
 
                 if (!string.IsNullOrEmpty(userId))
@@ -183,7 +184,7 @@ namespace TheatreCMS.Controllers
             if (ModelState.IsValid)
             {
                 //byte[] oldPhoto = currentCastMember.Photo;
-                int oldPhotoId = currentCastMember.PhotoId;
+                int oldPhotoId = currentCastMember.PhotoId; // replace photo operation with photoid
 
                 currentCastMember.Name = castMember.Name;
                 currentCastMember.YearJoined = castMember.YearJoined;
@@ -240,10 +241,8 @@ namespace TheatreCMS.Controllers
                 {
                     //byte[] newPhoto = ImageUploadController.ImageBytes(file, out string _64);
                     //currentCastMember.Photo = newPhoto;
-                    Photo photo = db.Photo.Find(castMember.PhotoId); // Delete old castmember photo
-                    db.Photo.Remove(photo);
-                    db.SaveChanges();
                     PhotoController.CreatePhoto(file, castMember.Name); //Call CreatePhoto method from Photocontroller
+                    currentCastMember.PhotoId = PhotoController.CreatePhoto(file, castMember.Name); // Assign return value (int photo.PhotoId) of CreatePhoto to castMember.PhotoId
                 }
                 else
                 {
