@@ -2679,6 +2679,7 @@ textarea {
     padding-left: 50px;
     padding-top: 50px;
 }*/
+
 /*This class was added to move the login button more to the right*/
 .loginhthree {
     padding-right: 45px;
@@ -2690,7 +2691,7 @@ textarea {
 
 /* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
 ::-webkit-scrollbar { /* This effects the width of the scrollbar. If the width is adjusted the buttons (arrows) must be adjusted as well*/
-    /*width: 14px;*/ /* Horizontal Scrollbar*/
+    width: 14px;  /*Horizontal Scrollbar*/
     height: 14px; /* Vertical Scrollbar */
 }
 
@@ -2756,10 +2757,9 @@ textarea {
 
 /* this section is applicable only to the styling of the scrollbar on Firefox. Used in conjunction with webkit for better compatibility*/
 
-/** {
+* {
     scrollbar-width: auto;  /*This shows a message that it is not a known CSS property but is supported in FireFox and will show as expected when launched with that browser.*/ 
-    /*scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track
-}*/
+    scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track
+}
 
-
-/* End scrollbar Styling*/
+/* End scrollbar Styling

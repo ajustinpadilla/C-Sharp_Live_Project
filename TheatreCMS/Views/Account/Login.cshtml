@@ -4,18 +4,17 @@
   ViewBag.Title = "Log in";
 }
 
-<h1 class="m-5 pl-1 pt-3 pb-1">@ViewBag.Title.</h1>           @*Using Bootstrap classes to line up elements and create spacing between them*@
+<h1 class="m-5 pl-1 pt-3 pb-1">@ViewBag.Title</h1>           @*Using Bootstrap classes to line up elements and create spacing between them*@
 <h4 class="m-5 pl-1 pt-3 pb-1">Use a local account to log in</h4>
 
-<div class="loginpadding m-3 pl-3 pb-1">
+<div class="m-3 pl-3 pb-1">
   @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
   {
     @Html.AntiForgeryToken()
-
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
       @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-      <div class="col-xs-10 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3">
         @*I changed the length of the input fields to account for additional sizes, which I also added*@
         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
@@ -23,7 +22,7 @@
     </div>
     <div class="form-group">
       @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-      <div class="col-xs-10 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+      <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3">
         @*I changed the length of the input fields to account for additional sizes, which I also added*@
         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
