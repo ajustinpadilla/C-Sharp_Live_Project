@@ -123,9 +123,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
         });
     });
 
-
-    
-
     $("#generate-button").click(function () {
 
         var modal = $('#bulk-add-modal'),
@@ -134,17 +131,18 @@ if (document.getElementById("generate-showtimes-section") != null) {
             pressedYes = false; //this variable is used to determine whether to generate the table in the modal or in the 'review showtimes' section.
 
         modal.show();
-        //generateShowtimes();
+        generateShowtimes();
 
         noBtn.click(function () {
             modal.hide();
-            clearModalTable();
+            $('.bulk-add_modal-row').remove(); // this clears all the entries from the modal table so they won't stack.
+
         });
         yesBtn.one().click(function () { // the .one() method ensures that if event handlers get stacked, the action won't fire off multiple times.
             modal.hide();
             pressedYes = true;
-            clearModalTable();
-            //generateShowtimes();
+            $('.bulk-add_modal-row').remove();
+            generateShowtimes();
             console.log(pressedYes)
         });
 
@@ -258,6 +256,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 console.log('its true');
                 var table = document.getElementById("showtimes-table"),
                     row = table.insertRow();
+                row.className = 'bulk-add_review-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
                     cell.innerHTML = eventList[i].date.format('ll');
@@ -265,16 +264,30 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].startTime;
+                    cell = row.insertCell()
+                    cell.innerHTML = "<button type='submit' style='display:none' id='bulk-add_delete'>Delete</button>";
                     row = table.insertRow();
+                    row.className = 'bulk-add_review-row';
+
                 }
                 document.getElementById('showtimes-container').appendChild(table);
-                //$("#showtimes-container").text();
-            }
-        }
 
-        function clearModalTable() {
-            $('.bulk-add_modal-row').remove();
+                //$('.bulk-add_review-row td').click(function () {
+                //    console.log('td clicked');
+                //})
+            }
+                $('.bulk-add_review-row').hover(
+                    function () {
+                        console.log('hover');
+                        $('#bulk-add_delete').show();
+                    }, function () {
+                        $('#bulk-add_delete').hide();
+                    });
         }
     });
+    $('.bulk-add_modal-row')
+
+
+
 }
     //End script for Bulk Add
