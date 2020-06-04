@@ -8,35 +8,41 @@
 
   <div class=" container-fluid">
     <div class=" detailsContainer">
-      <div class="topPadding  outsideBorder">
-        <h2 class="topPadding text-center"> @Html.DisplayFor(model => model.Name)</h2>
-
-
-
-
-
-        <hr />
-
-        <div class="text-center justify-content-start col-md ">
-          <div class=" col-md">
-           
-
-              @{
-                string img = "";
-                if (Model.Photo != null)
-                {
-                  byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Photo, 100, 100);
-                  var base64 = System.Convert.ToBase64String(thumbBytes);
-                  img = String.Format("data:image/png;base64,{0}", base64);
-                }
-              }
-
-              <img src="/Content/Images/CastMember.jpg" class="imgRouned large_size" />
-            
+      <div class="topPadding outsideBorder">
+          <div class="row">
+              <div class="col-md-4">
+                  <h2>@Html.DisplayFor(model => model.Name)</h2>
+              </div>
+              <div class=" col-md-8">
+                  <h2>@Html.DisplayNameFor(model => model.MainRole) : @Html.DisplayFor(model => model.MainRole)</h2>
+              </div>
           </div>
-          <p>
-            @*making space between photo and rest of details*@
-          </p>
+
+        @*<div class="text-center justify-content-start col-md ">*@
+          <div class="row">
+              <div class=" col-md-4">
+
+
+                  @{
+                      string img = "";
+                      if (Model.Photo != null)
+                      {
+                          byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Photo, 100, 100);
+                          var base64 = System.Convert.ToBase64String(thumbBytes);
+                          img = String.Format("data:image/png;base64,{0}", base64);
+                      }
+                  }
+
+                  <img src="/Content/Images/CastMember.jpg" class="img-fluid imgRouned w-100" />
+              </div>
+              <div class="datafont col-md-8">
+                @Html.DisplayFor(model => model.Bio)
+              </div>
+
+          </div>
+          @*<p>
+            @*making space between photo and rest of details
+          </p>*@
 
 
          
@@ -70,9 +76,7 @@
                 @Html.DisplayNameFor(model => model.MainRole)
               </div>
 
-              <div class="datafont col-md-6">
-                @Html.DisplayFor(model => model.MainRole)
-              </div>
+              
             </div>
 
             <div class=" row">
@@ -154,7 +158,6 @@
             </div>
           </div>
 
-        </div>
         <div class="mybutton ">
           <p>
             @if (User.IsInRole("Admin"))

@@ -1052,10 +1052,9 @@ textarea {
 .detailsContainer {
     background-color: #000000;
     color: #FFFBFB;
-    font-size: 30px;
+    font-size: 4vw;
     text-align:center;
-    margin-left:20%;
-    margin-right:20%;
+
     
     
 }
@@ -2762,3 +2761,10 @@ textarea {
 
 
 /* End scrollbar Styling*/
+
+.Isaiah_imageStyle{
+   
+}
+.Isaiah_Padding {
+    padding-left: 5%;
+}
