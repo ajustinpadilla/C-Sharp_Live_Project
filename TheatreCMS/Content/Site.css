@@ -1052,9 +1052,10 @@ textarea {
 .detailsContainer {
     background-color: #000000;
     color: #FFFBFB;
-    font-size: 4vw;
+    font-size: 30px;
     text-align:center;
-
+    margin-left:20%;
+    margin-right:20%;
     
     
 }
@@ -2003,6 +2004,15 @@ textarea {
 }
 
 /* Archive Current Productions and Archive Future Productions*/
+
+
+/* add custom class for local styling */
+.archivecard {
+    min-width: 30rem;
+    max-width: 40rem;
+}
+
+/**/
 #current-productions #future-productions {
     padding: 0px 20px;
 }
@@ -2762,9 +2772,24 @@ textarea {
 
 /* End scrollbar Styling*/
 
-.Isaiah_imageStyle{
-   
+/***************************************************************************
+************************* Isaiah's Styling *********************************
+****************************************************************************/
+
+/********************Rental Request Index Page*****************************/
+
+/*******Buttons***********/
+.Isaiah_pillBtn {
+    display:inline-block;
+    width: 55px; /*This is here to match the sizing of the other btns on the rental request*/
 }
-.Isaiah_Padding {
-    padding-left: 5%;
+/*******Header************/
+#Isaiah_RentalHeader {
+    display: inline-block; /*This is here so I am able to display my pill btn next to the header*/
 }
+
+/*******************End Rental Request Index Page***************************/
+
+/***************************************************************************
+*********************** End Isaiah's Styling *******************************
+****************************************************************************/

@@ -31,32 +31,32 @@
         {
             if (item.Season == currentSeason)
             {
-                <div class="card bg-black">
-                    @{
-                    if (item.DefaultPhoto != null)
-                    {
-                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                            <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Url.Action(item.Title)"}>
-                        </a>
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                            <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Url.Action(item.Title)">
-                        </a>
-                    }
-                    }
-                    <div class="card-body production-index-card-inner justify-content-center">
-                        <h5 class="card-title">
-                            @item.Title
-                            <span class="badge badge-pill badge-primary">Season: @item.Season</span>
-                        </h5>
-                        <p class="card-text">@item.Description</p>
-                    </div>
-                    <div class="card-footer align-bottom">
-                        <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
-                    </div>
+              <div class="card mx-auto archivecard bg-black"> <!-- add mx-auto to center cards -->
+                @{
+                  if (item.DefaultPhoto != null)
+                  {
+                    <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                      <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Url.Action(item.Title)" }>
+                    </a>
+                  }
+                  else
+                  {
+                    <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                      <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Url.Action(item.Title)">
+                    </a>
+                  }
+                }
+                <div class="card-body production-index-card-inner justify-content-center">
+                  <h5 class="card-title">
+                    @item.Title
+                    <span class="badge badge-pill badge-primary">Season: @item.Season</span>
+                  </h5>
+                  <p class="card-text">@item.Description</p>
                 </div>
+                <div class="card-footer align-bottom">
+                  <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                </div>
+              </div>
             }
         }
         }
@@ -112,7 +112,7 @@
             {
                 if (item.Season > currentSeason)
                 {
-                <div class="card bg-black">
+                <div class="card mx-auto archivecard bg-black"> <!-- add mx-auto to center cards -->
                     @{
 
                         if (item.DefaultPhoto != null)
