@@ -57,12 +57,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Photo)
+            @Html.DisplayNameFor(model => model.PhotoId)
         </dt>
 
         <dd>
 
-                @{
+                @*@{
                     string img = "";
                     if (Model.Photo != null)
                     {
@@ -71,7 +71,10 @@
                         img = String.Format("data:image/png;base64,{0}", base64);
                     }
                 }
-                <img src="@img" />
+                <img src="@img" />*@
+
+          @*Call DisplayPhoto to display cast member image*@
+            <img class="castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })" style="width:100%" />
 
         </dd>
 
