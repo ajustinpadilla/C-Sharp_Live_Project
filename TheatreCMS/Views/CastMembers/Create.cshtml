@@ -54,11 +54,14 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.PhotoId, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-                <div class="col-md-10 formBox">
-                    @Html.TextBoxFor(model => model.PhotoId, new { type = "file", Name = "file", Class="fileSelect"})
-                    @Html.ValidationMessageFor(model => model.PhotoId, "", new { @class = "text-danger" })
-                </div>
+                @Html.Label("Photo") @*Change label from PhotoId to Photo*@
+              <div class="col-md-10 formBox">
+                @*Create a preview image when file is selected*@
+                <img id="img" alt="" width="100" height="100" />
+                <input type="file" name="file" class="fileSelect" onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
+                @Html.ValidationMessageFor(model => model.PhotoId, "", new { @class = "text-danger" })
+
+              </div>
             </div>
 
             <div class="form-group">

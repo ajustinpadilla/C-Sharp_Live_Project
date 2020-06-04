@@ -80,10 +80,12 @@
 
             
             @*Use DisplayPhoto to show castmember image, then CreatePhoto to change image*@
-            @Html.LabelFor(model => model.PhotoId, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" }) 
+            @Html.Label("Photo") @*Change label from PhotoId to Photo*@
             <img class="castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })" style="width:100%" />
                 <div class="col-md-10 formBox">
-                    @Html.TextBoxFor(model => model.PhotoId, new { type = "file", Name = "file", Class="fileSelect"})
+                    @*Create a preview image when file is selected*@
+                    <img id="img" alt="" width="100" height="100" />
+                    <input type="file" name="file" class="fileSelect" onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
                     @Html.ValidationMessageFor(model => model.PhotoId, "", new { @class = "text-danger" })
                 </div>
 
