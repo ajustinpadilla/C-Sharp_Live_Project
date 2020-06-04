@@ -41,7 +41,7 @@
 
                     <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
                       <!-- reinsert current-production-img into <img> -->
-                      <img class="card-img-top production-index-img current-production-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Html.DisplayFor(modelItem => item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
+                      <img class="card-img-top production-index-img current-production-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@item.Title"> <!-- replace Url.Action which displayed the link and not the string itself -->
                     </a>
                   }
                   else
@@ -62,10 +62,10 @@
                     <tr>
                       <!-- table has a single row corresponding to the title line-->
                       <td>
-                        <div id="bloc1" align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
+                        <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
                       </td>
                       <td>
-                        <div id="bloc2"><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
+                        <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
                       </td>
                     </tr>
                   </table>
@@ -146,7 +146,7 @@
 
                               <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
                                 <!-- reinsert future-production-img into <img> -->
-                              <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Html.DisplayFor(modelItem => item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
+                              <img class="card-img-top production-index-img future-production-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
                             </a>
                         }
                         else
@@ -156,7 +156,7 @@
 
                              <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
                                <!-- reinsert future-production-img into <img> -->
-                              <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Html.DisplayFor(modelItem => item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
+                              <img class="card-img-top production-index-img future-production-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Html.DisplayFor(modelItem => item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
                             </a>
                         }
                     }
@@ -166,10 +166,10 @@
                     <tr>
                       <!-- table has a single row corresponding to the title line-->
                       <td>
-                        <div id="bloc1" align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
+                        <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
                       </td>
                       <td>
-                        <div id="bloc2"><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
+                        <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
                       </td>
                     </tr>
                   </table>
