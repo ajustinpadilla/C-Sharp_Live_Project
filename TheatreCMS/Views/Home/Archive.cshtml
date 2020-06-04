@@ -52,7 +52,7 @@
 
                     <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
                       <!-- reinsert current-production-img into <img> -->
-                      <img class="card-img-top production-index-img current-production-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Html.DisplayFor(modelItem => item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
+                      <img class="card-img-top production-index-img current-production-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
                     </a>
                   }
                 }
@@ -156,7 +156,7 @@
 
                              <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
                                <!-- reinsert future-production-img into <img> -->
-                              <img class="card-img-top production-index-img future-production-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Html.DisplayFor(modelItem => item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
+                              <img class="card-img-top production-index-img future-production-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
                             </a>
                         }
                     }
