@@ -1,6 +1,7 @@
 ﻿@using TheatreCMS.Controllers
 @model TheatreCMS.Models.CastMember
 
+
 @{
   ViewBag.Title = "Details";
 }
@@ -21,7 +22,7 @@
           <div class=" col-md">
            
 
-              @{
+              @*@{
                 string img = "";
                 if (Model.Photo != null)
                 {
@@ -31,8 +32,11 @@
                 }
               }
 
-              <img src="/Content/Images/CastMember.jpg" class="imgRouned large_size" />
+              <img src="/Content/Images/CastMember.jpg" class="imgRouned large_size" />*@
             
+            @*Call DisplayPhoto to display cast member image*@
+            <img class="castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" style="width:100%" />
+
           </div>
           <p>
             @*making space between photo and rest of details*@
