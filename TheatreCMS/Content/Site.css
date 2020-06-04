@@ -1783,14 +1783,18 @@ textarea {
 
         #bulk-add-modal_content p {
             color: black;
-        } 
-
-        .bulk-add-modal_button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
         }
+
+#modal-table td,
+#modal-table th {
+    color: black;
+}
+.bulk-add-modal_button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
         .close:hover,
         .close:focus {
