@@ -91,7 +91,7 @@ function shrinkFunction() {
 // Begin script for Bulk Add
 
 if (document.getElementById("generate-showtimes-section") != null) {
-    $("#showtimes-container").hide();
+    //$("#showtimes-container").hide();
 
     $("#generate__production-field").change(function () {
         var productionId = $("#generate__production-field").val();
@@ -124,25 +124,28 @@ if (document.getElementById("generate-showtimes-section") != null) {
     });
 
 
-    // 
+    
 
     $("#generate-button").click(function () {
 
         var modal = $('#bulk-add-modal'),
-            btnYes = $('#bulk-add-modal_yes'),
-            btnNo = $('#bulk-add-modal_no'),
-            pressedYes = false;
+            yesBtn = $('#bulk-add-modal_yes'),
+            noBtn = $('#bulk-add-modal_no'),
+            pressedYes = false; //this variable is used to determine whether to generate the table in the modal or in the 'review showtimes' section.
 
         modal.show();
-        generateShowtimes();
+        //generateShowtimes();
 
-        btnNo.click(function () {
-            modal.hide()
+        noBtn.click(function () {
+            modal.hide();
+            clearModalTable();
         });
-        btnYes.click(function () {
+        yesBtn.one().click(function () { // the .one() method ensures that if event handlers get stacked, the action won't fire off multiple times.
             modal.hide();
             pressedYes = true;
-            generateShowtimes();
+            clearModalTable();
+            //generateShowtimes();
+            console.log(pressedYes)
         });
 
 
@@ -230,11 +233,12 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
             // This block handles rendering the showtimes table
 
-            if (pressedYes == false) {
+            if (pressedYes != true) {
                 //$("#showtimes-container").show();
 
                 var table = document.getElementById("modal-table"),
                     row = table.insertRow();
+                row.className = 'bulk-add_modal-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
                     cell.innerHTML = eventList[i].date.format('ll');
@@ -243,10 +247,13 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].startTime;
                     row = table.insertRow();
+                    row.className = 'bulk-add_modal-row';
+
                 }
                 document.getElementById('bulk-add-modal_content').appendChild(table);
             }
             if (pressedYes == true) {
+                console.log(eventList.length);
                 $("#showtimes-container").show();
                 console.log('its true');
                 var table = document.getElementById("showtimes-table"),
@@ -263,6 +270,10 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 document.getElementById('showtimes-container').appendChild(table);
                 //$("#showtimes-container").text();
             }
+        }
+
+        function clearModalTable() {
+            $('.bulk-add_modal-row').remove();
         }
     });
 }
