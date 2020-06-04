@@ -35,7 +35,7 @@
               <img src="/Content/Images/CastMember.jpg" class="imgRouned large_size" />*@
             
             @*Call DisplayPhoto to display cast member image*@
-            <img class="castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" style="width:100%" />
+            <img class="castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })" style="width:100%" />
 
           </div>
           <p>
