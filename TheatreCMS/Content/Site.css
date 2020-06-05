@@ -1542,7 +1542,7 @@ textarea {
 
         /*Current productions*/
 
-        .curpro {
+        .currentpro {
             margin-top: 15px;
             margin-bottom: 10px;
             text-align: center;
@@ -1558,58 +1558,58 @@ textarea {
             background-color: #BD1A11;
             display: inline-block;
             border-radius: 25px;
-            padding: 15px 32px;
+            padding: 15px 32px;                                       /*button styling*/
             text-decoration: none;
             transition: 0.3s;
             margin-top: 20px;
             z-index: 3;
             opacity: 1;
-            
         }
 
         .currentpro-btn a:hover{
-            transform: scale(1.15, 1.15);
+            transform: scale(1.15, 1.15);                        /*button effects on hover*/
             background-color: #f04d44;
-            opacity: 2;
         }
 
-        .currentptitle  {
+        .currentpro-title  {
             color: white;
-            text-decoration: none;
+            text-decoration: none;                     /*styling for title*/
         }
 
-        .currentptitle:hover  {
+        .currentpro-title:hover  {
             color: white;
-            text-decoration: none;
+            text-decoration: none;                        /*the title is also a link to the production page, so this keeps the title from changing to its normal link properties on hover*/
         }
 
-        .curprodimgtran {
+        .currentpro-imgtran {
             z-index: 1;
             transition: .3s;
             opacity: 1;
-            overflow: hidden;
+            overflow: hidden;                                               /*image properties for the transition*/
         }
 
-        .curprodimgtran:hover {
+        .currentpro-imgtran:hover {
             transform: scale(1.05, 1.05);
             opacity: 0.2;
             z-index: 2;
-            overflow: hidden;
         }
 
 
-        .curtext {
+        .currentpro-text {
             text-align: center;
-            margin-top: -45%;
-            font-size: 145%;
+            margin-top: -50%;                                                               /*styles text under image*/
+        }
+        
+        .currentpro-fontsize {
+            font-size: 1.5vw;
         }
 
-        .curtxthover {
+        .currentpro-txthover {
             opacity: 0;
         }
 
-        .curprodimgtran:hover + .curtxthover {
-            opacity: 1;
+        .currentpro-imgtran:hover + .currentpro-txthover {
+            opacity: 1;                                                                             /*makes it so text does not appear until image is hovered*/
         }
 
         /*.currentptitle*/
