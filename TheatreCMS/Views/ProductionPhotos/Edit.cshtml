@@ -42,7 +42,7 @@
                     <div class="col-md-10 formBox">
                         <input class="fileSelect" type="file" name="file" id="input1" accept="image/*" />
                           <img id="imagepreview1" class="medium_size" />
-                          <p><span class="prodphoto-img-dimensions" id="wrdheight"></span> <span class="prodphoto-img-dimvalue" id="imgheight"></span>&nbsp; <span class="prodphoto-img-dimensions" id="wrdwidth"></span> <span class="prodphoto-img-dimvalue" id="imgwidth"></span></p>
+                          <p><span class="text-black" id="wrdheight"></span> <span class="text-white" id="imgheight"></span>&nbsp; <span class="text-black" id="wrdwidth"></span> <span class="text-white" id="imgwidth"></span></p>
                         <hr />
                         @Html.ValidationMessageFor(model => model.PhotoId, "", new { @class = "text-danger" })
                     </div>
@@ -123,12 +123,7 @@
 
   $("#input1").change(function () {
     readURL(this);
-    $('#imagepreview1').show();            @*If there is a change and file is detected, show detected file*@
-  });
-
-  $("#input1").change(function () {
-    readURL(this);
-    $('#imagepreview1').hide();           @* If there is a change and no file is detected, hide any previously detected file *@
+    $('#imagepreview1').toggle();            @*If there is a change and file is detected, show detected file*@
   });
 
   EL_input1.addEventListener('change', ev => {
@@ -139,7 +134,6 @@
       document.getElementById("imgheight").innerHTML = ("");
       document.getElementById("imgwidth").innerHTML = ("");
     }
-    [...files].forEach(readImage);
   });                                                          @* If there is a change and no file is detected, hide dimension elements *@
 
 
