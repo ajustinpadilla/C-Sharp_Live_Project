@@ -23,6 +23,8 @@
 
 </p>
 
+<h4 class="text-center py-3" id="prodphoto-null-msg" style="display:none;"></h4>
+
 <div class="prodphoto-content my-3">
     @*sort by production season in descending order , then by opening day in ascending order*@
     @foreach (var pro in Model.Select(i => i.Production).Distinct())
@@ -70,9 +72,12 @@
     var allCards = document.getElementsByClassName("prodphoto-cards");
 
     filter.addEventListener("change", function () {
+
         for (var i = 0; i < allCards.length; i++) {
             allCards[i].style.display = 'none';
         }
+
+        document.getElementById("prodphoto-null-msg").style.display = 'none';
 
         if (filter.selectedIndex == 0) {
             for (var i = 0; i < allCards.length; i++) {
@@ -80,9 +85,16 @@
             }
         }
         else {
-            var prodFilter = filter.options[filter.selectedIndex].value
+            var prodFilter = filter.options[filter.selectedIndex].value;
             var filterId = prodFilter + "-prodphoto-show";
-            document.getElementById(filterId).style.display = 'block';
+            if (document.getElementById(filterId)) {
+                document.getElementById(filterId).style.display = 'block';
+            }
+            else {
+                var nullMsg = document.getElementById("prodphoto-null-msg");
+                nullMsg.style.display = 'block';
+                nullMsg.innerHTML = "This production does not have any photos yet.";
+            }
         }
     });
 
@@ -90,12 +102,12 @@
     $(document).ready(function () {
         $(".prodphoto-searchbtn").click(function () {
             var value = $(".prodphoto-searchbar").val().toLowerCase();
-            $(".prodphoto-prod-title").hide();
+            $(".prodphoto-cards").hide();
             $(".prodphoto-content .card").filter(function () {
                 var status = $(this).find(".card-body").text().toLowerCase().indexOf(value) > -1;
                 $(this).toggle(status);
                 if (status) {
-                    $(this).parent().siblings(".prodphoto-prod-title").show();
+                    $(this).parents(".prodphoto-cards").show(); //displays the production section of the filtered cards
                 }
             });
         });
