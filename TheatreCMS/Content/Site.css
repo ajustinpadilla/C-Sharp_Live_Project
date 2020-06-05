@@ -1554,8 +1554,8 @@ textarea {
         .currentpro-btn a {
             /*margin-left: 15px;*/
             /*color: #DB1A11;*/
-            color: white;
-            background-color: #BD1A11;
+            color: var(--light-color);
+            background-color: var(--main-bg-color);
             display: inline-block;
             border-radius: 25px;
             padding: 15px 32px;                                       /*button styling*/
@@ -1568,7 +1568,7 @@ textarea {
 
         .currentpro-btn a:hover{
             transform: scale(1.15, 1.15);                        /*button effects on hover*/
-            background-color: #f04d44;
+            background-color: var(--main-secondary-color);
         }
 
         .currentpro-title  {
