@@ -47,7 +47,7 @@
 
 .palette-body {
     background-color: var(--dark-color);
-    margin-bottom: auto;/* Applying --main-bg-color to the background of body */
+    margin-bottom: auto;    /* Applying --main-bg-color to the background of body */
 }
 
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
