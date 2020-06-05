@@ -264,8 +264,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].startTime;
-                    cell = row.insertCell()
-                    cell.innerHTML = "<button type='submit' style='display:none' id='bulk-add_delete'>Delete</button>";
                     row = table.insertRow();
                     row.className = 'bulk-add_review-row';
 
@@ -276,13 +274,23 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 //    console.log('td clicked');
                 //})
             }
+
                 $('.bulk-add_review-row').hover(
                     function () {
+                        let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
+                            .hide().fadeIn(1200);
                         console.log('hover');
-                        $('#bulk-add_delete').show();
+                        $(this).append(button).fadeIn();
                     }, function () {
-                        $('#bulk-add_delete').hide();
+                        $('.bulk-add_delete').remove();
                     });
+                //$('.bulk-add_review-row').hover(
+                //    function () {
+                //        console.log('hover');
+                //        $('#bulk-add_delete').show();
+                //    }, function () {
+                //        $('#bulk-add_delete').hide();
+                //    });
         }
     });
     $('.bulk-add_modal-row')
