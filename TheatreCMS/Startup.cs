@@ -125,7 +125,7 @@ namespace TheatreCMS
                 }
             }
         }
-
+        // I created a new method to seed the castmember images. I placed it before seedCastMembers() in order for those objects to reference the Photo database table
         private void SeedCastPhotos()
         {
             var converter = new ImageConverter();
@@ -155,7 +155,7 @@ namespace TheatreCMS
                     OriginalHeight = image2.Height,
                     OriginalWidth = image2.Width,
                     PhotoFile = (byte[])converter.ConvertTo(image2, typeof(byte[])),
-                    Title = "JacQuelle Davis"
+                    Title = "Jacquelle Davis"
                 },
                 new Photo
                 {
@@ -169,7 +169,7 @@ namespace TheatreCMS
                     OriginalHeight = image4.Height,
                     OriginalWidth = image4.Width,
                     PhotoFile = (byte[])converter.ConvertTo(image4, typeof(byte[])),
-                    Title = "Clara Liis Hillier"
+                    Title = "Clara-Liis Hillier"
                 },
                 new Photo
                 {
@@ -214,12 +214,7 @@ namespace TheatreCMS
 
             var castMembers = new List<CastMember>
             {
-
-
-
-
-
-
+                // For each cast member I replaced CastMember.Photo with CastMember.PhotoId and assigned it the value of the corresponding Photo.PhotoId 
                 new CastMember{Name = "London Bauman", MainRole = Enum.PositionEnum.Actor,
                 Bio = "London Bauman is an actor, writer, sound designer, and Theatre Vertigo company member. " +
                 "As an artist, he is interested in immersive physical theatre, magical realism, and new collaborative works." +
@@ -227,7 +222,7 @@ namespace TheatreCMS
                 "Barnaby the Barkeep in the devised Western Melodrama Bang! (Action/Adventure’s pilot season) " +
                 "and sound design / original compositions for The Romeo and Juliet Project (Enso Theatre Ensemble). " +
                 "In August, London will be traveling to the Edinburgh Fringe Festival in Scotland as Robert in Chet Wilson’s new play Gayface.",
-                PhotoId = context.Photo.Where(photo => photo.Title == "London Bauman").FirstOrDefault().PhotoId,
+                PhotoId = context.Photo.Where(photo => photo.Title == "London Bauman").FirstOrDefault().PhotoId, 
                 CurrentMember = true,},
 
                 new CastMember{Name = "Jacquelle Davis", MainRole = Enum.PositionEnum.Actor,
@@ -373,14 +368,7 @@ namespace TheatreCMS
             Image image8 = Image.FromFile(Path.Combine(imagesRoot, @"wicked2.png"));
             Image image9 = Image.FromFile(Path.Combine(imagesRoot, @"howtosucceedinbusinesswithoutreallytrying.png"));
             Image image10 = Image.FromFile(Path.Combine(imagesRoot, @"howtosucceedinbusinesswithoutreallytrying2.png"));
-            //Image image11 = Image.FromFile(Path.Combine(imagesRoot, @"London_Bauman.png"));
-            //Image image12 = Image.FromFile(Path.Combine(imagesRoot, @"JacQuelle_Davis.jpg"));
-            //Image image13 = Image.FromFile(Path.Combine(imagesRoot, @"Adriana_Gantzer.jpg"));
-            //Image image14 = Image.FromFile(Path.Combine(imagesRoot, @"Clara_Liis_Hillier.jpg"));
-            //Image image15 = Image.FromFile(Path.Combine(imagesRoot, @"Kaia_Maarja_Hillier.jpg"));
-            //Image image16 = Image.FromFile(Path.Combine(imagesRoot, @"Heath_Hyun_Houghton.jpg"));
-            //Image image17 = Image.FromFile(Path.Combine(imagesRoot, @"Tom_Mounsey.jpg"));
-            //Image image18 = Image.FromFile(Path.Combine(imagesRoot, @"Devon_Roberts.jpg"));
+ 
 
             var photos = new List<Photo>
             {
@@ -454,62 +442,7 @@ namespace TheatreCMS
                     PhotoFile = (byte[])converter.ConvertTo(image10, typeof(byte[])),
                     Title = "How to Succeed in Business Without Really Trying Image 2"
                 },
-                //new Photo
-                //{
-                //    OriginalHeight = image11.Height,
-                //    OriginalWidth = image11.Width,
-                //    PhotoFile = (byte[])converter.ConvertTo(image11, typeof(byte[])),
-                //    Title = "London Bauman"
-                //},
-                //new Photo
-                //{
-                //    OriginalHeight = image12.Height,
-                //    OriginalWidth = image12.Width,
-                //    PhotoFile = (byte[])converter.ConvertTo(image12, typeof(byte[])),
-                //    Title = "JacQuelle Davis"
-                //},
-                //new Photo
-                //{
-                //    OriginalHeight = image13.Height,
-                //    OriginalWidth = image13.Width,
-                //    PhotoFile = (byte[])converter.ConvertTo(image13, typeof(byte[])),
-                //    Title = "Adriana Gantzer"
-                //},
-                //new Photo
-                //{
-                //    OriginalHeight = image14.Height,
-                //    OriginalWidth = image14.Width,
-                //    PhotoFile = (byte[])converter.ConvertTo(image14, typeof(byte[])),
-                //    Title = "Clara Liis Hillier"
-                //},
-                //new Photo
-                //{
-                //    OriginalHeight = image15.Height,
-                //    OriginalWidth = image15.Width,
-                //    PhotoFile = (byte[])converter.ConvertTo(image15, typeof(byte[])),
-                //    Title = "Kaia Maarja Hillier"
-                //},
-                //new Photo
-                //{
-                //    OriginalHeight = image16.Height,
-                //    OriginalWidth = image16.Width,
-                //    PhotoFile = (byte[])converter.ConvertTo(image16, typeof(byte[])),
-                //    Title = "Heath Hyun Houghton"
-                //},
-                //new Photo
-                //{
-                //    OriginalHeight = image17.Height,
-                //    OriginalWidth = image17.Width,
-                //    PhotoFile = (byte[])converter.ConvertTo(image17, typeof(byte[])),
-                //    Title = "Tom Mounsey"
-                //},
-                //new Photo
-                //{
-                //    OriginalHeight = image18.Height,
-                //    OriginalWidth = image18.Width,
-                //    PhotoFile = (byte[])converter.ConvertTo(image18, typeof(byte[])),
-                //    Title = "Devon Roberts"
-                //}
+
             };
             photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
             context.SaveChanges();
