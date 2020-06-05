@@ -2010,20 +2010,19 @@ textarea {
     max-width: 40rem;
 }
 
-/**/
-#current-productions #future-productions {
+#current-productions, #future-productions { /*add commas to make multiple selectors functional*/
     padding: 0px 20px;
 }
 
 /* Resize Archive Current Productions Image and Archive Future Productions Image*/
-#current-productions .current-production-img #future-productions .future-production-img{
-    height: 30vw;
-    object-fit: cover;
-}
+    #current-productions .current-production-img, #future-productions .future-production-img { /*add commas to make multiple selectors functional*/
+        /*height: 20vw;*/ /* resize to fit entire production photo */
+        object-fit: cover;
+    }
 
 /* Archive Current and Future Productions Image Responsive Resizing */
 @media only screen and (max-width: 575px) {
-    #current-productions .current-production-img #future-productions .future-production-img{
+    #current-productions .current-production-img, #future-productions .future-production-img { /*add commas to make multiple selectors functional*/
         height: 60vw;
         object-fit: cover;
     }
