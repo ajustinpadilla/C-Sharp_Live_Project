@@ -18,7 +18,7 @@
     }
 </p>
 
-<div class="card-columns m-4 p-3" id="castContainer">
+<div class="card-columns mr-3 ml-3 p-3" id="castContainer">
                                   @*Creates a card for each cast member with their photo as the image-cap*@
   @foreach (var item in Model)
   {
@@ -50,12 +50,12 @@
       <div class="card-body">
         @Html.DisplayFor(modelItem => item.Name) |
         Role: @Html.DisplayFor(modelItem => item.MainRole)
-        @*Added if statement so "YearJoined" variable is only used if the year joined is not null*@
-        @{ if (item.YearJoined != null)
-          {
-            <text>| Joined our cast: @Html.DisplayFor(modelItem => item.YearJoined)</text>; @*Used <text> instead of <p> for accurate spacing*@
-          }
-         }
+        @{                                        @*Added if statement so "YearJoined" variable is only used if the year joined is not null*@
+        if (item.YearJoined != null)
+        {
+          <text>| Joined our cast: @Html.DisplayFor(modelItem => item.YearJoined)</text>; @*Used <text> instead of <p> for accurate spacing*@
+        }
+        }
 
         <p>
           @*Delete and edit are admin only*@
