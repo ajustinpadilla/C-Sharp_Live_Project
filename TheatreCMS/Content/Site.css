@@ -965,17 +965,12 @@ textarea {
 
         /*Styling for CastMember Index View*/
 
-        .castMargin {
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        .castContainer {
-            padding: 50px;
+        #castContainer {
+            padding: 25px;
         }
 
         @media only screen and (max-width: 767px) {
-            .castContainer {
+            #castContainer {
                 padding-left: 120px;
                 padding-right: 120px;
             }
@@ -983,21 +978,21 @@ textarea {
 
         .castImageContainer {
             position: relative;
-            width: auto;
+            background-color: black;
+            padding: 15px;
             /*used for text animation*/
-            /*overflow: hidden;*/
+            overflow: hidden;
         }
 
-        .castImage {
+        #castImage {
             opacity: 1;
-            display: block;
-            width: 100%;
-            height: auto;
+            display: inline-block;
             transition: .5s ease;
             backface-visibility: hidden;
+            margin-bottom: 10px;
         }
 
-        .castImageContainer:hover .castImage {
+        .castImageContainer:hover #castImage {
             opacity: 0.3;
         }
 
@@ -1009,31 +1004,28 @@ textarea {
             margin-bottom: 0px;
             margin-top: 0px;
         }
+
         .castImageContainer:hover a {
             text-decoration: none;
         }
-        .castText {
-        /*background-color: var(--light-color);*/
-        background-color: rgba(255,251,251,.6);
-        color: var(--main-bg-color);
-        font-size: 16px;
-        font-weight: 500;
-        padding: 1px 1px;
-        font-style: italic;
-        }
 
+        .castText {
+            background-color: rgba(255,251,251,.6);
+            color: var(--main-bg-color);
+            font-size: 16px;
+            font-weight: 500;
+            padding: 20px;
+            padding-bottom: 26px;
+            padding-top: 16px;
+            text-align: left;
+            font-style: italic;
+        }
 
         .castMiddle {
             opacity: 0;
             position: absolute;
-            -ms-transform: translate(-50%, -50%);
-            text-align: center;
-            height: auto;
-            bottom: 0%;
-            width: 100%;
-            margin-top: auto;
+            bottom: 100px;
         }
-
 
         /*End Styling for CastMember Index View*/
 
