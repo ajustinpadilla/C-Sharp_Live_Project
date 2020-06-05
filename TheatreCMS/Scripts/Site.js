@@ -111,12 +111,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     $("#evening-time").html(moment(production[0].ShowtimeEve).format('h:mm a'));
                 }
             },
-            //beforeSend: function () {
-            //    $("#progress").show();
-            //},
-            //complete: function () {
-            //    $("#progress").hide();
-            //},
             error: function () {
                 alert("Error while retrieving data!");
             }
@@ -124,7 +118,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
     });
 
     $("#generate-button").click(function () {
-
+        console.log('generate button clicked')
         var modal = $('#bulk-add-modal'),
             yesBtn = $('#bulk-add-modal_yes'),
             noBtn = $('#bulk-add-modal_no'),
@@ -133,20 +127,23 @@ if (document.getElementById("generate-showtimes-section") != null) {
         modal.show();
         generateShowtimes();
 
-        noBtn.click(function () {
+        nobtn.off('click');                   // the .off() and .one() methods are to prevent event handlers from stacking up.
+        noBtn.one("click", function () {
+            console.log('no button clicked');
             modal.hide();
             $('.bulk-add_modal-row').remove(); // this clears all the entries from the modal table so they won't stack.
 
         });
-        yesBtn.one().click(function () { // the .one() method ensures that if event handlers get stacked, the action won't fire off multiple times.
+        console.log('before yes');
+        
+        yesBtn.off("click");
+        yesBtn.one("click", function () { // the .one() method ensures that if event handlers get stacked, the action won't fire off multiple times.
+            console.log('yes button clicked')
             modal.hide();
             pressedYes = true;
             $('.bulk-add_modal-row').remove();
             generateShowtimes();
-            console.log(pressedYes)
         });
-
-
 
         function generateShowtimes() {
 
@@ -200,19 +197,16 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     this.dateString = date;
                 }
             }
-
+            // this block generates the events
             for (i = 0; i < productionDays.length; i++) {
                 if (productionDays[i] < startDate.day()) {
                     productionDays[i] += 7;
                 }
-                console.log(productionDays[i])
                 startDate.day(productionDays[i]);
                 eventDate = startDate;
                 for (j = productionDays[i]; j <= dateRange + 7; j += 7 * interval) {
                     if (eventDate.isBetween(startDate, endDate, undefined, '[]')) { //check for the eventDate to be within start and end date. The '[]' argument sets it to be inclusive of the start and end date.
                         for (k = 0; k < startTimes.length; k++) {
-                            console.log(startTimes[k])
-                            console.log(eventDate.format('ll'));
                             const event = new CalendarEvent(production, moment(eventDate), eventDate.format('dddd'), startTimes[k], eventDate.format('ll'));
                             eventList.push(event);
 
@@ -224,7 +218,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 eventDate = startDate;
             }
             eventList.sort((a, b) => a.date - b.date);
-            console.log(eventList);
 
             // end block
 
@@ -266,15 +259,8 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     cell.innerHTML = eventList[i].startTime;
                     row = table.insertRow();
                     row.className = 'bulk-add_review-row';
-
                 }
                 document.getElementById('showtimes-container').appendChild(table);
-
-                //$('.bulk-add_review-row td').click(function () {
-                //    console.log('td clicked');
-                //})
-            }
-
                 $('.bulk-add_review-row').hover(
                     function () {
                         let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
@@ -284,18 +270,9 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     }, function () {
                         $('.bulk-add_delete').remove();
                     });
-                //$('.bulk-add_review-row').hover(
-                //    function () {
-                //        console.log('hover');
-                //        $('#bulk-add_delete').show();
-                //    }, function () {
-                //        $('#bulk-add_delete').hide();
-                //    });
+            }
+
         }
     });
-    $('.bulk-add_modal-row')
-
-
-
 }
     //End script for Bulk Add
