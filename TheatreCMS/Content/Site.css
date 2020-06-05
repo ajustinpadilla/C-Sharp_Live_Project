@@ -1539,6 +1539,7 @@ textarea {
             font-size: 20px;
         }
 
+
         /*Current productions*/
         .currentpro a {
             margin-left: 15px;
@@ -1598,8 +1599,6 @@ textarea {
             border-radius: 25px;
             margin-bottom: 25px;
         }
-
-
 
 
 
@@ -2003,6 +2002,15 @@ textarea {
 }
 
 /* Archive Current Productions and Archive Future Productions*/
+
+
+/* add custom class for local styling */
+.archivecard {
+    min-width: 30rem;
+    max-width: 40rem;
+}
+
+/**/
 #current-productions #future-productions {
     padding: 0px 20px;
 }
@@ -2761,3 +2769,25 @@ textarea {
 
 
 /* End scrollbar Styling*/
+
+/***************************************************************************
+************************* Isaiah's Styling *********************************
+****************************************************************************/
+
+/********************Rental Request Index Page*****************************/
+
+/*******Buttons***********/
+.Isaiah_pillBtn {
+    display:inline-block;
+    width: 55px; /*This is here to match the sizing of the other btns on the rental request*/
+}
+/*******Header************/
+#Isaiah_RentalHeader {
+    display: inline-block; /*This is here so I am able to display my pill btn next to the header*/
+}
+
+/*******************End Rental Request Index Page***************************/
+
+/***************************************************************************
+*********************** End Isaiah's Styling *******************************
+****************************************************************************/

@@ -21,11 +21,12 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.Logo)
+                        @Html.DisplayNameFor(model => model.LogoId)
                     </dt>
 
                     <dd>
-                        @{
+                        <img src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.LogoId })" class="medium_size" alt="Sponsor Logo Image" />
+                        @*{
                             string img = "";
                             if (Model.Logo != null)
                             {
@@ -33,8 +34,8 @@
                                 var base64 = System.Convert.ToBase64String(thumbBytes);
                                 img = String.Format("data:image/png;base64,{0}", base64);
                             }
-                        }
-                        <img src="@img" />
+
+                        <img src="@img" />}*@
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.Height)
@@ -53,6 +54,12 @@
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Current)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Link)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Link)
                     </dd>
 
                 </dl>
