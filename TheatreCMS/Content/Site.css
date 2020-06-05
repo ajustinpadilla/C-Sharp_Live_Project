@@ -2016,7 +2016,7 @@ textarea {
 
 /* Resize Archive Current Productions Image and Archive Future Productions Image*/
     #current-productions .current-production-img, #future-productions .future-production-img { /*add commas to make multiple selectors functional*/
-        height: 20vw; /* resize to fit entire production photo */
+        /*height: 20vw;*/ /* resize to fit entire production photo */
         object-fit: cover;
     }
 
