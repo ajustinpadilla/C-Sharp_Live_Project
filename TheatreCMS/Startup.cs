@@ -22,6 +22,7 @@ namespace TheatreCMS
         {
             ConfigureAuth(app);
             createRolesandUsers();
+            SeedCastPhotos();
             SeedCastMembers();
             SeedProductions();
             SeedProductionPhotos();
@@ -125,106 +126,197 @@ namespace TheatreCMS
             }
         }
 
-        //Seeding database with dummy CastMembers
-            private void SeedCastMembers()
+        private void SeedCastPhotos()
+        {
+            var converter = new ImageConverter();
+            // create images first
+            string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
+
+            Image image1 = Image.FromFile(Path.Combine(imagesRoot, @"London_Bauman.png"));
+            Image image2 = Image.FromFile(Path.Combine(imagesRoot, @"JacQuelle_Davis.jpg"));
+            Image image3 = Image.FromFile(Path.Combine(imagesRoot, @"Adriana_Gantzer.jpg"));
+            Image image4 = Image.FromFile(Path.Combine(imagesRoot, @"Clara_Liis_Hillier.jpg"));
+            Image image5 = Image.FromFile(Path.Combine(imagesRoot, @"Kaia_Maarja_Hillier.jpg"));
+            Image image6 = Image.FromFile(Path.Combine(imagesRoot, @"Heath_Hyun_Houghton.jpg"));
+            Image image7 = Image.FromFile(Path.Combine(imagesRoot, @"Tom_Mounsey.jpg"));
+            Image image8 = Image.FromFile(Path.Combine(imagesRoot, @"Devon_Roberts.jpg"));
+
+            var photos = new List<Photo>
             {
-                //Add photos of cast members
-                //string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
-
-                var castMembers = new List<CastMember>
+               new Photo
                 {
-                    new CastMember{Name = "London Bauman", MainRole = Enum.PositionEnum.Actor,
-                    Bio = "London Bauman is an actor, writer, sound designer, and Theatre Vertigo company member. " +
-                    "As an artist, he is interested in immersive physical theatre, magical realism, and new collaborative works." +
-                    " Selected work includes the role of Torch in Beirut (The Steep & Thorny Way to Heaven), " +
-                    "Barnaby the Barkeep in the devised Western Melodrama Bang! (Action/Adventure’s pilot season) " +
-                    "and sound design / original compositions for The Romeo and Juliet Project (Enso Theatre Ensemble). " +
-                    "In August, London will be traveling to the Edinburgh Fringe Festival in Scotland as Robert in Chet Wilson’s new play Gayface.",
-                    PhotoId = context.Photo.Where(photo => photo.Title == "London Bauman").FirstOrDefault().PhotoId,
-                    CurrentMember = true,},
+                    OriginalHeight = image1.Height,
+                    OriginalWidth = image1.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image1, typeof(byte[])),
+                    Title = "London Bauman"
+                },
+                new Photo
+                {
+                    OriginalHeight = image2.Height,
+                    OriginalWidth = image2.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image2, typeof(byte[])),
+                    Title = "JacQuelle Davis"
+                },
+                new Photo
+                {
+                    OriginalHeight = image3.Height,
+                    OriginalWidth = image3.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image3, typeof(byte[])),
+                    Title = "Adriana Gantzer"
+                },
+                new Photo
+                {
+                    OriginalHeight = image4.Height,
+                    OriginalWidth = image4.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image4, typeof(byte[])),
+                    Title = "Clara Liis Hillier"
+                },
+                new Photo
+                {
+                    OriginalHeight = image5.Height,
+                    OriginalWidth = image5.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image5, typeof(byte[])),
+                    Title = "Kaia Maarja Hillier"
+                },
+                new Photo
+                {
+                    OriginalHeight = image6.Height,
+                    OriginalWidth = image6.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image6, typeof(byte[])),
+                    Title = "Heath Hyun Houghton"
+                },
+                new Photo
+                {
+                    OriginalHeight = image7.Height,
+                    OriginalWidth = image7.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image7, typeof(byte[])),
+                    Title = "Tom Mounsey"
+                },
+                new Photo
+                {
+                    OriginalHeight = image8.Height,
+                    OriginalWidth = image8.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image8, typeof(byte[])),
+                    Title = "Devon Roberts"
+                }
+            };
+            photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
+            context.SaveChanges();
+        }
 
-                    new CastMember{Name = "Jacquelle Davis", MainRole = Enum.PositionEnum.Actor,
-                    Bio = "Jacquelle Davis is a proud Portland native and member of Theatre Vertigo. " +
-                    "She studied acting at Willamette University. Jacquelle performs regularly with her beloved improv group, " +
-                    "No Filter. Her favorite roles include Jane Fonda in That Pretty Pretty; " +
-                    "Or, The Rape Play, and Box Worker 2 in Box. Jacquelle loves puns and pickles..",
-                    PhotoId = context.Photo.Where(photo => photo.Title == "Jacquelle Davis").FirstOrDefault().PhotoId,
-                    CurrentMember = true, },
 
-                    new CastMember{Name = "Adriana Gantzer", MainRole = Enum.PositionEnum.Actor,
-                    Bio = "Adriana has been a huge fan of Theatre Vertigo for many years and feels so fortunate to become " +
-                    "a part of this incredible company. She has been acting on stage for over a decade and has been a " +
-                    "full-time voiceover actor for over 4 years. Some favorite past roles include: Andy in A Dark Sky " +
-                    "Full of Stars, Adriana’s Theatre Vertigo debut; Matilde in The Clean House, Germaine in Picasso at " +
-                    "the Lapin Agile, and Georgeanne in Five Women Wearing the Same Dress. In her four years in Portland " +
-                    "she has worked with Milagro, NORTHWEST THEATRE WORKSHOP, Mask & Mirror, and Twilight theaters, " +
-                    "and at Prospect Theater Project in her hometown of Modesto, CA.",
-                    PhotoId = context.Photo.Where(photo => photo.Title == "Adriana Gantzer").FirstOrDefault().PhotoId,
-                    CurrentMember = true, },
 
-                    new CastMember{Name = "Clara-Liis Hillier", MainRole = Enum.PositionEnum.Actor,
-                    Bio = "Clara-Liis is a graduate of Reed College. A proud company member of Theatre Vertigo, " +
-                    "she is also a past resident actor for Bag&Baggage. She was last seen in Caucasian Chalk Circle " +
-                    "at Shaking the Tree, Gyspy at Broadway Rose, Godspell at Lakewood Theater " +
-                    "(Drammy Award for Supporting Actress), world premiere Carnivora as Woodwoman " +
-                    "(Theatre Vertigo) and as the Wicked Witch of the West in The Wizard of Oz (NW Children's Theater). " +
-                    "Favorite roles: Graeae Sister in Up The Fall with PHAME, Wait Until Dark (Susan Hendrix) with NWCTC, " +
-                    "Our Country's Good (Liz Morden) and Julius Caesar (Casca) with Bag&Baggage; The Seagull (Masha) with " +
-                    "NWCTC. When she's not onstage, Clara-Liis works for Portland Center Stage at The Armory as their" +
-                    " Education & Community Programs Associate and teaches Dance and Theater for NW Children's Theater " +
-                    "and Riverdale High School. Thank you to Heath K. for his love and patience and Mom and " +
-                    "Kaia for their strength and inspiration. For Ted.",
-                    PhotoId = context.Photo.Where(photo => photo.Title == "Clara-Liis Hillier").FirstOrDefault().PhotoId,
-                    CurrentMember = true, },
+        //Seeding database with dummy CastMembers
+        private void SeedCastMembers()
+        {
+            //Add photos of cast members
+            //string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
 
-                    new CastMember{Name = "Kaia Maarja Hillier", MainRole = Enum.PositionEnum.Actor,
-                    Bio = "Kaia is a current Theatre Vertigo company member, a Board and Company member of the Pulp Stage, " +
-                    "a No Filter Improv Troupe member, and Costume Designer. Past acting credits include: Jessica in A Maze" +
-                    " (Theatre Vertigo); Nora in Assistance (Theatre Vertigo); and April in The Best of Everything (Bag &Baggage)." +
-                    " Kaia has had SO much fun performing with the new ensemble in readings that celebrate Vertigo's " +
-                    "rich artistic past. Thank you to everyone who has come out to support the new ensemble and to " +
-                    "helping keep Theatre Vertigo and the Shoebox thriving-we need these space to stay alive and " +
-                    "let our community grow and share their art. Much love to Mom, the Ensemble, the Associate Artists, " +
-                    "Clara, and JQ.",
-                    PhotoId = context.Photo.Where(photo => photo.Title == "Kaia Maarja Hillier").FirstOrDefault().PhotoId,
-                    CurrentMember = true, },
+            var castMembers = new List<CastMember>
+            {
 
-                    new CastMember{Name = "Heath Hyun Houghton", MainRole = Enum.PositionEnum.Actor,
-                    Bio = "A Korean American actor, writer and director.  He previously appeared with Theatre Vertigo in Assistance;" +
-                    " other Portland credits include work with Imago Theatre, Portland Shakespeare Project, Broadway Rose Theatre" +
-                    ", and many more.  Exploring the relationships between the sciences and the arts is a focal point of his work" +
-                    " as a collaborator and educator.",
-                    PhotoId = context.Photo.Where(photo => photo.Title == "Heath Hyun Houghton").FirstOrDefault().PhotoId,
-                    CurrentMember = true, },
 
-                    new CastMember{Name = "Tom Mounsey", YearJoined= 2012, MainRole = Enum.PositionEnum.Actor,
-                    Bio = "Tom found a passion for theatre and performance in his late 20s thanks to a class at Portland" +
-                    " Actors Conservatory, and has been acting in and around Portland since his graduation in 2008. " +
-                    "You might have seen him on stage at places like defunkt theatre, Imago Theatre, Northwest Classical " +
-                    "Theatre Collaborative, Action/Adventure Theatre, Lakewood Center for the Arts, Clackamas Repertory " +
-                    "Theatre, and of course, Theatre Vertigo. Tom was a member of Theatre Vertigo from 2012 to 2017, " +
-                    "and is very excited to be back as part of this amazing company.",
-                    PhotoId = context.Photo.Where(photo => photo.Title == "Tom Mounsey").FirstOrDefault().PhotoId,
-                    CurrentMember = true, },
 
-                    new CastMember{Name = "Devon Roberts", MainRole = Enum.PositionEnum.Actor,
-                    Bio = "Devon Roberts is a born and raised Portland director and actor. He holds a BA of Theater Arts " +
-                    "from Portland State University and is an alumnus of the Orchard Project Core Company. He has worked" +
-                    " with local companies: Boom Arts, Fuse Theatre Ensemble, Portland Center Stage at The Armory and out" +
-                    " of state: such as The Civilians, Tectonic Theater Project, Pig Iron and at the Edinburgh Fringe Festival." +
-                    " When Devon isn’t working on and off stage, he can be found enjoying the local cuisine, or soaking up" +
-                    " the natural beauty of Oregon. Devon is thankful for the opportunity to join the Vertigo Ensemble!",
-                    PhotoId = context.Photo.Where(photo => photo.Title == "Devon Roberts").FirstOrDefault().PhotoId,
-                    CurrentMember = true, },
+
+
+
+                new CastMember{Name = "London Bauman", MainRole = Enum.PositionEnum.Actor,
+                Bio = "London Bauman is an actor, writer, sound designer, and Theatre Vertigo company member. " +
+                "As an artist, he is interested in immersive physical theatre, magical realism, and new collaborative works." +
+                " Selected work includes the role of Torch in Beirut (The Steep & Thorny Way to Heaven), " +
+                "Barnaby the Barkeep in the devised Western Melodrama Bang! (Action/Adventure’s pilot season) " +
+                "and sound design / original compositions for The Romeo and Juliet Project (Enso Theatre Ensemble). " +
+                "In August, London will be traveling to the Edinburgh Fringe Festival in Scotland as Robert in Chet Wilson’s new play Gayface.",
+                PhotoId = context.Photo.Where(photo => photo.Title == "London Bauman").FirstOrDefault().PhotoId,
+                CurrentMember = true,},
+
+                new CastMember{Name = "Jacquelle Davis", MainRole = Enum.PositionEnum.Actor,
+                Bio = "Jacquelle Davis is a proud Portland native and member of Theatre Vertigo. " +
+                "She studied acting at Willamette University. Jacquelle performs regularly with her beloved improv group, " +
+                "No Filter. Her favorite roles include Jane Fonda in That Pretty Pretty; " +
+                "Or, The Rape Play, and Box Worker 2 in Box. Jacquelle loves puns and pickles..",
+                PhotoId = context.Photo.Where(photo => photo.Title == "Jacquelle Davis").FirstOrDefault().PhotoId,
+                CurrentMember = true, },
+
+                new CastMember{Name = "Adriana Gantzer", MainRole = Enum.PositionEnum.Actor,
+                Bio = "Adriana has been a huge fan of Theatre Vertigo for many years and feels so fortunate to become " +
+                "a part of this incredible company. She has been acting on stage for over a decade and has been a " +
+                "full-time voiceover actor for over 4 years. Some favorite past roles include: Andy in A Dark Sky " +
+                "Full of Stars, Adriana’s Theatre Vertigo debut; Matilde in The Clean House, Germaine in Picasso at " +
+                "the Lapin Agile, and Georgeanne in Five Women Wearing the Same Dress. In her four years in Portland " +
+                "she has worked with Milagro, NORTHWEST THEATRE WORKSHOP, Mask & Mirror, and Twilight theaters, " +
+                "and at Prospect Theater Project in her hometown of Modesto, CA.",
+                PhotoId = context.Photo.Where(photo => photo.Title == "Adriana Gantzer").FirstOrDefault().PhotoId,
+                CurrentMember = true, },
+
+                new CastMember{Name = "Clara-Liis Hillier", MainRole = Enum.PositionEnum.Actor,
+                Bio = "Clara-Liis is a graduate of Reed College. A proud company member of Theatre Vertigo, " +
+                "she is also a past resident actor for Bag&Baggage. She was last seen in Caucasian Chalk Circle " +
+                "at Shaking the Tree, Gyspy at Broadway Rose, Godspell at Lakewood Theater " +
+                "(Drammy Award for Supporting Actress), world premiere Carnivora as Woodwoman " +
+                "(Theatre Vertigo) and as the Wicked Witch of the West in The Wizard of Oz (NW Children's Theater). " +
+                "Favorite roles: Graeae Sister in Up The Fall with PHAME, Wait Until Dark (Susan Hendrix) with NWCTC, " +
+                "Our Country's Good (Liz Morden) and Julius Caesar (Casca) with Bag&Baggage; The Seagull (Masha) with " +
+                "NWCTC. When she's not onstage, Clara-Liis works for Portland Center Stage at The Armory as their" +
+                " Education & Community Programs Associate and teaches Dance and Theater for NW Children's Theater " +
+                "and Riverdale High School. Thank you to Heath K. for his love and patience and Mom and " +
+                "Kaia for their strength and inspiration. For Ted.",
+                PhotoId = context.Photo.Where(photo => photo.Title == "Clara-Liis Hillier").FirstOrDefault().PhotoId,
+                CurrentMember = true, },
+
+                new CastMember{Name = "Kaia Maarja Hillier", MainRole = Enum.PositionEnum.Actor,
+                Bio = "Kaia is a current Theatre Vertigo company member, a Board and Company member of the Pulp Stage, " +
+                "a No Filter Improv Troupe member, and Costume Designer. Past acting credits include: Jessica in A Maze" +
+                " (Theatre Vertigo); Nora in Assistance (Theatre Vertigo); and April in The Best of Everything (Bag &Baggage)." +
+                " Kaia has had SO much fun performing with the new ensemble in readings that celebrate Vertigo's " +
+                "rich artistic past. Thank you to everyone who has come out to support the new ensemble and to " +
+                "helping keep Theatre Vertigo and the Shoebox thriving-we need these space to stay alive and " +
+                "let our community grow and share their art. Much love to Mom, the Ensemble, the Associate Artists, " +
+                "Clara, and JQ.",
+                PhotoId = context.Photo.Where(photo => photo.Title == "Kaia Maarja Hillier").FirstOrDefault().PhotoId,
+                CurrentMember = true, },
+
+                new CastMember{Name = "Heath Hyun Houghton", MainRole = Enum.PositionEnum.Actor,
+                Bio = "A Korean American actor, writer and director.  He previously appeared with Theatre Vertigo in Assistance;" +
+                " other Portland credits include work with Imago Theatre, Portland Shakespeare Project, Broadway Rose Theatre" +
+                ", and many more.  Exploring the relationships between the sciences and the arts is a focal point of his work" +
+                " as a collaborator and educator.",
+                PhotoId = context.Photo.Where(photo => photo.Title == "Heath Hyun Houghton").FirstOrDefault().PhotoId,
+                CurrentMember = true, },
+
+                new CastMember{Name = "Tom Mounsey", YearJoined= 2012, MainRole = Enum.PositionEnum.Actor,
+                Bio = "Tom found a passion for theatre and performance in his late 20s thanks to a class at Portland" +
+                " Actors Conservatory, and has been acting in and around Portland since his graduation in 2008. " +
+                "You might have seen him on stage at places like defunkt theatre, Imago Theatre, Northwest Classical " +
+                "Theatre Collaborative, Action/Adventure Theatre, Lakewood Center for the Arts, Clackamas Repertory " +
+                "Theatre, and of course, Theatre Vertigo. Tom was a member of Theatre Vertigo from 2012 to 2017, " +
+                "and is very excited to be back as part of this amazing company.",
+                PhotoId = context.Photo.Where(photo => photo.Title == "Tom Mounsey").FirstOrDefault().PhotoId,
+                CurrentMember = true, },
+
+                new CastMember{Name = "Devon Roberts", MainRole = Enum.PositionEnum.Actor,
+                Bio = "Devon Roberts is a born and raised Portland director and actor. He holds a BA of Theater Arts " +
+                "from Portland State University and is an alumnus of the Orchard Project Core Company. He has worked" +
+                " with local companies: Boom Arts, Fuse Theatre Ensemble, Portland Center Stage at The Armory and out" +
+                " of state: such as The Civilians, Tectonic Theater Project, Pig Iron and at the Edinburgh Fringe Festival." +
+                " When Devon isn’t working on and off stage, he can be found enjoying the local cuisine, or soaking up" +
+                " the natural beauty of Oregon. Devon is thankful for the opportunity to join the Vertigo Ensemble!",
+                PhotoId = context.Photo.Where(photo => photo.Title == "Devon Roberts").FirstOrDefault().PhotoId,
+                CurrentMember = true, },
 
                 };
 
             castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => c.Name, castMember));
             context.SaveChanges();
-            }
+        }
 
-		//Seeding database with dummy Productions
-		private void SeedProductions()
+       
+
+
+
+
+        //Seeding database with dummy Productions
+        private void SeedProductions()
 		{
             
             var productions = new List<Production>
@@ -281,6 +373,14 @@ namespace TheatreCMS
             Image image8 = Image.FromFile(Path.Combine(imagesRoot, @"wicked2.png"));
             Image image9 = Image.FromFile(Path.Combine(imagesRoot, @"howtosucceedinbusinesswithoutreallytrying.png"));
             Image image10 = Image.FromFile(Path.Combine(imagesRoot, @"howtosucceedinbusinesswithoutreallytrying2.png"));
+            //Image image11 = Image.FromFile(Path.Combine(imagesRoot, @"London_Bauman.png"));
+            //Image image12 = Image.FromFile(Path.Combine(imagesRoot, @"JacQuelle_Davis.jpg"));
+            //Image image13 = Image.FromFile(Path.Combine(imagesRoot, @"Adriana_Gantzer.jpg"));
+            //Image image14 = Image.FromFile(Path.Combine(imagesRoot, @"Clara_Liis_Hillier.jpg"));
+            //Image image15 = Image.FromFile(Path.Combine(imagesRoot, @"Kaia_Maarja_Hillier.jpg"));
+            //Image image16 = Image.FromFile(Path.Combine(imagesRoot, @"Heath_Hyun_Houghton.jpg"));
+            //Image image17 = Image.FromFile(Path.Combine(imagesRoot, @"Tom_Mounsey.jpg"));
+            //Image image18 = Image.FromFile(Path.Combine(imagesRoot, @"Devon_Roberts.jpg"));
 
             var photos = new List<Photo>
             {
@@ -354,62 +454,62 @@ namespace TheatreCMS
                     PhotoFile = (byte[])converter.ConvertTo(image10, typeof(byte[])),
                     Title = "How to Succeed in Business Without Really Trying Image 2"
                 },
-                new Photo
-                {
-                    OriginalHeight = image1.Height,
-                    OriginalWidth = image1.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image1, typeof(byte[])),
-                    Title = "London Bauman"
-                },
-                new Photo
-                {
-                    OriginalHeight = image2.Height,
-                    OriginalWidth = image2.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image2, typeof(byte[])),
-                    Title = "JacQuelle Davis"
-                },
-                new Photo
-                {
-                    OriginalHeight = image3.Height,
-                    OriginalWidth = image3.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image3, typeof(byte[])),
-                    Title = "Adriana Gantzer"
-                },
-                new Photo
-                {
-                    OriginalHeight = image4.Height,
-                    OriginalWidth = image4.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image4, typeof(byte[])),
-                    Title = "Clara Liis Hillier"
-                },
-                new Photo
-                {
-                    OriginalHeight = image5.Height,
-                    OriginalWidth = image5.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image5, typeof(byte[])),
-                    Title = "Kaia Maarja Hillier"
-                },
-                new Photo
-                {
-                    OriginalHeight = image6.Height,
-                    OriginalWidth = image6.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image6, typeof(byte[])),
-                    Title = "Heath Hyun Houghton"
-                },
-                new Photo
-                {
-                    OriginalHeight = image7.Height,
-                    OriginalWidth = image7.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image7, typeof(byte[])),
-                    Title = "Tom Mounsey"
-                },
-                new Photo
-                {
-                    OriginalHeight = image8.Height,
-                    OriginalWidth = image8.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image8, typeof(byte[])),
-                    Title = "Devon Roberts"
-                }
+                //new Photo
+                //{
+                //    OriginalHeight = image11.Height,
+                //    OriginalWidth = image11.Width,
+                //    PhotoFile = (byte[])converter.ConvertTo(image11, typeof(byte[])),
+                //    Title = "London Bauman"
+                //},
+                //new Photo
+                //{
+                //    OriginalHeight = image12.Height,
+                //    OriginalWidth = image12.Width,
+                //    PhotoFile = (byte[])converter.ConvertTo(image12, typeof(byte[])),
+                //    Title = "JacQuelle Davis"
+                //},
+                //new Photo
+                //{
+                //    OriginalHeight = image13.Height,
+                //    OriginalWidth = image13.Width,
+                //    PhotoFile = (byte[])converter.ConvertTo(image13, typeof(byte[])),
+                //    Title = "Adriana Gantzer"
+                //},
+                //new Photo
+                //{
+                //    OriginalHeight = image14.Height,
+                //    OriginalWidth = image14.Width,
+                //    PhotoFile = (byte[])converter.ConvertTo(image14, typeof(byte[])),
+                //    Title = "Clara Liis Hillier"
+                //},
+                //new Photo
+                //{
+                //    OriginalHeight = image15.Height,
+                //    OriginalWidth = image15.Width,
+                //    PhotoFile = (byte[])converter.ConvertTo(image15, typeof(byte[])),
+                //    Title = "Kaia Maarja Hillier"
+                //},
+                //new Photo
+                //{
+                //    OriginalHeight = image16.Height,
+                //    OriginalWidth = image16.Width,
+                //    PhotoFile = (byte[])converter.ConvertTo(image16, typeof(byte[])),
+                //    Title = "Heath Hyun Houghton"
+                //},
+                //new Photo
+                //{
+                //    OriginalHeight = image17.Height,
+                //    OriginalWidth = image17.Width,
+                //    PhotoFile = (byte[])converter.ConvertTo(image17, typeof(byte[])),
+                //    Title = "Tom Mounsey"
+                //},
+                //new Photo
+                //{
+                //    OriginalHeight = image18.Height,
+                //    OriginalWidth = image18.Width,
+                //    PhotoFile = (byte[])converter.ConvertTo(image18, typeof(byte[])),
+                //    Title = "Devon Roberts"
+                //}
             };
             photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
             context.SaveChanges();
