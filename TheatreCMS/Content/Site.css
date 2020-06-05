@@ -2759,7 +2759,7 @@ textarea {
 
 * {
     scrollbar-width: auto;  /*This shows a message that it is not a known CSS property but is supported in FireFox and will show as expected when launched with that browser.*/ 
-    scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track
+    scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track*/
 }
 
-/* End scrollbar Styling
+/* End scrollbar Styling */
