@@ -129,7 +129,7 @@ namespace TheatreCMS
             private void SeedCastMembers()
             {
                 //Add photos of cast members
-                string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
+                //string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
 
                 var castMembers = new List<CastMember>
                 {
@@ -140,7 +140,7 @@ namespace TheatreCMS
                     "Barnaby the Barkeep in the devised Western Melodrama Bang! (Action/Adventure’s pilot season) " +
                     "and sound design / original compositions for The Romeo and Juliet Project (Enso Theatre Ensemble). " +
                     "In August, London will be traveling to the Edinburgh Fringe Festival in Scotland as Robert in Chet Wilson’s new play Gayface.",
-                    Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"London_Bauman.png"))),
+                    PhotoId = context.Photo.Where(photo => photo.Title == "London Bauman").FirstOrDefault().PhotoId,
                     CurrentMember = true,},
 
                     new CastMember{Name = "Jacquelle Davis", MainRole = Enum.PositionEnum.Actor,
@@ -148,7 +148,7 @@ namespace TheatreCMS
                     "She studied acting at Willamette University. Jacquelle performs regularly with her beloved improv group, " +
                     "No Filter. Her favorite roles include Jane Fonda in That Pretty Pretty; " +
                     "Or, The Rape Play, and Box Worker 2 in Box. Jacquelle loves puns and pickles..",
-                    Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"JacQuelle_Davis.jpg"))),
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Jacquelle Davis").FirstOrDefault().PhotoId,
                     CurrentMember = true, },
 
                     new CastMember{Name = "Adriana Gantzer", MainRole = Enum.PositionEnum.Actor,
@@ -159,7 +159,7 @@ namespace TheatreCMS
                     "the Lapin Agile, and Georgeanne in Five Women Wearing the Same Dress. In her four years in Portland " +
                     "she has worked with Milagro, NORTHWEST THEATRE WORKSHOP, Mask & Mirror, and Twilight theaters, " +
                     "and at Prospect Theater Project in her hometown of Modesto, CA.",
-                    Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Adriana_Gantzer.jpg"))),
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Adriana Gantzer").FirstOrDefault().PhotoId,
                     CurrentMember = true, },
 
                     new CastMember{Name = "Clara-Liis Hillier", MainRole = Enum.PositionEnum.Actor,
@@ -174,7 +174,7 @@ namespace TheatreCMS
                     " Education & Community Programs Associate and teaches Dance and Theater for NW Children's Theater " +
                     "and Riverdale High School. Thank you to Heath K. for his love and patience and Mom and " +
                     "Kaia for their strength and inspiration. For Ted.",
-                    Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Clara_Liis_Hillier.jpg"))),
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Clara-Liis Hillier").FirstOrDefault().PhotoId,
                     CurrentMember = true, },
 
                     new CastMember{Name = "Kaia Maarja Hillier", MainRole = Enum.PositionEnum.Actor,
@@ -186,7 +186,7 @@ namespace TheatreCMS
                     "helping keep Theatre Vertigo and the Shoebox thriving-we need these space to stay alive and " +
                     "let our community grow and share their art. Much love to Mom, the Ensemble, the Associate Artists, " +
                     "Clara, and JQ.",
-                    Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Kaia_Maarja_Hillier.jpg"))),
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Kaia Maarja Hillier").FirstOrDefault().PhotoId,
                     CurrentMember = true, },
 
                     new CastMember{Name = "Heath Hyun Houghton", MainRole = Enum.PositionEnum.Actor,
@@ -194,7 +194,7 @@ namespace TheatreCMS
                     " other Portland credits include work with Imago Theatre, Portland Shakespeare Project, Broadway Rose Theatre" +
                     ", and many more.  Exploring the relationships between the sciences and the arts is a focal point of his work" +
                     " as a collaborator and educator.",
-                    Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Heath_Hyun_Houghton.jpg"))),
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Heath Hyun Houghton").FirstOrDefault().PhotoId,
                     CurrentMember = true, },
 
                     new CastMember{Name = "Tom Mounsey", YearJoined= 2012, MainRole = Enum.PositionEnum.Actor,
@@ -204,7 +204,7 @@ namespace TheatreCMS
                     "Theatre Collaborative, Action/Adventure Theatre, Lakewood Center for the Arts, Clackamas Repertory " +
                     "Theatre, and of course, Theatre Vertigo. Tom was a member of Theatre Vertigo from 2012 to 2017, " +
                     "and is very excited to be back as part of this amazing company.",
-                    Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Tom_Mounsey.jpg"))),
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Tom Mounsey").FirstOrDefault().PhotoId,
                     CurrentMember = true, },
 
                     new CastMember{Name = "Devon Roberts", MainRole = Enum.PositionEnum.Actor,
@@ -214,13 +214,13 @@ namespace TheatreCMS
                     " of state: such as The Civilians, Tectonic Theater Project, Pig Iron and at the Edinburgh Fringe Festival." +
                     " When Devon isn’t working on and off stage, he can be found enjoying the local cuisine, or soaking up" +
                     " the natural beauty of Oregon. Devon is thankful for the opportunity to join the Vertigo Ensemble!",
-                    Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Devon_Roberts.jpg"))),
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Devon Roberts").FirstOrDefault().PhotoId,
                     CurrentMember = true, },
 
                 };
 
-                castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => c.Name, castMember));
-                context.SaveChanges();
+            castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => c.Name, castMember));
+            context.SaveChanges();
             }
 
 		//Seeding database with dummy Productions
@@ -354,7 +354,62 @@ namespace TheatreCMS
                     PhotoFile = (byte[])converter.ConvertTo(image10, typeof(byte[])),
                     Title = "How to Succeed in Business Without Really Trying Image 2"
                 },
-
+                new Photo
+                {
+                    OriginalHeight = image1.Height,
+                    OriginalWidth = image1.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image1, typeof(byte[])),
+                    Title = "London Bauman"
+                },
+                new Photo
+                {
+                    OriginalHeight = image2.Height,
+                    OriginalWidth = image2.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image2, typeof(byte[])),
+                    Title = "JacQuelle Davis"
+                },
+                new Photo
+                {
+                    OriginalHeight = image3.Height,
+                    OriginalWidth = image3.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image3, typeof(byte[])),
+                    Title = "Adriana Gantzer"
+                },
+                new Photo
+                {
+                    OriginalHeight = image4.Height,
+                    OriginalWidth = image4.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image4, typeof(byte[])),
+                    Title = "Clara Liis Hillier"
+                },
+                new Photo
+                {
+                    OriginalHeight = image5.Height,
+                    OriginalWidth = image5.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image5, typeof(byte[])),
+                    Title = "Kaia Maarja Hillier"
+                },
+                new Photo
+                {
+                    OriginalHeight = image6.Height,
+                    OriginalWidth = image6.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image6, typeof(byte[])),
+                    Title = "Heath Hyun Houghton"
+                },
+                new Photo
+                {
+                    OriginalHeight = image7.Height,
+                    OriginalWidth = image7.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image7, typeof(byte[])),
+                    Title = "Tom Mounsey"
+                },
+                new Photo
+                {
+                    OriginalHeight = image8.Height,
+                    OriginalWidth = image8.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image8, typeof(byte[])),
+                    Title = "Devon Roberts"
+                }
             };
             photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
             context.SaveChanges();
