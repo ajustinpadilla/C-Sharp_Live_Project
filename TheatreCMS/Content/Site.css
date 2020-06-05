@@ -46,7 +46,7 @@
 
 
 .palette-body {
-    background-color: var(--main-bg-color);
+    background-color: var(--dark-color);
     margin-bottom: auto;/* Applying --main-bg-color to the background of body */
 }
 
