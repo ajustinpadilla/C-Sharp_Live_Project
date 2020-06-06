@@ -117,8 +117,12 @@ if (document.getElementById("generate-showtimes-section") != null) {
         });
     });
 
+     //====================================== THis block handles the generate button =====================================//
+
     $("#generate-button").click(function () {
         console.log('generate button clicked')
+        $('.bulk-add_review-row').unbind('mouseenter mouseleave');
+
         var modal = $('#bulk-add-modal'),
             yesBtn = $('#bulk-add-modal_yes'),
             noBtn = $('#bulk-add-modal_no'),
@@ -127,12 +131,11 @@ if (document.getElementById("generate-showtimes-section") != null) {
         modal.show();
         generateShowtimes();
 
-        nobtn.off('click');                   // the .off() and .one() methods are to prevent event handlers from stacking up.
+        noBtn.off('click');                   // the .off() and .one() methods are to prevent event handlers from stacking up.
         noBtn.one("click", function () {
             console.log('no button clicked');
             modal.hide();
             $('.bulk-add_modal-row').remove(); // this clears all the entries from the modal table so they won't stack.
-
         });
         console.log('before yes');
         
@@ -261,17 +264,16 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     row.className = 'bulk-add_review-row';
                 }
                 document.getElementById('showtimes-container').appendChild(table);
+                $('.bulk-add_review-row').off('hover');
                 $('.bulk-add_review-row').hover(
                     function () {
                         let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
                             .hide().fadeIn(1200);
-                        console.log('hover');
-                        $(this).append(button).fadeIn();
+                        $(this).append(button);
                     }, function () {
                         $('.bulk-add_delete').remove();
                     });
             }
-
         }
     });
 }
