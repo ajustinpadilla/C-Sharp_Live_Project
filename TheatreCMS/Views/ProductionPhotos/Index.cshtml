@@ -6,47 +6,46 @@
 }
 
 <h2 class="m-3">Index</h2>
-
 <div class="prodphoto-bar m-3">
-    @*filter by production season in descending order*@
-    <label>Filter by Production</label>
-    @Html.DropDownList("ProductionList", (IEnumerable<SelectListItem>)ViewData["ProductionList"], "All", new { @class = "col-4 prodphoto-filter" })
-
+        <label>Filter by Production</label>
+        @Html.DropDownList("ProductionList", (IEnumerable<SelectListItem>)ViewData["ProductionList"], "All", new { @class = "col-5 col-md-3 prodphoto-filter" })
     <div class="prodphoto-search-container">
         <input type="text" name="prodphoto-search" placeholder="Search..." class="prodphoto-searchbar" />
         <button class="prodphoto-searchbtn"><i class="fa fa-search"></i></button>
     </div>
 </div>
 
+
 <p class="m-3">
     @Html.ActionLink("Create New", "Create")
 
 </p>
 
-<h4 class="text-center py-3" id="prodphoto-null-msg" style="display:none;"></h4>
+<h4 class="text-center py-3" id="prodphoto-null-msg"></h4>
 
-<div class="prodphoto-content my-3">
+<div class="prodphoto-content my-3 container">
     @*sort by production season in descending order , then by opening day in ascending order*@
     @foreach (var pro in Model.Select(i => i.Production).Distinct())
     {
         <div id="@pro.ProductionId-prodphoto-show" class="prodphoto-cards">
             <h3 class="prodphoto-prod-title text-center my-3">@pro.Title <span class="badge badge-pill badge-light">@pro.Season</span></h3>
-            <div class="card-group">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 justify-content-center">
                 @foreach (var item in Model.Where(i => i.Production.Title == pro.Title))
                 {
-                    <div class="card">
-                        <img class="card-img-top" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo">
-                        <div class="card-body">
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-                            <p class="card-text text-secondary">@Html.DisplayFor(modelItem => item.Description)</p>
-                        </div>
-                        <div class="card-footer">
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ProPhotoId }, new { @class = "badge badge-pill badge-danger" }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ProPhotoId }, new { @class = "badge badge-pill badge-danger" }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ProPhotoId }, new { @class = "badge badge-pill badge-danger" })
+                    <div class="col mb-4">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo">
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                <p class="card-text text-secondary">@Html.DisplayFor(modelItem => item.Description)</p>
+                            </div>
+                            <div class="card-footer">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ProPhotoId }, new { @class = "badge badge-pill badge-danger" }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ProPhotoId }, new { @class = "badge badge-pill badge-danger" }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ProPhotoId }, new { @class = "badge badge-pill badge-danger" })
+                            </div>
                         </div>
                     </div>
-
                 }
             </div>
             <br /><br />

@@ -2216,12 +2216,12 @@ textarea {
 /*ProductionPhoto (Production Photos) Styling*/
 
 .prodphoto-search-container {
-    display: inline-block;
     float: right;
 }
 
+
 .prodphoto-search-container input[type=text] {
-    width: 250px;
+    width: 200px;
     border: 0;
     height: 50px;
     padding: 0px 25px;
@@ -2246,15 +2246,21 @@ textarea {
     color: var(--secondary-color);
 }
 
+/* set search bar to be below filter for small screen*/
+@media screen and (max-width: 767px) {
+    .prodphoto-search-container {
+        float: none;
+    }
+
+    .prodphoto-filter {
+        display: block;
+    }
+
+}
 
 /*set initial card-footer links to be not visible*/
 .prodphoto-cards .card .card-footer {
     opacity: 0;
-}
-
-.prodphoto-cards .card {
-    max-width: 30%;
-    min-width: 15%;
 }
 
 .prodphoto-cards .card-title {
@@ -2262,18 +2268,14 @@ textarea {
 }
 
 
-.prodphoto-content {
-    margin: 10px 20px;
-}
-
-.prodphoto-cards .card-group {
-    justify-content: center;
-} 
-
 .prodphoto-filter {
     color: var(--secondary-color);
+
 }
 
+#prodphoto-null-msg {
+    display: none;
+}
 
 /* Start Homepage */
 
