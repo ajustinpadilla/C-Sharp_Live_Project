@@ -46,8 +46,8 @@
 
 
 .palette-body {
-    background-color: var(--main-bg-color);
-    margin-bottom: auto;/* Applying --main-bg-color to the background of body */
+    background-color: var(--dark-color);
+    margin-bottom: auto;    /* Applying --main-bg-color to the background of body */
 }
 
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
@@ -2675,27 +2675,29 @@ textarea {
 }
 
 /*This class was added to move most of the content of the login page to the left*/
-.loginpadding {
+/*.loginpadding {
     padding-left: 50px;
-}
+    padding-right: 25px;                --Login page CSS coded out and replaced with Boostrap classes--
+}*/
 
 /*This class was also added to move certain elements on the login page left*/
-.loginhtwo {
-    padding-left: 65px;
+/*.loginhtwo {
+    padding-left: 50px;
     padding-top: 50px;
-}
+}*/
+
 /*This class was added to move the login button more to the right*/
 .loginhthree {
     padding-right: 45px;
     padding-left: 5px;
-    /* End Peter O.*/
 }
+/* End Peter O.*/
 
 /* Scrollbar Styling*/
 
 /* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
 ::-webkit-scrollbar { /* This effects the width of the scrollbar. If the width is adjusted the buttons (arrows) must be adjusted as well*/
-    width: 14px; /* Horizontal Scrollbar*/
+    width: 14px;  /*Horizontal Scrollbar*/
     height: 14px; /* Vertical Scrollbar */
 }
 
@@ -2765,7 +2767,6 @@ textarea {
     scrollbar-width: auto; /* This shows a message that it is not a known CSS property but is supported in FireFox and will show as expected when launched with that browser. */
     scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track*/
 }
-
 
 /* End scrollbar Styling*/
 
