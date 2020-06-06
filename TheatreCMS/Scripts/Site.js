@@ -117,35 +117,33 @@ if (document.getElementById("generate-showtimes-section") != null) {
         });
     });
 
-     //====================================== THis block handles the generate button =====================================//
+    //====================================== THis block handles the generate button =====================================//
 
     $("#generate-button").click(function () {
-        console.log('generate button clicked')
         $('.bulk-add_review-row').unbind('mouseenter mouseleave');
 
         var modal = $('#bulk-add-modal'),
             yesBtn = $('#bulk-add-modal_yes'),
             noBtn = $('#bulk-add-modal_no'),
-            pressedYes = false; //this variable is used to determine whether to generate the table in the modal or in the 'review showtimes' section.
+            reviewShowtimes = false,                    //this variable is used to determine whether to have generateShowtimes() create the table in the modal or in the 'review showtimes' section.
+            eventList = generateShowtimes();
 
         modal.show();
-        generateShowtimes();
+        createTable(eventList, reviewShowtimes);
 
-        noBtn.off('click');                   // the .off() and .one() methods are to prevent event handlers from stacking up.
+        noBtn.off('click');                             //the .off() and .one() methods are to prevent event handlers from stacking up.
         noBtn.one("click", function () {
             console.log('no button clicked');
             modal.hide();
-            $('.bulk-add_modal-row').remove(); // this clears all the entries from the modal table so they won't stack.
+            $('.bulk-add_modal-row').remove();          //this clears all the entries from the modal table so they won't stack.
         });
-        console.log('before yes');
-        
         yesBtn.off("click");
-        yesBtn.one("click", function () { // the .one() method ensures that if event handlers get stacked, the action won't fire off multiple times.
-            console.log('yes button clicked')
+        yesBtn.one("click", function () {               // the .one() method ensures that if event handlers get stacked, the action won't fire off multiple times.
             modal.hide();
-            pressedYes = true;
+            reviewShowtimes = true;
             $('.bulk-add_modal-row').remove();
             generateShowtimes();
+            createTable(eventList, reviewShowtimes);
         });
 
         function generateShowtimes() {
@@ -201,7 +199,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 }
             }
             // this block generates the events
-            for (i = 0; i < productionDays.length; i++) {
+            for (i = 0; i < productionDays.length; i++) {                           
                 if (productionDays[i] < startDate.day()) {
                     productionDays[i] += 7;
                 }
@@ -212,7 +210,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
                         for (k = 0; k < startTimes.length; k++) {
                             const event = new CalendarEvent(production, moment(eventDate), eventDate.format('dddd'), startTimes[k], eventDate.format('ll'));
                             eventList.push(event);
-
                         }
                     }
                     eventDate.add((7 * interval).toString(), 'days').format('ll');
@@ -220,16 +217,11 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 startDate = moment($("#generate__start-date-field").val());
                 eventDate = startDate;
             }
-            eventList.sort((a, b) => a.date - b.date);
+            return eventList.sort((a, b) => a.date - b.date);
+        }
 
-            // end block
-
-
-            // This block handles rendering the showtimes table
-
+        function createTable(eventList, pressedYes) {
             if (pressedYes != true) {
-                //$("#showtimes-container").show();
-
                 var table = document.getElementById("modal-table"),
                     row = table.insertRow();
                 row.className = 'bulk-add_modal-row';
@@ -242,7 +234,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     cell.innerHTML = eventList[i].startTime;
                     row = table.insertRow();
                     row.className = 'bulk-add_modal-row';
-
                 }
                 document.getElementById('bulk-add-modal_content').appendChild(table);
             }
@@ -264,16 +255,19 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     row.className = 'bulk-add_review-row';
                 }
                 document.getElementById('showtimes-container').appendChild(table);
-                $('.bulk-add_review-row').off('hover');
-                $('.bulk-add_review-row').hover(
-                    function () {
-                        let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
-                            .hide().fadeIn(1200);
-                        $(this).append(button);
-                    }, function () {
-                        $('.bulk-add_delete').remove();
-                    });
+                addDeleteButton();
             }
+        }
+        function addDeleteButton() {
+            $('.bulk-add_review-row').off('hover');
+            $('.bulk-add_review-row').hover(
+                function () {
+                    let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
+                        .hide().fadeIn(1200);
+                    $(this).append(button);
+                }, function () {
+                    $('.bulk-add_delete').remove();
+                });
         }
     });
 }
