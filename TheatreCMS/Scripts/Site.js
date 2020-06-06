@@ -199,7 +199,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 }
             }
             // this block generates the events
-            for (i = 0; i < productionDays.length; i++) {                           
+            for (i = 0; i < productionDays.length; i++) {
                 if (productionDays[i] < startDate.day()) {
                     productionDays[i] += 7;
                 }
@@ -259,15 +259,18 @@ if (document.getElementById("generate-showtimes-section") != null) {
             }
         }
         function addDeleteButton() {
-            $('.bulk-add_review-row').off('hover');
-            $('.bulk-add_review-row').hover(
-                function () {
-                    let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
-                        .hide().fadeIn(1200);
-                    $(this).append(button);
-                }, function () {
-                    $('.bulk-add_delete').remove();
-                });
+            var row = $('.bulk-add_review-row');
+            row.off('hover');
+            row.hover(function () {                   // this function is called when the mousse hovers over the row.
+                let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
+                    .hide().fadeIn(1200);
+                $(this).append(button);
+                button.click(function () {
+                    button.closest('tr').remove();
+                })
+            }, function () {                          // this function is called when the mouse is removed from the row.
+                $('.bulk-add_delete').remove();
+            });
         }
     });
 }
