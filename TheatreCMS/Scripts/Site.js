@@ -117,19 +117,20 @@ if (document.getElementById("generate-showtimes-section") != null) {
         });
     });
 
-    //====================================== THis block handles the generate button =====================================//
+    //====================================== THis block handles generating, editing and submitting showtimes =====================================//
 
+    var masterList = [];
     $("#generate-button").click(function () {
         $('.bulk-add_review-row').unbind('mouseenter mouseleave');
 
         var modal = $('#bulk-add-modal'),
             yesBtn = $('#bulk-add-modal_yes'),
             noBtn = $('#bulk-add-modal_no'),
-            reviewShowtimes = false,                    //this variable is used to determine whether to have generateShowtimes() create the table in the modal or in the 'review showtimes' section.
+            reviewShowtimes = false,                    //this variable is used to determine whether to have createTable() render the table in the modal or in the 'review showtimes' section.
             eventList = generateShowtimes();
 
-        modal.show();
-        createTable(eventList, reviewShowtimes);
+        modal.show();                                  //a modal appears when the generate button is clicked
+        createTable(eventList, reviewShowtimes);       //a table is rendered in the modal with the showtimes the user specified
 
         noBtn.off('click');                             //the .off() and .one() methods are to prevent event handlers from stacking up.
         noBtn.one("click", function () {
@@ -138,14 +139,15 @@ if (document.getElementById("generate-showtimes-section") != null) {
             $('.bulk-add_modal-row').remove();          //this clears all the entries from the modal table so they won't stack.
         });
         yesBtn.off("click");
-        yesBtn.one("click", function () {               // the .one() method ensures that if event handlers get stacked, the action won't fire off multiple times.
+        yesBtn.one("click", function () {               //when the yes button is clicked, the modal disappears and clears its entries, and the showtimes are appended to the review showtimes list. 
             modal.hide();
             reviewShowtimes = true;
             $('.bulk-add_modal-row').remove();
-            generateShowtimes();
-            createTable(eventList, reviewShowtimes);
+            masterList.push.apply(masterList, eventList); //the event list is appended to the master list
+            createTable(eventList, reviewShowtimes);      //the event list is appended to the "review showtimes" table 
         });
 
+        // this function returns a list of show times
         function generateShowtimes() {
 
             let production = $("#generate__production-field").children("option").filter(":selected").text(),
@@ -221,6 +223,8 @@ if (document.getElementById("generate-showtimes-section") != null) {
         }
 
         function createTable(eventList, pressedYes) {
+
+            // this block creates a table in the modal
             if (pressedYes != true) {
                 var table = document.getElementById("modal-table"),
                     row = table.insertRow();
@@ -237,10 +241,10 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 }
                 document.getElementById('bulk-add-modal_content').appendChild(table);
             }
+
+            // this block creates a table in the review showtimes section
             if (pressedYes == true) {
-                console.log(eventList.length);
-                $("#showtimes-container").show();
-                console.log('its true');
+                $("#review-showtimes-section").show();
                 var table = document.getElementById("showtimes-table"),
                     row = table.insertRow();
                 row.className = 'bulk-add_review-row';
@@ -254,19 +258,25 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     row = table.insertRow();
                     row.className = 'bulk-add_review-row';
                 }
-                document.getElementById('showtimes-container').appendChild(table);
-                addDeleteButton();
+                document.getElementById('showtimes-container').appendChild(table);    // generates the table in html.
+                deleteRowFeature();
             }
         }
-        function addDeleteButton() {
-            var row = $('.bulk-add_review-row');
-            row.off('hover');
-            row.hover(function () {                   // this function is called when the mousse hovers over the row.
+
+        // this function creates a delete button
+        function deleteRowFeature() {
+            let row = $('.bulk-add_review-row');
+            row.off('hover');                         // clears hover event handlers. prevents events from stacking
+            row.hover(function () {                   // on row hover, a delete button is created, and the index of that row is recorded and used to remove that entry from the master list
                 let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
                     .hide().fadeIn(1200);
+                let rowIndex = $('tr').index(this) - 2; // targets the specific row to be deleted 
+                console.log('row index' + rowIndex);
                 $(this).append(button);
                 button.click(function () {
                     button.closest('tr').remove();
+                    masterList.splice(rowIndex, 1);
+                    console.log(masterList);
                 })
             }, function () {                          // this function is called when the mouse is removed from the row.
                 $('.bulk-add_delete').remove();

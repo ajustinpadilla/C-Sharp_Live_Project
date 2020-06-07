@@ -1801,8 +1801,9 @@ textarea {
             cursor: pointer;
         }
 
-
-
+#review-showtimes-section {
+    display:none;
+}
 /*Product Details*/
 #jumbo.jumbotron {
     background-color: #bd1a11;

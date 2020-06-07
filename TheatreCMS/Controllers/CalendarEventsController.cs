@@ -220,10 +220,11 @@ namespace TheatreCMS.Controllers
         public List<string> GetTimeIntervals()
         {
             List<string> timeIntervals = new List<string>();
-            TimeSpan startTime = new TimeSpan(8, 0, 0);
+            TimeSpan startTime = new TimeSpan(8, 0, 0);                 // The first time to be added. (8,0,0) sets it to 8 am
             DateTime startDate = new DateTime(DateTime.MinValue.Ticks); // Date to be used to get shortTime format.
-            timeIntervals.Add("TBD");
-            for (int i = 0; i < 29; i++)
+            timeIntervals.Add("TBD");  
+            
+            for (int i = 0; i < 29; i++)                                // This loop adds times to the array in 30 min increments ending at 10 pm
             {
                 int minutesToBeAdded = 30 * i;      // Increasing minutes by 30 minutes interval
                 TimeSpan timeToBeAdded = new TimeSpan(0, minutesToBeAdded, 0);
