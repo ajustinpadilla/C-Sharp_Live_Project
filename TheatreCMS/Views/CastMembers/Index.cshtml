@@ -22,40 +22,44 @@
                                   @*Creates a card for each cast member with their photo as the image-cap*@
   @foreach (var item in Model)
   {
-    <div class="card castImageContainer">
-      @{
-        string img = "";
-        if (item.Photo != null)
-        {
-          byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 100, 100);
-          var base64 = System.Convert.ToBase64String(thumbBytes);
-          img = String.Format("data:image/png;base64,{0}", base64);
-        }
-        else
-        {
-          img = @Url.Content("~/Content/Images/CastMember.jpg");       /*If cast member has no photo display this as image-cap*/
-        }
+  <div class="card castImageContainer">
+    @{
+      string img = "";
+      if (item.Photo != null)
+      {
+        byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 100, 100);
+        var base64 = System.Convert.ToBase64String(thumbBytes);
+        img = String.Format("data:image/png;base64,{0}", base64);
       }
-      <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })"> <img class="card-img-top" id="castImage" src="@img" /> </a>
-      <div class="castMiddle mr-3 mb-1">
-        <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })">
-          @{ if (item.Bio != null && item.Bio.Length > 100)                     // the max allowable characters can be changed on this line, and
-            {
-              item.Bio = item.Bio.Substring(0, 100) + "...";                  //   this line
-            }
-          }
-          <p class="castText">@Html.DisplayFor(modelItem => item.Bio)</p>         @*this tag is the bio popup*@
-        </a>
-      </div>
-      <div class="card-body">
-        @Html.DisplayFor(modelItem => item.Name) |
-        Role: @Html.DisplayFor(modelItem => item.MainRole)
-        @{                                        @*Added if statement so "YearJoined" variable is only used if the year joined is not null*@
+      else
+      {
+        img = @Url.Content("~/Content/Images/CastMember.jpg");       /*If cast member has no photo display this as image-cap*/
+      }
+    }
+    <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })"> <img class="card-img-top" id="castImage" src="@img" /> </a>
+    @*<div class="castMiddle mr-3 mb-1 pb-0">*@
+    <div class="card-body">
+      <h4 class="card-title">
+        @Html.DisplayFor(modelItem => item.Name),
+        @Html.DisplayFor(modelItem => item.MainRole)
+      </h4>
+        @{ @*Added if statement so "YearJoined" variable is only used if the year joined is not null*@
         if (item.YearJoined != null)
         {
-          <text>| Joined our cast: @Html.DisplayFor(modelItem => item.YearJoined)</text>; @*Used <text> instead of <p> for accurate spacing*@
+          <h4 class="font-italic"> Joined: @Html.DisplayFor(modelItem => item.YearJoined)</h4>; 
         }
         }
+      
+      <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })">
+        <p class="castText">@Html.DisplayFor(modelItem => item.Bio)</p>
+        @*@{ if (item.Bio != null && item.Bio.Length > 200)                     // the max allowable characters can be changed on this line, and
+          {
+            item.Bio = item.Bio.Substring(0, 200) + "...";                  //   this line
+          }
+        }*@
+                @*this tag is the bio popup*@
+      </a>
+      
 
         <p>
           @*Delete and edit are admin only*@
@@ -75,5 +79,5 @@
         </p>
       </div>
     </div>
-  }
-</div>
+    }
+  </div>

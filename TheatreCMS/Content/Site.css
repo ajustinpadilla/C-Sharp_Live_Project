@@ -978,6 +978,36 @@ textarea {
             }
         }
 
+        @media (min-width: 34em) {
+            .card-columns {
+                column-count: 1;
+            }
+        }
+
+        @media (min-width: 48em) {
+            .card-columns {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 62em) {
+            .card-columns {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 108em) {
+            .card-columns {
+                column-count: 4;
+            }
+        }
+
+        @media (min-width: 115em) {
+            .card-columns {
+                column-count: 5;
+            }
+        }
+
         .castImageContainer {
             position: relative;
             background-color: black;
@@ -995,7 +1025,7 @@ textarea {
         }
 
         .castImageContainer:hover #castImage {
-            opacity: 0.3;
+            opacity: 0.9;
         }
 
         .castImageContainer:hover .castMiddle {
@@ -1012,15 +1042,15 @@ textarea {
         }
 
         .castText {
-            background-color: rgba(255,251,251,.6);
-            color: var(--main-bg-color);
+            background-color: var(--dark-color);
+            color: var(--light-color);
             font-size: 16px;
             font-weight: 500;
-            padding: 20px;
-            /*padding-bottom: 12px;*/
-            padding-top: 16px;
             text-align: left;
-            font-style: italic;
+            /*padding: 20px;
+            padding-bottom: 12px;
+            padding-top: 16px;
+            font-style: italic;*/
         }
 
         .castMiddle {
