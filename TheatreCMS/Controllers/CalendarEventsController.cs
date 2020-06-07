@@ -222,6 +222,7 @@ namespace TheatreCMS.Controllers
             List<string> timeIntervals = new List<string>();
             TimeSpan startTime = new TimeSpan(8, 0, 0);
             DateTime startDate = new DateTime(DateTime.MinValue.Ticks); // Date to be used to get shortTime format.
+            timeIntervals.Add("TBD");
             for (int i = 0; i < 29; i++)
             {
                 int minutesToBeAdded = 30 * i;      // Increasing minutes by 30 minutes interval
