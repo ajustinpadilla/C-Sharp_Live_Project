@@ -15,6 +15,8 @@ namespace TheatreCMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+
         // GET: Part
         public ActionResult Index()
         {
@@ -39,6 +41,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: Part/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
@@ -145,6 +148,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: Part/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
