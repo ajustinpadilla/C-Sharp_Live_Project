@@ -197,7 +197,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     this.date = date;
                     this.dayOfWeek = dayOfWeek;
                     this.startTime = startTime;
-                    this.dateString = date;
                 }
             }
             // this block generates the events
@@ -210,7 +209,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 for (j = productionDays[i]; j <= dateRange + 7; j += 7 * interval) {
                     if (eventDate.isBetween(startDate, endDate, undefined, '[]')) { //check for the eventDate to be within start and end date. The '[]' argument sets it to be inclusive of the start and end date.
                         for (k = 0; k < startTimes.length; k++) {
-                            const event = new CalendarEvent(production, moment(eventDate), eventDate.format('dddd'), startTimes[k], eventDate.format('ll'));
+                            const event = new CalendarEvent(production, moment(eventDate), eventDate.format('dddd'), startTimes[k]);
                             eventList.push(event);
                         }
                     }
@@ -292,7 +291,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
             console.log(masterList);
             Array.prototype.map.call(masterList, x => { x.date.toString() })
             console.log(masterList);
-            data = JSON.stringify({ 'masterList': data });
+            data = { 'masterList': masterList };
             $.ajax({
                 method: 'POST',
                 url: '/CalendarEvents/BulkAdd',
