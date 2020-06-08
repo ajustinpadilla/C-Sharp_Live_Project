@@ -1576,22 +1576,77 @@ textarea {
         .production-admin-div {
             width: 400px;
         }
+/****************
+    ABOUT PAGE STYLING*/
+/*about page container*/
+.about-jumbo {
+    background-image: url(Images/img2.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    text-align: center;
+}
+/*mission statement and history boxes*/ 
+.ab-mission {
+    margin:5%;
+    padding: 5%;
+    color: white;
+    font-style: italic;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 25px;
+    border: 5px solid black;
+  }
 
-        /*about page container*/
-        .about-container {
-            position: relative;
-            text-align: center;
-            color: white;
-        }
+.ab-mission:hover {
+    transition: transform 3s;
+    transform: scale(1.2); /*animation*/
+}
 
-        /* Centered text */
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        /*end about page container*/
+.about-title {
+    font-weight: 700;
+    font-size: 3em;
+    text-shadow: 10px 10px 30px black;
+    }
+
+.about-title:hover {
+    transition: transform 3s;
+    transform: scale(1.2); /*animation*/
+}
+    /*card styling*/
+.btns {
+    font-weight: 900;
+    border-color: white;
+    padding: 3%;
+    font-size: 2em;
+    border: solid white 3px;
+}
+
+.ab-card {
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    padding: 1%;
+    text-align: center;
+    min-width: 300px;
+}
+
+.ab-card-red {
+    background-color: #f04d44;
+    color: white;
+    border-radius: 25px;
+    padding: 1%;
+    text-align: center;
+    min-width: 300px;
+}
+
+.ab-card-title {
+    background: white;
+    border-radius: 15px;
+    color: black;
+    padding: 2%;
+}        
+/*END ABOUT PAGE STYLING
+    **************/
 
 
         .productionphotos-cardborder {
