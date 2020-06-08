@@ -239,13 +239,20 @@ namespace TheatreCMS.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public JsonResult BulkAdd(string jsonString)
         {
             Debug.WriteLine("BulkAdd POST");
             var js = new JavaScriptSerializer();
             
-            Debug.WriteLine(jsonString.GetType());
+            if (jsonString == null)
+            {
+            Debug.WriteLine("string is null");
+            }
+            else
+            {
+                Debug.WriteLine(jsonString);
+            }
             return Json("BulkAdd Post finished");
         }
     }
