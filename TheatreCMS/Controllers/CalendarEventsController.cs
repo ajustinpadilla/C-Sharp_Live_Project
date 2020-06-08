@@ -11,6 +11,7 @@ using TheatreCMS.Models;
 using System.Web.Mvc.Html;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
+using System.Web.Script.Serialization;
 
 namespace TheatreCMS.Controllers
 {
@@ -200,6 +201,7 @@ namespace TheatreCMS.Controllers
         {
             ViewData["Productions"] = new SelectList(db.Productions.OrderByDescending(x => x.Season).ToList(), "ProductionId","Title");
             ViewData["Times"] = GetTimeIntervals();
+            Debug.WriteLine("BulkAdd main");
             return View();
         }
         
@@ -233,6 +235,18 @@ namespace TheatreCMS.Controllers
                 timeIntervals.Add(result.ToShortTimeString());      // Use Date.ToShortTimeString() method to get the desired format                
             }
             return timeIntervals;
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public JsonResult BulkAdd(string jsonString)
+        {
+            Debug.WriteLine("BulkAdd POST");
+            var js = new JavaScriptSerializer();
+            
+            Debug.WriteLine(jsonString);
+            return Json("BulkAdd Post finished");
         }
     }
 }

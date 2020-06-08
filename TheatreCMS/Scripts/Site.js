@@ -119,7 +119,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
     //====================================== THis block handles generating, editing and submitting showtimes =====================================//
 
-    var masterList = [];
+    var masterList = [];                                //this array is used to store the complete list of calendar event objects. Its also what gets passed to the back end.
     $("#generate-button").click(function () {
         $('.bulk-add_review-row').unbind('mouseenter mouseleave');
 
@@ -275,7 +275,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     .hide().fadeIn(1200);
                 let rowIndex = $('tr').index(this) - 2; // targets the specific row to be deleted 
                 console.log('row index' + rowIndex);
-                $(this).append(button);                
+                $(this).append(button);
                 button.click(function () {             // when the delete button is clicked, the row is removed from the table, and the corresponding event is removed from the master list.
                     button.closest('tr').remove();
                     masterList.splice(rowIndex, 1);
@@ -284,6 +284,20 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 $('.bulk-add_delete').remove();
             });
         }
+        $('#bulk-add_submit').click(submitEvents);
+        function submitEvents() {
+            console.log('submitEvents fired')
+            $.ajax({
+                method: 'POST',
+                url: '/CalendarEvents/BulkAdd',
+                data: { "masterList": JSON.stringify(masterList) },
+                dataType: 'json',
+                success: function () {
+                    console.log('Success!');
+                }
+            });
+        };
+
     });
 }
     //End script for Bulk Add
