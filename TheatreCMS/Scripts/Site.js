@@ -93,7 +93,7 @@ function shrinkFunction() {
 if (document.getElementById("generate-showtimes-section") != null) {
     //$("#showtimes-container").hide();
 
-    $("#generate__production-field").change(function () {
+    $("#generate__production-field").change(function () {          //when a different 
         var productionId = $("#generate__production-field").val();
         $.ajax({
             method: 'GET',
@@ -222,8 +222,10 @@ if (document.getElementById("generate-showtimes-section") != null) {
             return eventList.sort((a, b) => a.date - b.date);
         }
 
-        function createTable(eventList, pressedYes) {
 
+        //this function generates a table displaying the list of events created in the generateShowTimes() function.
+        //depending on the state of the pressedYes variable, it will create the table in either the modal or the 'review showtimes' section.
+        function createTable(eventList, pressedYes) {
             // this block creates a table in the modal
             if (pressedYes != true) {
                 var table = document.getElementById("modal-table"),
@@ -263,22 +265,22 @@ if (document.getElementById("generate-showtimes-section") != null) {
             }
         }
 
-        // this function creates a delete button
+        // this function creates a delete button when a row is hovered over.
+        // When it's clicked, it removes its row, and deletes the event from the master list
         function deleteRowFeature() {
             let row = $('.bulk-add_review-row');
-            row.off('hover');                         // clears hover event handlers. prevents events from stacking
-            row.hover(function () {                   // on row hover, a delete button is created, and the index of that row is recorded and used to remove that entry from the master list
+            row.off('hover');                           // clears hover event handlers. prevents events from stacking
+            row.hover(function () {                     // when a row is hovered over, a delete button is created, and the index of that row is recorded and used to remove that entry from the master list
                 let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
                     .hide().fadeIn(1200);
                 let rowIndex = $('tr').index(this) - 2; // targets the specific row to be deleted 
                 console.log('row index' + rowIndex);
-                $(this).append(button);
-                button.click(function () {
+                $(this).append(button);                
+                button.click(function () {             // when the delete button is clicked, the row is removed from the table, and the corresponding event is removed from the master list.
                     button.closest('tr').remove();
                     masterList.splice(rowIndex, 1);
-                    console.log(masterList);
                 })
-            }, function () {                          // this function is called when the mouse is removed from the row.
+            }, function () {                          // this removes the delete button when the mouse stops hovering over that row.
                 $('.bulk-add_delete').remove();
             });
         }
