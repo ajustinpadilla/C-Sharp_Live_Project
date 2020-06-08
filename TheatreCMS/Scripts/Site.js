@@ -286,11 +286,18 @@ if (document.getElementById("generate-showtimes-section") != null) {
         }
         $('#bulk-add_submit').click(submitEvents);
         function submitEvents() {
-            console.log('submitEvents fired')
+            masterList.forEach(function (item) {
+                item.date = item.date.toString()
+            });
+            console.log(masterList);
+            Array.prototype.map.call(masterList, x => { x.date.toString() })
+            console.log(masterList);
+            data = JSON.stringify({ 'masterList': data });
             $.ajax({
                 method: 'POST',
                 url: '/CalendarEvents/BulkAdd',
-                data: { "masterList": JSON.stringify(masterList) },
+                data: data,
+                contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function () {
                     console.log('Success!');

@@ -245,7 +245,7 @@ namespace TheatreCMS.Controllers
             Debug.WriteLine("BulkAdd POST");
             var js = new JavaScriptSerializer();
             
-            Debug.WriteLine(jsonString);
+            Debug.WriteLine(jsonString.GetType());
             return Json("BulkAdd Post finished");
         }
     }
