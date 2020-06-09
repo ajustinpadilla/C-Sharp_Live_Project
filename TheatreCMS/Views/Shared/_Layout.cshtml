@@ -69,14 +69,14 @@
 
                 <!--Admin-->
                 <!--Admin button made dynamic-->
-                
 
-               @if (User.IsInRole("Admin"))
+
+                @if (User.IsInRole("Admin"))
 
                 {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle color" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
+                            Admin
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="@Url.Action("Dashboard","Admin")">Dashboard</a></li>
@@ -104,23 +104,29 @@
                 }
 
                 <!--Subscriber-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle color" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Subscriber
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <!--Restrict to when subscriber is logged in-->
 
-                        <li><a class="dropdown-item" href="@Url.Action("Index", "Dashboard", new { area = "Subscribers" })">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Index", "SeasonManager", new { area = "Subscribers" })">Season Manager</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Details", "Subscriber", new { area = "Subscribers" })">Manage Subscription</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle color" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Subscriber
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Dashboard", new { area = "Subscribers" })">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "SeasonManager", new { area = "Subscribers" })">Season Manager</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Details", "Subscriber", new { area = "Subscribers" })">Manage Subscription</a></li>
 
 
-                        @*<li>@Html.ActionLink("Dashboard", "Index", "Subscribers/Dashboard", new { @class = "dropdown-item" })</li>
-                <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
-                <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>*@
+                            @*<li>@Html.ActionLink("Dashboard", "Index", "Subscribers/Dashboard", new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
+                    <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>*@
 
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                }
+
 
             </ul>
             <div class="nav-login text-center">
