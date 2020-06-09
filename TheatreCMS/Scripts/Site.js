@@ -194,6 +194,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
             class CalendarEvent {
                 constructor(production, date, dayOfWeek, startTime) {
                     this.production = production;
+                    this.productionId = $("#generate__production-field").val();
                     this.date = date;
                     this.dayOfWeek = dayOfWeek;
                     this.startTime = startTime;
