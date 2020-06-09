@@ -190,12 +190,16 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 productionDays.push(6);
             }
 
+            
+
+            // CalendarEvent properties that are capitalized match the properties in the MVC CalendarEvent model. 
+            // They must be verbatim in order for the JSON deserializer to work correctly
             class CalendarEvent {
                 constructor(date, dayOfWeek, startTime) {
-                    this.title = $("#generate__production-field").children("option").filter(":selected").text();
-                    this.productionId = $("#generate__production-field").val();
-                    this.startDate = date;
-                    this.endDate = date;
+                    this.Title = $("#generate__production-field").children("option").filter(":selected").text();
+                    this.ProductionId = $("#generate__production-field").val();
+                    this.StartDate = date;
+                    //this.EndDate = date;
                     this.dayOfWeek = dayOfWeek;
                     this.startTime = startTime;
                 }
@@ -210,6 +214,15 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 for (j = productionDays[i]; j <= dateRange + 7; j += 7 * interval) {
                     if (eventDate.isBetween(startDate, endDate, undefined, '[]')) { //check for the eventDate to be within start and end date. The '[]' argument sets it to be inclusive of the start and end date.
                         for (k = 0; k < startTimes.length; k++) {
+                            let hr = parseInt(startTimes[k].substr(0, startTimes[k].indexOf(':'))),
+                                min = parseInt(startTimes[k].substr(startTimes[k].indexOf(':') + 1, 2)),
+                                amOrPm = startTimes[k].slice(-2).toUpperCase();
+                            if (amOrPm == 'PM' && hr < 12) {
+                                hr += 12;
+                            }
+                            console.log(hr);   
+                            eventDate.hour(hr).minute(min);
+                            console.log(eventDate);
                             const event = new CalendarEvent(moment(eventDate), eventDate.format('dddd'), startTimes[k]);
                             eventList.push(event);
                         }
@@ -233,7 +246,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_modal-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].startDate.format('ll');
+                    cell.innerHTML = eventList[i].StartDate.format('ll');
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
@@ -252,7 +265,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_review-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].startDate.format('ll');
+                    cell.innerHTML = eventList[i].StartDate.format('ll');
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
@@ -287,10 +300,10 @@ if (document.getElementById("generate-showtimes-section") != null) {
         $('#bulk-add_submit').off('click');
         $('#bulk-add_submit').click(submitEvents);
         function submitEvents() {
-            for (var i = 0; i < masterList.length; i++) {
-                masterList[i].startDate = masterList[i].startDate.toISOString;
-                masterList[i].endDate = masterList[i].startDate.toISOString;
-            }
+            //for (var i = 0; i < masterList.length; i++) {
+            //    masterList[i].StartDate = moment(masterList[i].StartDate.toISOString);
+            //    masterList[i].EndDate = moment(masterList[i].EndDate.toISOString);
+            //}
             console.log(masterList);
             var data = JSON.stringify(masterList);
             console.log(data);
