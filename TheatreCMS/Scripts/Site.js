@@ -220,9 +220,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                             if (amOrPm == 'PM' && hr < 12) {
                                 hr += 12;
                             }
-                            console.log(hr);   
                             eventDate.hour(hr).minute(min);
-                            console.log(eventDate);
                             const event = new CalendarEvent(moment(eventDate), eventDate.format('dddd'), startTimes[k]);
                             eventList.push(event);
                         }
