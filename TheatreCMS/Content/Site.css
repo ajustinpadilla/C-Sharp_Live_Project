@@ -46,8 +46,8 @@
 
 
 .palette-body {
-    background-color: var(--main-bg-color);
-    margin-bottom: auto;/* Applying --main-bg-color to the background of body */
+    background-color: var(--dark-color);
+    margin-bottom: auto;    /* Applying --main-bg-color to the background of body */
 }
 
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
@@ -1602,8 +1602,6 @@ textarea {
 
 
 
-
-
         /* style new icon buttons*/
         .iconBtnContainer {
             width: 20%;
@@ -2005,19 +2003,27 @@ textarea {
 }
 
 /* Archive Current Productions and Archive Future Productions*/
-#current-productions #future-productions {
+
+
+/* add custom class for local styling */
+.archivecard {
+    min-width: 30rem;
+    max-width: 40rem;
+}
+
+#current-productions, #future-productions { /*add commas to make multiple selectors functional*/
     padding: 0px 20px;
 }
 
 /* Resize Archive Current Productions Image and Archive Future Productions Image*/
-#current-productions .current-production-img #future-productions .future-production-img{
-    height: 30vw;
-    object-fit: cover;
-}
+    #current-productions .current-production-img, #future-productions .future-production-img { /*add commas to make multiple selectors functional*/
+        /*height: 20vw;*/ /* resize to fit entire production photo */
+        object-fit: cover;
+    }
 
 /* Archive Current and Future Productions Image Responsive Resizing */
 @media only screen and (max-width: 575px) {
-    #current-productions .current-production-img #future-productions .future-production-img{
+    #current-productions .current-production-img, #future-productions .future-production-img { /*add commas to make multiple selectors functional*/
         height: 60vw;
         object-fit: cover;
     }
@@ -2670,27 +2676,29 @@ textarea {
 }
 
 /*This class was added to move most of the content of the login page to the left*/
-.loginpadding {
+/*.loginpadding {
     padding-left: 50px;
-}
+    padding-right: 25px;                --Login page CSS coded out and replaced with Boostrap classes--
+}*/
 
 /*This class was also added to move certain elements on the login page left*/
-.loginhtwo {
-    padding-left: 65px;
+/*.loginhtwo {
+    padding-left: 50px;
     padding-top: 50px;
-}
+}*/
+
 /*This class was added to move the login button more to the right*/
 .loginhthree {
     padding-right: 45px;
     padding-left: 5px;
-    /* End Peter O.*/
 }
+/* End Peter O.*/
 
 /* Scrollbar Styling*/
 
 /* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
 ::-webkit-scrollbar { /* This effects the width of the scrollbar. If the width is adjusted the buttons (arrows) must be adjusted as well*/
-    width: 14px; /* Horizontal Scrollbar*/
+    width: 14px;  /*Horizontal Scrollbar*/
     height: 14px; /* Vertical Scrollbar */
 }
 
@@ -2761,5 +2769,26 @@ textarea {
     scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track*/
 }
 
-
 /* End scrollbar Styling*/
+
+/***************************************************************************
+************************* Isaiah's Styling *********************************
+****************************************************************************/
+
+/********************Rental Request Index Page*****************************/
+
+/*******Buttons***********/
+.Isaiah_pillBtn {
+    display:inline-block;
+    width: 55px; /*This is here to match the sizing of the other btns on the rental request*/
+}
+/*******Header************/
+#Isaiah_RentalHeader {
+    display: inline-block; /*This is here so I am able to display my pill btn next to the header*/
+}
+
+/*******************End Rental Request Index Page***************************/
+
+/***************************************************************************
+*********************** End Isaiah's Styling *******************************
+****************************************************************************/
