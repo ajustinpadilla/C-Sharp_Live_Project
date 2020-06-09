@@ -289,17 +289,20 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 masterList[i].date = masterList[i].date.toString()
             }
             console.log(masterList);
-            var data = JSON.stringify({ 'list': masterList})
+            var data = JSON.stringify(masterList);
+            console.log(data);
             $.ajax({
                 method: 'POST',
                 url: '/CalendarEvents/BulkAdd',
-                data: data,
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
+                data: {'jsonString' : data },
+                //contentType: 'application/json; charset=utf-8',
+                //dataType: 'json',
                 success: function () {
                     console.log('Success!');
                 }
             });
+
+            //$.post('/CalendarEvents/BulkAdd', data)
         };
 
     });
