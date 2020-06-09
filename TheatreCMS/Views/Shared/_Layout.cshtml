@@ -106,7 +106,7 @@
                 <!--Subscriber-->
                 <!--Restrict to when subscriber is logged in-->
 
-                @if (User.IsInRole("Admin") || User.IsInRole("Subscriber") || User.IsInRole("Member"))
+                @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle color" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
