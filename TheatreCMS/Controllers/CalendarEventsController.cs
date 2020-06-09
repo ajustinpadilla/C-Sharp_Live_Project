@@ -12,6 +12,8 @@ using System.Web.Mvc.Html;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
+using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 
 namespace TheatreCMS.Controllers
 {
@@ -243,8 +245,15 @@ namespace TheatreCMS.Controllers
         public ActionResult BulkAdd(string jsonString)
         {
             Debug.WriteLine("BulkAdd POST");
-            var js = new JavaScriptSerializer();
             
+            if (jsonString != null && jsonString != "")
+            {
+                IList<CalendarEvent> events = JsonConvert.DeserializeObject<List<CalendarEvent>>(jsonString);
+                Debug.WriteLine(events[0].StartDate) ;
+                //db.CalendarEvent.AddRange(events);
+                //db.SaveChanges();
+            }
+
             if (jsonString == null)
             {
             Debug.WriteLine("string is null");
@@ -253,7 +262,7 @@ namespace TheatreCMS.Controllers
             {
                 Debug.WriteLine(jsonString);
             }
-            return Json("BulkAdd Post finished");
+            return RedirectToAction("BulkAdd");
         }
     }
 }

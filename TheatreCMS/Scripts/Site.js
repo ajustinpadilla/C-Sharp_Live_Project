@@ -284,10 +284,12 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 $('.bulk-add_delete').remove();
             });
         }
+        $('#bulk-add_submit').off('click');
         $('#bulk-add_submit').click(submitEvents);
         function submitEvents() {
             for (var i = 0; i < masterList.length; i++) {
-                masterList[i].startDate = masterList[i].startDate.toString()
+                masterList[i].startDate = masterList[i].startDate.toISOString;
+                masterList[i].endDate = masterList[i].startDate.toISOString;
             }
             console.log(masterList);
             var data = JSON.stringify(masterList);
