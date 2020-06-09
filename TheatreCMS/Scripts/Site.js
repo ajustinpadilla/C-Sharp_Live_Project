@@ -150,8 +150,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
         // this function returns a list of show times
         function generateShowtimes() {
 
-            let production = $("#generate__production-field").children("option").filter(":selected").text(),
-                startDate = moment($("#generate__start-date-field").val()),
+            let startDate = moment($("#generate__start-date-field").val()),
                 endDate = moment($("#generate__end-date-field").val()),
                 eventDate = startDate,
                 dateRange = endDate.diff(startDate, 'days'),
@@ -192,10 +191,11 @@ if (document.getElementById("generate-showtimes-section") != null) {
             }
 
             class CalendarEvent {
-                constructor(production, date, dayOfWeek, startTime) {
-                    this.production = production;
+                constructor(date, dayOfWeek, startTime) {
+                    this.title = $("#generate__production-field").children("option").filter(":selected").text();
                     this.productionId = $("#generate__production-field").val();
-                    this.date = date;
+                    this.startDate = date;
+                    this.endDate = date;
                     this.dayOfWeek = dayOfWeek;
                     this.startTime = startTime;
                 }
@@ -210,7 +210,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 for (j = productionDays[i]; j <= dateRange + 7; j += 7 * interval) {
                     if (eventDate.isBetween(startDate, endDate, undefined, '[]')) { //check for the eventDate to be within start and end date. The '[]' argument sets it to be inclusive of the start and end date.
                         for (k = 0; k < startTimes.length; k++) {
-                            const event = new CalendarEvent(production, moment(eventDate), eventDate.format('dddd'), startTimes[k]);
+                            const event = new CalendarEvent(moment(eventDate), eventDate.format('dddd'), startTimes[k]);
                             eventList.push(event);
                         }
                     }
@@ -233,7 +233,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_modal-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].date.format('ll');
+                    cell.innerHTML = eventList[i].startDate.format('ll');
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
@@ -252,7 +252,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_review-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].date.format('ll');
+                    cell.innerHTML = eventList[i].startDate.format('ll');
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
@@ -287,7 +287,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
         $('#bulk-add_submit').click(submitEvents);
         function submitEvents() {
             for (var i = 0; i < masterList.length; i++) {
-                masterList[i].date = masterList[i].date.toString()
+                masterList[i].startDate = masterList[i].startDate.toString()
             }
             console.log(masterList);
             var data = JSON.stringify(masterList);
