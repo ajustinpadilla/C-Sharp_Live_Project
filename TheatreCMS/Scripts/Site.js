@@ -66,3 +66,69 @@ function shrinkFunction() {
         document.getElementById("menu").style.padding = "20px";
     }
 }
+
+// Infinite scrolling for Photo/Index page
+
+if (document.getElementById("scroll-container") != null) {
+    var ajaxCompleted = true; //this variable is used to ensure that the GetData function is only called once per server ping.
+    $(document).ready(PhotoScroll());
+    function PhotoScroll() {
+        var pageIndex = 0;
+        var pageSize = 20;         //this variable is used to set the number of retrieved items
+
+        $(document).ready(function () {   //this block fires off the initial ajax call to populate the table
+            GetData(pageIndex, pageSize);
+            pageIndex++;
+
+            $(window).scroll(function () {  //this block sends out subsequent calls to append the table with more results when the scrollbar reaches the bottom.
+                if (Math.ceil($(window).scrollTop()) >=  // window scrolltop is rounded up with math.ceil() because it was returning inconsistent values. That's also why it's set to >= instead of ==
+                    $(document).height() - $(window).height() && ajaxCompleted) {
+                    GetData(pageIndex, pageSize);
+                    pageIndex++;
+                }
+            });
+        });
+    }
+
+    function GetData(pageIndex, pageSize) {
+        console.log("index: " + pageIndex + " pagesize: " + pageSize + " photos.length: "/* + photos.length*/);
+        ajaxCompleted = false;
+        $.ajax({
+            type: 'GET',
+            url: '/Photo/GetPhotos',
+            data: { "pageIndex": pageIndex, "pageSize": pageSize },
+            dataType: 'json',
+            success: function (photos) {
+                console.log("%index: " + pageIndex);
+                if (photos != "[]") {
+                    photos = jQuery.parseJSON(photos);
+                    for (var i = 0; i < photos.length; i++) {
+                        $("table").append("<tr class='tr-styling scroll--container'>" +
+                                                "<td class='td-styling'> <img class='thumbnail_size' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
+                                                "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
+                                                "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
+                                                "<td class='td-styling'>" + photos[i].Title + "</td>" +
+                                                "<td class='td-styling'>" +
+                                                    "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit | </a>" +
+                                                    "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details | </a>" +
+                                                    "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
+                                                "</td>" +
+                                          "</tr>")
+                    }
+                    ajaxCompleted = true;
+                }
+            },
+            beforeSend: function () {
+                $("#progress").show();
+            },
+            complete: function () {
+                $("#progress").hide();
+            },
+            error: function () {
+                alert("Error while retrieving data!");
+            }
+        });
+    }
+}
+
+// End infinite scrolling for Photo/Index page
