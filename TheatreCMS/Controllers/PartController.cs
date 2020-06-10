@@ -15,6 +15,8 @@ namespace TheatreCMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+
         // GET: Part
         public ActionResult Index()
         {
@@ -39,6 +41,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: Part/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
@@ -74,12 +77,13 @@ namespace TheatreCMS.Controllers
             return View(part);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Part/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Part part = db.Parts.Find(id);
             if (part == null)
@@ -144,6 +148,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: Part/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
