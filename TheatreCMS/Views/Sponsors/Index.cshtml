@@ -65,7 +65,7 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Logo)
+            @Html.DisplayNameFor(model => model.LogoId)
         </th>
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.Height)
@@ -75,6 +75,9 @@
         </th>
         <th class="th-styling">
             @Html.DisplayNameFor(model => model.Current)
+        </th>
+        <th class="th-styling">
+            @Html.DisplayNameFor(model => model.Link)
         </th>
         <th class="th-styling">
         </th>
@@ -88,7 +91,7 @@
             </td>
             <td class="td-styling">
 
-                <img src="@Url.Action("ImageView", "ImageUpload", new { id = item.SponsorId, table="Sponsor", thumbHeight = 100, thumbWidth = 100})" />
+                <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.LogoId })" class="thumbnail_size" alt="Sponsor Logo Image" />
                 @*//  id = item.SponsorId, table="Sponsor", path = item.Logo
 
 
@@ -112,6 +115,10 @@
             </td>
             <td class="td-styling">
                 @Html.DisplayFor(modelItem => item.Current)
+            </td>
+            <td class="td-styling">
+                <a href="@item.Link" target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
+                
             </td>
 
 
