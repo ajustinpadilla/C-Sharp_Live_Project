@@ -250,8 +250,8 @@ namespace TheatreCMS.Controllers
             {
                 IList<CalendarEvent> events = JsonConvert.DeserializeObject<List<CalendarEvent>>(jsonString);
                 Debug.WriteLine(events[0].StartDate) ;
-                //db.CalendarEvent.AddRange(events);
-                //db.SaveChanges();
+                db.CalendarEvent.AddRange(events);
+                db.SaveChanges();
             }
 
             if (jsonString == null)

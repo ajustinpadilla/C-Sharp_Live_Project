@@ -221,7 +221,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                                 hr += 12;
                             }
                             eventDate.hour(hr).minute(min);
-                            const event = new CalendarEvent(moment(eventDate), eventDate.format('dddd'), startTimes[k]);
+                            const event = new CalendarEvent(eventDate.unix().toString(), eventDate.format('dddd'), startTimes[k]);
                             eventList.push(event);
                         }
                     }
@@ -244,7 +244,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_modal-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].StartDate.format('ll');
+                    cell.innerHTML = eventList[i].StartDate/*.format('ll')*/;
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
@@ -263,7 +263,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_review-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].StartDate.format('ll');
+                    cell.innerHTML = eventList[i].StartDate/*.format('ll')*/;
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
