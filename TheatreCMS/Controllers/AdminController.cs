@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Net;
 using System.Web.UI.WebControls.Expressions;
+using System.Data.Entity;
 
 namespace TheatreCMS.Controllers
 {
@@ -181,19 +182,73 @@ namespace TheatreCMS.Controllers
             return View();
         }
 
-        public ActionResult UserList()
+        public ActionResult UserList(string requestedSort = "UserName", string currentSortOrder = "")
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-            var users = db.Users.ToList();
-
+            var users = db.Users.AsNoTracking().ToList();
             foreach (var user in users)
             {
                 var role = userManager.GetRoles(user.Id).FirstOrDefault();
-                //var roleName = roleManager.FindById(role);
                 user.Role = role.ToString();
-                
             }
+
+            /// start of sort-order logic
+            string newSortOrder = currentSortOrder;
+            
+            if (newSortOrder.Contains(requestedSort))
+            {
+                if (newSortOrder.Contains("_desc"))
+                {
+                    newSortOrder = newSortOrder.Replace("_desc", "");
+                }
+                else
+                {
+                    newSortOrder += "_desc";
+                }
+            }
+            else
+            {
+                newSortOrder = requestedSort;
+            }
+
+            switch (newSortOrder)
+            {
+                case "UserName":
+                    // do some sorting
+                    users = users.OrderBy(user => user.UserName).ToList();
+                    break;
+                case "UserName_desc":
+                    users = users.OrderByDescending(user => user.UserName).ToList();
+                    break;
+                case "FirstName":
+                    // do some sorting
+                    users = users.OrderBy(user => user.FirstName).ToList();
+                    break;
+                case "FirstName_desc":
+                    users = users.OrderByDescending(user => user.FirstName).ToList();
+                    break;
+                case "LastName":
+                    // do some sorting
+                    users = users.OrderBy(user => user.LastName).ToList();
+                    break;
+                case "LastName_desc":
+                    users = users.OrderByDescending(user => user.LastName).ToList();
+                    break;
+                case "Role":
+                    // do some sorting
+                    users = users.OrderBy(user => user.Role).ToList();
+                    break;
+                case "Role_desc":
+                    users = users.OrderByDescending(user => user.Role).ToList();
+                    break;
+                default:
+                    // if it's not a recognized case (sort order)
+                    ViewBag.SortOrder = currentSortOrder;
+                    return View(users);
+            }
+            
+
+            ViewBag.SortOrder = newSortOrder;
             return View(users);
         }
 
