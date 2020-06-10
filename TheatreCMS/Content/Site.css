@@ -1077,11 +1077,31 @@ textarea {
     background-color: #000000;
     color: #FFFBFB;
     font-size: 30px;
-    text-align:center;
-    margin-left:20%;
-    margin-right:20%;
-    
-    
+    text-align: center;
+}
+@media only screen and (min-width: 1100px){     /*Added for spacing on details page when screen is big*/
+    .detailsContainer {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+@media only screen and (min-width: 1200px) {    /*Added for spacing on details page when screen is big*/
+    .detailsContainer {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+@media only screen and (min-width: 1300px) {    /*Added for spacing on details page when screen is big*/
+    .detailsContainer {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+@media only screen and (min-width: 1400px) { /*Added for spacing on details page when screen is big*/
+    .detailsContainer {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
 }
 
 .mybutton{
@@ -2843,7 +2863,7 @@ textarea {
 ************************* Isaiah's Styling *********************************
 ****************************************************************************/
 
-/********************Rental Request Index Page*****************************/
+/**********************Rental Request Index Page*****************************/
 
 /*******Buttons***********/
 .Isaiah_pillBtn {
@@ -2855,7 +2875,83 @@ textarea {
     display: inline-block; /*This is here so I am able to display my pill btn next to the header*/
 }
 
-/*******************End Rental Request Index Page***************************/
+/*********************End Rental Request Index Page***************************/
+
+/***********************Cast Member Details Page******************************/
+
+#Isaiah_details {           /*Creats a border and padding around everything that follows*/
+    padding-left: 5vw;
+    padding-right: 5vw; 
+    padding-top: 2vw;
+    padding-bottom: 3vw;
+    border: 2px solid;
+    border-color: var(--main-bg-color);
+}
+/**********************************************
+********Everything inside the border***********
+***********************************************/
+
+/*******Cast name header***********/
+#Isaiah_castname {          /*Adds a shadow to the cast name to make it stand out more*/
+    text-shadow: 2px 2px var(--main-bg-color);
+}
+/*******Buttons***********/
+#Isaiah_castBtns {      /*Aligns the buttons*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#Isaiah_castEdit, #Isaiah_castIndexbtn {        /*Styling both buttons*/
+    color: var(--light-color);
+    background-color: var(--main-bg-color);
+    text-align: right;
+    margin-left: 8px;
+    font-size: 50%;
+}
+
+#Isaiah_castEdit:hover, #Isaiah_castIndexbtn:hover, #Isaiah_castEdit:focus, #Isaiah_castIndexbtn:focus {
+    color: var(--light-color);      /*Giving buttons a hover affect*/
+    background-color: var(--main-secondary-color)
+}
+/*******Cast Bio***********/
+#Isaiah_castBio {       /*Styling/Alignment of the bio*/
+    overflow: auto;     /*if there is overflow it will add a scrollbar*/
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*******Checkbox***********/
+.Isaiah_castCheck1 {        /*Allows both the name and checkbox to sit next to eachother*/
+    display:inline-block;
+    float:left;
+}
+.Isaiah_castCheck2 {        /*Allows both the name and checkbox to sit next to eachother*/
+    display: inline-block;
+    float: right;
+}
+/*******Cast part links***********/
+.Isaiah_castPart{       /*Changing the color of the part link to match with page styling*/
+    color: var(--main-secondary-color);
+}
+/*******Cast seperation line***********/
+hr.Isaiah_castline {        /*Styling the seperation line*/
+    border: 2px solid var(--main-bg-color);
+    border-radius: 10px;
+    width: 100%;
+    margin: 8px;
+}
+/*******Cast collumns***********/
+#Isaiah_castCol1, #Isaiah_castCol2, #Isaiah_castCol3{   /*Aligning year join, year left and debute year left*/
+    text-align:left;
+}
+
+/**********************************************
+****** End everything inside the border********
+***********************************************/
+
+/**********************End Cast Member Details Page*************************/
 
 /***************************************************************************
 *********************** End Isaiah's Styling *******************************
