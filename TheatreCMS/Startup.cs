@@ -12,6 +12,10 @@ using TheatreCMS.Controllers;
 using System;
 using System.Linq;
 using System.Drawing;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Microsoft.Ajax.Utilities;
+using System.Web.Caching;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
 namespace TheatreCMS

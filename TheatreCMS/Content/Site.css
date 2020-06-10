@@ -1749,6 +1749,28 @@ textarea {
             }
         }
         /*End Admin Dashboard list*/
+
+/*Admin Dashboard Current Productions Section*/
+#admin-currentprod {
+    margin: auto;
+    border: solid 4px var(--main-bg-color);
+    padding: 20px 100px;
+}
+
+#admin-currentprod .currentProd_badges {
+    display:none;
+}
+
+#admin-currentprod .badge {
+    background-color: var(--main-secondary-color);
+    color: var(--light-color);
+}
+/*End of Admin Dashboard Current Productions Section*/
+
+  #admin-currentprod .admin_prod_heading {
+        color: var(--secondary-color);
+    }
+
         /*Admin Dashboard Form*/
         #admin-formspace {
             margin: auto;
