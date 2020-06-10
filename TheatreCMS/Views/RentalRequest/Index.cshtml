@@ -4,7 +4,11 @@
     ViewBag.Title = "Rental Request";
 }
 <div class="container-fluid">
-    <div class="h2 m-4">Rental Requests</div>
+    <div class="m-4"> @*IDJ--Took the h2 out of class tag so that the btn wasnt styled with the header tag*@
+        <h2 id="Isaiah_RentalHeader">Rental Requests</h2>@*IDJ--Gave this header an id so that using css i can place a btn next to it*@
+        @*IDJ--Making a btn that matches in styling with the other buttons on this page that links to the RentalRequest create page*@
+        <a class="Isaiah_pillBtn badge badge-pill badge-danger text-black" href="@Url.Action("Create", "RentalRequest")">Create</a>
+    </div>
     <table class=" table-responsive-stack" id="rentalRequests">
         <thead class="bg-light">
             <tr class="text-black">
@@ -102,7 +106,7 @@
                             @*Html.DisplayFor(modelItem => item.ContractSigned)*@
                         </td>
                         <td id="rental-request-nav-container">
-                            <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
+                            <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black"}) </div>
                             <div class="rental-request-nav">@Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
                             <div class="rental-request-nav">@Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
                         </td>
@@ -170,6 +174,15 @@
             
             flexTable();
         };
+
+        $('.rental-request-rows').hover(
+            function () {
+                $(this).find('.rental-request-nav').fadeTo(400, 1);
+            },
+            function () {
+                $(this).find('.rental-request-nav').fadeTo(400, 0);
+            }
+        );
 
     });
 </script>

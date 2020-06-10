@@ -46,8 +46,8 @@
 
 
 .palette-body {
-    background-color: var(--main-bg-color);
-    margin-bottom: auto;/* Applying --main-bg-color to the background of body */
+    background-color: var(--dark-color);
+    margin-bottom: auto;    /* Applying --main-bg-color to the background of body */
 }
 
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
@@ -964,40 +964,67 @@ textarea {
 
         /*Styling for CastMember Index View*/
 
-        .castMargin {
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        .castContainer {
-            padding: 50px;
+        #castContainer {
+            padding: 25px;
+            background-color: black;
+            /*margin-bottom: 200px;*/
         }
 
         @media only screen and (max-width: 767px) {
-            .castContainer {
+            #castContainer {
                 padding-left: 120px;
                 padding-right: 120px;
             }
         }
 
+        @media (min-width: 34em) {
+            .card-columns {
+                column-count: 1;
+            }
+        }
+
+        @media (min-width: 48em) {
+            .card-columns {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 62em) {
+            .card-columns {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 108em) {
+            .card-columns {
+                column-count: 4;
+            }
+        }
+
+        @media (min-width: 115em) {
+            .card-columns {
+                column-count: 5;
+            }
+        }
+
         .castImageContainer {
             position: relative;
-            width: auto;
+            background-color: black;
+            padding: 15px;
             /*used for text animation*/
-            /*overflow: hidden;*/
+            overflow: hidden;
         }
 
-        .castImage {
+        #castImage {
             opacity: 1;
-            display: block;
-            width: 100%;
-            height: auto;
+            display: inline-block;
             transition: .5s ease;
             backface-visibility: hidden;
+            margin-bottom: 10px;
         }
 
-        .castImageContainer:hover .castImage {
-            opacity: 0.3;
+        .castImageContainer:hover #castImage {
+            opacity: 0.9;
         }
 
         .castImageContainer:hover .castMiddle {
@@ -1006,33 +1033,30 @@ textarea {
 
         .castImageContainer:hover .castText {
             margin-bottom: 0px;
-            margin-top: 0px;
+            margin-top: 0px;   
         }
+
         .castImageContainer:hover a {
             text-decoration: none;
         }
-        .castText {
-        /*background-color: var(--light-color);*/
-        background-color: rgba(255,251,251,.6);
-        color: var(--main-bg-color);
-        font-size: 16px;
-        font-weight: 500;
-        padding: 1px 1px;
-        font-style: italic;
-        }
 
+        .castText {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            font-size: 16px;
+            font-weight: 500;
+            text-align: left;
+            /*padding: 20px;
+            padding-bottom: 12px;
+            padding-top: 16px;
+            font-style: italic;*/
+        }
 
         .castMiddle {
             opacity: 0;
             position: absolute;
-            -ms-transform: translate(-50%, -50%);
-            text-align: center;
-            height: auto;
-            bottom: 0%;
-            width: 100%;
-            margin-top: auto;
+            bottom: 100px;
         }
-
 
         /*End Styling for CastMember Index View*/
 
@@ -1052,11 +1076,31 @@ textarea {
     background-color: #000000;
     color: #FFFBFB;
     font-size: 30px;
-    text-align:center;
-    margin-left:20%;
-    margin-right:20%;
-    
-    
+    text-align: center;
+}
+@media only screen and (min-width: 1100px){     /*Added for spacing on details page when screen is big*/
+    .detailsContainer {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+@media only screen and (min-width: 1200px) {    /*Added for spacing on details page when screen is big*/
+    .detailsContainer {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+@media only screen and (min-width: 1300px) {    /*Added for spacing on details page when screen is big*/
+    .detailsContainer {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+@media only screen and (min-width: 1400px) { /*Added for spacing on details page when screen is big*/
+    .detailsContainer {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
 }
 
 .mybutton{
@@ -1538,6 +1582,7 @@ textarea {
             font-size: 20px;
         }
 
+
         /*Current productions*/
         .currentpro a {
             margin-left: 15px;
@@ -1597,8 +1642,6 @@ textarea {
             border-radius: 25px;
             margin-bottom: 25px;
         }
-
-
 
 
 
@@ -1705,6 +1748,28 @@ textarea {
             }
         }
         /*End Admin Dashboard list*/
+
+/*Admin Dashboard Current Productions Section*/
+#admin-currentprod {
+    margin: auto;
+    border: solid 4px var(--main-bg-color);
+    padding: 20px 100px;
+}
+
+#admin-currentprod .currentProd_badges {
+    display:none;
+}
+
+#admin-currentprod .badge {
+    background-color: var(--main-secondary-color);
+    color: var(--light-color);
+}
+/*End of Admin Dashboard Current Productions Section*/
+
+  #admin-currentprod .admin_prod_heading {
+        color: var(--secondary-color);
+    }
+
         /*Admin Dashboard Form*/
         #admin-formspace {
             margin: auto;
@@ -1738,15 +1803,16 @@ textarea {
             background-color: darkgray;
         }
 
-        .palette-container .fc-content {
-            background-color: red;
-            border: red;
-        }
-
+         /*overwritten as event data has color attribute/determines color*/
+        /*.palette-container .fc-content {
+                    background-color: var(--secondary-color);
+                    border: var(--secondary-color);
+                }*/
+        /*affects some sort of background detail, set to content color
         .palette-container .fc-event {
-            background-color: red;
-            border: red;
-        }
+            background-color: var(--secondary-color);
+            border: var(--secondary-color);
+}*/
 
 
         .palette-container .fc {
@@ -1756,13 +1822,56 @@ textarea {
             padding-top: 16px;
             /*Centers calendar*/
             margin: auto;
+            /*Avoid modal width reflow */
+            padding-right: 15px;
         }
 
-        /*Product Details*/
 
-        #jumbo.jumbotron {
-            background-color: #bd1a11;
-        }
+/*styling for admin calender details/add/edit modals*/
+#fc-modals {
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
+}
+
+.fc-modal-labels {
+    color: var(--light-color);
+}
+
+#fc-modal-headers {
+    font-family: Tahoma, Geneva, sans-serif;
+}
+/*To make modal datetime-local inputs uniform with text inputs*/
+.modal input[type=datetime-local], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+/*styling for modal btns, modeled after today button provided by full calendar*/
+.iconBtn2 {
+    /* dimensions */
+    margin: 0;
+    border: none;
+    background-color:lightgrey;
+    height: 2.1em;
+    padding: 0 .6em;
+    /* text & cursor */
+    font-size: 1em;
+    /* normalize */
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/*Styling for dropdown Menus on Add & Edit Modals*/
+
+/*Product Details*/
+#jumbo.jumbotron {
+    background-color: #bd1a11;
+}
 
         #cardss.card {
             margin-top: 20px;
@@ -1892,6 +2001,7 @@ textarea {
 
 .rental-request-nav {
     margin: 2px 0 2px 0;
+    opacity: 0;
 }
 
 .rental-request-nav a {
@@ -2079,20 +2189,28 @@ transition: 0.3s;
     padding-bottom: 10px;
 }
 
-/* Archive Current Productions */
-#current-productions {
+/* Archive Current Productions and Archive Future Productions*/
+
+
+/* add custom class for local styling */
+.archivecard {
+    min-width: 30rem;
+    max-width: 40rem;
+}
+
+#current-productions, #future-productions { /*add commas to make multiple selectors functional*/
     padding: 0px 20px;
 }
 
-/* Resize Archive Current Productions Image */
-#current-productions .current-production-img {
-    height: 30vw;
-    object-fit: cover;
-}
+/* Resize Archive Current Productions Image and Archive Future Productions Image*/
+    #current-productions .current-production-img, #future-productions .future-production-img { /*add commas to make multiple selectors functional*/
+        /*height: 20vw;*/ /* resize to fit entire production photo */
+        object-fit: cover;
+    }
 
-/* Archive Current Productions Image Responsive Resizing */
+/* Archive Current and Future Productions Image Responsive Resizing */
 @media only screen and (max-width: 575px) {
-    #current-productions .current-production-img {
+    #current-productions .current-production-img, #future-productions .future-production-img { /*add commas to make multiple selectors functional*/
         height: 60vw;
         object-fit: cover;
     }
@@ -2745,18 +2863,195 @@ transition: 0.3s;
 }
 
 /*This class was added to move most of the content of the login page to the left*/
-.loginpadding {
+/*.loginpadding {
     padding-left: 50px;
-}
+    padding-right: 25px;                --Login page CSS coded out and replaced with Boostrap classes--
+}*/
 
 /*This class was also added to move certain elements on the login page left*/
-.loginhtwo {
-    padding-left: 65px;
+/*.loginhtwo {
+    padding-left: 50px;
     padding-top: 50px;
-}
+}*/
+
 /*This class was added to move the login button more to the right*/
 .loginhthree {
     padding-right: 45px;
     padding-left: 5px;
-    /* End Peter O.*/
 }
+/* End Peter O.*/
+
+/* Scrollbar Styling*/
+
+/* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
+::-webkit-scrollbar { /* This effects the width of the scrollbar. If the width is adjusted the buttons (arrows) must be adjusted as well*/
+    width: 14px;  /*Horizontal Scrollbar*/
+    height: 14px; /* Vertical Scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--light-color); 
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+    background: var(--main-bg-color); 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-secondary-color);
+}
+
+/* Buttons */
+::-webkit-scrollbar-button {
+    height: 18px; /* Horizontal Scrollbar*/
+    width: 18px; /* Vertical Scrollbar */
+}
+
+/* The below code is to recreate the arrow shape of the buttons*/
+::-webkit-scrollbar-button:vertical:start:decrement {
+    background: linear-gradient(120deg, var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(240deg, 
+    var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(0deg, var(--light-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement:hover {
+    background-color: var(--main-secondary-color);
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+    background: linear-gradient(300deg, var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(60deg, 
+    var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(180deg, var(--light-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-button:vertical:end:increment:hover {
+    background-color: var(--main-secondary-color);
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+    background: linear-gradient(210deg, var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(330deg, 
+    var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(90deg, var(--light-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment:hover {
+    background-color: var(--main-secondary-color);
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
+    background: linear-gradient(30deg, var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(150deg, 
+    var(--light-color) 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(270deg, var(--light-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement:hover {
+    background-color: var(--main-secondary-color);
+}
+
+/* this section is applicable only to the styling of the scrollbar on Firefox. Used in conjunction with webkit for better compatibility*/
+
+* {
+    scrollbar-width: auto; /* This shows a message that it is not a known CSS property but is supported in FireFox and will show as expected when launched with that browser. */
+    scrollbar-color: var(--main-bg-color) var(--light-color); /* first color effects the thumb and the second color effects the track*/
+}
+
+/* End scrollbar Styling*/
+
+/***************************************************************************
+************************* Isaiah's Styling *********************************
+****************************************************************************/
+
+/**********************Rental Request Index Page*****************************/
+
+/*******Buttons***********/
+.Isaiah_pillBtn {
+    display:inline-block;
+    width: 55px; /*This is here to match the sizing of the other btns on the rental request*/
+}
+/*******Header************/
+#Isaiah_RentalHeader {
+    display: inline-block; /*This is here so I am able to display my pill btn next to the header*/
+}
+
+/*********************End Rental Request Index Page***************************/
+
+/***********************Cast Member Details Page******************************/
+
+#Isaiah_details {           /*Creats a border and padding around everything that follows*/
+    padding-left: 5vw;
+    padding-right: 5vw; 
+    padding-top: 2vw;
+    padding-bottom: 3vw;
+    border: 2px solid;
+    border-color: var(--main-bg-color);
+}
+/**********************************************
+********Everything inside the border***********
+***********************************************/
+
+/*******Cast name header***********/
+#Isaiah_castname {          /*Adds a shadow to the cast name to make it stand out more*/
+    text-shadow: 2px 2px var(--main-bg-color);
+}
+/*******Buttons***********/
+#Isaiah_castBtns {      /*Aligns the buttons*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#Isaiah_castEdit, #Isaiah_castIndexbtn {        /*Styling both buttons*/
+    color: var(--light-color);
+    background-color: var(--main-bg-color);
+    text-align: right;
+    margin-left: 8px;
+    font-size: 50%;
+}
+
+#Isaiah_castEdit:hover, #Isaiah_castIndexbtn:hover, #Isaiah_castEdit:focus, #Isaiah_castIndexbtn:focus {
+    color: var(--light-color);      /*Giving buttons a hover affect*/
+    background-color: var(--main-secondary-color)
+}
+/*******Cast Bio***********/
+#Isaiah_castBio {       /*Styling/Alignment of the bio*/
+    overflow: auto;     /*if there is overflow it will add a scrollbar*/
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*******Checkbox***********/
+.Isaiah_castCheck1 {        /*Allows both the name and checkbox to sit next to eachother*/
+    display:inline-block;
+    float:left;
+}
+.Isaiah_castCheck2 {        /*Allows both the name and checkbox to sit next to eachother*/
+    display: inline-block;
+    float: right;
+}
+/*******Cast part links***********/
+.Isaiah_castPart{       /*Changing the color of the part link to match with page styling*/
+    color: var(--main-secondary-color);
+}
+/*******Cast seperation line***********/
+hr.Isaiah_castline {        /*Styling the seperation line*/
+    border: 2px solid var(--main-bg-color);
+    border-radius: 10px;
+    width: 100%;
+    margin: 8px;
+}
+/*******Cast collumns***********/
+#Isaiah_castCol1, #Isaiah_castCol2, #Isaiah_castCol3{   /*Aligning year join, year left and debute year left*/
+    text-align:left;
+}
+
+/**********************************************
+****** End everything inside the border********
+***********************************************/
+
+/**********************End Cast Member Details Page*************************/
+
+/***************************************************************************
+*********************** End Isaiah's Styling *******************************
+****************************************************************************/
