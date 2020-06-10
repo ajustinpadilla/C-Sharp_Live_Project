@@ -221,7 +221,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                                 hr += 12;
                             }
                             eventDate.hour(hr).minute(min);
-                            const event = new CalendarEvent(eventDate.unix().toString(), eventDate.format('dddd'), startTimes[k]);
+                            const event = new CalendarEvent(eventDate.format("YYYY-MM-DD HH:mm:ss"), eventDate.format('dddd'), startTimes[k]);
                             eventList.push(event);
                         }
                     }
