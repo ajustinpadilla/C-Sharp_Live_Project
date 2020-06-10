@@ -6,77 +6,77 @@
     ViewBag.Title = "About";
 }
 
-<div id="about">
+<div id="about" class="text-responsive">
     <!-- MISSION STATEMENT-->
-    <div class="jumbotron about-jumbo">
+    <div class="jumbotron ab-jumbo">
 
-        <h1 class="about-title">ABOUT THEATRE VERTIGO</h1>
+        <h3 class="ab-title">ABOUT THEATRE VERTIGO</h3>
 
-        <div class="ab-mission">
-            <h2>
+        <div class="ab-text">
+            <h4>
                 Theatre Vertigo’s mission is to engage audiences through compelling,
                 ensemble-driven theatre with a focus on producing and developing new and rarely seen works.
-            </h2>
+            </h4>
         </div>
 
         @*DONATE AND TICKET LINK BUTTONS*@
         <div class="card-body">
-            <a href="https://app.arts-people.com/index.php?donation=verti" target="_blank" type="button" class="btn btn-lg ab-card btns" style="margin-right:2%">DONTATE TO THEATRE VERTIGO</a>
-            <a href="https://app.arts-people.com/index.php?ticketing=verti" target="_blank" type="button" class="btn btn-lg ab-card-red btns" style="margin-left:2%">TICKETING</a>
+            <a href="https://app.arts-people.com/index.php?donation=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">DONTATE TO THEATRE VERTIGO</a>
+            <a href="https://app.arts-people.com/index.php?ticketing=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">TICKETING</a>
         </div>
 
         @*SHOWBOX THEATRE INFO AND CARDS*@
-                @*SHOEBOX INFO WITH IMAGE*@
-        <div class="card-deck" style="margin-top:5%">
-            <div class="card ab-card">
+        @*SHOEBOX INFO WITH IMAGE*@
+        <div class="card-deck m-lg-5">
+            <div class="card ab-card mr-lg-5">
                 <div class="card-body">
-                    <h3 class="card-title ab-card-title">The Shoebox</h3>
+                    <h5 class="card-title ab-card-title">The Shoebox</h5>
                     <br />
-                    <h4 class="card-text">
+                    <h6 class="card-text">
                         Theatre Vertigo's current place of production is Portland's ShoeBox Theatre!
-                    </h4>
+                    </h6>
                     <br />
-                    <img src="~/Content/Images/shoebox.jpg" alt="shoebox" class="img-fluid" style="border-radius:15px">
+                    <img src="~/Content/Images/shoebox.jpg" alt="shoebox" class="img-fluid ab-border" />
                     <br /><br />
-                    <h3 style="text-decoration:underline;">RENTALS</h3>
+                    <h5 class="underline">RENTALS</h5>
 
-                    <h4>
+                    <h6>
                         Rental packages available, hourly, daily, and weekly,
                         For performance, rehearsals, and events!
-                    </h4>
+                    </h6>
                     <br />
-                    <a href="/RentalRequest/Create" style="color:#f04d44;"><h4>CLICK FOR MORE RENTAL INFO</h4></a>
+                    <a href="/RentalRequest/Create" class="underline ab-red"><h5>CLICK FOR MORE RENTAL INFO</h5></a>
                 </div>
             </div>
 
             @*GOOGLE LOCATION AND DINING LINKS*@
-            <div class="card ab-card">
+            <div class="card ab-card ml-lg-5">
                 <div class="card-body">
-                    <h3 class="card-title ab-card-title">Location</h3>
+                    <h5 class="card-title ab-card-title">Location</h5>
                     <br />
-                    <h4 class="card-text">
+                    <h6 class="card-text">
                         An intimate black-box theatre,<br />
                         located in the Southeast industrial area of Portland, Oregon.
-                    </h4>
+                    </h6>
                     <br />
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.1275080732185!2d-122.65739478444112!3d45.50751177910148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950a76856f95b5%3A0x60c15680c8175b9d!2sShoe%20Box%20Theater!5e0!3m2!1sen!2sus!4v1591210522311!5m2!1sen!2sus" width="400" height="450" frameborder="0" style="border-radius:15px;border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="card-img"></iframe>
                     <br />
                     <br />
-                    <h3 style="text-decoration:underline;">NEARBY DRINKS AND DINING</h3>
-                    <a href="http://www.deadshotpdx.com" style="color:#f04d44;"><h4>Deadshot</h4></a>
-                    <a href="http://www.thefirkintavern.com/" style="color:#f04d44;"><h4>Firkin Tavern</h4></a>
-                    <a href="http://www.fordfoodanddrink.com/" style="color:#f04d44;"><h4>Ford Food and Drink</h4></a>
-                    <a href="http://www.doubledragonpdx.com/" style="color:#f04d44;"><h4>Double Dragon</h4></a>
-                    <a href="https://www.cellardoorcoffee.com/" style="color:#f04d44;"><h4>Cellar Door Coffee Roasters</h4></a>
+                    <h5 class="underline">NEARBY DRINKS AND DINING</h5>
+                    <a href="http://www.deadshotpdx.com" style="color:#f04d44;"><h6>Deadshot</h6></a>
+                    <a href="http://www.thefirkintavern.com/" style="color:#f04d44;"><h6>Firkin Tavern</h6></a>
+                    <a href="http://www.fordfoodanddrink.com/" style="color:#f04d44;"><h6>Ford Food and Drink</h6></a>
+                    <a href="http://www.doubledragonpdx.com/" style="color:#f04d44;"><h6>Double Dragon</h6></a>
+                    <a href="https://www.cellardoorcoffee.com/" style="color:#f04d44;"><h6>Cellar Door Coffee Roasters</h6></a>
                 </div>
             </div>
         </div>
 
         @*COMPANY HISTORY*@
-        <div class="ab-mission">
-            <h2>Company History</h2>
+        <div class="ab-text">
+            <h3 class="ab-title">Company History</h3>
             <br />
-            <h3>
+            <h5>
                 In 1997, Theatre Vertigo was founded by Paul Floding, Nanette Pettit and Jeff Meyers.  Since then, Theatre Vertigo has performed in numerous spaces including The Russell Street Theater, The Electric Company, Theater!Theatre!, and their current home, The Shoebox Theater.
                 From 2003 to 2014, Theatre Vertigo produced Anonymous Theatre as a summer fundraiser in collaboration with The Anonymous Theatre Company.
                 Other past collaborations include defunkt theatre, Stark Raving Theater, and Tears of Joy Theatre.
@@ -84,11 +84,11 @@
                 <br />
                 Theatre Vertigo has worked on world premieres including <i>Faust</i>. <i>Us</i> by Joseph Fisher, <i>99 Ways to Fuck a Swan</i> by Kim Rosenstock, and <i>The End of Sex</i> by Craig Jessen.
                 In 2016, Theatre Vertigo produced its first officially commissioned work from a playwright, <i>I Want To Destroy You</i>, by Rob Handel.
-            </h3>
+            </h5>
         </div>
 
         @*AWARDS AND ACHIEVEMENTS - THIS WILL BE RENDERED ONCE MVC IS CREATED*@
-        <div class="card-deck">
+        <div class="card-deck m-lg-5">
             <div class="card ab-card">
                 <div class="card-body">
                     <h3 class="card-title ab-card-red">AWARDS &amp; ACHIEVEMENTS</h3>
@@ -211,41 +211,42 @@
         </div>
 
 
-        <div class="card-deck" style="margin-top:5%">
+        <div class="card-deck m-lg-5">
             <div class="card ab-card">
                 <div class="card-body">
-                    <h3 class="card-title ab-card-title" style="padding:1%;">Contact</h3>
-                    <h4 style="font-weight: 700">Vertigo Theatre</h4>
-                    <h4>2110 SE 10th<br />Portland, OR 97214<br />Phone: (503) 482-8655<br />Email: vertigo@theatrevertigo.org</h4>
+                    <h5 class="card-title ab-card-title">Contact</h5>
+                    <h6 style="font-weight: 700">Vertigo Theatre</h6>
+                    <h6>2110 SE 10th<br />Portland, OR 97214<br />Phone: (503) 482-8655<br />Email: vertigo@theatrevertigo.org</h6>
 
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="jumbotron" style="background-color:black;">
-        <h3 style="text-align:center">Who's Who at Theatre Vertigo</h3>
+    <div class="jumbotron ab-black m-lg-5 text-responsive">
+        <h5 class="ab-card-title mt-0 mb-5">Who's Who at Theatre Vertigo</h5>
         <div class="card-deck">
+
             <div class="card ab-card-red">
                 <div class="card-body">
-                    <h4 class="card-title ab-card-title"><a href="/CastMembers" style="color: black;">Company Members</a></h4>
-                    <h5>
-                        <a href="#" style="color:white;">London Bauman</a><br />
-                        <a href="#" style="color:white;">Jacquelle Davis</a><br />
-                        <a href="#" style="color:white;">Adriana Gantzer</a><br />
-                        <a href="#" style="color:white;">Clara-Liis Hillier</a><br />
-                        <a href="#" style="color:white;">Kaia Maarja Hillier</a><br />
-                        <a href="#" style="color:white;">Heath Hyun Houghton</a><br />
-                        <a href="#" style="color:white;">Tom Mounsey</a><br />
-                        <a href="#" style="color:white;">Devon Roberts</a><br />
-                    </h5>
+                    <h6 class="card-title ab-card-title"><a href="/CastMembers" style="color:black;">Company Members</a></h6>
+                    <h7>
+                        <a href="/CastMembers" style="color:white;">London Bauman</a><br />
+                        <a href="/CastMembers" style="color:white;">Jacquelle Davis</a><br />
+                        <a href="/CastMembers" style="color:white;">Adriana Gantzer</a><br />
+                        <a href="/CastMembers" style="color:white;">Clara-Liis Hillier</a><br />
+                        <a href="/CastMembers" style="color:white;">Kaia Maarja Hillier</a><br />
+                        <a href="/CastMembers" style="color:white;">Heath Hyun Houghton</a><br />
+                        <a href="/CastMembers" style="color:white;">Tom Mounsey</a><br />
+                        <a href="/CastMembers" style="color:white;">Devon Roberts</a><br />
+                    </h7>
                 </div>
             </div>
 
             <div class="card ab-card-red">
                 <div class="card-body">
-                    <h4 class="card-title ab-card-title">Company Associates</h4>
-                    <h5>
+                    <h6 class="card-title ab-card-title">Company Associates</h6>
+                    <h7>
                         Asae Deann<br />
                         Autumn Buck<br />
                         Breydon Little<br />
@@ -258,29 +259,35 @@
                         Nate Crosby<br />
                         Robert Wyllie<br />
                         Vana O’Brien<br />
-                    </h5>
+                    </h7>
                 </div>
             </div>
 
             <div class="card ab-card-red">
                 <div class="card-body">
-                    <h4 class="card-title ab-card-title">Company Board Members</h4>
-                    <h5>
+                    <h6 class="card-title ab-card-title">Company Board Members</h6>
+                    <h7>
                         Jamie Floyd (President)<br />
                         Scott Stephens<br />
                         Marcia Reyes<<br />
                         Lena-Liis Kiesel<br />
                         Gary Strong<br />
-                    </h5>
+                    </h7>
                 </div>
             </div>
         </div>
-
-        <img src="~/Content/Images/thatreBanner.jpg" alt="banner" class="img-fluid" style="border-radius:15px; margin-top:5%; width:100%;">
     </div>
 
-    @{
-        Html.RenderAction("List", "Sponsors");
-    }
+
+    <div class="jumbotron-fluid">
+        <img src="~/Content/Images/thatreBanner.jpg" style="width:100%" />
+
+        <div class="mt-5">
+            @{
+                Html.RenderAction("List", "Sponsors");
+            }
+        </div>
+    </div>
+
 
 </div>
