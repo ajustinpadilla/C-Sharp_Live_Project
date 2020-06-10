@@ -1762,15 +1762,16 @@ textarea {
             background-color: darkgray;
         }
 
-        .palette-container .fc-content {
-            background-color: red;
-            border: red;
-        }
-
+         /*overwritten as event data has color attribute/determines color*/
+        /*.palette-container .fc-content {
+                    background-color: var(--secondary-color);
+                    border: var(--secondary-color);
+                }*/
+        /*affects some sort of background detail, set to content color
         .palette-container .fc-event {
-            background-color: red;
-            border: red;
-        }
+            background-color: var(--secondary-color);
+            border: var(--secondary-color);
+}*/
 
 
         .palette-container .fc {
@@ -1780,13 +1781,56 @@ textarea {
             padding-top: 16px;
             /*Centers calendar*/
             margin: auto;
+            /*Avoid modal width reflow */
+            padding-right: 15px;
         }
 
-        /*Product Details*/
 
-        #jumbo.jumbotron {
-            background-color: #bd1a11;
-        }
+/*styling for admin calender details/add/edit modals*/
+#fc-modals {
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
+}
+
+.fc-modal-labels {
+    color: var(--light-color);
+}
+
+#fc-modal-headers {
+    font-family: Tahoma, Geneva, sans-serif;
+}
+/*To make modal datetime-local inputs uniform with text inputs*/
+.modal input[type=datetime-local], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+/*styling for modal btns, modeled after today button provided by full calendar*/
+.iconBtn2 {
+    /* dimensions */
+    margin: 0;
+    border: none;
+    background-color:lightgrey;
+    height: 2.1em;
+    padding: 0 .6em;
+    /* text & cursor */
+    font-size: 1em;
+    /* normalize */
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/*Styling for dropdown Menus on Add & Edit Modals*/
+
+/*Product Details*/
+#jumbo.jumbotron {
+    background-color: #bd1a11;
+}
 
         #cardss.card {
             margin-top: 20px;
