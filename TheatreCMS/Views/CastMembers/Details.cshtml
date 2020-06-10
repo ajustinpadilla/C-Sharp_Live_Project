@@ -7,7 +7,7 @@
 
 
 <div class=" container-fluid">
-    <div class=" detailsContainer">
+    <div class="detailsContainer">
         <div id="Isaiah_details" class="topPadding"> @*Isaiah-details adds padding and a border in css*@
             @*Using bootstraps grid system to layout this page*@
             <div class="row">   @*This row is the main row it has two collumns in it that have nested rows in them*@
@@ -89,10 +89,10 @@
                     @if (User.IsInRole("Admin"))
                     {
                         @*This button will only show up when you are logged on as an admin and alows you to got to the cast member edit page*@
-                        <a id="Isaiah_castEdit" class="badge badge-pill" href='@Url.Action("Edit", "CastMembers", new { id = Model.CastMemberID })'> Edit </a>
+                        <a id="Isaiah_castEdit" class="badge badge-pill mt-4" href='@Url.Action("Edit", "CastMembers", new { id = Model.CastMemberID })'> Edit </a>
                     }
                     @*This btn takes you back to the cast member index page*@
-                    <a id="Isaiah_castIndexbtn" class="badge badge-pill" href='@Url.Action("Index", "CastMembers")'> Back To List</a>
+                    <a id="Isaiah_castIndexbtn" class="badge badge-pill mt-4" href='@Url.Action("Index", "CastMembers")'> Back To List</a>
                     </div>
 
                 </div>  @*End of right collumn*@
@@ -123,7 +123,7 @@
         }
         else {
             document.getElementById("Isaiah_castBio").style.height = "auto"; @*Resets the bio's height once the rows stack*@
-            document.getElementById("Isaiah_castRol").style.height = "auto"; @*Resets the roles height once the rows stack*@
+            document.getElementById("Isaiah_castRole").style.height = "auto"; @*Resets the roles height once the rows stack*@ @*******fixed typo******@
             document.getElementById("Isaiah_castBio").style.paddingLeft = 0; @*Removes the bio's padding once the rows stack *@ 
             document.getElementById("Isaiah_castrow").style.paddingLeft = 0; @* Removes the lines padding once the rows stack *@ 
             document.getElementById("Isaiah_castCol1").style.paddingLeft = 0;
