@@ -129,7 +129,9 @@ if (document.getElementById("generate-showtimes-section") != null) {
             noBtn = $('#bulk-add-modal_no'),
             reviewShowtimes = false,                    //this variable is used to determine whether to have createTable() render the table in the modal or in the 'review showtimes' section.
             eventList = generateShowtimes();
-
+        if (eventList.length < 1) {
+            return;
+        }
         modal.show();                                  //a modal appears when the generate button is clicked
         createTable(eventList, masterList, reviewShowtimes);       //a table is rendered in the modal with the showtimes the user specified
 
@@ -170,6 +172,9 @@ if (document.getElementById("generate-showtimes-section") != null) {
             if ($('#custom-time').val() != "") {
                 startTimes.push($('#custom-time').val());
             }
+            if (startTimes.length == 0) {
+                alert("Please select a start time");
+            }
 
             let productionDays = [];
             if ($('#sunday').is(':checked')) {
@@ -192,6 +197,10 @@ if (document.getElementById("generate-showtimes-section") != null) {
             }
             if ($('#saturday').is(':checked')) {
                 productionDays.push(6);
+            }
+            if (productionDays.length == 0) {
+                alert("Please select at least one day")
+                return (eventList);
             }
 
 
