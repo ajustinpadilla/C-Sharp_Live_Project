@@ -91,9 +91,10 @@ function shrinkFunction() {
 // Begin script for Bulk Add
 
 if (document.getElementById("generate-showtimes-section") != null) {
-    //$("#showtimes-container").hide();
-    var runtime = 0
-    $("#generate__production-field").change(function () {          //when a different 
+    var masterList = [];                                // masterList is used to store the complete list of calendar event objects, as they are added from eventList. It's then passed to the back end.
+    var runtime = 0                                     // runtime stores the length of a given event in minutes. It's then used to incrememnt the event's time and create a second event that marks the end time of the production.
+
+    $("#generate__production-field").change(function () {          //when a different production is selected from the dropdown, an ajax call is made getting that production's start date, end date, productionId, and runtime.
         var productionId = $("#generate__production-field").val();
         $.ajax({
             method: 'GET',
@@ -120,7 +121,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
     //====================================== This block handles generating, editing and submitting showtimes =====================================//
 
-    var masterList = [];                                //this array is used to store the complete list of calendar event objects. Its also what gets passed to the back end.
     $("#generate-button").click(function () {
         $('.bulk-add_review-row').unbind('mouseenter mouseleave');
 
@@ -318,10 +318,11 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 method: 'POST',
                 url: '/CalendarEvents/BulkAdd',
                 data: { 'jsonString': data },
-                //contentType: 'application/json; charset=utf-8',
-                //dataType: 'json',
                 success: function () {
                     console.log('Success!');
+                },
+                error: function () {
+                    alert("Error while posting data!");
                 }
             });
         };

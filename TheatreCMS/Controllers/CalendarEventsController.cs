@@ -31,7 +31,7 @@ namespace TheatreCMS.Controllers
         public JsonResult GetCalendarEvents()
         {
             var events = db.CalendarEvent.ToArray();
-           
+
             return Json(db.CalendarEvent.Select(x => new
             {
                 id = x.EventId,
@@ -66,11 +66,11 @@ namespace TheatreCMS.Controllers
         public ActionResult Create()
         {
 
-            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId","Title");
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
             ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
             return View();
-            
-      
+
+
         }
 
         // POST: CalendarEvents/Create
@@ -110,11 +110,11 @@ namespace TheatreCMS.Controllers
 
             if (ModelState.IsValid)
             {
-               // ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
-               // ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+                // ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                // ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
 
                 //if (ViewData["Productions"] != null)
-              
+
 
                 db.CalendarEvent.Add(calendarEvent);
                 db.SaveChanges();
@@ -128,13 +128,13 @@ namespace TheatreCMS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CalendarEvent calendarEvents = db.CalendarEvent.Find(id);
-            
+
             if (calendarEvents == null)
             {
                 return HttpNotFound();
@@ -149,9 +149,9 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "EventId,Title,StartDate,EndDate,TicketsAvailable,ProductionId,RentalRequestId")] CalendarEvent calendarEvents)
-        {     
+        {
             if (ModelState.IsValid)
-            {                
+            {
                 db.Entry(calendarEvents).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -195,39 +195,39 @@ namespace TheatreCMS.Controllers
             }
             base.Dispose(disposing);
         }
-    
+
         // GET: CalendarEvents/BulkAdd
 
         [Authorize(Roles = "Admin")]
         public ActionResult BulkAdd()
         {
-            ViewData["Productions"] = new SelectList(db.Productions.OrderByDescending(x => x.Season).ToList(), "ProductionId","Title");
+            ViewData["Productions"] = new SelectList(db.Productions.OrderByDescending(x => x.Season).ToList(), "ProductionId", "Title");
             ViewData["Times"] = GetTimeIntervals();
             Debug.WriteLine("BulkAdd main");
             return View();
         }
-        
+
         [Authorize(Roles = "Admin")]
         public ActionResult GetDates(int productionId = 0)
         {
             int id = Convert.ToInt32(productionId);
             var query = from production in db.Productions
                         where production.ProductionId == id
-                        select new { production.OpeningDay, production.ClosingDay, production.ShowtimeMat, production.ShowtimeEve, production.Runtime}; /*ShowtimeMat = production.ShowtimeMat.Value.ToString("hh:mm tt"), ShowtimeEve = production.ShowtimeEve.Value.ToString*/
+                        select new { production.OpeningDay, production.ClosingDay, production.ShowtimeMat, production.ShowtimeEve, production.Runtime }; /*ShowtimeMat = production.ShowtimeMat.Value.ToString("hh:mm tt"), ShowtimeEve = production.ShowtimeEve.Value.ToString*/
 
             return Json(JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
-            
+
         }
 
         // This method generates times for the show time dropdown
-        
+
         public List<string> GetTimeIntervals()
         {
             List<string> timeIntervals = new List<string>();
             TimeSpan startTime = new TimeSpan(8, 0, 0);                 // The first time to be added. (8,0,0) sets it to 8 am
             DateTime startDate = new DateTime(DateTime.MinValue.Ticks); // Date to be used to get shortTime format.
-            timeIntervals.Add("TBD");  
-            
+            timeIntervals.Add("TBD");
+
             for (int i = 0; i < 29; i++)                                // This loop adds times to the array in 30 min increments ending at 10 pm
             {
                 int minutesToBeAdded = 30 * i;      // Increasing minutes by 30 minutes interval
@@ -241,28 +241,21 @@ namespace TheatreCMS.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult BulkAdd(string jsonString)
         {
             Debug.WriteLine("BulkAdd POST");
-            
+
             if (jsonString != null && jsonString != "")
             {
                 IList<CalendarEvent> events = JsonConvert.DeserializeObject<List<CalendarEvent>>(jsonString);
-                Debug.WriteLine(events[0].StartDate) ;
+                Debug.WriteLine(events[0].StartDate);
                 db.CalendarEvent.AddRange(events);
                 db.SaveChanges();
             }
-
-            if (jsonString == null)
-            {
-            Debug.WriteLine("string is null");
-            }
-            else
-            {
-                Debug.WriteLine(jsonString);
-            }
-            return RedirectToAction("BulkAdd");
+            // MVC doesn't support redirecting when an AJAX call is made. In order to redirect to another page, it must be done on the javascript side.
+            //it can be done in the "success" property of the ajax call.
+            return RedirectToAction("BulkAdd"); 
         }
     }
 }

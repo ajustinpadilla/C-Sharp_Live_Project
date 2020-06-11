@@ -11,7 +11,7 @@
 
     <div class="form-group">
         <label class="bulk-add--label col-md-4">Production</label>
-        <div class="col-md-10 formBox">
+        <div class="col-md-10 float-left formBox">
             @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "N/A", htmlAttributes: new { @class = "form-control", @id = "generate__production-field" })
             @Html.ValidationMessageFor(model => model.ProductionId, "", new { @class = "text-white" })
         </div>
@@ -19,21 +19,21 @@
 
     <div class="form-group">
         <label class="bulk-add--label col-md-4">Start Date</label>
-        <div class="col-md-10 formBox">
+        <div class="col-md-10 float-left formBox">
             @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @id = "generate__start-date-field", @type = "date" } })
             @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-white" })
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group ">
         <label class="bulk-add--label col-md-4">End Date</label>
-        <div class="col-md-10 formBox">
+        <div class="col-md-10 float-left formBox">
             @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker", @id = "generate__end-date-field", @type = "date" } })
             @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-white" })
         </div>
     </div>
 
-    <div class="form-group show-times">
+    <div class="form-group d-inline-block show-times">
         <label for="matinee">
             <input type="checkbox" id="matinee" name="matinee" />
             Matinee <span id="matinee-time"></span>
