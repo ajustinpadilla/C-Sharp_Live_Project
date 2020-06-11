@@ -146,11 +146,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
             $('.bulk-add_modal-row').remove();
             $('.bulk-add_review-row').remove();
             masterList.push.apply(masterList, eventList); //the event list is appended to the master list
-            console.log(masterList.length);
             masterList = masterList.sort((a, b) => a.StartDate - b.StartDate);
-            for (var i = 0; i < masterList.length; i++) {
-                console.log(masterList[i].StartDate.format('lll'))
-            }
             createTable(eventList, masterList, reviewShowtimes);      //the event list is appended to the "review showtimes" table 
 
         });
@@ -198,7 +194,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 productionDays.push(6);
             }
 
-            
+
 
             // CalendarEvent properties that are capitalized match the properties in the MVC CalendarEvent model. 
             // They must be verbatim in order for the JSON deserializer to work correctly
@@ -273,7 +269,9 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_review-row';
                 for (i = 0; i < masterList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = masterList[i].StartDate.format('ll');
+                    if (typeof masterList[i].StartDate != "string") {
+                        cell.innerHTML = masterList[i].StartDate.format('ll');
+                    }
                     cell = row.insertCell();
                     cell.innerHTML = masterList[i].dayOfWeek;
                     cell = row.insertCell();
@@ -308,24 +306,24 @@ if (document.getElementById("generate-showtimes-section") != null) {
         $('#bulk-add_submit').off('click');
         $('#bulk-add_submit').click(submitEvents);
         function submitEvents() {
-            //for (var i = 0; i < masterList.length; i++) {
-            //    masterList[i].StartDate = moment(masterList[i].StartDate);
-            //    masterList[i].EndDate = moment(masterList[i].EndDate);
-            //}
+            for (var i = 0; i < masterList.length; i++) {
+                if (typeof masterList[i].StartDate != "string") {    //this checks that .format is only applied to items that haven't yet been formatted.
+                    masterList[i].StartDate = masterList[i].StartDate.format('lll');
+                    masterList[i].EndDate = masterList[i].EndDate.format('lll');
+                }
+            }
             var data = JSON.stringify(masterList);
             console.log('submitted masterlist' + data);
             $.ajax({
                 method: 'POST',
                 url: '/CalendarEvents/BulkAdd',
-                data: {'jsonString' : data },
+                data: { 'jsonString': data },
                 //contentType: 'application/json; charset=utf-8',
                 //dataType: 'json',
                 success: function () {
                     console.log('Success!');
                 }
             });
-
-            //$.post('/CalendarEvents/BulkAdd', data)
         };
 
     });
