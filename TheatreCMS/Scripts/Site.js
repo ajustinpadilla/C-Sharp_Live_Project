@@ -88,23 +88,32 @@ function shrinkFunction() {
     }
 }
 
-// Begin script for Bulk Add
+// ============================================================================   Begin script for Bulk Add   ==================================================================
 
-if (document.getElementById("generate-showtimes-section") != null) {
+//      This script applies to the CalendarEvents/BulkAdd page. Its purpose is to allow an admin to create and edit a list of calendar events based
+//      off of a start date, end date, show start time, day(s) of the week the shows will occur, and interval of weeks between shows.
+//      When the user is satisfied with their list, they can submit it to the database.
+//      It uses moment.js to handle dates and times, and uses jQuery's AJAX method to pass data to and from the controller.
+
+
+
+if ($("#generate-showtimes-section") != null) {
     var masterList = [];                                // masterList is used to store the complete list of calendar event objects, as they are added from eventList. It's then passed to the back end.
     var runtime = 0                                     // runtime stores the length of a given event in minutes. It's then used to incrememnt the event's time and create a second event that marks the end time of the production.
 
-    $("#generate__production-field").change(function () {          //when a different production is selected from the dropdown, an ajax call is made getting that production's start date, end date, productionId, and runtime.
+
+    //when a different production is selected from the dropdown, an ajax call is made getting that production's start date, end date, productionId, and runtime.
+    $("#generate__production-field").change(function () {
         var productionId = $("#generate__production-field").val();
         $.ajax({
             method: 'GET',
-            url: '/CalendarEvents/GetDates',
+            url: '/CalendarEvents/GetProduction',
             data: { "productionId": productionId },
             dataType: 'json',
             success: function (data) {
                 if (data != "[]") {
                     let production = jQuery.parseJSON(data);
-                    let openingDay = production[0].OpeningDay.substr(0, 10); // Removes the time from the date
+                    let openingDay = production[0].OpeningDay.substr(0, 10); // This removes the time from the date
                     let closingDay = production[0].ClosingDay.substr(0, 10);
                     $("#generate__start-date-field").val(openingDay); //code for adding a date to the start date field
                     $("#generate__end-date-field").val(closingDay);

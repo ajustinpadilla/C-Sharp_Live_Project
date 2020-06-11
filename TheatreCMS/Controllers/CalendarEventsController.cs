@@ -207,8 +207,9 @@ namespace TheatreCMS.Controllers
             return View();
         }
 
+        
         [Authorize(Roles = "Admin")]
-        public ActionResult GetDates(int productionId = 0)
+        public ActionResult GetProduction(int productionId = 0)
         {
             int id = Convert.ToInt32(productionId);
             var query = from production in db.Productions
