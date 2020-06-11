@@ -137,7 +137,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
 
         noBtn.off('click');                             //the .off() and .one() methods are to prevent event handlers from stacking up.
         noBtn.one("click", function () {
-            console.log('no button clicked');
             modal.hide();
             $('.bulk-add_modal-row').remove();          //this clears all the entries from the modal table so they won't stack.
         });
@@ -152,6 +151,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
             createTable(eventList, masterList, reviewShowtimes);      //the event list is appended to the "review showtimes" table 
 
         });
+    });
 
         // this function returns a list of show times
         function generateShowtimes() {
@@ -278,7 +278,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_review-row';
                 for (i = 0; i < masterList.length; i++) {
                     var cell = row.insertCell();
-                    if (typeof masterList[i].StartDate != "string") {
+                    if (typeof masterList[i].StartDate != "string" && masterList.length > 0) {
                         cell.innerHTML = masterList[i].StartDate.format('ll');
                     }
                     cell = row.insertCell();
@@ -302,7 +302,6 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 let button = $('<button type="submit" class="bulk-add_delete">Delete</button>')
                     .hide().fadeIn(1200);
                 let rowIndex = $('tr').index(this) - 2; // targets the specific row to be deleted 
-                console.log('row index' + rowIndex);
                 $(this).append(button);
                 button.click(function () {             // when the delete button is clicked, the row is removed from the table, and the corresponding event is removed from the master list.
                     button.closest('tr').remove();
@@ -323,18 +322,17 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 }
             }
             var data = JSON.stringify(masterList);
-            console.log('submitted masterlist' + data);
             $.ajax({
                 method: 'POST',
                 url: '/CalendarEvents/BulkAdd',
                 data: { 'jsonString': data },
                 success: function () {
-                    if (masterList == [""]) {
+                    if (masterList.length == 0) {
                         alert("Events already added")
                     }
                     else {
                     alert('Events Added!');
-                    masterList = [""];
+                    masterList = [];
                     }
                 },
                 error: function () {
@@ -342,7 +340,5 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 }
             });
         };
-
-    });
 }
     //End script for Bulk Add
