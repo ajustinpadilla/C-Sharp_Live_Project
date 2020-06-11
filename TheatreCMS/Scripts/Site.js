@@ -89,20 +89,19 @@ function shrinkFunction() {
 }
 
 // ============================================================================   Begin script for Bulk Add   ==================================================================
-
+// ============================================================================                               ==================================================================
 //      This script applies to the CalendarEvents/BulkAdd page. Its purpose is to allow an admin to create and edit a list of calendar events based
 //      off of a start date, end date, show start time, day(s) of the week the shows will occur, and interval of weeks between shows.
 //      When the user is satisfied with their list, they can submit it to the database.
 //      It uses moment.js to handle dates and times, and uses jQuery's AJAX method to pass data to and from the controller.
-
-
 
 if ($("#generate-showtimes-section") != null) {
     var masterList = [];                                // masterList is used to store the complete list of calendar event objects, as they are added from eventList. It's then passed to the back end.
     var runtime = 0                                     // runtime stores the length of a given event in minutes. It's then used to incrememnt the event's time and create a second event that marks the end time of the production.
 
 
-    //when a different production is selected from the dropdown, an ajax call is made getting that production's start date, end date, productionId, and runtime.
+//      When a production is selected from the dropdown, an ajax call is made sending that production's start date, end date, productionId, and runtime.
+//      The start date and end date dropdowns are then autofilled, and the runtime variable is set.
     $("#generate__production-field").change(function () {
         var productionId = $("#generate__production-field").val();
         $.ajax({
@@ -113,9 +112,9 @@ if ($("#generate-showtimes-section") != null) {
             success: function (data) {
                 if (data != "[]") {
                     let production = jQuery.parseJSON(data);
-                    let openingDay = production[0].OpeningDay.substr(0, 10); // This removes the time from the date
+                    let openingDay = production[0].OpeningDay.substr(0, 10); // This removes the time of day and leaves only the date
                     let closingDay = production[0].ClosingDay.substr(0, 10);
-                    $("#generate__start-date-field").val(openingDay); //code for adding a date to the start date field
+                    $("#generate__start-date-field").val(openingDay); 
                     $("#generate__end-date-field").val(closingDay);
                     $("#matinee-time").html(moment(production[0].ShowtimeMat).format('h:mm a'));
                     $("#evening-time").html(moment(production[0].ShowtimeEve).format('h:mm a'));
@@ -130,87 +129,88 @@ if ($("#generate-showtimes-section") != null) {
 
     //====================================== This block handles generating, editing and submitting showtimes =====================================//
 
+    //    This function does some traffic control. Once the generate button is clicked, the eventList is populated, and a modal pops up showing the list of dates that were added, 
+    //    and offers yes and no buttons which allow the user to either go back and change their parameters
+    //    or to append these showtimes to a final list to be reviewed and edited before being submitted 
     $("#generate-button").click(function () {
         $('.bulk-add_review-row').unbind('mouseenter mouseleave');
 
         var modal = $('#bulk-add-modal'),
             yesBtn = $('#bulk-add-modal_yes'),
             noBtn = $('#bulk-add-modal_no'),
-            reviewShowtimes = false,                    //this variable is used to determine whether to have createTable() render the table in the modal or in the 'review showtimes' section.
+            reviewShowtimes = false,                    // This variable is used to determine whether to render the list of times in the modal, or to append it to the review section.
             eventList = generateShowtimes();
-        if (eventList.length < 1) {
+        if (eventList.length < 1) {                     // If the list is empty, the user didn't select all the required parameters.
             return;
         }
-        modal.show();                                  //a modal appears when the generate button is clicked
-        createTable(eventList, masterList, reviewShowtimes);       //a table is rendered in the modal with the showtimes the user specified
+        modal.show();                                  
+        createTable(eventList, masterList, reviewShowtimes);  
 
-        noBtn.off('click');                             //the .off() and .one() methods are to prevent event handlers from stacking up.
+        noBtn.off('click');                             // The .off() and .one() methods are to prevent event handlers from stacking up.
         noBtn.one("click", function () {
             modal.hide();
-            $('.bulk-add_modal-row').remove();          //this clears all the entries from the modal table so they won't stack.
+            $('.bulk-add_modal-row').remove();          // This clears all the entries from the modal table so they won't stack every time the Generate button is clicked.
         });
         yesBtn.off("click");
-        yesBtn.one("click", function () {               //when the yes button is clicked, the modal disappears and clears its entries, and the showtimes are appended to the review showtimes list. 
+        yesBtn.one("click", function () {               // When the yes button is clicked, the modal disappears and clears its entries. The showtimes are appended to the masterList, and displayed in the review showtimes section. 
             modal.hide();
             reviewShowtimes = true;
             $('.bulk-add_modal-row').remove();
-            $('.bulk-add_review-row').remove();
-            masterList.push.apply(masterList, eventList); //the event list is appended to the master list
+            $('.bulk-add_review-row').remove();         // The Review Showtimes list is generated from the masterList each time yes is clicked, so it needs to be cleared
+            masterList.push.apply(masterList, eventList); 
             masterList = masterList.sort((a, b) => a.StartDate - b.StartDate);
-            createTable(eventList, masterList, reviewShowtimes);      //the event list is appended to the "review showtimes" table 
-
+            createTable(eventList, masterList, reviewShowtimes);
         });
     });
 
-        // this function returns a list of show times
+//      This function takes the user's input and performs calculations to generate a list of events sorted by ascending date. It returns to the eventList variable.
         function generateShowtimes() {
-
             let startDate = moment($("#generate__start-date-field").val()),
                 endDate = moment($("#generate__end-date-field").val()),
                 eventDate = startDate,
                 dateRange = endDate.diff(startDate, 'days'),
                 interval = $("#interval").children("option").filter(":selected").val(),
-                eventList = [],
-                startTimes = [];
-            if ($('#matinee').is(':checked')) {
-                startTimes.push($('#matinee-time').text());
-            }
-            if ($('#evening').is(':checked')) {
-                startTimes.push($('#evening-time').text());
-            }
-            if ($('#custom-time').val() != "") {
-                startTimes.push($('#custom-time').val());
-            }
-            if (startTimes.length == 0) {
-                alert("Please select a start time");
-            }
+                eventList = [];
+            let startTimes = [];
+                if ($('#matinee').is(':checked')) {
+                    startTimes.push($('#matinee-time').text());
+                }
+                if ($('#evening').is(':checked')) {
+                    startTimes.push($('#evening-time').text());
+                }
+                if ($('#custom-time').val() != "") {
+                    startTimes.push($('#custom-time').val());
+                }
+                if (startTimes.length == 0) {
+                    alert("Please select a start time");
+                }
 
             let productionDays = [];
-            if ($('#sunday').is(':checked')) {
-                productionDays.push(0);
-            }
-            if ($('#monday').is(':checked')) {
-                productionDays.push(1);
-            }
-            if ($('#tuesday').is(':checked')) {
-                productionDays.push(2);
-            }
-            if ($('#wednesday').is(':checked')) {
-                productionDays.push(3);
-            }
-            if ($('#thursday').is(':checked')) {
-                productionDays.push(4);
-            }
-            if ($('#friday').is(':checked')) {
-                productionDays.push(5);
-            }
-            if ($('#saturday').is(':checked')) {
-                productionDays.push(6);
-            }
-            if (productionDays.length == 0) {
-                alert("Please select at least one day")
-                return (eventList);
-            }
+                if ($('#sunday').is(':checked')) {
+                    productionDays.push(0);
+                }
+                if ($('#monday').is(':checked')) {
+                    productionDays.push(1);
+                }
+                if ($('#tuesday').is(':checked')) {
+                    productionDays.push(2);
+                }
+                if ($('#wednesday').is(':checked')) {
+                    productionDays.push(3);
+                }
+                if ($('#thursday').is(':checked')) {
+                    productionDays.push(4);
+                }
+                if ($('#friday').is(':checked')) {
+                    productionDays.push(5);
+                }
+                if ($('#saturday').is(':checked')) {
+                    productionDays.push(6);
+                }
+                if (productionDays.length == 0) {
+                    alert("Please select at least one day")
+                    return (eventList);
+                }
 
 
 
