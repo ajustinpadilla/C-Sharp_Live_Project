@@ -305,9 +305,10 @@ if (document.getElementById("generate-showtimes-section") != null) {
         }
         $('#bulk-add_submit').off('click');
         $('#bulk-add_submit').click(submitEvents);
+
         function submitEvents() {
             for (var i = 0; i < masterList.length; i++) {
-                if (typeof masterList[i].StartDate != "string") {    //this checks that .format is only applied to items that haven't yet been formatted.
+                if (typeof masterList[i].StartDate == "object") {    //this checks that .format is only applied to items that haven't yet been formatted.
                     masterList[i].StartDate = masterList[i].StartDate.format('lll');
                     masterList[i].EndDate = masterList[i].EndDate.format('lll');
                 }
@@ -319,7 +320,13 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 url: '/CalendarEvents/BulkAdd',
                 data: { 'jsonString': data },
                 success: function () {
-                    console.log('Success!');
+                    if (masterList == [""]) {
+                        alert("Events already added")
+                    }
+                    else {
+                    alert('Events Added!');
+                    masterList = [""];
+                    }
                 },
                 error: function () {
                     alert("Error while posting data!");

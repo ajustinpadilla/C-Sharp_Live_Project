@@ -245,13 +245,18 @@ namespace TheatreCMS.Controllers
         public ActionResult BulkAdd(string jsonString)
         {
             Debug.WriteLine("BulkAdd POST");
-
-            if (jsonString != null && jsonString != "")
+            if (jsonString != null && jsonString != "" && jsonString != "[\"\"]")
             {
                 IList<CalendarEvent> events = JsonConvert.DeserializeObject<List<CalendarEvent>>(jsonString);
-                Debug.WriteLine(events[0].StartDate);
+                try
+                {
                 db.CalendarEvent.AddRange(events);
                 db.SaveChanges();
+                }
+                catch (System.Data.SqlClient.SqlException)
+                {
+                    Console.WriteLine("Something went wrong when updating the database!");
+                }
             }
             // MVC doesn't support redirecting when an AJAX call is made. In order to redirect to another page, it must be done on the javascript side.
             //it can be done in the "success" property of the ajax call.
