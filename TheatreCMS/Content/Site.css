@@ -1825,18 +1825,40 @@ a.dropdown-item:hover {
     height: 100%;
 }
 
-@media only screen and (max-width: 1080px) {
-    .admin-dash-btn {
-        margin-top: 6px;
-    }
-}
-/*End Admin Dashboard list*/
-/*Admin Dashboard Form*/
-#admin-formspace {
+        @media only screen and (max-width: 1080px) {
+            .admin-dash-btn {
+                margin-top: 6px;
+            }
+        }
+        /*End Admin Dashboard list*/
+
+/*Admin Dashboard Current Productions Section*/
+#admin-currentprod {
     margin: auto;
     border: solid 4px var(--main-bg-color);
-    padding: 100px;
+    padding: 20px 100px;
 }
+
+#admin-currentprod .currentProd_badges {
+    display:none;
+}
+
+#admin-currentprod .badge {
+    background-color: var(--main-secondary-color);
+    color: var(--light-color);
+}
+/*End of Admin Dashboard Current Productions Section*/
+
+  #admin-currentprod .admin_prod_heading {
+        color: var(--secondary-color);
+    }
+
+        /*Admin Dashboard Form*/
+        #admin-formspace {
+            margin: auto;
+            border: solid 4px var(--main-bg-color);
+            padding: 100px;
+        }
 
 @media only screen and (max-width: 750px) {
     #admin-formspace {
@@ -2859,6 +2881,30 @@ a.dropdown-item:hover {
     padding-left: 5px;
 }
 /* End Peter O.*/
+
+/* News Published Page Styling */
+.admin-card .badge {
+    cursor: pointer;
+}
+
+.news-card {
+    width: 800px;
+    border-radius: 20px;
+}
+
+.admin-card .card-body .badge {
+    display: none;
+}
+
+.admin-card .news-hide {
+    background-color: var(--secondary-color);
+}
+
+.news-card .card-title {
+    color: var(--main-secondary-color)
+}
+/* End News Published Page Styling */
+
 
 /* Scrollbar Styling*/
 

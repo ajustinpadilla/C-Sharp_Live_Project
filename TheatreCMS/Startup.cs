@@ -12,6 +12,10 @@ using TheatreCMS.Controllers;
 using System;
 using System.Linq;
 using System.Drawing;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Microsoft.Ajax.Utilities;
+using System.Web.Caching;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
 namespace TheatreCMS
@@ -981,6 +985,8 @@ namespace TheatreCMS
                 context.Parts.AddOrUpdate(p => p.PartID, x); // runs the addorupdate- if tempPart returns null a new record will be added if it returned not null it will update based off of the PartID assigned in the if statement
             }); 
             context.SaveChanges();
-        }   
+        }
+
+
     }
 }
