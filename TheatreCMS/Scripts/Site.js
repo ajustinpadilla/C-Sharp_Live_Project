@@ -224,8 +224,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                             eventDate.hour(hr).minute(min);
                             var endTime = moment(eventDate);
                             endTime.add(runtime, "minutes")
-                            console.log(endTime.format('YYYY-MM-DD HH:mm:ss'))
-                            const event = new CalendarEvent(eventDate.format("YYYY-MM-DD HH:mm:ss"), endTime.format("YYYY-MM-DD HH:mm:ss"), eventDate.format('dddd'), startTimes[k]);
+                            const event = new CalendarEvent(moment(eventDate), endTime, eventDate.format('dddd'), startTimes[k]);
                             eventList.push(event);
                         }
                     }
@@ -248,7 +247,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_modal-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].StartDate/*.format('ll')*/;
+                    cell.innerHTML = eventList[i].StartDate.format('ll');
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
@@ -267,7 +266,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 row.className = 'bulk-add_review-row';
                 for (i = 0; i < eventList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].StartDate/*.format('ll')*/;
+                    cell.innerHTML = eventList[i].StartDate.format('ll');
                     cell = row.insertCell();
                     cell.innerHTML = eventList[i].dayOfWeek;
                     cell = row.insertCell();
