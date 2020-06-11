@@ -131,7 +131,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
             eventList = generateShowtimes();
 
         modal.show();                                  //a modal appears when the generate button is clicked
-        createTable(eventList, reviewShowtimes);       //a table is rendered in the modal with the showtimes the user specified
+        createTable(eventList, masterList, reviewShowtimes);       //a table is rendered in the modal with the showtimes the user specified
 
         noBtn.off('click');                             //the .off() and .one() methods are to prevent event handlers from stacking up.
         noBtn.one("click", function () {
@@ -144,8 +144,15 @@ if (document.getElementById("generate-showtimes-section") != null) {
             modal.hide();
             reviewShowtimes = true;
             $('.bulk-add_modal-row').remove();
+            $('.bulk-add_review-row').remove();
             masterList.push.apply(masterList, eventList); //the event list is appended to the master list
-            createTable(eventList, reviewShowtimes);      //the event list is appended to the "review showtimes" table 
+            console.log(masterList.length);
+            masterList = masterList.sort((a, b) => a.StartDate - b.StartDate);
+            for (var i = 0; i < masterList.length; i++) {
+                console.log(masterList[i].StartDate.format('lll'))
+            }
+            createTable(eventList, masterList, reviewShowtimes);      //the event list is appended to the "review showtimes" table 
+
         });
 
         // this function returns a list of show times
@@ -233,13 +240,13 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 startDate = moment($("#generate__start-date-field").val());
                 eventDate = startDate;
             }
-            return eventList.sort((a, b) => a.date - b.date);
+            return eventList.sort((a, b) => a.StartDate - b.StartDate);
         }
 
 
         //this function generates a table displaying the list of events created in the generateShowTimes() function.
         //depending on the state of the pressedYes variable, it will create the table in either the modal or the 'review showtimes' section.
-        function createTable(eventList, pressedYes) {
+        function createTable(eventList, masterList, pressedYes) {
             // this block creates a table in the modal
             if (pressedYes != true) {
                 var table = document.getElementById("modal-table"),
@@ -264,13 +271,13 @@ if (document.getElementById("generate-showtimes-section") != null) {
                 var table = document.getElementById("showtimes-table"),
                     row = table.insertRow();
                 row.className = 'bulk-add_review-row';
-                for (i = 0; i < eventList.length; i++) {
+                for (i = 0; i < masterList.length; i++) {
                     var cell = row.insertCell();
-                    cell.innerHTML = eventList[i].StartDate.format('ll');
+                    cell.innerHTML = masterList[i].StartDate.format('ll');
                     cell = row.insertCell();
-                    cell.innerHTML = eventList[i].dayOfWeek;
+                    cell.innerHTML = masterList[i].dayOfWeek;
                     cell = row.insertCell();
-                    cell.innerHTML = eventList[i].startTime;
+                    cell.innerHTML = masterList[i].startTime;
                     row = table.insertRow();
                     row.className = 'bulk-add_review-row';
                 }
@@ -302,12 +309,11 @@ if (document.getElementById("generate-showtimes-section") != null) {
         $('#bulk-add_submit').click(submitEvents);
         function submitEvents() {
             //for (var i = 0; i < masterList.length; i++) {
-            //    masterList[i].StartDate = moment(masterList[i].StartDate.toISOString);
-            //    masterList[i].EndDate = moment(masterList[i].EndDate.toISOString);
+            //    masterList[i].StartDate = moment(masterList[i].StartDate);
+            //    masterList[i].EndDate = moment(masterList[i].EndDate);
             //}
-            console.log(masterList);
             var data = JSON.stringify(masterList);
-            console.log(data);
+            console.log('submitted masterlist' + data);
             $.ajax({
                 method: 'POST',
                 url: '/CalendarEvents/BulkAdd',
