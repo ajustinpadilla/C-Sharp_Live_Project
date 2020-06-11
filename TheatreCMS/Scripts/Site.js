@@ -92,7 +92,7 @@ function shrinkFunction() {
 
 if (document.getElementById("generate-showtimes-section") != null) {
     //$("#showtimes-container").hide();
-
+    var runtime = 0
     $("#generate__production-field").change(function () {          //when a different 
         var productionId = $("#generate__production-field").val();
         $.ajax({
@@ -109,6 +109,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
                     $("#generate__end-date-field").val(closingDay);
                     $("#matinee-time").html(moment(production[0].ShowtimeMat).format('h:mm a'));
                     $("#evening-time").html(moment(production[0].ShowtimeEve).format('h:mm a'));
+                    runtime = production[0].Runtime;
                 }
             },
             error: function () {
@@ -117,7 +118,7 @@ if (document.getElementById("generate-showtimes-section") != null) {
         });
     });
 
-    //====================================== THis block handles generating, editing and submitting showtimes =====================================//
+    //====================================== This block handles generating, editing and submitting showtimes =====================================//
 
     var masterList = [];                                //this array is used to store the complete list of calendar event objects. Its also what gets passed to the back end.
     $("#generate-button").click(function () {
@@ -195,11 +196,11 @@ if (document.getElementById("generate-showtimes-section") != null) {
             // CalendarEvent properties that are capitalized match the properties in the MVC CalendarEvent model. 
             // They must be verbatim in order for the JSON deserializer to work correctly
             class CalendarEvent {
-                constructor(date, dayOfWeek, startTime) {
+                constructor(startDate, endDate, dayOfWeek, startTime) {
                     this.Title = $("#generate__production-field").children("option").filter(":selected").text();
                     this.ProductionId = $("#generate__production-field").val();
-                    this.StartDate = date;
-                    //this.EndDate = date;
+                    this.StartDate = startDate;
+                    this.EndDate = endDate;
                     this.dayOfWeek = dayOfWeek;
                     this.startTime = startTime;
                 }
@@ -221,7 +222,10 @@ if (document.getElementById("generate-showtimes-section") != null) {
                                 hr += 12;
                             }
                             eventDate.hour(hr).minute(min);
-                            const event = new CalendarEvent(eventDate.format("YYYY-MM-DD HH:mm:ss"), eventDate.format('dddd'), startTimes[k]);
+                            var endTime = moment(eventDate);
+                            endTime.add(runtime, "minutes")
+                            console.log(endTime.format('YYYY-MM-DD HH:mm:ss'))
+                            const event = new CalendarEvent(eventDate.format("YYYY-MM-DD HH:mm:ss"), endTime.format("YYYY-MM-DD HH:mm:ss"), eventDate.format('dddd'), startTimes[k]);
                             eventList.push(event);
                         }
                     }

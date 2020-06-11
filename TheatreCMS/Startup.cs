@@ -231,30 +231,30 @@ namespace TheatreCMS
             {
                 new Production{Title = "Hamilton", Playwright = "Lin-Manuel Miranda", Description = "This is a musical inspired by the biography " +
                 "Alexander Hamilton by historian Ron Chernow. This musical tells the story of American Founding Father Alexander Hamilton through music " +
-                "that draws heavily from hip hop, as well as R&B, pop, soul, and traditional-style show tune. ", OpeningDay = new DateTime(2020, 01, 01, 19, 30, 00),
+                "that draws heavily from hip hop, as well as R&B, pop, soul, and traditional-style show tune. ", Runtime=90, OpeningDay = new DateTime(2020, 01, 01, 19, 30, 00),
                 ClosingDay = new DateTime(2020, 02, 29, 19, 30, 00), ShowtimeEve = new DateTime(2020, 01, 02, 19, 30, 00) , ShowtimeMat = new DateTime(2020, 01, 02, 22, 30, 00),
                 TicketLink = "ticketsforyou.com", Season = 23, IsCurrent = true},
 
                 new Production{Title = "Phantom of the Opera", Playwright = "Andrew Lloyd Webber & Charles Hart", Description = "Based on a French " +
                 "novel of the same name by Gaston Leroux, its central plot revolves around a beautiful soprano, Christine Daae, who becomes the obesession " +
-                "of a mysterious, disfigured musical genius living in the subterranean labyrinth beneath the Paris Opera House.", OpeningDay = new DateTime(2019, 10, 01, 17, 30, 00),
+                "of a mysterious, disfigured musical genius living in the subterranean labyrinth beneath the Paris Opera House.", Runtime=90, OpeningDay = new DateTime(2019, 10, 01, 17, 30, 00),
                 ClosingDay = new DateTime(2019, 11, 30, 17, 30, 00), ShowtimeEve = new DateTime(2019, 10, 04, 17, 30, 00), ShowtimeMat = new DateTime(2019, 10, 04, 19, 30, 00),
                 TicketLink = "ticketsforyou.com", Season = 23, IsCurrent = true},
 
                 new Production{Title = "The Book of Mormon", Playwright = "Trey Parker, Robert, Lopez, & Matt Stone", Description = "The Book of Mormon " +
                 "follows two Latter-Day Saints missionaries as they attempt to preach the faith of the Church of Jesus Christ of Latter-Day Saints to the " +
-                "inhabitants of a remote Ugandan village.", OpeningDay = new DateTime(2021, 01, 01, 19, 30, 00), ClosingDay = new DateTime(2021, 02, 28, 19, 30, 00),
+                "inhabitants of a remote Ugandan village.", Runtime=90, OpeningDay = new DateTime(2021, 01, 01, 19, 30, 00), ClosingDay = new DateTime(2021, 02, 28, 19, 30, 00),
                 ShowtimeEve = new DateTime(2021, 01, 02, 19, 30, 00), ShowtimeMat = new DateTime(2021, 01, 02, 22, 30, 00), TicketLink = "ticketsforyou.com", Season = 24,
                 IsCurrent = false},
 
 				new Production{Title = "Wicked", Playwright = "Stephen Schwartz", Description = "This musical is told from the perspective of the witches of " +
-				"the Land of Oz; its plot begins before and continues after Dorothy Gale arrives in Oz from Kansas, and includes several references to the 1939 film.",
-				OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00),
+				"the Land of Oz; its plot begins before and continues after Dorothy Gale arrives in Oz from Kansas, and includes several references to the 1939 film.", Runtime=90,
+                OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00),
 				ShowtimeMat = new DateTime(2020, 10, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 24, IsCurrent = false},
 
 				new Production{Title = "How to Succeed in Business Without Really Trying", Playwright = "Frank Loesser", Description = "This story concerns young, " +
                 "ambitious J. Pierrepont Finch, who, with the help of the book How to Succeed in Business Without Really Trying, rises from window washer to chairman of " +
-                "the board of the World Wide Wicket Company.", OpeningDay = new DateTime(2020, 04, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 05, 31, 19, 30, 00),
+                "the board of the World Wide Wicket Company.", Runtime=90, OpeningDay = new DateTime(2020, 04, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 05, 31, 19, 30, 00),
                 ShowtimeEve = new DateTime(2020, 04, 01, 19, 30, 00), ShowtimeMat = new DateTime(2020, 04, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 23,
                 IsCurrent = true}
 			};
