@@ -102,7 +102,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                     <div class="col-md-10 formBox">
-                        @Html.EditorFor(model => model.Season, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Season, new { htmlAttributes = new { @class = "form-control", @Value=(int)ViewData["current_season"] } })
                         @Html.ValidationMessageFor(model => model.Season, "", new { @class = "text-danger" })
                     </div>
                 </div>
