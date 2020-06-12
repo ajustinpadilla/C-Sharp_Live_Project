@@ -70,47 +70,65 @@
     var filter = document.getElementById("ProductionList");
     var allCards = document.getElementsByClassName("prodphoto-cards");
 
+    //filter on change
     filter.addEventListener("change", function () {
 
+        //start off with eveything set to 'none'
         for (var i = 0; i < allCards.length; i++) {
             allCards[i].style.display = 'none';
         }
-
         document.getElementById("prodphoto-null-msg").style.display = 'none';
 
+        //if filter is set to 'all', run the search function
         if (filter.selectedIndex == 0) {
-            for (var i = 0; i < allCards.length; i++) {
-                allCards[i].style.display = 'block';
-            }
+            searchF();
         }
+
+        //if a prod is selected, only run the filter function
         else {
-            var prodFilter = filter.options[filter.selectedIndex].value;
-            var filterId = prodFilter + "-prodphoto-show";
-            if (document.getElementById(filterId)) {
-                document.getElementById(filterId).style.display = 'block';
-            }
-            else {
-                var nullMsg = document.getElementById("prodphoto-null-msg");
-                nullMsg.style.display = 'block';
-                nullMsg.innerHTML = "This production does not have any photos yet.";
-            }
+            filterF();
         }
+
     });
 
-    //search through card-body-s for user-input and display only those cards and production titles
+    //search button click
     $(document).ready(function () {
         $(".prodphoto-searchbtn").click(function () {
-            var value = $(".prodphoto-searchbar").val().toLowerCase();
-            $(".prodphoto-cards").hide();
-            $(".prodphoto-content .card").filter(function () {
-                var status = $(this).find(".card-body").text().toLowerCase().indexOf(value) > -1;
-                $(this).toggle(status);
-                if (status) {
-                    $(this).parents(".prodphoto-cards").show(); //displays the production section of the filtered cards
-                }
-            });
+            searchF();
+            //if filter value is a prod, filter results after search is run
+            if (filter.selectedIndex != 0) {
+                $(".prodphoto-cards").hide();
+                filterF();
+            }
         });
     });
+
+    //filter cards based on production title
+    function filterF() {
+        var prodFilter = filter.options[filter.selectedIndex].value;
+        var filterId = prodFilter + "-prodphoto-show";
+        if (document.getElementById(filterId)) {
+            document.getElementById(filterId).style.display = 'block';
+        }
+        else {
+            var nullMsg = document.getElementById("prodphoto-null-msg");
+            nullMsg.style.display = 'block';
+            nullMsg.innerHTML = "This production does not have any photos yet.";
+        }
+    };
+
+    //search through card-body-s for user-input and display only those cards and production titles
+    function searchF() {
+        var value = $(".prodphoto-searchbar").val().toLowerCase();
+        $(".prodphoto-cards").hide();
+        $(".prodphoto-content .card").filter(function () {
+            var status = $(this).find(".card-body").text().toLowerCase().indexOf(value) > -1;
+            $(this).parent().toggle(status);
+            if (status) {
+                $(this).parents(".prodphoto-cards").show(); //displays the production section of the filtered cards
+            }
+        });
+    };
 
 </script>
 
