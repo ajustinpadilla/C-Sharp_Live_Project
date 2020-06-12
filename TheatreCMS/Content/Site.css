@@ -2905,7 +2905,7 @@ textarea {
 #partDetailsBorder {
         border: 2px solid; 
         border-color: var(--main-bg-color);
-        color: var(--secondary-color);
+        color: var(--light-color);
         
     }
 
@@ -2919,7 +2919,6 @@ textarea {
     padding-bottom: 3vw;
     border: 2px solid;
     border-color: var(--main-bg-color);
-    color: var(--secondary-color);
 }
 /**********************************************
 ********Everything inside the border***********
