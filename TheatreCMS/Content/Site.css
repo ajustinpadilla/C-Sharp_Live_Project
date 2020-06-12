@@ -2804,6 +2804,30 @@ textarea {
 }
 /* End Peter O.*/
 
+/* News Published Page Styling */
+.admin-card .badge {
+    cursor: pointer;
+}
+
+.news-card {
+    width: 800px;
+    border-radius: 20px;
+}
+
+.admin-card .card-body .badge {
+    display: none;
+}
+
+.admin-card .news-hide {
+    background-color: var(--secondary-color);
+}
+
+.news-card .card-title {
+    color: var(--main-secondary-color)
+}
+/* End News Published Page Styling */
+
+
 /* Scrollbar Styling*/
 
 /* using webkit to make scrollbar styling compatible with Chrome, Edge(most recent version), and Safari*/
