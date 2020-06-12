@@ -1,4 +1,7 @@
-﻿
+﻿@model IEnumerable<TheatreCMS.Models.Sponsor>
+@using TheatreCMS.Controllers
+@using TheatreCMS.Models
+
 @{
     ViewBag.Title = "About";
 }
@@ -7,7 +10,7 @@
     <!-- MISSION STATEMENT-->
     <div class="jumbotron ab-jumbo">
 
-        <h2 class="ab-title">ABOUT THEATRE VERTIGO</h2>
+        <h3 class="ab-title">ABOUT THEATRE VERTIGO</h3>
 
         <div class="ab-text">
             <h4>
@@ -15,16 +18,59 @@
                 ensemble-driven theatre with a focus on producing and developing new and rarely seen works.
             </h4>
         </div>
-    </div>
 
-    <!-- End Heading-->
+        @*DONATE AND TICKET LINK BUTTONS*@
+        <div class="card-body">
+            <a href="https://app.arts-people.com/index.php?donation=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">DONTATE TO THEATRE VERTIGO</a>
+            <a href="https://app.arts-people.com/index.php?ticketing=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">TICKETING</a>
+        </div>
 
-    <br />
+        @*SHOWBOX THEATRE INFO AND CARDS*@
+        @*SHOEBOX INFO WITH IMAGE*@
+        <div class="card-deck m-lg-5">
+            <div class="card ab-card mr-lg-5">
+                <div class="card-body">
+                    <h5 class="card-title ab-card-title">The Shoebox</h5>
+                    <br />
+                    <h6 class="card-text">
+                        Theatre Vertigo's current place of production is Portland's ShoeBox Theatre!
+                    </h6>
+                    <br />
+                    <img src="~/Content/Images/shoebox.jpg" alt="shoebox" class="img-fluid ab-border" />
+                    <br /><br />
+                    <h5 class="underline">RENTALS</h5>
 
-    <!--"about" paragraph taken from orignal site-->
-    <div class="p-5, w3-animate-opacity">
-        <p>
-            In 1997, Theatre Vertigo was founded by Paul Floding, Nanette Pettit and Jeff Meyers.  Since then, Theatre Vertigo has performed in numerous spaces including The Russell Street Theater, The Electric Company, Theater!Theatre!, and their current home, The Shoebox Theater.
+                    <h6>
+                        Rental packages available, hourly, daily, and weekly,
+                        For performance, rehearsals, and events!
+                    </h6>
+                    <br />
+                    <a href="/RentalRequest/Create" class="underline ab-red"><h5>CLICK FOR MORE RENTAL INFO</h5></a>
+                </div>
+            </div>
+
+            @*GOOGLE LOCATION AND DINING LINKS*@
+            <div class="card ab-card ml-lg-5">
+                <div class="card-body">
+                    <h5 class="card-title ab-card-title">Location</h5>
+                    <br />
+                    <h6 class="card-text">
+                        An intimate black-box theatre,<br />
+                        located in the Southeast industrial area of Portland, Oregon.
+                    </h6>
+                    <br />
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.1275080732185!2d-122.65739478444112!3d45.50751177910148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950a76856f95b5%3A0x60c15680c8175b9d!2sShoe%20Box%20Theater!5e0!3m2!1sen!2sus!4v1591210522311!5m2!1sen!2sus" width="400" height="450" frameborder="0" style="border-radius:15px;border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="card-img"></iframe>
+                    <br />
+                    <br />
+                    <h5 class="underline">NEARBY DRINKS AND DINING</h5>
+                    <a href="http://www.deadshotpdx.com" style="color:#f04d44;"><h6>Deadshot</h6></a>
+                    <a href="http://www.thefirkintavern.com/" style="color:#f04d44;"><h6>Firkin Tavern</h6></a>
+                    <a href="http://www.fordfoodanddrink.com/" style="color:#f04d44;"><h6>Ford Food and Drink</h6></a>
+                    <a href="http://www.doubledragonpdx.com/" style="color:#f04d44;"><h6>Double Dragon</h6></a>
+                    <a href="https://www.cellardoorcoffee.com/" style="color:#f04d44;"><h6>Cellar Door Coffee Roasters</h6></a>
+                </div>
+            </div>
+        </div>
 
         @*COMPANY HISTORY*@
         <div class="ab-text">
@@ -42,123 +88,130 @@
         </div>
 
         @*AWARDS AND ACHIEVEMENTS - THIS WILL BE RENDERED ONCE MVC IS CREATED*@
-        <div class="card-deck">
+        <div class="card-deck m-lg-5">
             <div class="card ab-card">
                 <div class="card-body">
-                    <h5 class="card-title ab-card-red">AWARDS &amp; ACHIEVEMENTS</h5>
+                    <h3 class="card-title ab-card-red">AWARDS &amp; ACHIEVEMENTS</h3>
+                    <div class="row">
+                        <div class="col-sm-4" style="min-width:300px">
+                            <h4>
+                                2017<br />
+                                DRAMMY FINALIST FOR SOUND DESIGN
+                                Andrew Bray - Assistance
+                            </h4>
+                            <br />
+                            <h4>
+                                2016<br />
+                                DRAMMY AWARD FOR OUTSTANDING ACHIEVEMENT
+                                Scenic Artist, Mindy Barker - The Drunken City
+                            </h4>
+                            <br />
+                            <h4>
+                                DRAMMY FINALIST FOR SOUND DESIGN
+                                Richard E. Moore - The Drunken City
+                            </h4>
+                            <br />
+                            <h4>
+                                2015<br />
+                                DRAMMY AWARD FOR ENSEMBLE IN A PLAY
+                                Bob: A Life in Five Acts
+                            </h4>
+                            <br />
+                            <h4>
+                                DRAMMY AWARD FOR DIRECTION
+                                Matthew B. Zrebski - Bob: A Life in Five Acts
+                            </h4>
+                            <br />
+                            <h4>
+                                DRAMMY FINALIST FOR ENSEMBLE IN A PLAY
+                                The School for Lies
+                            </h4>
+                        </div>
+                        <div class="col-sm-4" style="min-width:300px">
+                            <h4>
+                                2014<br />
+                                DRAMMY AWARD FOR SOUND DESIGN
+                                Annalise Albright Woods - pool (no water)
+                            </h4>
+                            <br />
+                            <h4>
+                                DRAMMY FINALIST FOR ENSEMBLE IN A PLAY
+                                pool (no water)
+                            </h4>
 
+                            <h4>
+                                2013<br />
+                                DRAMMY AWARD FOR ACTRESS IN A SUPPORTING ROLE
+                                Brooke Calcagno - Mother Courage and Her Children
+                            </h4>
+                            <br />
+                            <h4>
+                                DRAMMY AWARD FOR SOUND DESIGN
+                                Richard Moore - The Velvet Sky
+                            </h4>
+                            <br />
+                            <h4>
+                                2012<br />
+                                DRAMMY AWARD FOR ACTOR IN A LEAD ROLE
+                                Mario Calcagno - The American Pilot
+                            </h4>
+                            <br />
+                            <h4>
+                                DRAMMY AWARD FOR SOUND DESIGN
+                                Em Gustason - The American Pilot
+                            </h4>
+                            <br />
+                            <h4>
+                                2010<br />
+                                DRAMMY AWARD FOR SUPPORTING ACTRESS
+                                Amy Newman - God's Ear
+                            </h4>
+                        </div>
+                        <div class="col-sm-4" style="min-width:300px">
+                            <h4>
+                                2009<br />
+                                DRAMMY AWARD FOR SUPPORTING ACTOR
+                                Garland Lyons - Romance
+                            </h4>
+                            <br />
+                            <h4>
+                                2008<br />
+                                DRAMMY AWARD FOR OUTSTANDING PUPPETEERING
+                                The Long Christmas Ride Home                                 in collaboration with Tears of Joy Theatre)
+                            </h4>
 
-                    <h6>
-                        2017<br />
-                        DRAMMY FINALIST FOR SOUND DESIGN<br />
-                        Andrew Bray - Assistance
+                            <h4>
+                                2007<br />
+                                DRAMMY AWARD FOR SET DESIGN
+                                Ben Plont - Escape from Happiness
+                                <br />
+                            </h4>
+                            <h4>
+                                2001<br />
+                                DRAMMY AWARD FOR SUPPORTING ACTRESS
+                                Andrea White - Hellcab
 
-                        <br />
-                        <br />
-                        2016<br />
-                        DRAMMY AWARD FOR OUTSTANDING ACHIEVEMENT<br />
-                        Scenic Artist, Mindy Barker - The Drunken City
+                                DRAMMY AWARD FOR SUPPORTING ACTRESS
+                                Lorraine Bahr - Lion in the Streets
+                            </h4>
+                            <br />
+                            <h4>
+                                2000<br />
+                                DRAMMY AWARD FOR SUPPORTING ACTOR
+                                Ted Schulz - The Grey Zone
 
-                        <br />
+                                DRAMMY AWARD FOR OUTSTANDING DIRECTION
+                                Michael Griggs - The Grey Zone
+                            </h4>
+                        </div>
 
-                        DRAMMY FINALIST FOR SOUND DESIGN<br />
-                        Richard E. Moore - The Drunken City
-
-                        <br />
-                        <br />
-                        2015<br />
-                        DRAMMY AWARD FOR ENSEMBLE IN A PLAY<br />
-                        Bob: A Life in Five Acts
-
-                        <br />
-
-                        DRAMMY AWARD FOR DIRECTION<br />
-                        Matthew B. Zrebski - Bob: A Life in Five Acts
-
-                        <br />
-
-                        DRAMMY FINALIST FOR ENSEMBLE IN A PLAY<br />
-                        The School for Lies
-
-                        <br />
-                        <br />
-                        2014<br />
-                        DRAMMY AWARD FOR SOUND DESIGN<br />
-                        Annalise Albright Woods - pool (no water)
-
-                        <br />
-
-                        DRAMMY FINALIST FOR ENSEMBLE IN A PLAY<br />
-                        pool (no water)
-                        <br /><br />
-                        2013<br />
-                        DRAMMY AWARD FOR ACTRESS IN A SUPPORTING ROLE<br />
-                        Brooke Calcagno - Mother Courage and Her Children
-
-                        <br />
-
-                        DRAMMY AWARD FOR SOUND DESIGN<br />
-                        Richard Moore - The Velvet Sky
-
-                        <br />
-                        <br />
-                        2012<br />
-                        DRAMMY AWARD FOR ACTOR IN A LEAD ROLE<br />
-                        Mario Calcagno - The American Pilot
-
-                        <br />
-
-                        DRAMMY AWARD FOR SOUND DESIGN<br />
-                        Em Gustason - The American Pilot
-
-                        <br />
-                        <br />
-                        2010<br />
-                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
-                        Amy Newman - God's Ear
-
-                        <br />
-                        <br />
-                        2009<br />
-                        DRAMMY AWARD FOR SUPPORTING ACTOR<br />
-                        Garland Lyons - Romance
-
-                        <br />
-                        <br />
-                        2008<br />
-                        DRAMMY AWARD FOR OUTSTANDING PUPPETEERING<br />
-                        The Long Christmas Ride Home                                 in collaboration with Tears of Joy Theatre)
-                        <br />
-                        <br />
-                        2007<br />
-                        DRAMMY AWARD FOR SET DESIGN<br />
-                        Ben Plont - Escape from Happiness
-                        <br />
-                        <br />
-
-                        2001<br />
-                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
-                        Andrea White - Hellcab
-                        <br />
-                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
-                        Lorraine Bahr - Lion in the Streets
-
-                        <br /><br />
-
-                        2000<br />
-                        DRAMMY AWARD FOR SUPPORTING ACTOR<br />
-                        Ted Schulz - The Grey Zone
-
-                        DRAMMY AWARD FOR OUTSTANDING DIRECTION<br />
-                        Michael Griggs - The Grey Zone
-                    </h6>
+                    </div>
                 </div>
-
             </div>
         </div>
 
 
-        <div class="card-deck m-lg-5 mt-sm-4">
+        <div class="card-deck m-lg-5">
             <div class="card ab-card">
                 <div class="card-body">
                     <h5 class="card-title ab-card-title">Contact</h5>
@@ -216,7 +269,7 @@
                     <h7>
                         Jamie Floyd (President)<br />
                         Scott Stephens<br />
-                        Marcia Reyes<<br />
+                        Marcia Reyes<br />
                         Lena-Liis Kiesel<br />
                         Gary Strong<br />
                     </h7>
