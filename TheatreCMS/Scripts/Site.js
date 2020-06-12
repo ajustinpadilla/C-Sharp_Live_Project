@@ -171,7 +171,7 @@ if ($("#generate-showtimes-section") != null) {
                 dateRange = endDate.diff(startDate, 'days'),
                 interval = $("#interval").children("option").filter(":selected").val(),
                 eventList = [];
-            let startTimes = [];
+            let startTimes = [];                                          // This array holds each selected start time. An event is created for each start time on any given day.
                 if ($('#matinee').is(':checked')) {
                     startTimes.push($('#matinee-time').text());
                 }
@@ -185,35 +185,35 @@ if ($("#generate-showtimes-section") != null) {
                     alert("Please select a start time");
                 }
 
-            let productionDays = [];
+            let Days = [];                                   // This array takes each selected day of the week. For each day, within each eligible week, events will be created. 
                 if ($('#sunday').is(':checked')) {
-                    productionDays.push(0);
+                    Days.push(0);
                 }
                 if ($('#monday').is(':checked')) {
-                    productionDays.push(1);
+                    Days.push(1);
                 }
                 if ($('#tuesday').is(':checked')) {
-                    productionDays.push(2);
+                    Days.push(2);
                 }
                 if ($('#wednesday').is(':checked')) {
-                    productionDays.push(3);
+                    Days.push(3);
                 }
                 if ($('#thursday').is(':checked')) {
-                    productionDays.push(4);
+                    Days.push(4);
                 }
                 if ($('#friday').is(':checked')) {
-                    productionDays.push(5);
+                    Days.push(5);
                 }
                 if ($('#saturday').is(':checked')) {
-                    productionDays.push(6);
+                    Days.push(6);
                 }
-                if (productionDays.length == 0) {
+                if (Days.length == 0) {
                     alert("Please select at least one day")
                     return (eventList);
                 }
 
 
-
+            // This class represents a single event.
             // CalendarEvent properties that are capitalized match the properties in the MVC CalendarEvent model. 
             // They must be verbatim in order for the JSON deserializer to work correctly
             class CalendarEvent {
@@ -221,23 +221,24 @@ if ($("#generate-showtimes-section") != null) {
                     this.Title = $("#generate__production-field").children("option").filter(":selected").text();
                     this.ProductionId = $("#generate__production-field").val();
                     this.StartDate = startDate;
-                    this.EndDate = endDate;
+                    this.EndDate = endDate;     // events are never longer than one day, but to match the database, EndDate is the same date as StartDate with it's time advanced by the runtime of the production.
                     this.dayOfWeek = dayOfWeek;
                     this.startTime = startTime;
                 }
             }
-            // this block generates the events
-            for (i = 0; i < productionDays.length; i++) {
-                if (productionDays[i] < startDate.day()) {
-                    productionDays[i] += 7;
+            // This block calculates all eligible days, and creates an event for each showtime selected.
+            // For each day selected, for each eligible week between the start date and end date that the day occurs, for each start time selected, an event is created.
+            for (i = 0; i < Days.length; i++) {
+                if (Days[i] < startDate.day()) {
+                    Days[i] += 7;
                 }
-                startDate.day(productionDays[i]);
-                eventDate = startDate;
-                for (j = productionDays[i]; j <= dateRange + 7; j += 7 * interval) {
+                startDate.day(Days[i]);
+                eventDate = startDate; //refreshes the event date
+                for (j = Days[i]; j <= dateRange + 7; j += 7 * interval) {
                     if (eventDate.isBetween(startDate, endDate, undefined, '[]')) { //check for the eventDate to be within start and end date. The '[]' argument sets it to be inclusive of the start and end date.
                         for (k = 0; k < startTimes.length; k++) {
-                            let hr = parseInt(startTimes[k].substr(0, startTimes[k].indexOf(':'))),
-                                min = parseInt(startTimes[k].substr(startTimes[k].indexOf(':') + 1, 2)),
+                            let hr = parseInt(startTimes[k].substr(0, startTimes[k].indexOf(':'))),       // startTimes are all strings, and Moment.js needs ints to add a time of day to a moment.
+                                min = parseInt(startTimes[k].substr(startTimes[k].indexOf(':') + 1, 2)),  // This parses the the string "11:30 am" for example and creates a variable for the hr, the minute, and am or pm.
                                 amOrPm = startTimes[k].slice(-2).toUpperCase();
                             if (amOrPm == 'PM' && hr < 12) {
                                 hr += 12;
@@ -249,7 +250,7 @@ if ($("#generate-showtimes-section") != null) {
                             eventList.push(event);
                         }
                     }
-                    eventDate.add((7 * interval).toString(), 'days').format('ll');
+                    eventDate.add((7 * interval).toString(), 'days').format('ll'); //increments the event date to the next eligible date
                 }
                 startDate = moment($("#generate__start-date-field").val());
                 eventDate = startDate;
@@ -259,10 +260,10 @@ if ($("#generate-showtimes-section") != null) {
 
 
         //this function generates a table displaying the list of events created in the generateShowTimes() function.
-        //depending on the state of the pressedYes variable, it will create the table in either the modal or the 'review showtimes' section.
-        function createTable(eventList, masterList, pressedYes) {
+        //depending on the state of the reviewShowtimes variable, it will create the table in either the modal or the 'review showtimes' section.
+        function createTable(eventList, masterList, reviewShowtimes) {
             // this block creates a table in the modal
-            if (pressedYes != true) {
+            if (reviewShowtimes != true) {
                 var table = document.getElementById("modal-table"),
                     row = table.insertRow();
                 row.className = 'bulk-add_modal-row';
@@ -280,7 +281,7 @@ if ($("#generate-showtimes-section") != null) {
             }
 
             // this block creates a table in the review showtimes section
-            if (pressedYes == true) {
+            if (reviewShowtimes == true) {
                 $("#review-showtimes-section").show();
                 var table = document.getElementById("showtimes-table"),
                     row = table.insertRow();
@@ -302,8 +303,8 @@ if ($("#generate-showtimes-section") != null) {
             }
         }
 
-        // this function creates a delete button when a row is hovered over.
-        // When it's clicked, it removes its row, and deletes the event from the master list
+        // this function creates a delete button when a row is hovered over in the review showtimes section.
+        // When it's clicked, it removes the corresponding row, and deletes the event from the master list
         function deleteRowFeature() {
             let row = $('.bulk-add_review-row');
             row.off('hover');                           // clears hover event handlers. prevents events from stacking
