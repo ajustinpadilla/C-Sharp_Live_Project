@@ -53,8 +53,7 @@
         </dd>
 
     </dl>
-</div>
-        <p id="part-details-edit">
+        <p>
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
                 @Html.ActionLink("Edit", "Edit", new { id = Model.PartID }) @: |
@@ -62,3 +61,4 @@
        
             @Html.ActionLink("Back to List", "Index")
         </p>
+</div>

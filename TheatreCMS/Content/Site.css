@@ -2908,11 +2908,7 @@ textarea {
         color: var(--light-color);
     }
 
-#part-details-edit {
-         
-        margin-left: 13.9vw; 
-        margin-top: 2vw; 
-}
+
 /***********************Cast Member Details Page******************************/
 #Isaiah_details { /*Creats a border and padding around everything that follows*/
     padding-left: 5vw;
