@@ -1,39 +1,283 @@
-﻿
-<div class="about-container" id="about">
-    <!-- Heading-->
-    <div class="about-container" id="seating">
-        <img src="~/Content/Images/img2.jpg" alt="seats" style="width: 100%;">
-        <div class="centered">
-            <h2>Company History</h2>
+﻿@model IEnumerable<TheatreCMS.Models.Sponsor>
+@using TheatreCMS.Controllers
+@using TheatreCMS.Models
+
+@{
+    ViewBag.Title = "About";
+}
+
+<div id="about" class="text-responsive">
+    <!-- MISSION STATEMENT-->
+    <div class="jumbotron ab-jumbo">
+
+        <h3 class="ab-title">ABOUT THEATRE VERTIGO</h3>
+
+        <div class="ab-text">
+            <h4>
+                Theatre Vertigo’s mission is to engage audiences through compelling,
+                ensemble-driven theatre with a focus on producing and developing new and rarely seen works.
+            </h4>
+        </div>
+
+        @*DONATE AND TICKET LINK BUTTONS*@
+        <div class="card-body">
+            <a href="https://app.arts-people.com/index.php?donation=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">DONTATE TO THEATRE VERTIGO</a>
+            <a href="https://app.arts-people.com/index.php?ticketing=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">TICKETING</a>
+        </div>
+
+        @*SHOWBOX THEATRE INFO AND CARDS*@
+        @*SHOEBOX INFO WITH IMAGE*@
+        <div class="card-deck m-lg-5">
+            <div class="card ab-card mr-lg-5">
+                <div class="card-body">
+                    <h5 class="card-title ab-card-title">The Shoebox</h5>
+                    <br />
+                    <h6 class="card-text">
+                        Theatre Vertigo's current place of production is Portland's ShoeBox Theatre!
+                    </h6>
+                    <br />
+                    <img src="~/Content/Images/shoebox.jpg" alt="shoebox" class="img-fluid ab-border" />
+                    <br /><br />
+                    <h5 class="underline">RENTALS</h5>
+
+                    <h6>
+                        Rental packages available, hourly, daily, and weekly,
+                        For performance, rehearsals, and events!
+                    </h6>
+                    <br />
+                    <a href="/RentalRequest/Create" class="underline ab-red"><h5>CLICK FOR MORE RENTAL INFO</h5></a>
+                </div>
+            </div>
+
+            @*GOOGLE LOCATION AND DINING LINKS*@
+            <div class="card ab-card ml-lg-5">
+                <div class="card-body">
+                    <h5 class="card-title ab-card-title">Location</h5>
+                    <br />
+                    <h6 class="card-text">
+                        An intimate black-box theatre,<br />
+                        located in the Southeast industrial area of Portland, Oregon.
+                    </h6>
+                    <br />
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.1275080732185!2d-122.65739478444112!3d45.50751177910148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950a76856f95b5%3A0x60c15680c8175b9d!2sShoe%20Box%20Theater!5e0!3m2!1sen!2sus!4v1591210522311!5m2!1sen!2sus" width="400" height="450" frameborder="0" style="border-radius:15px;border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="card-img"></iframe>
+                    <br />
+                    <br />
+                    <h5 class="underline">NEARBY DRINKS AND DINING</h5>
+                    <a href="http://www.deadshotpdx.com" style="color:#f04d44;"><h6>Deadshot</h6></a>
+                    <a href="http://www.thefirkintavern.com/" style="color:#f04d44;"><h6>Firkin Tavern</h6></a>
+                    <a href="http://www.fordfoodanddrink.com/" style="color:#f04d44;"><h6>Ford Food and Drink</h6></a>
+                    <a href="http://www.doubledragonpdx.com/" style="color:#f04d44;"><h6>Double Dragon</h6></a>
+                    <a href="https://www.cellardoorcoffee.com/" style="color:#f04d44;"><h6>Cellar Door Coffee Roasters</h6></a>
+                </div>
+            </div>
+        </div>
+
+        @*COMPANY HISTORY*@
+        <div class="ab-text">
+            <h3 class="ab-title">Company History</h3>
+            <br />
+            <h5>
+                In 1997, Theatre Vertigo was founded by Paul Floding, Nanette Pettit and Jeff Meyers.  Since then, Theatre Vertigo has performed in numerous spaces including The Russell Street Theater, The Electric Company, Theater!Theatre!, and their current home, The Shoebox Theater.
+                From 2003 to 2014, Theatre Vertigo produced Anonymous Theatre as a summer fundraiser in collaboration with The Anonymous Theatre Company.
+                Other past collaborations include defunkt theatre, Stark Raving Theater, and Tears of Joy Theatre.
+                <br />
+                <br />
+                Theatre Vertigo has worked on world premieres including <i>Faust</i>. <i>Us</i> by Joseph Fisher, <i>99 Ways to Fuck a Swan</i> by Kim Rosenstock, and <i>The End of Sex</i> by Craig Jessen.
+                In 2016, Theatre Vertigo produced its first officially commissioned work from a playwright, <i>I Want To Destroy You</i>, by Rob Handel.
+            </h5>
+        </div>
+
+        @*AWARDS AND ACHIEVEMENTS - THIS WILL BE RENDERED ONCE MVC IS CREATED*@
+        <div class="card-deck m-lg-5">
+            <div class="card ab-card">
+                <div class="card-body">
+                    <h5 class="card-title ab-card-red">AWARDS &amp; ACHIEVEMENTS</h5>
+
+                    <h6>
+                        2017<br />
+                        DRAMMY FINALIST FOR SOUND DESIGN<br />
+                        Andrew Bray - Assistance
+
+                        <br />
+
+                        <br /> 2016<br />
+                        DRAMMY AWARD FOR OUTSTANDING ACHIEVEMENT<br />
+                        Scenic Artist, Mindy Barker - The Drunken City
+
+                        <br />
+
+                        DRAMMY FINALIST FOR SOUND DESIGN<br />
+                        Richard E. Moore - The Drunken City
+
+                        <br />
+
+                        <br />2015<br />
+                        DRAMMY AWARD FOR ENSEMBLE IN A PLAY<br />
+                        Bob: A Life in Five Acts
+
+                        <br />
+
+                        DRAMMY AWARD FOR DIRECTION<br />
+                        Matthew B. Zrebski - Bob: A Life in Five Acts
+
+                        <br />
+
+                        DRAMMY FINALIST FOR ENSEMBLE IN A PLAY<br />
+                        The School for Lies
+                        <br />
+                        <br /> 2014<br />
+                        DRAMMY AWARD FOR SOUND DESIGN<br />
+                        Annalise Albright Woods - pool (no water)
+
+                        <br />
+
+                        DRAMMY FINALIST FOR ENSEMBLE IN A PLAY<br />
+                        pool (no water)
+                        <br />
+
+
+                        <br /> 2013<br />
+                        DRAMMY AWARD FOR ACTRESS IN A SUPPORTING ROLE<br />
+                        Brooke Calcagno - Mother Courage and Her Children
+
+                        <br />
+
+                        DRAMMY AWARD FOR SOUND DESIGN<br />
+                        Richard Moore - The Velvet Sky
+
+                        <br />
+
+                        <br /> 2012<br />
+                        DRAMMY AWARD FOR ACTOR IN A LEAD ROLE<br />
+                        Mario Calcagno - The American Pilot
+
+                        <br />
+
+                        DRAMMY AWARD FOR SOUND DESIGN<br />
+                        Em Gustason - The American Pilot
+
+                        <br />
+
+                        <br /> 2010<br />
+                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
+                        Amy Newman - God's Ear
+                        <br />
+                        <br /> 2009<br />
+                        DRAMMY AWARD FOR SUPPORTING ACTOR<br />
+                        Garland Lyons - Romance
+
+                        <br />
+
+                        <br /> 2008<br />
+                        DRAMMY AWARD FOR OUTSTANDING PUPPETEERING<br />
+                        The Long Christmas Ride Home                                 in collaboration with Tears of Joy Theatre)
+
+
+
+                        <br /> 2007<br />
+                        DRAMMY AWARD FOR SET DESIGN<br />
+                        Ben Plont - Escape from Happiness
+                        <br />
+
+                        <br /> 2001<br />
+                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
+                        Andrea White - Hellcab
+                        <br />
+                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
+                        Lorraine Bahr - Lion in the Streets
+
+                        <br />
+
+                        <br /> 2000<br />
+                        DRAMMY AWARD FOR SUPPORTING ACTOR<br />
+                        Ted Schulz - The Grey Zone
+                        <br />
+                        DRAMMY AWARD FOR OUTSTANDING DIRECTION<br />
+                        Michael Griggs - The Grey Zone
+                    </h6>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-deck m-lg-5">
+            <div class="card ab-card">
+                <div class="card-body">
+                    <h5 class="card-title ab-card-title">Contact</h5>
+                    <h6 style="font-weight: 700">Vertigo Theatre</h6>
+                    <h6>2110 SE 10th<br />Portland, OR 97214<br />Phone: (503) 482-8655<br />Email: vertigo@theatrevertigo.org</h6>
+
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- End Heading-->
+    <div class="jumbotron ab-black m-lg-5 text-responsive">
+        <h5 class="ab-card-title mt-0 mb-5">Who's Who at Theatre Vertigo</h5>
+        <div class="card-deck">
 
-    <br />
+            <div class="card ab-card-red">
+                <div class="card-body">
+                    <h6 class="card-title ab-card-title"><a href="/CastMembers" style="color:black;">Company Members</a></h6>
+                    <h7>
+                        <a href="/CastMembers" style="color:white;">London Bauman</a><br />
+                        <a href="/CastMembers" style="color:white;">Jacquelle Davis</a><br />
+                        <a href="/CastMembers" style="color:white;">Adriana Gantzer</a><br />
+                        <a href="/CastMembers" style="color:white;">Clara-Liis Hillier</a><br />
+                        <a href="/CastMembers" style="color:white;">Kaia Maarja Hillier</a><br />
+                        <a href="/CastMembers" style="color:white;">Heath Hyun Houghton</a><br />
+                        <a href="/CastMembers" style="color:white;">Tom Mounsey</a><br />
+                        <a href="/CastMembers" style="color:white;">Devon Roberts</a><br />
+                    </h7>
+                </div>
+            </div>
 
-    <!--"about" paragraph taken from orignal site-->
-    <div class="p-5, w3-animate-opacity">
-        <p>
-            In 1997, Theatre Vertigo was founded by Paul Floding, Nanette Pettit and Jeff Meyers.  Since then, Theatre Vertigo has performed in numerous spaces including The Russell Street Theater, The Electric Company, Theater!Theatre!, and their current home, The Shoebox Theater.
+            <div class="card ab-card-red mt-md-4 mt-sm-4">
+                <div class="card-body">
+                    <h6 class="card-title ab-card-title">Company Associates</h6>
+                    <h7>
+                        Asae Deann<br />
+                        Autumn Buck<br />
+                        Breydon Little<br />
+                        Emma Bridges<br />
+                        Heath Koerschgen<br />
+                        Joel Harmon<br />
+                        Kate Belden<br />
+                        Kristen Kraklow<br />
+                        Matt Pavik<br />
+                        Nate Crosby<br />
+                        Robert Wyllie<br />
+                        Vana O’Brien<br />
+                    </h7>
+                </div>
+            </div>
 
-            From 2003 to 2014, Theatre Vertigo produced Anonymous Theatre as a summer fundraiser in collaboration with The Anonymous Theatre Company.
-            Other past collaborations include defunkt theatre, Stark Raving Theater, and Tears of Joy Theatre.
-            <br />
-            <br />
-            Theatre Vertigo has worked on world premieres including <i>Faust</i>. <i>Us</i> by Joseph Fisher, <i>99 Ways to Fuck a Swan</i> by Kim Rosenstock, and <i>The End of Sex</i> by Craig Jessen.
-            In 2016, Theatre Vertigo produced its first officially commissioned work from a playwright, <i>I Want To Destroy You</i>, by Rob Handel.
-        </p>
-        <!--End "about" paragrph take from orignal site-->
+            <div class="card ab-card-red mt-md-4 mt-sm-4">
+                <div class="card-body">
+                    <h6 class="card-title ab-card-title">Company Board Members</h6>
+                    <h7>
+                        Jamie Floyd (President)<br />
+                        Scott Stephens<br />
+                        Marcia Reyes<<br />
+                        Lena-Liis Kiesel<br />
+                        Gary Strong<br />
+                    </h7>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Image-->
-    <img src="~/Content/Images/img3.jpg" alt="dance" class="rounded mx-auto d-block" style="width:100%" />
-    <!--End Image-->
+
+
+    <div class="jumbotron-fluid">
+        <img src="~/Content/Images/thatreBanner.jpg" style="width:100%" />
+
+        <div class="mt-5">
+            @{
+                Html.RenderAction("List", "Sponsors");
+            }
+        </div>
+    </div>
+
+
 </div>
-
-
-
-
-
-
-
