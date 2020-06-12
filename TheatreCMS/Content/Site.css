@@ -1621,12 +1621,54 @@ textarea {
             width: 400px;
         }
 
-        /*about page container*/
-        .about-container {
-            position: relative;
-            text-align: center;
-            color: white;
-        }
+
+/****************
+    ABOUT PAGE STYLING*/
+/*about page container*/
+
+.text-responsive {
+    /*font-size: calc(100% + 1vw + 1vh);*/
+    -ms-text-size-adjust: 50%;
+}
+
+.ab-jumbo {
+    background-image: url(Images/img2.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;
+    
+    
+}
+
+.ab-title {
+    font-weight: 700;
+    text-shadow: 10px 10px 30px black;
+    margin:5%;
+    padding: 2%;
+}
+
+    .ab-title:hover {
+        transition: transform 1s;
+        transform: scale(1.1); /*animation*/
+    }
+
+
+/*mission statement and history boxes*/
+.ab-text {
+    margin: 3%;
+    padding: 2%;
+    color: white;
+    font-style: italic;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 25px;
+    border: 5px solid black;
+}
+
+    .ab-text:hover {
+        transition: transform 1s;
+        transform: scale(1.1); /*animation*/
+    }
 
         /* Centered text */
         .centered {

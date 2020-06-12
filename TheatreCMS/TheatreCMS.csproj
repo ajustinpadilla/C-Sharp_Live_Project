@@ -184,6 +184,7 @@
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AwardsController.cs" />
     <Compile Include="Controllers\CastMembersController.cs" />
     <Compile Include="Controllers\CalendarEventsController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminSettings.cs" />
+    <Compile Include="Models\Award.cs" />
     <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\CastMember.cs" />
     <Compile Include="Models\News.cs" />
@@ -666,12 +668,11 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="webfonts\BebasNeue-Regular.ttf" />
     <Content Include="webfonts\BebasNeue-Regular.woff2" />
-    <Content Include="Views\News\Create.cshtml" />
-    <Content Include="Views\News\Delete.cshtml" />
-    <Content Include="Views\News\Details.cshtml" />
-    <Content Include="Views\News\Edit.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\News\Published.cshtml" />
+    <Content Include="Views\Awards\Create.cshtml" />
+    <Content Include="Views\Awards\Delete.cshtml" />
+    <Content Include="Views\Awards\Details.cshtml" />
+    <Content Include="Views\Awards\Edit.cshtml" />
+    <Content Include="Views\Awards\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
