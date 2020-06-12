@@ -89,7 +89,7 @@ function shrinkFunction() {
 }
 
 // **************************************************************************** Begin script for Bulk Add **********************************************************************
-// =============================================================================================================================================================================
+// ============================================================================= CalendarEvents/BulkAdd ========================================================================
 //      This script applies to the CalendarEvents/BulkAdd page. Its purpose is to allow an admin to create and edit multiple calendar events based
 //      off of a start date, end date, show start time, day(s) of the week that shows will occur, and interval of weeks between shows.
 //      When the user is satisfied with their list, they can then submit it to the database.
