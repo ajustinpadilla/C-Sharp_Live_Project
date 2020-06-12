@@ -2923,11 +2923,20 @@ textarea {
 
 /*********************End Rental Request Index Page***************************/
 
-/***********************Cast Member Details Page******************************/
 
-#Isaiah_details {           /*Creats a border and padding around everything that follows*/
+/**********************Part Details page**************************************/
+
+#partDetailsBorder {
+        border: 2px solid; 
+        border-color: var(--main-bg-color);
+        color: var(--light-color);
+    }
+
+
+/***********************Cast Member Details Page******************************/
+#Isaiah_details { /*Creats a border and padding around everything that follows*/
     padding-left: 5vw;
-    padding-right: 5vw; 
+    padding-right: 5vw;
     padding-top: 2vw;
     padding-bottom: 3vw;
     border: 2px solid;
