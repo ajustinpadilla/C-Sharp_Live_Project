@@ -127,8 +127,6 @@ if ($("#generate-showtimes-section") != null) {
         });
     });
 
-    //====================================== This block handles generating, editing and submitting showtimes =====================================//
-
     //    This function does some traffic control. Once the generate button is clicked, the eventList is populated, and a modal pops up showing the list of dates that were added, 
     //    and offers yes and no buttons which allow the user to either go back and change their parameters
     //    or to append these showtimes to a final list to be reviewed and edited before being submitted 
