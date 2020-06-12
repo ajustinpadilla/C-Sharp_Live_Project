@@ -88,11 +88,11 @@ function shrinkFunction() {
     }
 }
 
-// ============================================================================   Begin script for Bulk Add   ==================================================================
-// ============================================================================                               ==================================================================
-//      This script applies to the CalendarEvents/BulkAdd page. Its purpose is to allow an admin to create and edit a list of calendar events based
-//      off of a start date, end date, show start time, day(s) of the week the shows will occur, and interval of weeks between shows.
-//      When the user is satisfied with their list, they can submit it to the database.
+// **************************************************************************** Begin script for Bulk Add **********************************************************************
+// =============================================================================================================================================================================
+//      This script applies to the CalendarEvents/BulkAdd page. Its purpose is to allow an admin to create and edit multiple calendar events based
+//      off of a start date, end date, show start time, day(s) of the week that shows will occur, and interval of weeks between shows.
+//      When the user is satisfied with their list, they can then submit it to the database.
 //      It uses moment.js to handle dates and times, and uses jQuery's AJAX method to pass data to and from the controller.
 
 if ($("#generate-showtimes-section") != null) {
@@ -351,4 +351,5 @@ if ($("#generate-showtimes-section") != null) {
             });
         };
 }
-    //End script for Bulk Add
+// *************************************************************************** End Script for Bulk Add *************************************************************************************
+// =========================================================================================================================================================================================
