@@ -5,55 +5,56 @@
 }
 <h1 class="text-center mt-5">Details</h1>
 
-    <div class="container-lg mt-5" id="partDetailsBorder">
-        
-        <h3 class="mt-1">Part</h3>
-       
-        <dl class="dl-horizontal">
+<div class="container-lg mt-5" id="partDetailsBorder">
 
-            <dt class="mt-4">
-                @Html.DisplayNameFor(model => model.Production)
-            </dt>
+    <h3 class="mt-1">Part</h3>
 
-            <dd>
-                <a href="@Url.Action("Details", "Productions", new { id = Model.Production.ProductionId})" id="part-details-link">@Html.DisplayFor(model => model.Production.Title)</a>
+    <dl class="dl-horizontal">
 
-            </dd>
+        <dt class="mt-4">
+            @Html.DisplayNameFor(model => model.Production)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Person)
-            </dt>
+        <dd>
+            <a href="@Url.Action("Details", "Productions", new { id = Model.Production.ProductionId})" id="part-details-link">@Html.DisplayFor(model => model.Production.Title)</a>
 
-            <dd>
-                <a href="@Url.Action("Details", "CastMembers", new { id = Model.Person.CastMemberID})" id="par-details-link">@Html.DisplayFor(model => model.Person.Name)</a>
-            </dd>
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Character)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Person)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Character)
-            </dd>
+        <dd>
+            <a href="@Url.Action("Details", "CastMembers", new { id = Model.Person.CastMemberID})" id="par-details-link">@Html.DisplayFor(model => model.Person.Name)</a>
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Type)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Character)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Type)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Character)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Details)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Details)
-            </dd>
-          
-        </dl>
-        <p>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+    </dl>
+</div>
+        <p id="part-details-edit">
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
                 @Html.ActionLink("Edit", "Edit", new { id = Model.PartID }) @: |
@@ -61,5 +62,3 @@
        
             @Html.ActionLink("Back to List", "Index")
         </p>
-
-</div>
