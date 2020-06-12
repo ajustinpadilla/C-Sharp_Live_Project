@@ -172,45 +172,45 @@ if ($("#generate-showtimes-section") != null) {
             interval = $("#interval").children("option").filter(":selected").val(),
             eventList = [];
         let startTimes = [];                                          // This array holds each selected start time. An event is created for each start time on any given day.
-        if ($('#matinee').is(':checked')) {
-            startTimes.push($('#matinee-time').text());
-        }
-        if ($('#evening').is(':checked')) {
-            startTimes.push($('#evening-time').text());
-        }
-        if ($('#custom-time').val() != "") {
-            startTimes.push($('#custom-time').val());
-        }
-        if (startTimes.length == 0) {
-            alert("Please select a start time");
-        }
+            if ($('#matinee').is(':checked')) {
+                startTimes.push($('#matinee-time').text());
+            }
+            if ($('#evening').is(':checked')) {
+                startTimes.push($('#evening-time').text());
+            }
+            if ($('#custom-time').val() != "") {
+                startTimes.push($('#custom-time').val());
+            }
+            if (startTimes.length == 0) {
+                alert("Please select a start time");
+            }
 
         let Days = [];                                   // This array takes each selected day of the week. For each day, within each eligible week, events will be created. 
-        if ($('#sunday').is(':checked')) {
-            Days.push(0);
-        }
-        if ($('#monday').is(':checked')) {
-            Days.push(1);
-        }
-        if ($('#tuesday').is(':checked')) {
-            Days.push(2);
-        }
-        if ($('#wednesday').is(':checked')) {
-            Days.push(3);
-        }
-        if ($('#thursday').is(':checked')) {
-            Days.push(4);
-        }
-        if ($('#friday').is(':checked')) {
-            Days.push(5);
-        }
-        if ($('#saturday').is(':checked')) {
-            Days.push(6);
-        }
-        if (Days.length == 0) {
-            alert("Please select at least one day")
-            return (eventList);
-        }
+            if ($('#sunday').is(':checked')) {
+                Days.push(0);
+            }
+            if ($('#monday').is(':checked')) {
+                Days.push(1);
+            }
+            if ($('#tuesday').is(':checked')) {
+                Days.push(2);
+            }
+            if ($('#wednesday').is(':checked')) {
+                Days.push(3);
+            }
+            if ($('#thursday').is(':checked')) {
+                Days.push(4);
+            }
+            if ($('#friday').is(':checked')) {
+                Days.push(5);
+            }
+            if ($('#saturday').is(':checked')) {
+                Days.push(6);
+            }
+            if (Days.length == 0) {
+                alert("Please select at least one day")
+                return (eventList);
+            }
 
 
         // This class represents a single event.
