@@ -2414,6 +2414,69 @@ a.dropdown-item:hover {
 /* End Productions Index Search*/
 
 
+/*ProductionPhoto (Production Photos) Styling*/
+
+.prodphoto-search-container {
+    float: right;
+}
+
+
+.prodphoto-search-container input[type=text] {
+    width: 200px;
+    border: 0;
+    height: 50px;
+    padding: 0px 25px;
+    border-radius: 25px;
+    outline: none;
+    color: var(--secondary-color);
+}
+
+.prodphoto-searchbtn {
+    position: relative;
+    top: 0px;
+    right: 50px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    z-index: 5;
+    outline: none;
+    font-size: 24px;
+    color: var(--secondary-color);
+}
+
+/* set search bar to be below filter for small screen*/
+@media screen and (max-width: 767px) {
+    .prodphoto-search-container {
+        float: none;
+    }
+
+    .prodphoto-filter {
+        display: block;
+    }
+
+}
+
+/*set initial card-footer links to be not visible*/
+.prodphoto-cards .card .card-footer {
+    opacity: 0;
+}
+
+.prodphoto-cards .card-title {
+    color: var(--main-secondary-color);
+}
+
+
+.prodphoto-filter {
+    color: var(--secondary-color);
+
+}
+
+#prodphoto-null-msg {
+    display: none;
+}
 
 /* Start Homepage */
 
@@ -3002,11 +3065,20 @@ a.dropdown-item:hover {
 
 /*********************End Rental Request Index Page***************************/
 
-/***********************Cast Member Details Page******************************/
 
-#Isaiah_details {           /*Creats a border and padding around everything that follows*/
+/**********************Part Details page**************************************/
+
+#partDetailsBorder {
+        border: 2px solid; 
+        border-color: var(--main-bg-color);
+        color: var(--light-color);
+    }
+
+
+/***********************Cast Member Details Page******************************/
+#Isaiah_details { /*Creats a border and padding around everything that follows*/
     padding-left: 5vw;
-    padding-right: 5vw; 
+    padding-right: 5vw;
     padding-top: 2vw;
     padding-bottom: 3vw;
     border: 2px solid;
