@@ -60,7 +60,12 @@
             @Html.LabelFor(model => model.ProductionId, "Production", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ProductionId", null, "Select a Production", htmlAttributes: new { @class = "form-control", @onchange="GetYear()"})
-                
+                <script type="text/javascript">
+                    function GetYear() {
+                        var productionYear = 
+                    }
+
+                </script>
                 @Html.ValidationMessageFor(model => model.ProductionId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -70,6 +75,7 @@
             <div class="col-md-10">
                 @Html.DropDownList("CastMemberId", null, "Select a Cast Member", htmlAttributes: new { @class = "form-control", @onchange="GetMember()"})
                
+                @*this script takes the cast member name that is chosen and enters it into the recipient text box if empty"*@
                 <script type="text/javascript">
                     function GetMember() {
                         var selectedmember = $('#CastMemberId option:selected').text();
@@ -77,8 +83,7 @@
                             document.getElementById("Recipient").value = selectedmember;
                         }
                      }
-                        
-	             </script>
+                </script>
 
                 @Html.ValidationMessageFor(model => model.CastMemberId, "", new { @class = "text-danger" })
             </div>
