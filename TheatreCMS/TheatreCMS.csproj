@@ -266,7 +266,9 @@
     <Content Include="Content\Images\RACC2.png" />
     <Content Include="Content\Images\search.png" />
     <Content Include="Content\Images\searchFocus.png" />
+    <Content Include="Content\Images\shoebox.jpg" />
     <Content Include="Content\Images\subscriber.jpg" />
+    <Content Include="Content\Images\thatreBanner.jpg" />
     <Content Include="Content\Images\wicked1.png" />
     <Content Include="Content\Images\wicked2.png" />
     <Content Include="Content\summernote\summernote-bs4.css" />
