@@ -427,6 +427,7 @@
         #socialMediaLinks {
             padding-left: 0px;
             margin-left: auto;
+            font-size: 1.25rem;
         }
 
         #socialMediaLinks li {
@@ -454,10 +455,12 @@
         *********************************************/
 
         /*************max-width > 900px**************/
-
         @media only screen and (min-width: 992px) {
             #footer--container {        /*When the screen width is at or above 992 the width of the footer shrinks to 85%*/
                 max-width: 85%;
+            }
+            footer .list-group-item {
+                padding-top: 12px !important;
             }
         }
 
@@ -486,29 +489,17 @@
             #navBar li {                                /*When screen is at 460 and smaller the links stack instead of being horizontal*/
                display: block;
             }
-        }
 
-        @media only screen and (max-width: 460px) {
-            .FooterLinkPadding {                        /*When the links stack the padding top gets eliminated to shrink the distance between each link and the links and icons*/
-                padding-top: 0px;
-            }
-        }
-
-        @media only screen and (max-width: 460px) {
-            #contactInfo {                              /*This stacks the phone #'s bellow the address's*/
+            #contactInfo { /*This stacks the phone #'s bellow the address's*/
                 display: block;
             }
-        }
 
-        @media only screen and (max-width: 460px) {
-            #addressPadding {                           /*This gets rid of the margin bellow the address's and the padding right*/
+            #addressPadding { /*This gets rid of the margin bellow the address's and the padding right*/
                 margin-bottom: 0px;
                 padding-right: 0px;
             }
-        }
 
-        @media only screen and (max-width: 460px) {
-            #phoneNumbersPadding {                      /*This removes the padding that is used to seperate the address and phone #'s*/
+            #phoneNumbersPadding { /*This removes the padding that is used to seperate the address and phone #'s*/
                 padding-left: 0px;
             }
         }
