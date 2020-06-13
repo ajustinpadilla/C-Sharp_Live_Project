@@ -68,11 +68,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CastMemberId, "Cast Member", htmlAttributes: new { @class = "control-label col-md-2" })
             <div id ="member" class="col-md-10">
-                @Html.DropDownList("CastMemberId", null, "Select a Cast Member", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CastMemberId", null, "Select a Cast Member", htmlAttributes: new { @class = "form-control", @onchange="FillRecipient()"})
                
-                <stript>
-                    
-                </stript>
+                <script>
+                    function FillRecipient() {
+                        var member = $('#CastMemberID option:selected').text();
+                        console.log(member) 
+                    }
+
+                </script>
 
                 @Html.ValidationMessageFor(model => model.CastMemberId, "", new { @class = "text-danger" })
             </div>
