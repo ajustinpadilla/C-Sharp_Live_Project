@@ -39,12 +39,13 @@ namespace TheatreCMS.Controllers
         // GET: Awards/Create
         public ActionResult Create()
         {
-            ViewBag.CastMemberId = new SelectList(db.CastMembers, "CastMemberID", "Name", 2);
+            ViewBag.CastMemberId = new SelectList(db.CastMembers, "CastMemberID", "Name");
             ViewBag.ProductionId = new SelectList(db.Productions, "ProductionId", "Title");
                         
             int yeardiff = DateTime.Now.Year - 1997 + 2;        //presents range of years as dropdown
             ViewBag.Year = new SelectList(Enumerable.Range(1997, yeardiff));
 
+            
            
 
             //ViewBag.Type = new SelectList("Award", "Finalist", "Other");
