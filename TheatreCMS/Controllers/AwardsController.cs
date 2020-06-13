@@ -41,13 +41,26 @@ namespace TheatreCMS.Controllers
         {
             ViewBag.CastMemberId = new SelectList(db.CastMembers, "CastMemberID", "Name");
             ViewBag.ProductionId = new SelectList(db.Productions, "ProductionId", "Title");
+                        
+            int yeardiff = DateTime.Now.Year - 1997 + 2;        //presents range of years as dropdown
+            ViewBag.Year = new SelectList(Enumerable.Range(1997, yeardiff));
+
+           
+
+            //ViewBag.Type = new SelectList("Award", "Finalist", "Other");
+
+
+
             return View();
         }
 
-        // POST: Awards/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        
+
+
+    // POST: Awards/Create
+    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+    // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AwardId,Year,Name,Type,Category,Recipient,ProductionId,CastMemberId,OtherInfo")] Award award)
         {
