@@ -123,7 +123,7 @@ if (document.getElementById("scroll-container") != null) {
                     photos = jQuery.parseJSON(photos);
                     for (var i = 0; i < photos.length; i++) {
                         $("table").append("<tr class='tr-styling scroll--container'>" +
-                            "<td class='td-styling'> <img id='photo-index-img-"+ photos[i].PhotoId + "' onclick='ShowModel(" + photos[i].PhotoId  + ")' class='thumbnail_size' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
+                            "<td class='td-styling'> <img id='photo-index-img-" + photos[i].PhotoId + "' onclick='ShowModel(" + photos[i].PhotoId + ")' class='thumbnail_size photo-index-img' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
                                                 "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
                                                 "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
                                                 "<td class='td-styling'>" + photos[i].Title + "</td>" +
