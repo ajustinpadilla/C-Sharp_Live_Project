@@ -5,6 +5,16 @@
 // Script for shrinking logo
 window.onscroll = function () { shrinkFunction() };
 
+function shrinkFunction() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("logo").style.height = "40px";
+        document.getElementById("menu").style.padding = " 1px 20px";
+    } else {
+        document.getElementById("logo").style.height = "90px";
+        document.getElementById("menu").style.padding = "20px";
+    }
+}
+
 //Simple welcome message that prints to the console on App Start
 console.log("Welcome to the theatre!");
 
@@ -41,50 +51,26 @@ if (document.getElementById("main-carousel") != null) {
 
 //Script for ~/Photo/Index modal
 
-$('.photo-index-image').on('click', function () {
-        $('#photo-modal').toggleClass('photo-modal--animation');
-        $("body").css('overflow', 'hidden') // removes scrollbar when modal is open
-});
+//$('.photo-index-img').on('click', function () {
+    
+//});
 
 $('#photo-modal').on('click', function () {
-        $('#photo-modal').toggleClass('photo-modal--animation');
-        $('body').css('overflow', 'auto')
+    console.log("modal clicked");
+    $('#photo-modal').toggleClass('photo-modal--animation');
+    $('body').css('overflow', 'auto')
 });
 function ShowModel(id) {
+    $('#photo-modal').toggleClass('photo-modal--animation');
+    $("body").css('overflow', 'hidden') // removes scrollbar when modal is open
     document.getElementById("photo-modal").style.display = "flex";
     document.getElementById("photo-modal--content").src = document.getElementById("photo-index-img-" + id).src;
     document.getElementById("photo-modal").onclick = function () {
         $('.photo-modal').fadeToggle(600);
-        //document.getElementById("photo-modal").style.display = "none";
     }
 }
 
 //End script for ~/Photo/Index modal
-
-
-////Script for sticky navbar
-//window.onscroll = function () { stickyNav() };
-//var menu = document.getElementById("menu");
-//var sticky = menu.offsetTop;
-
-//function stickyNav() {
-//    if (window.pageYOffset >= sticky) {
-//        menu.classList.add("sticky")
-//    } else {
-//        menu.classList.remove("sticky");
-//    }
-//}
-
-
-function shrinkFunction() {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("logo").style.height = "40px";
-        document.getElementById("menu").style.padding = " 1px 20px";
-    } else {
-        document.getElementById("logo").style.height = "90px";
-        document.getElementById("menu").style.padding = "20px";
-    }
-}
 
 // Infinite scrolling for Photo/Index page
 
@@ -107,7 +93,7 @@ if (document.getElementById("scroll-container") != null) {
                 }
             });
         });
-    }
+    };
 
     function GetData(pageIndex, pageSize) {
         console.log("index: " + pageIndex + " pagesize: " + pageSize + " photos.length: "/* + photos.length*/);
@@ -119,23 +105,7 @@ if (document.getElementById("scroll-container") != null) {
             dataType: 'json',
             success: function (photos) {
                 console.log("%index: " + pageIndex);
-                if (photos != "[]") {
-                    photos = jQuery.parseJSON(photos);
-                    for (var i = 0; i < photos.length; i++) {
-                        $("table").append("<tr class='tr-styling scroll--container'>" +
-                            "<td class='td-styling'> <img id='photo-index-img-" + photos[i].PhotoId + "' onclick='ShowModel(" + photos[i].PhotoId + ")' class='thumbnail_size photo-index-img' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
-                                                "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
-                                                "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
-                                                "<td class='td-styling'>" + photos[i].Title + "</td>" +
-                                                "<td class='td-styling'>" +
-                                                    "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit | </a>" +
-                                                    "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details | </a>" +
-                                                    "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
-                                                "</td>" +
-                                          "</tr>")
-                    }
-                    ajaxCompleted = true;
-                }
+                addPhotoRows(photos);
             },
             beforeSend: function () {
                 $("#progress").show();
@@ -147,7 +117,40 @@ if (document.getElementById("scroll-container") != null) {
                 alert("Error while retrieving data!");
             }
         });
-    }
-}
+    };
 
+    function addPhotoRows(photos) {
+        if (photos != "[]") {
+            photos = jQuery.parseJSON(photos);
+            for (var i = 0; i < photos.length; i++) {
+                $("table").append("<tr class='tr-styling scroll--container'>" +
+                    "<td class='td-styling'> <img id='photo-index-img-" + photos[i].PhotoId + "' onclick='ShowModel(" + photos[i].PhotoId + ")' class='thumbnail_size photo-index-img' src='/photo/displayphoto/" + photos[i].PhotoId + "' }) /></td>" +
+                    "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
+                    "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
+                    "<td class='td-styling'>" + photos[i].Title + "</td>" +
+                    "<td class='td-styling'>" +
+                    "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit | </a>" +
+                    "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details | </a>" +
+                    "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
+                    "</td>" +
+                    "</tr>")
+            };
+            ajaxCompleted = true;
+        };
+    };
+};
 // End infinite scrolling for Photo/Index page
+
+////Script for sticky navbar
+//window.onscroll = function () { stickyNav() };
+//var menu = document.getElementById("menu");
+//var sticky = menu.offsetTop;
+
+//function stickyNav() {
+//    if (window.pageYOffset >= sticky) {
+//        menu.classList.add("sticky")
+//    } else {
+//        menu.classList.remove("sticky");
+//    }
+//}
+
