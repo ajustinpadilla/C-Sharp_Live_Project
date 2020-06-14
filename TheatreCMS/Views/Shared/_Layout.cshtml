@@ -62,6 +62,7 @@
                         Company
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="@Url.Action("About", "Home")">About</a></li>
                         <li><a class="dropdown-item" href="@Url.Action("Archive", "Home")">Archive Dashboard</a></li>
                         <li><a class="dropdown-item" href="@Url.Action("Index", "CastMembers")">Current Members</a></li>
                     </ul>
@@ -159,7 +160,8 @@
                             <a class="navLink" href="#">Opportunities</a>
                         </li>
                         <li class="list-group-item">
-                            <a class="navLink" href="#">News Items</a>
+                            <a class="navLink" href="@Url.Action("Published", "News")">News Items</a>
+
                         </li>
                         <li class="list-group-item">
                             <a class="navLink" href="#">Contact Info</a>
