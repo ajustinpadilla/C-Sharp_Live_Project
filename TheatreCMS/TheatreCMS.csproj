@@ -213,6 +213,7 @@
     <Compile Include="Models\AdminSettings.cs" />
     <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\CastMember.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Production.cs" />
