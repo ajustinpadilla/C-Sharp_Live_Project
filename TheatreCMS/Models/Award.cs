@@ -14,7 +14,7 @@ namespace TheatreCMS.Models
 
         [Required]
         public int Year { get; set; }
-        public SelectList YearList { get; set; }
+        public SelectList YearList { get; }
 
         [Required]
         public string Name { get; set; }
