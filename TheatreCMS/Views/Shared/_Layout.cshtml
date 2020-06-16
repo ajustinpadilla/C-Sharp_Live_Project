@@ -143,50 +143,51 @@
 
     </div>
     <footer class="footer mt-auto py-3 md">
-        <div class="container-fluid ml-md-auto mr-md-auto py-2" id="footer--container">
+        <div class="container-fluid ml-md-auto mr-md-auto py-2 pl-md-5 pl-lg-0" id="footer--container">
             <div class="row" id="footerInner">
-                <div class="socialMediaContainer order-md-12">
-                    <ul class="row ml-sm-auto list-group-horizontal" id="socialMediaLinks" style="background-color: black">
+                <div class="col-md-4 socialMediaContainer order-lg-last px-0">     @*this has bootstrap class's that gets rid of padding and puts the stuff on the right on a large screen*@
+                    <ul class="list-group list-group-horizontal justify-content-lg-end" id="socialMediaLinks" style="background-color: black">
                         <li class="list-group-item"><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
                         <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
                         <li class="list-group-item"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
                         <li class="list-group-item"><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li class="list-group-item"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li>
+                        <li class="list-group-item pr-0"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li> @*bootstrap gets rid of the padding on the left*@
                     </ul>
                 </div>
-                <div class="footerNavContainer col-md-8 mr-auto float-left order-md-1">
-                    <ul class="list-group list-group-horizontal-md" id="navBar">
-                        <li class="list-group-item">
+                <div class="w-100 d-none d-md-block "></div>    @*This stacks the icons on top of the links*@
+                <div class="footerNavContainer col-md-8 mr-auto float-left order-lg-1">
+                    <ul class="list-group" id="navBar">
+                        <li class="list-group-item pt-0 ">
                             <a class="navLink" href="#">Opportunities</a>
                         </li>
-                        <li class="list-group-item">
-                            <a class="navLink" href="@Url.Action("Published", "News")">News Items</a>
-
+                        <li class="list-group-item pt-0 ">
+                            <a class="navLink" href="#">News Items</a>
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item pt-0">
                             <a class="navLink" href="#">Contact Info</a>
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item pt-0  pr-0 mr-0">
                             <a class="navLink" href="#">Donate</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="row float-lg-left text-left" id="contactInfo">
+            <div class="float-lg-left text-left" id="contactInfo"> @*bootstrap classes that align text*@
                 <div id="address">
-                    <p>
+                    <p id="addressPadding"> @*Added for css styling*@
                         2110 SE 10th AVE<br />
                         Portland, OR 97214
                     </p>
                 </div>
-                <div class="col-lg-auto" id="phoneNumbers">
-                    <p>
+                
+                <div id="phoneNumbers">
+                    <p id="phoneNumbersPadding">    @*Added for css styling*@
                         Phone Number (General)<br />
                         Phone Number (Sales)
                     </p>
                 </div>
             </div>
-            <div class="float-lg-right text-left ">
+            <div class="float-lg-right text-left mt-lg-4">     @*Boot strap text aligning*@
                 <p class="my-0">&copy; @DateTime.Now.Year</p>
             </div>
         </div>
