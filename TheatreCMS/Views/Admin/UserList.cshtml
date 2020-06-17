@@ -58,29 +58,25 @@
     <td class="td-styling">
         @Html.DisplayFor(modelItem => item.Role)
     </td>
+    <td class="text-center">
     @if (item.Role == "Subscriber")
     {
-    <td class="UserListLinks">
+        <div>
         <a href="@Url.Action("Details", "Subscriber", new { id = item.SubscriberPerson.SubscriberId, area = "Subscribers" }, null)">Details </a> |
         <a href= "@Url.Action("Edit", "Subscriber", new { id = item.SubscriberPerson.SubscriberId, area="Subscribers"}, null)"> Edit </a>
-    </td>
-    }
+        </div>
+    }   
     @if (item.Role == "Member")
     {
-    <td class="UserListLinks">
-        @*@Html.ActionLink("Details", "Details", "CastMember", new { id = item.CastMemberUserID }, null) this was the way the link for CastMember Details was previously implemented*@ 
-        
-            <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberUserID}, null)">Details </a>|
-            <a href="@Url.Action("Edit", "CastMembers", new { id = item.CastMemberUserID}, null)"> Edit </a>
-       
-    </td>
-    }
-    @if (item.Role== "Admin")
-    {
-        <td> @*this is to add the <td> tags for the admin*@
 
-        </td>
+           @*@Html.ActionLink("Details", "Details", "CastMember", new { id = item.CastMemberUserID }, null) this was the way the link for CastMember Details was previously implemented*@ 
+        <div>
+         <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberUserID}, null)">Details </a>|
+         <a href="@Url.Action("Edit", "CastMembers", new { id = item.CastMemberUserID}, null)"> Edit </a>
+        </div>
+       
     }
+    </td>
 </tr>
 
 }
