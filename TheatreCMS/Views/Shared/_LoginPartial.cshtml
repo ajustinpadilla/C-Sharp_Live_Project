@@ -9,6 +9,11 @@
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-item" })
         </li>
+        <li>
+            <a href="@Url.Action("Index", "Messages")">
+                <i class="far fa-envelope"></i>
+            </a>
+        </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }
