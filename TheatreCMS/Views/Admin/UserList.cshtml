@@ -61,19 +61,19 @@
     <td class="text-center">
     @if (item.Role == "Subscriber")
     {
-        <div>
-        <a href="@Url.Action("Details", "Subscriber", new { id = item.SubscriberPerson.SubscriberId, area = "Subscribers" }, null)">Details </a> |
+        
+        <a href="@Url.Action("Details", "Subscriber", new { id = item.SubscriberPerson.SubscriberId, area = "Subscribers" }, null)">Details </a> @:|
         <a href= "@Url.Action("Edit", "Subscriber", new { id = item.SubscriberPerson.SubscriberId, area="Subscribers"}, null)"> Edit </a>
-        </div>
+       
     }   
     @if (item.Role == "Member")
     {
 
            @*@Html.ActionLink("Details", "Details", "CastMember", new { id = item.CastMemberUserID }, null) this was the way the link for CastMember Details was previously implemented*@ 
-        <div>
-         <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberUserID}, null)">Details </a>|
+        
+         <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberUserID}, null)">Details </a>@:|
          <a href="@Url.Action("Edit", "CastMembers", new { id = item.CastMemberUserID}, null)"> Edit </a>
-        </div>
+       
        
     }
     </td>
