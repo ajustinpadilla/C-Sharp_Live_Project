@@ -8,7 +8,7 @@
 <h4 class="m-5 pl-1 pt-3 pb-1">Use a local account to log in</h4>
 
 <div class="m-3 pl-3 pb-1">
-  @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+  @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "login" })) // Added id="login" to be used with EasyLogin Buttons --!!! PLEASE REMOVE BEFORE DEPLOYMENT !!!
   {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -47,6 +47,20 @@
         </div>
       </div>
     </div>
+
+    @*Easy Login Buttons - for development purposes only. THIS MUST BE REMOVED BEFORE DEPLOYMENT*@
+  <div class="col-md-4">
+    <section class="loginpadding" id="loginForm">
+      <h2 class="col-md-8 col-sm-8">Easy Login</h2>
+      <p>This section exists for development purposes only. Please make sure that it is removed before deployment.</p> <!-- THE TEXT SAYS IT ALL -->
+      <hr />
+      <p><input type="button" class="iconBtn" value="Sign in as an Administrator" id="AdminBtn" /></p>
+      <p><input type="button" class="iconBtn" value="Sign in as a Member" id="MemberBtn" /></p>
+      <p><input type="button" class="iconBtn" value="Sign in as a Subscriber" id="SubscriberBtn" /></p>
+    </section>
+  </div>
+  @*END Easy Login Buttons Section*@
+
     <p class="col-sm-6">
       @Html.ActionLink("Register as a new user", "Register")
     </p>
@@ -64,3 +78,29 @@
 @section Scripts {
   @Scripts.Render("~/bundles/jqueryval")
 }
+
+@*The JavaScript applies only to the Easy Login buttons, for the purposes of development. IT MUST BE REMOVED BEFORE DEPLOYMENT*@
+<script type="text/javascript">
+  document.getElementById("AdminBtn").addEventListener('click', function () {
+    var email = document.getElementById('Email');
+    email.value = 'test@gmail.com';
+    var pass = document.getElementById('Password');
+    pass.value = 'Passw0rd!';
+    document.getElementById("login").submit();
+  });
+  document.getElementById("MemberBtn").addEventListener('click', function () {
+    var email = document.getElementById('Email');
+    email.value = 'member.test@gmail.com';
+    var pass = document.getElementById('Password');
+    pass.value = 'Ih@ve12cats';
+    document.getElementById("login").submit();
+  });
+  document.getElementById("SubscriberBtn").addEventListener('click', function () {
+    var email = document.getElementById('Email');
+    email.value = 'subscriber.test@gmail.com';
+    var pass = document.getElementById('Password');
+    pass.value = '100100St!';
+    document.getElementById("login").submit();
+  });
+</script>
+@*END Easy Login Buttons Javascript*@
