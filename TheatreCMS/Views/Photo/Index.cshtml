@@ -1,11 +1,8 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Photo>
-
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -35,7 +32,8 @@
 @*@foreach (var item in Model) {
     <tr class="tr-styling">
         <td class="td-styling">
-            <img class="thumbnail_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
+            <img id="photo-index-img-@item.PhotoId" class="photo-index-image thumbnail_size photo-index-img" 
+                     onclick="ShowModel(@item.PhotoId)" src='@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })' />
         </td>
         <td class="td-styling">
             @Html.DisplayFor(modelItem => item.OriginalHeight)
@@ -56,6 +54,10 @@
  
                          @*Loading bar*@
 </table>
+                       @*Container for the photo modal*@
+<div id="photo-modal" class="photo-modal">
+    <img id="photo-modal--content" class="photo-modal--content" />
+</div>
 <div id="progress" style="display:none">
     <h4>Loading...</h4>
 </div>
