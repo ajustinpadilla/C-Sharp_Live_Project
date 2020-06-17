@@ -357,38 +357,38 @@
 
 /*-----End styling for LoginFailure view-----*/
 
-body {
-    padding-top: 110px;
-    padding-bottom: 20px;
-}
+        body {
+            padding-top: 110px;
+            padding-bottom: 20px;
+        }
+        
+        /* ------Footer stylings----- */
+        
+        footer {
+            background-color: black;
+            display: flex;
+            position: absolute;
+            width: 100%;
+            font-size: 1rem;
+        }
 
-/* ------Footer stylings----- */
+        .footerNavContainer{
+            padding-left: 0px;
+        }
+        
+        #navBar li {
+            padding-left: 0px;
+            margin-right: 20px;
+            display: inline-block;
+        }
 
-footer {
-    background-color: black;
-    display: flex;
-    position: absolute;
-    width: 100%;
-}
-
-@media only screen and (min-width: 992px) {
-    #footer--container {
-        max-width: 80%;
-    }
-}
-
-.footerNavContainer {
-    padding-left: 0px;
-}
-
-#navBar li {
-    padding-left: 0px;
-    margin-right: 20px;
-}
-
-.socialMediaContainer li ~ li {
-    margin-left: 20px;
-}
+        #navBar {
+            display: inline;
+        }
+        
+        .socialMediaContainer li ~ li {
+            margin-left: 20px;
+        }
 
 a.navLink {
     color: white;
@@ -400,14 +400,14 @@ a.navLink {
         font-weight: bolder;
     }
 
-#footerInner {
-    margin: auto;
-}
-
-footer p {
-    color: white;
-    font-size: 1rem;
-}
+        #footerInner {
+            margin: auto;
+        }
+        
+        footer p {
+            color: white;
+            font-weight: bold;  /*Makes the address, phone #'s and copyright bold on the footer*/
+        }
 
 footer .list-group-item {
     background-color: black;
@@ -418,47 +418,101 @@ footer .fab {
     color: white;
 }
 
-footer .list-group-item :hover {
-    color: red;
-}
+        footer .list-group-item :hover {
+            color: var(--main-bg-color);
+        }
 
-.socialMediaContainer {
-    text-align: right;
-}
+        .navItem {
+            margin-left: 0px;
+        }   
 
-.navItem {
-    margin-left: 0px;
-}
-
-#socialMediaLinks {
-    padding-left: 0px;
-    margin-left: auto;
-}
+        #socialMediaLinks {
+            padding-left: 0px;
+            margin-left: auto;
+            font-size: 1.25rem;
+        }
 
     #socialMediaLinks li {
         padding-left: 0px;
     }
 
-#contactInfo {
-    flex-wrap: nowrap;
-}
+        #contactInfo {
+            flex-wrap: nowrap;
+            display:flex; /*This allows the address's and phone #'s to sit side by side*/
+        }
 
-#address {
-    margin-right: 0;
-    float: left;
-    margin-left: 15px;
-    margin-right: 40px;
-}
+        #address {
+            align-content:flex-start; /*aligns the address's to the left*/
+        }
 
-/* End Footer Styling */
+        #addressPadding{
+            padding-right: 1rem; /*puts padding between the adress and the phone #*/
+        }
 
+        #phoneNumbersPadding {  /*puts padding between the adress and the phone #*/
+            padding-left: 1rem;
+        }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-top: 25px;
-}
+        /****************@media quaries**************
+        *********************************************/
 
-/* Override the default bootstrap behavior where horizontal description lists 
+        /*************max-width > 900px**************/
+        @media only screen and (min-width: 992px) {
+            #footer--container {        /*When the screen width is at or above 992 the width of the footer shrinks to 85%*/
+                max-width: 85%;
+            }
+            footer .list-group-item {
+                padding-top: 12px !important;
+            }
+        }
+
+        @media only screen and (min-width: 1100px) {
+            #footer--container {        /*When the screen width is at or above 1100 the width of the footer shrinks to 80%*/
+                max-width: 80%;
+            }
+        }
+
+        @media only screen and (min-width: 1200px) {
+            #footer--container {        /*When the screen width is at or above 1200 the width of the footer shrinks to 75%*/
+                max-width: 75%;
+            }
+        }
+
+        /*************max-width 768px**************/
+
+        @media only screen and (max-width: 768px) {
+            footer  {                                   /*Shrinks font size once the screen is bellow 768*/
+                font-size: .875rem;
+            }
+        }
+
+        /*************max-width 460px**************/
+        @media only screen and (max-width: 460px) {
+            #navBar li {                                /*When screen is at 460 and smaller the links stack instead of being horizontal*/
+               display: block;
+            }
+
+            #contactInfo { /*This stacks the phone #'s bellow the address's*/
+                display: block;
+            }
+
+            #addressPadding { /*This gets rid of the margin bellow the address's and the padding right*/
+                margin-bottom: 0px;
+                padding-right: 0px;
+            }
+
+            #phoneNumbersPadding { /*This removes the padding that is used to seperate the address and phone #'s*/
+                padding-left: 0px;
+            }
+        }
+        
+        
+    /* End Footer Styling */
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
+        padding-top: 25px;
+    }
+    /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
@@ -2164,6 +2218,85 @@ a.dropdown-item:hover {
     }
 }
 
+
+/* Begin Styling of Photo Index Page */
+
+.photo-index-img {
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.photo-index-img:hover {
+    opacity: 0.7;
+
+}
+
+.photo-modal {
+    display: none;
+    align-items: center;
+    position: fixed; 
+    z-index: 1050;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.9);
+}
+
+
+.photo-modal--animation {
+    animation: modal-fade 0.6s forwards;
+}
+
+@keyframes modal-fade {
+    0% {background-color: rgba(0,0,0,0.0)}
+    100% {background-color: rgba(0,0,0,0.9)}
+}
+
+
+.photo-modal--content{
+    margin: 3em auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85%;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.photo-modal--close {
+    margin: 15px auto;
+    color: #f1f1f1;
+    display: block;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 43px;
+    transition: 0.3s;
+    background-color: chocolate;
+    border-radius: 50px;
+    height: 50px;
+    width: 50px;
+}
+
+.photo-modal--close:hover,
+.photo-modal--close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+    .photo-modal--content {
+    }
+}
+
+/* End styling of Photo Index Page */
+
+
 /*This class was added to put spacing between the photo and the text on the Photo Details page*/
 .image-spacing {
     margin-top: 10px;
@@ -2330,17 +2463,17 @@ a.dropdown-item:hover {
     margin: 5px 0 5px 0 !important;
 }
 
-.search-text {
-    font-size: 15px !important;
-    height: 30px !important;
-    padding: 0 0 0 8px !important;
-    margin: 5px 0 5px 0 !important;
-}
+    .search-text {
+        font-size: 15px !important;
+        height: 30px !important;
+        padding: 0 0 0 8px !important;
+        margin: 5px 0 5px 0 !important;
+    }
 
-.search-button {
-    float: right;
-    background-color: var(--dark-color);
-}
+    .search-button {
+        float: right;
+        background-color: var(--dark-color);
+    }
 
 .search-icon {
     color: var(--light-color);
