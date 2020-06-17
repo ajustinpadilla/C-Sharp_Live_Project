@@ -244,13 +244,13 @@ namespace TheatreCMS
                 new Production{Title = "The Book of Mormon", Playwright = "Trey Parker, Robert, Lopez, & Matt Stone", Description = "The Book of Mormon " +
                 "follows two Latter-Day Saints missionaries as they attempt to preach the faith of the Church of Jesus Christ of Latter-Day Saints to the " +
                 "inhabitants of a remote Ugandan village.", OpeningDay = new DateTime(2021, 01, 01, 19, 30, 00), ClosingDay = new DateTime(2021, 02, 28, 19, 30, 00),
-                ShowtimeEve = new DateTime(2021, 01, 02, 19, 30, 00), TicketLink = "ticketsforyou.com", Season = 24,
+                ShowtimeEve = new DateTime(2021, 01, 02, 19, 30, 00), ShowtimeMat = new DateTime(2021, 01, 02, 14, 30, 00), TicketLink = "ticketsforyou.com", Season = 24,
                 IsCurrent = false},
 
 				new Production{Title = "Wicked", Playwright = "Stephen Schwartz", Description = "This musical is told from the perspective of the witches of " +
 				"the Land of Oz; its plot begins before and continues after Dorothy Gale arrives in Oz from Kansas, and includes several references to the 1939 film.",
 				OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00),
-				ShowtimeMat = new DateTime(2020, 10, 01, 14, 30, 00), TicketLink = "ticketsforyou.com", Season = 24, IsCurrent = false},
+				ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00), ShowtimeMat = new DateTime(2020, 10, 01, 14, 30, 00), TicketLink = "ticketsforyou.com", Season = 24, IsCurrent = false},
 
 				new Production{Title = "How to Succeed in Business Without Really Trying", Playwright = "Frank Loesser", Description = "This story concerns young, " +
                 "ambitious J. Pierrepont Finch, who, with the help of the book How to Succeed in Business Without Really Trying, rises from window washer to chairman of " +

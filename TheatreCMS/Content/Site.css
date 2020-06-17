@@ -307,7 +307,18 @@
 /* Productions Index Calendar Styling*/
 
 .prod-index-cal {
-    width: 750px;
+    width: 700px;
+}
+@media screen and (max-width: 767px) {
+    .prod-index-cal {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .prod-index-cal {
+        width: 350px;
+    }
 }
 
 .prod-index-header .fa-calendar-alt {
