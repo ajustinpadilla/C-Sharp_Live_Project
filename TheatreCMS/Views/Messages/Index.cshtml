@@ -5,96 +5,11 @@
 }
 
 
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SenderId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RecipientId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SentTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsViewed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ParentId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Subject)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SenderId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RecipientId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SentTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsViewed)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ParentId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subject)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Body)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MessageId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.MessageId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MessageId })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-
 <style>
-
-    .messages-index {
-        background-color: var(--light-color);
-        color: var(--dark-color);
-    }
-
-        .messages-index tbody tr {
-            cursor: pointer;
-        }
-
-            .messages-index tbody tr span:hover {
-                box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
-            }
-
-        .messages-index tr.isviewed-false {
-            font-weight: bold;
-        }
-
-    #inboxDetails {
-        display: none;
-    }
-
-    #sentDetails {
-        display: none;
-    }
+    /* Placeholder for now */
 </style>
 
-@Html.AntiForgeryToken()
+@*@Html.AntiForgeryToken()*@
 
 <div class="messages-index container my-5 py-4">
 
@@ -138,227 +53,130 @@
 
         <div id="newMsg" class="container tab-pane fade my-4 text-right">
 
+            <h5 class="text-center my-2">New Message</h5>
+
             @using (Html.BeginForm("Create", "Messages", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <div class="form-group form-row align-items-center">
-
                     <label class="col-lg-2 col-md-2 control-label col-1" for="RecipientId">To:</label>
-
                     <div class="col-lg-6 col-md-8">
-
                         @*<input id="RecipientId" name="RecipientId" type="text" placeholder="" class="form-control">*@
                         @Html.DropDownList("RecipientId", (IEnumerable<SelectListItem>)ViewData["listOfUsers"], "", htmlAttributes: new { @class = "form-control" })
                     </div>
-
                 </div>
 
-
-
                 <div class="form-group form-row align-items-center">
-
                     <label class="col-lg-2 col-md-2 control-label col-1" for="Subject">Subject:</label>
-
                     <div class="col-lg-6 col-md-8">
-
-                        <input id="Subject" name="Subject" type="text" placeholder=""
+                        <input id="Subject" name="Subject" type="text" autocomplete="off"
                                class="form-control">
-
                     </div>
-
                 </div>
 
-
-
                 <div class="form-group form-row align-items-center">
-
                     <label class="col-lg-2 col-md-2 control-label col-1" for="Body">Body:</label>
-
                     <div class="col-lg-6 col-md-8">
-
                         <textarea rows="5" class="form-control" id="Body" name="Body"></textarea>
-
                     </div>
-
                 </div>
 
-
-
                 <div class="form-group form-row align-items-center">
-
                     <div class="col-lg-8 col-md-10">
-
                         <button type="submit" class="btn btn-primary">Send</button>
-
                         <button type="reset" class="btn btn-danger">
                             <i class="fa fa-trash"
                                aria-hidden="true"></i>
                         </button>
-
                     </div>
-
                 </div>
             }
-
-
         </div>
 
 
-
         <!-- Inbox tab -->
-
         <div id="inbox" class="container tab-pane active my-4">
-
             <!-- this div will be hid/shown upon clicking a msg -->
-
             <div id="inboxList">
-
                 <table class="table table-hover">
-
                     <thead>
-
                         <tr class="d-flex">
-
                             <th class="col-2">
                                 @Html.DisplayNameFor(model => model.SenderId)
                             </th>
-
                             <th class="col-5">
                                 @Html.DisplayNameFor(model => model.Subject)
-
                             </th>
-
                             <th class="col-2 d-none">
                                 @Html.DisplayNameFor(model => model.Body)
-
                             </th>
-
                             <th class="col-2">
                                 @Html.DisplayNameFor(model => model.SentTime)
-
                             </th>
-
-
                             <th class="col-3 col-lg-2" id="badges"></th>
-
                         </tr>
-
                     </thead>
 
                     <tbody>
-
-                        <!-- for loop for all items in model -->
-                        <!-- parentId is for future feature, isviewed-false is only present if isviewed is null-->
-                        <!-- could use data- attributes to store info, js: use.data() to retrieve value -->
-                        @foreach (var item in Model)
+                        <!-- parentId is for future feature, "isviewed-false" is only present if isviewed is null-->
+                        @foreach (var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"]))
                         {
                             <tr class="d-flex inboxRow parentId-0 @(item.IsViewed.HasValue ? "": "isviewed-false")" data-msg_id="@item.MessageId">
-
                                 <td class="col-2 msgFrom">
                                     @item.Sender.LastName, @item.Sender.FirstName
                                 </td>
-
                                 <td class="col-5 msgSubject">
                                     @Html.DisplayFor(modelItem => item.Subject)
                                 </td>
-
-
                                 <td class="col-2 d-none msgBody">
                                     @Html.DisplayFor(modelItem => item.Body)
                                 </td>
-
                                 <td class="col-2 msgDate">
                                     @Html.DisplayFor(modelItem => item.SentTime)
                                 </td>
-                                <td class="col-3 col-lg-2">
+                                <td class="col-3 col-lg-2 text-right">
                                     <span class="badge badge-pill badge-secondary mx-2 list-reply">Reply</span><span class="badge badge-pill badge-danger list-del">
                                         <i class="fa fa-trash"
                                            aria-hidden="true"></i>
                                     </span>
-
                                 </td>
-
                             </tr>
                         }
-
-
                     </tbody>
-
                 </table>
-
-
-
             </div>
 
             <!-- on load, this will be a template with no data, click of a msg will populate the template with the msg info and be displayed  -->
-            <!-- current html is dummy data / form-control-plaintext -->
-
-            <div id="inboxDetails" class="" data-msg_id="">
-
-                <h5 class="text-center">Message</h5>
-
+            <div id="inboxDetails" data-msg_id="">
+                <h5 class="text-center my-2">Message</h5>
                 <form class="form">
-
-                    <div class="form-group form-row align-items-center">
-
-                        <label class="col-lg-2 col-md-2 control-label col-1">From:</label>
-
-                        <div class="col-lg-6 col-md-8 form-control msgFrom">
-
-                        </div>
-
+                    <div class="form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">From:</label>
+                        <div class="col-lg-6 col-md-8 form-control msgFrom"></div>
                     </div>
 
-
-
-                    <div class=" form-group form-row align-items-center">
-
-                        <label class="col-lg-2 col-md-2 control-label col-1">Date:</label>
-
-                        <div class="col-lg-3 col-md-4 form-control msgDate">
-
-                        </div>
-
+                    <div class=" form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Date:</label>
+                        <div class="col-lg-3 col-md-4 form-control msgDate"></div>
                     </div>
 
-
-
-                    <div class="form-group form-row align-items-center">
-
-                        <label class="col-lg-2 col-md-2 control-label col-1">Subject:</label>
-
-                        <div class="col-lg-6 col-md-8 form-control msgSubject">
-
-
-                        </div>
-
+                    <div class="form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Subject:</label>
+                        <div class="col-lg-6 col-md-8 form-control msgSubject"></div>
                     </div>
 
-
-
-                    <div class="form-group form-row align-items-center">
-
-                        <label class="col-lg-2 col-md-2 control-label col-1">Body:</label>
-
-                        <div class="col-lg-6 col-md-8 form-control msgBody">
-                        </div>
-
+                    <div class="form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
+                        <div class="col-lg-6 col-md-8 form-control msgBody"></div>
                     </div>
 
-
-
-                    <div class="form-group form-row align-items-center">
-
+                    <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1"></label>
-
-                        <div class="col-lg-6 col-md-8 clearfix">
-
+                        <div class="col-lg-6 col-md-8 clearfix text-right">
                             <button type="button" id="goback" class="btn btn-info float-left">
                                 Go Back
                             </button>
-
                             <button type="button" id="reply" class="btn btn-success mx-1">Reply</button>
-
                             <button type="button" id="delete" class="btn btn-danger">
                                 <i class="fa fa-trash"
                                    aria-hidden="true"></i>
@@ -368,358 +186,256 @@
                 </form>
             </div>
         </div>
-
 
 
         <!-- Sent tab -->
-
         <div id="sent" class="container tab-pane fade my-4">
 
             <!-- this div will be hid/shown upon clicking a msg -->
-
             <div id="sentList">
-
                 <table class="table table-hover">
-
                     <thead>
-
                         <tr class="d-flex">
-
-                            <th class="col-2">To</th>
-
-                            <th class="col-5">Subject</th>
-
-                            <th class="col-2">Date</th>
-
+                            <th class="col-2">
+                                @Html.DisplayNameFor(model => model.RecipientId)
+                            </th>
+                            <th class="col-5">
+                                @Html.DisplayNameFor(model => model.Subject)
+                            </th>
+                            <th class="col-2 d-none">
+                                @Html.DisplayNameFor(model => model.Body)
+                            </th>
+                            <th class="col-2">
+                                @Html.DisplayNameFor(model => model.SentTime)
+                            </th>
                             <th class="col-3 col-lg-2" id="badges"></th>
-
                         </tr>
-
                     </thead>
 
                     <tbody>
+                        @foreach (var item in Model.Where(i => i.SenderId == (string)ViewData["currentUserId"]))
+                        {
+                            <tr class="d-flex sentRow" data-msg_id="@item.MessageId">
+                                <td class="col-2 msgTo">
+                                    @if (item.Recipient != null)
+                                    {
+                                        @: @item.Recipient.LastName, @item.Recipient.FirstName
 
-                        <tr class="d-flex sentRow" data-msg_id="5">
+                                    }
 
-                            <td class="col-2">User1</td>
-
-                            <td class="col-5">Come see Hamilton!</td>
-
-                            <td class="col-2">6/08/20 7:00PM</td>
-
-                            <td class="col-3 col-lg-2">
-                                <span class="badge badge-pill badge-danger sent-del">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </span>
-
-                            </td>
-
-                        </tr>
-
+                                </td>
+                                <td class="col-5 msgSubject">
+                                    @Html.DisplayFor(modelItem => item.Subject)
+                                </td>
+                                <td class="col-2 d-none msgBody">
+                                    @Html.DisplayFor(modelItem => item.Body)
+                                </td>
+                                <td class="col-2 msgDate">
+                                    @Html.DisplayFor(modelItem => item.SentTime)
+                                </td>
+                                <td class="col-3 col-lg-2 text-right">
+                                    <span class="badge badge-pill badge-danger sent-del">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
-
                 </table>
-
             </div>
 
-            <div id="sentDetails" class="text-right" data-msg_id="5">
-
-                <!-- add heading later "Message ID int" -->
-
+            <div id="sentDetails" data-msg_id="">
+                <h5 class="text-center my-2">Sent Message</h5>
                 <form class="form">
-
-
-
-                    <div class="form-group row">
-
-                        <label class="col-lg-2 col-md-2 control-label col-1" for="toField">To:</label>
-
-                        <div class="col-lg-6 col-md-8">
-
-                            <input id="toField" name="toField" type="text" value="User1" class="form-control"
-                                   readonly>
-
-
-
-                        </div>
-
+                    <div class="form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">To:</label>
+                        <div class="col-lg-6 col-md-8 form-control msgTo"></div>
                     </div>
 
-
-
-                    <div class=" form-group row">
-
-                        <label class="col-lg-2 col-md-2 control-label col-1" for="date">Date:</label>
-
-                        <div class="col-lg-3 col-md-4">
-
-                            <input id="date" name="date" type="text" value="6/08/20 7:00PM" class="form-control"
-                                   readonly>
-
-
-
-                        </div>
-
+                    <div class=" form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Date:</label>
+                        <div class="col-lg-3 col-md-4 form-control msgDate"></div>
                     </div>
 
-
-
-                    <div class="form-group row">
-
-                        <label class="col-lg-2 col-md-2 control-label col-1" for="subjectField">Subject:</label>
-
-                        <div class="col-lg-6 col-md-8">
-
-                            <input id="subjectField" name="subjectField" type="text" value="Come see Hamilton!"
-                                   class="form-control" readonly>
-
-
-
-                        </div>
-
+                    <div class="form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Subject:</label>
+                        <div class="col-lg-6 col-md-8 form-control msgSubject"></div>
                     </div>
 
-
-
-                    <div class="form-group row">
-
-                        <label class="col-lg-2 col-md-2 control-label col-1" for="bodyField">Body:</label>
-
-                        <div class="col-lg-6 col-md-8">
-
-                            <textarea rows="5" class="form-control" id="bodyField" name="bodyField"
-                                      readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </textarea>
-
-                        </div>
-
+                    <div class="form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
+                        <div class="col-lg-6 col-md-8 form-control msgBody"></div>
                     </div>
 
-
-
-                    <div class="form-group row">
-
+                    <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1"></label>
-
-                        <div class="col-lg-6 col-md-8 clearfix">
-
+                        <div class="col-lg-6 col-md-8 clearfix text-right">
                             <button type="button" id="goback" class="btn btn-info float-left">
-                                Go
-
-                                Back
+                                Go Back
                             </button>
-
                             <button type="button" id="delete" class="btn btn-danger">
                                 <i class="fa fa-trash"
                                    aria-hidden="true"></i>
                             </button>
-
                         </div>
-
                     </div>
-
-
-
                 </form>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 
 
-
-@*@Scripts.Render("~/bundles/jquery")*@
 <script src="@Url.Content("~/Scripts/umd/popper.min.js")"></script>
 
 @section Scripts{
 
-    <script>
-
-        $(document).ready(function () {
-
-            //behavior of row in inboxList tab
-
-            $(".inboxRow").on("click", "td:not(:last-child)", function () {
-                var msgId_str = $(this).parent().data("msg_id");
-
-                console.log("msgId: " + msgId_str + ", type: " + typeof (msgId_str));
-
-                if ($(this).parent().hasClass("isviewed-false")) {
-
-                    //ajax post and update isviewed to current date time, success - unbold
-                    $.ajax({
-                        type: "POST",
-                        url: "/Messages/Edit/" + msgId_str,
-                        context: this,
-                        data: {
-                            "__RequestVerificationToken":
-                                $("input[name=__RequestVerificationToken]").val(),
-                            MessageId: msgId_str,
-                        },
-                        success: function () {
-                            $(this).parent().css("font-weight", "normal");
-                            $(this).parent().removeClass("isviewed-false");
-                            alert("Message is read");
-                        },
-                        error: function () {
-                            alert("An error has occurred.");
-                        }
-                    });
-
-
-
-                }
-
-                $("#inboxList").hide();
-
-                //code will populate #inboxDetails with correct msg info, hide/show speed not working, asynchronous?
-                $("#inboxDetails").data("msg_id", msgId_str);
-                $("#inboxDetails .msgFrom").html($(this).parent().find(".msgFrom").html());
-                $("#inboxDetails .msgDate").html($(this).parent().find(".msgDate").html());
-                $("#inboxDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
-                $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html());
-                $("#inboxDetails").show();
-
-            });
-
-            $(".list-reply").on("click", function () {
-
-                var msgId_str = $(this).parents(".inboxRow").data("msg_id");
-
-                alert("Feature not available yet! (details: reply to msgId: " + msgId_str + ")");
-
-            });
-
-            $(".list-del").on("click", function () {
-
-                var msgId_str = $(this).parents(".inboxRow").data("msg_id");
-
-                if (confirm("Inbox: Delete msgId: " + msgId_str + "?")) {
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/Messages/Delete/" + msgId_str,
-                        context: this,
-                        data: {
-                            "__RequestVerificationToken":
-                                $("input[name=__RequestVerificationToken]").val(),
-                            id: msgId_str,
-                        },
-                        success: function () {
-                            //remove tr from inbox table
-                            alert("Delete successful.");
-                        },
-                        error: function () {
-                            alert("An error has occurred.");
-                        }
-                    });
-
-                }
-
-            });
-
-
-
-
-
-            //behavior of inboxDetails div
-
-            $("#inboxDetails #goback").click(function () {
-
-                $("#inboxDetails").hide();
-
-                $("#inboxList").show();
-
-            });
-
-            $("#inboxDetails #reply").on("click", function () {
-
-                var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
-
-                alert("Feature not available yet! (details: reply to msgId: " + msgId_str + ")");
-
-            });
-
-            $("#inboxDetails #delete").on("click", function () {
-
-                var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
-
-                if (confirm("Details: Delete msgId: " + msgId_str + "?")) {
-
-                    alert("AJAX post sent");
-
-                }
-
-            });
-
-
-
-
-
-            //behavior of row on sent tab
-
-            $(".sentRow").on("click", "td:not(:last-child)", function () {
-
-                var msgId_str = $(this).parent().data("msg_id");
-
-                console.log("msgId: " + msgId_str + ", type: " + typeof (msgId_str));
-
-                $("#sentList").hide();
-
-                //code will populate #sentDetails with correct msg info, hide/show speed not working, asynchronous?
-
-                $("#sentDetails").show();
-
-            });
-
-            $(".sent-del").on("click", function () {
-
-                var msgId_str = $(this).parents(".sentRow").data("msg_id");
-
-                if (confirm("Sent: Delete msgId: " + msgId_str + "?")) {
-
-                    alert("AJAX post sent");
-
-                }
-
-            });
-
-
-
-
-
-            //behavior of sentDetails div
-
-            $("#sentDetails #goback").click(function () {
-
-                $("#sentDetails").hide();
-
-                $("#sentList").show();
-
-            });
-
-
-
-            $("#sentDetails #delete").on("click", function () {
-
-                var msgId_str = $(this).parents("#sentDetails").data("msg_id");
-
-                if (confirm("Sent: Delete msgId: " + msgId_str + "?")) {
-
-                    alert("AJAX post sent");
-
-                }
-
-            });
-
-
+<script>
+    $(document).ready(function () {
+
+        //behavior of row in inboxList tab
+        $(".inboxRow").on("click", "td:not(:last-child)", function () {
+            var msgId_str = $(this).parent().data("msg_id");
+            //if message is unread, then make it read by unbolding row
+            if ($(this).parent().hasClass("isviewed-false")) {
+                //ajax post and update isviewed to current date time, success - unbold
+                $.ajax({
+                    type: "POST",
+                    url: "/Messages/Edit/" + msgId_str,
+                    context: this,
+                    data: {
+                        "__RequestVerificationToken":
+                            $("input[name=__RequestVerificationToken]").val(),
+                        MessageId: msgId_str,
+                    },
+                    success: function () {
+                        $(this).parent().css("font-weight", "normal");
+                        $(this).parent().removeClass("isviewed-false");
+                    },
+                    error: function () {
+                        alert("An error has occurred.");
+                    }
+                });
+            }
+
+            $("#inboxList").hide();
+
+            //code will populate #inboxDetails with correct msg info, hide/show speed not working, asynchronous?
+            $("#inboxDetails").data("msg_id", msgId_str);
+            $("#inboxDetails .msgFrom").html($(this).parent().find(".msgFrom").html());
+            $("#inboxDetails .msgDate").html($(this).parent().find(".msgDate").html());
+            $("#inboxDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
+            $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html());
+            $("#inboxDetails").show();
+            
 
         });
 
-    </script>
+        $(".list-reply").on("click", function () {
+            var msgId_str = $(this).closest(".inboxRow").data("msg_id");
+            alert("Feature not available yet! (details: reply to msgId: " + msgId_str + ")");
+        });
+
+        $(".list-del").on("click", function () {
+            var msgId_str = $(this).closest(".inboxRow").data("msg_id");
+            if (confirm("Delete this message?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Messages/Delete/" + msgId_str,
+                    context: this,
+                    data: {
+                        "__RequestVerificationToken":
+                            $("input[name=__RequestVerificationToken]").val(),
+                        id: msgId_str,
+                    },
+                    success: function () {
+                        $(this).closest(".inboxRow").remove();
+                    },
+                    error: function () {
+                        alert("An error has occurred.");
+                        location.reload();
+                    }
+                });
+            }
+        });
+
+
+
+
+        //behavior of inboxDetails div
+        $("#inboxDetails #goback").click(function () {
+            $("#inboxDetails").hide();
+            $("#inboxList").show();
+        });
+
+        $("#inboxDetails #reply").on("click", function () {
+            var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
+            alert("Feature not available yet! (details: reply to msgId: " + msgId_str + ")");
+        });
+
+        $("#inboxDetails #delete").on("click", function () {
+            var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
+            if (confirm("Delete this message?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Messages/Delete/" + msgId_str,
+                    context: this,
+                    data: {
+                        "__RequestVerificationToken":
+                            $("input[name=__RequestVerificationToken]").val(),
+                        id: msgId_str,
+                    },
+                    error: function () {
+                        alert("An error has occurred.");
+                    }
+                });
+                location.reload();
+            }
+        });
+
+
+
+        //behavior of row on sent tab
+        $(".sentRow").on("click", "td:not(:last-child)", function () {
+            var msgId_str = $(this).parent().data("msg_id");
+
+            $("#sentList").hide();
+
+            //code will populate #sentDetails with correct msg info, hide/show speed not working, asynchronous?
+            $("#sentDetails").data("msg_id", msgId_str);
+            $("#sentDetails .msgTo").html($(this).parent().find(".msgTo").html());
+            $("#sentDetails .msgDate").html($(this).parent().find(".msgDate").html());
+            $("#sentDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
+            $("#sentDetails .msgBody").html($(this).parent().find(".msgBody").html());
+            $("#sentDetails").show();
+        });
+
+        $(".sent-del").on("click", function () {
+            var msgId_str = $(this).closest(".sentRow").data("msg_id");
+
+            if (confirm("Delete this message?")) {
+                alert("Feature not working yet due to deleting here will delete in inbox too");
+            }
+        });
+
+
+
+        //behavior of sentDetails div
+        $("#sentDetails #goback").click(function () {
+            $("#sentDetails").hide();
+            $("#sentList").show();
+        });
+
+        $("#sentDetails #delete").on("click", function () {
+            var msgId_str = $(this).parents("#sentDetails").data("msg_id");
+            if (confirm("Delete this message?")) {
+                alert("Feature not working yet due to deleting here will delete in inbox too")
+            }
+        });
+
+    });
+
+</script>
 
 }

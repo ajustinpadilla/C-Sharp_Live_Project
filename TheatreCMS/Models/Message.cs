@@ -19,6 +19,7 @@ namespace TheatreCMS.Models
         [ForeignKey("Recipient")]                       //currently, SenderId and RecipientId are nullable because of Cascade errors if set to required, fix with Fluent API
         public string RecipientId { get; set; }         //user.Id of recipient
         [Display(Name = "Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy h:mm tt}")]
         public DateTime SentTime { get; set; }         //datetime when message was sent
         public DateTime? IsViewed { get; set; }         //null if unread, datetime of when it was opened
         public int? ParentId { get; set; }              //used for replies

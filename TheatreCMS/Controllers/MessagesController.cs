@@ -33,7 +33,8 @@ namespace TheatreCMS.Controllers
                 Text = i.LastName + ", " + i.FirstName
             });
             ViewData["listOfUsers"] = new SelectList(UserList, "Value", "Text");
-            return View(db.Messages.OrderByDescending(i => i.SentTime).ToList());
+            ViewData["currentUserId"] = currentUser.Id;
+            return View(db.Messages.Where(i => i.SenderId == currentUser.Id || i.RecipientId == currentUser.Id).OrderByDescending(i => i.SentTime).ToList());
         }
 
         // GET: Messages/Details/5
