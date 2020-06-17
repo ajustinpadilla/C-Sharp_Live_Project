@@ -1,8 +1,4 @@
-﻿
-
-
-
-// Script for shrinking logo
+﻿// Script for shrinking logo
 window.onscroll = function () { shrinkFunction() };
 
 function shrinkFunction() {
@@ -70,6 +66,111 @@ function ShowModel(id) {
     }
 }
 //End script for ~/Photo/Index modal
+
+// =============================================================================== End Script for Photo/Index page =============================================================
+
+
+// **************************************************************************** Begin Script for Photo Dynamic Loading *********************************************************************
+// ===================================================================================Photo/Index page =====================================================================================
+
+// This script handles the dynamic scrolling feature of the Photo/Index page.
+// A set of photos is retrieved from the database, then when the vertical scrollbar reaches the bottom,
+// a new set of photos is retrieved.
+
+if (document.getElementById("scroll-container") != null) {
+    // ajaxCompleted is used to ensure that the getPhotos function is only called once per ping to the server.
+    var ajaxCompleted = true;
+    $(document).ready(PhotoScroll());
+
+    function PhotoScroll() {
+        var pageIndex = 0;
+        // The pageSize variable can be changed to alter the number of retrieved items
+        var pageSize = 20;
+
+        // this block calls the getData function when the vertical scrollbar reaches the bottom,
+        // and loads the next set of photos.
+        $(document).ready(function () {
+            getPhotos(pageIndex, pageSize);
+            pageIndex++;
+            $(window).scroll(function () {
+                // window scrolltop is rounded up with math.ceil() because it was returning inconsistent values. That's also why it's set to >= instead of ==
+                if (Math.ceil($(window).scrollTop()) >=
+                    $(document).height() - $(window).height() && ajaxCompleted) {
+                    getPhotos(pageIndex, pageSize);
+                    pageIndex++;
+                }
+            });
+        });
+    };
+
+    // This function makes an AJAX call to the GetPhotos action method, sending pageIndex and pageSize as arguments.
+    // The next set of photos is retrieved from the database and returned. When addPhotoRows is called, the photos are added to the Index page.
+    function getPhotos(pageIndex, pageSize) {
+        console.log("index: " + pageIndex + " pagesize: " + pageSize + " photos.length: "/* + photos.length*/);
+        ajaxCompleted = false;
+        $.ajax({
+            type: 'GET',
+            url: '/Photo/GetPhotos',
+            data: { "pageIndex": pageIndex, "pageSize": pageSize },
+            dataType: 'json',
+            success: function (photos) {
+                console.log("%index: " + pageIndex);
+                addPhotoRows(photos);
+            },
+            beforeSend: function () {
+                $("#progress").show();
+            },
+            complete: function () {
+                $("#progress").hide();
+            },
+            error: function () {
+                alert("Error while retrieving data!");
+            }
+        });
+    };
+
+    function addPhotoRows(photos) {
+        if (photos != "[]") {
+            photos = jQuery.parseJSON(photos);
+            for (var i = 0; i < photos.length; i++) {
+                $("table").append("<tr class='tr-styling scroll--container'>" +
+                    // This td is for the photo
+                    "<td class='td-styling'> <img id='photo-index-img-" +
+                    photos[i].PhotoId + "' onclick='ShowModel(" +
+                    photos[i].PhotoId + ")' class='thumbnail_size photo-index-img' src='/photo/displayphoto/" +
+                    photos[i].PhotoId + "' }) /></td>" +
+                    "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
+                    "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
+                    "<td class='td-styling'>" + photos[i].Title + "</td>" +
+                    "<td class='td-styling'>" +
+                    "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit | </a>" +
+                    "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details | </a>" +
+                    "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
+                    "</td>" +
+                    "</tr>")
+            };
+            ajaxCompleted = true;
+        };
+    };
+};
+// End infinite scrolling for Photo/Index page
+
+////Script for sticky navbar
+//window.onscroll = function () { stickyNav() };
+//var menu = document.getElementById("menu");
+//var sticky = menu.offsetTop;
+
+//function stickyNav() {
+//    if (window.pageYOffset >= sticky) {
+//        menu.classList.add("sticky")
+//    } else {
+//        menu.classList.remove("sticky");
+//    }
+//}
+
+// **************************************************************************** End Script for Photo Dynamic Loading *********************************************************************
+// ========================================================================================= Photo/Index page ==============================================================================
+
 
 // **************************************************************************** Begin script for Bulk Add **********************************************************************
 // ============================================================================= CalendarEvents/BulkAdd ========================================================================
@@ -335,108 +436,3 @@ if ($("#generate-showtimes-section") != null) {
 }
 // *************************************************************************** End Script for Bulk Add ******************************************************************************************
 // ===========================================================================  CalendarEvents/BulkAdd  =====================================================================================================
-
-
-
-// **************************************************************************** Begin Script for Photo Dynamic Loading *********************************************************************
-// ===================================================================================Photo/Index page =====================================================================================
-
-// This script handles the dynamic scrolling feature of the Photo/Index page.
-// A set of photos is retrieved from the database, then when the vertical scrollbar reaches the bottom,
-// a new set of photos is retrieved.
-
-if (document.getElementById("scroll-container") != null) {
-    // ajaxCompleted is used to ensure that the getPhotos function is only called once per ping to the server.
-    var ajaxCompleted = true;
-    $(document).ready(PhotoScroll());
-
-    function PhotoScroll() {
-        var pageIndex = 0;
-        // The pageSize variable can be changed to alter the number of retrieved items
-        var pageSize = 20;         
-
-        // this block calls the getData function when the vertical scrollbar reaches the bottom,
-        // and loads the next set of photos.
-        $(document).ready(function () {   
-            getPhotos(pageIndex, pageSize);
-            pageIndex++;
-            $(window).scroll(function () { 
-                // window scrolltop is rounded up with math.ceil() because it was returning inconsistent values. That's also why it's set to >= instead of ==
-                if (Math.ceil($(window).scrollTop()) >=  
-                    $(document).height() - $(window).height() && ajaxCompleted) {
-                    getPhotos(pageIndex, pageSize);
-                    pageIndex++;
-                }
-            });
-        });
-    };
-
-    // This function makes an AJAX call to the GetPhotos action method, sending pageIndex and pageSize as arguments.
-    // The next set of photos is retrieved from the database and returned. When addPhotoRows is called, the photos are added to the Index page.
-    function getPhotos(pageIndex, pageSize) {
-        console.log("index: " + pageIndex + " pagesize: " + pageSize + " photos.length: "/* + photos.length*/);
-        ajaxCompleted = false;
-        $.ajax({
-            type: 'GET',
-            url: '/Photo/GetPhotos',
-            data: { "pageIndex": pageIndex, "pageSize": pageSize },
-            dataType: 'json',
-            success: function (photos) {
-                console.log("%index: " + pageIndex);
-                addPhotoRows(photos);
-            },
-            beforeSend: function () {
-                $("#progress").show();
-            },
-            complete: function () {
-                $("#progress").hide();
-            },
-            error: function () {
-                alert("Error while retrieving data!");
-            }
-        });
-    };
-
-    function addPhotoRows(photos) {
-        if (photos != "[]") {
-            photos = jQuery.parseJSON(photos);
-            for (var i = 0; i < photos.length; i++) {
-                $("table").append("<tr class='tr-styling scroll--container'>" +
-                    // This td is for the photo
-                    "<td class='td-styling'> <img id='photo-index-img-" +
-                        photos[i].PhotoId + "' onclick='ShowModel(" +
-                        photos[i].PhotoId + ")' class='thumbnail_size photo-index-img' src='/photo/displayphoto/" +
-                        photos[i].PhotoId + "' }) /></td>" +
-                    "<td class='td-styling'>" + photos[i].OriginalHeight + "</td>" +
-                    "<td class='td-styling'>" + photos[i].OriginalWidth + "</td>" +
-                    "<td class='td-styling'>" + photos[i].Title + "</td>" +
-                    "<td class='td-styling'>" +
-                    "<a href = '/photo/Edit/" + photos[i].PhotoId + "'>Edit | </a>" +
-                    "<a href = '/photo/Details/" + photos[i].PhotoId + "'>Details | </a>" +
-                    "<a href = '/photo/Delete/" + photos[i].PhotoId + "'>Delete</a>" +
-                    "</td>" +
-                    "</tr>")
-            };
-            ajaxCompleted = true;
-        };
-    };
-};
-// End infinite scrolling for Photo/Index page
-
-// =============================================================================== End Script for Photo/Index page =============================================================
-
-////Script for sticky navbar
-//window.onscroll = function () { stickyNav() };
-//var menu = document.getElementById("menu");
-//var sticky = menu.offsetTop;
-
-//function stickyNav() {
-//    if (window.pageYOffset >= sticky) {
-//        menu.classList.add("sticky")
-//    } else {
-//        menu.classList.remove("sticky");
-//    }
-//}
-
-// **************************************************************************** End Script for Photo Dynamic Loading *********************************************************************
-// ========================================================================================= Photo/Index page ==============================================================================
