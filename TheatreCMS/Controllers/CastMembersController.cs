@@ -52,6 +52,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: CastMembers/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
