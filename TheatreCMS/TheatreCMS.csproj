@@ -674,6 +674,7 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Published.cshtml" />
+    <Content Include="Views\CalendarEvents\BulkAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
