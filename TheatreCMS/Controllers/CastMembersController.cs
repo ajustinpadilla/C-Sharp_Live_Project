@@ -52,6 +52,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: CastMembers/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
@@ -64,7 +65,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember,CastMemberPersonId,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,PhotoId,CurrentMember,CastMemberPersonId,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
         {
             
             ModelState.Remove("CastMemberPersonID");
@@ -82,9 +83,10 @@ namespace TheatreCMS.Controllers
             {
                 if (file != null && file.ContentLength > 0)
                 {
-                    byte[] photo = ImageUploadController.ImageBytes(file, out string _64);
-                    castMember.Photo = photo;
+                              
+                    castMember.PhotoId = PhotoController.CreatePhoto(file, castMember.Name); // Call CreatePhoto method from Photocontroller and assign return value (int photo.PhotoId) to castMember.PhotoId
                 }
+               
 
                 //ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
 
@@ -92,7 +94,7 @@ namespace TheatreCMS.Controllers
                 {
                     castMember.CastMemberPersonID = db.Users.Find(userId).Id;
                 }
-
+                //ModelState.Remove("PhotoId");
                 db.CastMembers.Add(castMember);
                 db.SaveChanges();
 
@@ -159,7 +161,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,Photo,CurrentMember,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,PhotoId,CurrentMember,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
         {
             ModelState.Remove("CastMemberPersonID");
             string userId = Request.Form["dbUsers"].ToString();
@@ -179,7 +181,7 @@ namespace TheatreCMS.Controllers
 
             if (ModelState.IsValid)
             {
-                byte[] oldPhoto = currentCastMember.Photo;
+                int oldPhotoId = currentCastMember.PhotoId; // replace photo operation with photoid
 
                 currentCastMember.Name = castMember.Name;
                 currentCastMember.YearJoined = castMember.YearJoined;
@@ -234,12 +236,11 @@ namespace TheatreCMS.Controllers
 
                 if (file != null && file.ContentLength > 0)
                 {
-                    byte[] newPhoto = ImageUploadController.ImageBytes(file, out string _64);
-                    currentCastMember.Photo = newPhoto;
+                    currentCastMember.PhotoId = PhotoController.CreatePhoto(file, castMember.Name); // Call CreatePhoto method from Photocontroller and assign return value (int photo.PhotoId) to currentCastMember.PhotoId
                 }
                 else
                 {
-                    currentCastMember.Photo = oldPhoto;
+                    currentCastMember.PhotoId = oldPhotoId; //new attribute PhotoId
                 }
                 //castMember.CastMemberPersonID = db.Users.Find(userId).Id;
                 //db.Entry(castMember).State = EntityState.Modified;

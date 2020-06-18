@@ -26,6 +26,7 @@ namespace TheatreCMS
         {
             ConfigureAuth(app);
             createRolesandUsers();
+            SeedCastPhotos();
             SeedCastMembers();
             SeedProductions();
             SeedProductionPhotos();
@@ -129,15 +130,96 @@ namespace TheatreCMS
                 }
             }
         }
+        // I created a new method to seed the castmember images. I placed it before seedCastMembers() in order for those objects to reference the Photo database table
+        private void SeedCastPhotos()
+        {
+            var converter = new ImageConverter();
+            // create images first
+            string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
+
+            Image image1 = Image.FromFile(Path.Combine(imagesRoot, @"London_Bauman.png"));
+            Image image2 = Image.FromFile(Path.Combine(imagesRoot, @"JacQuelle_Davis.jpg"));
+            Image image3 = Image.FromFile(Path.Combine(imagesRoot, @"Adriana_Gantzer.jpg"));
+            Image image4 = Image.FromFile(Path.Combine(imagesRoot, @"Clara_Liis_Hillier.jpg"));
+            Image image5 = Image.FromFile(Path.Combine(imagesRoot, @"Kaia_Maarja_Hillier.jpg"));
+            Image image6 = Image.FromFile(Path.Combine(imagesRoot, @"Heath_Hyun_Houghton.jpg"));
+            Image image7 = Image.FromFile(Path.Combine(imagesRoot, @"Tom_Mounsey.jpg"));
+            Image image8 = Image.FromFile(Path.Combine(imagesRoot, @"Devon_Roberts.jpg"));
+
+            var photos = new List<Photo>
+            {
+               new Photo
+                {
+                    OriginalHeight = image1.Height,
+                    OriginalWidth = image1.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image1, typeof(byte[])),
+                    Title = "London Bauman"
+                },
+                new Photo
+                {
+                    OriginalHeight = image2.Height,
+                    OriginalWidth = image2.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image2, typeof(byte[])),
+                    Title = "Jacquelle Davis"
+                },
+                new Photo
+                {
+                    OriginalHeight = image3.Height,
+                    OriginalWidth = image3.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image3, typeof(byte[])),
+                    Title = "Adriana Gantzer"
+                },
+                new Photo
+                {
+                    OriginalHeight = image4.Height,
+                    OriginalWidth = image4.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image4, typeof(byte[])),
+                    Title = "Clara-Liis Hillier"
+                },
+                new Photo
+                {
+                    OriginalHeight = image5.Height,
+                    OriginalWidth = image5.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image5, typeof(byte[])),
+                    Title = "Kaia Maarja Hillier"
+                },
+                new Photo
+                {
+                    OriginalHeight = image6.Height,
+                    OriginalWidth = image6.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image6, typeof(byte[])),
+                    Title = "Heath Hyun Houghton"
+                },
+                new Photo
+                {
+                    OriginalHeight = image7.Height,
+                    OriginalWidth = image7.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image7, typeof(byte[])),
+                    Title = "Tom Mounsey"
+                },
+                new Photo
+                {
+                    OriginalHeight = image8.Height,
+                    OriginalWidth = image8.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image8, typeof(byte[])),
+                    Title = "Devon Roberts"
+                }
+            };
+            photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
+            context.SaveChanges();
+        }
+
+
 
         //Seeding database with dummy CastMembers
         private void SeedCastMembers()
         {
             //Add photos of cast members
-            string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
+            //string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
 
             var castMembers = new List<CastMember>
             {
+                // For each cast member I replaced CastMember.Photo with CastMember.PhotoId and assigned it the value of the corresponding Photo.PhotoId 
                 new CastMember{Name = "London Bauman", MainRole = Enum.PositionEnum.Actor,
                 Bio = "London Bauman is an actor, writer, sound designer, and Theatre Vertigo company member. " +
                 "As an artist, he is interested in immersive physical theatre, magical realism, and new collaborative works." +
@@ -145,7 +227,7 @@ namespace TheatreCMS
                 "Barnaby the Barkeep in the devised Western Melodrama Bang! (Action/Adventure’s pilot season) " +
                 "and sound design / original compositions for The Romeo and Juliet Project (Enso Theatre Ensemble). " +
                 "In August, London will be traveling to the Edinburgh Fringe Festival in Scotland as Robert in Chet Wilson’s new play Gayface.",
-                Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"London_Bauman.png"))),
+                PhotoId = context.Photo.Where(photo => photo.Title == "London Bauman").FirstOrDefault().PhotoId, 
                 CurrentMember = true,},
 
                 new CastMember{Name = "Jacquelle Davis", MainRole = Enum.PositionEnum.Actor,
@@ -153,7 +235,7 @@ namespace TheatreCMS
                 "She studied acting at Willamette University. Jacquelle performs regularly with her beloved improv group, " +
                 "No Filter. Her favorite roles include Jane Fonda in That Pretty Pretty; " +
                 "Or, The Rape Play, and Box Worker 2 in Box. Jacquelle loves puns and pickles..",
-                Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"JacQuelle_Davis.jpg"))),
+                PhotoId = context.Photo.Where(photo => photo.Title == "Jacquelle Davis").FirstOrDefault().PhotoId,
                 CurrentMember = true, },
 
                 new CastMember{Name = "Adriana Gantzer", MainRole = Enum.PositionEnum.Actor,
@@ -164,7 +246,7 @@ namespace TheatreCMS
                 "the Lapin Agile, and Georgeanne in Five Women Wearing the Same Dress. In her four years in Portland " +
                 "she has worked with Milagro, NORTHWEST THEATRE WORKSHOP, Mask & Mirror, and Twilight theaters, " +
                 "and at Prospect Theater Project in her hometown of Modesto, CA.",
-                Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Adriana_Gantzer.jpg"))),
+                PhotoId = context.Photo.Where(photo => photo.Title == "Adriana Gantzer").FirstOrDefault().PhotoId,
                 CurrentMember = true, },
 
                 new CastMember{Name = "Clara-Liis Hillier", MainRole = Enum.PositionEnum.Actor,
@@ -179,7 +261,7 @@ namespace TheatreCMS
                 " Education & Community Programs Associate and teaches Dance and Theater for NW Children's Theater " +
                 "and Riverdale High School. Thank you to Heath K. for his love and patience and Mom and " +
                 "Kaia for their strength and inspiration. For Ted.",
-                Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Clara_Liis_Hillier.jpg"))),
+                PhotoId = context.Photo.Where(photo => photo.Title == "Clara-Liis Hillier").FirstOrDefault().PhotoId,
                 CurrentMember = true, },
 
                 new CastMember{Name = "Kaia Maarja Hillier", MainRole = Enum.PositionEnum.Actor,
@@ -191,7 +273,7 @@ namespace TheatreCMS
                 "helping keep Theatre Vertigo and the Shoebox thriving-we need these space to stay alive and " +
                 "let our community grow and share their art. Much love to Mom, the Ensemble, the Associate Artists, " +
                 "Clara, and JQ.",
-                Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Kaia_Maarja_Hillier.jpg"))),
+                PhotoId = context.Photo.Where(photo => photo.Title == "Kaia Maarja Hillier").FirstOrDefault().PhotoId,
                 CurrentMember = true, },
 
                 new CastMember{Name = "Heath Hyun Houghton", MainRole = Enum.PositionEnum.Actor,
@@ -199,7 +281,7 @@ namespace TheatreCMS
                 " other Portland credits include work with Imago Theatre, Portland Shakespeare Project, Broadway Rose Theatre" +
                 ", and many more.  Exploring the relationships between the sciences and the arts is a focal point of his work" +
                 " as a collaborator and educator.",
-                Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Heath_Hyun_Houghton.jpg"))),
+                PhotoId = context.Photo.Where(photo => photo.Title == "Heath Hyun Houghton").FirstOrDefault().PhotoId,
                 CurrentMember = true, },
 
                 new CastMember{Name = "Tom Mounsey", YearJoined= 2012, MainRole = Enum.PositionEnum.Actor,
@@ -209,7 +291,7 @@ namespace TheatreCMS
                 "Theatre Collaborative, Action/Adventure Theatre, Lakewood Center for the Arts, Clackamas Repertory " +
                 "Theatre, and of course, Theatre Vertigo. Tom was a member of Theatre Vertigo from 2012 to 2017, " +
                 "and is very excited to be back as part of this amazing company.",
-                Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Tom_Mounsey.jpg"))),
+                PhotoId = context.Photo.Where(photo => photo.Title == "Tom Mounsey").FirstOrDefault().PhotoId,
                 CurrentMember = true, },
 
                 new CastMember{Name = "Devon Roberts", MainRole = Enum.PositionEnum.Actor,
@@ -219,10 +301,10 @@ namespace TheatreCMS
                 " of state: such as The Civilians, Tectonic Theater Project, Pig Iron and at the Edinburgh Fringe Festival." +
                 " When Devon isn’t working on and off stage, he can be found enjoying the local cuisine, or soaking up" +
                 " the natural beauty of Oregon. Devon is thankful for the opportunity to join the Vertigo Ensemble!",
-                Photo = ImageUploadController.InsertPhoto(Image.FromFile(Path.Combine(imagesRoot, @"Devon_Roberts.jpg"))),
+                PhotoId = context.Photo.Where(photo => photo.Title == "Devon Roberts").FirstOrDefault().PhotoId,
                 CurrentMember = true, },
 
-            };
+                };
 
             castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => c.Name, castMember));
             context.SaveChanges();
@@ -237,30 +319,30 @@ namespace TheatreCMS
                 new Production{Title = "Hamilton", Playwright = "Lin-Manuel Miranda", Description = "This is a musical inspired by the biography " +
                 "Alexander Hamilton by historian Ron Chernow. This musical tells the story of American Founding Father Alexander Hamilton through music " +
                 "that draws heavily from hip hop, as well as R&B, pop, soul, and traditional-style show tune. ", Runtime=90, OpeningDay = new DateTime(2020, 01, 01, 19, 30, 00),
-                ClosingDay = new DateTime(2020, 02, 29, 19, 30, 00), ShowtimeEve = new DateTime(2020, 01, 02, 19, 30, 00) , ShowtimeMat = new DateTime(2020, 01, 02, 22, 30, 00),
+                ClosingDay = new DateTime(2020, 02, 29, 19, 30, 00), ShowtimeEve = new DateTime(2020, 01, 02, 19, 30, 00) , ShowtimeMat = new DateTime(2020, 01, 02, 14, 30, 00),
                 TicketLink = "ticketsforyou.com", Season = 23, IsCurrent = true},
 
                 new Production{Title = "Phantom of the Opera", Playwright = "Andrew Lloyd Webber & Charles Hart", Description = "Based on a French " +
                 "novel of the same name by Gaston Leroux, its central plot revolves around a beautiful soprano, Christine Daae, who becomes the obesession " +
                 "of a mysterious, disfigured musical genius living in the subterranean labyrinth beneath the Paris Opera House.", Runtime=90, OpeningDay = new DateTime(2019, 10, 01, 17, 30, 00),
-                ClosingDay = new DateTime(2019, 11, 30, 17, 30, 00), ShowtimeEve = new DateTime(2019, 10, 04, 17, 30, 00), ShowtimeMat = new DateTime(2019, 10, 04, 19, 30, 00),
+                ClosingDay = new DateTime(2019, 11, 30, 17, 30, 00), ShowtimeEve = new DateTime(2019, 10, 04, 17, 30, 00), ShowtimeMat = new DateTime(2019, 10, 04, 12, 30, 00),
                 TicketLink = "ticketsforyou.com", Season = 23, IsCurrent = true},
 
                 new Production{Title = "The Book of Mormon", Playwright = "Trey Parker, Robert, Lopez, & Matt Stone", Description = "The Book of Mormon " +
                 "follows two Latter-Day Saints missionaries as they attempt to preach the faith of the Church of Jesus Christ of Latter-Day Saints to the " +
                 "inhabitants of a remote Ugandan village.", Runtime=90, OpeningDay = new DateTime(2021, 01, 01, 19, 30, 00), ClosingDay = new DateTime(2021, 02, 28, 19, 30, 00),
-                ShowtimeEve = new DateTime(2021, 01, 02, 19, 30, 00), ShowtimeMat = new DateTime(2021, 01, 02, 22, 30, 00), TicketLink = "ticketsforyou.com", Season = 24,
+                ShowtimeEve = new DateTime(2021, 01, 02, 19, 30, 00), ShowtimeMat = new DateTime(2021, 01, 02, 14, 30, 00), TicketLink = "ticketsforyou.com", Season = 24,
                 IsCurrent = false},
 
 				new Production{Title = "Wicked", Playwright = "Stephen Schwartz", Description = "This musical is told from the perspective of the witches of " +
 				"the Land of Oz; its plot begins before and continues after Dorothy Gale arrives in Oz from Kansas, and includes several references to the 1939 film.", Runtime=90,
-                OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00), ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00),
-				ShowtimeMat = new DateTime(2020, 10, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 24, IsCurrent = false},
+				OpeningDay = new DateTime(2020, 10, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 11, 30, 19, 30, 00),
+				ShowtimeEve = new DateTime(2020, 10, 01, 19, 30, 00), ShowtimeMat = new DateTime(2020, 10, 01, 14, 30, 00), TicketLink = "ticketsforyou.com", Season = 24, IsCurrent = false},
 
                 new Production{Title = "How to Succeed in Business Without Really Trying", Playwright = "Frank Loesser", Description = "This story concerns young, " +
                 "ambitious J. Pierrepont Finch, who, with the help of the book How to Succeed in Business Without Really Trying, rises from window washer to chairman of " +
-                "the board of the World Wide Wicket Company.", Runtime = 90, OpeningDay = new DateTime(2020, 04, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 05, 31, 19, 30, 00),
-                ShowtimeEve = new DateTime(2020, 04, 01, 19, 30, 00), ShowtimeMat = new DateTime(2020, 04, 01, 23, 30, 00), TicketLink = "ticketsforyou.com", Season = 23, IsCurrent = true},
+                "the board of the World Wide Wicket Company.", Runtime=90, OpeningDay = new DateTime(2020, 04, 01, 19, 30, 00), ClosingDay = new DateTime(2020, 05, 31, 19, 30, 00),
+                ShowtimeEve = new DateTime(2020, 04, 01, 19, 30, 00), ShowtimeMat = new DateTime(2020, 04, 01, 14, 30, 00), TicketLink = "ticketsforyou.com", Season = 23, IsCurrent = true},
 
                 // productions for season 20
                 new Production{Title = "Assistance", Playwright = "Leslye Headland", Description = "The small army of administrative assistants belonging to Daniel " +

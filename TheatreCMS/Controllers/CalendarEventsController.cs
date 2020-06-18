@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 
+
 namespace TheatreCMS.Controllers
 {
     public class CalendarEventsController : Controller
@@ -115,9 +116,8 @@ namespace TheatreCMS.Controllers
                 }
 
                 if (ViewData["Productions"] != null)
-
-
                     db.CalendarEvent.Add(calendarEvent);
+
                 db.SaveChanges();
                 //System.Diagnostics.Debug.WriteLine("This call was NOT made from ajax, therefore from Create MVC Page. isAjax: " + isAjax);
                 return RedirectToAction("Index");              
