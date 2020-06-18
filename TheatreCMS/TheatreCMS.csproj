@@ -675,6 +675,7 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Published.cshtml" />
+    <Content Include="Views\CalendarEvents\BulkAdd.cshtml" />
     <Content Include="Views\Account\UnauthorizedAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿@using TheatreCMS.Controllers
 @model TheatreCMS.Models.CastMember
 
+
 @{
   ViewBag.Title = "Details";
 }
@@ -16,17 +17,8 @@
                     @*This collumn holds everything on the left side of the page*@
                     <h2 id="Isaiah_castname">@Html.DisplayFor(model => model.Name)</h2> @*The id is for my javascript code*@
 
-                    @{
-                        string img = "";
-                        if (Model.Photo != null)
-                        {
-                            byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Photo, 100, 100);
-                            var base64 = System.Convert.ToBase64String(thumbBytes);
-                            img = String.Format("data:image/png;base64,{0}", base64);
-                        }
-                    }
                     @*Added an id for my javascript and bootstrap classes for reactive styling*@
-                    <img id="Isaiah_castImage" src="/Content/Images/CastMember.jpg" class="img-fluid imgRouned w-100" />
+                    <img id="Isaiah_castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })" class="img-fluid imgRouned w-100" />
 
                     <h6>User Name: @ViewBag.CurrentUser</h6>    @*Displays the cast members username*@
 
