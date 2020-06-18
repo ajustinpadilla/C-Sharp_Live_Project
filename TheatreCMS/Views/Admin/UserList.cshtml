@@ -22,22 +22,24 @@
     <tr class="tr-styling">
         <th class="th-styling">
             @Html.Raw(DecideCaret(Html.DisplayNameFor(model => model.UserName).ToString()))
-            @Html.ActionLink(Html.DisplayNameFor(model => model.UserName).ToString(), "UserList", "Admin", new { requestedSort = "UserName", currentSortOrder = ViewBag.SortOrder }, new { @style = "color:#FFFFFF;" })
+            @Html.ActionLink(Html.DisplayNameFor(model => model.UserName).ToString(), "UserList", "Admin", new { requestedSort = "UserName", currentSortOrder = ViewBag.SortOrder }, new { @class = "text-white" })
         </th>
         <th class="th-styling">
             @Html.Raw(DecideCaret(Html.DisplayNameFor(model => model.FirstName).ToString()))
-            @Html.ActionLink(Html.DisplayNameFor(model => model.FirstName).ToString(), "UserList", "Admin", new { requestedSort = "FirstName", currentSortOrder = ViewBag.SortOrder }, new { @style = "color:#FFFFFF;" })
+            @Html.ActionLink(Html.DisplayNameFor(model => model.FirstName).ToString(), "UserList", "Admin", new { requestedSort = "FirstName", currentSortOrder = ViewBag.SortOrder }, new { @class = "text-white" })
         </th>
         <th class="th-styling">
             @Html.Raw(DecideCaret(Html.DisplayNameFor(model => model.LastName).ToString()))
-            @Html.ActionLink(Html.DisplayNameFor(model => model.LastName).ToString(), "UserList", "Admin", new { requestedSort = "LastName", currentSortOrder = ViewBag.SortOrder }, new { @style = "color:#FFFFFF;" })
+            @Html.ActionLink(Html.DisplayNameFor(model => model.LastName).ToString(), "UserList", "Admin", new { requestedSort = "LastName", currentSortOrder = ViewBag.SortOrder }, new { @class = "text-white" })
         </th>
         <th class="th-styling">
             @Html.Raw(DecideCaret(Html.DisplayNameFor(model => model.Role).ToString()))
-            @Html.ActionLink(Html.DisplayNameFor(model => model.Role).ToString(), "UserList", "Admin", new { requestedSort = "Role", currentSortOrder = ViewBag.SortOrder }, new { @style = "color:#FFFFFF;" })
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Role).ToString(), "UserList", "Admin", new { requestedSort = "Role", currentSortOrder = ViewBag.SortOrder }, new { @class = "text-white" })
         </th>
         <th class="th-styling">
+            <div class="text-white">
             Options
+            </div>
         </th>
     </tr>
 
@@ -56,18 +58,25 @@
     <td class="td-styling">
         @Html.DisplayFor(modelItem => item.Role)
     </td>
+    <td class="text-center">
     @if (item.Role == "Subscriber")
     {
-        <td>
-            <a href="@Url.Action("Details", "Subscriber", new { id = item.SubscriberPerson.SubscriberId, area = "Subscribers" }, null)">Details |</a>
-        </td>
-    }
+        
+        <a href="@Url.Action("Details", "Subscriber", new { id = item.SubscriberPerson.SubscriberId, area = "Subscribers" }, null)">Details </a> @:|
+        <a href= "@Url.Action("Edit", "Subscriber", new { id = item.SubscriberPerson.SubscriberId, area="Subscribers"}, null)"> Edit </a>
+       
+    }   
     @if (item.Role == "Member")
     {
-        <td>
-            @Html.ActionLink("Details", "Details", "CastMember", new { id = item.CastMemberUserID }, null) |
-        </td>
+
+           @*@Html.ActionLink("Details", "Details", "CastMember", new { id = item.CastMemberUserID }, null) this was the way the link for CastMember Details was previously implemented*@ 
+        
+         <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberUserID}, null)">Details </a>@:|
+         <a href="@Url.Action("Edit", "CastMembers", new { id = item.CastMemberUserID}, null)"> Edit </a>
+       
+       
     }
+    </td>
 </tr>
 
 }

@@ -14,7 +14,9 @@ namespace TheatreCMS.Models
         [Key]
         public int EventId { get; set; }            // event primary key
         public string Title { get; set; }           // event title
+        [Column(TypeName="datetime2")]
         public DateTime StartDate { get; set; }     // event start date and time
+        [Column(TypeName = "datetime2")]
         public DateTime EndDate { get; set; }       // event end date and time
         public int? TicketsAvailable { get; set; }  // number of tickets remaining
         public string Color { get; set; }           // event color when rendered in full calendar

@@ -182,6 +182,7 @@ namespace TheatreCMS.Controllers
         // GET: Productions/Create
         public ActionResult Create()
         {
+            ViewData["current_season"] = AdminSettingsReader.CurrentSettings().current_season;
             return View();
         }
 
