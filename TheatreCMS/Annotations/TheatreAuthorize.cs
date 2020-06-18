@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace TheatreCMS.Controllers
 {
-    public class TheatreAuthorizeController : AuthorizeAttribute
+    public class TheatreAuthorize : AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {

@@ -198,7 +198,7 @@
     <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Controllers\RentalRequestController.cs" />
-    <Compile Include="Controllers\TheatreAuthorizeController.cs" />
+    <Compile Include="Annotations\TheatreAuthorize.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
     <Compile Include="Enum\Position.cs" />
     <Compile Include="Global.asax.cs">
