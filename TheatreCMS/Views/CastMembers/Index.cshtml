@@ -23,20 +23,22 @@
     @foreach (var item in Model)
     {
         <div class="card castImageContainer">
+
+            @* This code determines if Cast Memeber has no photo.  If so, use default CastMember.jpg for photo. *@
             @{
                 string img = "";
-                if (item.Photo != null)
+                if (item.PhotoId != 0)
                 {
-                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Photo, 100, 100);
-                    var base64 = System.Convert.ToBase64String(thumbBytes);
-                    img = String.Format("data:image/png;base64,{0}", base64);
+                    img = Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId });       /*If cast member has a photo, display this as image-cap*/
                 }
                 else
                 {
-                    img = @Url.Content("~/Content/Images/CastMember.jpg");       /*If cast member has no photo display this as image-cap*/
+                    img = Url.Content("~/Content/Images/CastMember.jpg");       /*If cast member has no photo, display this as image-cap*/
                 }
             }
+
             <a href="@Url.Action("Details", "CastMembers", new { id = item.CastMemberID })"> <img class="card-img-top" id="castImage" src="@img" /> </a>
+
             @*<div class="castMiddle mr-3 mb-1 pb-0">*@
             <div class="card-body">
                 <h4 class="card-title">
