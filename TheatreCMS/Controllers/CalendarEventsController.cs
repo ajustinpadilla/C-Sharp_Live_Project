@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using TheatreCMS.Models;
 using System.Web.Mvc.Html;
 
+
 namespace TheatreCMS.Controllers
 {
     public class CalendarEventsController : Controller
@@ -27,7 +28,7 @@ namespace TheatreCMS.Controllers
         public JsonResult GetCalendarEvents()
         {
             var events = db.CalendarEvent.ToArray();
-           
+
             return Json(db.CalendarEvent.Select(x => new
             {
                 id = x.EventId,
@@ -109,9 +110,8 @@ namespace TheatreCMS.Controllers
                 }
 
                 if (ViewData["Productions"] != null)
-
-
                     db.CalendarEvent.Add(calendarEvent);
+
                 db.SaveChanges();
                 //System.Diagnostics.Debug.WriteLine("This call was NOT made from ajax, therefore from Create MVC Page. isAjax: " + isAjax);
                 return RedirectToAction("Index");              
@@ -130,13 +130,13 @@ namespace TheatreCMS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CalendarEvent calendarEvents = db.CalendarEvent.Find(id);
-            
+
             if (calendarEvents == null)
             {
                 return HttpNotFound();

@@ -302,9 +302,47 @@
     padding-right: 13px;
 }
 
-.production-index-img {
-    border-radius: 6px;
+        .production-index-img {
+            border-radius: 6px;
+        }
+
+/* Productions Index Calendar Styling*/
+
+.prod-index-cal {
+    width: 700px;
 }
+@media screen and (max-width: 767px) {
+    .prod-index-cal {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .prod-index-cal {
+        width: 350px;
+    }
+}
+
+.prod-index-header .fa-calendar-alt {
+    font-size: 22px;
+}
+
+.palette-container .prod-index-cal .fc-event {
+    background-color: var(--secondary-color);
+    border: 2px solid transparent;
+    padding: 3px;
+}
+
+.palette-container .prod-index-cal .fc-content {
+    background-color: initial;
+    border: initial;
+}
+
+.production-index-container .card {
+    border: 2px solid rgba(0, 0, 0, 0.125);
+}
+
+
 /*-----Classes and styling for LoginFailure view------*/
 /*using button styles from sponsor index to match theme 
 .button-redirect { 
