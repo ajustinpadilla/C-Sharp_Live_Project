@@ -57,21 +57,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Photo)
+            @Html.Label("Photo") @*Change label from PhotoId to Photo*@
         </dt>
 
         <dd>
 
-                @{
-                    string img = "";
-                    if (Model.Photo != null)
-                    {
-                        byte[] thumbBytes = ImageUploadController.ImageThumbnail(Model.Photo, 100, 100);
-                        var base64 = System.Convert.ToBase64String(thumbBytes);
-                        img = String.Format("data:image/png;base64,{0}", base64);
-                    }
-                }
-                <img src="@img" />
+
+
+          @*Call DisplayPhoto to display cast member image*@
+            <img class="castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })" style="width:100%" />
 
         </dd>
 
