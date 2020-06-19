@@ -670,6 +670,12 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="webfonts\BebasNeue-Regular.ttf" />
     <Content Include="webfonts\BebasNeue-Regular.woff2" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Published.cshtml" />
     <Content Include="Views\Awards\Create.cshtml" />
     <Content Include="Views\Awards\Delete.cshtml" />
     <Content Include="Views\Awards\Details.cshtml" />
