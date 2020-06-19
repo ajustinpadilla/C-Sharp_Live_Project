@@ -97,6 +97,8 @@ namespace TheatreCMS.Models
         public DbSet<News> News { get; set; }
 
         public System.Data.Entity.DbSet<TheatreCMS.ViewModels.NewsletterListVm> NewsletterListVms { get; set; }
+
+        public System.Data.Entity.DbSet<TheatreCMS.Models.Award> Awards { get; set; }
     }
 
 }
