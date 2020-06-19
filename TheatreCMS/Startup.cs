@@ -26,8 +26,8 @@ namespace TheatreCMS
         {
             ConfigureAuth(app);
             createRolesandUsers();
-            SeedCastPhotos();
-            SeedCastMembers();
+            //SeedCastPhotos();
+            //SeedCastMembers();
             SeedProductions();
             SeedProductionPhotos();
             SeedParts();
@@ -634,7 +634,7 @@ namespace TheatreCMS
                 "becomes famous following a mistake in the itinerary of an ordinary business trip which takes him to Valparaíso, Chile, instead of Valparaiso, Indiana. " +
                 "The 1999 play, which incorporates live performance with video projection, looks at how the media has affected modern mankind.",
                 OpeningDay = new DateTime(2006, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 6, 01, 19, 00, 00),
-                ShowtimeMat = new DateTime(2006, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+                ShowtimeMat = new DateTime(2006, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
 
                 new Production{Title = "Escape from Happiness", Playwright = "George F. Walker", Description = "Escape from Happiness takes place in the kitchen of an old, "+
                 "slightly rundown house in a not-so-classy section of a large city. It's home to Nora, a good-natured, slow-moving, fairly batty middle-aged woman; "+
@@ -642,7 +642,7 @@ namespace TheatreCMS
                 "who is dying of some unspecified disease; Tom is, according to Nora, a stranger who looks exactly like (and coincidentally has the same name as) her husband, "+
                 "who deserted the family ten years ago after trying to burn down the house",
                 OpeningDay = new DateTime(2006, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 8, 01, 19, 00, 00),
-                ShowtimeMat = new DateTime(2006, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+                ShowtimeMat = new DateTime(2006, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
 
                 new Production{Title = "Tango", Playwright = "Stawomir Mrozek", Description = "Tango is set in a non-defined time in the home of Stomil and Eleonora, "+
                 "parents of Artur. The place is disorganized not only in the way it is furnished, but also through the complete lack of house rules and common values. "+
@@ -650,14 +650,14 @@ namespace TheatreCMS
                 "but despite that he tries to make rules and grant some things meaning. Artur revolts against his father's slovenliness and his mother’s double "+
                 "standards of morality.",
                 OpeningDay = new DateTime(2006, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 10, 01, 19, 00, 00),
-                ShowtimeMat = new DateTime(2006, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+                ShowtimeMat = new DateTime(2006, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
 
                 new Production{Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum", Playwright = "Larry Gelbart and Burt Shevelove", Description = "Inspired "+
                 "by the farces of the ancient Roman playwright Plautus, the musical tells the bawdy story of a slave named Pseudolus and his attempts to win his freedom by helping "+
                 "his young master woo the girl next door. The plot displays many classic elements of farce, including puns, the slamming of doors, cases of mistaken identity, and "+
                 "satirical comments on social class.",
                 OpeningDay = new DateTime(2007, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2006, 1, 01, 19, 00, 00),
-                ShowtimeMat = new DateTime(2007, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+                ShowtimeMat = new DateTime(2007, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
 
 
             };
@@ -706,6 +706,36 @@ namespace TheatreCMS
             Image image25 = Image.FromFile(Path.Combine(imagesRoot, @"velvet.jpg"));
             Image image26 = Image.FromFile(Path.Combine(imagesRoot, @"aloha.jpg"));
             Image image27 = Image.FromFile(Path.Combine(imagesRoot, @"The_skin_of_our_teeth.jpg"));
+            // images for season 15
+            Image image28 = Image.FromFile(Path.Combine(imagesRoot, @"cloud9.jpg"));
+            Image image29 = Image.FromFile(Path.Combine(imagesRoot, @"huntergatherers.jpg"));
+            Image image30 = Image.FromFile(Path.Combine(imagesRoot, @"americanpilot.jpg"));
+            Image image31 = Image.FromFile(Path.Combine(imagesRoot, @"thegooddoctor.jpg"));
+            ////images for season 14
+            Image image32 = Image.FromFile(Path.Combine(imagesRoot, @"deadmanscellphone.jpg"));
+            Image image33 = Image.FromFile(Path.Combine(imagesRoot, @"99ways.jpg"));
+            Image image34 = Image.FromFile(Path.Combine(imagesRoot, @"addingmachine.jpg"));
+            Image image35 = Image.FromFile(Path.Combine(imagesRoot, @"youcanttakeitwithyou.jpg"));
+            ////images for season 13
+            //Image image36 = Image.FromFile(Path.Combine(imagesRoot, @"therubysunrise.jpg"));
+            //Image image37 = Image.FromFile(Path.Combine(imagesRoot, @"boomjpg.jpg"));
+            //Image image38 = Image.FromFile(Path.Combine(imagesRoot, @"godsear.jpg"));
+            //Image image39 = Image.FromFile(Path.Combine(imagesRoot, @"lendmeatenor.jpg"));
+            //images for season 12
+            //Image image40 = Image.FromFile(Path.Combine(imagesRoot, @"pterodactyls.jpg"));
+            //Image image41 = Image.FromFile(Path.Combine(imagesRoot, @"Romance.jpg"));
+            //Image image42 = Image.FromFile(Path.Combine(imagesRoot, @"Romance.jpg"));
+            //Image image43 = Image.FromFile(Path.Combine(imagesRoot, @"Romance.jpg"));
+            ////images for season 11
+            //Image imagee44 = Image.FromFile(Path.Combine(imagesRoot,@"deadmanscellphone.jpg"));
+            //Image image45 = Image.FromFile(Path.Combine(imagesRoot, @"99ways.jpg"));
+            //Image image46 = Image.FromFile(Path.Combine(imagesRoot, @"addingmachine.jpg"));
+            //Image image47 = Image.FromFile(Path.Combine(imagesRoot, @"youcanttakeitwithyou.jpg"));
+            ////images for season 10
+            //Image image48 = Image.FromFile(Path.Combine(imagesRoot, @"deadmanscellphone.jpg"));
+            //Image image49 = Image.FromFile(Path.Combine(imagesRoot, @"99ways.jpg"));
+            //Image image50 = Image.FromFile(Path.Combine(imagesRoot, @"addingmachine.jpg"));
+            //Image image51 = Image.FromFile(Path.Combine(imagesRoot, @"youcanttakeitwithyou.jpg"));
 
             var photos = new List<Photo>
             {
@@ -903,7 +933,64 @@ namespace TheatreCMS
                     PhotoFile = (byte[])converter.ConvertTo(image27, typeof(byte[])),
                     Title = "Anonymous Theatre:  The Skin of Our Teeth Image"
                 },
-
+                 // Production photos for season 15
+                new Photo
+                {
+                    OriginalHeight = image28.Height,
+                    OriginalWidth = image28.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image28, typeof(byte[])),
+                    Title = "Cloud 9"
+                },
+                new Photo
+                {
+                    OriginalHeight = image29.Height,
+                    OriginalWidth = image29.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image29, typeof(byte[])),
+                    Title = "Hunter Gatherers"
+                },
+                new Photo
+                {
+                    OriginalHeight = image30.Height,
+                    OriginalWidth = image30.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image30, typeof(byte[])),
+                    Title = "The American Pilot"
+                },
+                new Photo
+                {
+                    OriginalHeight = image31.Height,
+                    OriginalWidth = image31.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image31, typeof(byte[])),
+                    Title = "Anonymous Theatre:  The Good Doctor"
+                },
+                //                // Production photos for season 14
+                new Photo
+                {
+                    OriginalHeight = image32.Height,
+                    OriginalWidth = image32.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image28, typeof(byte[])),
+                    Title = "Dead Man's Cell Phone"
+                },
+                new Photo
+                {
+                    OriginalHeight = image33.Height,
+                    OriginalWidth = image33.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image29, typeof(byte[])),
+                    Title = "99 Ways to Fuck a Swan"
+                },
+                new Photo
+                {
+                    OriginalHeight = image34.Height,
+                    OriginalWidth = image34.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image30, typeof(byte[])),
+                    Title = "The Adding Machine"
+                },
+                new Photo
+                {
+                    OriginalHeight = image35.Height,
+                    OriginalWidth = image35.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image31, typeof(byte[])),
+                    Title = "Anonymous Theatre: You Can't Take It with You"
+                },
             };
             photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
             context.SaveChanges();
@@ -1106,7 +1193,63 @@ namespace TheatreCMS
                     Title = "Anonymous Theatre:  The Skin of Our Teeth",
                     Description = "Anonymous Theatre:  The Skin of Our Teeth cover",
                     Production = context.Productions.Where(name => name.Title == "Anonymous Theatre:  The Skin of Our Teeth").FirstOrDefault()
-                }
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Cloud 9").FirstOrDefault().PhotoId,
+                    Title = "Cloud 9",
+                    Description = "Cloud 9 cover",
+                    Production = context.Productions.Where(name => name.Title == "Cloud 9").FirstOrDefault()
+                },
+                //new ProductionPhotos
+                //{
+                //    PhotoId = context.Photo.Where(photo => photo.Title == "Hunter Gatherers").FirstOrDefault().PhotoId,
+                //    Title = "Hunter Gatherers",
+                //    Description = "Hunter Gatherers cover",
+                //    Production = context.Productions.Where(name => name.Title == "Hunter Gatherers").FirstOrDefault()
+                //},
+                //new ProductionPhotos
+                //{
+                //    PhotoId = context.Photo.Where(photo => photo.Title == "The American Pilot").FirstOrDefault().PhotoId,
+                //    Title = "The American Pilot",
+                //    Description = "The American Pilot cover",
+                //    Production = context.Productions.Where(name => name.Title == "The American Pilot").FirstOrDefault()
+                //},
+                //new ProductionPhotos
+                //{
+                //    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre:  The Good Doctor").FirstOrDefault().PhotoId,
+                //    Title = "Anonymous Theatre:  The Good Doctor",
+                //    Description = "Anonymous Theatre:  The Good Doctor",
+                //    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre:  The Good Doctor").FirstOrDefault()
+                //},
+                //new ProductionPhotos
+                //{
+                //    PhotoId = context.Photo.Where(photo => photo.Title == "Dead Man's Cell Phone").FirstOrDefault().PhotoId,
+                //    Title = "Dead Man's Cell Phone",
+                //    Description = "Dead Man's Cell Phone",
+                //    Production = context.Productions.Where(name => name.Title == "Dead Man's Cell Phone").FirstOrDefault()
+                //},
+                //new ProductionPhotos
+                //{
+                //    PhotoId = context.Photo.Where(photo => photo.Title == "99 Ways to Fuck a Swan").FirstOrDefault().PhotoId,
+                //    Title = "99 Ways to Fuck a Swan",
+                //    Description = "99 Ways to Fuck a Swan cover",
+                //    Production = context.Productions.Where(name => name.Title == "99 Ways to Fuck a Swan").FirstOrDefault()
+                //},
+                //new ProductionPhotos
+                //{
+                //    PhotoId = context.Photo.Where(photo => photo.Title == "The Adding Machine").FirstOrDefault().PhotoId,
+                //    Title = "The Adding Machine",
+                //    Description = "The Adding Machine cover",
+                //    Production = context.Productions.Where(name => name.Title == "The Adding Machine").FirstOrDefault()
+                //},
+                //new ProductionPhotos
+                //{
+                //    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: You Can't Take It with You").FirstOrDefault().PhotoId,
+                //    Title = "Anonymous Theatre: You Can't Take It with You",
+                //    Description = "Anonymous Theatre: You Can't Take It with You",
+                //    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: You Can't Take It with You").FirstOrDefault()
+                //},
             };
             productionphoto.ForEach(prodphoto => context.ProductionPhotos.AddOrUpdate(p => p.PhotoId, prodphoto));
             context.SaveChanges();
