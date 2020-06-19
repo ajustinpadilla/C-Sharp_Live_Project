@@ -483,6 +483,183 @@ namespace TheatreCMS
                 " allegory captures the human spirit – of brilliance, idiocy and ultimately sweet survival.",
                 OpeningDay = new DateTime(2017, 04, 01, 14, 30, 00), ClosingDay = new DateTime(2017, 05, 28, 19, 30, 00), ShowtimeEve = new DateTime(2017, 04, 01, 19, 30, 00),
                 ShowtimeMat = new DateTime(2017, 04, 01, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 16, IsCurrent = false},
+
+                //productions for season 15
+
+                new Production{Title = "Cloud 9", Playwright = "Caryl Churchill", Description = "Clive, A British colonial administrator, lives with his family, " +
+                "a governess and servant during turbulent times in Africa. The natives are rioting and Mrs Saunders, a widow, comes to them to seek safety. "+
+                "Her arrival is soon followed by Harry Bagley, an explorer. The governess Ellen, who reveals herself to be a lesbian, is forced into marriage " +
+                "with Harry after his sexuality is discovered and condemned by Clive.",
+                OpeningDay = new DateTime(2011, 06, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 06, 30, 19, 00, 00), ShowtimeEve = new DateTime(2011, 06, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 06, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 165, Season = 15, IsCurrent = false},
+
+                new Production{Title = "Hunter Gatherers", Playwright = "Peter Sinn Nachtrieb", Description = "Pam and Richard are hosting their best friends, " +
+                "Wendy and Tom, for an annual dinner get-together. An animal sacrifice kicks off the evening, followed by a little more sex, violence, deception, " +
+                "wrestling, and dancing than at previous parties. A darkly comic evening where the line between civilized and primal man is blurred, " +
+                "and where not everyone will survive long enough to enjoy the brownies for dessert." ,
+                OpeningDay = new DateTime(2011, 08, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 08, 30, 19, 00, 00), ShowtimeEve = new DateTime(2011, 08, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 08, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime =120, Season = 15, IsCurrent = false},
+
+                new Production{Title = "The American Pilot", Playwright = "David Greig", Description = "An American pilot has crash-landed in a distant country "+ 
+                "rent by civil war. Since the Americans fund the country's oppressive government and the pilot has landed in rural, rebel territory, " +
+                "he represents both a temptation and an opportunity." ,
+                OpeningDay = new DateTime(2011, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 11, 01, 19, 00, 00), ShowtimeEve = new DateTime(2011, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 90, Season = 15, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: The Good Doctor", Playwright = "Neil Simon", Description = "A combination of Neil Simon and Chekhov, "+ 
+                "The Good Doctor, a comedy with music, is, by turns, charming, hilarious, sad, and touching. It centers around a writer, "+ 
+                "who speaks to the audience and shares his writing with them, throughout one day. He presents them with a plethora of scenes: some are from his childhood, " +
+                "others are his family and friends, and still others are his own life experiences. The audience meets a variety of characters, all of whom " +
+                "are immediately relatable and strikingly human." ,
+                OpeningDay = new DateTime(2011, 12, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 12, 30, 19, 00, 00), ShowtimeEve = new DateTime(2011, 12, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 12, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 15, IsCurrent = false},
+
+                // productions for season 14
+
+                new Production{Title = "Dead Man's Cell Phone", Playwright = "Sarah Ruhl", Description = "Dead Man's Cell Phone explores the paradox of modern " +
+                "technology's ability to both unite and isolate people in the digital age. The play was awarded a Helen Hayes Award for Outstanding New Play.",
+                OpeningDay = new DateTime(2010, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2010, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2010, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2010, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 14, IsCurrent = false},
+
+                new Production{Title = "99 Ways to Fuck a Swan", Playwright = "Kim Rosenstock", Description = "A long, long time ago, Leda makes love to a swan. 3,000 years later, "+
+                "Michelangelo paints a picture. 350 years later, Rudolph buys it. 130 years later, Dave and Fiona stand in a museum, gazing at what remains. " +
+                "Set in a world of bizarre romantic obsessions and everyday ineptitude, 99 WAYS TO FUCK A SWAN explores the dark corners of desire and the eternal mysteries of love",
+                OpeningDay = new DateTime(2010, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2010, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2010, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2010, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 14, IsCurrent = false},
+
+                new Production{Title = "The Adding Machine", Playwright = "Elmer Rice", Description = "Elmer Rice’s The Adding Machine centers around the life, death, and afterlife, "+
+                "of a man named Zero. He and his wife live in a society dominated by reverence for financial gain and opportunism, with an emphasis on morality and rigid determinations " +
+                "of what is right and wrong. The day after Mrs. Zero successfully plants a seed of ambition in her husband, Mr. Zero is fired from his monotonous accounting job. " +
+                "Having come in for the day hoping to ask for a raise for his consistent work, Zero’s spirits are crushed when his boss tells him he is being replaced by an adding machine.",
+                OpeningDay = new DateTime(2010, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2010, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2010, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2010, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 100, Season = 14, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: You Can't Take It with You", Playwright = "George S. Kaufman and Moss Hart", Description = "Family can do crazy things to people." +
+                "And the Sycamore family is a little crazy to begin with. Wily Grandpa Vanderhof, heads the wacky Sycamore household and is also a leader of a happily eccentric gang " +
+                "of snake collectors, cunning revolutionaries, ballet dancers and skyrocket makers. But when the youngest daughter brings her fiancé and his buttoned-up parents over " +
+                "for dinner, that’s when the real fireworks start to fly.",
+                OpeningDay = new DateTime(2011, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2011, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 14, IsCurrent = false},
+
+                // productions for Season 13
+
+                new Production{Title = "The Ruby Sunrise", Playwright = "Rinne Groff", Description = "Setting off from a farm in Indiana as a young girl Ruby struggles to turn " +
+                "her dream of the first all-electrical television system into a reality. This play also jumps forward to a McCarthy-era New York TV studio where Ruby’s heirs fight over "+
+                "how her story should be told.",
+                OpeningDay = new DateTime(2009, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2009, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2009, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2009, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 13, IsCurrent = false},
+
+                new Production{Title = "Boom", Playwright = "Peter Sinn Nachtrieb", Description = "Jules, a grad student in marine biology, and Jo, a journalism student, "+
+                "meet one Saturday night in Jules’s small underground laboratory on a university campus, after Jo answers Jules’s online personal ad offering an encounter that promises "+
+                "/“to change the course of the world./” During his research on a deserted tropical island, Jules discovers patterns among the behavior of fish that perdict the end of most earthly life. " +
+                "He then turns his tiny lab/apartment into a place to wait out the disaster and begin remaking humanity.",
+                OpeningDay = new DateTime(2009, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2009, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2009, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2009, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 13, IsCurrent = false},
+
+                new Production{Title = "God's Ear", Playwright = "Jenny Schwartz", Description = "God's Ear follows a family in the aftermath of the tragic drowning of their son. " +
+                "The characters try their hardest to reach out to one another, but socially prescribed behaviors and language, meant to help them, never quite do. Though not entirely " +
+                "set in reality, God's Ear is honest and genuine in its exploration of grief. ",
+                OpeningDay = new DateTime(2009, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2009, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2009, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2009, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 13, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: Lend Me A Tenor", Playwright = "Ken Ludwig", Description = "World-renowned tenor Tito Merelli has signed on to play Otello " +
+                "at a Cleveland opera company in the fall of 1934. He arrives late and, through a set of crazy circumstances, passes out after mixing wine with a huge dose of tranquilizers. "+
+                "Believing that the divo is dead, the excitable opera manager taps his hapless assistant, an aspiring singer named Max, to suit up as the Moor and replace Merelli. "+
+                "Meanwhile, the tenor’s jealous wife, his ambitious female co-star, Max’s young girlfriend and the flirtatious head of the opera guild are on the scene fighting "+
+                "for the star’s attention.",
+                OpeningDay = new DateTime(2010, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2010, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2010, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2010, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 13, IsCurrent = false},
+
+
+
+                // productions for Season 12
+
+                new Production{Title = "Pterodactyls", Playwright = "Nicky Silver", Description = "Pterodactyls is an absurdist black comedy about the demise of the Duncan family, "+
+                "and, by extension, the species. Emma Duncan, a hypochondriac with memory problems, and her orphaned fiancé, Tommy, confront her mother, Grace, with the news of their "+
+                "intended marriage. Disapproving at first, Grace acquiesces and puts Tommy to work as a maid",
+                OpeningDay = new DateTime(2008, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2008, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2008, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2008, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 12, IsCurrent = false},
+
+                new Production{Title = "Romance", Playwright = "David Mamet", Description = "Pulitzer Prize—winning playwright David Mamet's Romance is an uproarious, take-no-prisoners "+
+                "courtroom comedy that gleefully lampoons everyone from lawyers and judges, to Arabs and Jews, to gays and chiropractors. It's hay fever season, and in a courtroom "+
+                "a judge is popping antihistamines.",
+                OpeningDay = new DateTime(2008, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2008, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2008, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2008, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 12, IsCurrent = false},
+
+                new Production{Title = "Freakshow", Playwright = "Carson Kreitzer", Description = "At the turn of the last century, a traveling Freakshow grinds to a halt. "+
+                "Things are changing. The anger of being stared at, trapped, caged, is at war with the comfort of knowing your place in the universe. But the growing defiance "+
+                "of the freaks is no act. Will the Dog Faced Woman break her bonds from the show, collapsing the fragile bubble of sustaining interdependence? "+
+                "Can the jaded Ringmaster, a profoundly broken man, find redemption through his love for the Woman With No Arms and No Legs? In this poetic, gritty world, "+
+                "there may only be one way out.",
+                OpeningDay = new DateTime(2008, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2008, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2008, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2008, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 12, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: Macbeth", Playwright = "William Shakespeare", Description = "Macbeth is a Scottish general and the thane of Glamis "+
+                "who is led to wicked thoughts by the prophecies of the three witches, especially after their prophecy that he will be made thane of Cawdor comes true. "+
+                "Macbeth is a brave soldier and a powerful man, but he is not a virtuous one.",
+                OpeningDay = new DateTime(2009, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2009, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2009, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2009, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 12, IsCurrent = false},
+
+
+                // productions for Season 11
+
+                new Production{Title = "A Doll's House  ", Playwright = "Henrik Ibsen", Description = "The play centres on an ordinary family—Torvald Helmer, a bank lawyer, "+
+                "his wife Nora, and their three little children. Torvald supposes himself the ethical member of the family, while his wife assumes the role of the pretty " +
+                "and irresponsible little woman in order to flatter him.",
+                OpeningDay = new DateTime(2007, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2007, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2007, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "Where's My Money? ", Playwright = "John Patrick Shanley", Description = "When Celeste, an out-of-work actor who's cheating on her boyfriend " +
+                "with a married man, runs into Natalie, whom she hasn't seen in years, the two have some catching up to do. Natalie, an accountant married to a lawyer, "+
+                "gives the impression of being very together and does not approve of Celeste's lifestyle.",
+                OpeningDay = new DateTime(2007, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2007, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2007, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "The Long Christmas Ride Home", Playwright = "Paula Vogel", Description = "The Long Christmas Ride Home dramatises a road trip by two parents " +
+                "and their three young children to visit grandparents for the Christmas holiday, and the emotional turmoil that they undergo. A significant element of the production schema " +
+                "is a Western, contemporary employment of bunraku, an ancient form of Japanese puppetry",
+                OpeningDay = new DateTime(2007, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2007, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2007, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: Rumors", Playwright = "Neil Simon", Description = "The play starts with Ken Gorman and his wife, Chris Gorman, " +  
+                "at the 10th anniversary party of Charlie Brock, the Deputy Mayor of New York, and his wife, Myra. Unfortunately, things are not going quite to plan. " +
+                "All the kitchen staff are gone, Myra is missing, and Charlie has shot himself in the head",
+                OpeningDay = new DateTime(2008, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2008, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2008, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2008, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+
+
+                // productions for Season 10
+                new Production{Title = "Valparaiso", Playwright = "Don DeLillo", Description = "Valparaiso is Don DeLillo 's second play, in which a man suddenly "+
+                "becomes famous following a mistake in the itinerary of an ordinary business trip which takes him to Valparaíso, Chile, instead of Valparaiso, Indiana. " +
+                "The 1999 play, which incorporates live performance with video projection, looks at how the media has affected modern mankind.",
+                OpeningDay = new DateTime(2006, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "Escape from Happiness", Playwright = "George F. Walker", Description = "Escape from Happiness takes place in the kitchen of an old, "+
+                "slightly rundown house in a not-so-classy section of a large city. It's home to Nora, a good-natured, slow-moving, fairly batty middle-aged woman; "+
+                "her daughter Gail, who is tough, sensible, and a little high-strung; Gail's husband Junior, an affable but rather dim fellow. Also living here is Tom, "+
+                "who is dying of some unspecified disease; Tom is, according to Nora, a stranger who looks exactly like (and coincidentally has the same name as) her husband, "+
+                "who deserted the family ten years ago after trying to burn down the house",
+                OpeningDay = new DateTime(2006, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "Tango", Playwright = "Stawomir Mrozek", Description = "Tango is set in a non-defined time in the home of Stomil and Eleonora, "+
+                "parents of Artur. The place is disorganized not only in the way it is furnished, but also through the complete lack of house rules and common values. "+
+                "Everyone can do whatever they want. It seems that perplexity may be the word that describes their lives best. Artur’s attempts are bound to fail, "+
+                "but despite that he tries to make rules and grant some things meaning. Artur revolts against his father's slovenliness and his mother’s double "+
+                "standards of morality.",
+                OpeningDay = new DateTime(2006, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum", Playwright = "Larry Gelbart and Burt Shevelove", Description = "Inspired "+
+                "by the farces of the ancient Roman playwright Plautus, the musical tells the bawdy story of a slave named Pseudolus and his attempts to win his freedom by helping "+
+                "his young master woo the girl next door. The plot displays many classic elements of farce, including puns, the slamming of doors, cases of mistaken identity, and "+
+                "satirical comments on social class.",
+                OpeningDay = new DateTime(2007, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2006, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2007, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+
             };
 
             productions.ForEach(Production => context.Productions.AddOrUpdate(d => d.Title, Production));
