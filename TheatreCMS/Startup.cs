@@ -710,32 +710,32 @@ namespace TheatreCMS
             Image image28 = Image.FromFile(Path.Combine(imagesRoot, @"cloud9.jpg"));
             Image image29 = Image.FromFile(Path.Combine(imagesRoot, @"huntergatherers.jpg"));
             Image image30 = Image.FromFile(Path.Combine(imagesRoot, @"americanpilot.jpg"));
-            Image image31 = Image.FromFile(Path.Combine(imagesRoot, @"thegooddoctor.jpg"));
-            ////images for season 14
+            Image image31 = Image.FromFile(Path.Combine(imagesRoot, @"doctor.jpg"));
+            //images for season 14
             Image image32 = Image.FromFile(Path.Combine(imagesRoot, @"deadmanscellphone.jpg"));
             Image image33 = Image.FromFile(Path.Combine(imagesRoot, @"99ways.jpg"));
             Image image34 = Image.FromFile(Path.Combine(imagesRoot, @"addingmachine.jpg"));
             Image image35 = Image.FromFile(Path.Combine(imagesRoot, @"youcanttakeitwithyou.jpg"));
-            ////images for season 13
-            //Image image36 = Image.FromFile(Path.Combine(imagesRoot, @"therubysunrise.jpg"));
-            //Image image37 = Image.FromFile(Path.Combine(imagesRoot, @"boomjpg.jpg"));
-            //Image image38 = Image.FromFile(Path.Combine(imagesRoot, @"godsear.jpg"));
-            //Image image39 = Image.FromFile(Path.Combine(imagesRoot, @"lendmeatenor.jpg"));
+            //images for season 13
+            Image image36 = Image.FromFile(Path.Combine(imagesRoot, @"ruby.jpg"));
+            Image image37 = Image.FromFile(Path.Combine(imagesRoot, @"boomjpg.jpg"));
+            Image image38 = Image.FromFile(Path.Combine(imagesRoot, @"godsear.jpg"));
+            Image image39 = Image.FromFile(Path.Combine(imagesRoot, @"lendmeatenor.jpg"));
             //images for season 12
-            //Image image40 = Image.FromFile(Path.Combine(imagesRoot, @"pterodactyls.jpg"));
-            //Image image41 = Image.FromFile(Path.Combine(imagesRoot, @"Romance.jpg"));
-            //Image image42 = Image.FromFile(Path.Combine(imagesRoot, @"Romance.jpg"));
-            //Image image43 = Image.FromFile(Path.Combine(imagesRoot, @"Romance.jpg"));
-            ////images for season 11
-            //Image imagee44 = Image.FromFile(Path.Combine(imagesRoot,@"deadmanscellphone.jpg"));
-            //Image image45 = Image.FromFile(Path.Combine(imagesRoot, @"99ways.jpg"));
-            //Image image46 = Image.FromFile(Path.Combine(imagesRoot, @"addingmachine.jpg"));
-            //Image image47 = Image.FromFile(Path.Combine(imagesRoot, @"youcanttakeitwithyou.jpg"));
+            Image image40 = Image.FromFile(Path.Combine(imagesRoot, @"pterodactyls.jpg"));
+            Image image41 = Image.FromFile(Path.Combine(imagesRoot, @"Romance.jpg"));
+            Image image42 = Image.FromFile(Path.Combine(imagesRoot, @"freakshow.jpg"));
+            Image image43 = Image.FromFile(Path.Combine(imagesRoot, @"Macbeth.jpg"));
+            //images for season 11
+            Image image44 = Image.FromFile(Path.Combine(imagesRoot, @"dollshouse.jpg"));
+            Image image45 = Image.FromFile(Path.Combine(imagesRoot, @"wheresmymoneyjpg.jpg"));
+            Image image46 = Image.FromFile(Path.Combine(imagesRoot, @"longchristmasridehome.jpg"));
+            Image image47 = Image.FromFile(Path.Combine(imagesRoot, @"Rumors.jpg"));
             ////images for season 10
-            //Image image48 = Image.FromFile(Path.Combine(imagesRoot, @"deadmanscellphone.jpg"));
-            //Image image49 = Image.FromFile(Path.Combine(imagesRoot, @"99ways.jpg"));
-            //Image image50 = Image.FromFile(Path.Combine(imagesRoot, @"addingmachine.jpg"));
-            //Image image51 = Image.FromFile(Path.Combine(imagesRoot, @"youcanttakeitwithyou.jpg"));
+            Image image48 = Image.FromFile(Path.Combine(imagesRoot, @"Valparaiso.jpg"));
+            Image image49 = Image.FromFile(Path.Combine(imagesRoot, @"EscapefromHappiness.jpg"));
+            Image image50 = Image.FromFile(Path.Combine(imagesRoot, @"Tango.jpg"));
+            Image image51 = Image.FromFile(Path.Combine(imagesRoot, @"Forum.jpg"));
 
             var photos = new List<Photo>
             {
@@ -960,37 +960,173 @@ namespace TheatreCMS
                     OriginalHeight = image31.Height,
                     OriginalWidth = image31.Width,
                     PhotoFile = (byte[])converter.ConvertTo(image31, typeof(byte[])),
-                    Title = "Anonymous Theatre:  The Good Doctor"
+                    Title = "Anonymous Theatre: The Good Doctor"
                 },
-                //                // Production photos for season 14
+                      // Production photos for season 14
                 new Photo
                 {
                     OriginalHeight = image32.Height,
                     OriginalWidth = image32.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image28, typeof(byte[])),
+                    PhotoFile = (byte[])converter.ConvertTo(image32, typeof(byte[])),
                     Title = "Dead Man's Cell Phone"
                 },
                 new Photo
                 {
                     OriginalHeight = image33.Height,
                     OriginalWidth = image33.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image29, typeof(byte[])),
+                    PhotoFile = (byte[])converter.ConvertTo(image33, typeof(byte[])),
                     Title = "99 Ways to Fuck a Swan"
                 },
                 new Photo
                 {
                     OriginalHeight = image34.Height,
                     OriginalWidth = image34.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image30, typeof(byte[])),
+                    PhotoFile = (byte[])converter.ConvertTo(image34, typeof(byte[])),
                     Title = "The Adding Machine"
                 },
                 new Photo
                 {
                     OriginalHeight = image35.Height,
                     OriginalWidth = image35.Width,
-                    PhotoFile = (byte[])converter.ConvertTo(image31, typeof(byte[])),
+                    PhotoFile = (byte[])converter.ConvertTo(image35, typeof(byte[])),
                     Title = "Anonymous Theatre: You Can't Take It with You"
                 },
+
+                // Production photos for season 13
+
+                new Photo
+                {
+                    OriginalHeight = image36.Height,
+                    OriginalWidth = image36.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image36, typeof(byte[])),
+                    Title = "The Ruby Sunrise"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image37.Height,
+                    OriginalWidth = image37.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image37, typeof(byte[])),
+                    Title = "Boom"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image38.Height,
+                    OriginalWidth = image38.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image38, typeof(byte[])),
+                    Title = "God's Ear"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image39.Height,
+                    OriginalWidth = image39.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image39, typeof(byte[])),
+                    Title = "Anonymous Theatre: Lend Me a Tenor"
+                },
+
+                // Production photos for season 12
+
+                new Photo
+                {
+                    OriginalHeight = image40.Height,
+                    OriginalWidth = image40.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image40, typeof(byte[])),
+                    Title = "Pterodactyls"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image41.Height,
+                    OriginalWidth = image41.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image41, typeof(byte[])),
+                    Title = "Romance"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image42.Height,
+                    OriginalWidth = image42.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image42, typeof(byte[])),
+                    Title = "Freakshow"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image43.Height,
+                    OriginalWidth = image43.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image43, typeof(byte[])),
+                    Title = "Anonymous Theatre: MacBeth"
+                },
+
+                // Production photos for season 11
+
+                new Photo
+                {
+                    OriginalHeight = image44.Height,
+                    OriginalWidth = image44.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image44, typeof(byte[])),
+                    Title = "A Doll's House"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image45.Height,
+                    OriginalWidth = image45.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image45, typeof(byte[])),
+                    Title = "Where's My Money? "
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image46.Height,
+                    OriginalWidth = image46.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image46, typeof(byte[])),
+                    Title = "The Long Christmas Ride Home"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image47.Height,
+                    OriginalWidth = image47.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image47, typeof(byte[])),
+                    Title = "Anonymous Theatre: Rumors"
+                },
+                // Production photos for season 10
+
+                new Photo
+                {
+                    OriginalHeight = image48.Height,
+                    OriginalWidth = image48.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image48, typeof(byte[])),
+                    Title = "Valparaiso"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image49.Height,
+                    OriginalWidth = image49.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image49, typeof(byte[])),
+                    Title = "Escape from Happiness"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image50.Height,
+                    OriginalWidth = image50.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image50, typeof(byte[])),
+                    Title = "Tango"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image51.Height,
+                    OriginalWidth = image51.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image51, typeof(byte[])),
+                    Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum"
+                },
+
             };
             photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
             context.SaveChanges();
@@ -1194,6 +1330,8 @@ namespace TheatreCMS
                     Description = "Anonymous Theatre:  The Skin of Our Teeth cover",
                     Production = context.Productions.Where(name => name.Title == "Anonymous Theatre:  The Skin of Our Teeth").FirstOrDefault()
                 },
+                 // Production photos for season 15
+
                 new ProductionPhotos
                 {
                     PhotoId = context.Photo.Where(photo => photo.Title == "Cloud 9").FirstOrDefault().PhotoId,
@@ -1201,55 +1339,189 @@ namespace TheatreCMS
                     Description = "Cloud 9 cover",
                     Production = context.Productions.Where(name => name.Title == "Cloud 9").FirstOrDefault()
                 },
-                //new ProductionPhotos
-                //{
-                //    PhotoId = context.Photo.Where(photo => photo.Title == "Hunter Gatherers").FirstOrDefault().PhotoId,
-                //    Title = "Hunter Gatherers",
-                //    Description = "Hunter Gatherers cover",
-                //    Production = context.Productions.Where(name => name.Title == "Hunter Gatherers").FirstOrDefault()
-                //},
-                //new ProductionPhotos
-                //{
-                //    PhotoId = context.Photo.Where(photo => photo.Title == "The American Pilot").FirstOrDefault().PhotoId,
-                //    Title = "The American Pilot",
-                //    Description = "The American Pilot cover",
-                //    Production = context.Productions.Where(name => name.Title == "The American Pilot").FirstOrDefault()
-                //},
-                //new ProductionPhotos
-                //{
-                //    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre:  The Good Doctor").FirstOrDefault().PhotoId,
-                //    Title = "Anonymous Theatre:  The Good Doctor",
-                //    Description = "Anonymous Theatre:  The Good Doctor",
-                //    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre:  The Good Doctor").FirstOrDefault()
-                //},
-                //new ProductionPhotos
-                //{
-                //    PhotoId = context.Photo.Where(photo => photo.Title == "Dead Man's Cell Phone").FirstOrDefault().PhotoId,
-                //    Title = "Dead Man's Cell Phone",
-                //    Description = "Dead Man's Cell Phone",
-                //    Production = context.Productions.Where(name => name.Title == "Dead Man's Cell Phone").FirstOrDefault()
-                //},
-                //new ProductionPhotos
-                //{
-                //    PhotoId = context.Photo.Where(photo => photo.Title == "99 Ways to Fuck a Swan").FirstOrDefault().PhotoId,
-                //    Title = "99 Ways to Fuck a Swan",
-                //    Description = "99 Ways to Fuck a Swan cover",
-                //    Production = context.Productions.Where(name => name.Title == "99 Ways to Fuck a Swan").FirstOrDefault()
-                //},
-                //new ProductionPhotos
-                //{
-                //    PhotoId = context.Photo.Where(photo => photo.Title == "The Adding Machine").FirstOrDefault().PhotoId,
-                //    Title = "The Adding Machine",
-                //    Description = "The Adding Machine cover",
-                //    Production = context.Productions.Where(name => name.Title == "The Adding Machine").FirstOrDefault()
-                //},
-                //new ProductionPhotos
-                //{
-                //    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: You Can't Take It with You").FirstOrDefault().PhotoId,
-                //    Title = "Anonymous Theatre: You Can't Take It with You",
-                //    Description = "Anonymous Theatre: You Can't Take It with You",
-                //    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: You Can't Take It with You").FirstOrDefault()
-                //},
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Hunter Gatherers").FirstOrDefault().PhotoId,
+                    Title = "Hunter Gatherers",
+                    Description = "Hunter Gatherers cover",
+                    Production = context.Productions.Where(name => name.Title == "Hunter Gatherers").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The American Pilot").FirstOrDefault().PhotoId,
+                    Title = "The American Pilot",
+                    Description = "The American Pilot cover",
+                    Production = context.Productions.Where(name => name.Title == "The American Pilot").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: The Good Doctor").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: The Good Doctor",
+                    Description = "Anonymous Theatre: The Good Doctor",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: The Good Doctor").FirstOrDefault()
+                },
+
+                 // Production photos for season 14
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Dead Man's Cell Phone").FirstOrDefault().PhotoId,
+                    Title = "Dead Man's Cell Phone",
+                    Description = "Dead Man's Cell Phone",
+                    Production = context.Productions.Where(name => name.Title == "Dead Man's Cell Phone").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "99 Ways to Fuck a Swan").FirstOrDefault().PhotoId,
+                    Title = "99 Ways to Fuck a Swan",
+                    Description = "99 Ways to Fuck a Swan cover",
+                    Production = context.Productions.Where(name => name.Title == "99 Ways to Fuck a Swan").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Adding Machine").FirstOrDefault().PhotoId,
+                    Title = "The Adding Machine",
+                    Description = "The Adding Machine cover",
+                    Production = context.Productions.Where(name => name.Title == "The Adding Machine").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: You Can't Take It with You").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: You Can't Take It with You",
+                    Description = "Anonymous Theatre: You Can't Take It with You",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: You Can't Take It with You").FirstOrDefault()
+                },
+
+                 // Production photos for season 13
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Ruby Sunrise").FirstOrDefault().PhotoId,
+                    Title = "The Ruby Sunrise",
+                    Description = "The Ruby Sunrise",
+                    Production = context.Productions.Where(name => name.Title == "The Ruby Sunrise").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Boom").FirstOrDefault().PhotoId,
+                    Title = "Boom",
+                    Description = "Boom",
+                    Production = context.Productions.Where(name => name.Title == "Boom").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "God's Ear").FirstOrDefault().PhotoId,
+                    Title = "God's Ear",
+                    Description = "God's Ear",
+                    Production = context.Productions.Where(name => name.Title == "God's Ear").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: Lend Me a Tenor").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: Lend Me a Tenor",
+                    Description = "Anonymous Theatre: Lend Me a Tenor",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: Lend Me a Tenor").FirstOrDefault()
+                },
+
+                 // Production photos for season 12
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Pterodactyls").FirstOrDefault().PhotoId,
+                    Title = "Pterodactyls",
+                    Description = "Pterodactyls",
+                    Production = context.Productions.Where(name => name.Title == "Pterodactyls").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Romance").FirstOrDefault().PhotoId,
+                    Title = "Romance",
+                    Description = "Romance",
+                    Production = context.Productions.Where(name => name.Title == "Romance").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Freakshow").FirstOrDefault().PhotoId,
+                    Title = "Freakshow",
+                    Description = "Freakshow",
+                    Production = context.Productions.Where(name => name.Title == "Freakshow").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: MacBeth").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: MacBeth",
+                    Description = "Anonymous Theatre: MacBeth",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: MacBeth").FirstOrDefault()
+                },
+
+                 // Production photos for season 11
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "A Doll's House").FirstOrDefault().PhotoId,
+                    Title = "A Doll's House",
+                    Description = "A Doll's House",
+                    Production = context.Productions.Where(name => name.Title == "A Doll's House").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Where's My Money? ").FirstOrDefault().PhotoId,
+                    Title = "Where's My Money? ",
+                    Description = "Where's My Money? ",
+                    Production = context.Productions.Where(name => name.Title == "Where's My Money? ").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Long Christmas Ride Home").FirstOrDefault().PhotoId,
+                    Title = "The Long Christmas Ride Home",
+                    Description = "The Long Christmas Ride Home",
+                    Production = context.Productions.Where(name => name.Title == "The Long Christmas Ride Home").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: Rumors").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: Rumors",
+                    Description = "Anonymous Theatre: Rumors",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: Rumors").FirstOrDefault()
+                },
+
+                // Production photos for season 10
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Valparaiso").FirstOrDefault().PhotoId,
+                    Title = "Valparaiso",
+                    Description = "Valparaiso",
+                    Production = context.Productions.Where(name => name.Title == "Valparaiso").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Escape from Happiness").FirstOrDefault().PhotoId,
+                    Title = "Escape from Happiness",
+                    Description = "Escape from Happiness",
+                    Production = context.Productions.Where(name => name.Title == "Escape from Happiness").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Tango").FirstOrDefault().PhotoId,
+                    Title = "Tango",
+                    Description = "Tango",
+                    Production = context.Productions.Where(name => name.Title == "Tango").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum",
+                    Description = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum").FirstOrDefault()
+                },
             };
             productionphoto.ForEach(prodphoto => context.ProductionPhotos.AddOrUpdate(p => p.PhotoId, prodphoto));
             context.SaveChanges();
