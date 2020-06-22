@@ -28,9 +28,9 @@
     </style>
 </head>
 <body class="palette-body">
-    <nav class="palette-navbar navbar fixed-top navbar-expand-lg navbar-light bg-light" id="menu">
+    <nav class="palette-navbar navbar fixed-top navbar-expand-lg navbar-light" id="menu">
         <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index", "Home")">
-            <img src="~/Content/Images/cropped-logo.png" id="logo" />
+            <img class="logoImg" src="~/Content/Images/cropped-logo.png" id="logo" />
         </a>
         <!--Drop down menu button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
             <ul class="navbar-nav mr-auto">
                 <!--Events-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle color" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-button dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Events
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -58,7 +58,7 @@
                 </li>
                 <!--Company-->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle color" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-button dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Company
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -76,7 +76,7 @@
 
                 {
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle color" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-button dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -110,7 +110,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle color" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-button dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Subscriber
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

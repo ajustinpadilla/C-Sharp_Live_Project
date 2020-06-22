@@ -57,8 +57,8 @@
 }
 
 .palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
-    background-color: var(--secondary-color);
-    color: var(--dark-color);
+    background-color: var(--main-bg-color);
+    /*color: var(--dark-color);*/
 }
 
 /*CSS for Landing Page*/
@@ -1200,7 +1200,14 @@ div.magnify:hover {
 }
 
 #navbarSupportedContent a:hover {
-    background-color: var(--main-bg-color);
+    background-color: var(--main-secondary-color);
+    color: var(--light-color);
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px rgba(255, 251, 251, 0.1) inset;
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-property: background-color;
 }
 
 /*Begin SubmitRequest CSS*/
@@ -1584,6 +1591,13 @@ input[type=submit] {
     display: block;
 }
 
+.nav-button{
+    color: var(--light-color);
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 20pt;
+}
+
 .dropdown-submenu {
     position: relative;
 }
@@ -1594,9 +1608,21 @@ input[type=submit] {
         margin-top: -6px;
     }
 
+    .dropdown-item{
+        font-size: 16pt;
+    }
+
 a.dropdown-item:hover {
     color: white;
 }
+
+.logoImg {
+    background-color: var(--light-color);
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5); /*Same color as --dark-color with opacity of  0.5 for shadow*/
+}
+
 /* The sticky class */
 /*.sticky {
     position: fixed;
