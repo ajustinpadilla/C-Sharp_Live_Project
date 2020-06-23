@@ -483,6 +483,183 @@ namespace TheatreCMS
                 " allegory captures the human spirit – of brilliance, idiocy and ultimately sweet survival.",
                 OpeningDay = new DateTime(2017, 04, 01, 14, 30, 00), ClosingDay = new DateTime(2017, 05, 28, 19, 30, 00), ShowtimeEve = new DateTime(2017, 04, 01, 19, 30, 00),
                 ShowtimeMat = new DateTime(2017, 04, 01, 15, 30, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 16, IsCurrent = false},
+
+                //productions for season 15
+
+                new Production{Title = "Cloud 9", Playwright = "Caryl Churchill", Description = "Clive, A British colonial administrator, lives with his family, " +
+                "a governess and servant during turbulent times in Africa. The natives are rioting and Mrs Saunders, a widow, comes to them to seek safety. "+
+                "Her arrival is soon followed by Harry Bagley, an explorer. The governess Ellen, who reveals herself to be a lesbian, is forced into marriage " +
+                "with Harry after his sexuality is discovered and condemned by Clive.",
+                OpeningDay = new DateTime(2011, 06, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 06, 30, 19, 00, 00), ShowtimeEve = new DateTime(2011, 06, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 06, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 165, Season = 15, IsCurrent = false},
+
+                new Production{Title = "Hunter Gatherers", Playwright = "Peter Sinn Nachtrieb", Description = "Pam and Richard are hosting their best friends, " +
+                "Wendy and Tom, for an annual dinner get-together. An animal sacrifice kicks off the evening, followed by a little more sex, violence, deception, " +
+                "wrestling, and dancing than at previous parties. A darkly comic evening where the line between civilized and primal man is blurred, " +
+                "and where not everyone will survive long enough to enjoy the brownies for dessert." ,
+                OpeningDay = new DateTime(2011, 08, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 08, 30, 19, 00, 00), ShowtimeEve = new DateTime(2011, 08, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 08, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime =120, Season = 15, IsCurrent = false},
+
+                new Production{Title = "The American Pilot", Playwright = "David Greig", Description = "An American pilot has crash-landed in a distant country "+ 
+                "rent by civil war. Since the Americans fund the country's oppressive government and the pilot has landed in rural, rebel territory, " +
+                "he represents both a temptation and an opportunity." ,
+                OpeningDay = new DateTime(2011, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 11, 01, 19, 00, 00), ShowtimeEve = new DateTime(2011, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 90, Season = 15, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: The Good Doctor", Playwright = "Neil Simon", Description = "A combination of Neil Simon and Chekhov, "+ 
+                "The Good Doctor, a comedy with music, is, by turns, charming, hilarious, sad, and touching. It centers around a writer, "+ 
+                "who speaks to the audience and shares his writing with them, throughout one day. He presents them with a plethora of scenes: some are from his childhood, " +
+                "others are his family and friends, and still others are his own life experiences. The audience meets a variety of characters, all of whom " +
+                "are immediately relatable and strikingly human." ,
+                OpeningDay = new DateTime(2011, 12, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 12, 30, 19, 00, 00), ShowtimeEve = new DateTime(2011, 12, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 12, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 15, IsCurrent = false},
+
+                // productions for season 14
+
+                new Production{Title = "Dead Man's Cell Phone", Playwright = "Sarah Ruhl", Description = "Dead Man's Cell Phone explores the paradox of modern " +
+                "technology's ability to both unite and isolate people in the digital age. The play was awarded a Helen Hayes Award for Outstanding New Play.",
+                OpeningDay = new DateTime(2010, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2010, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2010, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2010, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 14, IsCurrent = false},
+
+                new Production{Title = "99 Ways to Fuck a Swan", Playwright = "Kim Rosenstock", Description = "A long, long time ago, Leda makes love to a swan. 3,000 years later, "+
+                "Michelangelo paints a picture. 350 years later, Rudolph buys it. 130 years later, Dave and Fiona stand in a museum, gazing at what remains. " +
+                "Set in a world of bizarre romantic obsessions and everyday ineptitude, 99 WAYS TO FUCK A SWAN explores the dark corners of desire and the eternal mysteries of love",
+                OpeningDay = new DateTime(2010, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2010, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2010, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2010, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 14, IsCurrent = false},
+
+                new Production{Title = "The Adding Machine", Playwright = "Elmer Rice", Description = "Elmer Rice’s The Adding Machine centers around the life, death, and afterlife, "+
+                "of a man named Zero. He and his wife live in a society dominated by reverence for financial gain and opportunism, with an emphasis on morality and rigid determinations " +
+                "of what is right and wrong. The day after Mrs. Zero successfully plants a seed of ambition in her husband, Mr. Zero is fired from his monotonous accounting job. " +
+                "Having come in for the day hoping to ask for a raise for his consistent work, Zero’s spirits are crushed when his boss tells him he is being replaced by an adding machine.",
+                OpeningDay = new DateTime(2010, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2010, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2010, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2010, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 100, Season = 14, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: You Can't Take It with You", Playwright = "George S. Kaufman and Moss Hart", Description = "Family can do crazy things to people." +
+                "And the Sycamore family is a little crazy to begin with. Wily Grandpa Vanderhof, heads the wacky Sycamore household and is also a leader of a happily eccentric gang " +
+                "of snake collectors, cunning revolutionaries, ballet dancers and skyrocket makers. But when the youngest daughter brings her fiancé and his buttoned-up parents over " +
+                "for dinner, that’s when the real fireworks start to fly.",
+                OpeningDay = new DateTime(2011, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2011, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2011, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2011, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 14, IsCurrent = false},
+
+                // productions for Season 13
+
+                new Production{Title = "The Ruby Sunrise", Playwright = "Rinne Groff", Description = "Setting off from a farm in Indiana as a young girl Ruby struggles to turn " +
+                "her dream of the first all-electrical television system into a reality. This play also jumps forward to a McCarthy-era New York TV studio where Ruby’s heirs fight over "+
+                "how her story should be told.",
+                OpeningDay = new DateTime(2009, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2009, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2009, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2009, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 13, IsCurrent = false},
+
+                new Production{Title = "Boom", Playwright = "Peter Sinn Nachtrieb", Description = "Jules, a grad student in marine biology, and Jo, a journalism student, "+
+                "meet one Saturday night in Jules’s small underground laboratory on a university campus, after Jo answers Jules’s online personal ad offering an encounter that promises "+
+                "/“to change the course of the world./” During his research on a deserted tropical island, Jules discovers patterns among the behavior of fish that perdict the end of most earthly life. " +
+                "He then turns his tiny lab/apartment into a place to wait out the disaster and begin remaking humanity.",
+                OpeningDay = new DateTime(2009, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2009, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2009, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2009, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 13, IsCurrent = false},
+
+                new Production{Title = "God's Ear", Playwright = "Jenny Schwartz", Description = "God's Ear follows a family in the aftermath of the tragic drowning of their son. " +
+                "The characters try their hardest to reach out to one another, but socially prescribed behaviors and language, meant to help them, never quite do. Though not entirely " +
+                "set in reality, God's Ear is honest and genuine in its exploration of grief. ",
+                OpeningDay = new DateTime(2009, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2009, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2009, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2009, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 13, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: Lend Me A Tenor", Playwright = "Ken Ludwig", Description = "World-renowned tenor Tito Merelli has signed on to play Otello " +
+                "at a Cleveland opera company in the fall of 1934. He arrives late and, through a set of crazy circumstances, passes out after mixing wine with a huge dose of tranquilizers. "+
+                "Believing that the divo is dead, the excitable opera manager taps his hapless assistant, an aspiring singer named Max, to suit up as the Moor and replace Merelli. "+
+                "Meanwhile, the tenor’s jealous wife, his ambitious female co-star, Max’s young girlfriend and the flirtatious head of the opera guild are on the scene fighting "+
+                "for the star’s attention.",
+                OpeningDay = new DateTime(2010, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2010, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2010, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2010, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 13, IsCurrent = false},
+
+
+
+                // productions for Season 12
+
+                new Production{Title = "Pterodactyls", Playwright = "Nicky Silver", Description = "Pterodactyls is an absurdist black comedy about the demise of the Duncan family, "+
+                "and, by extension, the species. Emma Duncan, a hypochondriac with memory problems, and her orphaned fiancé, Tommy, confront her mother, Grace, with the news of their "+
+                "intended marriage. Disapproving at first, Grace acquiesces and puts Tommy to work as a maid",
+                OpeningDay = new DateTime(2008, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2008, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2008, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2008, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 12, IsCurrent = false},
+
+                new Production{Title = "Romance", Playwright = "David Mamet", Description = "Pulitzer Prize—winning playwright David Mamet's Romance is an uproarious, take-no-prisoners "+
+                "courtroom comedy that gleefully lampoons everyone from lawyers and judges, to Arabs and Jews, to gays and chiropractors. It's hay fever season, and in a courtroom "+
+                "a judge is popping antihistamines.",
+                OpeningDay = new DateTime(2008, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2008, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2008, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2008, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 12, IsCurrent = false},
+
+                new Production{Title = "Freakshow", Playwright = "Carson Kreitzer", Description = "At the turn of the last century, a traveling Freakshow grinds to a halt. "+
+                "Things are changing. The anger of being stared at, trapped, caged, is at war with the comfort of knowing your place in the universe. But the growing defiance "+
+                "of the freaks is no act. Will the Dog Faced Woman break her bonds from the show, collapsing the fragile bubble of sustaining interdependence? "+
+                "Can the jaded Ringmaster, a profoundly broken man, find redemption through his love for the Woman With No Arms and No Legs? In this poetic, gritty world, "+
+                "there may only be one way out.",
+                OpeningDay = new DateTime(2008, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2008, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2008, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2008, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 12, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: Macbeth", Playwright = "William Shakespeare", Description = "Macbeth is a Scottish general and the thane of Glamis "+
+                "who is led to wicked thoughts by the prophecies of the three witches, especially after their prophecy that he will be made thane of Cawdor comes true. "+
+                "Macbeth is a brave soldier and a powerful man, but he is not a virtuous one.",
+                OpeningDay = new DateTime(2009, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2009, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2009, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2009, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 12, IsCurrent = false},
+
+
+                // productions for Season 11
+
+                new Production{Title = "A Doll's House  ", Playwright = "Henrik Ibsen", Description = "The play centres on an ordinary family—Torvald Helmer, a bank lawyer, "+
+                "his wife Nora, and their three little children. Torvald supposes himself the ethical member of the family, while his wife assumes the role of the pretty " +
+                "and irresponsible little woman in order to flatter him.",
+                OpeningDay = new DateTime(2007, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2007, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2007, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "Where's My Money? ", Playwright = "John Patrick Shanley", Description = "When Celeste, an out-of-work actor who's cheating on her boyfriend " +
+                "with a married man, runs into Natalie, whom she hasn't seen in years, the two have some catching up to do. Natalie, an accountant married to a lawyer, "+
+                "gives the impression of being very together and does not approve of Celeste's lifestyle.",
+                OpeningDay = new DateTime(2007, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2007, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2007, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "The Long Christmas Ride Home", Playwright = "Paula Vogel", Description = "The Long Christmas Ride Home dramatises a road trip by two parents " +
+                "and their three young children to visit grandparents for the Christmas holiday, and the emotional turmoil that they undergo. A significant element of the production schema " +
+                "is a Western, contemporary employment of bunraku, an ancient form of Japanese puppetry",
+                OpeningDay = new DateTime(2007, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2007, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2007, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: Rumors", Playwright = "Neil Simon", Description = "The play starts with Ken Gorman and his wife, Chris Gorman, " +  
+                "at the 10th anniversary party of Charlie Brock, the Deputy Mayor of New York, and his wife, Myra. Unfortunately, things are not going quite to plan. " +
+                "All the kitchen staff are gone, Myra is missing, and Charlie has shot himself in the head",
+                OpeningDay = new DateTime(2008, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2008, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2008, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2008, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 11, IsCurrent = false},
+
+
+
+                // productions for Season 10
+                new Production{Title = "Valparaiso", Playwright = "Don DeLillo", Description = "Valparaiso is Don DeLillo 's second play, in which a man suddenly "+
+                "becomes famous following a mistake in the itinerary of an ordinary business trip which takes him to Valparaíso, Chile, instead of Valparaiso, Indiana. " +
+                "The 1999 play, which incorporates live performance with video projection, looks at how the media has affected modern mankind.",
+                OpeningDay = new DateTime(2006, 6, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
+
+                new Production{Title = "Escape from Happiness", Playwright = "George F. Walker", Description = "Escape from Happiness takes place in the kitchen of an old, "+
+                "slightly rundown house in a not-so-classy section of a large city. It's home to Nora, a good-natured, slow-moving, fairly batty middle-aged woman; "+
+                "her daughter Gail, who is tough, sensible, and a little high-strung; Gail's husband Junior, an affable but rather dim fellow. Also living here is Tom, "+
+                "who is dying of some unspecified disease; Tom is, according to Nora, a stranger who looks exactly like (and coincidentally has the same name as) her husband, "+
+                "who deserted the family ten years ago after trying to burn down the house",
+                OpeningDay = new DateTime(2006, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
+
+                new Production{Title = "Tango", Playwright = "Stawomir Mrozek", Description = "Tango is set in a non-defined time in the home of Stomil and Eleonora, "+
+                "parents of Artur. The place is disorganized not only in the way it is furnished, but also through the complete lack of house rules and common values. "+
+                "Everyone can do whatever they want. It seems that perplexity may be the word that describes their lives best. Artur’s attempts are bound to fail, "+
+                "but despite that he tries to make rules and grant some things meaning. Artur revolts against his father's slovenliness and his mother’s double "+
+                "standards of morality.",
+                OpeningDay = new DateTime(2006, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 10, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum", Playwright = "Larry Gelbart and Burt Shevelove", Description = "Inspired "+
+                "by the farces of the ancient Roman playwright Plautus, the musical tells the bawdy story of a slave named Pseudolus and his attempts to win his freedom by helping "+
+                "his young master woo the girl next door. The plot displays many classic elements of farce, including puns, the slamming of doors, cases of mistaken identity, and "+
+                "satirical comments on social class.",
+                OpeningDay = new DateTime(2007, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2006, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2007, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
+
+
             };
 
             productions.ForEach(Production => context.Productions.AddOrUpdate(d => d.Title, Production));
@@ -529,6 +706,36 @@ namespace TheatreCMS
             Image image25 = Image.FromFile(Path.Combine(imagesRoot, @"velvet.jpg"));
             Image image26 = Image.FromFile(Path.Combine(imagesRoot, @"aloha.jpg"));
             Image image27 = Image.FromFile(Path.Combine(imagesRoot, @"The_skin_of_our_teeth.jpg"));
+            // images for season 15
+            Image image28 = Image.FromFile(Path.Combine(imagesRoot, @"cloud9.jpg"));
+            Image image29 = Image.FromFile(Path.Combine(imagesRoot, @"huntergatherers.jpg"));
+            Image image30 = Image.FromFile(Path.Combine(imagesRoot, @"americanpilot.jpg"));
+            Image image31 = Image.FromFile(Path.Combine(imagesRoot, @"doctor.jpg"));
+            //images for season 14
+            Image image32 = Image.FromFile(Path.Combine(imagesRoot, @"deadmanscellphone.jpg"));
+            Image image33 = Image.FromFile(Path.Combine(imagesRoot, @"99ways.jpg"));
+            Image image34 = Image.FromFile(Path.Combine(imagesRoot, @"addingmachine.jpg"));
+            Image image35 = Image.FromFile(Path.Combine(imagesRoot, @"youcanttakeitwithyou.jpg"));
+            //images for season 13
+            Image image36 = Image.FromFile(Path.Combine(imagesRoot, @"ruby.jpg"));
+            Image image37 = Image.FromFile(Path.Combine(imagesRoot, @"boomjpg.jpg"));
+            Image image38 = Image.FromFile(Path.Combine(imagesRoot, @"godsear.jpg"));
+            Image image39 = Image.FromFile(Path.Combine(imagesRoot, @"lendmeatenor.jpg"));
+            //images for season 12
+            Image image40 = Image.FromFile(Path.Combine(imagesRoot, @"pterodactyls.jpg"));
+            Image image41 = Image.FromFile(Path.Combine(imagesRoot, @"Romance.jpg"));
+            Image image42 = Image.FromFile(Path.Combine(imagesRoot, @"freakshow.jpg"));
+            Image image43 = Image.FromFile(Path.Combine(imagesRoot, @"Macbeth.jpg"));
+            //images for season 11
+            Image image44 = Image.FromFile(Path.Combine(imagesRoot, @"dollshouse.jpg"));
+            Image image45 = Image.FromFile(Path.Combine(imagesRoot, @"wheresmymoneyjpg.jpg"));
+            Image image46 = Image.FromFile(Path.Combine(imagesRoot, @"longchristmasridehome.jpg"));
+            Image image47 = Image.FromFile(Path.Combine(imagesRoot, @"Rumors.jpg"));
+            ////images for season 10
+            Image image48 = Image.FromFile(Path.Combine(imagesRoot, @"Valparaiso.jpg"));
+            Image image49 = Image.FromFile(Path.Combine(imagesRoot, @"EscapefromHappiness.jpg"));
+            Image image50 = Image.FromFile(Path.Combine(imagesRoot, @"Tango.jpg"));
+            Image image51 = Image.FromFile(Path.Combine(imagesRoot, @"Forum.jpg"));
 
             var photos = new List<Photo>
             {
@@ -725,6 +932,199 @@ namespace TheatreCMS
                     OriginalWidth = image27.Width,
                     PhotoFile = (byte[])converter.ConvertTo(image27, typeof(byte[])),
                     Title = "Anonymous Theatre:  The Skin of Our Teeth Image"
+                },
+                 // Production photos for season 15
+                new Photo
+                {
+                    OriginalHeight = image28.Height,
+                    OriginalWidth = image28.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image28, typeof(byte[])),
+                    Title = "Cloud 9"
+                },
+                new Photo
+                {
+                    OriginalHeight = image29.Height,
+                    OriginalWidth = image29.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image29, typeof(byte[])),
+                    Title = "Hunter Gatherers"
+                },
+                new Photo
+                {
+                    OriginalHeight = image30.Height,
+                    OriginalWidth = image30.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image30, typeof(byte[])),
+                    Title = "The American Pilot"
+                },
+                new Photo
+                {
+                    OriginalHeight = image31.Height,
+                    OriginalWidth = image31.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image31, typeof(byte[])),
+                    Title = "Anonymous Theatre: The Good Doctor"
+                },
+                      // Production photos for season 14
+                new Photo
+                {
+                    OriginalHeight = image32.Height,
+                    OriginalWidth = image32.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image32, typeof(byte[])),
+                    Title = "Dead Man's Cell Phone"
+                },
+                new Photo
+                {
+                    OriginalHeight = image33.Height,
+                    OriginalWidth = image33.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image33, typeof(byte[])),
+                    Title = "99 Ways to Fuck a Swan"
+                },
+                new Photo
+                {
+                    OriginalHeight = image34.Height,
+                    OriginalWidth = image34.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image34, typeof(byte[])),
+                    Title = "The Adding Machine"
+                },
+                new Photo
+                {
+                    OriginalHeight = image35.Height,
+                    OriginalWidth = image35.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image35, typeof(byte[])),
+                    Title = "Anonymous Theatre: You Can't Take It with You"
+                },
+
+                // Production photos for season 13
+
+                new Photo
+                {
+                    OriginalHeight = image36.Height,
+                    OriginalWidth = image36.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image36, typeof(byte[])),
+                    Title = "The Ruby Sunrise"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image37.Height,
+                    OriginalWidth = image37.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image37, typeof(byte[])),
+                    Title = "Boom"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image38.Height,
+                    OriginalWidth = image38.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image38, typeof(byte[])),
+                    Title = "God's Ear"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image39.Height,
+                    OriginalWidth = image39.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image39, typeof(byte[])),
+                    Title = "Anonymous Theatre: Lend Me a Tenor"
+                },
+
+                // Production photos for season 12
+
+                new Photo
+                {
+                    OriginalHeight = image40.Height,
+                    OriginalWidth = image40.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image40, typeof(byte[])),
+                    Title = "Pterodactyls"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image41.Height,
+                    OriginalWidth = image41.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image41, typeof(byte[])),
+                    Title = "Romance"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image42.Height,
+                    OriginalWidth = image42.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image42, typeof(byte[])),
+                    Title = "Freakshow"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image43.Height,
+                    OriginalWidth = image43.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image43, typeof(byte[])),
+                    Title = "Anonymous Theatre: MacBeth"
+                },
+
+                // Production photos for season 11
+
+                new Photo
+                {
+                    OriginalHeight = image44.Height,
+                    OriginalWidth = image44.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image44, typeof(byte[])),
+                    Title = "A Doll's House"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image45.Height,
+                    OriginalWidth = image45.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image45, typeof(byte[])),
+                    Title = "Where's My Money? "
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image46.Height,
+                    OriginalWidth = image46.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image46, typeof(byte[])),
+                    Title = "The Long Christmas Ride Home"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image47.Height,
+                    OriginalWidth = image47.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image47, typeof(byte[])),
+                    Title = "Anonymous Theatre: Rumors"
+                },
+                // Production photos for season 10
+
+                new Photo
+                {
+                    OriginalHeight = image48.Height,
+                    OriginalWidth = image48.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image48, typeof(byte[])),
+                    Title = "Valparaiso"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image49.Height,
+                    OriginalWidth = image49.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image49, typeof(byte[])),
+                    Title = "Escape from Happiness"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image50.Height,
+                    OriginalWidth = image50.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image50, typeof(byte[])),
+                    Title = "Tango"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image51.Height,
+                    OriginalWidth = image51.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image51, typeof(byte[])),
+                    Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum"
                 },
 
             };
@@ -929,7 +1329,199 @@ namespace TheatreCMS
                     Title = "Anonymous Theatre:  The Skin of Our Teeth",
                     Description = "Anonymous Theatre:  The Skin of Our Teeth cover",
                     Production = context.Productions.Where(name => name.Title == "Anonymous Theatre:  The Skin of Our Teeth").FirstOrDefault()
-                }
+                },
+                 // Production photos for season 15
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Cloud 9").FirstOrDefault().PhotoId,
+                    Title = "Cloud 9",
+                    Description = "Cloud 9 cover",
+                    Production = context.Productions.Where(name => name.Title == "Cloud 9").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Hunter Gatherers").FirstOrDefault().PhotoId,
+                    Title = "Hunter Gatherers",
+                    Description = "Hunter Gatherers cover",
+                    Production = context.Productions.Where(name => name.Title == "Hunter Gatherers").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The American Pilot").FirstOrDefault().PhotoId,
+                    Title = "The American Pilot",
+                    Description = "The American Pilot cover",
+                    Production = context.Productions.Where(name => name.Title == "The American Pilot").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: The Good Doctor").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: The Good Doctor",
+                    Description = "Anonymous Theatre: The Good Doctor",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: The Good Doctor").FirstOrDefault()
+                },
+
+                 // Production photos for season 14
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Dead Man's Cell Phone").FirstOrDefault().PhotoId,
+                    Title = "Dead Man's Cell Phone",
+                    Description = "Dead Man's Cell Phone",
+                    Production = context.Productions.Where(name => name.Title == "Dead Man's Cell Phone").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "99 Ways to Fuck a Swan").FirstOrDefault().PhotoId,
+                    Title = "99 Ways to Fuck a Swan",
+                    Description = "99 Ways to Fuck a Swan cover",
+                    Production = context.Productions.Where(name => name.Title == "99 Ways to Fuck a Swan").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Adding Machine").FirstOrDefault().PhotoId,
+                    Title = "The Adding Machine",
+                    Description = "The Adding Machine cover",
+                    Production = context.Productions.Where(name => name.Title == "The Adding Machine").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: You Can't Take It with You").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: You Can't Take It with You",
+                    Description = "Anonymous Theatre: You Can't Take It with You",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: You Can't Take It with You").FirstOrDefault()
+                },
+
+                 // Production photos for season 13
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Ruby Sunrise").FirstOrDefault().PhotoId,
+                    Title = "The Ruby Sunrise",
+                    Description = "The Ruby Sunrise",
+                    Production = context.Productions.Where(name => name.Title == "The Ruby Sunrise").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Boom").FirstOrDefault().PhotoId,
+                    Title = "Boom",
+                    Description = "Boom",
+                    Production = context.Productions.Where(name => name.Title == "Boom").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "God's Ear").FirstOrDefault().PhotoId,
+                    Title = "God's Ear",
+                    Description = "God's Ear",
+                    Production = context.Productions.Where(name => name.Title == "God's Ear").FirstOrDefault()
+                },
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: Lend Me a Tenor").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: Lend Me a Tenor",
+                    Description = "Anonymous Theatre: Lend Me a Tenor",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: Lend Me a Tenor").FirstOrDefault()
+                },
+
+                 // Production photos for season 12
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Pterodactyls").FirstOrDefault().PhotoId,
+                    Title = "Pterodactyls",
+                    Description = "Pterodactyls",
+                    Production = context.Productions.Where(name => name.Title == "Pterodactyls").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Romance").FirstOrDefault().PhotoId,
+                    Title = "Romance",
+                    Description = "Romance",
+                    Production = context.Productions.Where(name => name.Title == "Romance").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Freakshow").FirstOrDefault().PhotoId,
+                    Title = "Freakshow",
+                    Description = "Freakshow",
+                    Production = context.Productions.Where(name => name.Title == "Freakshow").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: MacBeth").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: MacBeth",
+                    Description = "Anonymous Theatre: MacBeth",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: MacBeth").FirstOrDefault()
+                },
+
+                 // Production photos for season 11
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "A Doll's House").FirstOrDefault().PhotoId,
+                    Title = "A Doll's House",
+                    Description = "A Doll's House",
+                    Production = context.Productions.Where(name => name.Title == "A Doll's House").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Where's My Money? ").FirstOrDefault().PhotoId,
+                    Title = "Where's My Money? ",
+                    Description = "Where's My Money? ",
+                    Production = context.Productions.Where(name => name.Title == "Where's My Money? ").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Long Christmas Ride Home").FirstOrDefault().PhotoId,
+                    Title = "The Long Christmas Ride Home",
+                    Description = "The Long Christmas Ride Home",
+                    Production = context.Productions.Where(name => name.Title == "The Long Christmas Ride Home").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: Rumors").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: Rumors",
+                    Description = "Anonymous Theatre: Rumors",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: Rumors").FirstOrDefault()
+                },
+
+                // Production photos for season 10
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Valparaiso").FirstOrDefault().PhotoId,
+                    Title = "Valparaiso",
+                    Description = "Valparaiso",
+                    Production = context.Productions.Where(name => name.Title == "Valparaiso").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Escape from Happiness").FirstOrDefault().PhotoId,
+                    Title = "Escape from Happiness",
+                    Description = "Escape from Happiness",
+                    Production = context.Productions.Where(name => name.Title == "Escape from Happiness").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Tango").FirstOrDefault().PhotoId,
+                    Title = "Tango",
+                    Description = "Tango",
+                    Production = context.Productions.Where(name => name.Title == "Tango").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum",
+                    Description = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum").FirstOrDefault()
+                },
             };
             productionphoto.ForEach(prodphoto => context.ProductionPhotos.AddOrUpdate(p => p.PhotoId, prodphoto));
             context.SaveChanges();
