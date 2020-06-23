@@ -8,7 +8,7 @@
   @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "login" })) // Added id="loginto be used with EasyLogin Buttons --!!! PLEASE REMOVE BEFORE DEPLOYMENT !!!
   {
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-xl">
       <h1 class="m-3">@ViewBag.Title</h1>           @*Using Bootstrap classes to line up elements and create spacing between them*@
       <h4 class="ml-3 pt-5">Use a local account to log in</h4>
       <div>
@@ -16,7 +16,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
           @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-          <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+          <div class="col-10 cols-xs-5 cols-sm-5 col-md-5 col-lg-5 col-xl-5">
             @*I changed the length of the input fields to account for additional sizes, which I also added*@
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-          <div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+          <div class="col-10 cols-xs-5 cols-sm-5 col-md-5 col-lg-5 col-xl-5">
             @*I changed the length of the input fields to account for additional sizes, which I also added*@
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <div class="m-3 pl-3 pb-1">
+    <div class="col-xl">
       @*Easy Login Buttons - for development purposes only. THIS MUST BE REMOVED BEFORE DEPLOYMENT*@
       <div class="col-md-6 mt-3 pl-1 pb-1">
         <section class="loginpadding" id="loginForm">
