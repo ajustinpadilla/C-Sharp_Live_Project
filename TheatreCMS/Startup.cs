@@ -26,8 +26,8 @@ namespace TheatreCMS
         {
             ConfigureAuth(app);
             createRolesandUsers();
-            //SeedCastPhotos();
-            //SeedCastMembers();
+            SeedCastPhotos();
+            SeedCastMembers();
             SeedProductions();
             SeedProductionPhotos();
             SeedParts();
