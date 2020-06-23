@@ -184,6 +184,7 @@
     <Compile Include="Areas\Subscribers\SubscribersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AwardsController.cs" />
     <Compile Include="Controllers\CastMembersController.cs" />
     <Compile Include="Controllers\CalendarEventsController.cs" />
     <Compile Include="Controllers\ContentSectionController.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Controllers\PartController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Controllers\RentalRequestController.cs" />
+    <Compile Include="Annotations\TheatreAuthorize.cs" />
     <Compile Include="Enum\ContentEnum.cs" />
     <Compile Include="Enum\Position.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,6 +213,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminSettings.cs" />
+    <Compile Include="Models\Award.cs" />
     <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\CastMember.cs" />
     <Compile Include="Models\News.cs" />
@@ -696,6 +699,13 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Published.cshtml" />
+    <Content Include="Views\Awards\Create.cshtml" />
+    <Content Include="Views\Awards\Delete.cshtml" />
+    <Content Include="Views\Awards\Details.cshtml" />
+    <Content Include="Views\Awards\Edit.cshtml" />
+    <Content Include="Views\Awards\Index.cshtml" />
+    <Content Include="Views\CalendarEvents\BulkAdd.cshtml" />
+    <Content Include="Views\Account\UnauthorizedAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -710,6 +720,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Subscribers\Data\" />
+    <Folder Include="Views\TheatreAuthorize\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912270113296_InitialSetUp.resx">
