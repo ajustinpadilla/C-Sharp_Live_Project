@@ -1153,6 +1153,10 @@ div.magnify:hover {
         margin-left: 15%;
         margin-right: 15%;
     }
+
+    .nav-button{
+        font-size: 20pt;    /*Added for spacing of navbar text when screen is big*/
+    }
 }
 @media only screen and (min-width: 1400px) { /*Added for spacing on details page when screen is big*/
     .detailsContainer {
@@ -1595,7 +1599,7 @@ input[type=submit] {
     color: var(--light-color);
     display: block;
     padding: 0.5rem 1rem;
-    font-size: 1.55vw;
+    font-size: 20pt;
 }
 
 .dropdown-submenu {
@@ -2459,6 +2463,34 @@ transition: 0.3s;
             background-color: var(--light-color);
             color: var(--dark-color);
         }
+}
+
+@media only screen and (max-width: 1293px) {    /*To descrease the font size of the navbar buttons and reduce the register/logout button's padding-right to 2rem*/
+    .nav-button{
+        font-size: 16pt;
+    }
+
+    .nav-login li{
+        padding-right: 2rem;
+    }
+}
+
+@media only screen and (max-width: 1118px) {    /*To decrease the padding-right of register/logout buttons to 1rem*/
+    .nav-login li{
+        padding-right: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1086px) {    /*To decrease the padding-right of register/logout buttons to 0rem*/
+    .nav-login li{
+        padding-right: 0rem;
+    }
+}
+
+@media only screen and (max-width: 991px) {    /*To increase the font size of the navbar buttons back to 20pt for navbar toggler's activation and mobile view*/
+    .nav-button{
+        font-size: 20pt;
+    }
 }
 
 @media only screen and (max-width: 900px) {
