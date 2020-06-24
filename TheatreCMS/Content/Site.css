@@ -1595,7 +1595,7 @@ input[type=submit] {
     color: var(--light-color);
     display: block;
     padding: 0.5rem 1rem;
-    font-size: 20pt;
+    font-size: 1.55vw;
 }
 
 .dropdown-submenu {
@@ -1623,15 +1623,16 @@ a.dropdown-item:hover {
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5); /*Same color as --dark-color with opacity of  0.5 for shadow*/
 }
 
+.navbar-toggler-icon{
+    color: var(--light-color);
+}
 /* The sticky class */
 /*.sticky {
     position: fixed;
     top: 0;
     width: 100%;
 }*/
-
 /*I adjusted the speed at which the navbar and logo shrinks and expands while scrolling (Peter O.)*/
-
 #menu {
     transition: 0.8s;
     padding: 20px;
