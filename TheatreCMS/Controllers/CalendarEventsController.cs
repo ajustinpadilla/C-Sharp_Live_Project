@@ -9,6 +9,12 @@ using System.Web.Mvc;
 using System.Windows.Documents;
 using TheatreCMS.Models;
 using System.Web.Mvc.Html;
+using System.Web.UI.WebControls;
+using System.Diagnostics;
+using System.Web.Script.Serialization;
+using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+
 
 namespace TheatreCMS.Controllers
 {
@@ -27,7 +33,7 @@ namespace TheatreCMS.Controllers
         public JsonResult GetCalendarEvents()
         {
             var events = db.CalendarEvent.ToArray();
-           
+
             return Json(db.CalendarEvent.Select(x => new
             {
                 id = x.EventId,
@@ -64,9 +70,10 @@ namespace TheatreCMS.Controllers
         public ActionResult Create()
         {
 
-                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
-                ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
-                return View();
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            ViewData["RentalRequests"] = new SelectList(db.RentalRequests.ToList(), "RentalRequestId", "Company");
+            return View();
+
 
         }
 
@@ -109,9 +116,8 @@ namespace TheatreCMS.Controllers
                 }
 
                 if (ViewData["Productions"] != null)
-
-
                     db.CalendarEvent.Add(calendarEvent);
+
                 db.SaveChanges();
                 //System.Diagnostics.Debug.WriteLine("This call was NOT made from ajax, therefore from Create MVC Page. isAjax: " + isAjax);
                 return RedirectToAction("Index");              
@@ -130,13 +136,13 @@ namespace TheatreCMS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CalendarEvent calendarEvents = db.CalendarEvent.Find(id);
-            
+
             if (calendarEvents == null)
             {
                 return HttpNotFound();
@@ -223,6 +229,73 @@ namespace TheatreCMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // GET: CalendarEvents/BulkAdd
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult BulkAdd()
+        {
+            ViewData["Productions"] = new SelectList(db.Productions.OrderByDescending(x => x.Season).ToList(), "ProductionId", "Title");
+            ViewData["Times"] = GetTimeIntervals();
+            Debug.WriteLine("BulkAdd main");
+            return View();
+        }
+
+        
+        [Authorize(Roles = "Admin")]
+        public ActionResult GetProduction(int productionId = 0)
+        {
+            int id = Convert.ToInt32(productionId);
+            var query = from production in db.Productions
+                        where production.ProductionId == id
+                        select new { production.OpeningDay, production.ClosingDay, production.ShowtimeMat, production.ShowtimeEve, production.Runtime }; /*ShowtimeMat = production.ShowtimeMat.Value.ToString("hh:mm tt"), ShowtimeEve = production.ShowtimeEve.Value.ToString*/
+
+            return Json(JsonConvert.SerializeObject(query), JsonRequestBehavior.AllowGet);
+
+        }
+
+        // This method generates times for the show time dropdown
+
+        public List<string> GetTimeIntervals()
+        {
+            List<string> timeIntervals = new List<string>();
+            TimeSpan startTime = new TimeSpan(8, 0, 0);                 // The first time to be added. (8,0,0) sets it to 8 am
+            DateTime startDate = new DateTime(DateTime.MinValue.Ticks); // Date to be used to get shortTime format.
+            timeIntervals.Add("TBD");
+
+            for (int i = 0; i < 29; i++)                                // This loop adds times to the array in 30 min increments ending at 10 pm
+            {
+                int minutesToBeAdded = 30 * i;      // Increasing minutes by 30 minutes interval
+                TimeSpan timeToBeAdded = new TimeSpan(0, minutesToBeAdded, 0);
+                TimeSpan t = startTime.Add(timeToBeAdded);
+                DateTime result = startDate + t;
+                timeIntervals.Add(result.ToShortTimeString());      // Use Date.ToShortTimeString() method to get the desired format                
+            }
+            return timeIntervals;
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult BulkAdd(string jsonString)
+        {
+            Debug.WriteLine("BulkAdd POST");
+            if (jsonString != null && jsonString != "" && jsonString != "[\"\"]")
+            {
+                IList<CalendarEvent> events = JsonConvert.DeserializeObject<List<CalendarEvent>>(jsonString);
+                try
+                {
+                db.CalendarEvent.AddRange(events);
+                db.SaveChanges();
+                }
+                catch (System.Data.SqlClient.SqlException)
+                {
+                    Console.WriteLine("Something went wrong when updating the database!");
+                }
+            }
+            // MVC doesn't support redirecting when an AJAX call is made. In order to redirect to another page, it must be done on the javascript side.
+            //it can be done in the "success" property of the ajax call.
+            return RedirectToAction("BulkAdd"); 
         }
     }
 }
