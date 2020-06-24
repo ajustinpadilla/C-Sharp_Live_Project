@@ -57,8 +57,8 @@
 }
 
 .palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
-    background-color: var(--secondary-color);
-    color: var(--dark-color);
+    background-color: var(--main-bg-color);
+    /*color: var(--dark-color);*/
 }
 
 /*CSS for Landing Page*/
@@ -1191,6 +1191,10 @@ div.magnify:hover {
         margin-left: 15%;
         margin-right: 15%;
     }
+
+    .nav-button{
+        font-size: 20pt;    /*Added for spacing of navbar text when screen is big*/
+    }
 }
 @media only screen and (min-width: 1400px) { /*Added for spacing on details page when screen is big*/
     .detailsContainer {
@@ -1238,7 +1242,14 @@ div.magnify:hover {
 }
 
 #navbarSupportedContent a:hover {
-    background-color: var(--main-bg-color);
+    background-color: var(--main-secondary-color);
+    color: var(--light-color);
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px rgba(255, 251, 251, 0.1) inset;
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-property: background-color;
 }
 
 /*Begin SubmitRequest CSS*/
@@ -1622,6 +1633,13 @@ input[type=submit] {
     display: block;
 }
 
+.nav-button{
+    color: var(--light-color);
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 20pt;
+}
+
 .dropdown-submenu {
     position: relative;
 }
@@ -1632,8 +1650,23 @@ input[type=submit] {
         margin-top: -6px;
     }
 
+    .dropdown-item{
+        font-size: 16pt;
+    }
+
 a.dropdown-item:hover {
     color: white;
+}
+
+.logoImg {
+    background-color: var(--light-color);
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5); /*Same color as --dark-color with opacity of  0.5 for shadow*/
+}
+
+.navbar-toggler-icon{
+    color: var(--light-color);
 }
 /* The sticky class */
 /*.sticky {
@@ -1641,9 +1674,7 @@ a.dropdown-item:hover {
     top: 0;
     width: 100%;
 }*/
-
 /*I adjusted the speed at which the navbar and logo shrinks and expands while scrolling (Peter O.)*/
-
 #menu {
     transition: 0.8s;
     padding: 20px;
@@ -2584,6 +2615,34 @@ transition: 0.3s;
             background-color: var(--light-color);
             color: var(--dark-color);
         }
+}
+
+@media only screen and (max-width: 1293px) {    /*To descrease the font size of the navbar buttons and reduce the register/logout button's padding-right to 2rem*/
+    .nav-button{
+        font-size: 16pt;
+    }
+
+    .nav-login li{
+        padding-right: 2rem;
+    }
+}
+
+@media only screen and (max-width: 1118px) {    /*To decrease the padding-right of register/logout buttons to 1rem*/
+    .nav-login li{
+        padding-right: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1086px) {    /*To decrease the padding-right of register/logout buttons to 0rem*/
+    .nav-login li{
+        padding-right: 0rem;
+    }
+}
+
+@media only screen and (max-width: 991px) {    /*To increase the font size of the navbar buttons back to 20pt for navbar toggler's activation and mobile view*/
+    .nav-button{
+        font-size: 20pt;
+    }
 }
 
 @media only screen and (max-width: 900px) {

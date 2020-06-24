@@ -3,120 +3,125 @@
 @{
     ViewBag.Title = "Rental Request";
 }
-<div class="container-fluid">
-    <div class="m-4"> @*IDJ--Took the h2 out of class tag so that the btn wasnt styled with the header tag*@
-        <h2 id="Isaiah_RentalHeader">Rental Requests</h2>@*IDJ--Gave this header an id so that using css i can place a btn next to it*@
-        @*IDJ--Making a btn that matches in styling with the other buttons on this page that links to the RentalRequest create page*@
-        <a class="Isaiah_pillBtn badge badge-pill badge-danger text-black" href="@Url.Action("Create", "RentalRequest")">Create</a>
-    </div>
-    <table class=" table-responsive-stack" id="rentalRequests">
-        <thead class="bg-light">
-            <tr class="text-black">
-                <th>
-                    @Html.DisplayNameFor(model => model.ContactPerson)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Company)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProjectInfo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Requests)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RentalCode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Accepted)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ContractSigned)
-                </th>
-                <th class="bg-black border-0" id="rental-request-nav-th">
-                    <div class="hidden-placeholder"></div>
-                </th>
-            </tr>
-        </thead>
+    <div class="container-fluid">
+        <div class="m-4">
+            @*IDJ--Took the h2 out of class tag so that the btn wasnt styled with the header tag*@
+            <h2 id="Isaiah_RentalHeader">Rental Requests</h2>@*IDJ--Gave this header an id so that using css i can place a btn next to it*@
+            @*IDJ--Making a btn that matches in styling with the other buttons on this page that links to the RentalRequest create page*@
+            <a class="Isaiah_pillBtn badge badge-pill badge-danger text-black" href="@Url.Action("Create", "RentalRequest")">Create</a>
+        </div>
 
-        <tbody>
-            @{
-                string rentalStartDate;
-                string rentalStartTime;
-                string rentalEndDate;
-                string rentalEndTime;
+        @*Calendar will be here*@
+        <div id="requestCalendar"></div>
 
-                foreach (var item in Model)
-                {
-                    rentalStartDate = item.StartTime.ToString("dd-MM-yy");
-                    rentalStartTime = item.StartTime.ToString("HH:mm tt");
-                    rentalEndDate = item.EndTime.ToString("dd-MM-yy");
-                    rentalEndTime = item.EndTime.ToString("HH:mm tt");
+        <table class=" table-responsive-stack" id="rentalRequests">
+            <thead class="bg-light">
+                <tr class="text-black">
+                    <th>
+                        @Html.DisplayNameFor(model => model.ContactPerson)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Company)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProjectInfo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Requests)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RentalCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Accepted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ContractSigned)
+                    </th>
+                    <th class="bg-black border-0" id="rental-request-nav-th">
+                        <div class="hidden-placeholder"></div>
+                    </th>
+                </tr>
+            </thead>
 
-                    <tr class="text-light rental-request-rows">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ContactPerson)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Company)
-                        </td>
-                        <td>
-                            <div class="rental-request-date">@rentalStartDate</div>
-                            <div class="rental-request-date">@rentalStartTime</div>
-                        </td>
-                        <td>
-                            <div class="rental-request-date">@rentalEndDate</div>
-                            <div class="rental-request-date">@rentalEndTime</div>
-                        </td>
-                        <td id="rental-request-project-info">
-                            <button type="button" class="project-info-popover fa fa-search" title="Project Info" data-trigger="hover" data-toggle="project-info" data-content="@Html.DisplayFor(modelItem => item.ProjectInfo)"></button>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Requests)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RentalCode)
-                        </td>
-                        <td>
-                            @if (item.Accepted)
-                            {
-                                <span class="text-success">Yes</span>
-                            }
-                            else
-                            {
-                                <span class="text-danger">No</span>
-                            }
-                            @*Html.DisplayFor(modelItem => item.Accepted)*@
-                        </td>
-                        <td>
-                            @if (item.ContractSigned)
-                            {
-                                <span class="text-success">Yes</span>
-                            }
-                            else
-                            {
-                                <span class="text-danger">No</span>
-                            }
-                            @*Html.DisplayFor(modelItem => item.ContractSigned)*@
-                        </td>
-                        <td id="rental-request-nav-container">
-                            <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black"}) </div>
-                            <div class="rental-request-nav">@Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
-                            <div class="rental-request-nav">@Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
-                        </td>
-                    </tr>
+            <tbody>
+                @{
+                    string rentalStartDate;
+                    string rentalStartTime;
+                    string rentalEndDate;
+                    string rentalEndTime;
+
+                    foreach (var item in Model)
+                    {
+                        rentalStartDate = item.StartTime.ToString("dd-MM-yy");
+                        rentalStartTime = item.StartTime.ToString("HH:mm tt");
+                        rentalEndDate = item.EndTime.ToString("dd-MM-yy");
+                        rentalEndTime = item.EndTime.ToString("HH:mm tt");
+
+                        <tr class="text-light rental-request-rows">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactPerson)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Company)
+                            </td>
+                            <td>
+                                <div class="rental-request-date">@rentalStartDate</div>
+                                <div class="rental-request-date">@rentalStartTime</div>
+                            </td>
+                            <td>
+                                <div class="rental-request-date">@rentalEndDate</div>
+                                <div class="rental-request-date">@rentalEndTime</div>
+                            </td>
+                            <td id="rental-request-project-info">
+                                <button type="button" class="project-info-popover fa fa-search" title="Project Info" data-trigger="hover" data-toggle="project-info" data-content="@Html.DisplayFor(modelItem => item.ProjectInfo)"></button>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Requests)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RentalCode)
+                            </td>
+                            <td>
+                                @if (item.Accepted)
+                                {
+                                    <span class="text-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">No</span>
+                                }
+                                @*Html.DisplayFor(modelItem => item.Accepted)*@
+                            </td>
+                            <td>
+                                @if (item.ContractSigned)
+                                {
+                                    <span class="text-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">No</span>
+                                }
+                                @*Html.DisplayFor(modelItem => item.ContractSigned)*@
+                            </td>
+                            <td id="rental-request-nav-container">
+                                <div class="rental-request-nav">@Html.ActionLink("Edit", "Edit", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
+                                <div class="rental-request-nav">@Html.ActionLink("Details", "Details", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
+                                <div class="rental-request-nav">@Html.ActionLink("Delete", "Delete", new { id = item.RentalRequestId }, new { @class = "badge badge-pill badge-danger text-black" }) </div>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
 
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 
 <!-- Handles stacking when resolution < 992-->
 @Scripts.Render("~/bundles/jquery")
@@ -185,4 +190,10 @@
         );
 
     });
+</script>
+
+@*Script *@
+<script src="@Url.Content("~/Scripts/fullcalendar/fullcalendar.js")"></script>
+<script>
+    $('#requestCalendar').fullCalendar('render');
 </script>
