@@ -3,31 +3,37 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav nav-item navbar-nav">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-item" })
-        </li>
-        <li>
-            <a href="@Url.Action("Index", "Messages")">
-                <i class="far fa-envelope"></i>
-            </a>
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav nav-item navbar-nav">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-item" })
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Messages")">
+                    <span class="fa-stack">
+                        <i class="far fa-envelope fa-stack-2x" style="font-size:20px;"></i>
+                        @if ((bool)ViewData["unread"])
+                        {
+                            <span class="fas fa-circle fa-stack-1x text-success" style="font-size: 12px;"></span>
+                        }
+                    </span>
+                </a>
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav nav-item navbar-nav">
         <li>
-            
-                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-item"})
-                
+
+            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-item" })
+
         </li>
         <li>
-            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-item"})
+            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-item" })
         </li>
     </ul>
 }

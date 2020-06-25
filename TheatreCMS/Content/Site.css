@@ -3314,4 +3314,34 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     display: none;
 }
 
+#inboxList table, #sentList table {
+    table-layout: fixed;
+}
+
+.inboxRow .msgSubject, .sentRow .msgSubject {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#inboxDetails .msgSubject,
+#inboxDetails .msgBody,
+#inboxDetails .msgFrom,
+#inboxDetails .msgDate,
+#sentDetails .msgSubject,
+#sentDetails .msgBody,
+#sentDetails .msgTo,
+#sentDetails .msgDate {
+    background-color: rgba(240, 240, 240, 0.5);
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+#inboxDetails .msgBody,
+#sentDetails .msgBody {
+    min-height: 100px;
+}
+
+
 /* End Message Index Styling */

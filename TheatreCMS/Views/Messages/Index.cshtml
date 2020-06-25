@@ -17,7 +17,7 @@
 
     <!-- Nav tabs"-->
 
-    <ul class="nav nav-tabs justify-content-end" role="tablist">
+    <ul class="nav nav-tabs justify-content-end" role="tablist" id="navTabs">
 
         <li class="nav-item mr-auto">
 
@@ -58,11 +58,11 @@
             @using (Html.BeginForm("Create", "Messages", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
+
                 <div class="form-group form-row align-items-center">
                     <label class="col-lg-2 col-md-2 control-label col-1" for="RecipientId">To:</label>
                     <div class="col-lg-6 col-md-8">
-                        @*<input id="RecipientId" name="RecipientId" type="text" placeholder="" class="form-control">*@
-                        @Html.DropDownList("RecipientId", (IEnumerable<SelectListItem>)ViewData["listOfUsers"], "", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("RecipientId", (IEnumerable<SelectListItem>)ViewData["listOfUsers"], "", htmlAttributes: new { @class = "form-control", required ="required" })
                     </div>
                 </div>
 
@@ -81,8 +81,14 @@
                     </div>
                 </div>
 
+                <input id="ParentId" name="ParentId" type="hidden" value="">
+
                 <div class="form-group form-row align-items-center">
-                    <div class="col-lg-8 col-md-10">
+                    <label class="col-lg-2 col-md-2 control-label col-1"></label>
+                    <div class="col-lg-6 col-md-8">
+                        <button type="button" id="goback" class="btn btn-info float-left">
+                            Go Back
+                        </button>
                         <button type="submit" class="btn btn-primary">Send</button>
                         <button type="reset" class="btn btn-danger">
                             <i class="fa fa-trash"
@@ -121,7 +127,7 @@
                         <!-- parentId is for future feature, "isviewed-false" is only present if isviewed is null-->
                         @foreach (var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"]))
                         {
-                            <tr class="d-flex inboxRow parentId-0 @(item.IsViewed.HasValue ? "": "isviewed-false")" data-msg_id="@item.MessageId">
+                            <tr class="d-flex inboxRow @(item.IsViewed.HasValue ? "": "isviewed-false")" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
                                 <td class="col-2 msgFrom">
                                     @item.Sender.LastName, @item.Sender.FirstName
                                 </td>
@@ -147,27 +153,27 @@
             </div>
 
             <!-- on load, this will be a template with no data, click of a msg will populate the template with the msg info and be displayed  -->
-            <div id="inboxDetails" data-msg_id="">
+            <div id="inboxDetails" data-msg_id="" data-parent_id="" data-sender_id="">
                 <h5 class="text-center my-2">Message</h5>
                 <form class="form">
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">From:</label>
-                        <div class="col-lg-6 col-md-8 form-control msgFrom"></div>
+                        <div class="col-lg-6 col-md-8 msgFrom"></div>
                     </div>
 
                     <div class=" form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">Date:</label>
-                        <div class="col-lg-3 col-md-4 form-control msgDate"></div>
+                        <div class="col-lg-3 col-md-4 msgDate"></div>
                     </div>
 
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">Subject:</label>
-                        <div class="col-lg-6 col-md-8 form-control msgSubject"></div>
+                        <div class="col-lg-6 col-md-8 msgSubject"></div>
                     </div>
 
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
-                        <div class="col-lg-6 col-md-8 form-control msgBody"></div>
+                        <div class="col-lg-6 col-md-8 msgBody"></div>
                     </div>
 
                     <div class="form-group row align-items-center">
@@ -234,9 +240,6 @@
                                     @Html.DisplayFor(modelItem => item.SentTime)
                                 </td>
                                 <td class="col-3 col-lg-2 text-right">
-                                    <span class="badge badge-pill badge-danger sent-del">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </span>
                                 </td>
                             </tr>
                         }
@@ -249,22 +252,22 @@
                 <form class="form">
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">To:</label>
-                        <div class="col-lg-6 col-md-8 form-control msgTo"></div>
+                        <div class="col-lg-6 col-md-8 msgTo"></div>
                     </div>
 
                     <div class=" form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">Date:</label>
-                        <div class="col-lg-3 col-md-4 form-control msgDate"></div>
+                        <div class="col-lg-3 col-md-4 msgDate"></div>
                     </div>
 
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">Subject:</label>
-                        <div class="col-lg-6 col-md-8 form-control msgSubject"></div>
+                        <div class="col-lg-6 col-md-8 msgSubject"></div>
                     </div>
 
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
-                        <div class="col-lg-6 col-md-8 form-control msgBody"></div>
+                        <div class="col-lg-6 col-md-8 msgBody"></div>
                     </div>
 
                     <div class="form-group row align-items-center">
@@ -272,10 +275,6 @@
                         <div class="col-lg-6 col-md-8 clearfix text-right">
                             <button type="button" id="goback" class="btn btn-info float-left">
                                 Go Back
-                            </button>
-                            <button type="button" id="delete" class="btn btn-danger">
-                                <i class="fa fa-trash"
-                                   aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
@@ -294,9 +293,19 @@
 <script>
     $(document).ready(function () {
 
+        //compose message go back button
+        $("#newMsg #goback").click(function () {
+            $("#inboxDetails").hide();
+            $("#inboxList").show();
+            $('#navTabs a[href="#inbox"]').tab('show');
+
+        });
+
         //behavior of row in inboxList tab
         $(".inboxRow").on("click", "td:not(:last-child)", function () {
             var msgId_str = $(this).parent().data("msg_id");
+            var senderId_str = $(this).parent().data("sender_id");
+
             //if message is unread, then make it read by unbolding row
             if ($(this).parent().hasClass("isviewed-false")) {
                 //ajax post and update isviewed to current date time, success - unbold
@@ -323,6 +332,8 @@
 
             //code will populate #inboxDetails with correct msg info, hide/show speed not working, asynchronous?
             $("#inboxDetails").data("msg_id", msgId_str);
+            $("#inboxDetails").data("sender_id", senderId_str);
+
             $("#inboxDetails .msgFrom").html($(this).parent().find(".msgFrom").html());
             $("#inboxDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#inboxDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
@@ -332,9 +343,14 @@
 
         });
 
+        //reply button autofills in the sender and subject and posts a parentId to database as well
         $(".list-reply").on("click", function () {
             var msgId_str = $(this).closest(".inboxRow").data("msg_id");
-            alert("Feature not available yet! (details: reply to msgId: " + msgId_str + ")");
+            var senderId_str = $(this).closest(".inboxRow").data("sender_id");
+            $("#newMsg #RecipientId").val(senderId_str);
+            $("#newMsg #Subject").val("Re: " + $(this).closest(".inboxRow").find(".msgSubject").text().trim());
+            $("#newMsg #ParentId").val(msgId_str);
+            $('#navTabs a[href="#newMsg"]').tab('show');
         });
 
         $(".list-del").on("click", function () {
@@ -369,9 +385,15 @@
             $("#inboxList").show();
         });
 
+        //reply button autofills in the sender and subject and posts a parentId to database as well
         $("#inboxDetails #reply").on("click", function () {
             var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
-            alert("Feature not available yet! (details: reply to msgId: " + msgId_str + ")");
+            var senderId_str = $(this).parents("#inboxDetails").data("sender_id");
+
+            $("#newMsg #RecipientId").val(senderId_str);
+            $("#newMsg #Subject").val("Re: " + $(this).parents("#inboxDetails").find(".msgSubject").text().trim());
+            $("#newMsg #ParentId").val(msgId_str);
+            $('#navTabs a[href="#newMsg"]').tab('show');
         });
 
         $("#inboxDetails #delete").on("click", function () {
@@ -411,29 +433,11 @@
             $("#sentDetails").show();
         });
 
-        $(".sent-del").on("click", function () {
-            var msgId_str = $(this).closest(".sentRow").data("msg_id");
-
-            if (confirm("Delete this message?")) {
-                alert("Feature not working yet due to deleting here will delete in inbox too");
-            }
-        });
-
-
-
         //behavior of sentDetails div
         $("#sentDetails #goback").click(function () {
             $("#sentDetails").hide();
             $("#sentList").show();
         });
-
-        $("#sentDetails #delete").on("click", function () {
-            var msgId_str = $(this).parents("#sentDetails").data("msg_id");
-            if (confirm("Delete this message?")) {
-                alert("Feature not working yet due to deleting here will delete in inbox too")
-            }
-        });
-
     });
 
 </script>
