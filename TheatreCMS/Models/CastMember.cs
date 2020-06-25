@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using TheatreCMS.Enum;
 using System.Drawing;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TheatreCMS.Models
 {
@@ -19,7 +19,11 @@ namespace TheatreCMS.Models
         public string Bio { get; set; }                 // cast member biographical excerpt
 
         //Photo attribute needs work in the Create() action of the CastMemembersController
-        public byte[] Photo { get; set; }               // cast member photo
+        /* public byte[] Photo { get; set; } */              // cast member photo
+
+        public int PhotoId { get; set; }
+        
+
 
         public bool CurrentMember { get; set; }         // active permanent or temporary cast member
 

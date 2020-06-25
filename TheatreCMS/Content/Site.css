@@ -57,8 +57,8 @@
 }
 
 .palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
-    background-color: var(--secondary-color);
-    color: var(--dark-color);
+    background-color: var(--main-bg-color);
+    /*color: var(--dark-color);*/
 }
 
 /*CSS for Landing Page*/
@@ -302,9 +302,47 @@
     padding-right: 13px;
 }
 
-.production-index-img {
-    border-radius: 6px;
+        .production-index-img {
+            border-radius: 6px;
+        }
+
+/* Productions Index Calendar Styling*/
+
+.prod-index-cal {
+    width: 700px;
 }
+@media screen and (max-width: 767px) {
+    .prod-index-cal {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .prod-index-cal {
+        width: 350px;
+    }
+}
+
+.prod-index-header .fa-calendar-alt {
+    font-size: 22px;
+}
+
+.palette-container .prod-index-cal .fc-event {
+    background-color: var(--secondary-color);
+    border: 2px solid transparent;
+    padding: 3px;
+}
+
+.palette-container .prod-index-cal .fc-content {
+    background-color: initial;
+    border: initial;
+}
+
+.production-index-container .card {
+    border: 2px solid rgba(0, 0, 0, 0.125);
+}
+
+
 /*-----Classes and styling for LoginFailure view------*/
 /*using button styles from sponsor index to match theme 
 .button-redirect { 
@@ -1153,6 +1191,10 @@ div.magnify:hover {
         margin-left: 15%;
         margin-right: 15%;
     }
+
+    .nav-button{
+        font-size: 20pt;    /*Added for spacing of navbar text when screen is big*/
+    }
 }
 @media only screen and (min-width: 1400px) { /*Added for spacing on details page when screen is big*/
     .detailsContainer {
@@ -1200,7 +1242,14 @@ div.magnify:hover {
 }
 
 #navbarSupportedContent a:hover {
-    background-color: var(--main-bg-color);
+    background-color: var(--main-secondary-color);
+    color: var(--light-color);
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px rgba(255, 251, 251, 0.1) inset;
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-property: background-color;
 }
 
 /*Begin SubmitRequest CSS*/
@@ -1584,6 +1633,13 @@ input[type=submit] {
     display: block;
 }
 
+.nav-button{
+    color: var(--light-color);
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 20pt;
+}
+
 .dropdown-submenu {
     position: relative;
 }
@@ -1594,8 +1650,23 @@ input[type=submit] {
         margin-top: -6px;
     }
 
+    .dropdown-item{
+        font-size: 16pt;
+    }
+
 a.dropdown-item:hover {
     color: white;
+}
+
+.logoImg {
+    background-color: var(--light-color);
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5); /*Same color as --dark-color with opacity of  0.5 for shadow*/
+}
+
+.navbar-toggler-icon{
+    color: var(--light-color);
 }
 /* The sticky class */
 /*.sticky {
@@ -1603,9 +1674,7 @@ a.dropdown-item:hover {
     top: 0;
     width: 100%;
 }*/
-
 /*I adjusted the speed at which the navbar and logo shrinks and expands while scrolling (Peter O.)*/
-
 #menu {
     transition: 0.8s;
     padding: 20px;
@@ -1638,15 +1707,82 @@ a.dropdown-item:hover {
 }
 
 
-/*Current productions*/
-.currentpro a {
-    margin-left: 15px;
-}
+        /*Current productions*/
 
-/*Sponsor partial styling*/
-.sponsor-partial-pic {
-    width: 100%;
-}
+        .currentpro {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .currentpro-btn a {
+            /*margin-left: 15px;*/
+            /*color: #DB1A11;*/
+            color: var(--light-color);
+            background-color: var(--main-bg-color);
+            display: inline-block;
+            border-radius: 25px;
+            padding: 15px 32px;                                       /*button styling*/
+            text-decoration: none;
+            transition: 0.3s;
+            margin-top: 20px;
+            z-index: 3;
+            opacity: 1;
+        }
+
+        .currentpro-btn a:hover{
+            transform: scale(1.15, 1.15);                        /*button effects on hover*/
+            background-color: var(--main-secondary-color);
+        }
+
+        .currentpro-title  {
+            color: white;
+            text-decoration: none;                     /*styling for title*/
+        }
+
+        .currentpro-title:hover  {
+            color: white;
+            text-decoration: none;                        /*the title is also a link to the production page, so this keeps the title from changing to its normal link properties on hover*/
+        }
+
+        .currentpro-imgtran {
+            z-index: 1;
+            transition: .3s;
+            opacity: 1;
+            overflow: hidden;                                               /*image properties for the transition*/
+        }
+
+        .currentpro-imgtran:hover {
+            transform: scale(1.05, 1.05);
+            opacity: 0.2;
+            z-index: 2;
+        }
+
+
+        .currentpro-text {
+            text-align: center;
+            margin-top: -50%;                                                               /*styles text under image*/
+        }
+        
+        .currentpro-fontsize {
+            font-size: 1.5vw;
+        }
+
+        .currentpro-txthover {
+            opacity: 0;
+        }
+
+        .currentpro-imgtran:hover + .currentpro-txthover {
+            opacity: 1;                                                                             /*makes it so text does not appear until image is hovered*/
+        }
+
+        /*.currentptitle*/
+
+
+        /*Sponsor partial styling*/
+        .sponsor-partial-pic {
+            width: 100%;
+        }
 
 .sponsor-donate-btn {
     margin-top: 20px;
@@ -1955,7 +2091,6 @@ a.dropdown-item:hover {
             border: var(--secondary-color);
 }*/
 
-
         .palette-container .fc {
             /* Ensures the calendar doesn't become too wide on large screens */
             max-width: 1000px;
@@ -2007,6 +2142,53 @@ a.dropdown-item:hover {
     border-radius: 4px;
 }
 
+        /* Styling For CalendarEvents/bulkadd */
+
+        #bulk-add-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* enable scroll if needed */
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        #bulk-add-modal_content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        #bulk-add-modal_content p {
+            color: black;
+        }
+
+#modal-table td,
+#modal-table th {
+    color: black;
+}
+.bulk-add-modal_button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+#review-showtimes-section {
+    display:none;
+}
 /*Styling for dropdown Menus on Add & Edit Modals*/
 
 /*Product Details*/
@@ -2341,6 +2523,7 @@ transition: 0.3s;
 
 #current-productions, #future-productions { /*add commas to make multiple selectors functional*/
     padding: 0px 20px;
+
 }
 
     /* Resize Archive Current Productions Image and Archive Future Productions Image*/
@@ -2432,6 +2615,34 @@ transition: 0.3s;
             background-color: var(--light-color);
             color: var(--dark-color);
         }
+}
+
+@media only screen and (max-width: 1293px) {    /*To descrease the font size of the navbar buttons and reduce the register/logout button's padding-right to 2rem*/
+    .nav-button{
+        font-size: 16pt;
+    }
+
+    .nav-login li{
+        padding-right: 2rem;
+    }
+}
+
+@media only screen and (max-width: 1118px) {    /*To decrease the padding-right of register/logout buttons to 1rem*/
+    .nav-login li{
+        padding-right: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1086px) {    /*To decrease the padding-right of register/logout buttons to 0rem*/
+    .nav-login li{
+        padding-right: 0rem;
+    }
+}
+
+@media only screen and (max-width: 991px) {    /*To increase the font size of the navbar buttons back to 20pt for navbar toggler's activation and mobile view*/
+    .nav-button{
+        font-size: 20pt;
+    }
 }
 
 @media only screen and (max-width: 900px) {
@@ -3345,3 +3556,8 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 
 
 /* End Message Index Styling */
+
+
+/****************User List Styling**********************/
+
+
