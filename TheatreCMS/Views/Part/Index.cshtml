@@ -31,48 +31,73 @@
     </th>
     <th></th>
   </tr>
-
-  @foreach (var item in Model)
-  {
-    <tr>
-      <td>
-        @Html.DisplayFor(modelItem => item.Production.Title)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Person.Name)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Character)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Type)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Details)
-      </td>
-@*      <td>
-        @if (User.IsInRole("Admin"))
-        {
-          @Html.ActionLink("Edit", "Edit", new { id = item.PartID }) |
-          @Html.ActionLink("Delete", "Delete", new { id = item.PartID })|
-        }
-        @Html.ActionLink("Details", "Details", new { id = item.PartID })
-      </td>*@
-      @if (User.IsInRole("Admin"))
+  
+    <div class="row">
+      @foreach (var item in Model)
       {
-    <td>
-      @Html.ActionLink("Edit", "Edit", new { id = item.PartID }) |
-      @Html.ActionLink("Delete", "Delete", new { id = item.PartID }) |
-      @Html.ActionLink("Details", "Details", new { id = item.PartID })
-    </td>
-      }
-      @if (!User.IsInRole("Admin"))
-      {
-      <td>
-        @Html.ActionLink("Details", "Details", new { id = item.PartID }) 
-      </td>
-      }
-    </tr>
-  }
 
+        <div class="col-xl-2 col-lg-4 col-md-6 col-sm-8 d-flex justify-content-center">
+          <div class="card bg-light text-dark m-3 align-items-center" style="max-width: 25rem;">
+
+            <h3 class="card-title mt-4 underline">@Html.DisplayFor(modelItem => item.Character)</h3>
+            <p class="font-italic m-0">Performed By:</p>
+            <h5 class="mb-3  text-center"> @Html.DisplayFor(modelItem => item.Person.Name)</h5>
+            <p class="font-italic m-0">In the Production:</p>
+            <h5 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h5>
+            <p class="bold mt-3 mb-0">Details</p>
+            <p class="card-text ml-5 mr-5 mb-4" style="text-indent: 20px;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="">
+              @if (User.IsInRole("Admin"))
+              {
+              <span class="badge badge-pill badge-dark">@Html.ActionLink("Edit", "Edit", new { id = item.PartID }) </span>
+              <span class="badge badge-pill badge-dark">@Html.ActionLink("Delete", "Delete", new { id = item.PartID })</span>
+                <span class="badge badge-pill badge-dark">@Html.ActionLink("Details", "Details", new { id = item.PartID })</span>
+                  }
+            </div>
+          </div>
+        </div>
+
+        <!--
+          <tr>
+            <td>
+              @Html.DisplayFor(modelItem => item.Production.Title)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Person.Name)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Character)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.Details)
+            </td>
+      @*      <td>
+              @if (User.IsInRole("Admin"))
+              {
+                @Html.ActionLink("Edit", "Edit", new { id = item.PartID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PartID })|
+              }
+              @Html.ActionLink("Details", "Details", new { id = item.PartID })
+            </td>*@
+            @if (User.IsInRole("Admin"))
+            {
+          <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PartID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PartID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PartID })
+          </td>
+            }
+            @if (!User.IsInRole("Admin"))
+            {
+            <td>
+              @Html.ActionLink("Details", "Details", new { id = item.PartID })
+            </td>
+            }
+          </tr>-->
+      }
+    </div>
+  
 </table>
