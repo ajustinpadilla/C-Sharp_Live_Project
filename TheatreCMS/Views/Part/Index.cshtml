@@ -4,49 +4,34 @@
   ViewBag.Title = "Part";
 }
 
-<h2>Part</h2>
+<h2 class="m-3">Part</h2>
 
 @if (User.IsInRole("Admin"))
 {
-  <p>
+  <p class="m-3">
     @Html.ActionLink("Create New", "Create")
   </p>
 }
-@*<table class="table admin-tables">
-  <tr>
-    <th>
-      @Html.DisplayNameFor(model => model.Production.Title)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Person.Name)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Character)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Type)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Details)
-    </th>
-    <th></th>
-  </tr>*@
   
 <div class="row ml-1 mr-1 justify-content-center">
   <!--Creates a bootstrap card for every part in the production customized to the part they are reponsible-->
   @foreach (var item in Model)
   {
-    <!--Check for what type of job out of Actor or Director and displays correct card. Currently card is only setup for Actor/Director but there are three other types Technician, StageManager and Other-->
+    <!--Check for what type of job out of Actor or Director and displays correct card. Currently card is only setup for Actor/Director 
+      but there are three other types Technician, StageManager and Other which work but have no assigned jobs at the theater yet-->
     if ((int)item.Type == 1 || (int)item.Type == 2 || (int)item.Type == 3 || (int)item.Type == 4)
     {
-      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-8 bgCard">
+      <!--Indiviual card for stage crew-->
+      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-8 part-cardHover">
         <div class="card bg-light text-dark mr-0 mb-3 align-items-center" style="height: 325px;">
           <h5 class="card-title mt-2 underline text-center">@Html.DisplayFor(modelItem => item.Person.Name)</h5>
+          <h6 class=" ml-4 mr-4 text-center"> @Html.DisplayFor(modelItem => item.Type)</h6>
           <p class="font-italic m-0">In the Production:</p>
           <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
           <p class="bold mt-1 mb-0">Details</p>
           <p class="part-details-elipsis card-text ml-3 mr-3"> @Html.DisplayFor(modelItem => item.Details)</p>
           <div class="part-overlay mask d-flex align-items-end justify-content-center">
+           <!--condition to look for admin authority and give access to edit options for cards-->
             @if (User.IsInRole("Admin"))
             {
               <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </span>
@@ -59,8 +44,8 @@
     }
     else if ((int)item.Type == 0)
     {
-      <!--Displays cards for actors-->
-      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-8 bgCard">
+      <!--Individual cards for actors-->
+      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-8 part-cardHover">
         <div class="card bg-light text-dark mr-0 mb-3 align-items-center" style="height: 325px;">
           <h5 class="card-title mt-2 underline text-center">@Html.DisplayFor(modelItem => item.Character)</h5>
           <p class="font-italic m-0">Performed By:</p>
@@ -138,7 +123,7 @@
       background-color: rgba(240, 77, 68, .7);
     }
 
-.bgCard:hover .part-overlay {
+.part-cardHover:hover .part-overlay {
   opacity: 1;
 }
   </style>
