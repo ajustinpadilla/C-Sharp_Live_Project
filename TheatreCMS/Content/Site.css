@@ -3502,3 +3502,11 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 /****************User List Styling**********************/
 
 
+.part-details-elipsis {
+    text-indent: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}

@@ -32,28 +32,27 @@
     <th></th>
   </tr>
   
-    <div class="row">
+    <div class="row ml-1 mr-1 justify-content-center" >
       @foreach (var item in Model)
       {
 
-        <div class="col-xl-2 col-lg-4 col-md-6 col-sm-8 d-flex justify-content-center">
-          <div class="card bg-light text-dark m-3 align-items-center" style="max-width: 25rem;">
-
-            <h3 class="card-title mt-4 underline">@Html.DisplayFor(modelItem => item.Character)</h3>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-8 ">
+          <div class="card bg-light text-dark mr-0 mb-3 align-items-center" style="height: 325px">
+            <h5 class="card-title mt-2 underline text-center">@Html.DisplayFor(modelItem => item.Character)</h5>
             <p class="font-italic m-0">Performed By:</p>
-            <h5 class="mb-3  text-center"> @Html.DisplayFor(modelItem => item.Person.Name)</h5>
+            <h6 class="mb-1  text-center"> @Html.DisplayFor(modelItem => item.Person.Name)</h6>
             <p class="font-italic m-0">In the Production:</p>
-            <h5 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h5>
-            <p class="bold mt-3 mb-0">Details</p>
-            <p class="card-text ml-5 mr-5 mb-4" style="text-indent: 20px;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <div class="">
+            <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
+            <p class="bold mt-1 mb-0">Details</p>
+            <p class="part-details-elipsis card-text ml-3 mr-3"> @Html.DisplayFor(modelItem => item.Details)</p>
+            @*<div class="">
               @if (User.IsInRole("Admin"))
               {
-              <span class="badge badge-pill badge-dark">@Html.ActionLink("Edit", "Edit", new { id = item.PartID }) </span>
-              <span class="badge badge-pill badge-dark">@Html.ActionLink("Delete", "Delete", new { id = item.PartID })</span>
+                <span class="badge badge-pill badge-dark">@Html.ActionLink("Edit", "Edit", new { id = item.PartID }) </span>
+                <span class="badge badge-pill badge-dark">@Html.ActionLink("Delete", "Delete", new { id = item.PartID })</span>
                 <span class="badge badge-pill badge-dark">@Html.ActionLink("Details", "Details", new { id = item.PartID })</span>
-                  }
-            </div>
+              }
+            </div>*@
           </div>
         </div>
 
