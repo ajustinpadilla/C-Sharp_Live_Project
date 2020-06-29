@@ -3498,6 +3498,65 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 *********************** End Isaiah's Styling *******************************
 ****************************************************************************/
 
+/* Message Index Styling */
+
+.messages-index {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.messages-index tbody tr {
+    cursor: pointer;
+}
+
+.messages-index tbody tr span:hover {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+.messages-index tr.isviewed-false {
+    font-weight: bold;
+}
+
+#inboxDetails {
+    display: none;
+}
+
+#sentDetails {
+    display: none;
+}
+
+#inboxList table, #sentList table {
+    table-layout: fixed;
+}
+
+.inboxRow .msgSubject, .sentRow .msgSubject {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#inboxDetails .msgSubject,
+#inboxDetails .msgBody,
+#inboxDetails .msgFrom,
+#inboxDetails .msgDate,
+#sentDetails .msgSubject,
+#sentDetails .msgBody,
+#sentDetails .msgTo,
+#sentDetails .msgDate {
+    background-color: rgba(240, 240, 240, 0.5);
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+#inboxDetails .msgBody,
+#sentDetails .msgBody {
+    min-height: 100px;
+}
+
+
+/* End Message Index Styling */
+
 
 /****************User List Styling**********************/
 
