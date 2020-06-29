@@ -3,110 +3,51 @@
 @{
   ViewBag.Title = "Part";
 }
-
-<h2 class="m-3">Part</h2>
+  
+<h2 class="ml-5 mb-3 mt-4">Part</h2>
 
 @if (User.IsInRole("Admin"))
 {
-  <p class="m-3">
+  <p class="ml-5 mb-3 mt-3">
     @Html.ActionLink("Create New", "Create")
   </p>
 }
-  
-<div class="row ml-1 mr-1 justify-content-center">
-  <!--Creates a bootstrap card for every part in the production customized to the part they are reponsible-->
+
+<div class="ml-1 mr-1 justify-content-center part-card-deck">
+  <!--Creates a bootstrap card for every part in the production customized to the part they are reponsible for-->
   @foreach (var item in Model)
   {
-    <!--Check for what type of job out of Actor or Director and displays correct card. Currently card is only setup for Actor/Director 
-      but there are three other types Technician, StageManager and Other which work but have no assigned jobs at the theater yet-->
-    if ((int)item.Type == 1 || (int)item.Type == 2 || (int)item.Type == 3 || (int)item.Type == 4)
-    {
-      <!--Indiviual card for stage crew-->
-      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-8 part-cardHover">
-        <div class="card text-light mr-0 mb-3 align-items-center part-card border-white" style="height: 325px;">
-          <h5 class="card-title mt-2 underline text-center">@Html.DisplayFor(modelItem => item.Person.Name)</h5>
-          <h6 class=" ml-4 mr-4 mt-1 text-center"> @Html.DisplayFor(modelItem => item.Type)</h6>
-          <p class="font-italic m-0">In the Production:</p>
-          <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
-          <p class="bold mt-1 mb-0">Details</p>
-          <p class="part-details-elipsis card-text ml-3 mr-3"> @Html.DisplayFor(modelItem => item.Details)</p>
-          <!--Card overlay for edit tools-->
-          <div class="part-overlay mask d-flex align-items-end justify-content-center">
-            <!--condition to look for admin authority and give access to edit options for cards-->
-            @if (User.IsInRole("Admin"))
-            {
-              <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </span>
-              <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </span>
-              <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </span>
-            }
-          </div>
-        </div>
-      </div>
-    }
-    else if ((int)item.Type == 0)
-    {
-      <!--Individual cards for actors-->
-      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-8 part-cardHover">
-        <div class="card text-light mr-0 mb-3 align-items-center part-card border-white" style="height: 325px;">
-          <h5 class="card-title mt-2 underline text-center">@Html.DisplayFor(modelItem => item.Character)</h5>
-          <p class="font-italic m-0">Performed By:</p>
-          <h6 class="mb-1  text-center"> @Html.DisplayFor(modelItem => item.Person.Name) </h6>
-          <p class="font-italic m-0">In the Production:</p>
-          <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
-          <p class="bold mt-1 mb-0">Details</p>
-          <p class="part-details-elipsis card-text ml-3 mr-3"> @Html.DisplayFor(modelItem => item.Details)</p>
-          <!--Card overlay for edit tools-->
-          <div class="part-overlay mask d-flex align-items-end justify-content-center">
-            <!--condition to look for admin authority and give access to edit options for cards-->
-            @if (User.IsInRole("Admin"))
-            {
-              <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </span>
-              <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </span>
-              <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </span>
-            }
-          </div>
-        </div>
-      </div>
-    }
-    <!--
-        <tr>
-          <td>
-            @Html.DisplayFor(modelItem => item.Production.Title)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.Person.Name)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.Character)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.Type)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.Details)
-          </td>
-    @*      <td>
-            @if (User.IsInRole("Admin"))
-            {
-              @Html.ActionLink("Edit", "Edit", new { id = item.PartID }) |
-              @Html.ActionLink("Delete", "Delete", new { id = item.PartID })|
-            }
-            @Html.ActionLink("Details", "Details", new { id = item.PartID })
-          </td>*@
+    <div class="part-cardHover">
+      <div class="text-light mb-3 align-items-center part-card border-white">
+        <h5 class="mt-3 mb-3 underline text-center">@Html.DisplayFor(modelItem => item.Person.Name)</h5>
+        <!--Check for what type of job and displays correct formatting for card.-->
+        @if ((int)item.Type > 0)
+        {
+          //non-actor formatting
+          <h6 class=" ml-4 mr-4 text-center"> @Html.DisplayFor(modelItem => item.Type)</h6>
+        }
+        else
+        {
+          //actor formatting
+          <p class="font-italic text-center">Performed By:</p>
+          <h6 class="mb-1 text-center"> @Html.DisplayFor(modelItem => item.Person.Name) </h6>
+        }
+        <p class="font-italic m-0">In the Production:</p>
+        <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
+        <p class="bold mt-1 mb-0 text-center">Details</p>
+        <p class="card-text ml-3 mr-3 part-details-elipsis">@Html.DisplayFor(modelItem => item.Details)</p>
+        <!--Card overlay for edit tools-->
+        <div class="part-overlay mask d-flex align-items-end justify-content-center">
+          <!--condition to look for admin authority and give access to edit options for cards-->
           @if (User.IsInRole("Admin"))
           {
-        <td>
-          @Html.ActionLink("Edit", "Edit", new { id = item.PartID }) |
-          @Html.ActionLink("Delete", "Delete", new { id = item.PartID }) |
-          @Html.ActionLink("Details", "Details", new { id = item.PartID })
-        </td>
+            <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </span>
+            <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </span>
+            <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </span>
           }
-          @if (!User.IsInRole("Admin"))
-          {
-          <td>
-            @Html.ActionLink("Details", "Details", new { id = item.PartID })
-          </td>
-          }
-        </tr>-->
+        </div>        
+      </div>            
+    </div>
   }
 </div>
+
