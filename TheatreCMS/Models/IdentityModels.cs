@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
@@ -39,6 +40,11 @@ namespace TheatreCMS.Models
         user.CastMemberPersonID = castMembe.CastMemberPersonID */
         //public virtual CastMember CastMemberUser { get; set; }
         public int CastMemberUserID { get; set; }
+
+        [InverseProperty("Sender")]             //inverseproperty attribute is needed here becuase my Messages.cs has two nav property to this class
+        public virtual ICollection<Message> SentMessages { get; set; }   //list of sent messages associated with user
+        [InverseProperty("Recipient")]
+        public virtual ICollection<Message> ReceivedMessages { get; set; }   //list of received messages associated with user
 
     }
 
@@ -95,7 +101,7 @@ namespace TheatreCMS.Models
         public DbSet<CalendarEvent> CalendarEvent { get; set; }
         public DbSet<Photo> Photo { get; set; }
         public DbSet<News> News { get; set; }
-
+        public DbSet<Message> Messages { get; set; }
         public System.Data.Entity.DbSet<TheatreCMS.ViewModels.NewsletterListVm> NewsletterListVms { get; set; }
 
         public System.Data.Entity.DbSet<TheatreCMS.Models.Award> Awards { get; set; }
