@@ -536,7 +536,7 @@
 @if (User.IsInRole("Admin"))
 {
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create")  | @Html.ActionLink("Bulk Add", "BulkAdd")
     </p>
 }
 <table class="table text-white">
