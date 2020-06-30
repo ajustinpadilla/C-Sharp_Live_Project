@@ -10,6 +10,8 @@ using TheatreCMS.ViewModels;
 using System.Data.Entity;
 using TheatreCMS.Areas.Subscribers.Models;
 using System.Text.RegularExpressions;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TheatreCMS.Controllers
 {
@@ -17,6 +19,22 @@ namespace TheatreCMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //display unread messages icon if any message sent to currentUser has a isviewed == null prop
+        [ChildActionOnly]
+        public ActionResult LoginNav()
+        {
+            var boolUnread = false;
+            if (Request.IsAuthenticated)
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+                boolUnread = db.Messages.Any(i => i.RecipientId == currentUser.Id && i.IsViewed == null);
+                
+            }
+            ViewData["unread"] = boolUnread;
+
+            return PartialView("_LoginPartial");
+        }
         public ActionResult Index()
         {
             var productions = from p in db.Productions
