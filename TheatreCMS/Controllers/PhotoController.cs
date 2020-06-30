@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Windows.Media.Animation;
 using TheatreCMS.Models;
+using TheatreCMS.ViewModels;
 
 namespace TheatreCMS.Controllers
 {
@@ -241,6 +242,34 @@ namespace TheatreCMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public static PhotoDependenciesVm FindDependencies(int? Id)
+        {
+            var db = new ApplicationDbContext();
+            var photoDependencies = new PhotoDependenciesVm();
+            photoDependencies.ValidId = true;
+            if (Id == null)
+            {
+                photoDependencies.ValidId = false;
+            }
+            photoDependencies.HasDependencies = false;
+            int sponsorId = db.Sponsors.Find(Id).SponsorId;
+            Sponsor sponsorDepend = db.Sponsors.Find(sponsorId);
+            int productionPhotosId = db.ProductionPhotos.Find(Id).PhotoId;
+            ProductionPhotos productionPhotosDepend = db.ProductionPhotos.Find(productionPhotosId);
+            if (Id == sponsorId || Id == productionPhotosId)
+            {
+                photoDependencies.HasDependencies = true;
+            }
+            if (Id == sponsorId)
+            {
+                photoDependencies.Sponsors.Add(sponsorDepend);
+            }
+            if (Id == productionPhotosId)
+            {
+                photoDependencies.ProductionPhotos.Add(productionPhotosDepend);
+            }
+            return photoDependencies;
         }
     }
 }
