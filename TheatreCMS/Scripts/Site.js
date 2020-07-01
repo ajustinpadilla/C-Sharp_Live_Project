@@ -436,10 +436,3 @@ if ($("#generate-showtimes-section") != null) {
 }
 // *************************************************************************** End Script for Bulk Add ******************************************************************************************
 // ===========================================================================  CalendarEvents/BulkAdd  =====================================================================================================
-$(function () {
-    $('#showtime-dropdown').change(function () {
-        var readonly = this.value == 'custom-time';
-        $('#matinee').prop('readonly', readonly);
-        $('#evening').prop('readonly', readonly);
-    });
-});
