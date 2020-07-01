@@ -3623,3 +3623,11 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     margin-left: -15px;
 }
 /*END CSS for Admin Parts page*/
+
+.img-responsive-test {
+    height: auto;
+    width: auto;
+    max-height: 72px;
+    max-width: 250px;
+    padding: 0px;
+}
