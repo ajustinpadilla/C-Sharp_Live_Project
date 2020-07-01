@@ -245,31 +245,40 @@ namespace TheatreCMS.Controllers
         }
         public static PhotoDependenciesVm FindDependencies(int? Id)
         {
-            var db = new ApplicationDbContext();
-            var photoDependencies = new PhotoDependenciesVm();
-            photoDependencies.ValidId = true;
-            if (Id == null)
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                photoDependencies.ValidId = false;
+                var photoDependencies = new PhotoDependenciesVm();
+                photoDependencies.ValidId = true;
+                if (Id == null)
+                {
+                    photoDependencies.ValidId = false;
+                }
+
+
+                var globalPhotoId = db.Photo.Find(Id);
+
+                var sponsorPhotoId = db.Sponsors.FirstOrDefault(photo => photo.LogoId == globalPhotoId.PhotoId);
+                if (sponsorPhotoId != null && sponsorPhotoId.LogoId == globalPhotoId.PhotoId)
+                {
+                    var sponList = new List<Sponsor>();
+                    photoDependencies.Sponsors.Add(sponsorPhotoId);
+                }
+                
+                var productionPhotosId = db.ProductionPhotos.FirstOrDefault(photo => photo.PhotoId == globalPhotoId.PhotoId);
+                if (productionPhotosId != null && productionPhotosId.PhotoId == globalPhotoId.PhotoId)
+                {
+                    photoDependencies.ProductionPhotos.Add(productionPhotosId);
+                }
+
+                photoDependencies.HasDependencies = false;
+                if (sponsorPhotoId != null && globalPhotoId.PhotoId == sponsorPhotoId.LogoId || productionPhotosId != null && globalPhotoId.PhotoId == productionPhotosId.PhotoId)
+                {
+                    photoDependencies.HasDependencies = true;
+                }
+
+                return photoDependencies;
             }
-            photoDependencies.HasDependencies = false;
-            int sponsorId = db.Sponsors.Find(Id).SponsorId;
-            Sponsor sponsorDepend = db.Sponsors.Find(sponsorId);
-            int productionPhotosId = db.ProductionPhotos.Find(Id).PhotoId;
-            ProductionPhotos productionPhotosDepend = db.ProductionPhotos.Find(productionPhotosId);
-            if (Id == sponsorId || Id == productionPhotosId)
-            {
-                photoDependencies.HasDependencies = true;
-            }
-            if (Id == sponsorId)
-            {
-                photoDependencies.Sponsors.Add(sponsorDepend);
-            }
-            if (Id == productionPhotosId)
-            {
-                photoDependencies.ProductionPhotos.Add(productionPhotosDepend);
-            }
-            return photoDependencies;
+            
         }
     }
 }
