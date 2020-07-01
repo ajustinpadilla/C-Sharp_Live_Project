@@ -3,17 +3,61 @@
 @{
     ViewBag.Title = "Rental Request";
 }
-    <div class="container-fluid">
-        <div class="m-4">
-            @*IDJ--Took the h2 out of class tag so that the btn wasnt styled with the header tag*@
-            <h2 id="Isaiah_RentalHeader">Rental Requests</h2>@*IDJ--Gave this header an id so that using css i can place a btn next to it*@
-            @*IDJ--Making a btn that matches in styling with the other buttons on this page that links to the RentalRequest create page*@
-            <a class="Isaiah_pillBtn badge badge-pill badge-danger text-black" href="@Url.Action("Create", "RentalRequest")">Create</a>
-        </div>
+  <head>
+    <link href="~/Content/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-3.4.1.js")"><</script>
+    <script src="@Url.Content("~/Scripts/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/fullcalendar/fullcalendar.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/fullcalendar/fullcalendar.js")"></script>
+    
+    <!--Render fullCalendar-->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        
+        $('#requestCalendar').fullCalendar({
+          //options and callbacks
+        });
+      });
+    </script>
+  </head>
 
-        @*Calendar will be here*@
+  <div class="container-fluid">
+    <div class="m-4">
+      @*IDJ--Took the h2 out of class tag so that the btn wasnt styled with the header tag*@
+      <h2 id="Isaiah_RentalHeader">Rental Requests</h2>@*IDJ--Gave this header an id so that using css i can place a btn next to it*@
+      @*IDJ--Making a btn that matches in styling with the other buttons on this page that links to the RentalRequest create page*@
+      <a class="Isaiah_pillBtn badge badge-pill badge-danger text-black" href="@Url.Action("Create", "RentalRequest")">Create</a>
+    </div>
+
+    @*Calendar will be here*@
+    <div id="requestCalendar">
+      <div class="calendar-body">
         <div id="requestCalendar"></div>
+      </div>
+    </div>
 
+    <div id="MyPopup" class="modal fade modal-CreateEvent" role="dialog">
+      <div class="modal-dialog">
+        @*Modal heaer*@
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+        </div>
+        @*modal body*@
+        <div class="modal-body">
+
+        </div>
+        @*modal footer*@
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <!--
         <table class=" table-responsive-stack" id="rentalRequests">
             <thead class="bg-light">
                 <tr class="text-black">
@@ -120,8 +164,8 @@
                 }
 
             </tbody>
-        </table>
-    </div>
+        </table>-->
+    
 
 <!-- Handles stacking when resolution < 992-->
 @Scripts.Render("~/bundles/jquery")
@@ -192,8 +236,3 @@
     });
 </script>
 
-@*Script *@
-<script src="@Url.Content("~/Scripts/fullcalendar/fullcalendar.js")"></script>
-<script>
-    $('#requestCalendar').fullCalendar('render');
-</script>
