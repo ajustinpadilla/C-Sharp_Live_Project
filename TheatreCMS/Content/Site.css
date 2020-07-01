@@ -1722,12 +1722,10 @@ a.dropdown-item:hover {
         }
 
         .currentpro-imgtran:hover {
-            transform: scale(1.15, 1.10);
+            transform: scale(1.07, 1.07);
             opacity: 0.2;
             z-index: 2;
         }
-
-
         .currentpro-text {
             position:absolute;
             text-align:center;
@@ -1742,13 +1740,7 @@ a.dropdown-item:hover {
                 font-size:.8rem;
             }
         }
-        #currentpro-fontsize {
-            
-        }
-
-
-        .currentpro-txthover {
-           
+        .currentpro-txthover { 
             opacity: 0;
         }
 
