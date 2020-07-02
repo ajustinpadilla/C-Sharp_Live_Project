@@ -340,8 +340,8 @@
 
 .production-index-container .card {
     border: 2px solid rgba(0, 0, 0, 0.125);
-}
 
+}
 
 /*-----Classes and styling for LoginFailure view------*/
 /*using button styles from sponsor index to match theme 
@@ -1753,26 +1753,30 @@ a.dropdown-item:hover {
         }
 
         .currentpro-imgtran:hover {
-            transform: scale(1.05, 1.05);
+            transform: scale(1.07, 1.07);
             opacity: 0.2;
             z-index: 2;
         }
-
-
         .currentpro-text {
-            text-align: center;
+            position:absolute;
+            text-align:center;
             margin-top: -50%;                                                               /*styles text under image*/
         }
         
         .currentpro-fontsize {
-            font-size: 1.5vw;
+            font-size: 1.05rem;
         }
-
-        .currentpro-txthover {
+        @media (max-width:550px){
+            .currentpro-fontsize {
+                font-size:.8rem;
+            }
+        }
+        .currentpro-txthover { 
             opacity: 0;
         }
 
         .currentpro-imgtran:hover + .currentpro-txthover {
+            
             opacity: 1;                                                                             /*makes it so text does not appear until image is hovered*/
         }
 
