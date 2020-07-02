@@ -57,8 +57,8 @@
 }
 
 .palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
-    background-color: var(--secondary-color);
-    color: var(--dark-color);
+    background-color: var(--main-bg-color);
+    /*color: var(--dark-color);*/
 }
 
 /*CSS for Landing Page*/
@@ -1191,6 +1191,10 @@ div.magnify:hover {
         margin-left: 15%;
         margin-right: 15%;
     }
+
+    .nav-button{
+        font-size: 20pt;    /*Added for spacing of navbar text when screen is big*/
+    }
 }
 @media only screen and (min-width: 1400px) { /*Added for spacing on details page when screen is big*/
     .detailsContainer {
@@ -1238,7 +1242,14 @@ div.magnify:hover {
 }
 
 #navbarSupportedContent a:hover {
-    background-color: var(--main-bg-color);
+    background-color: var(--main-secondary-color);
+    color: var(--light-color);
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px rgba(255, 251, 251, 0.1) inset;
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-property: background-color;
 }
 
 /*Begin SubmitRequest CSS*/
@@ -1622,6 +1633,13 @@ input[type=submit] {
     display: block;
 }
 
+.nav-button{
+    color: var(--light-color);
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 20pt;
+}
+
 .dropdown-submenu {
     position: relative;
 }
@@ -1632,8 +1650,23 @@ input[type=submit] {
         margin-top: -6px;
     }
 
+    .dropdown-item{
+        font-size: 16pt;
+    }
+
 a.dropdown-item:hover {
     color: white;
+}
+
+.logoImg {
+    background-color: var(--light-color);
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5); /*Same color as --dark-color with opacity of  0.5 for shadow*/
+}
+
+.navbar-toggler-icon{
+    color: var(--light-color);
 }
 /* The sticky class */
 /*.sticky {
@@ -1641,9 +1674,7 @@ a.dropdown-item:hover {
     top: 0;
     width: 100%;
 }*/
-
 /*I adjusted the speed at which the navbar and logo shrinks and expands while scrolling (Peter O.)*/
-
 #menu {
     transition: 0.8s;
     padding: 20px;
@@ -2590,6 +2621,34 @@ transition: 0.3s;
         }
 }
 
+@media only screen and (max-width: 1293px) {    /*To descrease the font size of the navbar buttons and reduce the register/logout button's padding-right to 2rem*/
+    .nav-button{
+        font-size: 16pt;
+    }
+
+    .nav-login li{
+        padding-right: 2rem;
+    }
+}
+
+@media only screen and (max-width: 1118px) {    /*To decrease the padding-right of register/logout buttons to 1rem*/
+    .nav-login li{
+        padding-right: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1086px) {    /*To decrease the padding-right of register/logout buttons to 0rem*/
+    .nav-login li{
+        padding-right: 0rem;
+    }
+}
+
+@media only screen and (max-width: 991px) {    /*To increase the font size of the navbar buttons back to 20pt for navbar toggler's activation and mobile view*/
+    .nav-button{
+        font-size: 20pt;
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .archive-input-container {
         padding: 0px 20px;
@@ -3443,7 +3502,128 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 *********************** End Isaiah's Styling *******************************
 ****************************************************************************/
 
+/* Message Index Styling */
+
+.messages-index {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.messages-index tbody tr {
+    cursor: pointer;
+}
+
+.messages-index tbody tr span:hover {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+.messages-index tr.isviewed-false {
+    font-weight: bold;
+}
+
+#inboxDetails {
+    display: none;
+}
+
+#sentDetails {
+    display: none;
+}
+
+#inboxList table, #sentList table {
+    table-layout: fixed;
+}
+
+.inboxRow .msgSubject, .sentRow .msgSubject {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#inboxDetails .msgSubject,
+#inboxDetails .msgBody,
+#inboxDetails .msgFrom,
+#inboxDetails .msgDate,
+#sentDetails .msgSubject,
+#sentDetails .msgBody,
+#sentDetails .msgTo,
+#sentDetails .msgDate {
+    background-color: rgba(240, 240, 240, 0.5);
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+#inboxDetails .msgBody,
+#sentDetails .msgBody {
+    min-height: 100px;
+}
+
+
+/* End Message Index Styling */
+
 
 /****************User List Styling**********************/
 
+/*CSS for Admin Part View by Patrick North*/
+/*creates an elipsis if multi-line text is over 5 lines long.*/
+.part-details-elipsis {
+    text-indent: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
 
+.part-overlay {
+    transition: .3s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(240, 77, 68, .5);
+    border-radius: 25px;
+}
+/*opaque overlay for card hover*/
+.part-cardHover:hover .part-overlay {
+    opacity: 1;
+}
+
+/*card formatting for part page*/
+.part-card {
+    color: white;
+    background-color: #bd1a11;
+    border-radius: 25px;
+    height:350px;    
+    min-width: 250px;
+    max-width: 280px;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;   
+    word-wrap: break-word;   
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);    
+}
+
+/*custom card-deck formatting that allows custom format for screens < 575px*/
+.part-card-deck {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+/*END CSS for Admin Parts page*/

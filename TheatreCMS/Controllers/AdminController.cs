@@ -308,7 +308,7 @@ namespace TheatreCMS.Controllers
 
             JObject json_content = (JObject)JsonConvert.DeserializeObject(json_string);
             json_content.Property("current_productions").Value = JToken.FromObject(currentProd);
-            string updated_json = JsonConvert.SerializeObject(json_content);
+            string updated_json = JsonConvert.SerializeObject(json_content, Formatting.Indented);
 
             using (StreamWriter writer = new StreamWriter(json_path))
             {
