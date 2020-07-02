@@ -29,11 +29,11 @@ namespace TheatreCMS.Models
         public string Recipient { get; set; }
 
         
-        public Nullable<int> ProductionId { get; set; }
+        public int ProductionId { get; set; }
         public virtual Production Production { get; set; }
 
         
-        public Nullable<int> CastMemberId { get; set; }
+        public int CastMemberId { get; set; }
         public virtual CastMember CastMember { get; set; }
 
         [Display(Name = "Other Information")]
