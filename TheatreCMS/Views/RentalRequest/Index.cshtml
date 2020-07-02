@@ -15,6 +15,24 @@
     <!--Render fullCalendar and toggle show/hide option-->
     <script type="text/javascript">           
       $(document).ready(function() {
+        $.ajax({
+          type: "GET",
+          url: "/RentalRequest/GetEvents",
+          success: function (data) {
+            $.each(data, function (i, v) {
+              events.push({
+                title: v.ContactPerson,
+                description: v.ProjectInfo,
+                start: moment(v.StartTime),
+                end: v.End != null ? moment(v.EndTime) : null,
+                color: v.ThemeColor,
+                allDay: false
+              });
+            })
+            
+          }
+          
+        });
 
         //Toggle calendar show/hide
         $("#toggle").click(function () {

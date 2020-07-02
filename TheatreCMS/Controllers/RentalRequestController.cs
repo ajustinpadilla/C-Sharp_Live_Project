@@ -234,5 +234,17 @@ namespace TheatreCMS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult GetEvents()
+        {
+            using (ApplicationDbContext dc = new ApplicationDbContext())
+            {
+                var events = dc.RentalRequests.ToList();
+                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+        }
+
+
     }
-}
+} 
+
