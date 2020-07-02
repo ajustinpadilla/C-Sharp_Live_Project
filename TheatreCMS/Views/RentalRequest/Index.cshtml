@@ -11,64 +11,8 @@
     <script src="@Url.Content("~/Scripts/moment.min.js")"></script>
     <script src="@Url.Content("~/Scripts/fullcalendar/fullcalendar.min.js")"></script>
     <script src="@Url.Content("~/Scripts/fullcalendar/fullcalendar.js")"></script>
-    
-    <!--Render fullCalendar and toggle show/hide option-->
-    <script type="text/javascript">           
-      $(document).ready(function() {
-        $.ajax({
-          type: "GET",
-          url: "/RentalRequest/GetEvents",
-          success: function (data) {
-            $.each(data, function (i, v) {
-              events.push({
-                title: v.ContactPerson,
-                description: v.ProjectInfo,
-                start: moment(v.StartTime),
-                end: v.End != null ? moment(v.EndTime) : null,
-                color: v.ThemeColor,
-                allDay: false
-              });
-            })
-            
-          }
-          
-        });
-
-        //Toggle calendar show/hide
-        $("#toggle").click(function () {
-          $("#requestCalendar").toggle('fast', function () {
-            $(".log").text('Toggle Transition Complete');
-          });          
-        });
-        
-        //render requestCalendar
-        $('#requestCalendar').fullCalendar({
-          //options and callbacks
-          header: {
-            left: 'title',
-            center: 'today, month,agendaWeek',
-            right: 'prev,next'
-          },
-          allDaySlot: false,
-          defaultView: 'month',
-
-          events: {
-
-
-
-
-          }
-        });
-
-      });
-
-      //calendar Icon toggle >>TODO:FIND OUT WHY THE FA CLASS WONT CHANGE<<
-      function toggleIcon(x) {
-        x.classList.toggle("fa-calendar-check");
-        x.classList.toggle("fa-calendar-minus");
-      }
-
-    </script>
+   
+   
   </head>
 
   <div class="container-fluid">

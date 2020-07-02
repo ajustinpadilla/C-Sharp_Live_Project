@@ -235,7 +235,7 @@ namespace TheatreCMS.Controllers
             base.Dispose(disposing);
         }
 
-        public JsonResult GetEvents()
+        public JsonResult GetRentalEvents()
         {
             using (ApplicationDbContext dc = new ApplicationDbContext())
             {

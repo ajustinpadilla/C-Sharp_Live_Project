@@ -436,3 +436,62 @@ if ($("#generate-showtimes-section") != null) {
 }
 // *************************************************************************** End Script for Bulk Add ******************************************************************************************
 // ===========================================================================  CalendarEvents/BulkAdd  =====================================================================================================
+
+
+
+//Rental Request Script//
+var events = [];
+$(document).ready(function () {
+
+    GetRentalEvents();
+    function GetRentalEvents() {
+        $.ajax({
+            type: "GET",
+            url: "/RentalRequest/GetRentalEvents",
+            success: function (data) {
+                events = data
+                GenerateCalendar(events);
+            }
+        })
+    };
+
+    function GenerateCalendar(events) {
+        //clear previous calendar
+        //$('#requestCalendar').fullCalendar('destroy');
+        //render requestCalendar
+        $('#requestCalendar').fullCalendar({
+            //options and callbacks
+            //timezone: "local",
+            //defaultDate: new Date();
+            //eventLimit: true,
+            header: {
+                left: 'title',
+                center: 'today, month,agendaWeek',
+                right: 'prev,next'
+            },
+            allDaySlot: false,
+            defaultView: 'month',
+
+            events: events
+        }
+        }
+});
+
+
+
+//Toggle calendar show/hide
+$("#toggle").click(function () {
+    $("#requestCalendar").toggle('fast', function () {
+        $(".log").text('Toggle Transition Complete');
+    });
+});
+        
+        
+
+      });
+
+//calendar Icon toggle >>TODO:FIND OUT WHY THE FA CLASS WONT CHANGE<<
+function toggleIcon(x) {
+    x.classList.toggle("fa-calendar-check");
+    x.classList.toggle("fa-calendar-minus");
+}
