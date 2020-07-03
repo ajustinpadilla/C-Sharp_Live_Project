@@ -237,13 +237,26 @@ namespace TheatreCMS.Controllers
 
         public JsonResult GetRentalEvents()
         {
-            using (ApplicationDbContext dc = new ApplicationDbContext())
+            var events = db.RentalRequests.ToArray();
+
+            return Json(db.RentalRequests.Select(x => new
             {
-                var events = dc.RentalRequests.ToList();
-                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            }
+                rentalRequestId = x.RentalRequestId,
+                contactPerson = x.ContactPerson,
+                company = x.Company,
+                start = x.StartTime,
+                end = x.EndTime,               
+                projectInfo = x.ProjectInfo,
+                requests = x.Requests,
+                rentalCode= x.RentalCode,
+                accepted = x.Accepted,
+                contractSigned = x.ContractSigned,
+                allDay = false,
+               
+            }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
+        
 
     }
 } 

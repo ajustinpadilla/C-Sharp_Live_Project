@@ -440,9 +440,19 @@ if ($("#generate-showtimes-section") != null) {
 
 
 //Rental Request Script//
-var events = [];
-$(document).ready(function () {
 
+
+var events = [];
+$(document).ready(function () {    
+    //Toggle calendar show/hide
+    $("#toggle").click(function () {
+        $("#rentalCalendar").toggle('fast', function () {
+            $(".log").text('Toggle Transition Complete');
+        });
+    });
+
+    
+    //fullCalendar AJAX request for JsonResult 
     GetRentalEvents();
     function GetRentalEvents() {
         $.ajax({
@@ -451,47 +461,198 @@ $(document).ready(function () {
             success: function (data) {
                 events = data
                 GenerateCalendar(events);
+                
             }
         })
     };
 
-    function GenerateCalendar(events) {
-        //clear previous calendar
-        //$('#requestCalendar').fullCalendar('destroy');
-        //render requestCalendar
-        $('#requestCalendar').fullCalendar({
-            //options and callbacks
-            //timezone: "local",
-            //defaultDate: new Date();
-            //eventLimit: true,
-            header: {
-                left: 'title',
-                center: 'today, month,agendaWeek',
-                right: 'prev,next'
-            },
-            allDaySlot: false,
-            defaultView: 'month',
-
-            events: events
-        }
-        }
+    function GenerateCalendar(events) {        
+        //remove the previous Calendar
+        $('#rentalCalendar').fullCalendar('destroy');
+        //Assign properties to the Calendar, and some events        
+        $('#rentalCalendar').fullCalendar({
+            contentHeight: 550,
+            timezone: "local",
+            defaultDate: new Date(),
+            //allows multiple/stacked events
+            eventLimit: true,
+            events: events,
+            //render appropriate eventcolor to calendar based on type of event                  
+            selectable: true,
+            selectHelper: true,
+            //if multiple events on same day should be stacked, set to true:
+            eventLimit: false,               
+            
+            
+            eventClick: function getDetails(events) {               
+                var id = events.rentalRequestId;
+                window.location.href = ("/rentalRequest/Details/" + id);                
+                }
+                
+          
+        });         
+        
+    };
+            
 });
 
 
 
-//Toggle calendar show/hide
-$("#toggle").click(function () {
-    $("#requestCalendar").toggle('fast', function () {
-        $(".log").text('Toggle Transition Complete');
-    });
-});
-        
-        
 
-      });
 
-//calendar Icon toggle >>TODO:FIND OUT WHY THE FA CLASS WONT CHANGE<<
-function toggleIcon(x) {
-    x.classList.toggle("fa-calendar-check");
-    x.classList.toggle("fa-calendar-minus");
-}
+
+
+
+
+
+
+//select: function (startStr, endStr) {
+    //var addstarttime = moment(moment.utc(startStr)).format().substring(0, 19);
+    //var addendtime = moment(moment.utc(endStr)).format().substring(0, 19);
+    //setting the selected start and end date/times to default in Add Modal inputs
+
+    //function getAddStartT() {
+    //    document.getElementById("addformstarttime").defaultValue = addstarttime;
+    //};
+    //function getAddEndT() {
+    //    document.getElementById("addformendtime").defaultValue = addendtime;
+    //};
+    //getAddStartT();
+    //getAddEndT();
+
+    //$("#addModal").modal({ backdrop: true });
+
+    //$("#addModal #ProductionsMenu").hide();
+    //$("#addModal #RentalsMenu").hide();
+
+
+    //$("#addModal #eventtypes").change(function () {
+    //    var type = $(this).val();
+    //    if (type == "prod_type") {
+    //        $("#addModal #ProductionsMenu").show();
+    //        $("#addModal #RentalsMenu").hide();
+    //    }
+    //    else if (type == "rent_type") {
+    //        $("#addModal #RentalsMenu").show();
+    //        $("#addModal #ProductionsMenu").hide();
+    //    }
+    //    else {
+    //        $("#addModal #ProductionsMenu").hide();
+    //        $("#addModal #RentalsMenu").hide();
+    //    };
+    //}),
+
+    //Call CalendarEvents/Create New Event
+    //$.ajax({
+    //    type: "GET",
+    //    url: '/RentalRequest/Create',
+    //    data: { '': '' },
+    //    success: function (data) {
+    //        if (data.status) {
+    //            //refresh the calendar
+    //            $("#rentalCalendar").fullCalendar('renderEvent');
+    //            GetCalendarEvents();
+    //            $('#addModal').modal('hide');
+    //        }
+    //    },
+    //    error: function () {
+    //        alert('Failed, Sorry!');
+    //    }
+    //});
+    //$("#rentalCalendar").fullCalendar('unselect');
+//},
+
+
+
+
+
+//eventClick: function (event, jsEvent, view) {
+
+
+    //$('#detailsModal #deventId').html(calEvent.id);
+    //$('#detailsModal #deventTitle').html(calEvent.title);
+    //var startdatedetail = moment.utc(calEvent.start).local().format("MM-DD-YYYY HH:mm a");
+    //$('#detailsModal #deventStartDate').html(startdatedetail);
+    //var enddatedetail = moment.utc(calEvent.end).local().format("MM-DD-YYYY HH:mm a");
+    //$('#detailsModal #deventEndDate').html(enddatedetail);
+
+    //if (calEvent.productionid > 0) {
+    //    $('#detailsModal #deventtypes').html("Production: " + calEvent.productionid);
+    //}
+    //else if (calEvent.rentalrequestid > 0) {
+    //    $('#detailsModal #deventtypes').html("Facility Rental: " + calEvent.rentalrequestid);
+    //}
+    //$('#detailsModal #deventEventLinks').html(calEvent.eventlinks);
+    //$("#detailsModal").modal({ backdrop: true });
+
+    //$("#detaileditbtn").click(function () {
+    //    $('#editModal #eeventId').html(calEvent.id);
+    //    $('#editModal #eeventTitle').html(document.getElementById("editformtitle").defaultValue = calEvent.title);
+    //    $('#editModal #eeventStartDate').html(document.getElementById("editformstarttime").defaultValue = moment(moment.utc(calEvent.start)).local().format().substring(0, 19));
+    //    $('#editModal #eeventEndDate').html(document.getElementById("editformendtime").defaultValue = moment(moment.utc(calEvent.end)).local().format().substring(0, 19));
+
+    //    if (calEvent.productionid > 0) {
+    //        $("#editModal #editeventtypes").val("e_prod_type");
+    //        $('#editModal #Productions').val(calEvent.productionid);
+    //        $("#editModal #e_RentalsMenu").hide();
+    //    }
+    //    else if (calEvent.rentalrequestid > 0) {
+    //        $("#editModal #editeventtypes").val("e_rent_type");
+    //        $('#editModal #RentalRequests').val(calEvent.rentalrequestid)
+    //        $("#editModal #e_ProductionsMenu").hide();
+    //    }
+
+    //    //remove previous modal and show edit Modal when edit button selected
+    //    $("#detailsModal").modal('hide');
+    //    window.setTimeout(function () {
+    //        $("#editModal").modal("show");
+    //    }, 500);
+
+    //    //save changes made in edit Modal
+    //    $('#editsavebtn').click(function () {
+    //        var antiForgeryToken = $('#editModal input[name="__RequestVerificationToken"]').val();
+    //        calendarEvent = {
+    //            "EventId": calEvent.id,
+    //            "Title": $('#editModal #editformtitle').val(),
+    //            "StartDate": $('#editModal #editformstarttime').val(),
+    //            "EndDate": $('#editModal #editformendtime').val(),
+    //            "TicketsAvailable": null,
+    //            "ProductionId": $("#editModal #Productions").val(),
+    //            "RentalRequestId": $("editModal #RentalRequests").val(),
+
+    //            '__RequestVerificationToken': antiForgeryToken,
+    //        }
+    //        $.ajax({
+    //            type: "POST",
+    //            url: '/CalendarEvents/Edit',
+    //            data: calendarEvent,
+    //            success: function (data) {
+    //                //refresh the calendar
+    //                console.log(data);
+    //                GetRentalEvents();
+    //                $('#editModal').modal('hide');
+    //            },
+    //            error: function () {
+    //                alert('Failed, Sorry!');
+    //            }
+    //        });
+    //        $("#rentalCalendar").fullCalendar('unselect', jsEvent, view);
+    //        $("#rentalCalendar").fullCalendar('updateEvent', calendarEvent, true);
+    //    });
+    //});
+
+    ////send to Confirm to Delete Modal when delete button selected [on details Modal]
+    //$("#detaildeletebtn").click(function () {
+    //    window.setTimeout(function () {
+    //        $("#confdelModal").modal("show");
+    //    }, 500);
+    //    selectedEvent = calEvent.id;
+    //    $("#detailsModal").modal('hide');
+    //});
+
+    ////send to Confirm to Delete Modal when delete button selected [on edit Modal]
+    //$("#editdeletebtn").click(function () {
+    //    $("#confdelModal").modal("show");
+    //    selectedEvent = calEvent.id;
+    //});
+//}
