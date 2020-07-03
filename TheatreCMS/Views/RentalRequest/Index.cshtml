@@ -19,16 +19,16 @@
     <h2 id="Isaiah_RentalHeader">Rental Requests</h2>@*IDJ--Gave this header an id so that using css i can place a btn next to it*@
 
     @*Calendar toggle button*@
-    <button><i id="toggleCal" onclick="toggleIcon(this)" class="fa fa-calendar-minus "></i></button>
+    <button><i id="toggleCal" onclick="toggleIcon(this)" class="fa fa-calendar-minus"></i></button>
 
     @*IDJ--Making a btn that matches in styling with the other buttons on this page that links to the RentalRequest create page*@
     <a class="Isaiah_pillBtn badge badge-pill badge-danger text-black" href="@Url.Action("Create", "RentalRequest")">Create</a>
   </div>
 
   @*Calendar divs*@
-  <div id="rentalCalendar">
+  <div id="calendar" class="calendar">
     <div class="calendar-body">
-      <div id="calendar"></div>
+      <div id="rentalCalendar"></div>
     </div>
   </div>
 </div>
