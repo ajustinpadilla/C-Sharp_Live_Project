@@ -21,17 +21,41 @@
                 <div class="form-group">
                     <img class="medium_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
                     @*@Html.LabelFor(model => model.PhotoFile, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.PhotoFile, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-danger" })
-            </div>*@
+                        <div class="col-md-10 formBox">
+                            @Html.EditorFor(model => model.PhotoFile, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-danger" })
+                        </div>*@
                 </div>
 
-                @if (TheatreCMS.Controllers.PhotoController.)
+                <!--Will display warning message only if the photo has dependencies-->
+                @if (TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).HasDependencies == true)
+                {
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Upload Photo File
+                    </button>
 
-
-
-
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Warning</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    You are trying to upload an image for a photo that has dependencies.  Are you sure you want to proceed?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">No</button> <!--No button highlighted blue by default-->
+                                    <button type="button" class="btn btn-secondary">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.OriginalHeight, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
@@ -66,11 +90,34 @@
         </div>
     </div>
 }
+@if (TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).HasDependencies == false)
+{
+    <dt>
+        This photo is not being used
+    </dt>
+}
+else
+{
+    <dt>
+        This photo is being used by the following items:
+    </dt>
+    <dd>
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        @foreach (var production in TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).ProductionPhotos)
+        {
+            @production.Title <br />
+        }
+        @foreach (var sponsor in TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).Sponsors)
+        {
+            @sponsor.Name <br />
+        }
+    </dd>
+}
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
