@@ -31,6 +31,7 @@ namespace TheatreCMS
             SeedProductions();
             SeedProductionPhotos();
             SeedParts();
+            SeedAwards();
         }
 
 
