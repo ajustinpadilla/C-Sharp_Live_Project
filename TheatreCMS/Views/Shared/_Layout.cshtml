@@ -29,29 +29,10 @@
 </head>
 <body class="palette-body">
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/fullcalendar")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/javascript")
-    @RenderSection("scripts", required: false)
-    <!-- Moved loading of scripts to start of body to resolve error-->
+
+    <!-- Moved loading of jquery to start of body to resolve error-->
     <!-- Script below added by Dagmar 20200312; submenus functionality changed from hover to click, submenus are stable and do not disappear anymore -->
-    <script>
-        $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
-            if (!$(this).next().hasClass('show')) {
-                $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
-            }
-            var $subMenu = $(this).next('.dropdown-menu');
-            $subMenu.toggleClass('show');
 
-
-            $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
-                $('.dropdown-submenu .show').removeClass('show');
-            });
-
-
-            return false;
-        });
-    </script>
     <nav class="palette-navbar navbar fixed-top navbar-expand-xl navbar-light" id="menu">
         <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index", "Home")">
             <img class="logoImg" src="~/Content/Images/cropped-logo.png" id="logo" />
@@ -225,8 +206,27 @@
     </footer>
 
 
+    @Scripts.Render("~/bundles/fullcalendar")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/javascript")
+    @RenderSection("scripts", required: false)
+    <script>
+        $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
+            if (!$(this).next().hasClass('show')) {
+                $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+            }
+            var $subMenu = $(this).next('.dropdown-menu');
+            $subMenu.toggleClass('show');
 
 
+            $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+                $('.dropdown-submenu .show').removeClass('show');
+            });
+
+
+            return false;
+        });
+    </script>
 </body>
 </html>
 
