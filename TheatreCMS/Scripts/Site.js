@@ -449,7 +449,7 @@ function toggleIcon(x) {
 
 //Toggle calendar show/hide
 $("#toggleCal").click(function () {
-    $("#calendar").toggle('fast', function () {
+    $("#rentalCalendar").toggle('fast', function () {
         $(".log").text('Toggle Transition Complete');
     });
 });
@@ -471,9 +471,9 @@ function GetRentalEvents() {
 
 function GenerateCalendar(rentalEvents) {        
     //remove the previous calendar
-    $('#calendar').fullCalendar('destroy');
+    $('#rentalCalendar').fullCalendar('destroy');
     //Assign properties and events to the calendar        
-    $('#calendar').fullCalendar({        
+    $('#rentalCalendar').fullCalendar({        
         header: {
             left: 'prev,next today',
             center: 'title',

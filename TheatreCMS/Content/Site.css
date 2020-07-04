@@ -3629,15 +3629,11 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 /*END CSS for Admin Parts page*/
 
 /*RentalCalendar CSS*/
-.fa-calendar-minus {
+.calIcon {
     font-size: 30px;
 }
 
-.fa-calendar-plus{
-    font-size:30px;
-}
-
-.fc-widget-header {
+.rentEventCalendar .fc-widget-header {
     background-color: #bd1a11;
 }
 /*End RentalCalendar CSS*/
