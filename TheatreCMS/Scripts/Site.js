@@ -3,7 +3,7 @@ window.onscroll = function () { shrinkFunction() };
 
 function shrinkFunction() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("logo").style.height = "45px";
+        document.getElementById("logo").style.height = "50px";
         document.getElementById("menu").style.padding = " 1px 20px";
     } else {
         document.getElementById("logo").style.height = "90px";
