@@ -90,6 +90,11 @@ namespace TheatreCMS.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+            var castMembers = from p in db.CastMembers
+                              select p;
+
+            ViewBag.CastMembers = castMembers.ToList();
+
             return View();
         }
 
