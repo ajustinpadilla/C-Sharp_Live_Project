@@ -62,10 +62,10 @@
                 This photo is being used by the following items: 
             </dt>
             <dd>
-                
                 @foreach (var production in TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).ProductionPhotos)
                 {
-                    @production.Title <br />
+                    @production.Title; <text> - Season: </text>
+                    @production.Production.Season; <br />
                 }
                 @foreach (var sponsor in TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).Sponsors)
                 {
