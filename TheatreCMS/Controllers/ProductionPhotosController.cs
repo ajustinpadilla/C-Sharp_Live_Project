@@ -109,27 +109,30 @@ namespace TheatreCMS.Models
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProPhotoId,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
-        {          
+        {          // Productionphotos productionPhotos is recieving wrong info
                       
             int productionID = Convert.ToInt32(Request.Form["Productions"]);
+
 
             if (ModelState.IsValid)
             {
                 var currentProPhoto = db.ProductionPhotos.Find(productionPhotos.ProPhotoId);
                 currentProPhoto.Title = productionPhotos.Title;
                 currentProPhoto.Description = productionPhotos.Description;
+                currentProPhoto.PhotoId = productionPhotos.PhotoId;
 
                 var production = db.Productions.Find(productionID);
                 currentProPhoto.Production = production;
 
                 //if (file != null && file.ContentLength > 0)
                 //{
-                //    var photo = ImageUploadController.ImageBytes(file, out string _64);
+                //    var photoByte = ImageUploadController.ImageBytes(file, out string _64);
                 //    currentProPhoto.Photo = photo;
+
                 //}
                 //else
                 //{
-                //    currentProPhoto.Photo = productionPhotos.Photo;
+                //    currentProPhoto.photo = productionPhotos.photo;
                 //}
 
                 db.Entry(currentProPhoto.Production).State = EntityState.Modified;
