@@ -83,6 +83,13 @@
 
                 <input id="ParentId" name="ParentId" type="hidden" value="">
 
+                        var currentParentId = Model.Where(x => x.ParentId == );
+
+                        foreach(var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"]))
+                        {
+                            @item.ParentId
+                        }
+
                 <div class="form-group form-row align-items-center">
                     <label class="col-lg-2 col-md-2 control-label col-1"></label>
                     <div class="col-lg-6 col-md-8">
