@@ -31,7 +31,6 @@
     @Scripts.Render("~/bundles/jquery")
 
     <!-- Moved loading of jquery to start of body to resolve error-->
-    <!-- Script below added by Dagmar 20200312; submenus functionality changed from hover to click, submenus are stable and do not disappear anymore -->
 
     <nav class="palette-navbar navbar fixed-top navbar-expand-xl navbar-light" id="menu">
         <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index", "Home")">
@@ -210,6 +209,8 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/javascript")
     @RenderSection("scripts", required: false)
+
+    <!-- Script below added by Dagmar 20200312; submenus functionality changed from hover to click, submenus are stable and do not disappear anymore -->
     <script>
         $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
             if (!$(this).next().hasClass('show')) {
