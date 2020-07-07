@@ -31,6 +31,7 @@ namespace TheatreCMS
             SeedProductions();
             SeedProductionPhotos();
             SeedParts();
+            SeedAwards();
         }
 
 
@@ -307,6 +308,121 @@ namespace TheatreCMS
                 };
 
             castMembers.ForEach(castMember => context.CastMembers.AddOrUpdate(c => c.Name, castMember));
+            context.SaveChanges();
+        }
+        //Seeding database with dummy SeedAwards
+        private void SeedAwards()
+        {
+            var awards = new List<Award>
+            {
+                new Award
+                {
+                    Year = 2017, Name = "Drammy", Type = AwardType.Finalist, Category = "Sound Design", Recipient = "Andrew Bray",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "Assistance").FirstOrDefault().ProductionId,
+                          //CastMemberId = context.CastMembers.Where(p => p.Name == "London Bauman").FirstOrDefault().CastMemberID,
+
+
+
+                },
+                 new Award
+                {
+                    Year = 2016, Name = "Drammy", Type = AwardType.Award, Category = "Outstanding Achievement", Recipient = "Scenic Artist,Mindy Barker",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The Drunken City").FirstOrDefault().ProductionId,
+                          
+                },
+                new Award
+                {
+                    Year = 2016, Name = "Drammy", Type = AwardType.Finalist, Category = "Sound Design", Recipient = "Richard E.Moore",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The Drunken City").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2015, Name = "Drammy", Type =AwardType.Award, Category = "Ensemble in a Play", 
+                          ProductionId = context.Productions.Where(prod => prod.Title == "Bob: A Life in Five Acts").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2015, Name = "Drammy", Type =AwardType.Award, Category = "Direction", Recipient = "Matthew B.Zrebski",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "Bob: A Life in Five Acts").FirstOrDefault().ProductionId ,
+                },
+                new Award
+                {
+                    Year = 2015, Name = "Drammy", Type =AwardType.Finalist, Category = "Ensemble in a Play",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The School for Lies").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2014, Name = "Drammy", Type =AwardType.Award, Category = "Sound Design", Recipient = "Annalise Albright Woods",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "pool (no water)").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2014, Name = "Drammy", Type =AwardType.Finalist, Category = "Ensemble in a play ",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "pool (no water)").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2013, Name = "Drammy", Type =AwardType.Award, Category = "Actress in a supporting role", Recipient ="Brooke Calcagno",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "Mother Courage & Her Children").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2013, Name = "Drammy", Type =AwardType.Award, Category = "Sound design", Recipient ="Richard Moore",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The Velvet Sky").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2012, Name = "Drammy", Type =AwardType.Award, Category = "Actor in a land role", Recipient ="Mario Calcagno",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The American Pilot").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2012, Name = "Drammy", Type =AwardType.Award, Category = "Sound design", Recipient ="Em Gustason",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The American Pilot").FirstOrDefault().ProductionId,
+                },
+                 new Award
+                {
+                    Year = 2010, Name = "Drammy", Type =AwardType.Award, Category = "Supporting Actress", Recipient ="Amy Newman",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "God's Ear").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2009, Name = "Drammy", Type =AwardType.Award, Category = "Supporting Actor", Recipient ="Garland Lyons",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "Romance").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2008, Name = "Drammy", Type =AwardType.Award, Category = "Outstanding puppeteering", OtherInfo = "in collaboration with Tears of Joy Theatre",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The Long Christmas Ride Home").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2007, Name = "Drammy", Type =AwardType.Award, Category = "Set design", Recipient ="Ben Plont",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "Escape from Happiness").FirstOrDefault().ProductionId,
+                },
+                //new Award
+                //{
+                //    Year = 2001, Name = "Drammy", Type =AwardType.Award, Category = "Supporting Actress", Recipient ="Andrea White",
+                //          ProductionId = context.Productions.Where(prod => prod.Title == "Hellcab").FirstOrDefault().ProductionId,
+                //},
+                //new Award
+                //{
+                //    Year = 2001, Name = "Drammy", Type =AwardType.Award, Category = "Supporting Actress", Recipient ="Lorraine Bahr",
+                //          ProductionId = context.Productions.Where(prod => prod.Title == "Lion in the Streets").FirstOrDefault().ProductionId,
+                //},
+                //new Award
+                //{
+                //    Year = 2001, Name = "Drammy", Type =AwardType.Award, Category = "Supporting Actress", Recipient ="Ted Schulz",
+                //          ProductionId = context.Productions.Where(prod => prod.Title == "The Grey Zone").FirstOrDefault().ProductionId,
+                //},
+                //new Award
+                //{
+                //    Year = 2000, Name = "Drammy", Type =AwardType.Award, Category = "Outstanding direction", Recipient ="Michael Griggs",
+                //          ProductionId = context.Productions.Where(prod => prod.Title == "The Grey Zone").FirstOrDefault().ProductionId,
+                //},
+            };
+            awards.ForEach(award => context.Awards.AddOrUpdate(aw => aw.AwardId, award));
+
             context.SaveChanges();
         }
 

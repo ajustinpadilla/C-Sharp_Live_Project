@@ -28,6 +28,10 @@
     </style>
 </head>
 <body class="palette-body">
+    @Scripts.Render("~/bundles/jquery")
+
+    <!-- Moved loading of jquery to start of body to resolve error-->
+
     <nav class="palette-navbar navbar fixed-top navbar-expand-xl navbar-light" id="menu">
         <a class="navbar-brand palette-navbar-header" href="@Url.Action("Index", "Home")">
             <img class="logoImg" src="~/Content/Images/cropped-logo.png" id="logo" />
@@ -122,8 +126,8 @@
 
 
                             @*<li>@Html.ActionLink("Dashboard", "Index", "Subscribers/Dashboard", new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
-                    <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>*@
+                                <li>@Html.ActionLink("Season Manager", "Index", "Subscribers/SeasonManager", new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Subscriber", "Index", "Subscribers/Subscriber", new { @class = "dropdown-item" })</li>*@
 
                         </ul>
                     </li>
@@ -147,7 +151,8 @@
     <footer class="footer mt-auto py-3 md">
         <div class="container-fluid ml-md-auto mr-md-auto py-2 pl-md-5 pl-lg-0" id="footer--container">
             <div class="row" id="footerInner">
-                <div class="col-md-4 socialMediaContainer order-lg-last px-0">     @*this has bootstrap class's that gets rid of padding and puts the stuff on the right on a large screen*@
+                <div class="col-md-4 socialMediaContainer order-lg-last px-0">
+                    @*this has bootstrap class's that gets rid of padding and puts the stuff on the right on a large screen*@
                     <ul class="list-group list-group-horizontal justify-content-lg-end" id="socialMediaLinks" style="background-color: black">
                         <li class="list-group-item"><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
                         <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
@@ -174,29 +179,32 @@
                     </ul>
                 </div>
             </div>
-            <div class="float-lg-left text-left" id="contactInfo"> @*bootstrap classes that align text*@
+            <div class="float-lg-left text-left" id="contactInfo">
+                @*bootstrap classes that align text*@
                 <div id="address">
-                    <p id="addressPadding"> @*Added for css styling*@
+                    <p id="addressPadding">
+                        @*Added for css styling*@
                         2110 SE 10th AVE<br />
                         Portland, OR 97214
                     </p>
                 </div>
-                
+
                 <div id="phoneNumbers">
-                    <p id="phoneNumbersPadding">    @*Added for css styling*@
+                    <p id="phoneNumbersPadding">
+                        @*Added for css styling*@
                         Phone Number (General)<br />
                         Phone Number (Sales)
                     </p>
                 </div>
             </div>
-            <div class="float-lg-right text-left mt-lg-4">     @*Boot strap text aligning*@
+            <div class="float-lg-right text-left mt-lg-4">
+                @*Boot strap text aligning*@
                 <p class="my-0">&copy; @DateTime.Now.Year</p>
             </div>
         </div>
     </footer>
 
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendar")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/javascript")
@@ -220,7 +228,6 @@
             return false;
         });
     </script>
-
 </body>
 </html>
 
