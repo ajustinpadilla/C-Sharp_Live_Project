@@ -271,7 +271,8 @@ namespace TheatreCMS.Controllers
                 {
                     photoDependencies.HasDependencies = true;
                 }
-                int season = productionEntity.Production.Season;                                                             //Gets the producton's season before closing the connection to the database
+                int season;
+                if (productionEntity != null) season = productionEntity.Production.Season;                                   //Gets the producton's season before closing the connection to the database
                 return photoDependencies;
             }
             
