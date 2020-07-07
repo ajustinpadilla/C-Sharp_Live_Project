@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Windows.Media.Animation;
 using TheatreCMS.Models;
+using TheatreCMS.ViewModels;
 
 namespace TheatreCMS.Controllers
 {
@@ -241,6 +242,40 @@ namespace TheatreCMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public static PhotoDependenciesVm FindDependencies(int? Id)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var photoDependencies = new PhotoDependenciesVm();
+                photoDependencies.ValidId = true;
+                if (Id == null)                                                                                              //If the Id argument is null, ValidId is returned false and the method stops
+                {
+                    photoDependencies.ValidId = false;
+                    return null;                                                                                             //Will cause issues if the Id argument is invalid
+                }
+                var photoEntity = db.Photo.Find(Id);                                                                         //Declaring photo object from passed argument Id
+                var sponsorEntity = db.Sponsors.FirstOrDefault(photo => photo.LogoId == photoEntity.PhotoId);                //Declaring sponsor object from photo object
+                if (sponsorEntity != null && sponsorEntity.LogoId == photoEntity.PhotoId)                                    //Checks if there is a sponsor, and if that sponsor's photo id matches
+                {
+                    photoDependencies.Sponsors.Add(sponsorEntity);                                                           //Adds sponsor object to sponsors list inside ViewModel
+                }
+                var productionEntity = db.ProductionPhotos.FirstOrDefault(photo => photo.PhotoId == photoEntity.PhotoId);    //Declaring production object from photo object
+                if (productionEntity != null && productionEntity.PhotoId == photoEntity.PhotoId)                             //Checks if there is a production, and if the prod photo id matches
+                {
+                    photoDependencies.ProductionPhotos.Add(productionEntity);                                                //Adds prod object to production list inside ViewModel
+                }
+                photoDependencies.HasDependencies = false;
+                //Final check for dependencies. If either sponsorEntity or productionEntity are null an error is thrown, so an evaluation is necessary before comparing photo id's
+                if (sponsorEntity != null && photoEntity.PhotoId == sponsorEntity.LogoId || productionEntity != null && photoEntity.PhotoId == productionEntity.PhotoId)
+                {
+                    photoDependencies.HasDependencies = true;
+                }
+                int season;
+                if (productionEntity != null) season = productionEntity.Production.Season;                                   //Gets the producton's season before closing the connection to the database
+                return photoDependencies;
+            }
+            
         }
     }
 }
