@@ -1128,8 +1128,8 @@ div.magnify:hover {
 }
 
         .castImageContainer:hover .castText {
-            margin-bottom: 0px;
-            margin-top: 0px;   
+            /*margin-bottom: 0px; */ /* Removed due to hover issue in cast member page while in admin access*/
+            margin-top: 0px;  
         }
 
         .castImageContainer:hover a {
