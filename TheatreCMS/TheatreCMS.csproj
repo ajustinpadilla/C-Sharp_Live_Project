@@ -193,6 +193,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageUploadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\ProductionsController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\Award.cs" />
     <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\CastMember.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Production.cs" />
@@ -707,6 +709,11 @@
     <Content Include="Views\Awards\Index.cshtml" />
     <Content Include="Views\CalendarEvents\BulkAdd.cshtml" />
     <Content Include="Views\Account\UnauthorizedAccess.cshtml" />
+    <Content Include="Views\Messages\Create.cshtml" />
+    <Content Include="Views\Messages\Delete.cshtml" />
+    <Content Include="Views\Messages\Details.cshtml" />
+    <Content Include="Views\Messages\Edit.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

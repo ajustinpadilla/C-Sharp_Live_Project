@@ -220,7 +220,11 @@
             <div class="card ab-card-red mt-md-4">
                 <div class="card-body">
                     <h6 class="card-title ab-card-title"><a href="/CastMembers" style="color:black;">Company Members</a></h6>
-                    <h7>
+                    @foreach (CastMember cm in ViewBag.CastMembers)
+                    {
+                        <a class="text-light" href="/CastMembers/Details/@cm.CastMemberID">@cm.Name</a><br />
+                    }
+                    @*<h7>
                         <a href="/CastMembers" style="color:white;">London Bauman</a><br />
                         <a href="/CastMembers" style="color:white;">Jacquelle Davis</a><br />
                         <a href="/CastMembers" style="color:white;">Adriana Gantzer</a><br />
@@ -229,7 +233,7 @@
                         <a href="/CastMembers" style="color:white;">Heath Hyun Houghton</a><br />
                         <a href="/CastMembers" style="color:white;">Tom Mounsey</a><br />
                         <a href="/CastMembers" style="color:white;">Devon Roberts</a><br />
-                    </h7>
+                    </h7>*@
                 </div>
             </div>
 
@@ -259,7 +263,7 @@
                     <h7>
                         Jamie Floyd (President)<br />
                         Scott Stephens<br />
-                        Marcia Reyes<<br />
+                        Marcia Reyes<br />
                         Lena-Liis Kiesel<br />
                         Gary Strong<br />
                     </h7>
