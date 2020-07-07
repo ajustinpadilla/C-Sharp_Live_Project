@@ -154,27 +154,27 @@
                 <div class="col-md-4 socialMediaContainer order-lg-last px-0">
                     @*this has bootstrap class's that gets rid of padding and puts the stuff on the right on a large screen*@
                     <ul class="list-group list-group-horizontal justify-content-lg-end" id="socialMediaLinks" style="background-color: black">
-                        <li class="list-group-item"><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="list-group-item"><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
-                        <li class="list-group-item"><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-group-item"><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li class="list-group-item pr-0"><a href="#" class="patreon"><i class="fab fa-patreon"></i></a></li> @*bootstrap gets rid of the padding on the left*@
+                        <li class="list-group-item"><a href="https://www.facebook.com/theatrevertigo/" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-group-item"><a href="https://www.youtube.com/channel/UCFErectW0eXjMFJbBTOk0DA" class="youtube"><i class="fab fa-youtube"></i></a></li>
+                        <li class="list-group-item"><a href="https://twitter.com/theatrevertigo?lang=en" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-group-item"><a href="https://www.instagram.com/theatrevertigo/" class="instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li class="list-group-item pr-0"><a href="https://www.patreon.com/theatrevertigo" class="patreon"><i class="fab fa-patreon"></i></a></li> @*bootstrap gets rid of the padding on the left*@
                     </ul>
                 </div>
                 <div class="w-100 d-none d-md-block "></div>    @*This stacks the icons on top of the links*@
                 <div class="footerNavContainer col-md-8 mr-auto float-left order-lg-1">
                     <ul class="list-group" id="navBar">
                         <li class="list-group-item pt-0 ">
-                            <a class="navLink" href="#">Opportunities</a>
+                            <a class="navLink" href="@Url.Action("About", "Home")">Opportunities</a>
                         </li>
                         <li class="list-group-item pt-0 ">
-                            <a class="navLink" href="#">News Items</a>
+                            <a class="navLink" href="@Url.Action("Published", "News")">News Items</a>
                         </li>
                         <li class="list-group-item pt-0">
-                            <a class="navLink" href="#">Contact Info</a>
+                            <a class="navLink" href="@Url.Action("Contact", "Home")">Contact Info</a>
                         </li>
                         <li class="list-group-item pt-0  pr-0 mr-0">
-                            <a class="navLink" href="#">Donate</a>
+                            <a class="navLink" href="https://app.arts-people.com/index.php?donation=verti">Donate</a>
                         </li>
                     </ul>
                 </div>
