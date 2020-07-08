@@ -1660,9 +1660,10 @@ a.dropdown-item:hover {
 
 .logoImg {
     background-color: var(--light-color);
-    padding: 5px;
+    padding: 2px 5px;
     border-radius: 3px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5); /*Same color as --dark-color with opacity of  0.5 for shadow*/
+    height: 90px
 }
 
 .navbar-toggler-icon{
