@@ -143,27 +143,27 @@
                                 <td class="col-3 col-lg-2 text-right">
                                     <span class="badge badge-pill badge-secondary mx-2 list-reply">Reply</span>
 
-                                    <span class="badge badge-pill badge-danger" data-toggle="modal" data-target="#deleteModal">
+                                    <span class="badge badge-pill badge-danger" data-toggle="modal" data-target="#deleteModal-@item.MessageId">
                                         <i class="fa fa-trash"
                                            aria-hidden="true"></i>
                                     </span>
-                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade-scale" id="deleteModal-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this message?</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close close-modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body text-left">
-                                                    Sender: @item.Sender.FirstName @item.Sender.LastName<br />
-                                                    Subject: @item.Subject<br />
-                                                    Sent: @item.SentTime<br />
+                                                    <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
+                                                    <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
+                                                    <h6>Sent:</h6><div>@item.SentTime</div><br />
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-danger list-del" data-dismiss="modal">Confirm Delete</button>
+                                                    <button type="button" class="btn btn-secondary close-modal">Close</button>
+                                                    <button type="button" class="btn btn-danger list-del">Confirm Delete</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -172,7 +172,7 @@
                             </tr>
                         }
 
-                            <!--=========================================================================-->
+                           
                     </tbody>
                 </table>
             </div>
@@ -214,10 +214,32 @@
 
 
 
-                            <button type="button" id="delete" class="btn btn-danger">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal1">
                                 <i class="fa fa-trash"
                                    aria-hidden="true"></i>
                             </button>
+
+                            <div class="modal fade-scale" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this message?</h5>
+                                            <button type="button" class="close close-modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body text-left">
+                                            <h6>From:</h6><div class="msgFrom1"></div><br />
+                                            <h6>Subject:</h6><div class="msgSubject1"></div><br />
+                                            <h6>Sent:</h6><div class="msgDate1"></div><br />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary close-modal">Close</button>
+                                            <button id="delete" type="button" class="btn btn-danger">Confirm Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -376,7 +398,15 @@
             $("#inboxDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#inboxDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
             $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html());
+            $("#inboxDetails .msgFrom1").html($(this).parent().find(".msgFrom").html());
+            $("#inboxDetails .msgDate1").html($(this).parent().find(".msgDate").html());
+            $("#inboxDetails .msgSubject1").html($(this).parent().find(".msgSubject").html());
+            $("#inboxDetails .msgBody1").html($(this).parent().find(".msgBody").html());
             $("#inboxDetails").show();
+
+           
+
+           
             
 
         });
@@ -390,12 +420,6 @@
             $("#newMsg #ParentId").val(msgId_str);
             $('#navTabs a[href="#newMsg"]').tab('show');
         });
-
-
-
-
-        //================================================================
-
 
 
         $(".list-del").on("click", function () {
@@ -425,7 +449,7 @@
 
 
 
-        //========================================================
+        
 
 
 
@@ -449,7 +473,7 @@
 
         $("#inboxDetails #delete").on("click", function () {
             var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
-            if (confirm("Delete this message?")) {
+            //if (confirm("Delete this message?")) {
                 $.ajax({
                     type: "POST",
                     url: "/Messages/Delete/" + msgId_str,
@@ -458,13 +482,14 @@
                         "__RequestVerificationToken":
                             $("input[name=__RequestVerificationToken]").val(),
                         id: msgId_str,
-                    },
-                    error: function () {
-                        alert("An error has occurred.");
-                    }
+                    }//,
+                    //error: function () {
+                     //   alert("An error has occurred.");
+                    //}
                 });
-                location.reload();
-            }
+            location.reload();
+            
+            //}
         });
 
 
@@ -490,6 +515,20 @@
             $("#sentList").show();
         });
     });
+
+
+    $(".close-modal").click(function () {
+        $(".fade-scale").removeClass("show");
+        $(".modal-backdrop").remove();
+        $("nav").removeAttr("style");
+        $("body").removeClass("modal-open").removeAttr("style");
+        setTimeout(function () {
+            $(".fade-scale").trigger("click");
+        }, 500);
+        
+        
+    });
+
 
 </script>
 
