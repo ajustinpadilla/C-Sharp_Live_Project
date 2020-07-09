@@ -97,8 +97,8 @@ namespace TheatreCMS.Models
             {
                 return HttpNotFound();
             }
-
-            ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
+            // is not properly setting default value object productionPhotos.Producyion.ProductionId)
+           ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
             return View(productionPhotos);
         }
 
@@ -111,7 +111,7 @@ namespace TheatreCMS.Models
         public ActionResult Edit([Bind(Include = "ProPhotoId,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {          // Productionphotos productionPhotos is recieving wrong info
                       
-            int productionID = Convert.ToInt32(Request.Form["Productions"]);
+          //  int productionID = Convert.ToInt32(Request.Form["Productions"]);
 
 
             if (ModelState.IsValid)
@@ -121,8 +121,8 @@ namespace TheatreCMS.Models
                 currentProPhoto.Description = productionPhotos.Description;
                 
 
-                var production = db.Productions.Find(productionID);
-                currentProPhoto.Production = production;
+             //  var production = db.Productions.Find(productionID);
+             //   currentProPhoto.Production = production;
 
                 if (file != null && file.ContentLength > 0)
                 {
@@ -131,7 +131,7 @@ namespace TheatreCMS.Models
                 }
                 else
                 {
-                    currentProPhoto.PhotoId = productionPhotos.PhotoId;
+                    currentProPhoto.PhotoId = currentProPhoto.PhotoId;
                 }
 
                 db.Entry(currentProPhoto.Production).State = EntityState.Modified;
