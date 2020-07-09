@@ -3638,3 +3638,31 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     background-color: #bd1a11;
 }
 /*End RentalCalendar CSS*/
+
+/*   CSS styling for modal open / close   */
+.modal-fade-scale {
+    transform: scale(0) translateY(-100%);
+    opacity: 0;
+    -webkit-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+    cursor: default;    
+}
+
+.modal-fade-scale.show, .modal-fade-scale.show.hide {
+    opacity: 1;
+    transform: scale(1) translateY(20%);
+    -webkit-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+    cursor: default;
+}
+
+.modal-fade-scale.hide {
+    opacity: 0;
+    transform: scale(0) translateY(-100%);
+    -webkit-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+    cursor: default;
+}
