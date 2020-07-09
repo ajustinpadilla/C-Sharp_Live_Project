@@ -97,7 +97,6 @@ namespace TheatreCMS.Models
             {
                 return HttpNotFound();
             }
-            // is not properly setting default value object productionPhotos.Producyion.ProductionId)
            ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
             return View(productionPhotos);
         }
@@ -108,10 +107,10 @@ namespace TheatreCMS.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProPhotoId,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "ProPhotoId,Title,Description,ProductionsList")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {     
                       
-            int productionID = Convert.ToInt32(Request.Form["Productions"]);
+            int productionID = Convert.ToInt32(Request.Form["ProductionsList"]);
 
 
             if (ModelState.IsValid)
