@@ -1660,9 +1660,10 @@ a.dropdown-item:hover {
 
 .logoImg {
     background-color: var(--light-color);
-    padding: 5px;
+    padding: 2px 5px;
     border-radius: 3px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5); /*Same color as --dark-color with opacity of  0.5 for shadow*/
+    height: 90px
 }
 
 .navbar-toggler-icon{
@@ -3628,6 +3629,15 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 }
 /*END CSS for Admin Parts page*/
 
+/*RentalCalendar CSS*/
+.calIcon {
+    font-size: 30px;
+}
+
+.rentEventCalendar .fc-widget-header {
+    background-color: #bd1a11;
+}
+/*End RentalCalendar CSS*/
 
 /*   CSS styling for modal open / close   */
 .modal-fade-scale {
@@ -3636,8 +3646,7 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     -webkit-transition: all .5s linear;
     -o-transition: all .5s linear;
     transition: all .5s linear;
-    cursor: default;
-    
+    cursor: default;    
 }
 
 .modal-fade-scale.show, .modal-fade-scale.show.hide {
@@ -3648,6 +3657,7 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     transition: all .5s linear;
     cursor: default;
 }
+
 .modal-fade-scale.hide {
     opacity: 0;
     transform: scale(0) translateY(-100%);
@@ -3655,5 +3665,4 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     -o-transition: all .5s linear;
     transition: all .5s linear;
     cursor: default;
-    
 }
