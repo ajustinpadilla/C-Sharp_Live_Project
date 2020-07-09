@@ -21,7 +21,7 @@
 
         <li class="nav-item mr-auto">
 
-            <a class="nav-link btn btn-primary" data-toggle="tab" href="#newMsg">Compose</a>
+            <a class="nav-link btn btn-primary" id="compose" data-toggle="tab" href="#newMsg">Compose</a>
 
         </li>
 
@@ -91,7 +91,7 @@
                             Go Back
                         </button>
                         <button type="submit" class="btn btn-primary">Send</button>
-                        <button type="reset" class="btn btn-danger">
+                        <button type="reset" id="clearCurrentMsg"class="btn btn-danger">
                             <i class="fa fa-trash"
                                aria-hidden="true"></i>
                         </button>
@@ -294,6 +294,11 @@
 
 <script>
     $(document).ready(function () {
+
+        $("#compose").on("click", function () {
+            $("#navTabs a[href='newMsg'").tab('show');
+            $("#newMsg").find('#clearCurrentMsg').trigger("click");
+        })
 
         //compose message go back button
         $("#newMsg #goback").click(function () {
