@@ -119,21 +119,20 @@ namespace TheatreCMS.Models
                 var currentProPhoto = db.ProductionPhotos.Find(productionPhotos.ProPhotoId);
                 currentProPhoto.Title = productionPhotos.Title;
                 currentProPhoto.Description = productionPhotos.Description;
-                currentProPhoto.PhotoId = productionPhotos.PhotoId;
+                
 
                 var production = db.Productions.Find(productionID);
                 currentProPhoto.Production = production;
 
-                //if (file != null && file.ContentLength > 0)
-                //{
-                //    var photoByte = ImageUploadController.ImageBytes(file, out string _64);
-                //    currentProPhoto.Photo = photo;
+                if (file != null && file.ContentLength > 0)
+                {
+                    currentProPhoto.PhotoId = PhotoController.CreatePhoto(file, currentProPhoto.Title);
 
-                //}
-                //else
-                //{
-                //    currentProPhoto.photo = productionPhotos.photo;
-                //}
+                }
+                else
+                {
+                    currentProPhoto.PhotoId = productionPhotos.PhotoId;
+                }
 
                 db.Entry(currentProPhoto.Production).State = EntityState.Modified;
                 db.SaveChanges();
