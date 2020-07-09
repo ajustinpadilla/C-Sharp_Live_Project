@@ -147,7 +147,7 @@
                                         <i class="fa fa-trash"
                                            aria-hidden="true"></i>
                                     </span>
-                                    <div class="modal fade-scale" id="deleteModal-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal modal-fade-scale" id="deleteModal-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -219,7 +219,7 @@
                                    aria-hidden="true"></i>
                             </button>
 
-                            <div class="modal fade-scale" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal modal-fade-scale" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -518,12 +518,12 @@
 
 
     $(".close-modal").click(function () {
-        $(".fade-scale").removeClass("show");
+        $(".modal-fade-scale").removeClass("show");
         $(".modal-backdrop").remove();
         $("nav").removeAttr("style");
         $("body").removeClass("modal-open").removeAttr("style");
         setTimeout(function () {
-            $(".fade-scale").trigger("click");
+            $(".modal-fade-scale").trigger("click");
         }, 500);
         
         

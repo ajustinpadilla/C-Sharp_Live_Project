@@ -3630,32 +3630,30 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 
 
 /*   CSS styling for modal open / close   */
-.fade-scale {
+.modal-fade-scale {
     transform: scale(0) translateY(-100%);
     opacity: 0;
     -webkit-transition: all .5s linear;
     -o-transition: all .5s linear;
     transition: all .5s linear;
+    cursor: default;
+    
 }
 
-.fade-scale.show, .fade-scale.show.hide {
+.modal-fade-scale.show, .modal-fade-scale.show.hide {
     opacity: 1;
     transform: scale(1) translateY(20%);
     -webkit-transition: all .5s linear;
     -o-transition: all .5s linear;
     transition: all .5s linear;
+    cursor: default;
 }
-.fade-scale.hide {
+.modal-fade-scale.hide {
     opacity: 0;
     transform: scale(0) translateY(-100%);
     -webkit-transition: all .5s linear;
     -o-transition: all .5s linear;
     transition: all .5s linear;
-    animation-delay: 2s;
-    animation: displayToNone .01s linear;
-}
-
-@keyframes displayToNone {
-    from {display:block}
-    to {display: none}
+    cursor: default;
+    
 }
