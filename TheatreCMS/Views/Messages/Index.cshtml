@@ -173,7 +173,7 @@
                     </div>
 
                     <div rows="5 " class="form-group row align-items-center">
-                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label><textarea rows="5" style="text-indent: -15em;" class="col-lg-6 col-md-8 text-left msgBody" readonly>HELLO</textarea>
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-left">Body:</label><textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody" readonly>HELLO</textarea>
                     </div>
                         <!--<div class="col-lg-6 col-md-8 msgBody"></div>-->
                     
@@ -295,6 +295,8 @@
 <script>
     $(document).ready(function () {
 
+
+        //This clears the new message fields when the user clicks 'Compose'
         $("#compose").on("click", function () {
             $("#navTabs a[href='newMsg'").tab('show');
             $("#newMsg").find('#clearCurrentMsg').trigger("click");
@@ -344,7 +346,7 @@
             $("#inboxDetails .msgFrom").html($(this).parent().find(".msgFrom").html());
             $("#inboxDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#inboxDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
-            $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html());
+            $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html().trim());
             $("#inboxDetails").show();
             var $textarea = $("#inboxDetails .msgBody");
             $textarea.scrollTop($textarea[0].scrollHeight);
@@ -353,6 +355,7 @@
         });
 
         //reply button autofills in the sender and subject and posts a parentId to database as well
+        //reply will include the previous body content and also scroll down to the bottom of the message
         $(".list-reply").on("click", function () {
             var msgId_str = $(this).closest(".inboxRow").data("msg_id");
             var senderId_str = $(this).closest(".inboxRow").data("sender_id");
@@ -403,6 +406,7 @@
         });
 
         //reply button autofills in the sender and subject and posts a parentId to database as well
+        //reply will include the previous body content and also scroll down to the bottom of the message
         $("#inboxDetails #reply").on("click", function () {
             var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
             var senderId_str = $(this).parents("#inboxDetails").data("sender_id");
