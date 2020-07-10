@@ -365,9 +365,10 @@
         $(".inboxRow").on("click", "td:not(:last-child)", function () {
             var msgId_str = $(this).parent().data("msg_id");
             var senderId_str = $(this).parent().data("sender_id");
-
+            
             //if message is unread, then make it read by unbolding row
             if ($(this).parent().hasClass("isviewed-false")) {
+
                 //ajax post and update isviewed to current date time, success - unbold
                 $.ajax({
                     type: "POST",
@@ -381,6 +382,13 @@
                     success: function () {
                         $(this).parent().css("font-weight", "normal");
                         $(this).parent().removeClass("isviewed-false");
+                        // Behavior for unread msg indicator
+                        if (!$(".isviewed-false")[0]) {
+                            $("span#unReadMsgIndicator").hide();
+                        }
+                        else if ($(".isviewed-false")[0]) {
+                            $("span#unReadMsgIndicator").show();
+                        }
                     },
                     error: function () {
                         alert("An error has occurred.");
@@ -404,9 +412,7 @@
             $("#inboxDetails .msgBody1").html($(this).parent().find(".msgBody").html());
             $("#inboxDetails").show();
 
-           
-
-           
+            
             
 
         });
@@ -449,15 +455,13 @@
 
 
 
-        
-
-
-
 
         //behavior of inboxDetails div
         $("#inboxDetails #goback").click(function () {
             $("#inboxDetails").hide();
             $("#inboxList").show();
+
+            
         });
 
         //reply button autofills in the sender and subject and posts a parentId to database as well
