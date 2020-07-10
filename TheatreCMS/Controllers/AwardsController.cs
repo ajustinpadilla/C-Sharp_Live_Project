@@ -36,6 +36,18 @@ namespace TheatreCMS.Controllers
             return View(award);
         }
 
+        //Gets production name from dB and returns it
+        public string GetProductionName(int? productionId)
+        {
+            if (productionId != null)
+            {
+                Production production = db.Productions.Find(productionId);
+                return production.Title;
+            }
+            return "";    
+        }
+
+
         // GET: Awards/Create
         public ActionResult Create()
         {
