@@ -560,9 +560,14 @@ footer .fab {
 /* Set width on the form input elements since they're 100% wide by default */
 /*input,
 select,
+
 textarea {
     max-width: 280px;
 }*/
+
+.bodyTextArea {
+    height: 300px;
+}
 
 .rh-25 { /*Limits height of rows*/
     height: 250px;
