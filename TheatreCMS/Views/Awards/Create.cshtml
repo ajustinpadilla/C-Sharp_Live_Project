@@ -9,7 +9,7 @@
 <!-- The below card will preview for the user the award that the user is creating. It is sticky so they
     can see the entire preview as they fill out the form. -->
 
-<div class="card bg-black border border-light col-lg-8 mx-auto sticky-top">
+<div class="card bg-black border border-light col-lg-6 mx-auto sticky-top">
     <div class="card-body">
         <br /><br />
         <h3 class="text-center underline">Award Preview</h3>
@@ -18,7 +18,7 @@
 
         <ul class="list-inline text-center my-0">
             <li class="list-inline-item mx-0" id="awardNamePreview"></li>
-            <li class="list-inline-item mx-0" id="awardTypePreview"></li>
+            <li class="list-inline-item mx-0 text-uppercase" id="awardTypePreview"></li>
             <li class="list-inline-item mx-0" id="awardCategoryPreview"></li>
         </ul>
 
@@ -91,7 +91,7 @@
             <div class="col-md-10">
                 @Html.DropDownList("ProductionId", null, "Select a Production", htmlAttributes: new { @class = "form-control awardProduction" })
 
-                @Html.ValidationMessageFor(model => model.ProductionId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Production, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -140,7 +140,7 @@
 
         //The below will get what the user is typing / selecting from the form and display it on the preview award
         //Award Year
-        $(".awardForm .awardYear").on('click', function () {
+        $(".awardForm .awardYear").on('change', function () {
             var content = $(".awardYear").val();
             $("#awardYearPreview").html(content);
         })
@@ -151,22 +151,45 @@
             $("#awardNamePreview").html(content);
         })
 
+    //$(document).ready(function () {
+    //    $('#awardTypePreview').html('AWARD FOR');
+    //})
+
         //Award Type
-        
-        $(".awardForm .awardType").on('click', function () {
+
+    //$(".awardForm .awardType").on('change', function () {
+    //    var content = $(this).children("option:selected").val();
+    //        if (content == "0") {
+    //            $("#awardTypePreview").html('AWARD FOR');
+    //        }
+    //        else if (content == "1") {
+    //            $("#awardTypePreview").html('FINALIST FOR');
+    //        }
+    //        else if (content == "2") {
+    //            $("#awardTypePreview").html('OTHER FOR');
+    //        }
+    //        else {
+    //            $("#awardTypePreview").html(content);
+    //        }
+    //})
+
+     $(".awardForm .awardType").on('change', function () {
             var content = $(".awardType").val();
-            if (content == "0") {
-                $("#awardTypePreview").html('AWARD FOR');
-            }
-            else if (content == "1") {
-                $("#awardTypePreview").html('FINALIST FOR');
-            }
-            else if (content == "2") {
-                $("#awardTypePreview").html('OTHER FOR');
-            }
-            else {
-                $("#awardTypePreview").html('');
-            }
+            $.ajax({
+                url: "@Url.Action("GetAwardType","Awards")",
+                data: { awardId: content },
+                success: function (data) {
+                    if (data != "") {
+                        $("#awardTypePreview").html(data + " for ");
+                    }
+                    else {
+                        $("#awardTypePreview").html("");
+                    }
+                    
+
+                }
+            })
+
         })
 
         //Award Category
@@ -180,22 +203,28 @@
 
         $(".awardForm .awardRecipient").on('input', function () {
             var content = $(".awardRecipient").val();
-            $("#awardRecipientPreview").html(content); 
+            if (content == "") {
+                $("#awardDashPreview").html("")
+            }
+            else {
+                $("#awardRecipientPreview").html(content);
+                $("#awardDashPreview").html("-");
+            }
         })
 
         //Award Production
 
-        $(".awardForm .awardProduction").on('click', function () {
+        $(".awardForm .awardProduction").on('change', function () {
             var content = $(".awardProduction").val();
             $.ajax({
                 url: "@Url.Action("GetProductionName","Awards")",
                 data: { productionId: content },
                 success: function (data) {
                     $("#awardProductionPreview").html(data);
-                    $("#awardDashPreview").html("-");
+
                 }
             })
-            
+
         })
 
         //Award Other Info

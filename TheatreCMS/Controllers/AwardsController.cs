@@ -47,6 +47,15 @@ namespace TheatreCMS.Controllers
             return "";    
         }
 
+        public string GetAwardType(int? awardId)
+        {
+            if (awardId != null)
+            {
+                return ((AwardType)awardId).ToString();
+            }
+            return "";
+        }
+
 
         // GET: Awards/Create
         public ActionResult Create()
