@@ -386,6 +386,9 @@
                         if (!$(".isviewed-false")[0]) {
                             $("span#unReadMsgIndicator").hide();
                         }
+                        else if ($(".isviewed-false")[0]) {
+                            $("span#unReadMsgIndicator").show();
+                        }
                     },
                     error: function () {
                         alert("An error has occurred.");
