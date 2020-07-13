@@ -97,8 +97,7 @@ namespace TheatreCMS.Models
             {
                 return HttpNotFound();
             }
-
-            ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
+           ViewData["Productions"] = new SelectList(db.Productions, "ProductionId", "Title", productionPhotos.Production.ProductionId);
             return View(productionPhotos);
         }
 
@@ -108,10 +107,10 @@ namespace TheatreCMS.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProPhotoId,Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
-        {          // Productionphotos productionPhotos is recieving wrong info
+        public ActionResult Edit([Bind(Include = "ProPhotoId,Title,Description,ProductionsList")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
+        {     
                       
-            int productionID = Convert.ToInt32(Request.Form["Productions"]);
+            int productionID = Convert.ToInt32(Request.Form["ProductionsList"]);
 
 
             if (ModelState.IsValid)
@@ -119,21 +118,20 @@ namespace TheatreCMS.Models
                 var currentProPhoto = db.ProductionPhotos.Find(productionPhotos.ProPhotoId);
                 currentProPhoto.Title = productionPhotos.Title;
                 currentProPhoto.Description = productionPhotos.Description;
-                currentProPhoto.PhotoId = productionPhotos.PhotoId;
+                
 
                 var production = db.Productions.Find(productionID);
                 currentProPhoto.Production = production;
 
-                //if (file != null && file.ContentLength > 0)
-                //{
-                //    var photoByte = ImageUploadController.ImageBytes(file, out string _64);
-                //    currentProPhoto.Photo = photo;
+                if (file != null && file.ContentLength > 0)
+                {
+                    currentProPhoto.PhotoId = PhotoController.CreatePhoto(file, currentProPhoto.Title);
 
-                //}
-                //else
-                //{
-                //    currentProPhoto.photo = productionPhotos.photo;
-                //}
+                }
+                else
+                {
+                    currentProPhoto.PhotoId = currentProPhoto.PhotoId;
+                }
 
                 db.Entry(currentProPhoto.Production).State = EntityState.Modified;
                 db.SaveChanges();
