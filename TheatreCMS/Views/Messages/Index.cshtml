@@ -59,10 +59,11 @@
             {
                 @Html.AntiForgeryToken()
 
+                
                 <div class="form-group form-row align-items-center">
                     <label class="col-lg-2 col-md-2 control-label col-1" for="RecipientId">To:</label>
                     <div class="col-lg-6 col-md-8">
-                        @Html.DropDownList("RecipientId", (IEnumerable<SelectListItem>)ViewData["listOfUsers"], "", htmlAttributes: new { @class = "form-control", required ="required" })
+                        @Html.DropDownList("RecipientId", (IEnumerable<SelectListItem>)ViewData["listOfUsers"], "", htmlAttributes: new { @class = "form-control", required = "required" })
                     </div>
                 </div>
 
@@ -83,7 +84,7 @@
 
                 <input id="ParentId" name="ParentId" type="hidden" value="">
 
-                       
+
                 <div class="form-group form-row align-items-center">
                     <label class="col-lg-2 col-md-2 control-label col-1"></label>
                     <div class="col-lg-6 col-md-8">
@@ -91,7 +92,7 @@
                             Go Back
                         </button>
                         <button type="submit" class="btn btn-primary">Send</button>
-                        <button type="reset" id="clearCurrentMsg"class="btn btn-danger">
+                        <button type="reset" id="clearCurrentMsg" class="btn btn-danger">
                             <i class="fa fa-trash"
                                aria-hidden="true"></i>
                         </button>
@@ -292,14 +293,20 @@
 
 @section Scripts{
 
-<script>
+    <script>
     $(document).ready(function () {
 
 
         //This clears the new message fields when the user clicks 'Compose'
         $("#compose").on("click", function () {
+            var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
             $("#navTabs a[href='newMsg'").tab('show');
             $("#newMsg").find('#clearCurrentMsg').trigger("click");
+            $('#newMsg #Body').val("From: " + senderName + "\n\n");
+            $('#newMsg #RecipientId').attr("disabled", false);
+            
+           
+
         })
 
         //compose message go back button
@@ -346,32 +353,34 @@
             $("#inboxDetails .msgFrom").html($(this).parent().find(".msgFrom").html());
             $("#inboxDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#inboxDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
-            $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html().trim());
+            $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html().trim() + "\n\n(Sent: " + $(this).parent().find(".msgDate").text().trim() + ")");
             $("#inboxDetails").show();
             var $textarea = $("#inboxDetails .msgBody");
             $textarea.scrollTop($textarea[0].scrollHeight);
-            
+
 
         });
 
         //reply button autofills in the sender and subject and posts a parentId to database as well
         //reply will include the previous body content and also scroll down to the bottom of the message
         $(".list-reply").on("click", function () {
+            var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
             var msgId_str = $(this).closest(".inboxRow").data("msg_id");
             var senderId_str = $(this).closest(".inboxRow").data("sender_id");
             $("#newMsg #RecipientId").val(senderId_str);
             $("#newMsg #Subject").val("Re: " + $(this).closest(".inboxRow").find(".msgSubject").text().trim());
             //$('#newMsg #Body').val($(this).closest(".inboxRow").find(".msgBody").text().trim());
-            $("#newMsg #Body").val($(this).closest(".inboxRow").find(".msgBody").text().trim() + "\n\nSent: " + $(this).closest(".inboxRow").find(".msgDate").text().trim() + "\nFrom: " + $(this).closest(".inboxRow").find(".msgFrom").text().trim() + "\n\n================\n\n");
+            $("#newMsg #Body").val($(this).closest(".inboxRow").find(".msgBody").text().trim() + "\n\n(Sent: " + $(this).closest(".inboxRow").find(".msgDate").text().trim() + ")\n\n======================\n" + "From: " + senderName + "\nTo: " + $(this).closest(".inboxRow").find(".msgFrom").text().trim() + "\n\n\n");
             $("#newMsg #Body").scrollTop($("#Body").height());
             $("#newMsg #ParentId").val(msgId_str);
             $('#navTabs a[href="#newMsg"]').tab('show');
             var $textarea = $("#newMsg #Body");
             $textarea.scrollTop($textarea[0].scrollHeight);
+            $('#newMsg #RecipientId option:not(:selected)').attr("disabled", true);
         });
 
-       
-       
+
+
 
         $(".list-del").on("click", function () {
             var msgId_str = $(this).closest(".inboxRow").data("msg_id");
@@ -408,12 +417,14 @@
         //reply button autofills in the sender and subject and posts a parentId to database as well
         //reply will include the previous body content and also scroll down to the bottom of the message
         $("#inboxDetails #reply").on("click", function () {
+            var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
             var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
             var senderId_str = $(this).parents("#inboxDetails").data("sender_id");
 
             $("#newMsg #RecipientId").val(senderId_str);
+            $("#newMsg #RecipientId option:not(:selected)").attr("disabled", true);
             $("#newMsg #Subject").val("Re: " + $(this).parents("#inboxDetails").find(".msgSubject").text().trim());
-            $("#newMsg #Body").val($(this).parents("#inboxDetails").find(".msgBody").text().trim() + "\n\nSent: " + $(this).parents("#inboxDetails").find(".msgDate").text().trim() + "\nFrom: " + $(this).parents("#inboxDetails").find(".msgFrom").text().trim()  + "\n================\n\n");
+            $("#newMsg #Body").val($(this).parents("#inboxDetails").find(".msgBody").text().trim() + "\n\n======================\n" + "From: " + senderName + "\nTo: " + $(this).parents("#inboxDetails").find(".msgFrom").text().trim() + "\n\n\n");
             $("#newMsg #ParentId").val(msgId_str);
             $('#navTabs a[href="#newMsg"]').tab('show');
             var $textarea = $("#newMsg #Body");
@@ -454,7 +465,7 @@
             $("#sentDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#sentDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
             //$("#newMsg #Body").val($(this).closest(".inboxRow").find(".msgBody").text().trim()
-            $("#sentDetails .msgBody").val($(this).parent().find(".msgBody").text().trim());
+            $("#sentDetails .msgBody").val($(this).parent().find(".msgBody").text().trim() + "\n\n(Sent: " + $(this).parent().find(".msgDate").text().trim() + ")");
             $("#sentDetails").show();
             var $textarea = $("#sentDetails .msgBody");
             $textarea.scrollTop($textarea[0].scrollHeight);
@@ -467,6 +478,6 @@
         });
     });
 
-</script>
+    </script>
 
 }
