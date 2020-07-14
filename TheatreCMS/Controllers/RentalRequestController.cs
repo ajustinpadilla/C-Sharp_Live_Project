@@ -234,5 +234,30 @@ namespace TheatreCMS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult GetRentalEvents()
+        {
+            var events = db.RentalRequests.ToArray();
+
+            return Json(db.RentalRequests.Select(x => new
+            {
+                rentalRequestId = x.RentalRequestId,
+                contactPerson = x.ContactPerson,
+                company = x.Company,
+                start = x.StartTime,
+                end = x.EndTime,               
+                projectInfo = x.ProjectInfo,
+                requests = x.Requests,
+                rentalCode= x.RentalCode,
+                accepted = x.Accepted,
+                contractSigned = x.ContractSigned,
+                allDay = false,
+               
+            }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        
+
     }
-}
+} 
+
