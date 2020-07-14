@@ -25,7 +25,6 @@
 
         <ul class=" list-inline text-center my-0">
             <li class="list-inline-item font-weight-bold" id="awardRecipientPreview"></li>
-            <li class="list-inline-item" id="awardDashPreview"></li>
             <li class="list-inline-item font-italic" id="awardProductionPreview"></li>
         </ul>
 
@@ -173,7 +172,14 @@
     //        }
     //})
 
-     $(".awardForm .awardType").on('change', function () {
+    //Get award type without using AJAX
+
+    $(".awardForm .awardType").change(function () {
+        var type = $(this).children("option:selected").text();
+        $('#awardTypePreview').html(type + " for ");
+    })
+
+     @*$(".awardForm .awardType").on('change', function () {
             var content = $(".awardType").val();
             $.ajax({
                 url: "@Url.Action("GetAwardType","Awards")",
@@ -190,7 +196,7 @@
                 }
             })
 
-        })
+        })*@
 
         //Award Category
 
@@ -204,17 +210,21 @@
         $(".awardForm .awardRecipient").on('input', function () {
             var content = $(".awardRecipient").val();
             if (content == "") {
-                $("#awardDashPreview").html("")
+                $("#awardRecipientPreview").html("")
             }
             else {
-                $("#awardRecipientPreview").html(content);
-                $("#awardDashPreview").html("-");
+                $("#awardRecipientPreview").html(content + " - ");
             }
         })
 
-        //Award Production
+        // Get Award Production without using AJAX
 
-        $(".awardForm .awardProduction").on('change', function () {
+    $(".awardForm .awardProduction").change(function () {
+        var production = $(this).children("option:selected").text();
+        $('#awardProductionPreview').html(production);
+    })
+
+        @*$(".awardForm .awardProduction").on('change', function () {
             var content = $(".awardProduction").val();
             $.ajax({
                 url: "@Url.Action("GetProductionName","Awards")",
@@ -225,7 +235,7 @@
                 }
             })
 
-        })
+        })*@
 
         //Award Other Info
 
