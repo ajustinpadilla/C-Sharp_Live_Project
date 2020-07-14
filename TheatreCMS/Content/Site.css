@@ -565,9 +565,7 @@ textarea {
     max-width: 280px;
 }*/
 
-.bodyTextArea {
-    height: 300px;
-}
+
 
 .rh-25 { /*Limits height of rows*/
     height: 250px;
@@ -3559,8 +3557,10 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 }
 
 #inboxDetails .msgBody,
-#sentDetails .msgBody {
-    min-height: 100px;
+#sentDetails .msgBody,
+#newMsg #Body{
+    min-height: 300px;
+    height: 300px;
 }
 
 

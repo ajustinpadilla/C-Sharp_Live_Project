@@ -78,7 +78,7 @@
                 <div class="form-group form-row align-items-center">
                     <label class="col-lg-2 col-md-2 control-label col-1" for="Body">Body:</label>
                     <div class="col-lg-6 col-md-8">
-                        <textarea rows="5" style="height: 300px;" class="form-control" id="Body" name="Body"></textarea>
+                        <textarea rows="5" class="form-control" id="Body" name="Body"></textarea>
                     </div>
                 </div>
 
@@ -174,7 +174,7 @@
                     </div>
 
                     <div rows="5 " class="form-group row align-items-center">
-                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label><textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody bodyTextArea" readonly></textarea>
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label><textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody"></textarea>
                     </div>
                         <!--<div class="col-lg-6 col-md-8 msgBody"></div>-->
                     
@@ -270,7 +270,7 @@
 
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
-                        <textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody bodyTextArea" readonly></textarea>
+                        <textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody" readonly></textarea>
                     </div>
 
                     <div class="form-group row align-items-center">
@@ -302,10 +302,9 @@
             var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
             $("#navTabs a[href='newMsg'").tab('show');
             $("#newMsg").find('#clearCurrentMsg').trigger("click");
-            $('#newMsg #Body').val("From: " + senderName + "\n\n");
-            $('#newMsg #RecipientId').attr("disabled", false);
-            
-           
+            $('#newMsg #RecipientId option:not(:selected)').attr("disabled", false);
+
+
 
         })
 
@@ -349,14 +348,13 @@
             //code will populate #inboxDetails with correct msg info, hide/show speed not working, asynchronous?
             $("#inboxDetails").data("msg_id", msgId_str);
             $("#inboxDetails").data("sender_id", senderId_str);
-
+            var toName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
             $("#inboxDetails .msgFrom").html($(this).parent().find(".msgFrom").html());
             $("#inboxDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#inboxDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
-            $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html().trim() + "\n\n(Sent: " + $(this).parent().find(".msgDate").text().trim() + ")");
+            $("#inboxDetails .msgBody").html($(this).parent().find(".msgDate").html().trim() + ", " + $(this).parent().find(".msgFrom").html().trim() + " wrote:\n\n" + $(this).parent().find(".msgBody").html().trim());
             $("#inboxDetails").show();
-            var $textarea = $("#inboxDetails .msgBody");
-            $textarea.scrollTop($textarea[0].scrollHeight);
+
 
 
         });
@@ -370,14 +368,28 @@
             $("#newMsg #RecipientId").val(senderId_str);
             $("#newMsg #Subject").val("Re: " + $(this).closest(".inboxRow").find(".msgSubject").text().trim());
             //$('#newMsg #Body').val($(this).closest(".inboxRow").find(".msgBody").text().trim());
-            $("#newMsg #Body").val($(this).closest(".inboxRow").find(".msgBody").text().trim() + "\n\n(Sent: " + $(this).closest(".inboxRow").find(".msgDate").text().trim() + ")\n\n======================\n" + "From: " + senderName + "\nTo: " + $(this).closest(".inboxRow").find(".msgFrom").text().trim() + "\n\n\n");
-            $("#newMsg #Body").scrollTop($("#Body").height());
+            $("#newMsg #Body").val("\n\n\n=========================\n\n" + $(this).closest(".inboxRow").find(".msgDate").text().trim() + ", " + $(this).closest(".inboxRow").find(".msgFrom").text().trim() + " wrote:\n\n" + $(this).closest(".inboxRow").find(".msgBody").text().trim());
             $("#newMsg #ParentId").val(msgId_str);
             $('#navTabs a[href="#newMsg"]').tab('show');
-            var $textarea = $("#newMsg #Body");
-            $textarea.scrollTop($textarea[0].scrollHeight);
             $('#newMsg #RecipientId option:not(:selected)').attr("disabled", true);
+            $('#newMsg #Body').focus().setCursorPosition(0);
+            $('#newMsg #Body').scrollTop(0);
         });
+
+        $.fn.setCursorPosition = function (pos) {
+            this.each(function (index, elem) {
+                if (elem.setSelectionRange) {
+                    elem.setSelectionRange(pos, pos);
+                } else if (elem.createTextRange) {
+                    var range = elem.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', pos);
+                    range.moveStart('character', pos);
+                    range.select();
+                }
+            });
+            return this;
+        };
 
 
 
@@ -424,11 +436,11 @@
             $("#newMsg #RecipientId").val(senderId_str);
             $("#newMsg #RecipientId option:not(:selected)").attr("disabled", true);
             $("#newMsg #Subject").val("Re: " + $(this).parents("#inboxDetails").find(".msgSubject").text().trim());
-            $("#newMsg #Body").val($(this).parents("#inboxDetails").find(".msgBody").text().trim() + "\n\n======================\n" + "From: " + senderName + "\nTo: " + $(this).parents("#inboxDetails").find(".msgFrom").text().trim() + "\n\n\n");
+            $("#newMsg #Body").val("\n\n\n=========================\n\n" + $(this).parents("#inboxDetails").find(".msgBody").text().trim());
             $("#newMsg #ParentId").val(msgId_str);
             $('#navTabs a[href="#newMsg"]').tab('show');
-            var $textarea = $("#newMsg #Body");
-            $textarea.scrollTop($textarea[0].scrollHeight);
+            $('#newMsg #Body').focus().setCursorPosition(0);
+            $('#newMsg #Body').scrollTop(0);
         });
 
         $("#inboxDetails #delete").on("click", function () {
@@ -456,6 +468,7 @@
         //behavior of row on sent tab
         $(".sentRow").on("click", "td:not(:last-child)", function () {
             var msgId_str = $(this).parent().data("msg_id");
+            var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
 
             $("#sentList").hide();
 
@@ -465,10 +478,8 @@
             $("#sentDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#sentDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
             //$("#newMsg #Body").val($(this).closest(".inboxRow").find(".msgBody").text().trim()
-            $("#sentDetails .msgBody").val($(this).parent().find(".msgBody").text().trim() + "\n\n(Sent: " + $(this).parent().find(".msgDate").text().trim() + ")");
+            $("#sentDetails .msgBody").val($(this).parent().find(".msgDate").html().trim() + ", " + senderName + " wrote:\n\n" + $(this).parent().find(".msgBody").text().trim());
             $("#sentDetails").show();
-            var $textarea = $("#sentDetails .msgBody");
-            $textarea.scrollTop($textarea[0].scrollHeight);
         });
 
         //behavior of sentDetails div
