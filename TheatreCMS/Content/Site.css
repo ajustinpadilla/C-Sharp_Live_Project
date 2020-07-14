@@ -54,6 +54,7 @@
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
     background-color: var(--dark-color);
     color: var(--light-color);
+
 }
 
 .palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
@@ -1816,6 +1817,31 @@ a.dropdown-item:hover {
     width: 400px;
 }
 
+/**********Production Details Background***********/
+.production-details-background {
+    filter: blur(5px);
+    opacity: 30%;   
+    margin-top: 0px;
+    padding: 0;
+    position: fixed;
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+    top: 0;
+}
+
+.details-contianer {
+    top: 0;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
 
 /****************
     ABOUT PAGE STYLING*/
