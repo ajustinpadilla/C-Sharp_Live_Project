@@ -83,7 +83,7 @@
                 </div>
 
                 <!-- Parts Card Section visible when screen size is bigger-->
-                <div class="card bg-black mr-4" id="cardss">
+                <div class="card bg-info mr-4 d-none d-md-block" id="cardss">
                     <!-- when screen size is med or bigger this will display. It is otherwise hidden-->
                     <div class="card-header" id="head">
                         <b>Parts</b>
@@ -91,18 +91,14 @@
                     <ul class="list-group list-group-flush text-black-50">
 
                         <!--Iterate through Parts for a specific Type of role and if there is data it will display the below item in the Parts card. If no data is returned it will not display-->
+                        <!--===================================================
+                The below refactors the parts section
+            ===================================================-->
 
 
 
 
-                       <!--===================================================
-                               The below refactors the parts section
-                           ===================================================-->
-
-
-
-                        
-                        @foreach(TheatreCMS.Models.Part part in ViewBag.Parts)
+                        @foreach (TheatreCMS.Models.Part part in ViewBag.Parts)
                         {
                             <li class="list-group-item">
                                 @part.Type
@@ -114,7 +110,7 @@
                                         }
                                         else
                                         {
-                                            <a href="/Part/Details/@part.PartID">@part.Person.Name as @part.Character</a>
+                                            <a href="/Part/Details/@part.PartID">@part.Character</a>
                                         }
                                     </dd>
                                 </dl>
@@ -126,105 +122,105 @@
 
 
                         @*@{var actor = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Actor);
-                            if (actor != null && actor.Any())
+                if (actor != null && actor.Any())
+                {
+                    <li class="list-group-item">
+                        Actors
+                        <dl>
+                            @foreach (var item in actor)
                             {
-                                <li class="list-group-item">
-                                    Actors
-                                    <dl>
-                                        @foreach (var item in actor)
-                                        {
-                                            if (item != null)
-                                            {
-                                                <dd class="col">
-                                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                                </dd>
-                                            }
-                                        }
-                                    </dl>
-                                </li>
+                                if (item != null)
+                                {
+                                    <dd class="col">
+                                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                    </dd>
+                                }
                             }
-                        }
+                        </dl>
+                    </li>
+                }
+            }
 
-                        @{var director = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Director);
-                            if (director != null && director.Any())
+            @{var director = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Director);
+                if (director != null && director.Any())
+                {
+                    <li class="list-group-item">
+                        Directors
+                        <dl>
+                            @foreach (var item in director)
                             {
-                                <li class="list-group-item">
-                                    Directors
-                                    <dl>
-                                        @foreach (var item in director)
-                                        {
-                                            if (item != null)
-                                            {
-                                                <dd class="col">
-                                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                                </dd>
-                                            }
-                                        }
-                                    </dl>
-                                </li>
+                                if (item != null)
+                                {
+                                    <dd class="col">
+                                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                    </dd>
+                                }
                             }
-                        }
+                        </dl>
+                    </li>
+                }
+            }
 
-                        @{var stagemanager = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.StageManager);
-                            if (stagemanager != null && stagemanager.Any())
+            @{var stagemanager = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.StageManager);
+                if (stagemanager != null && stagemanager.Any())
+                {
+                    <li class="list-group-item">
+                        Stage Managers
+                        <dl>
+                            @foreach (var item in stagemanager)
                             {
-                                <li class="list-group-item">
-                                    Stage Managers
-                                    <dl>
-                                        @foreach (var item in stagemanager)
-                                        {
-                                            if (item != null)
-                                            {
-                                                <dd class="col">
-                                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                                </dd>
-                                            }
-                                        }
-                                    </dl>
-                                </li>
+                                if (item != null)
+                                {
+                                    <dd class="col">
+                                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                    </dd>
+                                }
                             }
-                        }
+                        </dl>
+                    </li>
+                }
+            }
 
 
-                        @{var technician = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Technician);
-                            if (technician != null && technician.Any())
+            @{var technician = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Technician);
+                if (technician != null && technician.Any())
+                {
+                    <li class="list-group-item">
+                        Technicians
+                        <dl>
+                            @foreach (var item in technician)
                             {
-                                <li class="list-group-item">
-                                    Technicians
-                                    <dl>
-                                        @foreach (var item in technician)
-                                        {
-                                            if (item != null)
-                                            {
-                                                <dd class="col">
-                                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                                </dd>
-                                            }
-                                        }
-                                    </dl>
-                                </li>
+                                if (item != null)
+                                {
+                                    <dd class="col">
+                                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                    </dd>
+                                }
                             }
-                        }
+                        </dl>
+                    </li>
+                }
+            }
 
-                        @{var other = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Other);
-                            if (other != null && other.Any())
+            @{var other = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Other);
+                if (other != null && other.Any())
+                {
+                    <li class="list-group-item">
+                        Other
+                        <dl>
+                            @foreach (var item in other)
                             {
-                                <li class="list-group-item">
-                                    Other
-                                    <dl>
-                                        @foreach (var item in other)
-                                        {
-                                            if (item != null)
-                                            {
-                                                <dd class="col">
-                                                    <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                                </dd>
-                                            }
-                                        }
-                                    </dl>
-                                </li>
+                                if (item != null)
+                                {
+                                    <dd class="col">
+                                        <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                    </dd>
+                                }
                             }
-                        }*@
+                        </dl>
+                    </li>
+                }
+            }*@
 
                     </ul>
                 </div>
@@ -314,17 +310,17 @@
                     </div>
                 </div>
 
-                <!-- Parts Card Section visible when screen size small
+                <!-- Parts Card Section visible when screen size small -->
 
     <div class="card bg-info mr-4 d-md-none" id="cardss">
-        <!-- when screen size is md or bigger this will not display. So when screen size is sm/mobile view it will be visible but otherwise hidden
+        <!-- when screen size is md or bigger this will not display. So when screen size is sm/mobile view it will be visible but otherwise hidden -->
         <div class="card-header" id="head">
             <b>Parts</b>
         </div>
         <ul class="list-group list-group-flush text-black-50">
 
             <!--Iterate through Parts for a specific Type of role and if there is data it will display the below item in the Parts card. If no data is returned it will not display-->
-                @*@{var actorsm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Actor);
+                @{var actorsm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Actor);
             if (actorsm != null && actorsm.Any())
             {
                 <li class="list-group-item">
@@ -423,10 +419,10 @@
                     </dl>
                 </li>
             }
-        }*@
+        }
 
-                <!-- </ul>
-    </div> -->
+            </ul>
+        </div>
                 <!-- End Parts Card Section-->
                 @* Old code for the Parts data. Commented out.
         <div class="justify-content-end col-md-3">
