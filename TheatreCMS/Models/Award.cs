@@ -20,7 +20,7 @@ namespace TheatreCMS.Models
         public string Name { get; set; }
        
         [Required]
-        public AwardType Type { get; set; }
+        public AwardType? Type { get; set; }
        
 
         [Required]
