@@ -177,19 +177,8 @@ namespace TheatreCMS.Controllers
                 return HttpNotFound();
             }
             List<CastMember> castMembers = new List<CastMember>();
-            var parts = db.Parts.Where(x => x.Production.ProductionId == id).ToList();
-            //var castMember = new CastMember();
-            //foreach (Part part in parts)
-            //{
-            //    castMember = db.CastMembers.Where(x => x.CastMemberID == part.Person.CastMemberID).FirstOrDefault();
-            //    castMembers.Add(castMember);
-            //}
-            //ViewBag.CastMembers = castMembers;
+            var parts = db.Parts.Where(x => x.Production.ProductionId == id).ToList().OrderBy(x => x.Type);
             ViewBag.Parts = parts;
-
-            
-
-
             return View(production);
         }
 
