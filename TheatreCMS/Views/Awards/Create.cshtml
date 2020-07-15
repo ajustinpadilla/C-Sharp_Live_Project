@@ -174,10 +174,19 @@
 
     //Get award type without using AJAX
 
-    $(".awardForm .awardType").change(function () {
-        var type = $(this).children("option:selected").text();
-        $('#awardTypePreview').html(type + " for ");
-    })
+    //$(".awardForm .awardType").change(function () {
+    //    var type = $(this).children("option:selected").text();
+    //    $('#awardTypePreview').html(type + " for ");
+    //})
+
+  $(".awardForm .awardType").change(function () {
+    var type = $(this).children("option:selected").text();
+    if (type == "Type of Award") {
+      $('#awardTypePreview').html("");
+    } else {
+      $('#awardTypePreview').html(type + " for ");
+    }   
+  })
 
      @*$(".awardForm .awardType").on('change', function () {
             var content = $(".awardType").val();
@@ -219,10 +228,19 @@
 
         // Get Award Production without using AJAX
 
-    $(".awardForm .awardProduction").change(function () {
+    //$(".awardForm .awardProduction").change(function () {
+    //    var production = $(this).children("option:selected").text();
+    //    $('#awardProductionPreview').html(production);
+    //})
+
+      $(".awardForm .awardProduction").change(function () {
         var production = $(this).children("option:selected").text();
-        $('#awardProductionPreview').html(production);
-    })
+        if (production == "Select a Production") {
+          $('#awardProductionPreview').html("");
+        } else {
+          $('#awardProductionPreview').html(production);
+        }
+      })
 
         @*$(".awardForm .awardProduction").on('change', function () {
             var content = $(".awardProduction").val();
