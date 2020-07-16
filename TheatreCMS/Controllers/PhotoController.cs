@@ -197,14 +197,34 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PhotoId,PhotoFile,OriginalHeight,OriginalWidth,Title")] Photo photo)
+        public ActionResult Edit([Bind(Include = "PhotoId,PhotoFile,OriginalHeight,OriginalWidth,Title")] Photo photo, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(photo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (file != null)
+                {
+                    var currentphoto = db.Photo.Find(photo.PhotoId);
+                    byte[] photoArray = ImageBytes(file);
+                    currentphoto.PhotoFile = photoArray;
+                    Bitmap img = new Bitmap(file.InputStream);
+                    currentphoto.OriginalHeight = img.Height;
+                    currentphoto.OriginalWidth = img.Width;
+                    currentphoto.Title = photo.Title;
+                    db.Entry(currentphoto).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    var currentphoto = db.Photo.Find(photo.PhotoId);
+                    currentphoto.Title = photo.Title;
+                    db.Entry(currentphoto).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            
             }
+
             return View(photo);
         }
 
