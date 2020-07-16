@@ -137,18 +137,18 @@
     @Scripts.Render("~/bundles/jqueryval")
 <script>
 
-        //The below will get what the user is typing / selecting from the form and display it on the preview award
-        //Award Year
-        $(".awardForm .awardYear").on('change', function () {
-            var content = $(".awardYear").val();
-            $("#awardYearPreview").html(content);
-        })
+    //The below will get what the user is typing / selecting from the form and display it on the preview award
+    //Award Year
+    $(".awardForm .awardYear").on('change', function () {
+        var content = $(".awardYear").val();
+        $("#awardYearPreview").html(content);
+    });
 
-        //Award Name
-        $(".awardForm .awardName").on('input', function () {
-            var content = $(".awardName").val().toUpperCase();
-            $("#awardNamePreview").html(content);
-        })
+    //Award Name
+    $(".awardForm .awardName").on('input', function () {
+        var content = $(".awardName").val().toUpperCase();
+        $("#awardNamePreview").html(content);
+    });
 
     //$(document).ready(function () {
     //    $('#awardTypePreview').html('AWARD FOR');
@@ -179,14 +179,14 @@
     //    $('#awardTypePreview').html(type + " for ");
     //})
 
-  $(".awardForm .awardType").change(function () {
-    var type = $(this).children("option:selected").text();
-    if (type == "Type of Award") {
-      $('#awardTypePreview').html("");
-    } else {
-      $('#awardTypePreview').html(type + " for ");
-    }   
-  })
+    $(".awardForm .awardType").change(function () {
+        var type = $(this).children("option:selected").text();
+        if (type == "Type of Award") {
+            $('#awardTypePreview').html("");
+        } else {
+            $('#awardTypePreview').html(type + " for ");
+        }
+    });
 
      @*$(".awardForm .awardType").on('change', function () {
             var content = $(".awardType").val();
@@ -207,24 +207,24 @@
 
         })*@
 
-        //Award Category
+    //Award Category
 
-        $(".awardForm .awardCategory").on('input', function () {
-            var content = $(".awardCategory").val().toUpperCase();
-            $("#awardCategoryPreview").html(content);
-        })
+    $(".awardForm .awardCategory").on('input', function () {
+        var content = $(".awardCategory").val().toUpperCase();
+        $("#awardCategoryPreview").html(content);
+    });
 
-        //Award Recipient
+    //Award Recipient
 
-        $(".awardForm .awardRecipient").on('input', function () {
-            var content = $(".awardRecipient").val();
-            if (content == "") {
-                $("#awardRecipientPreview").html("")
-            }
-            else {
-                $("#awardRecipientPreview").html(content + " - ");
-            }
-        })
+    $(".awardForm .awardRecipient").on('input', function () {
+        var content = $(".awardRecipient").val();
+        if (content == "") {
+            $("#awardRecipientPreview").html("");
+        }
+        else {
+            $("#awardRecipientPreview").html(content + " - ");
+        }
+    });
 
         // Get Award Production without using AJAX
 
@@ -233,14 +233,14 @@
     //    $('#awardProductionPreview').html(production);
     //})
 
-      $(".awardForm .awardProduction").change(function () {
+    $(".awardForm .awardProduction").change(function () {
         var production = $(this).children("option:selected").text();
         if (production == "Select a Production") {
-          $('#awardProductionPreview').html("");
+            $('#awardProductionPreview').html("");
         } else {
-          $('#awardProductionPreview').html(production);
+            $('#awardProductionPreview').html(production);
         }
-      })
+    });
 
         @*$(".awardForm .awardProduction").on('change', function () {
             var content = $(".awardProduction").val();
@@ -255,12 +255,12 @@
 
         })*@
 
-        //Award Other Info
+    //Award Other Info
 
-        $(".awardForm .awardOtherInfo").on('input', function () {
-            var content = $(".awardOtherInfo").val();
-            $("#awardOtherInfoPreview").html(content);
-        })
+    $(".awardForm .awardOtherInfo").on('input', function () {
+        var content = $(".awardOtherInfo").val();
+        $("#awardOtherInfoPreview").html(content);
+    });
 
 
 
