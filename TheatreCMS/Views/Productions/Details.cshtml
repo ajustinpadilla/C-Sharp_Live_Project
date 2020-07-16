@@ -105,18 +105,18 @@
                             if (type != part.Type )
                             {
                                 {type = part.Type;}
-                                <li class="list-group-item border text-black">
+                                <li class="list-item border-top mx-3">
                                     @part.Type 
                                 </li>
                                    
-                                <li class="col list-item ml-4 m-4">
+                                <li class="col list-item ml-4 mb-2">
                                     <a href="/Part/Details/@part.PartID">@part.Character</a>
                                 </li>   
                             }
                             else
                             {
                     
-                                <li class="col list-item ml-4 mb-4">
+                                <li class="col list-item ml-4 mb-2">
                                         <a href="/Part/Details/@part.PartID">@part.Character</a>
                                 </li>
                             }
@@ -340,11 +340,11 @@
                 if (type1 != part.Type)
                 {
                     { type1 = part.Type; }
-                    <li class="list-group-item border text-black">
+                    <li class="list-item border-top mx-3">
                         @part.Type
                     </li>
 
-                    <li class="col list-item ml-4 m-4">
+                    <li class="col list-item ml-4 mb-2">
                         <a href="/Part/Details/@part.PartID">@part.Character</a>
                     </li>
 
@@ -352,7 +352,7 @@
                 else
                 {
 
-                    <li class="col list-item ml-4 mb-4">
+                    <li class="col list-item ml-4 mb-2">
                         <a href="/Part/Details/@part.PartID">@part.Character</a>
                     </li>
                 }
