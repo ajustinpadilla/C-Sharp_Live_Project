@@ -176,9 +176,9 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
-            List<CastMember> castMembers = new List<CastMember>();
-            var parts = db.Parts.Where(x => x.Production.ProductionId == id).ToList().OrderBy(x => x.Type);
-            ViewBag.Parts = parts;
+            List<int> positions = new List<int>(){0,1,3,2,4};
+            ViewBag.Positions = positions;
+            ViewBag.Id = id;
             return View(production);
         }
 
