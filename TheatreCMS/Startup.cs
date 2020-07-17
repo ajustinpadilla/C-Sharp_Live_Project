@@ -46,6 +46,7 @@ namespace TheatreCMS
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             //create Admin role on startup if none exist
+            
             if (!roleManager.RoleExists("Admin"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
