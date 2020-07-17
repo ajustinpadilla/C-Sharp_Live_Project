@@ -95,6 +95,12 @@ namespace TheatreCMS.Controllers
             if (ModelState.IsValid)
             {
                 byte[] photoArray = ImageBytes(file);
+                if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
+                {
+                    ViewBag.Error = "The item you entered already exists in the database.";
+                    ViewBag.AlreadyExists = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
+                    return View();
+                }
                 photo.PhotoFile = photoArray;
                 Bitmap img = new Bitmap(file.InputStream);
                 photo.OriginalHeight = img.Height;
@@ -205,6 +211,12 @@ namespace TheatreCMS.Controllers
                 {
                     var currentphoto = db.Photo.Find(photo.PhotoId);
                     byte[] photoArray = ImageBytes(file);
+                    if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
+                    {
+                        ViewBag.Error = "The item you entered already exists in the database.";
+                        ViewBag.AlreadyExists = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
+                        return View(photo);
+                    }
                     currentphoto.PhotoFile = photoArray;
                     Bitmap img = new Bitmap(file.InputStream);
                     currentphoto.OriginalHeight = img.Height;

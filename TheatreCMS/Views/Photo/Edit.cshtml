@@ -36,6 +36,17 @@
                     </div>
                 </div>
 
+                @if (ViewBag.Error != null)
+                {
+                    <div class="text-white">
+                        <div>
+                            <p>@ViewBag.Error</p>
+                            <p>Would you like to<a href="/Photo/Details/@ViewBag.AlreadyExists"> view </a> or <a href="/Photo/Edit/@ViewBag.AlreadyExists"> edit </a> this photo? </p>
+                        </div>
+                    </div>
+                }
+
+
                 @*<div class="form-group">
             @Html.LabelFor(model => model.OriginalHeight, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
             <div class="col-md-10 formBox">
