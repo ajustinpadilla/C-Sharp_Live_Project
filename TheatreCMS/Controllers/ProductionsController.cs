@@ -176,6 +176,8 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
+            List<int> positions = new List<int>(){0,1,3,2,4};
+            ViewBag.Positions = positions;
             return View(production);
         }
 

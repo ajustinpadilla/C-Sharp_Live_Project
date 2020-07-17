@@ -92,7 +92,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
+        public ActionResult Create([Bind(Include = "RentalRequestId,ContactPerson,ContactPhoneNumber,ContactEmail,Company,StartTime,EndTime,ProjectInfo,Requests,RentalCode,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
             long sec = 10000000;        //DateTime ticks per second
             long hrSecs = 3600;         //Seconds in an hour
@@ -145,7 +145,7 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,Company,StartTime,EndTime,ProjectInfo,Requests,Accepted,ContractSigned")] RentalRequest rentalRequest)
+        public ActionResult Edit([Bind(Include = "RentalRequestId,ContactPerson,ContactPhoneNumber,ContactEmail,Company,StartTime,EndTime,ProjectInfo,Requests,Accepted,ContractSigned")] RentalRequest rentalRequest)
         {
             long sec = 10000000;        //DateTime ticks per second
             long hrSecs = 3600;         //Seconds in an hour
@@ -165,6 +165,8 @@ namespace TheatreCMS.Controllers
                 var currentRentalRequest = db.RentalRequests.Find(rentalRequest.RentalRequestId);
 
                 currentRentalRequest.ContactPerson = rentalRequest.ContactPerson;
+                currentRentalRequest.ContactPhoneNumber = rentalRequest.ContactPhoneNumber;
+                currentRentalRequest.ContactEmail = rentalRequest.ContactEmail;
                 currentRentalRequest.Company = rentalRequest.Company;
                 currentRentalRequest.StartTime = rentalRequest.StartTime;
                 currentRentalRequest.EndTime = rentalRequest.EndTime;
