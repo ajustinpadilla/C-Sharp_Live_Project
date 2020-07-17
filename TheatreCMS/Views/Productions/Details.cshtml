@@ -96,14 +96,14 @@
             <div class="card-header" id="head">
                     <b>Parts</b>
             </div>
-                <ul class="list-group list-group-flush list-unstyled text-black-50 mb-5">
+                <ul class="list-group list-group-flush text-black-50">
                     @{var part = new TheatreCMS.Enum.PositionEnum();}
                     @{List<TheatreCMS.Models.Part> parts = new List<TheatreCMS.Models.Part>();}
                     @foreach (int position in ViewBag.Positions)
                     {
                         parts.Clear();
                         part = (TheatreCMS.Enum.PositionEnum)position;
-                        parts = Model.Parts.Where(x => x.Type == part && x.Production.ProductionId == ViewBag.Id).ToList();
+                        parts = Model.Parts.Where(x => x.Type == part).ToList();
                         if (parts != null && parts.Any())
                         {
                             <li class="list-group-item">
@@ -332,7 +332,7 @@
                             {
                                 parts1.Clear();
                                 part1 = (TheatreCMS.Enum.PositionEnum)position;
-                                parts1 = Model.Parts.Where(x => x.Type == part1 && x.Production.ProductionId == ViewBag.Id).ToList();
+                                parts1 = Model.Parts.Where(x => x.Type == part1).ToList();
                                 if (parts1 != null && parts1.Any())
                                 {
                                     <li class="list-group-item">

@@ -178,7 +178,6 @@ namespace TheatreCMS.Controllers
             }
             List<int> positions = new List<int>(){0,1,3,2,4};
             ViewBag.Positions = positions;
-            ViewBag.Id = id;
             return View(production);
         }
 
