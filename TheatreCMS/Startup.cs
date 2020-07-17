@@ -425,14 +425,10 @@ namespace TheatreCMS
                 #endregion
             };
 
-            //foreach (Award award in awards)
-            //{
-            //    // Year, Name, Type, Category
-            //    award.AlternateID = $"{award.Year} {award.Name} {award.Type} {award.Category}";
-            //    context.Awards.AddOrUpdate(aw => aw.AlternateID, award);
-            //}
+            //awards.ForEach(award => context.Awards.AddOrUpdate(aw => aw.AwardId, award));
 
-            awards.ForEach(award => context.Awards.AddOrUpdate(aw => aw.AwardId, award));
+            awards.ForEach(award => context.Awards.AddOrUpdate(a => new { a.Year, a.Name, a.Type, a.Category }, award));
+
             context.SaveChanges();
         }
 
