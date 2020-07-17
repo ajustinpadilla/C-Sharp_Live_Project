@@ -17,6 +17,17 @@ namespace TheatreCMS.Models
         [Display(Name = "Contact Person")]
         public string ContactPerson { get; set; }   // name for point of contact
 
+        [Required(ErrorMessage = "Please provide a valid phone number")]
+        [Display(Name = "Contact Phone Number")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        public string ContactPhoneNumber { get; set; }
+
+        [Display(Name = "Contact Email address")]
+        [Required(ErrorMessage = "Please provide a valid email address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string ContactEmail { get; set; }
+
         [StringLength(100, ErrorMessage = "Error. This field is limited to 100 characters.")]
         public string Company { get; set; }         // company requesting the rental
 
