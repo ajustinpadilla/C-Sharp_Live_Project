@@ -34,6 +34,7 @@ namespace TheatreCMS.Controllers
             });
             ViewData["listOfUsers"] = new SelectList(UserList, "Value", "Text");
             ViewData["currentUserId"] = currentUser.Id;
+            ViewData["currentUserName"] = currentUser.LastName + ", " + currentUser.FirstName;
             return View(db.Messages.Where(i => i.SenderId == currentUser.Id || i.RecipientId == currentUser.Id).OrderByDescending(i => i.SentTime).ToList());
         }
 

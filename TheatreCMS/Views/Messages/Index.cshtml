@@ -21,7 +21,7 @@
 
         <li class="nav-item mr-auto">
 
-            <a class="nav-link btn btn-primary" data-toggle="tab" href="#newMsg">Compose</a>
+            <a class="nav-link btn btn-primary" id="compose" data-toggle="tab" href="#newMsg">Compose</a>
 
         </li>
 
@@ -59,10 +59,11 @@
             {
                 @Html.AntiForgeryToken()
 
+                
                 <div class="form-group form-row align-items-center">
                     <label class="col-lg-2 col-md-2 control-label col-1" for="RecipientId">To:</label>
                     <div class="col-lg-6 col-md-8">
-                        @Html.DropDownList("RecipientId", (IEnumerable<SelectListItem>)ViewData["listOfUsers"], "", htmlAttributes: new { @class = "form-control", required ="required" })
+                        @Html.DropDownList("RecipientId", (IEnumerable<SelectListItem>)ViewData["listOfUsers"], "", htmlAttributes: new { @class = "form-control", required = "required" })
                     </div>
                 </div>
 
@@ -83,6 +84,7 @@
 
                 <input id="ParentId" name="ParentId" type="hidden" value="">
 
+
                 <div class="form-group form-row align-items-center">
                     <label class="col-lg-2 col-md-2 control-label col-1"></label>
                     <div class="col-lg-6 col-md-8">
@@ -90,7 +92,7 @@
                             Go Back
                         </button>
                         <button type="submit" class="btn btn-primary">Send</button>
-                        <button type="reset" class="btn btn-danger">
+                        <button type="reset" id="clearCurrentMsg" class="btn btn-danger">
                             <i class="fa fa-trash"
                                aria-hidden="true"></i>
                         </button>
@@ -198,10 +200,11 @@
                         <div class="col-lg-6 col-md-8 msgSubject"></div>
                     </div>
 
-                    <div class="form-group row align-items-center">
-                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
-                        <div class="col-lg-6 col-md-8 msgBody"></div>
+                    <div rows="5 " class="form-group row align-items-center">
+                        <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label><textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody" readonly></textarea>
                     </div>
+                        <!--<div class="col-lg-6 col-md-8 msgBody"></div>-->
+                    
 
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1"></label>
@@ -327,7 +330,7 @@
 
                     <div class="form-group row align-items-center">
                         <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
-                        <div class="col-lg-6 col-md-8 msgBody"></div>
+                        <textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody" readonly></textarea>
                     </div>
 
                     <div class="form-group row align-items-center">
@@ -350,8 +353,20 @@
 
 @section Scripts{
 
-<script>
+    <script>
     $(document).ready(function () {
+
+
+        //This clears the new message fields when the user clicks 'Compose'
+        $("#compose").on("click", function () {
+            var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
+            $("#navTabs a[href='newMsg'").tab('show');
+            $("#newMsg").find('#clearCurrentMsg').trigger("click");
+            $('#newMsg #RecipientId option:not(:selected)').attr("disabled", false);
+
+
+
+        })
 
         //compose message go back button
         $("#newMsg #goback").click(function () {
@@ -401,31 +416,55 @@
             //code will populate #inboxDetails with correct msg info, hide/show speed not working, asynchronous?
             $("#inboxDetails").data("msg_id", msgId_str);
             $("#inboxDetails").data("sender_id", senderId_str);
-
+            var toName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
             $("#inboxDetails .msgFrom").html($(this).parent().find(".msgFrom").html());
             $("#inboxDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#inboxDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
-            $("#inboxDetails .msgBody").html($(this).parent().find(".msgBody").html());
+            $("#inboxDetails .msgBody").html($(this).parent().find(".msgDate").html().trim() + ", " + $(this).parent().find(".msgFrom").html().trim() + " wrote:\n\n" + $(this).parent().find(".msgBody").html().trim());
             $("#inboxDetails .msgFrom1").html($(this).parent().find(".msgFrom").html());
             $("#inboxDetails .msgDate1").html($(this).parent().find(".msgDate").html());
             $("#inboxDetails .msgSubject1").html($(this).parent().find(".msgSubject").html());
             $("#inboxDetails .msgBody1").html($(this).parent().find(".msgBody").html());
             $("#inboxDetails").show();
 
-            
-            
+
 
         });
 
         //reply button autofills in the sender and subject and posts a parentId to database as well
+        //reply will include the previous body content and also scroll down to the bottom of the message
         $(".list-reply").on("click", function () {
+            var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
             var msgId_str = $(this).closest(".inboxRow").data("msg_id");
             var senderId_str = $(this).closest(".inboxRow").data("sender_id");
             $("#newMsg #RecipientId").val(senderId_str);
             $("#newMsg #Subject").val("Re: " + $(this).closest(".inboxRow").find(".msgSubject").text().trim());
+            //$('#newMsg #Body').val($(this).closest(".inboxRow").find(".msgBody").text().trim());
+            $("#newMsg #Body").val("\n\n\n=========================\n\n" + $(this).closest(".inboxRow").find(".msgDate").text().trim() + ", " + $(this).closest(".inboxRow").find(".msgFrom").text().trim() + " wrote:\n\n" + $(this).closest(".inboxRow").find(".msgBody").text().trim());
             $("#newMsg #ParentId").val(msgId_str);
             $('#navTabs a[href="#newMsg"]').tab('show');
+            $('#newMsg #RecipientId option:not(:selected)').attr("disabled", true);
+            $('#newMsg #Body').focus().setCursorPosition(0);
+            $('#newMsg #Body').scrollTop(0);
         });
+
+        $.fn.setCursorPosition = function (pos) {
+            this.each(function (index, elem) {
+                if (elem.setSelectionRange) {
+                    elem.setSelectionRange(pos, pos);
+                } else if (elem.createTextRange) {
+                    var range = elem.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', pos);
+                    range.moveStart('character', pos);
+                    range.select();
+                }
+            });
+            return this;
+        };
+
+
+
 
 
         $(".list-del").on("click", function () {
@@ -465,14 +504,20 @@
         });
 
         //reply button autofills in the sender and subject and posts a parentId to database as well
+        //reply will include the previous body content and also scroll down to the bottom of the message
         $("#inboxDetails #reply").on("click", function () {
+            var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
             var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
             var senderId_str = $(this).parents("#inboxDetails").data("sender_id");
 
             $("#newMsg #RecipientId").val(senderId_str);
+            $("#newMsg #RecipientId option:not(:selected)").attr("disabled", true);
             $("#newMsg #Subject").val("Re: " + $(this).parents("#inboxDetails").find(".msgSubject").text().trim());
+            $("#newMsg #Body").val("\n\n\n=========================\n\n" + $(this).parents("#inboxDetails").find(".msgBody").text().trim());
             $("#newMsg #ParentId").val(msgId_str);
             $('#navTabs a[href="#newMsg"]').tab('show');
+            $('#newMsg #Body').focus().setCursorPosition(0);
+            $('#newMsg #Body').scrollTop(0);
         });
 
         $("#inboxDetails #delete").on("click", function () {
@@ -501,6 +546,7 @@
         //behavior of row on sent tab
         $(".sentRow").on("click", "td:not(:last-child)", function () {
             var msgId_str = $(this).parent().data("msg_id");
+            var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
 
             $("#sentList").hide();
 
@@ -509,7 +555,8 @@
             $("#sentDetails .msgTo").html($(this).parent().find(".msgTo").html());
             $("#sentDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#sentDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
-            $("#sentDetails .msgBody").html($(this).parent().find(".msgBody").html());
+            //$("#newMsg #Body").val($(this).closest(".inboxRow").find(".msgBody").text().trim()
+            $("#sentDetails .msgBody").val($(this).parent().find(".msgDate").html().trim() + ", " + senderName + " wrote:\n\n" + $(this).parent().find(".msgBody").text().trim());
             $("#sentDetails").show();
         });
 
@@ -533,7 +580,6 @@
         
     });
 
-
-</script>
+    </script>
 
 }

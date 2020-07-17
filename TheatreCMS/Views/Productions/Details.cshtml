@@ -3,84 +3,86 @@
 
 
 
-
 @*old stuff*@
+@*<div class="details-container">
+  <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' class="production-details-background" />*@
+  <div class="production-details-container">
+    <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' class="production-details-background" />
+  </div>
 <div class="container">
-    @*<img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' />*@
-    <div>
+  <div>
+    <div class="row justify-content-xl-start text-center">
+      <div class="col-12">
+        <dl>
+          <dd class="col">
+            <div class="jumbotron mr-4" id="jumbo"><h1><b> @Html.DisplayFor(model => model.Title)</b></h1></div>
+          </dd>
 
-        <div class="row justify-content-xl-start text-center">
-            <div class="col-12">
-                <dl>
-                    <dd class="col">
-                        <div class="jumbotron mr-4" id="jumbo"><h1><b> @Html.DisplayFor(model => model.Title)</b></h1></div>
-                    </dd>
+        </dl>
+      </div>
+    </div>
 
-                </dl>
-            </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-info mr-4" id="cardss">
+          <div class="card-header" id="head">
+            <b>Days Playing</b>
+          </div>
+          <ul class="list-group list-group-flush text-black-50">
+
+            <li class="list-group-item">
+              Opening Day
+              <dl>
+
+                <dd class="col">
+                  @Html.DisplayFor(model => model.OpeningDay)
+                </dd>
+              </dl>
+            </li>
+            <li class="list-group-item">
+              Closing Day
+              <dl>
+                <dd class="col">
+                  @Html.DisplayFor(model => model.ClosingDay)
+                </dd>
+              </dl>
+            </li>
+          </ul>
         </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card bg-info mr-4" id="cardss">
-                    <div class="card-header" id="head">
-                        <b>Days Playing</b>
-                    </div>
-                    <ul class="list-group list-group-flush text-black-50">
 
-                        <li class="list-group-item">
-                            Opening Day
-                            <dl>
+        <div class="card bg-info mr-4" id="cardss">
+          <div class="card-header" id="head">
+            <b>Show Time and Length</b>
+          </div>
+          <ul class="list-group list-group-flush text-black-50">
 
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.OpeningDay)
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="list-group-item">
-                            Closing Day
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.ClosingDay)
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-
-
-                <div class="card bg-info mr-4" id="cardss">
-                    <div class="card-header" id="head">
-                        <b>Show Time and Length</b>
-                    </div>
-                    <ul class="list-group list-group-flush text-black-50">
-
-                        <li class="list-group-item">
-                            Run Time
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.Runtime)
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="list-group-item">
-                            Evening Show Time
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.ShowtimeEve)
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="list-group-item">
-                            Matinee Show Time
-                            <dl>
-                                <dd class="col">
-                                    @Html.DisplayFor(model => model.ShowtimeMat)
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
+            <li class="list-group-item">
+              Run Time
+              <dl>
+                <dd class="col">
+                  @Html.DisplayFor(model => model.Runtime)
+                </dd>
+              </dl>
+            </li>
+            <li class="list-group-item">
+              Evening Show Time
+              <dl>
+                <dd class="col">
+                  @Html.DisplayFor(model => model.ShowtimeEve)
+                </dd>
+              </dl>
+            </li>
+            <li class="list-group-item">
+              Matinee Show Time
+              <dl>
+                <dd class="col">
+                  @Html.DisplayFor(model => model.ShowtimeMat)
+                </dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
 
 
 
@@ -485,15 +487,16 @@
         </div>
             </div>
 </div>
+@*</div>*@
 
 @*Shows/hides edit link depending on user role.*@
 @if (ViewContext.HttpContext.User.IsInRole("Admin"))
 {
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductionId }) |
-    </p>
+  <p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductionId }) |
+  </p>
 }
 <p>
-    @Html.ActionLink("Current Productions", "Current") |
-    @Html.ActionLink("Back to List", "Index")
+  @Html.ActionLink("Current Productions", "Current") |
+  @Html.ActionLink("Back to List", "Index")
 </p>

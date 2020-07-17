@@ -54,6 +54,7 @@
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
     background-color: var(--dark-color);
     color: var(--light-color);
+
 }
 
 .palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
@@ -560,9 +561,12 @@ footer .fab {
 /* Set width on the form input elements since they're 100% wide by default */
 /*input,
 select,
+
 textarea {
     max-width: 280px;
 }*/
+
+
 
 .rh-25 { /*Limits height of rows*/
     height: 250px;
@@ -1815,6 +1819,33 @@ a.dropdown-item:hover {
 .production-admin-div {
     width: 400px;
 }
+
+/**********Production Details Background***********/
+
+
+.production-details-background {
+    filter: blur(5px);
+    opacity: 0.2;
+    position: fixed;
+    margin: auto;
+    min-height: 100%;
+    min-width: 100%;
+    top: 0; 
+    bottom: 0;
+    vertical-align: middle;
+}
+
+.production-details-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 
 
 /****************
@@ -3555,8 +3586,10 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 }
 
 #inboxDetails .msgBody,
-#sentDetails .msgBody {
-    min-height: 100px;
+#sentDetails .msgBody,
+#newMsg #Body{
+    min-height: 300px;
+    height: 300px;
 }
 
 

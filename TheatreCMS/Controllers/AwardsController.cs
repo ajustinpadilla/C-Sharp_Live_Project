@@ -36,6 +36,30 @@ namespace TheatreCMS.Controllers
             return View(award);
         }
 
+
+        //The two below methods are not needed when not using AJAX on the create page
+
+        //Gets production name from dB and returns it
+        //public string GetProductionName(int? productionId)
+        //{
+        //    if (productionId != null)
+        //    {
+        //        Production production = db.Productions.Find(productionId);
+        //        return production.Title;
+        //    }
+        //    return "";    
+        //}
+
+        //public string GetAwardType(int? awardId)
+        //{
+        //    if (awardId != null)
+        //    {
+        //        return ((AwardType)awardId).ToString();
+        //    }
+        //    return "";
+        //}
+
+
         // GET: Awards/Create
         public ActionResult Create()
         {
