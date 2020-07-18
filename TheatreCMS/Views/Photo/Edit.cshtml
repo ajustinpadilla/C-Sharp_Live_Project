@@ -32,7 +32,7 @@
                     @Html.LabelFor(model => model.PhotoFile, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                     <div class="col-md-10 formBox">
                         @Html.TextBoxFor(model => model.PhotoFile, new { type = "file", Name = "file", Id = "PhotoFile", Class = "fileSelect" })
-                        @Html.Raw(HttpUtility.HtmlDecode(Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-white" }).ToHtmlString()));
+                        @Html.Raw(HttpUtility.HtmlDecode(Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-white" }).ToHtmlString()))
                         @*@Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-danger" });*@
                     </div>
                 </div>
