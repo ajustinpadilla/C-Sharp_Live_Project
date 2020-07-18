@@ -92,15 +92,14 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PhotoId,PhotoFile,OriginalHeight,OriginalWidth,Title")] Photo photo, HttpPostedFileBase file)
         {
+            byte[] photoArray = ImageBytes(file);
+            if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
+            {
+                var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
+                ModelState.AddModelError("PhotoFile", "This photo already exists in the database. Would you like to <a href='/Photo/Details/" + id + "'>view</a> or <a href='/Photo/Edit/" + id + "'>edit</a> the photo?");
+            }
             if (ModelState.IsValid)
             {
-                byte[] photoArray = ImageBytes(file);
-                if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
-                {
-                    ViewBag.Error = "The item you entered already exists in the database.";
-                    ViewBag.AlreadyExists = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
-                    return View();
-                }
                 photo.PhotoFile = photoArray;
                 Bitmap img = new Bitmap(file.InputStream);
                 photo.OriginalHeight = img.Height;
@@ -207,18 +206,18 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PhotoId,PhotoFile,OriginalHeight,OriginalWidth,Title")] Photo photo, HttpPostedFileBase file)
         {
+            var currentphoto = db.Photo.Find(photo.PhotoId);
+            byte[] photoArray = ImageBytes(file);
+            if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
+            {
+                var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
+                ModelState.AddModelError("PhotoFile", "This photo already exists in the database. Would you like to <a href='/Photo/Details/" + id + "'>view</a> the photo?");
+            }
             if (ModelState.IsValid)
             {
                 if (file != null)
                 {
-                    var currentphoto = db.Photo.Find(photo.PhotoId);
-                    byte[] photoArray = ImageBytes(file);
-                    if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
-                    {
-                        ViewBag.Error = "The item you entered already exists in the database.";
-                        ViewBag.AlreadyExists = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
-                        return View(photo);
-                    }
+                    
                     currentphoto.PhotoFile = photoArray;
                     Bitmap img = new Bitmap(file.InputStream);
                     currentphoto.OriginalHeight = img.Height;
@@ -230,7 +229,6 @@ namespace TheatreCMS.Controllers
                 }
                 else
                 {
-                    var currentphoto = db.Photo.Find(photo.PhotoId);
                     currentphoto.Title = photo.Title;
                     db.Entry(currentphoto).State = EntityState.Modified;
                     db.SaveChanges();
