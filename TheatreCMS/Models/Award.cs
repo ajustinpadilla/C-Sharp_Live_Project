@@ -25,7 +25,7 @@ namespace TheatreCMS.Models
 
         [Required]
         public string Category { get; set; }
-        //public string AlternateID { get; set; }
+        
         public string Recipient { get; set; }
 
         
