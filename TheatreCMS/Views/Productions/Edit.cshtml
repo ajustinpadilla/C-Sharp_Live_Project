@@ -4,6 +4,8 @@
   ViewBag.Title = "Edit";
 }
 
+@Styles.Render("~/Content/Site.css")
+
 <h2>Edit</h2>
 
 
@@ -16,7 +18,7 @@
       <hr />
       @Html.ValidationSummary(true, "", new { @class = "text-danger" })
       @Html.HiddenFor(model => model.ProductionId)
-      @Html.Hidden("prod-photo-default-id", Model.DefaultPhoto.PhotoId)
+      @Html.Hidden("DefaultProPhotoId", Model.DefaultPhoto.ProPhotoId)
 
 
       <div class="form-group">
@@ -75,7 +77,7 @@
           <a href="#prod-photo-default-modal" data-toggle="modal">
             <img id="prod-photo-default-thumbnail" class="card-img-top medium_size" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })" alt="Card image cap" data-photo="@Model.DefaultPhoto.PhotoId">
           </a>
-          
+
         </div>
         <div>
           <input id="prod-photo-default-modal-btn" type="button" value="Update Default Promo Photo" class="btn btn-default" data-target="#prod-photo-default-modal" data-toggle="modal" />
@@ -197,43 +199,6 @@
   @Scripts.Render("~/bundles/jqueryval")
 }
 
-<style>
-  #prod-photo-default-thumbnail {
-    border: solid 2px var(--main-secondary-color);
-  }
-
-    #prod-photo-default-thumbnail:hover {
-      border: solid 2px var(--dark-color);
-    }
-
-  #prod-photo-default-modal-btn {
-    border: solid 2px var(--dark-color);
-    background-color: var(--light-color);
-  }
-
-    #prod-photo-default-modal-btn:hover {
-      border: solid 2px var(--secondary-color);
-    }
-
-    #prod-photo-default-modal-btn:active {
-      background-color: var(--secondary-color);
-    }
-
-
-  .card-img-bottom-prod-photo-default {
-    border: solid 2px black;
-  }
-
-    .card-img-bottom-prod-photo-default:hover {
-      cursor: pointer;
-    }
-
-  .selected-prod-photo {
-    border: solid 3px var(--main-secondary-color);
-  }
-</style>
-
-
 <script>
   $(document).ready(function () {
     $(".card-img-bottom-prod-photo-default").click(function () {
@@ -242,9 +207,9 @@
     });
 
     $(".card-img-bottom-prod-photo-default").click(function () {
-      //console.log($(this).data("photo")); //for testing purposes in browser
-      $("#prod-photo-default-id").val($(this).data("photo"));
+      console.log($(this).data("photo")); //for testing purposes in browser
+      $("#DefaultProPhotoId").val($(this).data("photo"));
       $("#prod-photo-default-thumbnail").attr("src", "/Photo/DisplayPhoto/" + $(this).attr("id"));
     });
   });
-</script>
+  </script>

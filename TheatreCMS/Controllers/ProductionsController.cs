@@ -234,7 +234,7 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductionId,DefaultPhotoId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "ProductionId,DefaultProPhotoId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase upload)
         {
 
             if (ModelState.IsValid)  //!!!!!part controller
@@ -253,9 +253,8 @@ namespace TheatreCMS.Controllers
                 currentProduction.IsCurrent = production.IsCurrent;
                 currentProduction.IsWorldPremiere = production.IsWorldPremiere;
 
-                int DefaultPhotoId = Convert.ToInt32(Request.Form["DefaultPhotoId"]);
-                var productionPhoto = db.ProductionPhotos.Find(DefaultPhotoId);
-                //var productionPhoto = db.ProductionPhotos.SqlQuery("select * from productionphotos where photoid = " + DefaultPhotoId).FirstOrDefault<ProductionPhotos>();
+                int DefaultProPhotoId = Convert.ToInt32(Request.Form["DefaultProPhotoId"]);
+                var productionPhoto = db.ProductionPhotos.Find(DefaultProPhotoId);
                 currentProduction.DefaultPhoto = productionPhoto;
 
                 // Ignoring attempt to update photo specifically until model can handle null values.

@@ -3699,3 +3699,46 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     transition: all .5s linear;
     cursor: default;
 }
+
+/*=======================PRODUCTION DISPLAY EDIT PAGE =====================================*/
+
+
+
+
+/*------DEFAULT PHOTO EDIT/MODAL-----------*/
+
+#prod-photo-default-thumbnail {
+    border: solid 2px var(--main-secondary-color);
+}
+
+#prod-photo-default-modal-btn {
+    border: solid 2px var(--dark-color);
+    background-color: var(--light-color);
+    margin-top: 10px;
+}
+
+    #prod-photo-default-modal-btn:hover {
+        border: solid 2px var(--secondary-color);
+    }
+
+    #prod-photo-default-modal-btn:active {
+        background-color: var(--secondary-color);
+    }
+
+
+.card-img-bottom-prod-photo-default {
+    border: solid 2px black;
+}
+
+    .card-img-bottom-prod-photo-default:hover {
+        cursor: pointer;
+    }
+
+.selected-prod-photo {
+    border: solid 3px var(--main-secondary-color);
+}
+
+/*------END DEFAULT PROMO PHOTO EDIT/MODAL-----------*/
+
+
+/*============================END PRODUCTION DISPLAY EDIT PAGE==========================================*/
