@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace TheatreCMS.Models
 {
@@ -44,7 +45,6 @@ namespace TheatreCMS.Models
 
         [Display(Name = "World Premiere")]
         public bool IsWorldPremiere { get; set; }   // first time produced in the world
-
 
         [Display(Name = "Promo Photo")]
         public virtual ProductionPhotos DefaultPhoto { get; set; }                  // promotional photo for this production
