@@ -804,6 +804,7 @@ div.magnify:hover {
     padding-top: 10px;
     padding-left: 12%;
     padding-right: 5px;
+    max-width: 80%;
     text-align: center;
     color: #FFFBFB;
     font-family: Tahoma, Geneva, sans-serif;
@@ -853,10 +854,16 @@ div.magnify:hover {
     text-shadow: .5px 1px #FFFBFB;
     font-family: Tahoma, Geneva, sans-serif;
     letter-spacing: 3px;
-    font-size: 5.4vw;
+    font-size: 40px;
     font-weight: 400;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 360px) {
+    .prod-photo-edit-header {
+        font-size: 9vw;        
+    }
 }
 
 .inputBox {
