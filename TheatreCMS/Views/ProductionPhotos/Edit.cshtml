@@ -30,7 +30,7 @@
 
                 <div class="form-group">
                     Current @Html.LabelFor(model => model.PhotoId, htmlAttributes: new { @class = "control-label inputLabel" })
-                  <div class=" col-sm-11 col-md-6 col-lg-5 formBox">
+                  <div class=" col-12 col-md-9 col-xl-6 formBox">
                     <img class="w-100" id="currentImg"src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
                     <!--This <p> displays the dimensions of the current production image-->
                     <p><span class="text-black" id="currentwrdheight"></span> <span class="text-white" id="currentimgheight"></span>&nbsp; <span class="text-black" id="currentwrdwidth"></span> <span class="text-white" id="currentimgwidth"></span></p>
@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     Choose New @Html.LabelFor(model => model.PhotoId, htmlAttributes: new { @class = "control-label inputLabel" })
-                    <div class="col-sm-11 col-md-6 col-lg-5 formBox">
+                    <div class="col-12 col-md-9 col-xl-6 formBox">
                         <input class="fileSelect" type="file" name="file" id="input1" accept="image/*" />
                           <img id="imagepreview1" class="w-100" />
                           <p><span class="text-black" id="wrdheight"></span> <span class="text-white" id="imgheight"></span>&nbsp; <span class="text-black" id="wrdwidth"></span> <span class="text-white" id="imgwidth"></span></p>
