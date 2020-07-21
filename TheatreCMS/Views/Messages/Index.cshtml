@@ -19,25 +19,31 @@
 
     <ul class="nav nav-tabs justify-content-end" role="tablist" id="navTabs">
 
-        <li class="nav-item mr-auto">
+      <li class="nav-item mr-1">
 
-            <a class="nav-link btn btn-primary" id="compose" data-toggle="tab" href="#newMsg">Compose</a>
+        <a class="nav-link btn btn-primary"id="compose" data-toggle="tab" href="#newMsg">Compose</a>
 
-        </li>
+      </li>
+      <!--Working--><!--move styling to css file-->
+      <li class="nav-item mr-auto">
+
+        <a class="nav-link btn btn-danger fas fa-trash"  style="padding: .7rem" id="delete" data-toggle="tab" href="#deleteMsg"></a>
+
+      </li>
+      <!--Working-->
 
 
+      <li class="nav-item">
 
-        <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#inbox">Inbox</a>
 
-            <a class="nav-link active" data-toggle="tab" href="#inbox">Inbox</a>
+      </li>
 
-        </li>
+      <li class="nav-item">
 
-        <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#sent">Sent</a>
 
-            <a class="nav-link" data-toggle="tab" href="#sent">Sent</a>
-
-        </li>
+      </li>
 
 
 
@@ -109,6 +115,9 @@
                 <table class="table table-hover">
                     <thead>
                         <tr class="d-flex">
+                            <th>
+                              <!--checkbox-->
+                            </th>
                             <th class="col-2">
                                 @Html.DisplayNameFor(model => model.SenderId)
                             </th>
@@ -129,49 +138,51 @@
                         <!-- parentId is for future feature, "isviewed-false" is only present if isviewed is null-->
                         @foreach (var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"]))
                         {
-                            <tr class="d-flex inboxRow @(item.IsViewed.HasValue ? "" : "isviewed-false")" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
-                                <td class="col-2 msgFrom">
-                                    @item.Sender.LastName, @item.Sender.FirstName
-                                </td>
-                                <td class="col-5 msgSubject">
-                                    @Html.DisplayFor(modelItem => item.Subject)
-                                </td>
-                                <td class="col-2 d-none msgBody">
-                                    @Html.DisplayFor(modelItem => item.Body)
-                                </td>
-                                <td class="col-2 msgDate">
-                                    @Html.DisplayFor(modelItem => item.SentTime)
-                                </td>
-                                <td class="col-3 col-lg-2 text-right">
-                                    <span class="badge badge-pill badge-secondary mx-2 list-reply">Reply</span>
+                      <tr class="d-flex inboxRow @(item.IsViewed.HasValue ? "" : "isviewed-false")" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
+                        <!--Checkbox-->
+                     
+                        <td class="col-2 msgFrom">
+                          @item.Sender.LastName, @item.Sender.FirstName
+                        </td>
+                        <td class="col-5 msgSubject">
+                          @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td class="col-2 d-none msgBody">
+                          @Html.DisplayFor(modelItem => item.Body)
+                        </td>
+                        <td class="col-2 msgDate">
+                          @Html.DisplayFor(modelItem => item.SentTime)
+                        </td>
+                        <td class="col-3 col-lg-2 text-right">
+                          <span class="badge badge-pill badge-secondary mx-2 list-reply">Reply</span>
 
-                                    <span class="badge badge-pill badge-danger" data-toggle="modal" data-target="#deleteModal-@item.MessageId">
-                                        <i class="fa fa-trash"
-                                           aria-hidden="true"></i>
-                                    </span>
-                                    <div class="modal modal-fade-scale" id="deleteModal-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this message?</h5>
-                                                    <button type="button" class="close close-modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body text-left">
-                                                    <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
-                                                    <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
-                                                    <h6>Sent:</h6><div>@item.SentTime</div><br />
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary close-modal">Close</button>
-                                                    <button type="button" class="btn btn-danger list-del">Confirm Delete</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                          <span class="badge badge-pill badge-danger" data-toggle="modal" data-target="#deleteModal-@item.MessageId">
+                            <i class="fa fa-trash"
+                               aria-hidden="true"></i>
+                          </span>
+                          <div class="modal modal-fade-scale" id="deleteModal-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this message?</h5>
+                                  <button type="button" class="close close-modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body text-left">
+                                  <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
+                                  <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
+                                  <h6>Sent:</h6><div>@item.SentTime</div><br />
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary close-modal">Close</button>
+                                  <button type="button" class="btn btn-danger list-del">Confirm Delete</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
                         }
 
                            
@@ -265,6 +276,9 @@
                 <table class="table table-hover">
                     <thead>
                         <tr class="d-flex">
+                          <th>
+                            @Html.CheckBox("checkAll", false, new { @class = "top-check" }) &#10004;
+                          </th>
                             <th class="col-2">
                                 @Html.DisplayNameFor(model => model.RecipientId)
                             </th>
@@ -285,9 +299,13 @@
                         @foreach (var item in Model.Where(i => i.SenderId == (string)ViewData["currentUserId"]))
                         {
                             <tr class="d-flex sentRow" data-msg_id="@item.MessageId">
+                                <!--Checkbox-->
+                                <td>
+                                  @Html.CheckBox("msg-del-checkmark", false, new { @class = "toBeDeleted" })
+                                </td>
                                 <td class="col-2 msgTo">
                                     @if (item.Recipient != null)
-                                    {
+                                  {
                                         @: @item.Recipient.LastName, @item.Recipient.FirstName
 
                                     }
@@ -580,6 +598,20 @@
         
     });
 
+      //this checks all boxes if top checkbox is checked
+    
+        var checkAll = $("#checkAll");
+        var Checked = $("input[type='checkbox']");
+        checkAll.change(function () {
+          if (checkAll.prop("checked") === true) {
+            Checked.isChecked = true;
+            console.log(Checked);
+          }       
+        });
+
+    
+    
+  
     </script>
 
 }
