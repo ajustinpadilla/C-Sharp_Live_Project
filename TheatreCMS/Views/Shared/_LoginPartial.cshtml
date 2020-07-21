@@ -20,13 +20,13 @@
               </span>
               </a>*@
 
-              <a class="nav-button" style="height: auto;" href="@Url.Action("Index", "Messages")">
-                <span class="fa-stack fa-lg message-icon-container">
+              <a class="nav-button message-icon-container" href="@Url.Action("Index", "Messages")">
+                <span class="fa-stack">
                   <i class="far fa-envelope fa-stack-2x envelope-icon"> </i>
                   @if ((bool)ViewData["unread"])
                   {
-                    <i class="fa fa-circle  fa-stack-1x circle-notification"></i>
-                  }
+                    <i class="fa fa-circle fa-stack-1x circle-notification"></i>
+                    }
                   </span>
               </a>
 
