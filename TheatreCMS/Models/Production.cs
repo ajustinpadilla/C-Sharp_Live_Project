@@ -45,10 +45,11 @@ namespace TheatreCMS.Models
         [Display(Name = "World Premiere")]
         public bool IsWorldPremiere { get; set; }   // first time produced in the world
 
-
         [Display(Name = "Promo Photo")]
         public virtual ProductionPhotos DefaultPhoto { get; set; }                  // promotional photo for this production
+        
         public virtual ICollection<Part> Parts { get; set; }                        // all cast member parts for this production
+        
         public virtual ICollection<CalendarEvent> Events { get; set; }              // associated production events
 
         [InverseProperty ("Production")]

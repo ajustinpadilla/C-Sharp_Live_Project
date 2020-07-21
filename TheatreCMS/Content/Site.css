@@ -1820,9 +1820,11 @@ a.dropdown-item:hover {
     width: 400px;
 }
 
-/**********Production Details Background***********/
 
 
+/********************PRODUCTION DETAILS PAGE ***********************/
+
+/**********Page Background***********/
 .production-details-background {
     filter: blur(5px);
     opacity: 0.2;
@@ -1844,7 +1846,20 @@ a.dropdown-item:hover {
     align-items: center;
 }
 
+/**************Actor Information******************/
+#prod-details-actor-info {
+    color: gray;
+    font-size: smaller;
+    margin-top: -7px;
+    margin-left: 7px;
+}
 
+#prod-details-actor-info-link {
+    color: gray;
+    font-style: italic;
+}
+
+/********************END PRODUCTION DETAILS PAGE*************************/
 
 
 
