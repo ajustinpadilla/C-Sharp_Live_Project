@@ -3705,3 +3705,21 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     transition: all .5s linear;
     cursor: default;
 }
+
+/* BEGIN Production Index ribbon styles */
+.prod-index-ribbon-parent {
+    position: relative;
+    overflow: hidden;
+}
+.prod-index-ribbon {
+    position: absolute;
+    opacity: 0.7;
+    padding: 0 2em;
+    background-color: var(--main-secondary-color);
+    color: var(--light-color);
+    transform-origin: top left;
+    transform: rotate(-45deg);
+    right: -3em;
+    bottom: -1.5em;
+}
+/* END Production Index Ribbon styles */
