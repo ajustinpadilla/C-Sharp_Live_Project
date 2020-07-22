@@ -204,9 +204,6 @@
     $(".card-img-bottom-prod-photo-default").click(function () {
       $('.selected-prod-photo').removeClass('selected-prod-photo'); // removes the previous selected class
       $(this).addClass('selected-prod-photo'); // adds the class to the clicked image
-    });
-
-    $(".card-img-bottom-prod-photo-default").click(function () {
       console.log($(this).data("photo")); //for testing purposes in browser
       $("#DefaultProPhotoId").val($(this).data("photo"));
       $("#prod-photo-default-thumbnail").attr("src", "/Photo/DisplayPhoto/" + $(this).attr("id"));
