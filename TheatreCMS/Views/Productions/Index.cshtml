@@ -249,13 +249,13 @@
                     {
 
                         <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                            <img class="card-img-top production-index-img bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
+                            <img class="card-img-top production-index-img my-1 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="Card image cap">
                         </a>
                     }
                     else
                     {
                         <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                            <img class="card-img-top production-index-img bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
+                            <img class="card-img-top production-index-img my-1 bg-black" src="~/Content/Images/Unavailable.png" alt="Card image cap">
                         </a>
                     }
                 }
