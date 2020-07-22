@@ -2281,6 +2281,7 @@ a.dropdown-item:hover {
     border: none;
     width: 100%;
     border-color: var(--light-color);
+    margin-top: 3.5rem !important;
 }
 
 .project-info-popover, .project-info-popover:active, .project-info-popover:visited, .project-info-popover:focus {
