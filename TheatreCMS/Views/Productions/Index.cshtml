@@ -253,14 +253,11 @@
                           <div class="prod-index-ribbon">
                             @if (item.IsCurrent)
                             {
-                              @: &nbsp; &nbsp; Onstage &nbsp; &nbsp;
+                              @: &nbsp;&nbsp;Onstage&nbsp;&nbsp;
                             }
-                            else
+                            else if (item.OpeningDay > DateTime.Now)
                             {
-                              if (item.OpeningDay > DateTime.Now)
-                              {
                                 @: Coming Soon
-                              }
                             }
                           </div>
                         </a>
