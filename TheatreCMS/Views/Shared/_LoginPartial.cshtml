@@ -21,11 +21,11 @@
               </a>*@
 
               <a class="nav-button message-icon-container" href="@Url.Action("Index", "Messages")">
-                <span class="fa-stack">
+                <span class="msg-stack-container fa-stack">
                   <i class="far fa-envelope fa-stack-2x envelope-icon"> </i>
                   @if ((bool)ViewData["unread"])
                   {
-                    <i class="fa fa-circle fa-stack-1x circle-notification"></i>
+                    <span id="unReadMsgIndicator" class="fa fa-circle fa-stack-1x circle-notification"></span>
                     }
                   </span>
               </a>

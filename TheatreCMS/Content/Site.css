@@ -3686,16 +3686,19 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 .fa-circle.circle-notification {
     color: #00E451;
-    font-size: 1.1rem;
-    left: 20%;
+    font-size: 10pt;
+    left: 12px;
     line-height: 10px;
 }
 
 .fa-envelope.envelope-icon {
-    font-size: 2rem;
+    font-size: 20pt;
 }
 
 .nav-button.message-icon-container {
-    padding: 15px 0px 0px 0px;
+    padding: 10px 0px 5px 0px;
 }
 
+.msg-stack-container.fa-stack {
+    height: 1.3em;
+}
