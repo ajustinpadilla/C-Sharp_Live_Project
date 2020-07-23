@@ -3705,3 +3705,9 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     transition: all .5s linear;
     cursor: default;
 }
+
+/* BEGIN Photo Delete styles */
+#photo-delete-btn {
+    background-color: var(--main-bg-color);
+}
+/* END Photo Delete styles */
