@@ -860,6 +860,12 @@ div.magnify:hover {
     padding-bottom: 20px;
 }
 
+@media only screen and (max-width: 360px) {
+    .prod-photo-edit-header {
+        font-size: 9vw;        
+    }
+}
+
 .inputBox {
     color: var(--dark-color);
     margin-left: auto;
