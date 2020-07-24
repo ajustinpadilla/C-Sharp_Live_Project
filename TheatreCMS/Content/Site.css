@@ -3703,3 +3703,33 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     transition: all .5s linear;
     cursor: default;
 }
+
+.top-check, .to-be-deleted {
+    background-color: #B9B9B9;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.07), inset 0px -15px 10px -12px rgba(0,0,0,0.07);
+    height: 18px;
+    width: 18px;
+}
+
+
+.btn-danger.msg-del-btn {
+    height: 100%;
+    padding: .75rem;
+    color: white;
+}
+
+.btn-danger.msg-del-btn:hover {
+    color: white;
+}
+
+.btn-danger.msg-del-btn.inactive {
+    padding: .7rem;
+    background: grey;
+    opacity: .8;
+    pointer-events: none;
+    color: rgb(228, 228, 228);
+}
+
+#checkboxDeleteModal {
+    color: black;
+}

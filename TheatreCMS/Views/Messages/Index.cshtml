@@ -24,28 +24,24 @@
       <a class="nav-link btn btn-primary" id="compose" data-toggle="tab" href="#newMsg">Compose</a>
 
     </li>
-    <!--Working--><!--move styling to css file-->
+ 
     <li class="nav-item mr-auto">
 
-      <a class="nav-link btn btn-danger fas fa-trash" style="padding: .7rem" id="delete" data-toggle="tab" href="#deleteMsg"></a>
+      <a class="nav-link btn fas fa-trash btn-danger msg-del-btn inactive" id="msg-delete" data-toggle="modal" data-target="#checkboxDeleteModal"></a>
 
     </li>
-    <!--Working-->
+  
+    <li class="nav-item">
 
+      <a class="nav-link active" data-toggle="tab" id="msgInboxTab" href="#inbox">Inbox</a>
+
+    </li>
 
     <li class="nav-item">
 
-      <a class="nav-link active" data-toggle="tab" href="#inbox">Inbox</a>
+      <a class="nav-link" data-toggle="tab" id="msgSentTab" href="#sent">Sent</a>
 
     </li>
-
-    <li class="nav-item">
-
-      <a class="nav-link" data-toggle="tab" href="#sent">Sent</a>
-
-    </li>
-
-
 
   </ul>
 
@@ -116,7 +112,7 @@
           <thead>
             <tr class="d-flex">
               <th>
-                <!--checkbox-->
+                @Html.CheckBox("checkAll", false, new { @class = "top-check inbox-top-check"})
               </th>
               <th class="col-2">
                 @Html.DisplayNameFor(model => model.SenderId)
@@ -139,8 +135,9 @@
             @foreach (var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"]))
             {
               <tr class="d-flex inboxRow @(item.IsViewed.HasValue ? "" : "isviewed-false")" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
-                <!--Checkbox-->
-
+                <td>
+                  @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted inbox-check", @value = item.MessageId })
+                </td>
                 <td class="col-2 msgFrom">
                   @item.Sender.LastName, @item.Sender.FirstName
                 </td>
@@ -184,7 +181,6 @@
                 </td>
               </tr>
             }
-
 
           </tbody>
         </table>
@@ -277,7 +273,7 @@
           <thead>
             <tr class="d-flex">
               <th>
-                @Html.CheckBox("checkAll", false, new { @class = "top-check" }) &#10004;
+                @Html.CheckBox("checkAll", false, new { @class = "top-check sent-top-check"})
               </th>
               <th class="col-2">
                 @Html.DisplayNameFor(model => model.RecipientId)
@@ -299,28 +295,28 @@
             @foreach (var item in Model.Where(i => i.SenderId == (string)ViewData["currentUserId"]))
             {
               <tr class="d-flex" data-msg_id="@item.MessageId">
-                <!--Checkbox-->
+               
                 <td>
-                  @Html.CheckBox("msg-del-checkmark", new { @class = "toBeDeleted" })
+                  @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted sent-check", @value = item.MessageId })
                 </td>
 
-                  <td class="sentRow col-2 msgTo ">
-                    @if (item.Recipient != null)
-                    {
-                      @: @item.Recipient.LastName, @item.Recipient.FirstName
-                    }
-                  </td>
-                  <td class="sentRow col-5 msgSubject ">
-                    @Html.DisplayFor(modelItem => item.Subject)
-                  </td>
-                  <td class="sentRow col-2 d-none msgBody ">
-                    @Html.DisplayFor(modelItem => item.Body)
-                  </td>
-                  <td class="sentRow col-2 msgDate ">
-                    @Html.DisplayFor(modelItem => item.SentTime)
-                  </td>
-                  <td class="sentRow col-3 col-lg-2 text-right">
-                  </td>
+                <td class="sentRow col-2 msgTo ">
+                  @if (item.Recipient != null)
+                  {
+                    @: @item.Recipient.LastName, @item.Recipient.FirstName
+                  }
+                </td>
+                <td class="sentRow col-5 msgSubject ">
+                  @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td class="sentRow col-2 d-none msgBody ">
+                  @Html.DisplayFor(modelItem => item.Body)
+                </td>
+                <td class="sentRow col-2 msgDate ">
+                  @Html.DisplayFor(modelItem => item.SentTime)
+                </td>
+                <td class="sentRow col-3 col-lg-2 text-right">
+                </td>
 
               </tr>
             }
@@ -365,6 +361,26 @@
   </div>
 </div>
 
+<div class="modal" id="checkboxDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete selected messages?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger list-del-multiple">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="@Url.Content("~/Scripts/umd/popper.min.js")"></script>
 
 @section Scripts{
@@ -393,7 +409,7 @@
         });
 
         //behavior of row in inboxList tab
-        $(".inboxRow").on("click", "td:not(:last-child)", function () {
+        $(".inboxRow").on("click", "td:not(:last-child,:first-child)", function () {
             var msgId_str = $(this).parent().data("msg_id");
             var senderId_str = $(this).parent().data("sender_id");
 
@@ -483,33 +499,6 @@
 
 
 
-        $(".list-del").on("click", function () {
-            var msgid_str = $(this).closest(".inboxRow").data("msg_id");
-            //if (confirm("delete this message?")) {
-                $.ajax({
-                    type: "POST",
-                    url: "/Messages/Delete/" + msgid_str,
-                    context: this,
-                    data: {
-                        "__RequestVerificationToken":
-                            $("input[name=__RequestVerificationToken]").val(),
-                        id: msgid_str,
-                    },
-                    success: function () {
-                        $(this).closest(".inboxRow").remove();
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("an error has occurred.");
-                        location.reload();
-                    }
-                });
-            //}
-        });
-
-
-
-
 
         //behavior of inboxDetails div
         $("#inboxDetails #goback").click(function () {
@@ -581,7 +570,7 @@
             $("#sentDetails").hide();
             $("#sentList").show();
         });
-
+    });
 
 
     $(".close-modal").click(function () {
@@ -594,52 +583,127 @@
         }, 500);
     });
 
-
-
       //this checks all boxes if top checkbox is checked
-        //$("#checkAll").click(function () {
-        //  if ($(this).is(":checked")) {
-        //    $(".msg-del-checkmark").prop("checked", true)
-        //  } else {
-        //    $(".msg-del-checkmark").prop("checked", false)
-        //  }
-        //});
-
-
-
-        //var checkAll = $(".top-check");
-        //var isChecked = $("input[type='checkbox']");
-        //checkAll.click(function () {
-        //  if (checkAll.prop("checked") === true) {
-        //    isChecked.isChecked = true;
-        //  }
-        //  else {
-        //    isChecked.isChecked = false;
-        //  }
-        //  console.log()
-        //});
-
-      $('.top-check').click(function () {
+      $('.inbox-top-check').click(function () {
         if ($(this).is(':checked')) {
-          $('input:checkbox').prop('checked', true);
-        }
-        else {
-          $('input:checkbox').prop('checked', false);
-        }
-        console.log($('.top-check').prop("checked"));
-        console.log($('.toBeDeleted').prop('checked'));
-      });
+          $('.inbox-check').prop('checked', true);
 
-      $("input[type='checkbox'].toBeDeleted").change(function () {
-        var a = $("input[type='checkbox'].toBeDeleted");
-        if (a.length == a.filter(":checked").length) {
-          $('.top-check').prop('checked', true);
         }
         else {
-          $('.top-check').prop('checked', false);
+          $('.inbox-check').prop('checked', false);
         }
       });
 
+      $('.sent-top-check').click(function () {
+        if ($(this).is(':checked')) {
+          $('.sent-check').prop('checked', true);
+        }
+        else {
+          $('.sent-check').prop('checked', false);
+        }
+      });
+
+    //if all boxes are checked, top box will be checked
+    $(".inbox-check").change(function () {
+      var checked = $(".inbox-check").filter(":checked").length;
+      var allChecks = $(".inbox-check").map(function () {
+        return this.innerHTML;
+      }).get();
+      if (checked == allChecks.length) {
+        $('.inbox-top-check').prop('checked', true);
+      }
+      else {
+        $('.inbox-top-check').prop('checked', false);
+      }
+    });
+    
+    $(".sent-check").change(function () {
+      var checked = $(".sent-check").filter(":checked").length;
+      var allChecks = $(".sent-check").map(function () {
+        return this.innerHTML;
+      }).get();
+      if (checked == allChecks.length) {
+          $('.sent-top-check').prop('checked', true);
+        }
+        else {
+          $('.sent-top-check').prop('checked', false);
+        }
+      });
+    
+    //this toggles trash can style and active/inactive
+    $("input[type='checkbox'].to-be-deleted").click(function () {
+      var trash = $(".msg-del-btn");
+      var checks = $("input[type='checkbox'].to-be-deleted");
+      //console.log(a.filter(":checked").length)
+      if (checks.filter(':checked').length >= 1) {
+        trash.removeClass("inactive");
+      } else {
+        trash.addClass("inactive");
+      }
+    });
+
+    $("input[type='checkbox'].top-check").click(function () {
+      var trash = $(".msg-del-btn");
+      if ($(this).is(':checked')) {
+        trash.removeClass("inactive");
+      } else {
+        trash.addClass("inactive");
+      }
+    });
+
+    //this will reset checkmarks and trash when another tab is clicked
+    $("a[id='compose']").on("click", reset);
+    $("a[id='msgInboxTab']").on("click", reset);
+    $("a[id='msgSentTab']").on("click", reset);
+
+
+    function reset() {
+      var trash = $(".msg-del-btn");
+      if (!trash.hasClass("inactive")) {
+        trash.addClass("inactive");
+        $('input:checkbox').prop('checked', false)
+      }
+    }
+
+    //message delete function
+    function deleteMsg(msgId) {
+      $.ajax({
+        type: "POST",
+        url: "/Messages/Delete/" + msgId,
+        context: this,
+        data: {
+          "__RequestVerificationToken":
+            $("input[name=__RequestVerificationToken]").val(),
+          id: msgId,
+        },
+        success: function () {
+          $(this).closest(".inboxRow").remove();
+          location.reload();
+        },
+        error: function () {
+          alert("an error has occurred.");
+          location.reload();
+        }
+      });
+    }
+
+    //this deletes checkmarked messages
+    $(".list-del-multiple").on("click", function () {
+      var messages = $(".to-be-deleted");
+      messages.each(function () {
+        if ($(this).is(':checked')) {
+          msgId = this.value;
+          deleteMsg(msgId);
+        }
+      });
+    });
+
+    //this deletes only an individual message
+    $(".list-del").on("click", function () {
+      var msgid_str = $(this).closest(".inboxRow").data("msg_id");
+      //if (confirm("delete this message?")) {
+      deleteMsg(msgid_str);
+      //}
     });
 
   </script>
