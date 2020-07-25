@@ -1847,14 +1847,14 @@ a.dropdown-item:hover {
 }
 
 /**************Actor Information******************/
-#prod-details-actor-info {
+.prod-details-actor-info {
     color: gray;
     font-size: smaller;
     margin-top: -7px;
     margin-left: 7px;
 }
 
-#prod-details-actor-info-link {
+.prod-details-actor-info-link {
     color: gray;
     font-style: italic;
 }
