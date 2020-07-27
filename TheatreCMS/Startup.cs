@@ -426,9 +426,9 @@ namespace TheatreCMS
                 #endregion
             };
 
-            awards.ForEach(award => context.Awards.AddOrUpdate(aw => aw.AwardId, award));
+            //awards.ForEach(award => context.Awards.AddOrUpdate(aw => aw.AwardId, award));
 
-            //awards.ForEach(award => context.Awards.AddOrUpdate(a => new { a.Year, a.Name, a.Type, a.Category }, award));
+            awards.ForEach(award => context.Awards.AddOrUpdate(a => new { a.Year, a.Name, a.Type, a.Category }, award));
             context.SaveChanges();
         }
 
