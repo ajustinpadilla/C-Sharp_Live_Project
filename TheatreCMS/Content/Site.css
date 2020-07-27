@@ -1832,9 +1832,11 @@ a.dropdown-item:hover {
     width: 400px;
 }
 
-/**********Production Details Background***********/
 
 
+/********************PRODUCTION DETAILS PAGE ***********************/
+
+/**********Page Background***********/
 .production-details-background {
     filter: blur(5px);
     opacity: 0.2;
@@ -1856,7 +1858,20 @@ a.dropdown-item:hover {
     align-items: center;
 }
 
+/**************Actor Information******************/
+.prod-details-actor-info {
+    color: gray;
+    font-size: smaller;
+    margin-top: -7px;
+    margin-left: 7px;
+}
 
+.prod-details-actor-info-link {
+    color: gray;
+    font-style: italic;
+}
+
+/********************END PRODUCTION DETAILS PAGE*************************/
 
 
 
@@ -3733,3 +3748,45 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     padding: 10px 0px 5px 0px;
 }
 
+
+
+/*=======================PRODUCTION DISPLAY EDIT PAGE =====================================*/
+
+
+/*------DEFAULT PHOTO EDIT/MODAL-----------*/
+
+#prod-photo-default-thumbnail {
+    border: solid 2px var(--main-secondary-color);
+}
+
+#prod-photo-default-modal-btn {
+    border: solid 2px var(--dark-color);
+    background-color: var(--light-color);
+    margin-top: 10px;
+}
+
+    #prod-photo-default-modal-btn:hover {
+        border: solid 2px var(--secondary-color);
+    }
+
+    #prod-photo-default-modal-btn:active {
+        background-color: var(--secondary-color);
+    }
+
+
+.card-img-bottom-prod-photo-default {
+    border: solid 2px black;
+}
+
+    .card-img-bottom-prod-photo-default:hover {
+        cursor: pointer;
+    }
+
+.selected-prod-photo {
+    border: solid 3px var(--main-secondary-color);
+}
+
+/*------END DEFAULT PROMO PHOTO EDIT/MODAL-----------*/
+
+
+/*============================END PRODUCTION DISPLAY EDIT PAGE==========================================*/
