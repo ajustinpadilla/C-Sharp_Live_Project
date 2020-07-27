@@ -489,7 +489,7 @@
 @*</div>*@
 
 @*Shows/hides edit link depending on user role.*@
-<p>
+<p class="position-relative"> @* Added to bring links to the foreground *@
   @if (ViewContext.HttpContext.User.IsInRole("Admin"))
   {
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductionId }) @:|
