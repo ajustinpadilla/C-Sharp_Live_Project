@@ -303,15 +303,16 @@
     padding-right: 13px;
 }
 
-        .production-index-img {
-            border-radius: 6px;
-        }
+.production-index-img {
+    border-radius: 6px;
+}
 
 /* Productions Index Calendar Styling*/
 
 .prod-index-cal {
     width: 700px;
 }
+
 @media screen and (max-width: 767px) {
     .prod-index-cal {
         width: 500px;
@@ -341,7 +342,6 @@
 
 .production-index-container .card {
     border: 2px solid rgba(0, 0, 0, 0.125);
-
 }
 
 /*-----Classes and styling for LoginFailure view------*/
@@ -396,38 +396,38 @@
 
 /*-----End styling for LoginFailure view-----*/
 
-        body {
-            padding-top: 110px;
-            padding-bottom: 20px;
-        }
-        
-        /* ------Footer stylings----- */
-        
-        footer {
-            background-color: black;
-            display: flex;
-            position: absolute;
-            width: 100%;
-            font-size: 1rem;
-        }
+body {
+    padding-top: 110px;
+    padding-bottom: 20px;
+}
 
-        .footerNavContainer{
-            padding-left: 0px;
-        }
-        
-        #navBar li {
-            padding-left: 0px;
-            margin-right: 20px;
-            display: inline-block;
-        }
+/* ------Footer stylings----- */
 
-        #navBar {
-            display: inline;
-        }
-        
-        .socialMediaContainer li ~ li {
-            margin-left: 20px;
-        }
+footer {
+    background-color: black;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.footerNavContainer {
+    padding-left: 0px;
+}
+
+#navBar li {
+    padding-left: 0px;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+#navBar {
+    display: inline;
+}
+
+.socialMediaContainer li ~ li {
+    margin-left: 20px;
+}
 
 a.navLink {
     color: white;
@@ -439,14 +439,14 @@ a.navLink {
         font-weight: bolder;
     }
 
-        #footerInner {
-            margin: auto;
-        }
-        
-        footer p {
-            color: white;
-            font-weight: bold;  /*Makes the address, phone #'s and copyright bold on the footer*/
-        }
+#footerInner {
+    margin: auto;
+}
+
+footer p {
+    color: white;
+    font-weight: bold; /*Makes the address, phone #'s and copyright bold on the footer*/
+}
 
 footer .list-group-item {
     background-color: black;
@@ -457,101 +457,101 @@ footer .fab {
     color: white;
 }
 
-        footer .list-group-item :hover {
-            color: var(--main-bg-color);
-        }
+footer .list-group-item :hover {
+    color: var(--main-bg-color);
+}
 
-        .navItem {
-            margin-left: 0px;
-        }   
+.navItem {
+    margin-left: 0px;
+}
 
-        #socialMediaLinks {
-            padding-left: 0px;
-            margin-left: auto;
-            font-size: 1.25rem;
-        }
+#socialMediaLinks {
+    padding-left: 0px;
+    margin-left: auto;
+    font-size: 1.25rem;
+}
 
     #socialMediaLinks li {
         padding-left: 0px;
     }
 
-        #contactInfo {
-            flex-wrap: nowrap;
-            display:flex; /*This allows the address's and phone #'s to sit side by side*/
-        }
+#contactInfo {
+    flex-wrap: nowrap;
+    display:flex; /*This allows the address's and phone #'s to sit side by side*/
+}
 
-        #address {
-            align-content:flex-start; /*aligns the address's to the left*/
-        }
+#address {
+    align-content:flex-start; /*aligns the address's to the left*/
+}
 
-        #addressPadding{
-            padding-right: 1rem; /*puts padding between the adress and the phone #*/
-        }
+#addressPadding{
+    padding-right: 1rem; /*puts padding between the adress and the phone #*/
+}
 
-        #phoneNumbersPadding {  /*puts padding between the adress and the phone #*/
-            padding-left: 1rem;
-        }
+#phoneNumbersPadding {/*puts padding between the adress and the phone #*/
+    padding-left: 1rem;
+}
 
-        /****************@media quaries**************
+/****************@media quaries**************
         *********************************************/
 
-        /*************max-width > 900px**************/
-        @media only screen and (min-width: 992px) {
-            #footer--container {        /*When the screen width is at or above 992 the width of the footer shrinks to 85%*/
-                max-width: 85%;
-            }
-            footer .list-group-item {
-                padding-top: 12px !important;
-            }
-        }
-
-        @media only screen and (min-width: 1100px) {
-            #footer--container {        /*When the screen width is at or above 1100 the width of the footer shrinks to 80%*/
-                max-width: 80%;
-            }
-        }
-
-        @media only screen and (min-width: 1200px) {
-            #footer--container {        /*When the screen width is at or above 1200 the width of the footer shrinks to 75%*/
-                max-width: 75%;
-            }
-        }
-
-        /*************max-width 768px**************/
-
-        @media only screen and (max-width: 768px) {
-            footer  {                                   /*Shrinks font size once the screen is bellow 768*/
-                font-size: .875rem;
-            }
-        }
-
-        /*************max-width 460px**************/
-        @media only screen and (max-width: 460px) {
-            #navBar li {                                /*When screen is at 460 and smaller the links stack instead of being horizontal*/
-               display: block;
-            }
-
-            #contactInfo { /*This stacks the phone #'s bellow the address's*/
-                display: block;
-            }
-
-            #addressPadding { /*This gets rid of the margin bellow the address's and the padding right*/
-                margin-bottom: 0px;
-                padding-right: 0px;
-            }
-
-            #phoneNumbersPadding { /*This removes the padding that is used to seperate the address and phone #'s*/
-                padding-left: 0px;
-            }
-        }
-        
-        
-    /* End Footer Styling */
-    /* Set padding to keep content from hitting the edges */
-    .body-content {
-        padding-top: 25px;
+/*************max-width > 900px**************/
+@media only screen and (min-width: 992px) {
+    #footer--container {/*When the screen width is at or above 992 the width of the footer shrinks to 85%*/
+        max-width: 85%;
     }
-    /* Override the default bootstrap behavior where horizontal description lists 
+    footer .list-group-item {
+        padding-top: 12px !important;
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    #footer--container { /*When the screen width is at or above 1100 the width of the footer shrinks to 80%*/
+        max-width: 80%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #footer--container { /*When the screen width is at or above 1200 the width of the footer shrinks to 75%*/
+        max-width: 75%;
+    }
+}
+
+/*************max-width 768px**************/
+
+@media only screen and (max-width: 768px) {
+    footer { /*Shrinks font size once the screen is bellow 768*/
+        font-size: .875rem;
+    }
+}
+
+/*************max-width 460px**************/
+@media only screen and (max-width: 460px) {
+    #navBar li { /*When screen is at 460 and smaller the links stack instead of being horizontal*/
+        display: block;
+    }
+
+    #contactInfo { /*This stacks the phone #'s bellow the address's*/
+        display: block;
+    }
+
+    #addressPadding { /*This gets rid of the margin bellow the address's and the padding right*/
+        margin-bottom: 0px;
+        padding-right: 0px;
+    }
+
+    #phoneNumbersPadding { /*This removes the padding that is used to seperate the address and phone #'s*/
+        padding-left: 0px;
+    }
+}
+
+
+/* End Footer Styling */
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-top: 25px;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
@@ -860,6 +860,12 @@ div.magnify:hover {
     padding-bottom: 20px;
 }
 
+@media only screen and (max-width: 360px) {
+    .prod-photo-edit-header {
+        font-size: 9vw;        
+    }
+}
+
 .inputBox {
     color: var(--dark-color);
     margin-left: auto;
@@ -1064,101 +1070,101 @@ div.magnify:hover {
 
 /*Styling for CastMember Index View*/
 
-        #castContainer {
-            padding: 25px;
-            background-color: black;
-            /*margin-bottom: 200px;*/
-        }
+#castContainer {
+    padding: 25px;
+    background-color: black;
+    /*margin-bottom: 200px;*/
+}
 
-        @media only screen and (max-width: 767px) {
-            #castContainer {
-                padding-left: 120px;
-                padding-right: 120px;
-            }
-        }
+@media only screen and (max-width: 767px) {
+    #castContainer {
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+}
 
-        @media (min-width: 34em) {
-            .card-columns {
-                column-count: 1;
-            }
-        }
+@media (min-width: 34em) {
+    .card-columns {
+        column-count: 1;
+    }
+}
 
-        @media (min-width: 48em) {
-            .card-columns {
-                column-count: 2;
-            }
-        }
+@media (min-width: 48em) {
+    .card-columns {
+        column-count: 2;
+    }
+}
 
-        @media (min-width: 62em) {
-            .card-columns {
-                column-count: 3;
-            }
-        }
+@media (min-width: 62em) {
+    .card-columns {
+        column-count: 3;
+    }
+}
 
-        @media (min-width: 108em) {
-            .card-columns {
-                column-count: 4;
-            }
-        }
+@media (min-width: 108em) {
+    .card-columns {
+        column-count: 4;
+    }
+}
 
-        @media (min-width: 115em) {
-            .card-columns {
-                column-count: 5;
-            }
-        }
+@media (min-width: 115em) {
+    .card-columns {
+        column-count: 5;
+    }
+}
 
-        .castImageContainer {
-            position: relative;
-            background-color: black;
-            padding: 15px;
-            /*used for text animation*/
-            overflow: hidden;
-        }
+.castImageContainer {
+    position: relative;
+    background-color: black;
+    padding: 15px;
+    /*used for text animation*/
+    overflow: hidden;
+}
 
-        #castImage {
-            opacity: 1;
-            display: inline-block;
-            transition: .5s ease;
-            backface-visibility: hidden;
-            margin-bottom: 10px;
-        }
+#castImage {
+    opacity: 1;
+    display: inline-block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    margin-bottom: 10px;
+}
 
-        .castImageContainer:hover #castImage {
-            opacity: 0.9;
-        }
+.castImageContainer:hover #castImage {
+    opacity: 0.9;
+}
 
 .castImageContainer:hover .castMiddle {
     opacity: 1;
 }
 
-        .castImageContainer:hover .castText {
-            /*margin-bottom: 0px; */ /* Removed due to hover issue in cast member page while in admin access*/
-            margin-top: 0px;  
-        }
+.castImageContainer:hover .castText {
+    /*margin-bottom: 0px; */ /* Removed due to hover issue in cast member page while in admin access*/
+    margin-top: 0px;
+}
 
-        .castImageContainer:hover a {
-            text-decoration: none;
-        }
+.castImageContainer:hover a {
+    text-decoration: none;
+}
 
-        .castText {
-            background-color: var(--dark-color);
-            color: var(--light-color);
-            font-size: 16px;
-            font-weight: 500;
-            text-align: left;
-            /*padding: 20px;
+.castText {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    /*padding: 20px;
             padding-bottom: 12px;
             padding-top: 16px;
             font-style: italic;*/
-        }
+}
 
-        .castMiddle {
-            opacity: 0;
-            position: absolute;
-            bottom: 100px;
-        }
+.castMiddle {
+    opacity: 0;
+    position: absolute;
+    bottom: 100px;
+}
 
-        /*End Styling for CastMember Index View*/
+/*End Styling for CastMember Index View*/
 
 .nav-login li {
     padding-right: 3rem;
@@ -1178,28 +1184,32 @@ div.magnify:hover {
     font-size: 30px;
     text-align: center;
 }
-@media only screen and (min-width: 1100px){     /*Added for spacing on details page when screen is big*/
+
+@media only screen and (min-width: 1100px) { /*Added for spacing on details page when screen is big*/
     .detailsContainer {
         margin-left: 5%;
         margin-right: 5%;
     }
 }
-@media only screen and (min-width: 1200px) {    /*Added for spacing on details page when screen is big*/
+
+@media only screen and (min-width: 1200px) { /*Added for spacing on details page when screen is big*/
     .detailsContainer {
         margin-left: 10%;
         margin-right: 10%;
     }
 }
-@media only screen and (min-width: 1300px) {    /*Added for spacing on details page when screen is big*/
+
+@media only screen and (min-width: 1300px) { /*Added for spacing on details page when screen is big*/
     .detailsContainer {
         margin-left: 15%;
         margin-right: 15%;
     }
 
-    .nav-button{
-        font-size: 20pt;    /*Added for spacing of navbar text when screen is big*/
+    .nav-button {
+        font-size: 20pt; /*Added for spacing of navbar text when screen is big*/
     }
 }
+
 @media only screen and (min-width: 1400px) { /*Added for spacing on details page when screen is big*/
     .detailsContainer {
         margin-left: 20%;
@@ -1637,7 +1647,7 @@ input[type=submit] {
     display: block;
 }
 
-.nav-button{
+.nav-button {
     color: var(--light-color);
     display: block;
     padding: 0.5rem 1rem;
@@ -1654,9 +1664,9 @@ input[type=submit] {
         margin-top: -6px;
     }
 
-    .dropdown-item{
-        font-size: 16pt;
-    }
+.dropdown-item {
+    font-size: 16pt;
+}
 
 a.dropdown-item:hover {
     color: white;
@@ -1670,7 +1680,7 @@ a.dropdown-item:hover {
     height: 90px
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
     color: var(--light-color);
 }
 /* The sticky class */
@@ -1712,86 +1722,88 @@ a.dropdown-item:hover {
 }
 
 
-        /*Current productions*/
+/*Current productions*/
 
-        .currentpro {
-            margin-top: 15px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
+.currentpro {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+}
 
-        .currentpro-btn a {
-            /*margin-left: 15px;*/
-            /*color: #DB1A11;*/
-            color: var(--light-color);
-            background-color: var(--main-bg-color);
-            display: inline-block;
-            border-radius: 25px;
-            padding: 15px 32px;                                       /*button styling*/
-            text-decoration: none;
-            transition: 0.3s;
-            margin-top: 20px;
-            z-index: 3;
-            opacity: 1;
-        }
+.currentpro-btn a {
+    /*margin-left: 15px;*/
+    /*color: #DB1A11;*/
+    color: var(--light-color);
+    background-color: var(--main-bg-color);
+    display: inline-block;
+    border-radius: 25px;
+    padding: 15px 32px; /*button styling*/
+    text-decoration: none;
+    transition: 0.3s;
+    margin-top: 20px;
+    z-index: 3;
+    opacity: 1;
+}
 
-        .currentpro-btn a:hover{
-            transform: scale(1.15, 1.15);                        /*button effects on hover*/
-            background-color: var(--main-secondary-color);
-        }
+    .currentpro-btn a:hover {
+        transform: scale(1.15, 1.15); /*button effects on hover*/
+        background-color: var(--main-secondary-color);
+    }
 
-        .currentpro-title  {
-            color: white;
-            text-decoration: none;                     /*styling for title*/
-        }
+.currentpro-title {
+    color: white;
+    text-decoration: none; /*styling for title*/
+}
 
-        .currentpro-title:hover  {
-            color: white;
-            text-decoration: none;                        /*the title is also a link to the production page, so this keeps the title from changing to its normal link properties on hover*/
-        }
+    .currentpro-title:hover {
+        color: white;
+        text-decoration: none; /*the title is also a link to the production page, so this keeps the title from changing to its normal link properties on hover*/
+    }
 
-        .currentpro-imgtran {
-            z-index: 1;
-            transition: .3s;
-            opacity: 1;
-            overflow: hidden;                                               /*image properties for the transition*/
-        }
+.currentpro-imgtran {
+    z-index: 1;
+    transition: .3s;
+    opacity: 1;
+    overflow: hidden; /*image properties for the transition*/
+}
 
-        .currentpro-imgtran:hover {
-            transform: scale(1.07, 1.07);
-            opacity: 0.2;
-            z-index: 2;
-        }
-        .currentpro-text {
-            position:absolute;
-            text-align:center;
-            margin-top: -50%;                                                               /*styles text under image*/
-        }
-        
-        .currentpro-fontsize {
-            font-size: 1.05rem;
-        }
-        @media (max-width:550px){
-            .currentpro-fontsize {
-                font-size:.8rem;
-            }
-        }
-        .currentpro-txthover { 
-            opacity: 0;
-        }
+    .currentpro-imgtran:hover {
+        transform: scale(1.07, 1.07);
+        opacity: 0.2;
+        z-index: 2;
+    }
 
-        .currentpro-imgtran:hover + .currentpro-txthover {
-            
-            opacity: 1;                                                                             /*makes it so text does not appear until image is hovered*/
-        }
+.currentpro-text {
+    position: absolute;
+    text-align: center;
+    margin-top: -50%; /*styles text under image*/
+}
 
-        /*.currentptitle*/
+.currentpro-fontsize {
+    font-size: 1.05rem;
+}
+
+@media (max-width:550px) {
+    .currentpro-fontsize {
+        font-size: .8rem;
+    }
+}
+
+.currentpro-txthover {
+    opacity: 0;
+}
+
+.currentpro-imgtran:hover + .currentpro-txthover {
+    opacity: 1; /*makes it so text does not appear until image is hovered*/
+}
+
+/*.currentptitle*/
 
 
-        /*Sponsor partial styling*/
-        .sponsor-partial-pic {
-            width: 100%;
-        }
+/*Sponsor partial styling*/
+.sponsor-partial-pic {
+    width: 100%;
+}
 
 .sponsor-donate-btn {
     margin-top: 20px;
@@ -1855,9 +1867,8 @@ a.dropdown-item:hover {
 .text-responsive {
     /*font-size: calc(100% + 1vw + 1vh);*/
     -ms-text-size-adjust: 50%;
-    text-align:center;
-   
-  }
+    text-align: center;
+}
 
 .ab-jumbo {
     background-image: url(Images/img2.jpg);
@@ -1865,8 +1876,6 @@ a.dropdown-item:hover {
     background-attachment: fixed;
     background-size: cover;
     text-align: center;
-    
-    
 }
 
 .ab-title {
@@ -2055,12 +2064,12 @@ a.dropdown-item:hover {
     height: 100%;
 }
 
-        @media only screen and (max-width: 1080px) {
-            .admin-dash-btn {
-                margin-top: 6px;
-            }
-        }
-        /*End Admin Dashboard list*/
+@media only screen and (max-width: 1080px) {
+    .admin-dash-btn {
+        margin-top: 6px;
+    }
+}
+/*End Admin Dashboard list*/
 
 /*Admin Dashboard Current Productions Section*/
 #admin-currentprod {
@@ -2069,26 +2078,26 @@ a.dropdown-item:hover {
     padding: 20px 100px;
 }
 
-#admin-currentprod .currentProd_badges {
-    display:none;
-}
+    #admin-currentprod .currentProd_badges {
+        display: none;
+    }
 
-#admin-currentprod .badge {
-    background-color: var(--main-secondary-color);
-    color: var(--light-color);
-}
-/*End of Admin Dashboard Current Productions Section*/
+    #admin-currentprod .badge {
+        background-color: var(--main-secondary-color);
+        color: var(--light-color);
+    }
+    /*End of Admin Dashboard Current Productions Section*/
 
-  #admin-currentprod .admin_prod_heading {
+    #admin-currentprod .admin_prod_heading {
         color: var(--secondary-color);
     }
 
-        /*Admin Dashboard Form*/
-        #admin-formspace {
-            margin: auto;
-            border: solid 4px var(--main-bg-color);
-            padding: 100px;
-        }
+/*Admin Dashboard Form*/
+#admin-formspace {
+    margin: auto;
+    border: solid 4px var(--main-bg-color);
+    padding: 100px;
+}
 
 @media only screen and (max-width: 750px) {
     #admin-formspace {
@@ -2116,27 +2125,27 @@ a.dropdown-item:hover {
     background-color: darkgray;
 }
 
-         /*overwritten as event data has color attribute/determines color*/
-        /*.palette-container .fc-content {
+/*overwritten as event data has color attribute/determines color*/
+/*.palette-container .fc-content {
                     background-color: var(--secondary-color);
                     border: var(--secondary-color);
                 }*/
-        /*affects some sort of background detail, set to content color
+/*affects some sort of background detail, set to content color
         .palette-container .fc-event {
             background-color: var(--secondary-color);
             border: var(--secondary-color);
 }*/
 
-        .palette-container .fc {
-            /* Ensures the calendar doesn't become too wide on large screens */
-            max-width: 1000px;
-            /* Lowers calendar*/
-            padding-top: 16px;
-            /*Centers calendar*/
-            margin: auto;
-            /*Avoid modal width reflow */
-            padding-right: 15px;
-        }
+.palette-container .fc {
+    /* Ensures the calendar doesn't become too wide on large screens */
+    max-width: 1000px;
+    /* Lowers calendar*/
+    padding-top: 16px;
+    /*Centers calendar*/
+    margin: auto;
+    /*Avoid modal width reflow */
+    padding-right: 15px;
+}
 
 
 /*styling for admin calender details/add/edit modals*/
@@ -2167,7 +2176,7 @@ a.dropdown-item:hover {
     /* dimensions */
     margin: 0;
     border: none;
-    background-color:lightgrey;
+    background-color: lightgrey;
     height: 2.1em;
     padding: 0 .6em;
     /* text & cursor */
@@ -2178,36 +2187,37 @@ a.dropdown-item:hover {
     border-radius: 4px;
 }
 
-        /* Styling For CalendarEvents/bulkadd */
+/* Styling For CalendarEvents/bulkadd */
 
-        #bulk-add-modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto; /* enable scroll if needed */
-            background-color: rgba(0,0,0,0.4);
-        }
+#bulk-add-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* enable scroll if needed */
+    background-color: rgba(0,0,0,0.4);
+}
 
-        #bulk-add-modal_content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
+#bulk-add-modal_content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
 
-        #bulk-add-modal_content p {
-            color: black;
-        }
+    #bulk-add-modal_content p {
+        color: black;
+    }
 
 #modal-table td,
 #modal-table th {
     color: black;
 }
+
 .bulk-add-modal_button {
     color: #aaa;
     float: right;
@@ -2215,15 +2225,15 @@ a.dropdown-item:hover {
     font-weight: bold;
 }
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 #review-showtimes-section {
-    display:none;
+    display: none;
 }
 /*Styling for dropdown Menus on Add & Edit Modals*/
 
@@ -2440,24 +2450,23 @@ a.dropdown-item:hover {
 /* Begin Styling of Photo Index Page */
 
 .photo-index-img {
-border-radius: 5px;
-cursor: pointer;
-transition: 0.3s;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.photo-index-img:hover {
-    opacity: 0.7;
-
-}
+    .photo-index-img:hover {
+        opacity: 0.7;
+    }
 
 .photo-modal {
     display: none;
     align-items: center;
-    position: fixed; 
+    position: fixed;
     z-index: 1050;
     top: 0;
-    width: 100%; 
-    height: 100%; 
+    width: 100%;
+    height: 100%;
     background-color: rgba(0,0,0,0.9);
 }
 
@@ -2467,12 +2476,17 @@ transition: 0.3s;
 }
 
 @keyframes modal-fade {
-    0% {background-color: rgba(0,0,0,0.0)}
-    100% {background-color: rgba(0,0,0,0.9)}
+    0% {
+        background-color: rgba(0,0,0,0.0)
+    }
+
+    100% {
+        background-color: rgba(0,0,0,0.9)
+    }
 }
 
 
-.photo-modal--content{
+.photo-modal--content {
     margin: 3em auto;
     display: block;
     max-width: 90%;
@@ -2482,8 +2496,13 @@ transition: 0.3s;
 }
 
 @keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
 }
 
 .photo-modal--close {
@@ -2500,12 +2519,12 @@ transition: 0.3s;
     width: 50px;
 }
 
-.photo-modal--close:hover,
-.photo-modal--close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
+    .photo-modal--close:hover,
+    .photo-modal--close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
 @media only screen and (max-width: 700px) {
     .photo-modal--content {
@@ -2559,7 +2578,6 @@ transition: 0.3s;
 
 #current-productions, #future-productions { /*add commas to make multiple selectors functional*/
     padding: 0px 20px;
-
 }
 
     /* Resize Archive Current Productions Image and Archive Future Productions Image*/
@@ -2653,30 +2671,30 @@ transition: 0.3s;
         }
 }
 
-@media only screen and (max-width: 1293px) {    /*To descrease the font size of the navbar buttons and reduce the register/logout button's padding-right to 2rem*/
-    .nav-button{
+@media only screen and (max-width: 1293px) { /*To descrease the font size of the navbar buttons and reduce the register/logout button's padding-right to 2rem*/
+    .nav-button {
         font-size: 16pt;
     }
 
-    .nav-login li{
+    .nav-login li {
         padding-right: 2rem;
     }
 }
 
-@media only screen and (max-width: 1118px) {    /*To decrease the padding-right of register/logout buttons to 1rem*/
-    .nav-login li{
+@media only screen and (max-width: 1118px) { /*To decrease the padding-right of register/logout buttons to 1rem*/
+    .nav-login li {
         padding-right: 1rem;
     }
 }
 
-@media only screen and (max-width: 1086px) {    /*To decrease the padding-right of register/logout buttons to 0rem*/
-    .nav-login li{
+@media only screen and (max-width: 1086px) { /*To decrease the padding-right of register/logout buttons to 0rem*/
+    .nav-login li {
         padding-right: 0rem;
     }
 }
 
-@media only screen and (max-width: 991px) {    /*To increase the font size of the navbar buttons back to 20pt for navbar toggler's activation and mobile view*/
-    .nav-button{
+@media only screen and (max-width: 991px) { /*To increase the font size of the navbar buttons back to 20pt for navbar toggler's activation and mobile view*/
+    .nav-button {
         font-size: 20pt;
     }
 }
@@ -2710,17 +2728,17 @@ transition: 0.3s;
     margin: 5px 0 5px 0 !important;
 }
 
-    .search-text {
-        font-size: 15px !important;
-        height: 30px !important;
-        padding: 0 0 0 8px !important;
-        margin: 5px 0 5px 0 !important;
-    }
+.search-text {
+    font-size: 15px !important;
+    height: 30px !important;
+    padding: 0 0 0 8px !important;
+    margin: 5px 0 5px 0 !important;
+}
 
-    .search-button {
-        float: right;
-        background-color: var(--dark-color);
-    }
+.search-button {
+    float: right;
+    background-color: var(--dark-color);
+}
 
 .search-icon {
     color: var(--light-color);
@@ -2801,15 +2819,15 @@ transition: 0.3s;
 }
 
 
-.prodphoto-search-container input[type=text] {
-    width: 200px;
-    border: 0;
-    height: 50px;
-    padding: 0px 25px;
-    border-radius: 25px;
-    outline: none;
-    color: var(--secondary-color);
-}
+    .prodphoto-search-container input[type=text] {
+        width: 200px;
+        border: 0;
+        height: 50px;
+        padding: 0px 25px;
+        border-radius: 25px;
+        outline: none;
+        color: var(--secondary-color);
+    }
 
 .prodphoto-searchbtn {
     position: relative;
@@ -2836,7 +2854,6 @@ transition: 0.3s;
     .prodphoto-filter {
         display: block;
     }
-
 }
 
 /*set initial card-footer links to be not visible*/
@@ -2851,7 +2868,6 @@ transition: 0.3s;
 
 .prodphoto-filter {
     color: var(--secondary-color);
-
 }
 
 #prodphoto-null-msg {
@@ -3449,10 +3465,10 @@ transition: 0.3s;
 /**********************Part Details page**************************************/
 
 #partDetailsBorder {
-        border: 2px solid; 
-        border-color: var(--main-bg-color);
-        color: var(--light-color);
-    }
+    border: 2px solid;
+    border-color: var(--main-bg-color);
+    color: var(--light-color);
+}
 
 
 /***********************Cast Member Details Page******************************/
@@ -3469,17 +3485,17 @@ transition: 0.3s;
 ***********************************************/
 
 /*******Cast name header***********/
-#Isaiah_castname {          /*Adds a shadow to the cast name to make it stand out more*/
+#Isaiah_castname { /*Adds a shadow to the cast name to make it stand out more*/
     text-shadow: 2px 2px var(--main-bg-color);
 }
 /*******Buttons***********/
-#Isaiah_castBtns {      /*Aligns the buttons*/
+#Isaiah_castBtns { /*Aligns the buttons*/
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-#Isaiah_castEdit, #Isaiah_castIndexbtn {        /*Styling both buttons*/
+#Isaiah_castEdit, #Isaiah_castIndexbtn { /*Styling both buttons*/
     color: var(--light-color);
     background-color: var(--main-bg-color);
     text-align: right;
@@ -3487,41 +3503,42 @@ transition: 0.3s;
     font-size: 50%;
 }
 
-#Isaiah_castEdit:hover, #Isaiah_castIndexbtn:hover, #Isaiah_castEdit:focus, #Isaiah_castIndexbtn:focus {
-    color: var(--light-color);      /*Giving buttons a hover affect*/
-    background-color: var(--main-secondary-color)
-}
+    #Isaiah_castEdit:hover, #Isaiah_castIndexbtn:hover, #Isaiah_castEdit:focus, #Isaiah_castIndexbtn:focus {
+        color: var(--light-color); /*Giving buttons a hover affect*/
+        background-color: var(--main-secondary-color)
+    }
 /*******Cast Bio***********/
-#Isaiah_castBio {       /*Styling/Alignment of the bio*/
-    overflow: auto;     /*if there is overflow it will add a scrollbar*/
+#Isaiah_castBio { /*Styling/Alignment of the bio*/
+    overflow: auto; /*if there is overflow it will add a scrollbar*/
     text-align: left;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 /*******Checkbox***********/
-.Isaiah_castCheck1 {        /*Allows both the name and checkbox to sit next to eachother*/
-    display:inline-block;
-    float:left;
+.Isaiah_castCheck1 { /*Allows both the name and checkbox to sit next to eachother*/
+    display: inline-block;
+    float: left;
 }
-.Isaiah_castCheck2 {        /*Allows both the name and checkbox to sit next to eachother*/
+
+.Isaiah_castCheck2 { /*Allows both the name and checkbox to sit next to eachother*/
     display: inline-block;
     float: right;
 }
 /*******Cast part links***********/
-.Isaiah_castPart{       /*Changing the color of the part link to match with page styling*/
+.Isaiah_castPart { /*Changing the color of the part link to match with page styling*/
     color: var(--main-secondary-color);
 }
 /*******Cast seperation line***********/
-hr.Isaiah_castline {        /*Styling the seperation line*/
+hr.Isaiah_castline { /*Styling the seperation line*/
     border: 2px solid var(--main-bg-color);
     border-radius: 10px;
     width: 100%;
     margin: 8px;
 }
 /*******Cast collumns***********/
-#Isaiah_castCol1, #Isaiah_castCol2, #Isaiah_castCol3{   /*Aligning year join, year left and debute year left*/
-    text-align:left;
+#Isaiah_castCol1, #Isaiah_castCol2, #Isaiah_castCol3 { /*Aligning year join, year left and debute year left*/
+    text-align: left;
 }
 
 /**********************************************
@@ -3541,17 +3558,17 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     color: var(--dark-color);
 }
 
-.messages-index tbody tr {
-    cursor: pointer;
-}
+    .messages-index tbody tr {
+        cursor: pointer;
+    }
 
-.messages-index tbody tr span:hover {
-    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
-}
+        .messages-index tbody tr span:hover {
+            box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+        }
 
-.messages-index tr.isviewed-false {
-    font-weight: bold;
-}
+    .messages-index tr.isviewed-false {
+        font-weight: bold;
+    }
 
 #inboxDetails {
     display: none;
@@ -3587,7 +3604,7 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
 
 #inboxDetails .msgBody,
 #sentDetails .msgBody,
-#newMsg #Body{
+#newMsg #Body {
     min-height: 300px;
     height: 300px;
 }
@@ -3633,7 +3650,7 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     color: white;
     background-color: #bd1a11;
     border-radius: 25px;
-    height:350px;    
+    height: 350px;
     min-width: 250px;
     max-width: 280px;
     -ms-flex: 1 0 0%;
@@ -3645,10 +3662,10 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
-    flex-direction: column;   
-    word-wrap: break-word;   
+    flex-direction: column;
+    word-wrap: break-word;
     background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);    
+    border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 /*custom card-deck formatting that allows custom format for screens < 575px*/
@@ -3679,30 +3696,46 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     -webkit-transition: all .5s linear;
     -o-transition: all .5s linear;
     transition: all .5s linear;
-    cursor: default;    
-}
-
-.modal-fade-scale.show, .modal-fade-scale.show.hide {
-    opacity: 1;
-    transform: scale(1) translateY(20%);
-    -webkit-transition: all .5s linear;
-    -o-transition: all .5s linear;
-    transition: all .5s linear;
     cursor: default;
 }
 
-.modal-fade-scale.hide {
-    opacity: 0;
-    transform: scale(0) translateY(-100%);
-    -webkit-transition: all .5s linear;
-    -o-transition: all .5s linear;
-    transition: all .5s linear;
-    cursor: default;
+    .modal-fade-scale.show, .modal-fade-scale.show.hide {
+        opacity: 1;
+        transform: scale(1) translateY(20%);
+        -webkit-transition: all .5s linear;
+        -o-transition: all .5s linear;
+        transition: all .5s linear;
+        cursor: default;
+    }
+
+    .modal-fade-scale.hide {
+        opacity: 0;
+        transform: scale(0) translateY(-100%);
+        -webkit-transition: all .5s linear;
+        -o-transition: all .5s linear;
+        transition: all .5s linear;
+        cursor: default;
+    }
+
+
+.fa-circle.circle-notification {
+    color: #00E451;
+    font-size: 10pt;
+    left: 12px;
+    line-height: 10px;
 }
+
+.fa-envelope.envelope-icon {
+    font-size: 20pt;
+}
+
+.nav-button.message-icon-container {
+    padding: 10px 0px 5px 0px;
+}
+
+
 
 /*=======================PRODUCTION DISPLAY EDIT PAGE =====================================*/
-
-
 
 
 /*------DEFAULT PHOTO EDIT/MODAL-----------*/
