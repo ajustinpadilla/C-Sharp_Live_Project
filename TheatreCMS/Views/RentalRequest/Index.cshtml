@@ -10,12 +10,12 @@
     <h2 id="Isaiah_RentalHeader">Rental Requests</h2>@*IDJ--Gave this header an id so that using css i can place a btn next to it*@
 
     @*Calendar toggle button*@
-    <span class="m-2"></span> @*Adds spacing between icons*@
-    <button><i id="toggleCal" onclick="toggleIcon(this)" class="calIcon fa fa-calendar-minus"></i></button>
+    @*Adds spacing between icons*@
+    <button id="toggleCal" onclick="toggleIcon(this)" class="calIcon fa fa-calendar-minus m-2"></button>
 
     @*IDJ--Making a btn that matches in styling with the other buttons on this page that links to the RentalRequest create page*@
-    <span class="m-2"></span> @*Adds spacing between icons*@
-    <a class="Isaiah_pillBtn badge badge-pill badge-danger text-black" href="@Url.Action("Create", "RentalRequest")">Create</a>
+    @*Adds spacing between icons*@
+    <a class="Isaiah_pillBtn badge badge-pill badge-danger text-black m-2" href="@Url.Action("Create", "RentalRequest")">Create</a>
   </div>
 
   @*Calendar divs*@
@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div class="mt-lg-5"></div>
+<div class="mt-5"></div>
 <table class=" table-responsive-stack" id="rentalRequests">
   <thead class="bg-light">
     <tr class="text-black">
@@ -202,5 +202,5 @@
     );
 
   });
-</script>-->
+</script>
 
