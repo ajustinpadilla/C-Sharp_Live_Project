@@ -1,147 +1,203 @@
 ﻿@model TheatreCMS.Models.Production
 @using TheatreCMS.Controllers
 @{
-    ViewBag.Title = "Edit";
+  ViewBag.Title = "Edit";
 }
+
+@Styles.Render("~/Content/Site.css")
 
 <h2>Edit</h2>
 
 
 @using (Html.BeginForm("Edit", "Productions", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-<div class="formContainer2">
+  @Html.AntiForgeryToken()
+  <div class="formContainer2">
     <div class="form-horizontal">
-        <h4>Production</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ProductionId)
+      <h4>Production</h4>
+      <hr />
+      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      @Html.HiddenFor(model => model.ProductionId)
+      @Html.Hidden("DefaultProPhotoId", Model.DefaultPhoto.ProPhotoId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.Playwright, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.Playwright, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.Playwright, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.Runtime, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.Runtime, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.Runtime, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.OpeningDay, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.OpeningDay, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.OpeningDay, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.ClosingDay, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.ClosingDay, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.ClosingDay, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+
+      <!-- PHOTO MODAL-->
+      <div class="form-group">
+        @Html.LabelFor(model => model.DefaultPhoto, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+        <div class="container">
+          <a href="#prod-photo-default-modal" data-toggle="modal">
+            <img id="prod-photo-default-thumbnail" class="card-img-top medium_size" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })" alt="Card image cap" data-photo="@Model.DefaultPhoto.PhotoId">
+          </a>
+
+        </div>
+        <div>
+          <input id="prod-photo-default-modal-btn" type="button" value="Update Default Promo Photo" class="btn btn-default" data-target="#prod-photo-default-modal" data-toggle="modal" />
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Playwright, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.Playwright, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Playwright, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <!-- Modal -->
+        <div id="prod-photo-default-modal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <!-- Modal content-->
+            <div class="modal-content">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Runtime, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.Runtime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Runtime, "", new { @class = "text-danger" })
-            </div>
-        </div>
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OpeningDay, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.OpeningDay, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OpeningDay, "", new { @class = "text-danger" })
-            </div>
-        </div>
+              <div class="modal-body">
+                <div class="prodphoto-content my-lg-4 container">
+                  <div class="prodphoto-cards">
+                    @foreach (var item in Model.ProductionPhotos)
+                    {
+                      <div class="card-body">
+                        <img id="@item.PhotoId" class="card-img-bottom card-img-bottom-prod-photo-default @(item.PhotoId == Model.DefaultPhoto.PhotoId ? "selected-prod-photo" : "")" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo" data-photo="@item.ProPhotoId" />
+                      </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ClosingDay, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.ClosingDay, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClosingDay, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DefaultPhoto, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.DropDownList("ProductionPhotos", (IEnumerable<SelectListItem>)ViewData["ProductionPhotos"], htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DefaultPhoto)
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShowtimeEve, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.ShowtimeEve, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShowtimeEve, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShowtimeMat, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.ShowtimeMat, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShowtimeMat, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TicketLink, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.TicketLink, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TicketLink, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.Season, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Season, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsCurrent, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsCurrent)
-                    @Html.ValidationMessageFor(model => model.IsCurrent, "", new { @class = "text-danger" })
+                    }
+                  </div>
+                  <br /><br />
                 </div>
+              </div>
+
+              <div class="modal-footer">
+                <button id="prod-photo-default-modal-btn" type="button" class="btn btn-default" data-dismiss="modal">Save Selection</button>
+              </div>
+
             </div>
+          </div>
         </div>
+        @Html.ValidationMessageFor(model => model.DefaultPhoto.ProPhotoId, "", new { @class = "text-danger" })
+      </div>
+      <!-- END PHOTO MODAL-->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsWorldPremiere, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
-            <div class="col-md-10 formBox">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsWorldPremiere)
-                    @Html.ValidationMessageFor(model => model.IsWorldPremiere, "", new { @class = "text-danger" })
-                </div>
-            </div>
+      <div class="form-group">
+        @Html.LabelFor(model => model.ShowtimeEve, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.ShowtimeEve, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.ShowtimeEve, "", new { @class = "text-danger" })
         </div>
+      </div>
 
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10 formBox">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+      <div class="form-group">
+        @Html.LabelFor(model => model.ShowtimeMat, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.ShowtimeMat, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.ShowtimeMat, "", new { @class = "text-danger" })
         </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.TicketLink, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.TicketLink, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.TicketLink, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.Season, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          @Html.EditorFor(model => model.Season, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.Season, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.IsCurrent, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          <div class="checkbox">
+            @Html.EditorFor(model => model.IsCurrent)
+            @Html.ValidationMessageFor(model => model.IsCurrent, "", new { @class = "text-danger" })
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.IsWorldPremiere, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+        <div class="col-md-10 formBox">
+          <div class="checkbox">
+            @Html.EditorFor(model => model.IsWorldPremiere)
+            @Html.ValidationMessageFor(model => model.IsWorldPremiere, "", new { @class = "text-danger" })
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 formBox">
+          <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 }
 
 <div>
-    @Html.ActionLink("Current Productions", "Current") |
-    @Html.ActionLink("Back to List", "Index")
+  @Html.ActionLink("Current Productions", "Current") |
+  @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+  $(document).ready(function () {
+    $(".card-img-bottom-prod-photo-default").click(function () {
+      $('.selected-prod-photo').removeClass('selected-prod-photo'); // removes the previous selected class
+      $(this).addClass('selected-prod-photo'); // adds the class to the clicked image
+      console.log($(this).data("photo")); //for testing purposes in browser
+      $("#DefaultProPhotoId").val($(this).data("photo"));
+      $("#prod-photo-default-thumbnail").attr("src", "/Photo/DisplayPhoto/" + $(this).attr("id"));
+    });
+  });
+</script>
