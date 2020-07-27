@@ -3748,6 +3748,26 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     padding: 10px 0px 5px 0px;
 }
 
+/* BEGIN Production Index ribbon styles */
+.prod-index-ribbon-parent {
+    position: relative;
+    overflow: hidden;
+}
+.prod-index-ribbon {
+    position: absolute;
+    opacity: 0.8;
+    width: 10em;
+    text-align: center;
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
+    transform-origin: top left;
+    transform: rotate(-45deg);
+    /* right = -width * (1 - cos(45deg))
+       If width is changed, right must be recalculated */
+    right: -3em;
+    top: 100%;
+}
+/* END Production Index Ribbon styles */
 
 
 /*=======================PRODUCTION DISPLAY EDIT PAGE =====================================*/
