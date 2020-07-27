@@ -99,19 +99,10 @@
                   <div class="prodphoto-cards">
                     @foreach (var item in Model.ProductionPhotos)
                     {
+                      <div class="card-body">
+                        <img id="@item.PhotoId" class="card-img-bottom card-img-bottom-prod-photo-default @(item.PhotoId == Model.DefaultPhoto.PhotoId ? "selected-prod-photo" : "")" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo" data-photo="@item.ProPhotoId" />
+                      </div>
 
-                      if (item.PhotoId == Model.DefaultPhoto.PhotoId)
-                      {
-                        <div class="card-body">
-                          <img id="@item.PhotoId" class="card-img-bottom card-img-bottom-prod-photo-default selected-prod-photo" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo" data-photo="@item.ProPhotoId" />
-                        </div>
-                      }
-                      else
-                      {
-                        <div class="card-body">
-                          <img id="@item.PhotoId" class="card-img-bottom card-img-bottom-prod-photo-default" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo" data-photo="@item.ProPhotoId" />
-                        </div>
-                      }
                     }
                   </div>
                   <br /><br />
@@ -209,4 +200,4 @@
       $("#prod-photo-default-thumbnail").attr("src", "/Photo/DisplayPhoto/" + $(this).attr("id"));
     });
   });
-  </script>
+</script>
