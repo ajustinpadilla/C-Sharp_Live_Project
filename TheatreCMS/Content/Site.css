@@ -3722,7 +3722,7 @@ hr.Isaiah_castline {        /*Styling the seperation line*/
     transform: rotate(-45deg);
     /* right = -width * (1 - cos(45deg))
        If width is changed, right must be recalculated */
-    right: -2.9em;
+    right: -3em;
     top: 100%;
 }
 /* END Production Index Ribbon styles */
