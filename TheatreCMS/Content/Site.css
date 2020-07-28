@@ -3845,3 +3845,17 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 #checkboxDeleteModal {
     color: black;
 }
+/*.modal-fade-scale.hide {
+    opacity: 0;
+    transform: scale(0) translateY(-100%);
+    -webkit-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+    cursor: default;
+}*/
+
+/* BEGIN Photo Delete styles */
+#photo-delete-btn {
+    background-color: var(--main-bg-color);
+}
+/* END Photo Delete styles */
