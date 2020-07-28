@@ -10,15 +10,26 @@
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-button" })
             </li>
             <li>
-                <a class="nav-button" href="@Url.Action("Index", "Messages")">
-                    <span class="fa-stack">
-                        <i class="far fa-envelope fa-stack-2x" style="font-size:20px;"></i>
-                        @if ((bool)ViewData["unread"])
-                        {
-                            <span id="unReadMsgIndicator" class="fas fa-circle fa-stack-1x text-success" style="font-size: 12px;"></span>
-                        }
-                    </span>
-                </a>
+              @*<a class="nav-button" href="@Url.Action("Index", "Messages")">
+              <span class="fa-stack">
+              <i class="far fa-envelope fa-stack-2x" style="font-size:20px;"></i>
+              @if ((bool)ViewData["unread"])
+              {
+              <span id="unReadMsgIndicator" class="fas fa-circle fa-stack-1x text-success" style="font-size: 12px;"></span>
+              }
+              </span>
+              </a>*@
+
+              <a class="nav-button message-icon-container" href="@Url.Action("Index", "Messages")">
+                <span class="msg-stack-container fa-stack">
+                  <i class="far fa-envelope fa-stack-2x envelope-icon"> </i>
+                  @if ((bool)ViewData["unread"])
+                  {
+                    <span id="unReadMsgIndicator" class="fa fa-circle fa-stack-1x circle-notification"></span>
+                    }
+                  </span>
+              </a>
+
             </li>
             <li><a class="nav-button" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
