@@ -32,6 +32,7 @@ namespace TheatreCMS
             SeedProductionPhotos();
             SeedParts();
             SeedAwards();
+            SeedSponsors();
         }
 
 
@@ -1781,6 +1782,33 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
+        // Created a new method to seed the Sponsors db with existing sponsors.
+        private void SeedSponsors()
+        {
+            var sponsor = new List<Sponsor>
+            {
 
+                new Sponsor{ Name = "Ellyn Bye", LogoId = context.Photo.Where(photo => photo.Title == "Ellyn Bye").FirstOrDefault().PhotoId,
+                Height = 139, Width = 300, Current = true, Link = "", },
+
+                new Sponsor{ Name = "The Oregon Community Foundation",
+                LogoId = context.Photo.Where(photo => photo.Title == "The Oregon Community Foundation").FirstOrDefault().PhotoId,
+                Height = 145, Width = 300, Current = true, Link = "https://oregoncf.org", },
+
+                new Sponsor{ Name = "Regional Arts & Culture Council",
+                LogoId = context.Photo.Where(photo => photo.Title == "Regional Arts & Culture Council").FirstOrDefault().PhotoId,
+                Height = 82, Width = 300, Current = true, Link = "https://racc.org", },
+
+                new Sponsor{ Name = "Ninkasi Brewing", LogoId = context.Photo.Where(photo => photo.Title == "Ninkasi Brewing").FirstOrDefault().PhotoId,
+                Height = 173, Width = 150, Current = true, Link = "https://ninkasibrewing.com", },
+
+                new Sponsor{ Name = "Cider Riot!", LogoId = context.Photo.Where(photo => photo.Title == "Cider Riot!").FirstOrDefault().PhotoId,
+                Height = 150, Width = 150, Current = true, Link = "https://www.ciderriot.com", },
+
+            };
+
+            sponsor.ForEach(Sponsor => context.Sponsors.AddOrUpdate(c => c.Name, Sponsor));
+            context.SaveChanges();
+        }
     }
 }
