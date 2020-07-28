@@ -450,7 +450,7 @@ namespace TheatreCMS
                 ClosingDay = new DateTime(2019, 11, 30, 17, 30, 00), ShowtimeEve = new DateTime(2019, 10, 04, 17, 30, 00), ShowtimeMat = new DateTime(2019, 10, 04, 12, 30, 00),
                 TicketLink = "ticketsforyou.com", Season = 23, IsCurrent = true},
 
-                new Production{Title = "The Book of Mormon", Playwright = "Trey Parker, Robert, Lopez, & Matt Stone", Description = "The Book of Mormon " +
+                new Production{Title = "The Book of Mormon", Playwright = "Trey Parker, Robert Lopez, & Matt Stone", Description = "The Book of Mormon " +
                 "follows two Latter-Day Saints missionaries as they attempt to preach the faith of the Church of Jesus Christ of Latter-Day Saints to the " +
                 "inhabitants of a remote Ugandan village.", Runtime=90, OpeningDay = new DateTime(2021, 01, 01, 19, 30, 00), ClosingDay = new DateTime(2021, 02, 28, 19, 30, 00),
                 ShowtimeEve = new DateTime(2021, 01, 02, 19, 30, 00), ShowtimeMat = new DateTime(2021, 01, 02, 14, 30, 00), TicketLink = "ticketsforyou.com", Season = 24,
