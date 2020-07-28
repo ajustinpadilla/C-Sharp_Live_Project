@@ -26,6 +26,9 @@ namespace TheatreCMS.Models
         public string Subject { get; set; }             //subject of message
         public string Body { get; set; }                //body of message
 
+        public DateTime? SenderDeleted { get; set; }    //datetime if sender deleted message
+        public DateTime? RecipientDeleted { get; set; } // dateime if recipient deleted message
+
         public virtual ApplicationUser Sender { get; set; } //nav property to Sender (as User)
         public virtual ApplicationUser Recipient { get; set; }  //nav property to Recipient (as User)
 
