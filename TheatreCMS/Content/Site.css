@@ -3859,3 +3859,34 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     background-color: var(--main-bg-color);
 }
 /* END Photo Delete styles */
+
+.test-detail {
+    background-color: #d6972a;
+    font-family: cursive;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.test-detail2 {
+    width: 600px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    text-indent: each-line;
+    margin: auto;
+}
+
+.test-detail4 {
+    border: 5px solid red;
+    outline-width: thick;
+
+}
+
+.test-detail3 {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding-bottom: inherit;
+    margin-left: auto;
+    text-align: center;
+    font-size: 50px;
+}
