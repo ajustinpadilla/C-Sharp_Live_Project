@@ -207,7 +207,17 @@ namespace TheatreCMS.Controllers
         public ActionResult Edit([Bind(Include = "PhotoId,PhotoFile,OriginalHeight,OriginalWidth,Title")] Photo photo, HttpPostedFileBase file)
         {
             var currentphoto = db.Photo.Find(photo.PhotoId);
-            if (file == null)
+            currentphoto.Title = photo.Title;
+
+            if (file == null && currentphoto.Title != null)
+            {
+
+                currentphoto.Title = photo.Title;
+                db.Entry(currentphoto).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            if (file == null && currentphoto.Title == null)
             {
                 return RedirectToAction("Edit");
             }
@@ -223,7 +233,6 @@ namespace TheatreCMS.Controllers
                 Bitmap img = new Bitmap(file.InputStream);
                 currentphoto.OriginalHeight = img.Height;
                 currentphoto.OriginalWidth = img.Width;
-                currentphoto.Title = photo.Title;
                 if (file != null)
                 {
                     
