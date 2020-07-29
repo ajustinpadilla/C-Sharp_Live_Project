@@ -209,6 +209,7 @@ namespace TheatreCMS.Controllers
             var currentphoto = db.Photo.Find(photo.PhotoId);
             currentphoto.Title = photo.Title;
 
+
             if (file == null && currentphoto.Title != null)
             {
 
