@@ -123,6 +123,8 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: CastMembers/Edit/5
+        // Only authorize access to users with the 'Admin' role
+        [TheatreAuthorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             // STORY REQUIREMENT: The Edit function should check if the User has been modified(i.e. if the User has been added, 
@@ -161,6 +163,8 @@ namespace TheatreCMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // Only authorize access to users with the 'Admin' role
+        [TheatreAuthorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "CastMemberID,Name,YearJoined,MainRole,Bio,PhotoId,CurrentMember,AssociateArtist,EnsembleMember,CastYearLeft,DebutYear")] CastMember castMember, HttpPostedFileBase file)
         {
             ModelState.Remove("CastMemberPersonID");

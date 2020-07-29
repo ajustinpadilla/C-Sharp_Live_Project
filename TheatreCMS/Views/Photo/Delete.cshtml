@@ -4,44 +4,42 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Photo</h4>
+<div class="mt-5 mx-auto col-12 col-sm-10 col-md-8 col-lg-6">
+  <h4>Are you sure you want to delete this?</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>*@
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        @*<dt>
             @Html.DisplayNameFor(model => model.PhotoFile)
-        </dt>
+        </dt>*@
 
         <dd>
             <img class="medium_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.OriginalHeight)
-        </dt>
+        </dt>*@
 
         <dd>
-            @Html.DisplayFor(model => model.OriginalHeight)
+          @Html.DisplayFor(model => model.OriginalHeight) 
+          x @Html.DisplayFor(model => model.OriginalWidth)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.OriginalWidth)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.OriginalWidth)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+        </dd>*@
 
     </dl>
 
@@ -49,8 +47,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn"/>
+            | @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>
