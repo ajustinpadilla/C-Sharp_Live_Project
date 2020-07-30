@@ -4,13 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2 class="test-detail3">Details</h2>
-
-<div>
+<h2 class="title-details">Details</h2>
 
 
-        <div class="test-detail4">
-        <dl class="test-detail2 test-detail">
+
+
+       
+        <dl class="linkspage-details container-details">
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
@@ -37,7 +37,7 @@
 
         </dl>
     
-</div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.LinkId }) |
     @Html.ActionLink("Back to List", "Index")
