@@ -32,7 +32,6 @@ namespace TheatreCMS
             SeedProductionPhotos();
             SeedParts();
             SeedAwards();
-            SeedSponsorPhotos();
             SeedSponsors();
         }
 
@@ -1783,23 +1782,25 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-        // Created a new method to create, convert, and seed the Sponsor Photos.
-        // Special thanks to those that came before me for code reference and re-use!
-        private void SeedSponsorPhotos()
+                 
+
+        //Created a new method to create Sponsor photos, convert Sponsor photos to bytes, add Sponsor photos to Photos table, and seed the Sponsors 
+        //with the 5 existing sponsors from the live website.
+        private void SeedSponsors()
         {
-            //Create images
-            string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
+                //Create images
+                string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
 
-            Image image1 = Image.FromFile(Path.Combine(imagesRoot, @"Ellyn-Bye-Logo.png"));
-            Image image2 = Image.FromFile(Path.Combine(imagesRoot, @"LogoRoundColor.png"));
-            Image image3 = Image.FromFile(Path.Combine(imagesRoot, @"Ninkasi-white-text.png"));
-            Image image4 = Image.FromFile(Path.Combine(imagesRoot, @"OCF-logo-in-white-with-tagline-lg.png"));
-            Image image5 = Image.FromFile(Path.Combine(imagesRoot, @"RACC2.png"));
+                Image image1 = Image.FromFile(Path.Combine(imagesRoot, @"Ellyn-Bye-Logo.png"));
+                Image image2 = Image.FromFile(Path.Combine(imagesRoot, @"LogoRoundColor.png"));
+                Image image3 = Image.FromFile(Path.Combine(imagesRoot, @"Ninkasi-white-text.png"));
+                Image image4 = Image.FromFile(Path.Combine(imagesRoot, @"OCF-logo-in-white-with-tagline-lg.png"));
+                Image image5 = Image.FromFile(Path.Combine(imagesRoot, @"RACC2.png"));
 
-            //Convert images
-            var converter = new ImageConverter();
+                //Convert images
+                var converter = new ImageConverter();
 
-            var photos = new List<Photo>
+                var photos = new List<Photo>
             {
                 new Photo
                 {
@@ -1841,39 +1842,27 @@ namespace TheatreCMS
             //Add photos to Photo table
             photos.ForEach(photo => context.Photo.AddOrUpdate(c => c.PhotoFile, photo));
             context.SaveChanges();
-        }
 
-        //Created a new method to seed the Sponsors with existing sponsors.
-        private void SeedSponsors()
-        {
             //Create sponsors
             var sponsor = new List<Sponsor>
             {
 
                 new Sponsor{ Name = "Ellyn Bye", LogoId = context.Photo.Where(photo => photo.Title == "Ellyn Bye").FirstOrDefault().PhotoId,
-                Height = context.Photo.Where(photo => photo.Title == "Ellyn Bye").FirstOrDefault().OriginalHeight, 
-                Width = context.Photo.Where(photo => photo.Title == "Ellyn Bye").FirstOrDefault().OriginalWidth, Current = true, Link = "", },
+                Height = image1.Height, Width = image1.Width, Current = true, Link = "", },
 
                 new Sponsor{ Name = "Cider Riot!", LogoId = context.Photo.Where(photo => photo.Title == "Cider Riot!").FirstOrDefault().PhotoId,
-                Height = context.Photo.Where(photo => photo.Title == "Cider Riot!").FirstOrDefault().OriginalHeight, 
-                Width = context.Photo.Where(photo => photo.Title == "Cider Riot!").FirstOrDefault().OriginalWidth, Current = true, 
-                Link = "https://www.ciderriot.com", },
+                Height = image2.Height, Width = image2.Width, Current = true, Link = "https://www.ciderriot.com", },
 
                 new Sponsor{ Name = "Ninkasi Brewing", LogoId = context.Photo.Where(photo => photo.Title == "Ninkasi Brewing").FirstOrDefault().PhotoId,
-                Height = context.Photo.Where(photo => photo.Title == "Ninkasi Brewing").FirstOrDefault().OriginalHeight, 
-                Width = context.Photo.Where(photo => photo.Title == "Ninkasi Brewing").FirstOrDefault().OriginalWidth, Current = true, 
-                Link = "https://ninkasibrewing.com", },
+                Height = image3.Height, Width = image3.Width, Current = true, Link = "https://ninkasibrewing.com", },
 
                 new Sponsor{ Name = "The Oregon Community Foundation",
                 LogoId = context.Photo.Where(photo => photo.Title == "The Oregon Community Foundation").FirstOrDefault().PhotoId,
-                Height = context.Photo.Where(photo => photo.Title == "The Oregon Community Foundation").FirstOrDefault().OriginalHeight, 
-                Width = context.Photo.Where(photo => photo.Title == "The Oregon Community Foundation").FirstOrDefault().OriginalWidth, Current = true, 
-                Link = "https://oregoncf.org", },
+                Height = image4.Height, Width = image4.Width, Current = true, Link = "https://oregoncf.org", },
 
                 new Sponsor{ Name = "Regional Arts & Culture Council",
                 LogoId = context.Photo.Where(photo => photo.Title == "Regional Arts & Culture Council").FirstOrDefault().PhotoId,
-                Height = context.Photo.Where(photo => photo.Title == "Regional Arts & Culture Council").FirstOrDefault().OriginalHeight, 
-                Width = context.Photo.Where(photo => photo.Title == "Regional Arts & Culture Council").FirstOrDefault().OriginalWidth, Current = true, 
+                Height = image5.Height, Width = image5.Width, Current = true, 
                 Link = "https://racc.org", },
 
             };
