@@ -207,6 +207,21 @@ namespace TheatreCMS.Controllers
         public ActionResult Edit([Bind(Include = "PhotoId,PhotoFile,OriginalHeight,OriginalWidth,Title")] Photo photo, HttpPostedFileBase file)
         {
             var currentphoto = db.Photo.Find(photo.PhotoId);
+            currentphoto.Title = photo.Title;
+
+
+            if (file == null && currentphoto.Title != null)
+            {
+
+                currentphoto.Title = photo.Title;
+                db.Entry(currentphoto).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            if (file == null && currentphoto.Title == null)
+            {
+                return RedirectToAction("Edit");
+            }
             byte[] photoArray = ImageBytes(file);
             if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
             {
@@ -215,14 +230,14 @@ namespace TheatreCMS.Controllers
             }
             if (ModelState.IsValid)
             {
+                currentphoto.PhotoFile = photoArray;
+                Bitmap img = new Bitmap(file.InputStream);
+                currentphoto.OriginalHeight = img.Height;
+                currentphoto.OriginalWidth = img.Width;
                 if (file != null)
                 {
                     
-                    currentphoto.PhotoFile = photoArray;
-                    Bitmap img = new Bitmap(file.InputStream);
-                    currentphoto.OriginalHeight = img.Height;
-                    currentphoto.OriginalWidth = img.Width;
-                    currentphoto.Title = photo.Title;
+                    
                     db.Entry(currentphoto).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -237,7 +252,7 @@ namespace TheatreCMS.Controllers
             
             }
 
-            return View(photo);
+            return View(currentphoto);
         }
 
         // GET: Photo/Delete/5
