@@ -95,7 +95,15 @@ namespace TheatreCMS.Controllers
 
             ViewBag.CastMembers = castMembers.ToList();
 
-            return View();
+            var dbAwards = new ApplicationDbContext();
+            var dbSponsors = new ApplicationDbContext();
+            var awards = dbAwards.Awards;
+            var sponsors = dbSponsors.Sponsors;
+            AboutVm aboutVm = new AboutVm();
+            aboutVm.Awards = awards;
+            aboutVm.Sponsors = sponsors;
+
+            return View(aboutVm);
         }
 
         public ActionResult Contact()
