@@ -32,6 +32,7 @@ namespace TheatreCMS
             SeedProductionPhotos();
             SeedParts();
             SeedAwards();
+            SeedSponsorPhotos();
             SeedSponsors();
         }
 
@@ -1782,9 +1783,9 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-        // Created a new method to seed the Sponsors db with existing sponsors. Also created sponsor photos, converted them to bytes, and added to Photo table.
+        // Created a new method to create, convert, and seed the Sponsor Photos.
         // Special thanks to those that came before me for code reference and re-use!
-        private void SeedSponsors()
+        private void SeedSponsorPhotos()
         {
             //Create images
             string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
@@ -1838,29 +1839,42 @@ namespace TheatreCMS
             };
 
             //Add photos to Photo table
-            photos.ForEach(photo => context.Photo.AddOrUpdate(c => c.PhotoId, photo));
+            photos.ForEach(photo => context.Photo.AddOrUpdate(c => c.PhotoFile, photo));
             context.SaveChanges();
+        }
 
+        //Created a new method to seed the Sponsors with existing sponsors.
+        private void SeedSponsors()
+        {
             //Create sponsors
             var sponsor = new List<Sponsor>
             {
 
                 new Sponsor{ Name = "Ellyn Bye", LogoId = context.Photo.Where(photo => photo.Title == "Ellyn Bye").FirstOrDefault().PhotoId,
-                Height = image1.Height, Width = image1.Width, Current = true, Link = "", },
+                Height = context.Photo.Where(photo => photo.Title == "Ellyn Bye").FirstOrDefault().OriginalHeight, 
+                Width = context.Photo.Where(photo => photo.Title == "Ellyn Bye").FirstOrDefault().OriginalWidth, Current = true, Link = "", },
 
                 new Sponsor{ Name = "Cider Riot!", LogoId = context.Photo.Where(photo => photo.Title == "Cider Riot!").FirstOrDefault().PhotoId,
-                Height = image2.Height, Width = image2.Width, Current = true, Link = "https://www.ciderriot.com", },
+                Height = context.Photo.Where(photo => photo.Title == "Cider Riot!").FirstOrDefault().OriginalHeight, 
+                Width = context.Photo.Where(photo => photo.Title == "Cider Riot!").FirstOrDefault().OriginalWidth, Current = true, 
+                Link = "https://www.ciderriot.com", },
 
                 new Sponsor{ Name = "Ninkasi Brewing", LogoId = context.Photo.Where(photo => photo.Title == "Ninkasi Brewing").FirstOrDefault().PhotoId,
-                Height = image3.Height, Width = image3.Width, Current = true, Link = "https://ninkasibrewing.com", },
+                Height = context.Photo.Where(photo => photo.Title == "Ninkasi Brewing").FirstOrDefault().OriginalHeight, 
+                Width = context.Photo.Where(photo => photo.Title == "Ninkasi Brewing").FirstOrDefault().OriginalWidth, Current = true, 
+                Link = "https://ninkasibrewing.com", },
 
                 new Sponsor{ Name = "The Oregon Community Foundation",
                 LogoId = context.Photo.Where(photo => photo.Title == "The Oregon Community Foundation").FirstOrDefault().PhotoId,
-                Height = image4.Height, Width = image4.Width, Current = true, Link = "https://oregoncf.org", },
+                Height = context.Photo.Where(photo => photo.Title == "The Oregon Community Foundation").FirstOrDefault().OriginalHeight, 
+                Width = context.Photo.Where(photo => photo.Title == "The Oregon Community Foundation").FirstOrDefault().OriginalWidth, Current = true, 
+                Link = "https://oregoncf.org", },
 
                 new Sponsor{ Name = "Regional Arts & Culture Council",
                 LogoId = context.Photo.Where(photo => photo.Title == "Regional Arts & Culture Council").FirstOrDefault().PhotoId,
-                Height = image5.Height, Width = image5.Width, Current = true, Link = "https://racc.org", },
+                Height = context.Photo.Where(photo => photo.Title == "Regional Arts & Culture Council").FirstOrDefault().OriginalHeight, 
+                Width = context.Photo.Where(photo => photo.Title == "Regional Arts & Culture Council").FirstOrDefault().OriginalWidth, Current = true, 
+                Link = "https://racc.org", },
 
             };
 
