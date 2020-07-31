@@ -138,7 +138,7 @@
 
                   <tbody>
                       <!-- parentId is for future feature, "isviewed-false" is only present if isviewed is null-->
-                      @foreach (var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"]))
+                      @foreach (var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"] && i.RecipientDeleted == null ))
                       {
                           <tr class="d-flex inboxRow @(item.IsViewed.HasValue ? "" : "isviewed-false")" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
                               <td>
@@ -298,30 +298,57 @@
                   </thead>
 
                   <tbody>
-                      @foreach (var item in Model.Where(i => i.SenderId == (string)ViewData["currentUserId"]))
+                      @foreach (var item in Model.Where(i => i.SenderId == (string)ViewData["currentUserId"] && i.SenderDeleted == null ))
                       {
-                          <tr class="d-flex" data-msg_id="@item.MessageId">
+                          <tr class="d-flex sentRow" data-msg_id="@item.MessageId">
 
                               <td>
                                   @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted sent-check", @value = item.MessageId })
                               </td>
 
-                              <td class="sentRow col-2 msgTo ">
+                              <td class="col-2 msgTo ">
                                   @if (item.Recipient != null)
                                   {
                                       @: @item.Recipient.LastName, @item.Recipient.FirstName
                                   }
                               </td>
-                              <td class="sentRow col-5 msgSubject ">
+                              <td class="col-5 msgSubject ">
                                   @Html.DisplayFor(modelItem => item.Subject)
                               </td>
-                              <td class="sentRow col-2 d-none msgBody ">
+                              <td class="col-2 d-none msgBody ">
                                   @Html.DisplayFor(modelItem => item.Body)
                               </td>
-                              <td class="sentRow col-2 msgDate ">
+                              <td class="col-2 msgDate ">
                                   @Html.DisplayFor(modelItem => item.SentTime)
                               </td>
-                              <td class="sentRow col-3 col-lg-2 text-right">
+                              <td class="col-3 col-lg-2 text-right">
+
+                                  <span class="badge badge-pill badge-danger" data-toggle="modal" data-target="#sentDeleteConfirmation-@item.MessageId">
+                                      <i class="fa fa-trash"
+                                         aria-hidden="true"></i>
+                                  </span>
+                                  <div class="modal modal-fade-scale" id="sentDeleteConfirmation-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="sentDeleteConfirmationLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="sentDeleteConfirmationLabel">Do you want to delete this message?</h5>
+                                                  <button type="button" class="close close-modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body text-left">
+                                                  <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
+                                                  <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
+                                                  <h6>Sent:</h6><div>@item.SentTime</div><br />
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary close-modal">Close</button>
+                                                  <button type="button" class="btn btn-danger sent-del">Confirm Delete</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
                               </td>
 
                           </tr>
@@ -374,50 +401,144 @@
               <table class="table table-hover">
                   <thead>
                       <tr class="d-flex">
-                          <th>
+                          @*<th>
                               @Html.CheckBox("checkAll", false, new { @class = "top-check sent-top-check" })
-                          </th>
+                          </th>*@
                           <th class="col-2">
                               @Html.DisplayNameFor(model => model.RecipientId)
                           </th>
-                          <th class="col-5">
+                          <th class="col-2">
+                              @Html.DisplayNameFor(model => model.SenderId)
+                          </th>
+                          <th class="col-3">
                               @Html.DisplayNameFor(model => model.Subject)
                           </th>
                           <th class="col-2 d-none">
                               @Html.DisplayNameFor(model => model.Body)
                           </th>
                           <th class="col-2">
-                              @Html.DisplayNameFor(model => model.SentTime)
+                              @*@Html.DisplayNameFor(model => model.SentTime)*@
+                              Time Deleted
                           </th>
-                          <th class="col-3 col-lg-2" id="badges"></th>
+                          <th class="col-2 col-lg-2" id="badges"></th>
                       </tr>
                   </thead>
 
                   <tbody>
-                      @foreach (var item in Model.Where(i => i.SenderId == (string)ViewData["currentUserId"]))
+
+                      @*@foreach (var item in Model.Where(i => (i.SenderId == (string)ViewData["currentUserId"] && i.SenderDeleted != null) || (i.RecipientId == (string)ViewData["currentUserId"] && i.RecipientDeleted != null)).OrderByDescending(i => i.SenderDeleted ?? i.RecipientDeleted))*@
+                      @foreach (var item in Model.Where(i => (i.SenderId == (string)ViewData["currentUserId"] && i.SenderDeleted != null) || (i.RecipientId == (string)ViewData["currentUserId"] && i.RecipientDeleted != null)).OrderByDescending(i => i.SenderId == (string)ViewData["currentUserId"] ? i.SenderDeleted : i.RecipientDeleted))
                       {
-                          <tr class="d-flex" data-msg_id="@item.MessageId">
+                          <tr class="d-flex trashRow" data-msg_id="@item.MessageId">
 
-                              <td>
+                              @*<td>
                                   @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted sent-check", @value = item.MessageId })
-                              </td>
+                              </td>*@
 
-                              <td class="sentRow col-2 msgTo ">
+                              <td class="col-2 msgTo ">
                                   @if (item.Recipient != null)
                                   {
                                       @: @item.Recipient.LastName, @item.Recipient.FirstName
                                   }
                               </td>
-                              <td class="sentRow col-5 msgSubject ">
+
+                              <td class="col-2 msgFrom ">
+                                  @if (item.Recipient != null)
+                                  {
+                                      @: @item.Sender.LastName, @item.Sender.FirstName
+                                  }
+                              </td>
+
+                              <td class="col-3 msgSubject ">
                                   @Html.DisplayFor(modelItem => item.Subject)
                               </td>
-                              <td class="sentRow col-2 d-none msgBody ">
+                              <td class="col-2 d-none msgBody ">
                                   @Html.DisplayFor(modelItem => item.Body)
                               </td>
-                              <td class="sentRow col-2 msgDate ">
-                                  @Html.DisplayFor(modelItem => item.SentTime)
+                              <td class="col-2 msgDate ">
+                                  @if (item.SenderId == (string)ViewData["currentUserId"])
+                                  {
+                                      @Html.DisplayFor(modelItem => item.SenderDeleted)
+                                  }
+                                  else
+                                  {
+                                      @Html.DisplayFor(modelItem => item.RecipientDeleted)
+                                  }
+
                               </td>
-                              <td class="sentRow col-3 col-lg-2 text-right">
+                              <td class="col-2 col-lg-2 text-right">
+                                  @* Recover Deleted Message *@
+                                  <span class="badge badge-pill badge-success" data-toggle="modal" data-target="#recoverMessage-@item.MessageId">
+                                      Recover
+                                  </span>
+                                  <div class="modal modal-fade-scale" id="recoverMessage-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="recoverMessageLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="recoverMessageLabel">Recover this message?</h5>
+                                                  <button type="button" class="close close-modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body text-left">
+                                                  <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
+                                                  <h6>To:</h6> <div>@item.Recipient.LastName, @item.Recipient.FirstName</div><br />
+                                                  <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
+                                                  <h6>Sent:</h6><div>
+                                                      @if (item.SenderId == (string)ViewData["currentUserId"])
+                                                      {
+                                                          @Html.DisplayFor(modelItem => item.SenderDeleted)
+                                                      }
+                                                      else
+                                                      {
+                                                          @Html.DisplayFor(modelItem => item.RecipientDeleted)
+                                                      }
+                                                  </div><br />
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary close-modal">Close</button>
+                                                  <button type="button" class="btn btn-danger recoverMsg">Recover Message</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  @* Permanently Delete Message *@
+                                  <span class="badge badge-pill badge-success" data-toggle="modal" data-target="#permanentlyDelete-@item.MessageId">
+                                      <i class="fa fa-trash" aria-hidden="true"></i>
+                                  </span>
+                                  <div class="modal modal-fade-scale" id="permanentlyDelete-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="permanentDeleteLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="permanentDeleteLabel">Permanently delete this message?</h5>
+                                                  <button type="button" class="close close-modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body text-left">
+                                                  <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
+                                                  <h6>To:</h6> <div>@item.Recipient.LastName, @item.Recipient.FirstName</div><br />
+                                                  <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
+                                                  <h6>Sent:</h6><div>
+                                                      @if (item.SenderId == (string)ViewData["currentUserId"])
+                                                      {
+                                                          @Html.DisplayFor(modelItem => item.SenderDeleted)
+                                                      }
+                                                      else
+                                                      {
+                                                          @Html.DisplayFor(modelItem => item.RecipientDeleted)
+                                                      }
+                                                  </div><br />
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary close-modal">Close</button>
+                                                  <button type="button" class="btn btn-danger permDelMsg">Recover Message</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
                               </td>
 
                           </tr>
@@ -652,7 +773,7 @@
       //$(".sentRow").on("click", "td:not(:last-child)", function () {
 
         //behavior of row on sent tab
-        $(".sentRow").click(function () {
+        $(".sentRow").on("click", "td:not(:last-child,:first-child)", function () {
             var msgId_str = $(this).parent().data("msg_id");
             var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
 
@@ -809,6 +930,71 @@
       deleteMsg(msgid_str);
       //}
     });
+
+    $(".sent-del").on("click", function () {
+        var msgid_str = $(this).closest(".sentRow").data("msg_id");
+        //if (confirm("delete this message?")) {
+        deleteMsg(msgid_str);
+        //}
+    });
+
+    function recoverMsg(msgId) {
+        $.ajax({
+            type: "POST",
+            url: "/Messages/Recover/" + msgId,
+            context: this,
+            data: {
+                "__RequestVerificationToken":
+                    $("input[name=__RequestVerificationToken]").val(),
+                id: msgId,
+            },
+            success: function () {
+                $(this).closest(".trashRow").remove();
+                location.reload();
+            },
+            error: function () {
+                alert("an error has occurred.");
+                location.reload();
+            }
+        });
+    }
+
+    $(".recoverMsg").on("click", function () {
+        var msgid_str = $(this).closest(".trashRow").data("msg_id");
+        //if (confirm("delete this message?")) {
+        recoverMsg(msgid_str);
+        //}
+    });
+
+    function permDelMsg(msgId) {
+        $.ajax({
+            type: "POST",
+            url: "/Messages/PermDel/" + msgId,
+            context: this,
+            data: {
+                "__RequestVerificationToken":
+                    $("input[name=__RequestVerificationToken]").val(),
+                id: msgId,
+            },
+            success: function () {
+                $(this).closest(".trashRow").remove();
+                location.reload();
+            },
+            error: function () {
+                alert("an error has occurred.");
+                location.reload();
+            }
+        });
+    }
+
+    $(".permDelMsg").on("click", function () {
+        var msgid_str = $(this).closest(".trashRow").data("msg_id");
+        //if (confirm("delete this message?")) {
+        permDelMsg(msgid_str);
+        //}
+    });
+
+    
 
   </script>
 
