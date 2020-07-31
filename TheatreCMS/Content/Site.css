@@ -3860,31 +3860,28 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 }
 /* END Photo Delete styles */
 
-.linkspage-details {
+.Display-linkspage-details {
     background-color: #d6972a;
     font-family: cursive;
     font-size: 15px;
     letter-spacing: 0.5px;
 }
 
-.container-details {
+.Display-container-title-details {
     width: 600px;
-    padding-left: 15px;
-    padding-right: 15px;
-    position: center;
+    padding: 15px, 15px, 15px, 15px;
     text-indent: each-line;
-    margin: auto;
-    padding-top: 15px;
-    padding-bottom: 15px; 
     border: solid red;
     outline-width: thick;
     text-align: center;
     border-width: 15px;
+    position: center;
+    margin: auto;
 }
 
 
 
-.title-details {
+.Display-title-details {
     margin-top: 70px;
     margin-bottom: 70px;
     padding-bottom: inherit;
