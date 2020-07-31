@@ -101,24 +101,28 @@
                 {
                   if (previousYear != item.Year.ToString())
                   {
-                    previousYear = item.Year.ToString();
-                    <a class="card-text font-weight-bold"><u>@Html.DisplayFor(modelItem => item.Year)</u></a><br />
+                      previousYear = item.Year.ToString();
+                      <a class="card-subtitle font-weight-bold"><u>@Html.DisplayFor(modelItem => item.Year)</u></a><br />
                   }
 
-                  <a class="card-text text-uppercase">@Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.Type) FOR @Html.DisplayFor(modelItem => item.Category) </a><br />
+                  <a class="card-text text-uppercase">@Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.Type) FOR @Html.DisplayFor(modelItem => item.Category) </a> <br />
 
                   if (item.Recipient != null)
                   {
-                    <p><a class="card-text font-weight-bold">@Html.DisplayFor(modelItem => item.Recipient) </a> - <a class="card-text font-italic">@Html.DisplayFor(modelItem => item.Production.Title)</a></p>
+                      <p><a class="card-text font-weight-bold">@Html.DisplayFor(modelItem => item.Recipient) </a> - <a class="card-text font-italic">@Html.DisplayFor(modelItem => item.Production.Title)</a></p>
                   }
                   else
                   {
-                    <a class="card-text font-italic">@Html.DisplayFor(modelItem => item.Production.Title)</a>
+                      <a class="card-text font-italic">@Html.DisplayFor(modelItem => item.Production.Title)</a>
                   }
 
                   if (item.OtherInfo != null)
                   {
-                    <p> <a class="card-text">(@Html.DisplayFor(modelItem => item.OtherInfo))</a></p>
+                      <p class="card-text">(@Html.DisplayFor(modelItem => item.OtherInfo))</p>
+                  }
+                  else
+                  {
+                      <p></p>
                   }
                 }
 
