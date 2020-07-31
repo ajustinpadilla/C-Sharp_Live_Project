@@ -12,6 +12,7 @@ using TheatreCMS.Areas.Subscribers.Models;
 using System.Text.RegularExpressions;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Ajax.Utilities;
 
 namespace TheatreCMS.Controllers
 {
@@ -95,9 +96,10 @@ namespace TheatreCMS.Controllers
 
             ViewBag.CastMembers = castMembers.ToList();
 
+            //Added in conjunction with the View Model AboutVm.cs in order to utilize both models and return to View
             var dbAwards = new ApplicationDbContext();
             var dbSponsors = new ApplicationDbContext();
-            var awards = dbAwards.Awards;
+            var awards = dbAwards.Awards.Include("Production").ToList(); //Added Include("Production") to resolve query issue
             var sponsors = dbSponsors.Sponsors;
             AboutVm aboutVm = new AboutVm();
             aboutVm.Awards = awards;

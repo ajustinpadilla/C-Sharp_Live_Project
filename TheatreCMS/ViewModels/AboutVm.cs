@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using TheatreCMS.Models;
 
+//Created for use in About.cshtml since the Sponsors model was already being referenced
+
 namespace TheatreCMS.ViewModels
 {
     public class AboutVm
