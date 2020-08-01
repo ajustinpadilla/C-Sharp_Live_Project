@@ -1,5 +1,4 @@
-﻿@*Created View Model AboutVm since both the Sponsors and Awards models are referenced here*@
-@model TheatreCMS.ViewModels.AboutVm
+﻿@model TheatreCMS.Models.Award
 @using TheatreCMS.Controllers
 @using TheatreCMS.Models
 
@@ -97,7 +96,7 @@
                 @* Created a variable for use in the if statement within a foreach loop that eliminates query errors.*@
                 @{ var previousYear = ""; }
                 @* Created foreach loop to loop through items in the Awards table and display Awards by year.*@
-                @foreach (var item in Model.Awards)
+                @foreach (var item in Model)
                 {
                   if (previousYear != item.Year.ToString())
                   {

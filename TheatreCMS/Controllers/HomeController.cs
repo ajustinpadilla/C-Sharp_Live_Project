@@ -96,16 +96,10 @@ namespace TheatreCMS.Controllers
 
             ViewBag.CastMembers = castMembers.ToList();
 
-            //Added in conjunction with the View Model AboutVm.cs in order to utilize both models and return to View
             var dbAwards = new ApplicationDbContext();
-            var dbSponsors = new ApplicationDbContext();
             var awards = dbAwards.Awards.Include("Production").ToList(); //Added Include("Production") to resolve query issue
-            var sponsors = dbSponsors.Sponsors;
-            AboutVm aboutVm = new AboutVm();
-            aboutVm.Awards = awards;
-            aboutVm.Sponsors = sponsors;
-
-            return View(aboutVm);
+                        
+            return View(awards);
         }
 
         public ActionResult Contact()
