@@ -1,6 +1,6 @@
-﻿@model TheatreCMS.Models.Award
-@using TheatreCMS.Controllers
-@using TheatreCMS.Models
+﻿@using TheatreCMS.Models
+@model List<Award>
+@*@using TheatreCMS.Controllers*@
 
 @{
     ViewBag.Title = "About";
@@ -93,9 +93,8 @@
               <div class="card-body">
                 <h5 class="card-title ab-card-red">AWARDS &amp; ACHIEVEMENTS</h5>
 
-                @* Created a variable for use in the if statement within a foreach loop that eliminates query errors.*@
                 @{ var previousYear = ""; }
-                @* Created foreach loop to loop through items in the Awards table and display Awards by year.*@
+                @* Created foreach loop to loop through items in the Awards table and display Awards.*@
                 @foreach (var item in Model)
                 {
                   if (previousYear != item.Year.ToString())

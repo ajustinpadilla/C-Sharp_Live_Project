@@ -97,7 +97,7 @@ namespace TheatreCMS.Controllers
             ViewBag.CastMembers = castMembers.ToList();
 
             var dbAwards = new ApplicationDbContext();
-            var awards = dbAwards.Awards.Include("Production").ToList(); //Added Include("Production") to resolve query issue
+            var awards = dbAwards.Awards.ToList();
                         
             return View(awards);
         }
