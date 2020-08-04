@@ -96,7 +96,7 @@
               <div class="form-group form-row align-items-center">
                   <label class="col-lg-2 col-md-2 control-label col-1"></label>
                   <div class="col-lg-6 col-md-8">
-                      <button type="button" id="goback" class="btn btn-info float-left">
+                      <button type="button" class="btn btn-info float-left goBack">
                           Go Back
                       </button>
                       <button type="submit" class="btn btn-primary">Send</button>
@@ -140,7 +140,7 @@
                       <!-- parentId is for future feature, "isviewed-false" is only present if isviewed is null-->
                       @foreach (var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"] && i.RecipientDeleted == null ))
                       {
-                          <tr class="d-flex inboxRow @(item.IsViewed.HasValue ? "" : "isviewed-false")" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
+                          <tr class="d-flex inboxRow @(item.IsViewed.HasValue ? "" : "isviewed-false")" id="msg_@item.MessageId" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
                               <td>
                                   @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted inbox-check", @value = item.MessageId })
                               </td>
@@ -158,32 +158,11 @@
                               </td>
                               <td class="col-3 col-lg-2 text-right">
                                   <span class="badge badge-pill badge-secondary mx-2 list-reply">Reply</span>
-
-                                  <span class="badge badge-pill badge-danger" data-toggle="modal" data-target="#deleteModal-@item.MessageId">
+                                  
+                                  <span class="badge badge-pill badge-danger listDel" data-toggle="modal" data-target="#deleteMessageMaster">
                                       <i class="fa fa-trash"
                                          aria-hidden="true"></i>
                                   </span>
-                                  <div class="modal modal-fade-scale" id="deleteModal-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this message?</h5>
-                                                  <button type="button" class="close close-modal" aria-label="Close">
-                                                      <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                              </div>
-                                              <div class="modal-body text-left">
-                                                  <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
-                                                  <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
-                                                  <h6>Sent:</h6><div>@item.SentTime</div><br />
-                                              </div>
-                                              <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary close-modal">Close</button>
-                                                  <button type="button" class="btn btn-danger list-del">Confirm Delete</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
                               </td>
                           </tr>
                       }
@@ -222,7 +201,7 @@
                   <div class="form-group row align-items-center">
                       <label class="col-lg-2 col-md-2 control-label col-1"></label>
                       <div class="col-lg-6 col-md-8 clearfix text-right">
-                          <button type="button" id="goback" class="btn btn-info float-left">
+                          <button type="button"  class="btn btn-info float-left goBack">
                               Go Back
                           </button>
                           <button type="button" id="reply" class="btn btn-success mx-1">Reply</button>
@@ -230,39 +209,10 @@
 
 
 
-                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal1">
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster">
                               <i class="fa fa-trash"
                                  aria-hidden="true"></i>
                           </button>
-
-                          <div class="modal modal-fade-scale" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this message?</h5>
-                                          <button type="button" class="close close-modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span>
-                                          </button>
-                                      </div>
-                                      <div class="modal-body text-left">
-                                          <h6>From:</h6><div class="msgFrom1"></div><br />
-                                          <h6>Subject:</h6><div class="msgSubject1"></div><br />
-                                          <h6>Sent:</h6><div class="msgDate1"></div><br />
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary close-modal">Close</button>
-                                          <button id="delete" type="button" class="btn btn-danger">Confirm Delete</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-
-
-
-
-
-
-
                       </div>
                   </div>
               </form>
@@ -300,7 +250,7 @@
                   <tbody>
                       @foreach (var item in Model.Where(i => i.SenderId == (string)ViewData["currentUserId"] && i.SenderDeleted == null ))
                       {
-                          <tr class="d-flex sentRow" data-msg_id="@item.MessageId">
+                          <tr class="d-flex sentRow" id="#msg_@item.MessageId" data-msg_id="@item.MessageId">
 
                               <td>
                                   @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted sent-check", @value = item.MessageId })
@@ -323,31 +273,11 @@
                               </td>
                               <td class="col-3 col-lg-2 text-right">
 
-                                  <span class="badge badge-pill badge-danger" data-toggle="modal" data-target="#sentDeleteConfirmation-@item.MessageId">
+                                  <span class="badge badge-pill badge-danger listDel" data-toggle="modal" data-target="#deleteMessageMaster">
                                       <i class="fa fa-trash"
                                          aria-hidden="true"></i>
                                   </span>
-                                  <div class="modal modal-fade-scale" id="sentDeleteConfirmation-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="sentDeleteConfirmationLabel" aria-hidden="true">
-                                      <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title" id="sentDeleteConfirmationLabel">Do you want to delete this message?</h5>
-                                                  <button type="button" class="close close-modal" aria-label="Close">
-                                                      <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                              </div>
-                                              <div class="modal-body text-left">
-                                                  <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
-                                                  <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
-                                                  <h6>Sent:</h6><div>@item.SentTime</div><br />
-                                              </div>
-                                              <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary close-modal">Close</button>
-                                                  <button type="button" class="btn btn-danger sent-del">Confirm Delete</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
+
 
                               </td>
 
@@ -383,8 +313,12 @@
                   <div class="form-group row align-items-center">
                       <label class="col-lg-2 col-md-2 control-label col-1"></label>
                       <div class="col-lg-6 col-md-8 clearfix text-right">
-                          <button type="button" id="goback" class="btn btn-info float-left">
+                          <button type="button" class="btn btn-info float-left goBack">
                               Go Back
+                          </button>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster">
+                              <i class="fa fa-trash"
+                                 aria-hidden="true"></i>
                           </button>
                       </div>
                   </div>
@@ -417,7 +351,6 @@
                               @Html.DisplayNameFor(model => model.Body)
                           </th>
                           <th class="col-3">
-                              @*@Html.DisplayNameFor(model => model.SentTime)*@
                               Time Deleted
                           </th>
                           <th class="col-2 col-lg-2" id="badges"></th>
@@ -471,76 +404,12 @@
                                   <span class="badge badge-pill badge-success listRecoverMsg" data-toggle="modal" data-target="#recoverMessageMaster">
                                       Recover
                                   </span>
-                                  @*<div class="modal modal-fade-scale" id="recoverMessage-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="recoverMessageLabel" aria-hidden="true">
-                                      <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title" id="recoverMessageLabel">Recover this message?</h5>
-                                                  <button type="button" class="close close-modal" aria-label="Close">
-                                                      <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                              </div>
-                                              <div class="modal-body text-left">
-                                                  <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
-                                                  <h6>To:</h6> <div>@item.Recipient.LastName, @item.Recipient.FirstName</div><br />
-                                                  <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
-                                                  <h6>Sent:</h6><div>
-                                                      @if (item.SenderId == (string)ViewData["currentUserId"])
-                                                      {
-                                                          @Html.DisplayFor(modelItem => item.SenderDeleted)
-                                                      }
-                                                      else
-                                                      {
-                                                          @Html.DisplayFor(modelItem => item.RecipientDeleted)
-                                                      }
-                                                  </div><br />
-                                              </div>
-                                              <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary close-modal">Close</button>
-                                                  <button type="button" class="btn btn-danger recoverMsg">Recover Message</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>*@
 
                                   @* Permanently Delete Message *@
-                                  <span class="badge badge-pill badge-danger listPermDel" data-toggle="modal" data-target="#permanentDeleteMaster" data-id="@item.MessageId">
+                                  <span class="badge badge-pill badge-danger listPermDel" data-toggle="modal" data-target="#permanentDeleteMaster">
                                       <i class="fa fa-trash" aria-hidden="true"></i>
                                   </span>
-                                  @*<div class="modal modal-fade-scale" id="permanentlyDelete-@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="permanentDeleteLabel" aria-hidden="true">
-                                      <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title" id="permanentDeleteLabel">Permanently delete this message?</h5>
-                                                  <button type="button" class="close close-modal" aria-label="Close">
-                                                      <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                              </div>
-                                              <div class="modal-body text-left">
-                                                  <h6>From:</h6> <div>@item.Sender.LastName, @item.Sender.FirstName</div><br />
-                                                  <h6>To:</h6> <div>@item.Recipient.LastName, @item.Recipient.FirstName</div><br />
-                                                  <h6>Subject:</h6><div>@Html.DisplayFor(modelItem => item.Subject)</div><br />
-                                                  <h6>Sent:</h6><div>
-                                                      @if (item.SenderId == (string)ViewData["currentUserId"])
-                                                      {
-                                                          @Html.DisplayFor(modelItem => item.SenderDeleted)
-                                                      }
-                                                      else
-                                                      {
-                                                          @Html.DisplayFor(modelItem => item.RecipientDeleted)
-                                                      }
-                                                  </div><br />
-                                              </div>
-                                              <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary close-modal">Close</button>
-                                                  <button type="button" class="btn btn-danger permDelMsg">Recover Message</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>*@
-
                               </td>
-
                           </tr>
                       }
                   </tbody>
@@ -577,19 +446,20 @@
                   <div class="form-group row align-items-center">
                       <label class="col-lg-2 col-md-2 control-label col-1"></label>
                       <div class="col-lg-6 col-md-8 clearfix text-right">
-                          <button type="button" id="goback" class="btn btn-info float-left">
+                          <button type="button" class="btn btn-info float-left goBack">
                               Go Back
+                          </button>
+                          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#recoverMessageMaster">
+                              Recover Message
+                          </button>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#permanentDeleteMaster">
+                              <i class="fa fa-trash"
+                                 aria-hidden="true"></i>
                           </button>
                       </div>
 
 
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#recoverMessageMaster">
-                          Recover Message
-                      </button>
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#permanentDeleteMaster">
-                          <i class="fa fa-trash"
-                             aria-hidden="true"></i>
-                      </button>
+                      
                   </div>
               </form>
           </div>
@@ -598,7 +468,32 @@
   </div>
 </div>
 
-<div class="modal" id="checkboxDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+@* Delete Message Modal *@
+<div class="modal modal-fade-scale masterModal" id="deleteMessageMaster" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Do you want to delete this message? - Master</h5>
+                <button type="button" class="close close-modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-left">
+                <h6>From:</h6> <div class="del_sender"></div><br />
+                <h6>To:</h6> <div class="del_recipient"></div><br />
+                <h6>Subject:</h6><div class="del_subject"></div><br />
+                <h6>Sent:</h6><div class="del_time"></div><br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-modal">Close</button>
+                <button type="button" class="btn btn-danger delMsg">Confirm Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Multiple Message Delete Modal *@
+<div class="modal masterModal" id="checkboxDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -620,7 +515,7 @@
 
 
 @* Permanently Detel Message Modal*@
-<div class="modal modal-fade-scale" id="permanentDeleteMaster" tabindex="-1" role="dialog" aria-labelledby="permanentDeleteLabel" aria-hidden="true">
+<div class="modal modal-fade-scale masterModal" id="permanentDeleteMaster" tabindex="-1" role="dialog" aria-labelledby="permanentDeleteLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -644,7 +539,7 @@
 </div>
 
 @* Recover Message Modal *@
-<div class="modal modal-fade-scale" id="recoverMessageMaster" tabindex="-1" role="dialog" aria-labelledby="recoverMessageLabel" aria-hidden="true">
+<div class="modal modal-fade-scale masterModal" id="recoverMessageMaster" tabindex="-1" role="dialog" aria-labelledby="recoverMessageLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -687,12 +582,39 @@
         })
 
         //compose message go back button
-        $("#newMsg #goback").click(function () {
+        $("#newMsg .goBack").click(function () {
             $("#inboxDetails").hide();
             $("#inboxList").show();
             $('#navTabs a[href="#inbox"]').tab('show');
 
         });
+
+
+        // Populate the delete message modal
+        function populateDelMsg(msgId) {
+            var selectedEntryId = "#msg_" + msgId;
+            console.log(selectedEntryId + " " + msgId);
+            $("#deleteMessageMaster .delMsg").attr("msg_id", msgId);
+            if ($(selectedEntryId).find(".msgFrom").length) {
+                $("#deleteMessageMaster .del_sender").html($(selectedEntryId).find(".msgFrom").html());
+            } else {
+                $("#deleteMessageMaster .del_sender").html(@Html.Raw(Json.Encode(ViewData["currentUserName"])));
+            }
+            if ($(selectedEntryId).find(".msgTo").length) {
+                $("#deleteMessageMaster .del_recipient").html($(selectedEntryId).find(".msgTo").html());
+            } else {
+                $("#deleteMessageMaster .del_recipient").html(@Html.Raw(Json.Encode(ViewData["currentUserName"])));
+            }
+            $("#deleteMessageMaster .del_time").html($(selectedEntryId).find(".msgDate").html());
+            $("#deleteMessageMaster .del_subject").html($(selectedEntryId).find(".msgSubject").html());
+        }
+
+        // Triggers population of delete message modal on click list delete button
+        $(".listDel").on("click", function () {
+            var msgId = $(this).parent().parent().data("msg_id");
+            populateDelMsg(msgId);
+        });
+
 
         //behavior of row in inboxList tab
         $(".inboxRow").on("click", "td:not(:last-child,:first-child)", function () {
@@ -731,6 +653,8 @@
 
             $("#inboxList").hide();
 
+            populateDelMsg(msgId_str);
+
             //code will populate #inboxDetails with correct msg info, hide/show speed not working, asynchronous?
             $("#inboxDetails").data("msg_id", msgId_str);
             $("#inboxDetails").data("sender_id", senderId_str);
@@ -757,7 +681,6 @@
             var senderId_str = $(this).closest(".inboxRow").data("sender_id");
             $("#newMsg #RecipientId").val(senderId_str);
             $("#newMsg #Subject").val("Re: " + $(this).closest(".inboxRow").find(".msgSubject").text().trim());
-            //$('#newMsg #Body').val($(this).closest(".inboxRow").find(".msgBody").text().trim());
             $("#newMsg #Body").val("\n\n\n=========================\n\n" + $(this).closest(".inboxRow").find(".msgDate").text().trim() + ", " + $(this).closest(".inboxRow").find(".msgFrom").text().trim() + " wrote:\n\n" + $(this).closest(".inboxRow").find(".msgBody").text().trim());
             $("#newMsg #ParentId").val(msgId_str);
             $('#navTabs a[href="#newMsg"]').tab('show');
@@ -781,13 +704,8 @@
             return this;
         };
 
-
-
-
-
-
         //behavior of inboxDetails div
-        $("#inboxDetails #goback").click(function () {
+        $("#inboxDetails .goBack").click(function () {
             $("#inboxDetails").hide();
             $("#inboxList").show();
 
@@ -811,28 +729,35 @@
             $('#newMsg #Body').scrollTop(0);
         });
 
-        $("#inboxDetails #delete").on("click", function () {
-            var msgId_str = $(this).parents("#inboxDetails").data("msg_id");
-            //if (confirm("Delete this message?")) {
-                $.ajax({
-                    type: "POST",
-                    url: "/Messages/Delete/" + msgId_str,
-                    context: this,
-                    data: {
-                        "__RequestVerificationToken":
-                            $("input[name=__RequestVerificationToken]").val(),
-                        id: msgId_str,
-                    }//,
-                    //error: function () {
-                     //   alert("An error has occurred.");
-                    //}
-                });
-            location.reload();
 
-            //}
+        // Delete Message
+        $("#deleteMessageMaster .delMsg").on("click", function () {
+            var msgId_str = $(this).attr("msg_id");
+            console.log(msgId_str);
+            $.ajax({
+                type: "POST",
+                url: "/Messages/Delete/" + msgId_str,
+                context: this,
+                data: {
+                    "__RequestVerificationToken":
+                        $("input[name=__RequestVerificationToken]").val(),
+                    id: msgId_str,
+                },
+                success: function () {
+                    var selectedMessage = "#msg_" + msgId_str;
+                    if ($(selectedMessage).hasClass("inboxRow")) {
+                        $(selectedMessage).closest(".inboxRow").remove();
+                    } else if ($(selectedMessage).hasClass("sentRow")) {
+                        $(selectedMessage).closest(".sentRow").remove();
+                    }
+                    location.reload();
+                },
+                error: function () {
+                    alert("an error has occurred.");
+                    location.reload();
+                }
+            });
         });
-
-      //$(".sentRow").on("click", "td:not(:last-child)", function () {
 
         //behavior of row on sent tab
         $(".sentRow").on("click", "td:not(:last-child,:first-child)", function () {
@@ -840,25 +765,25 @@
             var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
 
             $("#sentList").hide();
+            populateDelMsg(msgId_str);
 
             //code will populate #sentDetails with correct msg info, hide/show speed not working, asynchronous?
             $("#sentDetails").data("msg_id", msgId_str);
             $("#sentDetails .msgTo").html($(this).parent().find(".msgTo").html());
             $("#sentDetails .msgDate").html($(this).parent().find(".msgDate").html());
             $("#sentDetails .msgSubject").html($(this).parent().find(".msgSubject").html());
-            //$("#newMsg #Body").val($(this).closest(".inboxRow").find(".msgBody").text().trim()
             $("#sentDetails .msgBody").val($(this).parent().find(".msgDate").html().trim() + ", " + senderName + " wrote:\n\n" + $(this).parent().find(".msgBody").text().trim());
             $("#sentDetails").show();
         });
 
         //behavior of sentDetails div
-        $("#sentDetails #goback").click(function () {
+        $("#sentDetails .goBack").click(function () {
             $("#sentDetails").hide();
             $("#sentList").show();
         });
 
         // Populate the Permanently delete message modal
-        function populatePermDem(msgId) {
+        function populatePermDel(msgId) {
             var selectedEntryId = "#trash_" + msgId;
             $("#permanentDeleteMaster .permDelMsg").attr("msg_id", msgId);
             $("#permanentDeleteMaster .pdm_sender").html($(selectedEntryId).find(".msgFrom").html());
@@ -869,8 +794,8 @@
 
         // Triggers population of Permanently delete message modal on click list delete button
         $(".listPermDel").on("click", function () {
-            var msgId = $(this).data("id");
-            populatePermDem(msgId);
+            var msgId = $(this).parent().parent().data("msg_id");
+            populatePermDel(msgId);
         });
 
 
@@ -898,7 +823,7 @@
 
             $("#trashList").hide();
 
-            populatePermDem(msgId_str);
+            populatePermDel(msgId_str);
             populateRecover(msgId_str);
 
             //code will populate #trashDetails with correct msg info, hide/show speed not working, asynchronous?
@@ -913,13 +838,13 @@
         });
 
         //behavior of trashDetails div
-        $("#trashDetails #goback").click(function () {
+        $("#trashDetails .goBack").click(function () {
             $("#trashDetails").hide();
             $("#trashList").show();
         });
     });
 
-    
+
 
 
 
@@ -1017,7 +942,7 @@
       }
     }
 
-    //message delete function
+    //message delete function for deleted multiple messages
     function deleteMsg(msgId) {
       $.ajax({
         type: "POST",
@@ -1050,22 +975,12 @@
       });
     });
 
-    //this deletes only an individual message
-    $(".list-del").on("click", function () {
-      var msgid_str = $(this).closest(".inboxRow").data("msg_id");
-      //if (confirm("delete this message?")) {
-      deleteMsg(msgid_str);
-      //}
-    });
 
-    $(".sent-del").on("click", function () {
-        var msgid_str = $(this).closest(".sentRow").data("msg_id");
-        //if (confirm("delete this message?")) {
-        deleteMsg(msgid_str);
-        //}
-    });
-
-    function recoverMsg(msgId) {
+    // Send message data to recover
+    $(".recoverMsg").on("click", function () {
+        //var msgid_str = $(this).closest(".trashRow").data("msg_id");
+        var msgId = $(this).attr("msg_id");
+        //recoverMsg(msgid_str);
         $.ajax({
             type: "POST",
             url: "/Messages/Recover/" + msgId,
@@ -1084,16 +999,12 @@
                 location.reload();
             }
         });
-    }
-
-    $(".recoverMsg").on("click", function () {
-        //var msgid_str = $(this).closest(".trashRow").data("msg_id");
-        var msgid_str = $(this).attr("msg_id");
-        recoverMsg(msgid_str);
     });
 
-      function permDelMsg(msgId) {
-          console.log("Bye bye");
+
+    // Send message data to mark as permanently deleted
+    $(".permDelMsg").on("click", function () {
+        var msgId = $(this).attr("msg_id");
         $.ajax({
             type: "POST",
             url: "/Messages/PermDel/" + msgId,
@@ -1112,12 +1023,6 @@
                 location.reload();
             }
         });
-    }
-
-    $(".permDelMsg").on("click", function () {
-        //var msgid_str = $(this).closest(".trashRow").data("msg_id");
-        var msgid_str = $(this).attr("msg_id");
-        permDelMsg(msgid_str);
     });
 
 
