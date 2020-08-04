@@ -274,6 +274,8 @@
                     <h4 class="card-title">@item.Title</h4>
                     <h5 class="card-title">@item.Playwright</h5>
                     @*<p class="card-text">@item.Description</p>*@
+
+                    <span class="badge badge-pill badge-secondary">Season #</span>
                     <table class="w-100">
                         <tr class="production-index-tr-styling">
                             <th class="productions-index-th-styling">
@@ -317,24 +319,7 @@
                             </tr>
                         }
                     </table>
-                    <table>
-                        <tr class="production-index-tr-styling">
-                            <th class="productions-index-th-styling">
-                                @Html.DisplayNameFor(model => model.IsCurrent)
-                            </th>
-                            <td class="productions-index-td-styling">
-                                @Html.DisplayFor(modelItem => item.IsCurrent)
-                            </td>
-                        </tr>
-                        <tr class="production-index-tr-styling">
-                            <th class="productions-index-th-styling">
-                                @Html.DisplayNameFor(model => model.IsWorldPremiere)
-                            </th>
-                            <td class="productions-index-td-styling">
-                                @Html.DisplayFor(modelItem => item.IsWorldPremiere)
-                            </td>
-                        </tr>
-                    </table>
+                    @* Removed table with Current Show property, World Premier property and checkboxes *@
                     @if (User.IsInRole("Admin"))
                     {
                         @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn spaced-btn-1" });
