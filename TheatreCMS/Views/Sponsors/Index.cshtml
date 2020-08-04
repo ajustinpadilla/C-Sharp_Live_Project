@@ -18,20 +18,18 @@
 
 <!--JonthueM light Navbar for Creating & Searching Content-->
 <nav class="navbar navbar-light">
-  <ul class="navbar-nav mr-auto mt-2 mt-lg-0"> <!--PLaced outside of Form-inline class makes it stick left side-->
+  <div class="navbar-nav mr-auto mt-2 mt-lg-0">
     <button class="iconBtn" onclick="window.location.href ='@Url.Action("Create", "Sponsors")'">
       <!-- or buttons can be in their own container-->
       <i class="fa fa-plus-square fa-fw"></i>Create New<!-- This button is a link to a different page -->
     </button>
-  </ul>
-  <form class="form-inline">
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="iconBtn">
-        <i class="fa fa-search fa-fw"></i>Search <!-- This button executes a search function-->
-      </button>
-    </form>
-
+  </div>
+ 
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="iconBtn">
+      <i class="fa fa-search fa-fw"></i>Search <!-- This button executes a search function-->
+    </button>
   </form>
 </nav>
 
