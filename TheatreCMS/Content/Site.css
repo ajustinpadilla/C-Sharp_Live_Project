@@ -273,7 +273,8 @@
 .productions-index-th-styling {
     color: var(--main-bg-color);
     text-align: left;
-    width: 125px;
+    /* Removed width to display 'Matinee' and 'Evening' Showtime headers on a single line on the Productions Index View. */
+    /*width: 125px;*/
 }
 
 .productions-index-td-styling {
