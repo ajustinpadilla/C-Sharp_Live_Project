@@ -276,7 +276,9 @@
                     @*<p class="card-text">@item.Description</p>*@
 
                     @* Pill badge displaying season number of each production.*@
-                    <span class="badge badge-pill badge-secondary mb-2">Season #</span>
+                    <span class="badge badge-pill badge-secondary mb-2">
+                        Season #@item.Season
+                    </span>
                     @* Pill badge displayed when IsWorldPremiere is true.*@
                     @if (item.IsWorldPremiere == true)
                     {
