@@ -36,7 +36,7 @@ namespace TheatreCMS.Controllers
             ViewData["currentUserId"] = currentUser.Id;
             ViewData["currentUserName"] = currentUser.LastName + ", " + currentUser.FirstName;
 
-            return View(db.Messages.Where(i => i.SenderId == currentUser.Id  || i.RecipientId == currentUser.Id).OrderByDescending(i => i.SentTime).ToList());
+            return View(db.Messages.Where(i => ( i.SenderId == currentUser.Id && i.SenderPermanentDelete != true ) || ( i.RecipientId == currentUser.Id && i.RecipientPermanentDelete != true ) ).OrderByDescending(i => i.SentTime).ToList());
         }
 
         // GET: Messages/Details/5
@@ -219,11 +219,26 @@ namespace TheatreCMS.Controllers
         public ActionResult PermDelConfirmed(int id)
         {
             Message message = db.Messages.Find(id);
-            //db.Messages.Remove(message);
+
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
 
-            db.Messages.Remove(message);
+            string currentId = currentUser.Id.ToString();
+
+            if (message.SenderId == currentId)
+            {
+                message.SenderPermanentDelete = true;
+            }
+            if (message.RecipientId == currentUser.Id)
+            {
+                message.RecipientPermanentDelete = true;
+            }
+
+            if (message.SenderPermanentDelete && message.RecipientPermanentDelete)
+            {
+                db.Messages.Remove(message);
+            }
+            
 
             db.SaveChanges();
             return RedirectToAction("Index");

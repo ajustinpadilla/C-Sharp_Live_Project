@@ -14,8 +14,8 @@ namespace TheatreCMS.Models
         [Display(Name = "From")]
         [ForeignKey("Sender")]
         public string SenderId { get; set; }           //user.Id of sender
-        
-        [Display(Name ="To")]
+
+        [Display(Name = "To")]
         [ForeignKey("Recipient")]                       //currently, SenderId and RecipientId are nullable because of Cascade errors if set to required, fix with Fluent API
         public string RecipientId { get; set; }         //user.Id of recipient
         [Display(Name = "Date")]
@@ -28,6 +28,8 @@ namespace TheatreCMS.Models
 
         public DateTime? SenderDeleted { get; set; }    //datetime if sender deleted message
         public DateTime? RecipientDeleted { get; set; } // dateime if recipient deleted message
+        public bool SenderPermanentDelete { get; set; } // flags if sender permanently deleted
+        public bool RecipientPermanentDelete { get; set; } // flags if recipient permanently deleted
 
         public virtual ApplicationUser Sender { get; set; } //nav property to Sender (as User)
         public virtual ApplicationUser Recipient { get; set; }  //nav property to Recipient (as User)

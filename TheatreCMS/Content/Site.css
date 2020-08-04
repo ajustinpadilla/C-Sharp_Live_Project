@@ -3593,6 +3593,10 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     display: none;
 }
 
+#trashDetails {
+    display: none;
+}
+
 #inboxList table, #sentList table {
     table-layout: fixed;
 }
@@ -3842,6 +3846,6 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     color: rgb(228, 228, 228);
 }
 
-#checkboxDeleteModal {
-    color: black;
+#checkboxDeleteModal, #permanentDeleteMaster, #recoverMessageMaster {
+    color: var(--dark-color)
 }
