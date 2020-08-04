@@ -3,151 +3,198 @@
 
 
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="text-center mt-5">
+  <h2>Sponsors</h2>
+</div>
+
 
 @*
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+      @Html.ActionLink("Create New", "Create")
+  </p>*@
 
-<div class="iconBtnContainer">
+
+<!--JonthueM light Navbar for Creating & Searching Content-->
+<nav class="navbar navbar-light">
+  <div class="navbar-nav mr-auto mt-2 mt-lg-0">
     <button class="iconBtn" onclick="window.location.href ='@Url.Action("Create", "Sponsors")'">
-        <!-- or buttons can be in their own container-->
-        <i class="fa fa-plus-square fa-fw"></i>Create New<!-- This button is a link to a different page -->
+      <!-- or buttons can be in their own container-->
+      <i class="fa fa-plus-square fa-fw"></i>Create New<!-- This button is a link to a different page -->
     </button>
-</div>
-
-<div class="iconBtnContainer">
-    <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
-        <!-- This button is a link to a different page-->
-        <i class="fa fa-hand-point-left fa-fw"></i>Back To List<!-- This button is a link to a different page -->
-    </button>
-</div>
-
-<div class="iconBtnContainer">
+  </div>
+ 
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="iconBtn">
-        <i class="fa fa-edit fa-fw"></i>Edit<!-- This button is a link to a different page-->
+      <i class="fa fa-search fa-fw"></i>Search <!-- This button executes a search function-->
     </button>
+  </form>
+</nav>
 
-    <button class="iconBtn">
-        <i class="fa fa-info-circle fa-fw"></i>Details <!-- This button is a link to a different page-->
-    </button>
 
-    <button class="iconBtn">
-        <i class="fa fa-trash-alt fa-fw"></i>Delete<!-- This button is a link to a different page-->
-    </button><!-- This demonstrates that multiple buttons can be in the same container-->
-</div>
 
-<div class="iconBtnContainer">
-    <!-- or buttons can be in their own container-->
-    <button class="iconBtn">
-        <i class="fa fa-plus-square fa-fw"></i>Create<!-- This button is executes the create function -->
-    </button>
-</div>
 
-<div class="iconBtnContainer">
-    <button class="iconBtn">
-        <i class="fa fa-save fa-fw"></i>Save <!-- This button is executes the save function -->
-    </button>
-</div>
+<div class="mx-1">
 
-<div class="iconBtnContainer">
-    <button class="iconBtn">
-        <i class="fa fa-search fa-fw"></i>Search <!-- This button executes a search function-->
-    </button>
-</div>
-
-<table class="table-styling">
+  <table class="table-styling">
     <tr class="tr-styling">
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.LogoId)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Height)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Width)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Current)
-        </th>
-        <th class="th-styling">
-            @Html.DisplayNameFor(model => model.Link)
-        </th>
-        <th class="th-styling">
-        </th>
+      <th class="th-styling">
+        @Html.DisplayNameFor(model => model.Name)
+      </th>
+      <th class="th-styling">
+        @Html.DisplayNameFor(model => model.LogoId)
+      </th>
+      <th class="th-styling">
+        @Html.DisplayNameFor(model => model.Height)
+      </th>
+      <th class="th-styling">
+        @Html.DisplayNameFor(model => model.Width)
+      </th>
+      <th class="th-styling">
+        @Html.DisplayNameFor(model => model.Current)
+      </th>
+      <th class="th-styling">
+        @Html.DisplayNameFor(model => model.Link)
+      </th>
+      <th class="th-styling">
+      </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr class="tr-styling">
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td class="td-styling">
+      <tr class="tr-styling">
+        <td class="td-styling">
+          @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="td-styling">
 
-                <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.LogoId })" class="thumbnail_size" alt="Sponsor Logo Image" />
-                @*//  id = item.SponsorId, table="Sponsor", path = item.Logo
-
-
-                    @{
-                        string img = "";
-                        if (item.Logo != null)
-                        {
-                            byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
-                            var base64 = System.Convert.ToBase64String(thumbBytes);
-                            img = String.Format("data:image/png;base64,{0}", base64);
-                        }
-                    }
-                    <img src="@img" />*@
-
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Height)
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Width)
-            </td>
-            <td class="td-styling">
-                @Html.DisplayFor(modelItem => item.Current)
-            </td>
-            <td class="td-styling">
-                <a href="@item.Link" target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
-                
-            </td>
+          <img src="@Url.Action("DisplayPhoto", "Photo", new { id = item.LogoId })" class="thumbnail_size" alt="Sponsor Logo Image" />
+          @*//  id = item.SponsorId, table="Sponsor", path = item.Logo
 
 
-            <td class="td-styling">
-                <button class="iconBtn" onclick="window.location.href = '@Url.Action("Edit", "Sponsors", new { id = item.SponsorId })'">
-                    <i class="fa fa-edit fa-fw"></i>Edit
-                </button>
-                <button class="iconBtn" onclick="window.location.href ='@Url.Action("Details", "Sponsors", new { id = item.SponsorId })'">
-                    <i class="fa fa-info-circle fa-fw"></i>Details
-                </button>
-                <button class="iconBtn" onclick="window.location.href ='@Url.Action("Delete", "Sponsors", new { id = item.SponsorId })'">
-                    <i class="fa fa-trash-alt fa-fw"></i>Delete
-                </button>
+            @{
+                string img = "";
+                if (item.Logo != null)
+                {
+                    byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.Logo, 28, 28);
+                    var base64 = System.Convert.ToBase64String(thumbBytes);
+                    img = String.Format("data:image/png;base64,{0}", base64);
+                }
+            }
+            <img src="@img" />*@
 
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.SponsorId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.SponsorId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })*@
-            </td>
-        </tr>
+        </td>
+        <td class="td-styling">
+          @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td class="td-styling">
+          @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td class="td-styling">
+          @Html.DisplayFor(modelItem => item.Current)
+        </td>
+        <td class="td-styling">
+          <a href="@item.Link" target="_blank">@Html.DisplayFor(modelItem => item.Link)</a>
+
+        </td>
+
+
+        <td class="td-styling">
+          <button class="iconBtn" onclick="window.location.href = '@Url.Action("Edit", "Sponsors", new { id = item.SponsorId })'">
+            <i class="fa fa-edit fa-fw"></i>Edit
+          </button>
+          <button class="iconBtn" onclick="window.location.href ='@Url.Action("Details", "Sponsors", new { id = item.SponsorId })'">
+            <i class="fa fa-info-circle fa-fw"></i>Details
+          </button>
+          <button class="iconBtn" onclick="window.location.href ='@Url.Action("Delete", "Sponsors", new { id = item.SponsorId })'">
+            <i class="fa fa-trash-alt fa-fw"></i>Delete
+          </button>
+
+          @*@Html.ActionLink("Edit", "Edit", new { id = item.SponsorId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SponsorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SponsorId })*@
+        </td>
+      </tr>
     }
-</table>
-<div class="text-right">
-    <button class="iconBtn" onclick="window.location.href ='@Url.Action("Create", "Sponsors")'">
-        <!-- or buttons can be in their own container-->
-        <i class="fa fa-plus-square fa-fw"></i>Create New<!-- This button is a link to a different page -->
-    </button>
+  </table>
+
+
 </div>
+
+<div class="text-center mt-5">
+
+  <h4 class="">Sample Buttons</h4>
+
+</div>
+
+<!--JonthueM Added regular navbar for easy positioning of buttons in the center of the page-->
+<nav class="navbar navbar-expand-lg mb-4 justify-content-center">
+  <button class="navbar-toggler admin-dash-collapse-btn" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon admin-dash-collapse-btn-icon"><i class="fas fa-bars"></i></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+    <div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+
+          <button class="iconBtn">
+            <i class="fa fa-edit fa-fw"></i>Edit<!-- This button is a link to a different page-->
+          </button>
+
+        </li>
+        <li class="nav-item">
+
+          <button class="iconBtn">
+            <i class="fa fa-info-circle fa-fw"></i>Details <!-- This button is a link to a different page-->
+          </button>
+
+        </li>
+        <li class="nav-item">
+
+          <button class="iconBtn">
+            <i class="fa fa-info-circle fa-fw"></i>Details <!-- This button is a link to a different page-->
+          </button>
+
+        </li>
+        <li class="nav-item">
+          <button class="iconBtn">
+            <i class="fa fa-trash-alt fa-fw"></i>Delete<!-- This button is a link to a different page-->
+          </button><!-- This demonstrates that multiple buttons can be in the same container-->
+
+        </li>
+        <li class="nav-item">
+
+          <button class="iconBtn" onclick="window.location.href ='@Url.Action("Index", "Sponsors")'">
+            <!-- This button is a link to a different page-->
+            <i class="fa fa-hand-point-left fa-fw"></i>Back To List<!-- This button is a link to a different page -->
+          </button>
+
+        </li>
+        <li class="nav-item">
+
+          <button class="iconBtn">
+            <i class="fa fa-plus-square fa-fw"></i>Create<!-- This button is executes the create function -->
+          </button>
+
+        </li>
+        <li class="nav-item">
+
+          <button class="iconBtn">
+            <i class="fa fa-save fa-fw"></i>Save <!-- This button is executes the save function -->
+          </button>
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 <br />
 <p>
-    @Html.ActionLink("View Sponsors", "List")
+  @Html.ActionLink("View Sponsors", "List")
 </p>
 

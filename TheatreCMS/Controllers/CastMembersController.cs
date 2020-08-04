@@ -268,7 +268,10 @@ namespace TheatreCMS.Controllers
             return View(castMember);
         }
 
+
         // GET: CastMembers/Delete/5
+        [TheatreAuthorize(Roles = "Admin")]
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -288,6 +291,8 @@ namespace TheatreCMS.Controllers
         // POST: CastMembers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TheatreAuthorize(Roles = "Admin")]
+
         public ActionResult DeleteConfirmed(int? id)
         {
             CastMember castMember = db.CastMembers.Find(id);
