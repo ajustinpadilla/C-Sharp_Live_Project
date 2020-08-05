@@ -5,144 +5,145 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Production</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <div class="d-flex justify-content-center text-center">
+        <h3>Are you sure you want to delete this production?</h3>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Playwright)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Playwright)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Playwright)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Playwright)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Runtime)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Runtime)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Runtime)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OpeningDay)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Runtime)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OpeningDay)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OpeningDay)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ClosingDay)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OpeningDay)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ClosingDay)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ClosingDay)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DefaultPhoto)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ClosingDay)
+            </dd>
 
-        <dd>
-            @{
-                if (Model.DefaultPhoto != null)
-                {
-                    <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId})' alt="Production promo photo" />
+            <dt>
+                @Html.DisplayNameFor(model => model.DefaultPhoto)
+            </dt>
 
-                    @*<img src="data:image;base64,@System.Convert.ToBase64String(Model.DefaultPhoto.Photo)" />*@
+            <dd>
+                @{
+                    if (Model.DefaultPhoto != null)
+                    {
+                        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId})' alt="Production promo photo" />
 
-                    //byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
-                    //var base64 = System.Convert.ToBase64String(thumbBytes);
-                    //img = String.Format("data:image/png;base64,{0}", base64);
+                        @*<img src="data:image;base64,@System.Convert.ToBase64String(Model.DefaultPhoto.Photo)" />*@
+
+                        //byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
+                        //var base64 = System.Convert.ToBase64String(thumbBytes);
+                        //img = String.Format("data:image/png;base64,{0}", base64);
+                    }
+                    else
+                    {
+                        <p>No image yet</p>
+                    }
                 }
-                else
-                {
-                    <p>No image yet</p>
-                }
-            }
-        </dd>
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowtimeEve)
+            <dt>
+                @Html.DisplayNameFor(model => model.ShowtimeEve)
 
-        </dt>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShowtimeEve)
+            <dd>
+                @Html.DisplayFor(model => model.ShowtimeEve)
 
-        </dd>
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowtimeMat)
+            <dt>
+                @Html.DisplayNameFor(model => model.ShowtimeMat)
 
-        </dt>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShowtimeMat)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ShowtimeMat)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TicketLink)
+            <dt>
+                @Html.DisplayNameFor(model => model.TicketLink)
 
-        </dt>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TicketLink)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TicketLink)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Season)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Season)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Season)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Season)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsCurrent)
+            <dt>
+                @Html.DisplayNameFor(model => model.IsCurrent)
 
-        </dt>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsCurrent)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IsCurrent)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsWorldPremiere)
+            <dt>
+                @Html.DisplayNameFor(model => model.IsWorldPremiere)
 
-        </dt>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsWorldPremiere)
-        </dd>
-      
+            <dd>
+                @Html.DisplayFor(model => model.IsWorldPremiere)
+            </dd>
 
-    </dl>
+            <button type="submit" class="btn btn-group-small" id="form-submit">Delete</button>
+        </dl>
+    </div>
+   
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <input type="submit" value="Delete" class="btn" /> |
+<div>
+    
     @Html.ActionLink("Current Productions", "Current") |
     @Html.ActionLink("Back to List", "Index")
 </div>
