@@ -3889,10 +3889,23 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     font-size: 50px;
 }
 
-/* Productions Delete View delete button */
+/* Productions Delete Page delete button */
 .prod-delete-delete-btn {
     background-color: #db1a11;
     color: #FFFBFB;
     box-shadow: 0 2px #666;
     transform: translateY(1px);
+}
+
+/* Productions Delete Page card border */
+.prod-delete-page-border {
+    border: 2px solid;
+    border-color: #db1a11;
+}
+
+/* Production Delete Page horizontal divider tag */
+.prod-delete-horizonal-divider {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid #db1a11;
 }
