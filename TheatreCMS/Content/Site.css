@@ -3887,3 +3887,11 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     text-align: center;
     font-size: 50px;
 }
+
+/* Productions Delete View delete button */
+.prod-delete-delete-btn {
+    background-color: #db1a11;
+    color: #FFFBFB;
+    box-shadow: 0 2px #666;
+    transform: translateY(1px);
+}

@@ -6,9 +6,21 @@
 }
 
 
-    <div class="d-flex justify-content-center text-center">
-        <h3>Are you sure you want to delete this production?</h3>
-        <hr />
+    <div class="card pt-3 px-3 col-lg-6 bg-black">
+        <h3 class="py-3">Are you sure you want to delete this production?</h3>
+        @if (Model.DefaultPhoto != null)
+            {
+                <img class="card-img-top" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId})' alt="Production promo photo" />
+
+            }
+            <div class="card-body">
+                <h4 class="card-title">@Html.DisplayFor(model => model.Title)</h4>
+                <h5 class="card-title">@Html.DisplayFor(model => model.Playwright)</h5>
+                <span class="badge badge-pill badge-secondary mb-2">Season # @Html.DisplayFor(model => model.Season)</span>
+                    
+
+            </div>
+        @*<hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Title)
@@ -59,15 +71,15 @@
 
             <dt>
                 @Html.DisplayNameFor(model => model.DefaultPhoto)
-            </dt>
+            </dt>*@
 
-            <dd>
+            @*<dd>
                 @{
                     if (Model.DefaultPhoto != null)
                     {
                         <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId})' alt="Production promo photo" />
 
-                        @*<img src="data:image;base64,@System.Convert.ToBase64String(Model.DefaultPhoto.Photo)" />*@
+                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.DefaultPhoto.Photo)" />
 
                         //byte[] thumbBytes = ImageUploadController.ImageThumbnail(item.PromoPhoto, 370, 250);
                         //var base64 = System.Convert.ToBase64String(thumbBytes);
@@ -78,9 +90,9 @@
                         <p>No image yet</p>
                     }
                 }
-            </dd>
+            </dd>*@
 
-            <dt>
+            @*<dt>
                 @Html.DisplayNameFor(model => model.ShowtimeEve)
 
             </dt>
@@ -114,28 +126,11 @@
 
             <dd>
                 @Html.DisplayFor(model => model.Season)
-            </dd>
+            </dd>*@
+            @* Removed Current Show and World Premiere properties. *@
 
-            <dt>
-                @Html.DisplayNameFor(model => model.IsCurrent)
-
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.IsCurrent)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.IsWorldPremiere)
-
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.IsWorldPremiere)
-            </dd>
-
-            <button type="submit" class="btn btn-group-small" id="form-submit">Delete</button>
-        </dl>
+            <button type="submit" class="btn btn-group-sm prod-delete-delete-btn" id="form-submit">Delete</button>
+        @*</dl>*@
     </div>
    
 
