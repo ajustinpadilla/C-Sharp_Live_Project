@@ -1168,7 +1168,14 @@ div.magnify:hover {
 /*End Styling for CastMember Index View*/
 
 .nav-login li {
-    padding-right: 3rem;
+    padding-right: 1rem;
+}
+
+.nav-login .nav-button {
+    /* padding: 0.5rem !important; */
+}
+.navbar-nav .msg-stack-container {
+    height: initial;
 }
 
 #navbarSupportedContent li:hover {
@@ -1248,9 +1255,6 @@ div.magnify:hover {
 
 /*ENd Styling for CastMember Index View*/
 
-.nav-login li {
-    padding-right: 3rem;
-}
 
 #navbarSupportedContent li:hover {
     background-color: var(--main-bg-color);
@@ -1651,7 +1655,7 @@ input[type=submit] {
 .nav-button {
     color: var(--light-color);
     display: block;
-    padding: 0.5rem 1rem;
+    padding:  1rem;
     font-size: 20pt;
 }
 
@@ -3749,8 +3753,8 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     font-size: 20pt;
 }
 
-.nav-button.message-icon-container {
-    padding: 10px 0px 5px 0px;
+.nav-login .nav-button.message-icon-container {
+    padding: 0px;
 }
 
 /* BEGIN Production Index ribbon styles */
