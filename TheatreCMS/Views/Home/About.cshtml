@@ -1,6 +1,6 @@
-﻿@model IEnumerable<TheatreCMS.Models.Sponsor>
-@using TheatreCMS.Controllers
-@using TheatreCMS.Models
+﻿@using TheatreCMS.Models
+@model List<Award>
+@*@using TheatreCMS.Controllers*@
 
 @{
     ViewBag.Title = "About";
@@ -21,7 +21,7 @@
 
         @*DONATE AND TICKET LINK BUTTONS*@
         <div class="card-body">
-            <a href="https://app.arts-people.com/index.php?donation=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">DONTATE TO THEATRE VERTIGO</a>
+            <a href="https://app.arts-people.com/index.php?donation=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">DONATE TO THEATRE VERTIGO</a>
             <a href="https://app.arts-people.com/index.php?ticketing=verti" target="_blank" type="button" class="btn btn-lg ab-card-red ab-btns">TICKETING</a>
         </div>
 
@@ -90,113 +90,41 @@
         @*AWARDS AND ACHIEVEMENTS - THIS WILL BE RENDERED ONCE MVC IS CREATED*@
         <div class="card-deck m-lg-5">
             <div class="card ab-card">
-                <div class="card-body">
-                    <h5 class="card-title ab-card-red">AWARDS &amp; ACHIEVEMENTS</h5>
+              <div class="card-body">
+                <h5 class="card-title ab-card-red">AWARDS &amp; ACHIEVEMENTS</h5>
 
-                    <h6>
-                        2017<br />
-                        DRAMMY FINALIST FOR SOUND DESIGN<br />
-                        Andrew Bray - Assistance
+                @{ var previousYear = ""; }
+                @* Created foreach loop to loop through items in the Awards table and display Awards.*@
+                @foreach (var item in Model)
+                {
+                  if (previousYear != item.Year.ToString())
+                  {
+                      previousYear = item.Year.ToString();
+                      <a class="card-subtitle font-weight-bold"><u>@Html.DisplayFor(modelItem => item.Year)</u></a><br />
+                  }
 
-                        <br />
+                  <a class="card-text text-uppercase">@Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.Type) FOR @Html.DisplayFor(modelItem => item.Category) </a> <br />
 
-                        <br /> 2016<br />
-                        DRAMMY AWARD FOR OUTSTANDING ACHIEVEMENT<br />
-                        Scenic Artist, Mindy Barker - The Drunken City
+                  if (item.Recipient != null)
+                  {
+                      <p><a class="card-text font-weight-bold">@Html.DisplayFor(modelItem => item.Recipient) </a> - <a class="card-text font-italic">@Html.DisplayFor(modelItem => item.Production.Title)</a></p>
+                  }
+                  else
+                  {
+                      <a class="card-text font-italic">@Html.DisplayFor(modelItem => item.Production.Title)</a>
+                  }
 
-                        <br />
+                  if (item.OtherInfo != null)
+                  {
+                      <p class="card-text">(@Html.DisplayFor(modelItem => item.OtherInfo))</p>
+                  }
+                  else
+                  {
+                      <p></p>
+                  }
+                }
 
-                        DRAMMY FINALIST FOR SOUND DESIGN<br />
-                        Richard E. Moore - The Drunken City
-
-                        <br />
-
-                        <br />2015<br />
-                        DRAMMY AWARD FOR ENSEMBLE IN A PLAY<br />
-                        Bob: A Life in Five Acts
-
-                        <br />
-
-                        DRAMMY AWARD FOR DIRECTION<br />
-                        Matthew B. Zrebski - Bob: A Life in Five Acts
-
-                        <br />
-
-                        DRAMMY FINALIST FOR ENSEMBLE IN A PLAY<br />
-                        The School for Lies
-                        <br />
-                        <br /> 2014<br />
-                        DRAMMY AWARD FOR SOUND DESIGN<br />
-                        Annalise Albright Woods - pool (no water)
-
-                        <br />
-
-                        DRAMMY FINALIST FOR ENSEMBLE IN A PLAY<br />
-                        pool (no water)
-                        <br />
-
-
-                        <br /> 2013<br />
-                        DRAMMY AWARD FOR ACTRESS IN A SUPPORTING ROLE<br />
-                        Brooke Calcagno - Mother Courage and Her Children
-
-                        <br />
-
-                        DRAMMY AWARD FOR SOUND DESIGN<br />
-                        Richard Moore - The Velvet Sky
-
-                        <br />
-
-                        <br /> 2012<br />
-                        DRAMMY AWARD FOR ACTOR IN A LEAD ROLE<br />
-                        Mario Calcagno - The American Pilot
-
-                        <br />
-
-                        DRAMMY AWARD FOR SOUND DESIGN<br />
-                        Em Gustason - The American Pilot
-
-                        <br />
-
-                        <br /> 2010<br />
-                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
-                        Amy Newman - God's Ear
-                        <br />
-                        <br /> 2009<br />
-                        DRAMMY AWARD FOR SUPPORTING ACTOR<br />
-                        Garland Lyons - Romance
-
-                        <br />
-
-                        <br /> 2008<br />
-                        DRAMMY AWARD FOR OUTSTANDING PUPPETEERING<br />
-                        The Long Christmas Ride Home                                 in collaboration with Tears of Joy Theatre)
-
-
-
-                        <br /> 2007<br />
-                        DRAMMY AWARD FOR SET DESIGN<br />
-                        Ben Plont - Escape from Happiness
-                        <br />
-
-                        <br /> 2001<br />
-                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
-                        Andrea White - Hellcab
-                        <br />
-                        DRAMMY AWARD FOR SUPPORTING ACTRESS<br />
-                        Lorraine Bahr - Lion in the Streets
-
-                        <br />
-
-                        <br /> 2000<br />
-                        DRAMMY AWARD FOR SUPPORTING ACTOR<br />
-                        Ted Schulz - The Grey Zone
-                        <br />
-                        DRAMMY AWARD FOR OUTSTANDING DIRECTION<br />
-                        Michael Griggs - The Grey Zone
-                    </h6>
-
-                </div>
+              </div>
             </div>
         </div>
 

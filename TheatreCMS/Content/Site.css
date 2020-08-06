@@ -273,7 +273,8 @@
 .productions-index-th-styling {
     color: var(--main-bg-color);
     text-align: left;
-    width: 125px;
+    /* Modified width to display 'Matinee' and 'Evening' Showtime headers on a single line on the Productions Index View.*/
+    width: 144px;
 }
 
 .productions-index-td-styling {
@@ -3625,6 +3626,10 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 }
 
 
+.toBeDeleted {
+    margin-right: 2rem;
+}
+
 /* End Message Index Styling */
 
 
@@ -3810,3 +3815,76 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 
 /*============================END PRODUCTION DISPLAY EDIT PAGE==========================================*/
+
+
+.top-check, .to-be-deleted {
+    background-color: #B9B9B9;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.07), inset 0px -15px 10px -12px rgba(0,0,0,0.07);
+    height: 18px;
+    width: 18px;
+}
+
+
+.btn-danger.msg-del-btn {
+    height: 100%;
+    padding: .75rem;
+    color: white;
+}
+
+.btn-danger.msg-del-btn:hover {
+    color: white;
+}
+
+.btn-danger.msg-del-btn.inactive {
+    padding: .7rem;
+    background: grey;
+    opacity: .8;
+    pointer-events: none;
+    color: rgb(228, 228, 228);
+}
+
+#checkboxDeleteModal {
+    color: black;
+}
+/*.modal-fade-scale.hide {
+    opacity: 0;
+    transform: scale(0) translateY(-100%);
+    -webkit-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+    cursor: default;
+}*/
+
+/* BEGIN Photo Delete styles */
+#photo-delete-btn {
+    background-color: var(--main-bg-color);
+}
+/* END Photo Delete styles */
+
+.Display-linkspage-details {
+    background-color: #d6972a;
+    font-family: cursive;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.Display-container-title-details {
+    width: 600px;
+    padding: 25px;
+    border: solid red;
+    outline-width: thick;
+    text-align: center;
+    border-width: 15px;
+    margin: auto;
+}
+
+
+
+.Display-title-details {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding-bottom: inherit;
+    margin-left: auto;
+    text-align: center;
+    font-size: 50px;
+}

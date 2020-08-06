@@ -12,6 +12,7 @@ using TheatreCMS.Areas.Subscribers.Models;
 using System.Text.RegularExpressions;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Ajax.Utilities;
 
 namespace TheatreCMS.Controllers
 {
@@ -95,7 +96,10 @@ namespace TheatreCMS.Controllers
 
             ViewBag.CastMembers = castMembers.ToList();
 
-            return View();
+            var dbAwards = new ApplicationDbContext();
+            var awards = dbAwards.Awards.ToList();
+                        
+            return View(awards);
         }
 
         public ActionResult Contact()
