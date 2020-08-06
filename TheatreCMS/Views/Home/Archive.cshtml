@@ -425,13 +425,25 @@
                 string currentHeading = "heading" + i.ToString();
                 string currentBody = "season" + i.ToString();
                 <div class="card bg-black">
-                    <!-- header -->
+                    <!-- header  -->
                     <div class="card-header text-center" id="@currentHeading">
-                        <h2 class="mb-0">
-                            <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
-                                @seasonYears[i]
-                            </button>
-                        </h2>
+                        @if (Model.Any(x => x.Season == i))
+                        {
+                            <h2 class="mb-0">
+                                <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
+                                    @seasonYears[i]
+                                </button>
+                            </h2>
+                        }
+                        else
+                        {
+                            <h2 class="mb-0">
+                                <button disabled class="btn btn-block text-white">
+                                    @seasonYears[i]
+                                </button>
+                            </h2>
+                        }
+
                     </div>
                     <!-- Collapsable body -->
                     <div id="@currentBody" class="collapse" aria-labelledby="@currentHeading" data-parent="#pastProductions">
