@@ -33,6 +33,7 @@ namespace TheatreCMS
             SeedParts();
             SeedAwards();
             SeedSponsors();
+            SeedCalendarEvents();
         }
 
 
@@ -1870,6 +1871,63 @@ namespace TheatreCMS
             sponsor.ForEach(Sponsor => context.Sponsors.AddOrUpdate(c => c.Name, Sponsor));
             context.SaveChanges();
         }
+
+        /* Method to seed the calendar index view with a couple events, both matinee and evening events. */
+        private void SeedCalendarEvents()
+        {
+            var matineeCalendarEvent = new List<CalendarEvent>
+            {
+                new CalendarEvent
+                {
+                    Title = "Hamilton",
+			        StartDate = new DateTime(2020, 8, 07, 12, 00, 00),
+                    EndDate = new DateTime(2020, 8, 07, 13, 30, 00),
+                    TicketsAvailable = 25,
+                    Color = "#db1a11",
+                    AllDay = false,
+                    ProductionId = context.Productions.Where(p => p.Title == "Hamilton").FirstOrDefault().ProductionId,
+                },
+                new CalendarEvent
+                {
+                    Title = "Phantom of the Opera",
+                    StartDate = new DateTime(2020, 8, 10, 12, 00, 00),
+                    EndDate = new DateTime(2020, 8, 10, 13, 30, 00),
+                    TicketsAvailable = 40,
+                    Color = "#db1a11",
+                    AllDay = false,
+                    ProductionId = context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault().ProductionId,
+                }
+            };
+
+            var eveningCalendarEvent = new List<CalendarEvent>
+            {
+                new CalendarEvent
+                {
+                    Title = "Hamilton",
+                    StartDate = new DateTime(2020, 8, 07, 20, 00, 00),
+                    EndDate = new DateTime(2020, 8, 07, 21, 30, 00),
+                    TicketsAvailable = 50,
+                    Color = "#db1a11",
+                    AllDay = false,
+                    ProductionId = context.Productions.Where(p => p.Title == "Hamilton").FirstOrDefault().ProductionId,
+                },
+                 new CalendarEvent
+                {
+                    Title = "Phantom of the Opera",
+                    StartDate = new DateTime(2020, 8, 10, 20, 00, 00),
+                    EndDate = new DateTime(2020, 8, 10, 21, 30, 00),
+                    TicketsAvailable = 20,
+                    Color = "#db1a11",
+                    AllDay = false,
+                    ProductionId = context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault().ProductionId,
+                }
+            };
+
+            matineeCalendarEvent.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => c.Title, CalendarEvent));
+            //eveningCalendarEvent.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => new { c.Title }, CalendarEvent));
+            context.SaveChanges();
+        }
+
 
     }
 }
