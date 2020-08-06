@@ -121,15 +121,24 @@ namespace TheatreCMS.Controllers
             var photo = new Photo();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                photo.Title = title;
-                Image image = Image.FromStream(file.InputStream, true, true);
-                photo.OriginalHeight = image.Height;
-                photo.OriginalWidth = image.Width;
-                var converter = new ImageConverter();
-                photo.PhotoFile = (byte[])converter.ConvertTo(image, typeof(byte[]));
-                db.Photo.Add(photo);
-                db.SaveChanges();
-                return photo.PhotoId;
+                byte[] photoArray = ImageBytes(file);
+                if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
+                {
+                    var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
+                    return id;
+                }
+                else
+                {
+                    photo.Title = title;
+                    Image image = Image.FromStream(file.InputStream, true, true);
+                    photo.OriginalHeight = image.Height;
+                    photo.OriginalWidth = image.Width;
+                    var converter = new ImageConverter();
+                    photo.PhotoFile = (byte[])converter.ConvertTo(image, typeof(byte[]));
+                    db.Photo.Add(photo);
+                    db.SaveChanges();
+                    return photo.PhotoId;
+                }
             }
         }
 
