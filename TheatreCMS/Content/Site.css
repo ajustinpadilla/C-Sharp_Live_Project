@@ -3586,23 +3586,15 @@ hr.Isaiah_castline { /*Styling the seperation line*/
         font-weight: bold;
     }
 
-#inboxDetails {
+#inboxDetails, #sentDetails, #trashDetails {
     display: none;
 }
 
-#sentDetails {
-    display: none;
-}
-
-#trashDetails {
-    display: none;
-}
-
-#inboxList table, #sentList table {
+#inboxList table, #sentList table, #trashList table {
     table-layout: fixed;
 }
 
-.inboxRow .msgSubject, .sentRow .msgSubject {
+.inboxRow .msgSubject, .sentRow .msgSubject, .trashRow .msgSubject {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -3615,7 +3607,12 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 #sentDetails .msgSubject,
 #sentDetails .msgBody,
 #sentDetails .msgTo,
-#sentDetails .msgDate {
+#sentDetails .msgDate,
+#trashDetails .msgTo, 
+#trashDetails .msgFrom, 
+#trashDetails .msgSubject,
+#trashDetails .msgBody, 
+#trashDetails .msgDate{
     background-color: rgba(240, 240, 240, 0.5);
     border: 1px solid lightgray;
     border-radius: 5px;
@@ -3624,7 +3621,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 #inboxDetails .msgBody,
 #sentDetails .msgBody,
-#newMsg #Body {
+#newMsg #Body, #trashDetails .msgBody {
     min-height: 300px;
     height: 300px;
 }
@@ -3847,6 +3844,47 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     color: rgb(228, 228, 228);
 }
 
-.masterModal {
-    color: var(--dark-color)
+#checkboxDeleteModal {
+    color: black;
 }
+/*.modal-fade-scale.hide {
+    opacity: 0;
+    transform: scale(0) translateY(-100%);
+    -webkit-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+    cursor: default;
+}*/
+
+/* BEGIN Photo Delete styles */
+#photo-delete-btn {
+    background-color: var(--main-bg-color);
+}
+/* END Photo Delete styles */
+
+.Display-linkspage-details {
+    background-color: #d6972a;
+    font-family: cursive;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.Display-container-title-details {
+    width: 600px;
+    padding: 25px;
+    border: solid red;
+    outline-width: thick;
+    text-align: center;
+    border-width: 15px;
+    margin: auto;
+}
+
+
+
+.Display-title-details {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding-bottom: inherit;
+    margin-left: auto;
+    text-align: center;
+    font-size: 50px;
