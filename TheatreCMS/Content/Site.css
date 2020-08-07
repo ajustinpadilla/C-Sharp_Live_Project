@@ -1171,11 +1171,11 @@ div.magnify:hover {
     padding-right: 0.5rem;
 }
 
-.nav-login .nav-button {
-    /* padding: 0.5rem !important; */
-}
+
 .navbar-nav .msg-stack-container {
     height: initial;
+    margin-top: 0.5rem;
+    vertical-align: top;
 }
 
 #navbarSupportedContent li:hover {
@@ -1655,7 +1655,7 @@ input[type=submit] {
 .nav-button {
     color: var(--light-color);
     display: block;
-    padding:  1rem;
+    padding:  0.5rem;
     font-size: 20pt;
 }
 
@@ -3751,10 +3751,6 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 .fa-envelope.envelope-icon {
     font-size: 20pt;
-}
-
-.nav-login .nav-button.message-icon-container {
-    padding: 0px;
 }
 
 /* BEGIN Production Index ribbon styles */
