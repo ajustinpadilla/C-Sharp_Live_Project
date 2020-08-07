@@ -3891,8 +3891,8 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 /* Productions Delete Page delete button */
 .prod-delete-delete-btn {
-    background-color: #db1a11;
-    color: #FFFBFB;
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
     box-shadow: 0 2px #666;
     transform: translateY(1px);
 }
@@ -3900,12 +3900,15 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 /* Productions Delete Page card border */
 .prod-delete-page-border {
     border: 2px solid;
-    border-color: #db1a11;
+    border-color: var(--main-bg-color);
 }
 
 /* Production Delete Page horizontal divider tag */
 .prod-delete-horizonal-divider {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-top: 1px solid #db1a11;
+    border-top: 1px solid var(--main-bg-color);
+}
+
+/* Production Delete table header width */
+.prod-delete-th-width {
+    width: 157px;
 }
