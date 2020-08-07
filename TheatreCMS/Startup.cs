@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.Ajax.Utilities;
 using System.Web.Caching;
+using System.Data.Entity;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
 namespace TheatreCMS
@@ -1874,7 +1875,45 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-        /* Method to seed the calendar index view with a couple events, both matinee and evening events. */
+        /* Method to seed mock entities into the RentalRequest table. */
+        private void SeedRentalRequests()
+        {
+            var rentalRequests = new List<RentalRequest>
+            {
+                new RentalRequest
+                {
+                    ContactPerson = "Tim Smith",
+                    ContactPhoneNumber = "(555)-123-4567",
+                    ContactEmail = "timsmith@act.com",
+                    Company = "Act Pack",
+                    StartTime = new DateTime(2020, 8, 19, 11, 00, 00),
+                    EndTime = new DateTime(2020, 8, 19, 12, 30, 00),
+                    ProjectInfo = "Rehearsal space needed for the afternoon for an upcoming production.",
+                    Requests = "Borrow lighting equipment.",
+                    RentalCode = 1,
+                    Accepted = true,
+                    ContractSigned = true,
+                },
+                new RentalRequest
+                {
+                    ContactPerson = "Sarah Parker",
+                    ContactPhoneNumber = "(555)-654-4567",
+                    ContactEmail = "sarahjparker@director.com",
+                    Company = "Direct Directors",
+                    StartTime = new DateTime(2020, 8, 14, 10, 00, 00),
+                    EndTime = new DateTime(2020, 8, 14, 11, 30, 00),
+                    ProjectInfo = "Meeting space to interview potential directors.",
+                    Requests = "none",
+                    RentalCode = 2,
+                    Accepted = true,
+                    ContractSigned = true,
+                }
+            };
+            rentalRequests.ForEach(RentalRequest => context.RentalRequests.AddOrUpdate(c => c.ContactPerson, RentalRequest));
+            context.SaveChanges();
+        }
+
+        /* Method to seed the calendar index view with both matinee, evening events, and rental events. */
         private void SeedCalendarEvents()
         {
             var matineeCalendarEvent = new List<CalendarEvent>
@@ -1900,6 +1939,25 @@ namespace TheatreCMS
                     ProductionId = context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault().ProductionId,
                 }
             };
+            /* Iterate through the list. */
+            matineeCalendarEvent.ForEach(CalendarEvent =>
+            {
+                /* Where the calendar event title match it will return the query data or null if it doesn't exist. */
+                var tempMatEvent = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
+                /* Where it doesn't return null */
+                if (tempMatEvent != null)
+                {
+                    /* Update the calendar event EventId with the Id assigned to tempMatEvent */
+                    CalendarEvent.EventId = tempMatEvent.EventId;
+                }
+                /* Runs AddOrUpdate. If tempMatEvent returns null a new record will be added otherwise if it returns not null it will update based off 
+                 * of the EventID assigned in the if statement. */
+                context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
+            });
+            context.SaveChanges();
+
+            //context.CalendarEvent.AddOrUpdate(c => new { c.EventId, c.Title }, CalendarEvent));
+            //context.SaveChanges();
 
             var eveningCalendarEvent = new List<CalendarEvent>
             {
@@ -1924,6 +1982,20 @@ namespace TheatreCMS
                     ProductionId = context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault().ProductionId,
                 }
             };
+            eveningCalendarEvent.ForEach(CalendarEvent =>
+            {
+                var tempEveningEvent = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
+                if (tempEveningEvent != null)
+                {
+                    CalendarEvent.EventId = tempEveningEvent.EventId;
+                }
+                context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
+            });
+            context.SaveChanges();
+
+            //eveningCalendarEvent.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => new { c.EventId, c.Title }, CalendarEvent));
+            //context.SaveChanges();
+
 
             var rentalEvents = new List<CalendarEvent>
             {
@@ -1946,48 +2018,19 @@ namespace TheatreCMS
                     RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Sarah Parker").FirstOrDefault().RentalRequestId,
                 }
             };
-            matineeCalendarEvent.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => c.Title, CalendarEvent));
-            eveningCalendarEvent.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => new { c.Title, c.StartDate }, CalendarEvent));
-            rentalEvents.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => new { c.Title, c.StartDate }, CalendarEvent));
-            context.SaveChanges();
-        }
-
-        /* Method to seed mock entities into the RentalRequest table. */
-        private void SeedRentalRequests()
-        {
-            var rentalRequests = new List<RentalRequest>
+            rentalEvents.ForEach(CalendarEvent =>
             {
-                new RentalRequest
+                var tempRental = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
+                if (tempRental != null)
                 {
-                    ContactPerson = "Tim Smith",
-                    ContactPhoneNumber = "555-123-456",
-                    ContactEmail = "timsmith@act.com",
-                    Company = "Act Pack",
-                    StartTime = new DateTime(2020, 8, 19, 11, 00, 00),
-                    EndTime = new DateTime(2020, 8, 19, 12, 30, 00),
-                    ProjectInfo = "Rehearsal space needed for the afternoon for an upcoming production.",
-                    Requests = "Borrow lighting equipment.",
-                    RentalCode = 1,
-                    Accepted = true,
-                    ContractSigned = true,
-                },
-                new RentalRequest
-                {
-                    ContactPerson = "Sarah Parker",
-                    ContactPhoneNumber = "555-654-456",
-                    ContactEmail = "sarahjparker@director.com",
-                    Company = "Direct Directors",
-                    StartTime = new DateTime(2020, 8, 14, 10, 00, 00),
-                    EndTime = new DateTime(2020, 8, 14, 11, 30, 00),
-                    ProjectInfo = "Meeting space to interview potential directors.",
-                    Requests = "none",
-                    RentalCode = 2,
-                    Accepted = true,
-                    ContractSigned = true,
+                    CalendarEvent.EventId = tempRental.EventId;
                 }
-            };
-            rentalRequests.ForEach(RentalRequest => context.RentalRequests.AddOrUpdate(c => c.ContactPerson, RentalRequest));
+                context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
+            });
             context.SaveChanges();
+
+            //rentalEvents.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => new { c.EventId, c.Title }, CalendarEvent));
+            //context.SaveChanges();
         }
 
     }
