@@ -1913,16 +1913,18 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-        /* Method to seed the calendar index view with both matinee, evening events, and rental events. */
+        /* Method to seed the calendar index view with matinee events, evening events, and rental events. */
         private void SeedCalendarEvents()
         {
-            var matineeCalendarEvent = new List<CalendarEvent>
+            var matineeCalendarEvents = new List<CalendarEvent>
             {
                 new CalendarEvent
                 {
                     Title = "Hamilton",
-			        StartDate = new DateTime(2020, 8, 07, 12, 00, 00),
-                    EndDate = new DateTime(2020, 8, 07, 13, 30, 00),
+                    /* Using DateTime.Now.Year and DateTime.Now.Month will automatically recreate these same events for each
+                     * year and month keeping it on the same relative day across different months. */
+			        StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 07, 12, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 07, 13, 30, 00),
                     TicketsAvailable = 25,
                     Color = "#db1a11",
                     AllDay = false,
@@ -1931,8 +1933,8 @@ namespace TheatreCMS
                 new CalendarEvent
                 {
                     Title = "Phantom of the Opera",
-                    StartDate = new DateTime(2020, 8, 10, 12, 00, 00),
-                    EndDate = new DateTime(2020, 8, 10, 13, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10, 12, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10, 13, 30, 00),
                     TicketsAvailable = 40,
                     Color = "#db1a11",
                     AllDay = false,
@@ -1940,7 +1942,7 @@ namespace TheatreCMS
                 }
             };
             /* Iterate through the list. */
-            matineeCalendarEvent.ForEach(CalendarEvent =>
+            matineeCalendarEvents.ForEach(CalendarEvent =>
             {
                 /* Where the calendar event title match it will return the query data or null if it doesn't exist. */
                 var tempMatEvent = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
@@ -1956,16 +1958,13 @@ namespace TheatreCMS
             });
             context.SaveChanges();
 
-            //context.CalendarEvent.AddOrUpdate(c => new { c.EventId, c.Title }, CalendarEvent));
-            //context.SaveChanges();
-
-            var eveningCalendarEvent = new List<CalendarEvent>
+            var eveningCalendarEvents = new List<CalendarEvent>
             {
                 new CalendarEvent
                 {
                     Title = "Hamilton",
-                    StartDate = new DateTime(2020, 8, 07, 20, 00, 00),
-                    EndDate = new DateTime(2020, 8, 07, 21, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 07, 20, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 07, 21, 30, 00),
                     TicketsAvailable = 50,
                     Color = "#db1a11",
                     AllDay = false,
@@ -1974,15 +1973,15 @@ namespace TheatreCMS
                  new CalendarEvent
                 {
                     Title = "Phantom of the Opera",
-                    StartDate = new DateTime(2020, 8, 10, 20, 00, 00),
-                    EndDate = new DateTime(2020, 8, 10, 21, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10, 20, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10, 21, 30, 00),
                     TicketsAvailable = 20,
                     Color = "#db1a11",
                     AllDay = false,
                     ProductionId = context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault().ProductionId,
                 }
             };
-            eveningCalendarEvent.ForEach(CalendarEvent =>
+            eveningCalendarEvents.ForEach(CalendarEvent =>
             {
                 var tempEveningEvent = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
                 if (tempEveningEvent != null)
@@ -1993,17 +1992,13 @@ namespace TheatreCMS
             });
             context.SaveChanges();
 
-            //eveningCalendarEvent.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => new { c.EventId, c.Title }, CalendarEvent));
-            //context.SaveChanges();
-
-
             var rentalEvents = new List<CalendarEvent>
             {
                 new CalendarEvent
                 {
                     Title = "Private Event",
-                    StartDate = new DateTime(2020, 8, 19, 11, 00, 00),
-                    EndDate = new DateTime(2020, 8, 19, 12, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 19, 11, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 19, 12, 30, 00),
                     Color = "#4287f5",
                     AllDay = false,
                     RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Tim Smith").FirstOrDefault().RentalRequestId,
@@ -2011,8 +2006,8 @@ namespace TheatreCMS
                 new CalendarEvent
                 {
                     Title = "Private Event",
-                    StartDate = new DateTime(2020, 8, 14, 10, 00, 00),
-                    EndDate = new DateTime(2020, 8, 14, 11, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14, 10, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14, 11, 30, 00),
                     Color = "#4287f5",
                     AllDay = false,
                     RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Sarah Parker").FirstOrDefault().RentalRequestId,
@@ -2028,9 +2023,6 @@ namespace TheatreCMS
                 context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
             });
             context.SaveChanges();
-
-            //rentalEvents.ForEach(CalendarEvent => context.CalendarEvent.AddOrUpdate(c => new { c.EventId, c.Title }, CalendarEvent));
-            //context.SaveChanges();
         }
 
     }
