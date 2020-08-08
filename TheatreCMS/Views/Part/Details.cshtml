@@ -25,7 +25,13 @@
         </dt>
 
         <dd>
-            <a href="@Url.Action("Details", "CastMembers", new { id = Model.Person.CastMemberID})" id="par-details-link">@Html.DisplayFor(model => model.Person.Name)</a>
+            @if (Model.Person != null)
+            {
+                <a href="@Url.Action("Details", "CastMembers", new { id = Model.Person.CastMemberID })" id="par-details-link">@Html.DisplayFor(model => model.Person.Name)</a>
+            } else
+            {
+                <span>Uncast</span>
+            }
         </dd>
 
         <dt>

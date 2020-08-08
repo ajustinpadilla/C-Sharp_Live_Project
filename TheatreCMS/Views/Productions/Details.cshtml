@@ -113,14 +113,16 @@
                   <dl>
                     @foreach (var item in parts)
                     {
-                      if (item != null && part.ToString() == "Actor")
-                      {
+                        if (item != null && part.ToString() == "Actor")
+                        {
                         <dd class="col">
                           <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
                         </dd>
-                        <dd class="col">
-                          <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID">@item.Person.Name.ToString()</a></p>
-                        </dd>
+                        if (item.Person != null) { 
+                            <dd class="col">
+                              <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID">@item.Person.Name.ToString()</a></p>
+                            </dd>
+                        }
                       }
                       else if (item != null)
                       {
@@ -352,12 +354,15 @@
                         <dd class="col">
                           <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
                         </dd>
+                            if (item.Person != null)
+                            {
                         <dd class="col">
                           <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID"><i>@item.Person.Name.ToString()</i></a></p>
                         </dd>
-                      }
-                      else if (item != null)
-                      {
+                            }
+                        }
+                        else if (item != null)
+                        {
                         <dd class="col">
                           <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
                         </dd>
