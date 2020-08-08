@@ -3586,19 +3586,15 @@ hr.Isaiah_castline { /*Styling the seperation line*/
         font-weight: bold;
     }
 
-#inboxDetails {
+#inboxDetails, #sentDetails, #trashDetails {
     display: none;
 }
 
-#sentDetails {
-    display: none;
-}
-
-#inboxList table, #sentList table {
+#inboxList table, #sentList table, #trashList table {
     table-layout: fixed;
 }
 
-.inboxRow .msgSubject, .sentRow .msgSubject {
+.inboxRow .msgSubject, .sentRow .msgSubject, .trashRow .msgSubject {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -3611,7 +3607,12 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 #sentDetails .msgSubject,
 #sentDetails .msgBody,
 #sentDetails .msgTo,
-#sentDetails .msgDate {
+#sentDetails .msgDate,
+#trashDetails .msgTo, 
+#trashDetails .msgFrom, 
+#trashDetails .msgSubject,
+#trashDetails .msgBody, 
+#trashDetails .msgDate{
     background-color: rgba(240, 240, 240, 0.5);
     border: 1px solid lightgray;
     border-radius: 5px;
@@ -3620,7 +3621,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 #inboxDetails .msgBody,
 #sentDetails .msgBody,
-#newMsg #Body {
+#newMsg #Body, #trashDetails .msgBody {
     min-height: 300px;
     height: 300px;
 }
@@ -3887,4 +3888,3 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     margin-left: auto;
     text-align: center;
     font-size: 50px;
-}

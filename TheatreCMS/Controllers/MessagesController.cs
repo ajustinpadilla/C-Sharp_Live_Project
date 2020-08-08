@@ -35,7 +35,8 @@ namespace TheatreCMS.Controllers
             ViewData["listOfUsers"] = new SelectList(UserList, "Value", "Text");
             ViewData["currentUserId"] = currentUser.Id;
             ViewData["currentUserName"] = currentUser.LastName + ", " + currentUser.FirstName;
-            return View(db.Messages.Where(i => i.SenderId == currentUser.Id || i.RecipientId == currentUser.Id).OrderByDescending(i => i.SentTime).ToList());
+
+            return View(db.Messages.Where(i => ( i.SenderId == currentUser.Id && i.SenderPermanentDelete != true ) || ( i.RecipientId == currentUser.Id && i.RecipientPermanentDelete != true ) ).OrderByDescending(i => i.SentTime).ToList());
         }
 
         // GET: Messages/Details/5
@@ -136,10 +137,115 @@ namespace TheatreCMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Message message = db.Messages.Find(id);
-            db.Messages.Remove(message);
+            //db.Messages.Remove(message);
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+            string currentId = currentUser.Id.ToString();
+
+            if (message.SenderId == currentId)
+            {
+                message.SenderDeleted = DateTime.Now;
+            } 
+            if (message.RecipientId == currentUser.Id)
+            {
+                message.RecipientDeleted = DateTime.Now;
+            }
+            
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        // GET: Messages/Recover/5
+        public ActionResult Recover(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Message message = db.Messages.Find(id);
+            if (message == null)
+            {
+                return HttpNotFound();
+            }
+            return View(message);
+        }
+
+        // POST: Messages/Recover/5
+        [HttpPost, ActionName("Recover")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RecoverConfirmed(int id)
+        {
+            Message message = db.Messages.Find(id);
+            //db.Messages.Remove(message);
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+            string currentId = currentUser.Id.ToString();
+
+            if (message.SenderId == currentId)
+            {
+                message.SenderDeleted = null;
+            }
+            if (message.RecipientId == currentUser.Id)
+            {
+                message.RecipientDeleted = null;
+            }
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        // GET: Messages/PermDel/5
+        public ActionResult PermDel(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Message message = db.Messages.Find(id);
+            if (message == null)
+            {
+                return HttpNotFound();
+            }
+            return View(message);
+        }
+
+        // POST: Messages/PermDel/5
+        [HttpPost, ActionName("PermDel")]
+        [ValidateAntiForgeryToken]
+        public ActionResult PermDelConfirmed(int id)
+        {
+            Message message = db.Messages.Find(id);
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+            string currentId = currentUser.Id.ToString();
+
+            if (message.SenderId == currentId)
+            {
+                message.SenderPermanentDelete = true;
+            }
+            if (message.RecipientId == currentUser.Id)
+            {
+                message.RecipientPermanentDelete = true;
+            }
+
+            if (message.SenderPermanentDelete && message.RecipientPermanentDelete)
+            {
+                db.Messages.Remove(message);
+            }
+            
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {
