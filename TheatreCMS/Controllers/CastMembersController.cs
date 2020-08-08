@@ -301,7 +301,7 @@ namespace TheatreCMS.Controllers
             if (castMember.CastMemberPersonID != null)
                 db.Users.Find(castMember.CastMemberPersonID).CastMemberUserID = 0;
 
-            // Before cast memeber is removed, search for associated parts and set Person_CastMemberId to 0
+            // Before cast memeber is removed, search for associated parts and set Person_CastMemberId to NULL
             foreach (var i in db.Parts.Where(p => p.Person.CastMemberID == id))
             {
                 i.Person = null;
