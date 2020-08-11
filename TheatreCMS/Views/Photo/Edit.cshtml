@@ -1,11 +1,14 @@
 ﻿@model TheatreCMS.Models.Photo
-
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
 
+@{
+    // Create a global scope variable to assign the output of the FindDependencies().HasDependencies method.
+    var hasDependencies = TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).HasDependencies;
+}
 
 @using (Html.BeginForm("Edit", "Photo", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -22,10 +25,10 @@
                     <img class="medium_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
                     <p class="font-weight-bolder lead">Height :  @Html.DisplayFor(model => model.OriginalHeight) px | Width : @Html.DisplayFor(model => model.OriginalWidth) px</p>
                     @*@Html.LabelFor(model => model.PhotoFile, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.PhotoFile, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-danger" })
-            </div>*@
+                        <div class="col-md-10 formBox">
+                            @Html.EditorFor(model => model.PhotoFile, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-danger" })
+                        </div>*@
                 </div>
 
                 <div class="form-group">
@@ -36,21 +39,22 @@
                         @*@Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-danger" });*@
                     </div>
                 </div>
-                @*<div class="form-group">
-            @Html.LabelFor(model => model.OriginalHeight, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.OriginalHeight, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OriginalHeight, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OriginalWidth, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-            <div class="col-md-10 formBox">
-                @Html.EditorFor(model => model.OriginalWidth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OriginalWidth, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.OriginalHeight, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                        <div class="col-md-10 formBox">
+                            @Html.EditorFor(model => model.OriginalHeight, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.OriginalHeight, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OriginalWidth, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                        <div class="col-md-10 formBox">
+                            @Html.EditorFor(model => model.OriginalWidth, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.OriginalWidth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
@@ -59,8 +63,10 @@
                         @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
                 <!--Will display warning message only if the photo has dependencies-->
-                @if (TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).HasDependencies == true)
+                @* Use variable hasDependencies to check for an evaluation of true. *@
+                @if (hasDependencies == true)
                 {
                     <!-- Button trigger modal -->
                     <button type="button" class="submitButton2" data-toggle="modal" data-target="#exampleModalCenter">
@@ -102,7 +108,9 @@
         </div>
     </div>
 }
-@if (TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).HasDependencies == false)
+
+@* Use variable hasDependencies to check for an evaluation of false. *@
+@if (hasDependencies == false)
 {
     <dt>
         This photo is not being used
@@ -114,13 +122,18 @@ else
         This photo is being used by the following items:
     </dt>
     <dd>
-
-        @foreach (var production in TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).ProductionPhotos)
+        @{
+            // Create a local variable to assign the output of the FindDependencies() method.
+            var dependencies = TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId);
+        }
+        @* Foreach production in the dependencies.ProductionPhotos List, get the title and season of each production. *@
+        @foreach (var production in dependencies.ProductionPhotos)
         {
             @production.Title; <text> - Season: </text>
             @production.Production.Season; <br />
         }
-        @foreach (var sponsor in TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).Sponsors)
+        @* Foreach sponsor in the dependencies.Sponsors List, get the name of each sponsor. *@
+        @foreach (var sponsor in dependencies.Sponsors)
         {
             @sponsor.Name <br />
         }
