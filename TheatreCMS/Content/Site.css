@@ -3888,3 +3888,28 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     margin-left: auto;
     text-align: center;
     font-size: 50px;
+}
+
+/* Productions Delete Page delete button */
+.prod-delete-delete-btn {
+    background-color: var(--main-bg-color);
+    color: var(--light-color);
+    box-shadow: 0 2px #666;
+    transform: translateY(1px);
+}
+
+/* Productions Delete Page card border */
+.prod-delete-page-border {
+    border: 2px solid;
+    border-color: var(--main-bg-color);
+}
+
+/* Production Delete Page horizontal divider tag */
+.prod-delete-horizonal-divider {
+    border-top: 1px solid var(--main-bg-color);
+}
+
+/* Production Delete table header width */
+.prod-delete-th-width {
+    width: 157px;
+}
