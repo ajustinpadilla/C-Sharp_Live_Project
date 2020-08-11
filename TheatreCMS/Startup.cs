@@ -1923,8 +1923,8 @@ namespace TheatreCMS
                     Title = "Hamilton",
                     /* Using DateTime.Now.Year and DateTime.Now.Month will automatically recreate these same events for each
                      * year and month keeping it on the same relative day across different months. */
-			        StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 07, 12, 00, 00),
-                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 07, 13, 30, 00),
+			        StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 12, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 13, 30, 00),
                     TicketsAvailable = 25,
                     Color = "#db1a11",
                     AllDay = false,
@@ -1933,8 +1933,8 @@ namespace TheatreCMS
                 new CalendarEvent
                 {
                     Title = "Phantom of the Opera",
-                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10, 12, 00, 00),
-                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10, 13, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondMondayOfMonth(), 12, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondMondayOfMonth(), 13, 30, 00),
                     TicketsAvailable = 40,
                     Color = "#db1a11",
                     AllDay = false,
@@ -1963,8 +1963,8 @@ namespace TheatreCMS
                 new CalendarEvent
                 {
                     Title = "Hamilton",
-                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 07, 20, 00, 00),
-                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 07, 21, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 20, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 21, 30, 00),
                     TicketsAvailable = 50,
                     Color = "#db1a11",
                     AllDay = false,
@@ -1973,8 +1973,8 @@ namespace TheatreCMS
                  new CalendarEvent
                 {
                     Title = "Phantom of the Opera",
-                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10, 20, 00, 00),
-                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10, 21, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondMondayOfMonth(), 20, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondMondayOfMonth(), 21, 30, 00),
                     TicketsAvailable = 20,
                     Color = "#db1a11",
                     AllDay = false,
@@ -2023,6 +2023,43 @@ namespace TheatreCMS
                 context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
             });
             context.SaveChanges();
+        }
+
+         /* Method to get the 1st Friday of a given month and year. */
+        public static int FirstFridayOfMonth()
+        {
+            /* Creates a new DateTime that reflects the firstFriday of the current year and month. */
+            DateTime firstFriday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            /* While the firstFriday.DayOfWeek is not Friday, we're adding a day to that DateTime. */
+            while (firstFriday.DayOfWeek != DayOfWeek.Friday)
+            {
+                /* Update DateTime with the next day. */
+                firstFriday = firstFriday.AddDays(1);
+            }
+            return firstFriday.Day;
+        }
+
+        /* Method to get the 2nd Monday of a given month and year. */
+        public static int SecondMondayOfMonth()
+        {
+            /* Keeps track of the amount of Mondays we encounter. */
+            int mondayCount = 0;
+            /* Creates a new DateTime that reflects the secondMonday of the current year and month. */
+            DateTime secondMonday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            /* While mondayCount is less than 2, we enter the loop. */
+            while (mondayCount < 2)
+            {
+                /* Adding a day to secondMonday to update the DateTime.Day. */
+                secondMonday = secondMonday.AddDays(1);
+                /* If secondMonday.DayOfWeek is a Monday, then add one to the mondayCount. */
+                if (secondMonday.DayOfWeek == DayOfWeek.Monday)
+                {
+                    mondayCount++;
+                }    
+            }
+            return secondMonday.Day;
         }
 
     }
