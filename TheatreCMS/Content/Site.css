@@ -1655,8 +1655,12 @@ input[type=submit] {
 .nav-button {
     color: var(--light-color);
     display: block;
-    padding:  0.5rem;
+    padding:  0.5rem 1rem;
     font-size: 20pt;
+}
+
+.nav-login .nav-button {
+    padding: 0.5rem;
 }
 
 .dropdown-submenu {
@@ -2693,6 +2697,10 @@ a.dropdown-item:hover {
 
 @media only screen and (max-width: 1293px) { /*To descrease the font size of the navbar buttons and reduce the register/logout button's padding-right to 2rem*/
     .nav-button {
+        font-size: 16pt;
+    }
+
+    .nav-login .fa-envelope.envelope-icon {
         font-size: 16pt;
     }
 
