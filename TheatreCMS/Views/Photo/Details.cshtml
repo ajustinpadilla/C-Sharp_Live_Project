@@ -47,7 +47,7 @@
             var dependencies = TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId);
         }
         @*Use variable dependencies.HasDependencies to check for an evaluation of false. *@
-        @if (dependencies.HasDependencies == false)
+        @if (!dependencies.HasDependencies)
         {
             <dt>
                 This photo is not being used
