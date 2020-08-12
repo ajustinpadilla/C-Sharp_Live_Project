@@ -781,10 +781,135 @@ namespace TheatreCMS
                 "satirical comments on social class.",
                 OpeningDay = new DateTime(2007, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2007, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2006, 1, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2007, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 10, IsCurrent = false},
+
+                //// productions for Season 9
+                new Production{Title = "The Flu Season", Playwright = "Will Eno", Description = "A love story goes bad (really bad), a play gets written in painful fits and starts, " +
+                "snow falls, it turns to slush. Maybe spring arrives. This is a play to remind us why sunsets make us sad, how nostalgia is like fog and why we live our lives as though " +
+                "we are in mourning for them.",
+                OpeningDay = new DateTime(2006, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 5, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 5, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 9, IsCurrent = false},
+
+                new Production{Title = "Love of the Nightengale", Playwright = "Timberlake Wertenbaker", Description = "The Love of the Nightingale tells the tragic tale of Procne and " +
+                "Philomele, daughters of Pandion, King of Athens. When the play opens Athens is under attack by a neighboring kingdom, but Procne and Philomele frolic innocently in the " +
+                "garden, virtually unaffected by the horrors of war.",
+                OpeningDay = new DateTime(2006, 3, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 3, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 3, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 9, IsCurrent = false},
+
+                new Production{Title = "Like I Say", Playwright = "Len Jenkin", Description = "Like I Say is 'two plays in one'. One story concerns a writer, a nurse, an artist " +
+                "and two dangerous puppeteers stuck in a decrepid hotel positioned on 'the psychic edge of our world.' The second story is about Coconut Joe, a salesman who has " +
+                "strayed terribly off-course. ",
+                OpeningDay = new DateTime(2006, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2006, 1, 30, 14, 00, 00), ShowtimeEve = new DateTime(2006, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2006, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 9, IsCurrent = false},
+
+                new Production{Title = "Big Wheel Bingo", Playwright = "J. Von Stratton", Description = "Big Wheel Bingo is an exciting game show that is chock-full of comedy, music, " +
+                "song, featuring the talents of special guest celebrity wheel spinners.",
+                OpeningDay = new DateTime(2005, 11, 01, 14, 00, 00), ClosingDay = new DateTime(2005, 11, 30, 14, 00, 00), ShowtimeEve = new DateTime(2005, 11, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2005, 11, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 9, IsCurrent = false},
+
+                new Production{Title = "The 24-Hour Plays", Playwright = "", Description = "The 24-Hour Plays® bring together creative communities to produce plays and musicals " +
+                "that are written, rehearsed, and performed in 24 hours.",
+                OpeningDay = new DateTime(2005, 9, 01, 14, 00, 00), ClosingDay = new DateTime(2005, 9, 30, 14, 00, 00), ShowtimeEve = new DateTime(2005, 9, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2005, 9, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 9, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: The Learned Ladies", Playwright = "Moliére", Description = "Two young people, Henriette and Clitandre, are in love, but " +
+                "in order to marry, they must overcome an obstacle: the attitude of Henriette's family. Her sensible father and uncle are in favour of the marriage; but unfortunately " +
+                "her father is under the thumb of his wife, Philaminte. And Philaminte, supported by Henriette's aunt and sister, wishes her to marry Trissotin, a 'scholar' and mediocre " +
+                "poet with lofty aspirations, who has these three women completely in his thrall. For these three ladies are 'learned'; their obsession in life is learning and culture " +
+                "of the most pretentious kind, and Trissotin is their special protégé and the fixture of their literary salon.",
+                OpeningDay = new DateTime(2005, 7, 01, 14, 00, 00), ClosingDay = new DateTime(2005, 7, 30, 14, 00, 00), ShowtimeEve = new DateTime(2005, 7, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2005, 7, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 9, IsCurrent = false},
+
+                //// Productions for season 8
+                new Production{Title = "A Lie of the Mind", Playwright = "Sam Shepard", Description = "Told in three acts set in Montana and California, the story alternates between " +
+                "two families after a severe incident of spousal abuse leaves all their lives altered until the final collision at an isolated cabin. The two families are linked by the " +
+                "marriage of Jake (son of Lorraine and brother of Sally and Frankie) and Beth (daughter of Baylor and Meg and sister of Mike). The play begins with Beth recuperating in " +
+                "her parents' home after a hospitalization resulting from Jake's abuse. Exploring family dysfunction and the nature of love, the play follows Jake as he searches for meaning " +
+                "after his relationship with Beth and her family as they struggle with Beth's brain damage.",
+                OpeningDay = new DateTime(2005, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2005, 5, 30, 14, 00, 00), ShowtimeEve = new DateTime(2005, 5, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2005, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 8, IsCurrent = false},
+
+                new Production{Title = "The Devil Inside", Playwright = "David Lindsay-Abaire", Description = "Gene leads an ordinary life: attending college, working in his mother’s " +
+                "laundromat, and doing skateboard tricks for fun and profit. But his world is turned upside down on his 21st birthday when his mother, tough and determined Mrs. Slater, " +
+                "reveals that his father was murdered in the Poconos 14 years ago, and now that Gene has come of age, it is his duty to avenge his father’s death.",
+                OpeningDay = new DateTime(2005, 3, 01, 14, 00, 00), ClosingDay = new DateTime(2005, 3, 30, 14, 00, 00), ShowtimeEve = new DateTime(2005, 3, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2005, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 8, IsCurrent = false},
+
+                new Production{Title = "A Bright Room Called Day", Playwright = "Tony Kushner", Description = "Agnes, an actress in Weimar Germany, and her cadre of passionate, " +
+                "progressive friends, are torn between protest, escape, and survival as the world they knew crumbles around them. Her story is interrupted by an American woman enraged " +
+                "by the cruelty of the Reagan administration, and a new character, grappling with the anxiety, distraction, hope, and hopelessness of an artist facing the once unthinkable " +
+                "rise of authoritarianism in modern America.",
+                OpeningDay = new DateTime(2005, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2005, 1, 30, 14, 00, 00), ShowtimeEve = new DateTime(2005, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2005, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 8, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: Don't Drink the Water", Playwright = "David Merrick", Description = "A cascade of comedy and a solid hit on Broadway, " +
+                "this affair takes place inside an American embassy behind the Iron Curtain. An American tourist – a caterer by trade – and his wife and daughter rush into the embassy " +
+                "two steps ahead of the police who suspect them of spying and picture-taking. It’s not much of a refuge, for the ambassador is absent and his son, now in charge, has been " +
+                "expelled from a dozen countries and the continent of Africa. Nevertheless, they carefully and frantically plot their escape, and the ambassador’s son and the caterer’s " +
+                "daughter even have time to fall in love.",
+                OpeningDay = new DateTime(2004, 11, 01, 14, 00, 00), ClosingDay = new DateTime(2004, 11, 30, 14, 00, 00), ShowtimeEve = new DateTime(2004, 11, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2004, 11, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 8, IsCurrent = false},
+
+                //// Productions for season 7
+                new Production{Title = "Death and the Maiden", Playwright = "Ariel Dorfman", Description = "A Latin American woman meets a man that she believes raped and tortured her " +
+                "when her country was controlled by a dictatorship 15 years earlier. She turns the tables on the man, despite her husband's counseling otherwise, in Ariel Dorfman's " +
+                "political thriller.",
+                OpeningDay = new DateTime(2004, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2004, 5, 30, 14, 00, 00), ShowtimeEve = new DateTime(2004, 5, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2004, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 7, IsCurrent = false},
+
+                new Production{Title = "Faust.Us.", Playwright = "Cherilyn Woo", Description = "A brilliant but frustrated academic, Faust has achieved all that she can with her knowledge. " +
+                "Dissatisfied with what she has, she yearns for more in her life. One day she is visited by an unexpected visitor, Mephistopheles, who is full of surprises. Mephistopheles " +
+                "makes a deal with her; spend the rest of her life with him, as he shows her a lifetime of everything she desires, in exchange for her soul in the beyond. Driven by the " +
+                "freedom that awaits her outside of her dusty study, she agrees to the deal and is whisked away into a supernatural life of magic, thrill and adventure. After journeying " +
+                "through a lifetime chasing after ambition, love and desire, will she ever find what she is looking for?",
+                OpeningDay = new DateTime(2004, 3, 01, 14, 00, 00), ClosingDay = new DateTime(2004, 3, 30, 14, 00, 00), ShowtimeEve = new DateTime(2004, 3, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2004, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 7, IsCurrent = false},
+
+                new Production{Title = "Big Love", Playwright = "Charles Mee amd Tina Landau", Description = "Fifty brides flee their fifty grooms and seek refuge in an Italian villa in this modern " +
+                "re-making of one of the world's oldest plays, The Danaids by Aeschylus. Mayhem ensues, complete with grooms in flight suits, women throwing themselves to the ground, " +
+                "occasional pop songs and romantic dances - even a bride falling in love.",
+                OpeningDay = new DateTime(2004, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2004, 1, 30, 14, 00, 00), ShowtimeEve = new DateTime(2004, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2004, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 7, IsCurrent = false},
+
+                new Production{Title = "The 24-Hour Plays7", Playwright = "", Description = "The 24-Hour Plays® bring together creative communities to produce plays and musicals " +
+                "that are written, rehearsed, and performed in 24 hours.",
+                OpeningDay = new DateTime(2003, 11, 01, 14, 00, 00), ClosingDay = new DateTime(2003, 11, 30, 14, 00, 00), ShowtimeEve = new DateTime(2003, 11, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2003, 11, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 7, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: Picasso at the Lapin Agile", Playwright = "Steve Martin", Description = "This long running Off Broadway absurdist comedy places Albert " +
+                "Einstein and Pablo Picasso in a Parisian cafe in 1904, just before the renowned scientist transformed physics with his theory of relativity and the celebrated painter " +
+                "set the art world afire with cubism. In his first comedy for the stage, the popular actor and screenwriter plays fast and loose with fact, fame, and fortune as these two " +
+                "geniuses muse on the century’s achievements and prospects, as well as other fanciful topics, with infectious dizziness.",
+                OpeningDay = new DateTime(2003, 9, 01, 14, 00, 00), ClosingDay = new DateTime(2003, 9, 30, 14, 00, 00), ShowtimeEve = new DateTime(2003, 9, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2003, 9, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 7, IsCurrent = false},
+
+                //// Productions for Season 6
+                new Production{Title = "Prague-Nosis!", Playwright = "Jeff Goode", Description = "Dick is hired by Czech film star Pleasure Hello to find an international jewel thief " +
+                "and a man with no pants. Why is he not wearing any pants? Who’s really from the Czech Republic? And what does the hypnotist Zing The Amazing have to do with all this?",
+                OpeningDay = new DateTime(2003, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2003, 5, 30, 14, 00, 00), ShowtimeEve = new DateTime(2003, 5, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2003, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 6, IsCurrent = false},
+
+                new Production{Title = "Freedomland", Playwright = "Amy Freed", Description = "Ages ago, Noah and his wife took their kids to the amusement park 'Freedomland.' After " +
+                "that trip, Noah's wife ran off and left him to raise the family. Now a retired professor of religion, Noah has married Claude, a sex therapist, and lives a secluded " +
+                "life in the family farmhouse. Breaking this seclusion are Noah's two daughters and son who return home for an impromptu reunion.",
+                OpeningDay = new DateTime(2003, 3, 01, 14, 00, 00), ClosingDay = new DateTime(2003, 3, 30, 14, 00, 00), ShowtimeEve = new DateTime(2003, 3, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2003, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 6, IsCurrent = false},
+
+                new Production{Title = "The 24-Hour Plays6", Playwright = "", Description = "The 24-Hour Plays® bring together creative communities to produce plays and musicals " +
+                "that are written, rehearsed, and performed in 24 hours.",
+                OpeningDay = new DateTime(2003, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2003, 11, 30, 14, 00, 00), ShowtimeEve = new DateTime(2003, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2003, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 6, IsCurrent = false},
+
+                new Production{Title = "Anonymous Theatre: The Importance of Being Earnest", Playwright = "Oscar Wilde", Description = "Oscar Wilde's madcap farce about mistaken " +
+                "identities, secret engagements, and lovers entanglements still delights readers more than a century after its 1895 publication and premiere performance. The rapid-fire " +
+                "wit and eccentric characters of The Importance of Being Earnest have made it a mainstay of the high school curriculum for decades.",
+                OpeningDay = new DateTime(2002, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2002, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2002, 8, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2002, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 6, IsCurrent = false},
+
+
                 #endregion
             };
 
-            productions.ForEach(Production => context.Productions.AddOrUpdate(d => d.Title, Production));
+            productions.ForEach(Production => context.Productions.AddOrUpdate(d => new { d.Title, d.Season }, Production));
             context.SaveChanges();
         }
 
@@ -857,6 +982,29 @@ namespace TheatreCMS
             Image image49 = Image.FromFile(Path.Combine(imagesRoot, @"EscapefromHappiness.jpg"));
             Image image50 = Image.FromFile(Path.Combine(imagesRoot, @"Tango.jpg"));
             Image image51 = Image.FromFile(Path.Combine(imagesRoot, @"Forum.jpg"));
+            // images for season 9
+            Image image52 = Image.FromFile(Path.Combine(imagesRoot, @"fluSeason.jpg"));
+            Image image53 = Image.FromFile(Path.Combine(imagesRoot, @"loveNightengale.jpg"));
+            Image image54 = Image.FromFile(Path.Combine(imagesRoot, @"likeISay.jpg"));
+            Image image55 = Image.FromFile(Path.Combine(imagesRoot, @"bigWheelBingo.jpg"));
+            Image image56 = Image.FromFile(Path.Combine(imagesRoot, @"24HourPlays.jpg"));
+            Image image57 = Image.FromFile(Path.Combine(imagesRoot, @"learnedLadies.jpg"));
+            // images for season 8
+            Image image58 = Image.FromFile(Path.Combine(imagesRoot, @"lieOfTheMind.jpg"));
+            Image image59 = Image.FromFile(Path.Combine(imagesRoot, @"theDevilInside.jpg"));
+            Image image60 = Image.FromFile(Path.Combine(imagesRoot, @"brightRoomCalledDay.jpg"));
+            Image image61 = Image.FromFile(Path.Combine(imagesRoot, @"dontDrinkTheWater.jpg"));
+            // images for season 7
+            Image image62 = Image.FromFile(Path.Combine(imagesRoot, @"deathAndTheMaiden.jpg"));
+            Image image63 = Image.FromFile(Path.Combine(imagesRoot, @"faustus.jpg"));
+            Image image64 = Image.FromFile(Path.Combine(imagesRoot, @"bigLove.jpg"));
+            Image image65 = Image.FromFile(Path.Combine(imagesRoot, @"24HourPlays2.jpg"));
+            Image image66 = Image.FromFile(Path.Combine(imagesRoot, @"picassoAtTheLapinAgile.jpg"));
+            // images for season 6
+            Image image67 = Image.FromFile(Path.Combine(imagesRoot, @"pragueNosis.jpg"));
+            Image image68 = Image.FromFile(Path.Combine(imagesRoot, @"freedomland.jpg"));
+            Image image69 = Image.FromFile(Path.Combine(imagesRoot, @"24HourPlays3.jpg"));
+            Image image70 = Image.FromFile(Path.Combine(imagesRoot, @"importanceOfBeingEarnest.jpg"));
 
             var photos = new List<Photo>
             {
@@ -1246,6 +1394,159 @@ namespace TheatreCMS
                     OriginalWidth = image51.Width,
                     PhotoFile = (byte[])converter.ConvertTo(image51, typeof(byte[])),
                     Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum"
+                },
+
+                // Photos for season 9
+                new Photo
+                {
+                    OriginalHeight = image52.Height,
+                    OriginalWidth = image52.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image52, typeof(byte[])),
+                    Title = "The Flu Season"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image53.Height,
+                    OriginalWidth = image53.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image53, typeof(byte[])),
+                    Title = "Love of the Nightengale"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image54.Height,
+                    OriginalWidth = image54.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image54, typeof(byte[])),
+                    Title = "Like I Say"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image55.Height,
+                    OriginalWidth = image55.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image55, typeof(byte[])),
+                    Title = "Big Wheel Bingo"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image56.Height,
+                    OriginalWidth = image56.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image56, typeof(byte[])),
+                    Title = "The 24-Hour Plays - Season 9"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image57.Height,
+                    OriginalWidth = image57.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image57, typeof(byte[])),
+                    Title = "Anonymous Theatre: The Learned Ladies"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image58.Height,
+                    OriginalWidth = image58.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image58, typeof(byte[])),
+                    Title = "A Lie of the Mind"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image59.Height,
+                    OriginalWidth = image59.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image59, typeof(byte[])),
+                    Title = "The Devil Inside"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image60.Height,
+                    OriginalWidth = image60.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image60, typeof(byte[])),
+                    Title = "A Bright Room Called Day"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image61.Height,
+                    OriginalWidth = image61.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image61, typeof(byte[])),
+                    Title = "Anonymous Theatre: Don't Drink the Water"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image62.Height,
+                    OriginalWidth = image62.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image62, typeof(byte[])),
+                    Title = "Death and the Maiden"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image63.Height,
+                    OriginalWidth = image63.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image63, typeof(byte[])),
+                    Title = "Faust.Us."
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image64.Height,
+                    OriginalWidth = image64.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image64, typeof(byte[])),
+                    Title = "Big Love"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image65.Height,
+                    OriginalWidth = image65.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image65, typeof(byte[])),
+                    Title = "The 24-Hour Plays - Season 7"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image66.Height,
+                    OriginalWidth = image66.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image66, typeof(byte[])),
+                    Title = "Anonymous Theatre: Picasso at the Lapin Agile"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image67.Height,
+                    OriginalWidth = image67.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image67, typeof(byte[])),
+                    Title = "Prague-Nosis!"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image68.Height,
+                    OriginalWidth = image68.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image68, typeof(byte[])),
+                    Title = "Freedomland"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image69.Height,
+                    OriginalWidth = image69.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image69, typeof(byte[])),
+                    Title = "The 24-Hour Plays - Season 6"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image70.Height,
+                    OriginalWidth = image70.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image70, typeof(byte[])),
+                    Title = "Anonymous Theatre: The Importance of Being Earnest"
                 },
 
             };
@@ -1642,6 +1943,162 @@ namespace TheatreCMS
                     Title = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum",
                     Description = "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum",
                     Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: A Funny Thing Happened on the Way to the Forum").FirstOrDefault()
+                },
+
+                // production photos for season 9
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Flu Season").FirstOrDefault().PhotoId,
+                    Title = "The Flu Season",
+                    Description = "The Flu Season",
+                    Production = context.Productions.Where(name => name.Title == "The Flu Season").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Love of the Nightengale").FirstOrDefault().PhotoId,
+                    Title = "Love of the Nightengale",
+                    Description = "Love of the Nightengale",
+                    Production = context.Productions.Where(name => name.Title == "Love of the Nightengale").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Like I Say").FirstOrDefault().PhotoId,
+                    Title = "Like I Say",
+                    Description = "Like I Say",
+                    Production = context.Productions.Where(name => name.Title == "Like I Say").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Big Wheel Bingo").FirstOrDefault().PhotoId,
+                    Title = "Big Wheel Bingo",
+                    Description = "Big Wheel Bingo",
+                    Production = context.Productions.Where(name => name.Title == "Big Wheel Bingo").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The 24-Hour Plays - Season 9").FirstOrDefault().PhotoId,
+                    Title = "The 24-Hour Plays - Season 9",
+                    Description = "The 24-Hour Plays - Season 9",
+                    Production = context.Productions.Where(name => name.Title == "The 24-Hour Plays" && name.Season == 9).FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: The Learned Ladies").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: The Learned Ladies",
+                    Description = "Anonymous Theatre: The Learned Ladies",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: The Learned Ladies").FirstOrDefault()
+                },
+
+                // production photos for season 8
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "A Lie of the Mind").FirstOrDefault().PhotoId,
+                    Title = "A Lie of the Mind",
+                    Description = "A Lie of the Mind",
+                    Production = context.Productions.Where(name => name.Title == "A Lie of the Mind").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Devil Inside").FirstOrDefault().PhotoId,
+                    Title = "The Devil Inside",
+                    Description = "The Devil Inside",
+                    Production = context.Productions.Where(name => name.Title == "The Devil Inside").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "A Bright Room Called Day").FirstOrDefault().PhotoId,
+                    Title = "A Bright Room Called Day",
+                    Description = "A Bright Room Called Day",
+                    Production = context.Productions.Where(name => name.Title == "A Bright Room Called Day").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: Don't Drink the Water").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: Don't Drink the Water",
+                    Description = "Anonymous Theatre: Don't Drink the Water",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: Don't Drink the Water").FirstOrDefault()
+                },
+
+                // production photos fpr season 7
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Death and the Maiden").FirstOrDefault().PhotoId,
+                    Title = "Death and the Maiden",
+                    Description = "Death and the Maiden",
+                    Production = context.Productions.Where(name => name.Title == "Death and the Maiden").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Faust.Us.").FirstOrDefault().PhotoId,
+                    Title = "Faust.Us.",
+                    Description = "Faust.Us.",
+                    Production = context.Productions.Where(name => name.Title == "Faust.Us.").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Big Love").FirstOrDefault().PhotoId,
+                    Title = "Big Love",
+                    Description = "Big Love",
+                    Production = context.Productions.Where(name => name.Title == "Big Love").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The 24-Hour Plays - Season 7").FirstOrDefault().PhotoId,
+                    Title = "The 24-Hour Plays - Season 7",
+                    Description = "The 24-Hour Plays - Season 7",
+                    Production = context.Productions.Where(name => name.Title == "The 24-Hour Plays" && name.Season == 7).FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: Picasso at the Lapin Agile").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: Picasso at the Lapin Agile",
+                    Description = "Anonymous Theatre: Picasso at the Lapin Agile",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: Picasso at the Lapin Agile").FirstOrDefault()
+                },
+
+                // production photos for season 6
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Prague-Nosis!").FirstOrDefault().PhotoId,
+                    Title = "Prague-Nosis!",
+                    Description = "Prague-Nosis!",
+                    Production = context.Productions.Where(name => name.Title == "Prague-Nosis!").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Freedomland").FirstOrDefault().PhotoId,
+                    Title = "Freedomland",
+                    Description = "Freedomland",
+                    Production = context.Productions.Where(name => name.Title == "Freedomland").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The 24-Hour Plays - Season 6").FirstOrDefault().PhotoId,
+                    Title = "The 24-Hour Plays - Season 6",
+                    Description = "The 24-Hour Plays - Season 6",
+                    Production = context.Productions.Where(name => name.Title == "The 24-Hour Plays" && name.Season == 6).FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Anonymous Theatre: The Importance of Being Earnest").FirstOrDefault().PhotoId,
+                    Title = "Anonymous Theatre: The Importance of Being Earnest",
+                    Description = "Anonymous Theatre: The Importance of Being Earnest",
+                    Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: The Importance of Being Earnest").FirstOrDefault()
                 },
             };
             productionphoto.ForEach(prodphoto => context.ProductionPhotos.AddOrUpdate(p => p.PhotoId, prodphoto));
