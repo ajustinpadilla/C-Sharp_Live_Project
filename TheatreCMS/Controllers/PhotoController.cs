@@ -19,6 +19,8 @@ namespace TheatreCMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        Random rand = new Random();
+
         // GET: Photo
         public ActionResult Index()
         {
@@ -173,9 +175,18 @@ namespace TheatreCMS.Controllers
             Image noImageAvail = Image.FromFile(filePath);
             var converter = new ImageConverter();
             var byteData = (byte[])converter.ConvertTo(noImageAvail, typeof(byte[]));
-            if (id.HasValue)
+
+            // Create list of images for selected production. Count number of images in list.
+            Production prod = db.Productions.Find(id);
+            var photoOptions = db.ProductionPhotos.Where(p => p.Production.ProductionId == prod.ProductionId).ToList();
+            var photoCount = photoOptions.Count();
+            
+            // If there are image in list, then select a random one to display. If there are no images assigned or selected image is not found, show 'no-image' 
+            if (photoCount > 0)
             {
-                Photo photo = db.Photo.Find(id);
+                var selectedPhoto = rand.Next(photoCount);
+                Photo photo = db.Photo.Find(photoOptions[selectedPhoto].PhotoId);
+
                 if (photo == null)
                 {
                     return File(byteData, "image/png");
