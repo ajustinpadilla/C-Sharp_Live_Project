@@ -20,16 +20,45 @@ namespace TheatreCMS.Controllers
         // GET: Part
         public ActionResult Index()
         {
-            var filterProds = db.Parts.Select(i => new SelectListItem
+            var filterProds = db.Productions.Select(i => new SelectListItem
             {
-                Value = "",
-                Text = i.Production.Title
+                Value = i.ProductionId.ToString(),
+                Text = i.Title
             });
             ViewData["Productions"] = new SelectList(filterProds, "Value", "Text");
+
+            var filterCastMem = db.CastMembers.Select(i => new SelectListItem
+            {
+                Value = i.CastMemberID.ToString(),
+                Text = i.Name
+            });
+            ViewData["Cast Members"] = new SelectList(filterCastMem, "Value", "Text");
+
+            var filterRoles = db.Parts.Select(i => new SelectListItem
+            {
+                Value = i.PartID.ToString(),
+                Text = i.Type.ToString()
+            });
+            ViewData["Roles"] = new SelectList(filterRoles, "Value", "Text");
 
             return View(db.Parts.ToList());
         }
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
+        //{
+        //    int productionId = Convert.ToInt32(Request.Form["Productions"]);
+        //    int castId = Convert.ToInt32(Request.Form["Cast Member"]);
+        //    int roleId = Convert.ToInt32(Request.Form["Roles"]);
+
+        //    if (ModelState.IsValid)
+        //    {
+
+        //    }
+
+        //    return View(part);
+        //}
 
         // GET: Part/Details/5
         public ActionResult Details(int? id)

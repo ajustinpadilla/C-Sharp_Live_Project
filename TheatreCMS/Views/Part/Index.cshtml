@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TheatreCMS.Models.Part>
+@using TheatreCMS.Enum;
 
 @{
     ViewBag.Title = "Part";
@@ -7,15 +8,20 @@
 <h2 class="ml-5 mb-3 mt-4">Part</h2>
 <div class="container">
     <div class="row">
-            <div>
-            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3" })
-           
-            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3" })
-            
-            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "All Productions", new { @class = "col-5 col-md-3 text-muted" })
-            </div>
+        @using (Html.BeginForm("Index", "Part", FormMethod.Post))
+        {
+            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3", onchange = "this.form.submit()" })
+
+            @Html.DropDownList("Cast Members", (IEnumerable<SelectListItem>)ViewData["Cast Members"], "All Cast Members", new { @class = "col-5 col-md-3 text-muted mr-3", onchange = "this.form.submit()" })
+
+            @Html.DropDownList("Roles", new SelectList(Enum.GetValues(typeof(PositionEnum))), "All Roles", new { @class = "col-5 col-md-3 text-muted", onchange = "this.form.submit()" })
+        }
     </div>
 </div>
+
+<script>
+
+</script>
 
 @if (User.IsInRole("Admin"))
 {
