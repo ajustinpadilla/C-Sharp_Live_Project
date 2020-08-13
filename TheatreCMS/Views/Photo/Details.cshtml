@@ -4,19 +4,11 @@
     ViewBag.Title = "Details";
 }
 
-
 <link href="https://fonts.googleapis.com/css?family=BioRhyme&display=swap" rel="stylesheet">
 
 <div class="photodetailspagedecorating">
- 
-    
-
-    
      
 <h2>Details</h2>
-
-
-    
   
     <h4>Photo</h4>
     <hr />
@@ -50,7 +42,12 @@
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
-        @if (TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).HasDependencies == false)
+        @{
+            // Create a local variable to assign the output of the FindDependencies() method.
+            var dependencies = TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId);
+        }
+        @*Use variable dependencies.HasDependencies to check for an evaluation of false. *@
+        @if (!dependencies.HasDependencies)
         {
             <dt>
                 This photo is not being used
@@ -59,15 +56,17 @@
         else
         {
             <dt>
-                This photo is being used by the following items: 
+                This photo is being used by the following items:
             </dt>
             <dd>
-                @foreach (var production in TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).ProductionPhotos)
+                @* Foreach production in the dependencies.ProductionPhotos List, get the title and season of each production. *@
+                @foreach (var production in dependencies.ProductionPhotos)
                 {
                     @production.Title; <text> - Season: </text>
                     @production.Production.Season; <br />
                 }
-                @foreach (var sponsor in TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId).Sponsors)
+                @* Foreach sponsor in the dependencies.Sponsors List, get the name of each sponsor. *@
+                @foreach (var sponsor in dependencies.Sponsors)
                 {
                     @sponsor.Name <br />
                 }

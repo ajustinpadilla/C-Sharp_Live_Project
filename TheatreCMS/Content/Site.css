@@ -1168,7 +1168,14 @@ div.magnify:hover {
 /*End Styling for CastMember Index View*/
 
 .nav-login li {
-    padding-right: 3rem;
+    padding-right: 0.5rem;
+}
+
+
+.navbar-nav .msg-stack-container {
+    height: initial;
+    margin-top: 0.5rem;
+    vertical-align: top;
 }
 
 #navbarSupportedContent li:hover {
@@ -1248,9 +1255,6 @@ div.magnify:hover {
 
 /*ENd Styling for CastMember Index View*/
 
-.nav-login li {
-    padding-right: 3rem;
-}
 
 #navbarSupportedContent li:hover {
     background-color: var(--main-bg-color);
@@ -1651,8 +1655,12 @@ input[type=submit] {
 .nav-button {
     color: var(--light-color);
     display: block;
-    padding: 0.5rem 1rem;
+    padding:  0.5rem 1rem;
     font-size: 20pt;
+}
+
+.nav-login .nav-button {
+    padding: 0.5rem;
 }
 
 .dropdown-submenu {
@@ -2689,6 +2697,10 @@ a.dropdown-item:hover {
 
 @media only screen and (max-width: 1293px) { /*To descrease the font size of the navbar buttons and reduce the register/logout button's padding-right to 2rem*/
     .nav-button {
+        font-size: 16pt;
+    }
+
+    .nav-login .fa-envelope.envelope-icon {
         font-size: 16pt;
     }
 
@@ -3748,10 +3760,6 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 .fa-envelope.envelope-icon {
     font-size: 20pt;
-}
-
-.nav-button.message-icon-container {
-    padding: 10px 0px 5px 0px;
 }
 
 /* BEGIN Production Index ribbon styles */
