@@ -25,14 +25,14 @@ namespace TheatreCMS
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            createRolesandUsers();
-            SeedCastPhotos();
-            SeedCastMembers();
+            //createRolesandUsers();
+            //SeedCastPhotos();
+            //SeedCastMembers();
             SeedProductions();
             SeedProductionPhotos();
-            SeedParts();
-            SeedAwards();
-            SeedSponsors();
+            //SeedParts();
+            //SeedAwards();
+            //SeedSponsors();
         }
 
 
@@ -870,7 +870,7 @@ namespace TheatreCMS
                 OpeningDay = new DateTime(2004, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2004, 1, 30, 14, 00, 00), ShowtimeEve = new DateTime(2004, 1, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2004, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 7, IsCurrent = false},
 
-                new Production{Title = "The 24-Hour Plays7", Playwright = "", Description = "The 24-Hour Plays® bring together creative communities to produce plays and musicals " +
+                new Production{Title = "The 24-Hour Plays", Playwright = "", Description = "The 24-Hour Plays® bring together creative communities to produce plays and musicals " +
                 "that are written, rehearsed, and performed in 24 hours.",
                 OpeningDay = new DateTime(2003, 11, 01, 14, 00, 00), ClosingDay = new DateTime(2003, 11, 30, 14, 00, 00), ShowtimeEve = new DateTime(2003, 11, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2003, 11, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 7, IsCurrent = false},
@@ -894,7 +894,7 @@ namespace TheatreCMS
                 OpeningDay = new DateTime(2003, 3, 01, 14, 00, 00), ClosingDay = new DateTime(2003, 3, 30, 14, 00, 00), ShowtimeEve = new DateTime(2003, 3, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2003, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 6, IsCurrent = false},
 
-                new Production{Title = "The 24-Hour Plays6", Playwright = "", Description = "The 24-Hour Plays® bring together creative communities to produce plays and musicals " +
+                new Production{Title = "The 24-Hour Plays", Playwright = "", Description = "The 24-Hour Plays® bring together creative communities to produce plays and musicals " +
                 "that are written, rehearsed, and performed in 24 hours.",
                 OpeningDay = new DateTime(2003, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2003, 11, 30, 14, 00, 00), ShowtimeEve = new DateTime(2003, 1, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2003, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 6, IsCurrent = false},
@@ -2027,7 +2027,7 @@ namespace TheatreCMS
                     Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: Don't Drink the Water").FirstOrDefault()
                 },
 
-                // production photos fpr season 7
+                // production photos for season 7
                 new ProductionPhotos
                 {
                     PhotoId = context.Photo.Where(photo => photo.Title == "Death and the Maiden").FirstOrDefault().PhotoId,
@@ -2090,7 +2090,7 @@ namespace TheatreCMS
                     PhotoId = context.Photo.Where(photo => photo.Title == "The 24-Hour Plays - Season 6").FirstOrDefault().PhotoId,
                     Title = "The 24-Hour Plays - Season 6",
                     Description = "The 24-Hour Plays - Season 6",
-                    Production = context.Productions.Where(name => name.Title == "The 24-Hour Plays" && name.Season == 6).FirstOrDefault()
+                    Production = context.Productions.Where(name => name.Title == "The 24-Hour Plays").Where(name => name.Season == 6).FirstOrDefault()
                 },
 
                 new ProductionPhotos
@@ -2108,6 +2108,9 @@ namespace TheatreCMS
             // foreach production title in production titles
             // get production
             // assign production's default photo to a production photo that contains that title
+
+            var testProduction = context.Productions.Where(name => name.Title == "The 24-Hour Plays" && name.Season == 9).FirstOrDefault();
+            var testProduction2 = context.Productions.Where(name => name.Title == "The 24-Hour Plays").Where(name => name.Season == 6).FirstOrDefault();
 
             var productions = context.Productions.ToList();
             var productionPhotos = context.ProductionPhotos.ToList();
