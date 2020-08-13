@@ -20,6 +20,13 @@ namespace TheatreCMS.Controllers
         // GET: Part
         public ActionResult Index()
         {
+            var filterProds = db.Parts.Select(i => new SelectListItem
+            {
+                Value = "",
+                Text = i.Production.Title
+            });
+            ViewData["Productions"] = new SelectList(filterProds, "Value", "Text");
+
             return View(db.Parts.ToList());
         }
 
