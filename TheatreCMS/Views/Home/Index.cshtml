@@ -15,21 +15,27 @@
 <div class="home-body">
     <main id="home-main">
         <div class="home-container">
+            @{  Random rand = new Random();
+                ApplicationDbContext db = new ApplicationDbContext();
+            }
             @foreach (var item in Model)
             {
                 <div id="index-block-@i" class="home-block">
                     <figure class="home-inner">
                         <div class="home-tint-overlay"></div>
                         @{
-                                        if (item.DefaultPhoto != null)
-                                        {
-                                //var photoCount = db.ProductionPhotos.Count().Where(p => p.Production_ProductionID == item.ProductionId)
+                            if (item.DefaultPhoto != null)
+                            {
+                                var photoArray = db.ProductionPhotos.Where(p => p.Production.ProductionId == item.ProductionId).ToList();
+                                var photoCount = photoArray.Count();
+                                var randNum = rand.Next(photoCount);
+                                var selectedPhoto = photoArray[randNum].PhotoId;
+
                                 <div class="home-img">
-                                    @*<div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = (item.DefaultPhoto.PhotoId) }))"></div>*@
-                                    <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = (item.ProductionId) }))"></div>
+                                   <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = selectedPhoto }))"></div>
                                 </div>
                                 <div class="home-mobile-img">
-                                    <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = (item.ProductionId) }))"></div>
+                                    <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = selectedPhoto }))"></div>
                                 </div>
                                 if (item.OpeningDay <= DateTime.Now && item.ClosingDay >= DateTime.Now)
                                 {
