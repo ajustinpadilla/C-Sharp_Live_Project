@@ -8,19 +8,21 @@
 <h2 class="ml-5 mb-3 mt-4">Part</h2>
 <div class="container">
     <div class="row">
-        @using (Html.BeginForm("Index", "Part", FormMethod.Post))
+        @using (Html.BeginForm("Index", "Part", FormMethod.Post, new { @id = "partsForm" }))
         {
-            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3", onchange = "this.form.submit()" })
+            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3", onchange = "DropDownSubmit()" })
 
-            @Html.DropDownList("Cast Members", (IEnumerable<SelectListItem>)ViewData["Cast Members"], "All Cast Members", new { @class = "col-5 col-md-3 text-muted mr-3", onchange = "this.form.submit()" })
+            @Html.DropDownList("Cast Members", (IEnumerable<SelectListItem>)ViewData["Cast Members"], "All Cast Members", new { @class = "col-5 col-md-3 text-muted mr-3", onchange = "DropDownSubmit()" })
 
-            @Html.DropDownList("Roles", new SelectList(Enum.GetValues(typeof(PositionEnum))), "All Roles", new { @class = "col-5 col-md-3 text-muted", onchange = "this.form.submit()" })
+            @Html.DropDownList("Roles", new SelectList(Enum.GetValues(typeof(PositionEnum))), "All Roles", new { @class = "col-5 col-md-3 text-muted", onchange = "DropDownSubmit()" })
         }
     </div>
 </div>
 
 <script>
-
+    function DropDownSubmit() {
+        document.forms["partsForm"].submit();
+    }
 </script>
 
 @if (User.IsInRole("Admin"))
