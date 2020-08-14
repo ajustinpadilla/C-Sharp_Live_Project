@@ -1886,8 +1886,8 @@ namespace TheatreCMS
                     ContactPhoneNumber = "(555)-123-4567",
                     ContactEmail = "timsmith@act.com",
                     Company = "Act Pack",
-                    StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 19, 11, 00, 00),
-                    EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 19, 12, 30, 00),
+                    StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 11, 00, 00),
+                    EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 12, 30, 00),
                     ProjectInfo = "Rehearsal space needed for the afternoon for an upcoming production.",
                     Requests = "Borrow lighting equipment.",
                     RentalCode = 1,
@@ -1900,8 +1900,8 @@ namespace TheatreCMS
                     ContactPhoneNumber = "(555)-654-4567",
                     ContactEmail = "sarahjparker@director.com",
                     Company = "Direct Directors",
-                    StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14, 10, 00, 00),
-                    EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14, 11, 30, 00),
+                    StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 10, 00, 00),
+                    EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 11, 30, 00),
                     ProjectInfo = "Meeting space to interview potential directors.",
                     Requests = "none",
                     RentalCode = 2,
@@ -2005,8 +2005,8 @@ namespace TheatreCMS
                 new CalendarEvent
                 {
                     Title = "Private Event",
-                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 19, 11, 00, 00),
-                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 19, 12, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 11, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 12, 30, 00),
                     Color = "#4287f5",
                     AllDay = false,
                     RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Tim Smith").FirstOrDefault().RentalRequestId,
@@ -2014,8 +2014,8 @@ namespace TheatreCMS
                 new CalendarEvent
                 {
                     Title = "Private Event",
-                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14, 10, 00, 00),
-                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14, 11, 30, 00),
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 10, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 11, 30, 00),
                     Color = "#4287f5",
                     AllDay = false,
                     RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Sarah Parker").FirstOrDefault().RentalRequestId,
@@ -2033,41 +2033,57 @@ namespace TheatreCMS
             context.SaveChanges();
         }
 
-         /* Method to get the 1st Friday of a given month and year. */
+        /* Method to get the first Friday of a given month and year. */
         public static int FirstFridayOfMonth()
         {
             /* Creates a new DateTime that reflects the firstFriday of the current year and month. */
             DateTime firstFriday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 
-            /* While the firstFriday.DayOfWeek is not Friday, we're adding a day to that DateTime. */
+            /* While the firstFriday.DayOfWeek is not Friday... */
             while (firstFriday.DayOfWeek != DayOfWeek.Friday)
             {
-                /* Update DateTime with the next day. */
-                firstFriday.AddDays(1);
+                /* ...add a day to firstFriday to update DateTime.Day. */
+                firstFriday = firstFriday.AddDays(1);
             }
             return firstFriday.Day;
         }
 
-        /* Method to get the 2nd Monday of a given month and year. */
+        /* Method to get the second Monday of a given month and year. */
         public static int SecondMondayOfMonth()
         {
-            /* Keeps track of the amount of Mondays we encounter. */
-            int mondayCount = 0;
             /* Creates a new DateTime that reflects the secondMonday of the current year and month. */
             DateTime secondMonday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 
-            /* While mondayCount is less than 2, we enter the loop. */
-            while (mondayCount < 2)
+            /* While secondMonday.DayOfWeek is not Monday... */
+            while (secondMonday.DayOfWeek != DayOfWeek.Monday)
             {
-                /* Adding a day to secondMonday to update the DateTime.Day. */
+                /* ...add a day to secondMonday to update the DateTime.Day. */
                 secondMonday = secondMonday.AddDays(1);
-                /* If secondMonday.DayOfWeek is a Monday, then add one to the mondayCount. */
-                if (secondMonday.DayOfWeek == DayOfWeek.Monday)
-                {
-                    mondayCount++;
-                }    
             }
-            return secondMonday.Day;
+            /* Add 7 days to secondMonday, then return the day. */
+            return secondMonday.AddDays(7).Day;
+        }
+
+        /* Method to get the 3rd Wednesday of a given month and year. */
+        public static int ThirdWedOfMonth()
+        {
+            DateTime thirdWed = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            while (thirdWed.DayOfWeek != DayOfWeek.Wednesday)
+            {
+                thirdWed = thirdWed.AddDays(1);
+            }
+            return thirdWed.AddDays(14).Day;
+        }
+
+        /* Method to get the second Friday of a given month and year. */
+        public static int SecondFridayOfMonth()
+        {
+            DateTime secondFriday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            while (secondFriday.DayOfWeek != DayOfWeek.Friday)
+            {
+                secondFriday = secondFriday.AddDays(1);
+            }
+            return secondFriday.AddDays(7).Day;
         }
 
     }
