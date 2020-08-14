@@ -1886,8 +1886,8 @@ namespace TheatreCMS
                     ContactPhoneNumber = "(555)-123-4567",
                     ContactEmail = "timsmith@act.com",
                     Company = "Act Pack",
-                    StartTime = new DateTime(2020, 8, 19, 11, 00, 00),
-                    EndTime = new DateTime(2020, 8, 19, 12, 30, 00),
+                    StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 19, 11, 00, 00),
+                    EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 19, 12, 30, 00),
                     ProjectInfo = "Rehearsal space needed for the afternoon for an upcoming production.",
                     Requests = "Borrow lighting equipment.",
                     RentalCode = 1,
@@ -1900,8 +1900,8 @@ namespace TheatreCMS
                     ContactPhoneNumber = "(555)-654-4567",
                     ContactEmail = "sarahjparker@director.com",
                     Company = "Direct Directors",
-                    StartTime = new DateTime(2020, 8, 14, 10, 00, 00),
-                    EndTime = new DateTime(2020, 8, 14, 11, 30, 00),
+                    StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14, 10, 00, 00),
+                    EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 14, 11, 30, 00),
                     ProjectInfo = "Meeting space to interview potential directors.",
                     Requests = "none",
                     RentalCode = 2,
@@ -1909,7 +1909,15 @@ namespace TheatreCMS
                     ContractSigned = true,
                 }
             };
-            rentalRequests.ForEach(RentalRequest => context.RentalRequests.AddOrUpdate(c => c.ContactPerson, RentalRequest));
+            rentalRequests.ForEach(RentalRequest =>
+            {
+                var tempRentalReq = context.RentalRequests.Where(c => c.ContactPerson == RentalRequest.ContactPerson && c.StartTime == RentalRequest.StartTime).FirstOrDefault();
+                if (tempRentalReq != null)
+                {
+                    RentalRequest.RentalRequestId = tempRentalReq.RentalRequestId;
+                }
+                context.RentalRequests.AddOrUpdate(c => c.RentalRequestId, RentalRequest);
+            });
             context.SaveChanges();
         }
 
@@ -1922,7 +1930,7 @@ namespace TheatreCMS
                 {
                     Title = "Hamilton",
                     /* Using DateTime.Now.Year and DateTime.Now.Month will automatically recreate these same events for each
-                     * year and month keeping it on the same relative day across different months. */
+                     * year and month keeping it on the same relative day across different months by calling the FirstFridayOfMonth() method. */
 			        StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 12, 00, 00),
                     EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 13, 30, 00),
                     TicketsAvailable = 25,
@@ -1944,9 +1952,9 @@ namespace TheatreCMS
             /* Iterate through the list. */
             matineeCalendarEvents.ForEach(CalendarEvent =>
             {
-                /* Where the calendar event title match it will return the query data or null if it doesn't exist. */
+                /* Where the calendar event title and start date match it will return the query data or null if it doesn't exist. */
                 var tempMatEvent = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
-                /* Where it doesn't return null */
+                /* If it doesn't return null */
                 if (tempMatEvent != null)
                 {
                     /* Update the calendar event EventId with the Id assigned to tempMatEvent */
@@ -2035,7 +2043,7 @@ namespace TheatreCMS
             while (firstFriday.DayOfWeek != DayOfWeek.Friday)
             {
                 /* Update DateTime with the next day. */
-                firstFriday = firstFriday.AddDays(1);
+                firstFriday.AddDays(1);
             }
             return firstFriday.Day;
         }
