@@ -34,8 +34,19 @@
               <div class="form-group">
                 @Html.LabelFor(model => model.Person, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                 <div class="col-md-10 formBox">
-                  @Html.DropDownList("CastMembers", (IEnumerable<SelectListItem>)ViewData["CastMembers"], htmlAttributes: new { @class = "form-control" })
-                  @Html.ValidationMessageFor(model => model.Person)
+                  @Html.DropDownList("CastMembers", (IEnumerable<SelectListItem>)ViewData["CastMembers"], htmlAttributes: new { @class = "form-control" , @onchange = "GetPerson() "})
+
+                  @*this script takes the person name and populates it in character field"*@
+                  <script type="text/javascript">
+                    function GetPerson() {
+                        var selectedmember = $('#CastMembers option:selected').text();
+                        if (!$('#Character').val()) {
+                          document.getElementById("Character").value = selectedmember;
+                          $('#Character').attr('readonly', 'true')
+                        }
+                    }
+                  </script>
+                  @Html.ValidationMessageFor(model => model.Person, "", new { @class = "text-danger" })
                 </div>
               </div>
               <div class="form-group">
