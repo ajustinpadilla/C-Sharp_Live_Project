@@ -25,14 +25,14 @@ namespace TheatreCMS
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            //createRolesandUsers();
-            //SeedCastPhotos();
-            //SeedCastMembers();
+            createRolesandUsers();
+            SeedCastPhotos();
+            SeedCastMembers();
             SeedProductions();
             SeedProductionPhotos();
-            //SeedParts();
-            //SeedAwards();
-            //SeedSponsors();
+            SeedParts();
+            SeedAwards();
+            SeedSponsors();
         }
 
 
@@ -2109,8 +2109,7 @@ namespace TheatreCMS
             // get production
             // assign production's default photo to a production photo that contains that title
 
-            var testProduction = context.Productions.Where(name => name.Title == "The 24-Hour Plays" && name.Season == 9).FirstOrDefault();
-            var testProduction2 = context.Productions.Where(name => name.Title == "The 24-Hour Plays").Where(name => name.Season == 6).FirstOrDefault();
+
 
             var productions = context.Productions.ToList();
             var productionPhotos = context.ProductionPhotos.ToList();
