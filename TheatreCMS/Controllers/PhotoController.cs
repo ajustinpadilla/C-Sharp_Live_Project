@@ -19,8 +19,6 @@ namespace TheatreCMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        Random rand = new Random();
-
         // GET: Photo
         public ActionResult Index()
         {
