@@ -39,11 +39,9 @@
                   @*this script takes the person name and populates it in character field"*@
                   <script type="text/javascript">
                     function GetPerson() {
-                        var selectedmember = $('#CastMembers option:selected').text();
-                        if (!$('#Character').val()) {
-                          document.getElementById("Character").value = selectedmember;
-                          $('#Character').attr('readonly', 'true')
-                        }
+                     var selectedmember = $('#CastMembers option:selected').text();
+                     document.getElementById("Character").value = selectedmember;
+                     $('#Character').attr('readonly', 'true')
                     }
                   </script>
                   @Html.ValidationMessageFor(model => model.Person, "", new { @class = "text-danger" })
