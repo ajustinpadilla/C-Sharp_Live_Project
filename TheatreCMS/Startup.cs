@@ -1890,7 +1890,7 @@ namespace TheatreCMS
                     EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 12, 30, 00),
                     ProjectInfo = "Rehearsal space needed for the afternoon for an upcoming production.",
                     Requests = "Borrow lighting equipment.",
-                    RentalCode = 1,
+                    RentalCode = 10000,
                     Accepted = true,
                     ContractSigned = true,
                 },
@@ -1904,7 +1904,7 @@ namespace TheatreCMS
                     EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 11, 30, 00),
                     ProjectInfo = "Meeting space to interview potential directors.",
                     Requests = "none",
-                    RentalCode = 2,
+                    RentalCode = 10001,
                     Accepted = true,
                     ContractSigned = true,
                 }
@@ -1999,26 +1999,28 @@ namespace TheatreCMS
                 context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
             });
             context.SaveChanges();
-
+            
+            var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 11, 00, 00);
+            var startDate2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 10, 00, 00);
             var rentalEvents = new List<CalendarEvent>
             {
                 new CalendarEvent
                 {
                     Title = "Private Event",
-                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 11, 00, 00),
+                    StartDate = startDate,
                     EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 12, 30, 00),
                     Color = "#4287f5",
                     AllDay = false,
-                    RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Tim Smith").FirstOrDefault().RentalRequestId,
+                    RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Tim Smith" && r.StartTime == startDate).FirstOrDefault().RentalRequestId,
                 },
                 new CalendarEvent
                 {
                     Title = "Private Event",
-                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 10, 00, 00),
+                    StartDate = startDate2,
                     EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 11, 30, 00),
                     Color = "#4287f5",
                     AllDay = false,
-                    RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Sarah Parker").FirstOrDefault().RentalRequestId,
+                    RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Sarah Parker" && r.StartTime == startDate2).FirstOrDefault().RentalRequestId,
                 }
             };
             rentalEvents.ForEach(CalendarEvent =>
