@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TheatreCMS.Enum;
 using TheatreCMS.Models;
 
 namespace TheatreCMS.Controllers
@@ -25,40 +27,152 @@ namespace TheatreCMS.Controllers
                 Value = i.ProductionId.ToString(),
                 Text = i.Title
             });
-            ViewData["Productions"] = new SelectList(filterProds, "Value", "Text");
+            ViewData["ProductionsID"] = new SelectList(filterProds, "Value", "Text");
+
+            //List<Part> prodsList = new List<Part>();
+            //List<int> newProdsList = new List<int>();
+
+            //foreach (Part part in db.Parts)
+            //{
+            //    if (prodsList.Count == 0)
+            //    {
+            //        prodsList.Add(part);
+            //        newProdsList.Add(part.Production.ProductionId);
+            //    }
+            //    else if (!newProdsList.Contains(part.Production.ProductionId))
+            //    {
+            //        prodsList.Add(part);
+            //        newProdsList.Add(part.Production.ProductionId);
+            //    }
+            //}
 
             var filterCastMem = db.CastMembers.Select(i => new SelectListItem
             {
                 Value = i.CastMemberID.ToString(),
                 Text = i.Name
             });
-            ViewData["Cast Members"] = new SelectList(filterCastMem, "Value", "Text");
+            ViewData["CastMembersID"] = new SelectList(filterCastMem, "Value", "Text");
 
-            var filterRoles = db.Parts.Select(i => new SelectListItem
+            List<Part> seenPartPosition = new List<Part>();
+            List<PositionEnum> seenPosition = new List<PositionEnum>();
+
+            foreach (Part part in db.Parts)
             {
-                Value = i.PartID.ToString(),
+                if (seenPartPosition.Count == 0)
+                {
+                    seenPartPosition.Add(part);
+                    seenPosition.Add(part.Type);
+                }
+                else if (!seenPosition.Contains(part.Type))
+                {
+                    seenPartPosition.Add(part);
+                    seenPosition.Add(part.Type);
+                }
+            }
+
+            var filterRoles = seenPartPosition.Select(i => new SelectListItem
+            {
+                Value = i.Type.ToString(),
                 Text = i.Type.ToString()
             });
             ViewData["Roles"] = new SelectList(filterRoles, "Value", "Text");
 
+
             return View(db.Parts.ToList());
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Index([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
-        //{
-        //    int productionId = Convert.ToInt32(Request.Form["Productions"]);
-        //    int castId = Convert.ToInt32(Request.Form["Cast Member"]);
-        //    int roleId = Convert.ToInt32(Request.Form["Roles"]);
+        [HttpPost]
+        public ActionResult Index(int ProductionsID = 0, int CastMembersID = 0 , string Roles = "")
+        {
+            var filterProds = db.Productions.Select(i => new SelectListItem
+            {
+                Value = i.ProductionId.ToString(),
+                Text = i.Title
+            });
+            ViewData["ProductionsID"] = new SelectList(filterProds, "Value", "Text");
 
-        //    if (ModelState.IsValid)
-        //    {
+            var filterCastMem = db.CastMembers.Select(i => new SelectListItem
+            {
+                Value = i.CastMemberID.ToString(),
+                Text = i.Name
+            });
+            ViewData["CastMembersID"] = new SelectList(filterCastMem, "Value", "Text");
 
-        //    }
+            List<Part> seenPartPosition = new List<Part>();
+            List<PositionEnum> seenPosition = new List<PositionEnum>();
 
-        //    return View(part);
-        //}
+            foreach (Part part in db.Parts)
+            {
+                if (seenPartPosition.Count == 0)
+                {
+                    seenPartPosition.Add(part);
+                    seenPosition.Add(part.Type);
+                }
+                else if (!seenPosition.Contains(part.Type))
+                {
+                    seenPartPosition.Add(part);
+                    seenPosition.Add(part.Type);
+                }
+            }
+
+            var filterRoles = seenPartPosition.Select(i => new SelectListItem
+            {
+                Value = i.Type.ToString(),
+                Text = i.Type.ToString()
+            });
+            ViewData["Roles"] = new SelectList(filterRoles, "Value", "Text");
+
+
+            if (ProductionsID != 0 && CastMembersID == 0 && Roles == "")
+            {
+                var myList = db.Parts.Where(i => i.Production.ProductionId == ProductionsID).ToList();
+
+                return View(myList);
+            }
+            if (ProductionsID == 0 && CastMembersID != 0 && Roles == "")
+            {
+                var myList = db.Parts.Where(i => i.Person.CastMemberID == CastMembersID).ToList();
+
+                return View(myList);
+            }
+            if (ProductionsID == 0 && CastMembersID == 0 && Roles != "")
+            {
+                var myList = db.Parts.Where(i => i.Type.ToString() == Roles).ToList();
+
+                return View(myList);
+            }
+            if (ProductionsID != 0 && CastMembersID != 0 && Roles == "")
+            {
+                var myList = db.Parts.Where(i => i.Production.ProductionId == ProductionsID && i.Person.CastMemberID == CastMembersID).ToList();
+
+                return View(myList);
+            }
+            if (ProductionsID == 0 && CastMembersID != 0 && Roles != "")
+            {
+                var myList = db.Parts.Where(i => i.Person.CastMemberID == CastMembersID && i.Type.ToString() == Roles).ToList();
+
+                return View(myList);
+            }
+            if (ProductionsID != 0 && CastMembersID == 0 && Roles != "")
+            {
+                var myList = db.Parts.Where(i => i.Production.ProductionId == ProductionsID && i.Type.ToString() == Roles).ToList();
+
+                return View(myList);
+            }
+            if (ProductionsID != 0 && CastMembersID != 0 && Roles != "")
+            {
+                var myList = db.Parts.Where(i => i.Production.ProductionId == ProductionsID && i.Person.CastMemberID == CastMembersID && i.Type.ToString() == Roles).ToList();
+
+                return View(myList);
+            }
+
+            return View(db.Parts.ToList());
+        }
+
+        public ActionResult ResetFilters()
+        {
+            return RedirectToAction("Index");
+        }
 
         // GET: Part/Details/5
         public ActionResult Details(int? id)

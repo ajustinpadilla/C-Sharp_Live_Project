@@ -10,19 +10,24 @@
     <div class="row">
         @using (Html.BeginForm("Index", "Part", FormMethod.Post, new { @id = "partsForm" }))
         {
-            @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3", onchange = "DropDownSubmit()" })
+            @Html.DropDownList("ProductionsID", (IEnumerable<SelectListItem>)null, "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3", @onchange = "document.getElementById('partsForm').submit();" })
 
-            @Html.DropDownList("Cast Members", (IEnumerable<SelectListItem>)ViewData["Cast Members"], "All Cast Members", new { @class = "col-5 col-md-3 text-muted mr-3", onchange = "DropDownSubmit()" })
+            @Html.DropDownList("CastMembersID", (IEnumerable<SelectListItem>)null, "All Cast Members", new { @class = "col-5 col-md-3 text-muted mr-3", @onchange = "document.getElementById('partsForm').submit();" })
 
-            @Html.DropDownList("Roles", new SelectList(Enum.GetValues(typeof(PositionEnum))), "All Roles", new { @class = "col-5 col-md-3 text-muted", onchange = "DropDownSubmit()" })
+            @Html.DropDownList("Roles", (IEnumerable<SelectListItem>)null, "All Roles", new { @class = "col-5 col-md-3 text-muted", @onchange = "document.getElementById('partsForm').submit();" })
         }
     </div>
 </div>
 
+@*  Got the idea to do this JQuery from: https://stackoverflow.com/questions/19933115/mvc-4-postback-on-dropdownlist-change *@
 <script>
-    function DropDownSubmit() {
-        document.forms["partsForm"].submit();
-    }
+    @*$('#Productions').change(function () {
+        var selectedProd = $('#Productions').val();
+        $.post('@Url.Action("Index", "Part")', { selection: selectedProd }, function (data) {
+            // Handle server response...
+        }
+        document.getElementById('partsForm').submit();
+    });*@
 </script>
 
 @if (User.IsInRole("Admin"))
@@ -31,6 +36,11 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
+
+<p class="ml-5 mb-3 mt-3">
+    @Html.ActionLink("Reset Filters", "ResetFilters")
+</p>
+
 
 <div class="ml-1 mr-1 justify-content-center part-card-deck">
     <!--Creates a bootstrap card for every part in the production customized to the part they are reponsible for-->
