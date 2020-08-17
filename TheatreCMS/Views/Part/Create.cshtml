@@ -18,7 +18,7 @@
               <div class="form-group">
                 @Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                 <div class="col-md-10 formBox">
-                  @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], htmlAttributes: new { @class = "form-control" })
+                  @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], htmlAttributes: new { @class = "form-control"})
                   @Html.ValidationMessageFor(model => model.Production)
                 </div>
               </div>
@@ -26,7 +26,19 @@
               <div class="form-group">
                 @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                 <div class="col-md-10 formBox">
-                  @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
+                  @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control", @onchange = "GetType()" })
+                  @*if anything except Actor type is selected, the Character field will be read only*@
+                  <script type="text/javascript">
+                    function GetType() {
+                      var selectedType = $('#Type option:selected').text();
+                      if (selectedType !== "Actor") {
+                        $('#Character').attr('readonly', 'true')
+                      }
+                      else {
+                        $('#Character').removeAttr('readonly')
+                      }
+                    }
+                  </script>
                   @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
                 </div>
               </div>
@@ -34,16 +46,18 @@
               <div class="form-group">
                 @Html.LabelFor(model => model.Person, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
                 <div class="col-md-10 formBox">
-                  @Html.DropDownList("CastMembers", (IEnumerable<SelectListItem>)ViewData["CastMembers"], htmlAttributes: new { @class = "form-control" , @onchange = "GetPerson() "})
+                  @Html.DropDownList("CastMembers", (IEnumerable<SelectListItem>)ViewData["CastMembers"], htmlAttributes: new { @class = "form-control", @onchange = "GetPerson() " })
 
-                  @*this script takes the person name and populates it in character field"*@
+                  @*this script takes the person name and populates it in character field if it is not Actor"*@
                   <script type="text/javascript">
                     function GetPerson() {
-                     var selectedmember = $('#CastMembers option:selected').text();
-                     document.getElementById("Character").value = selectedmember;
-                     $('#Character').attr('readonly', 'true')
-                    }
+                      var selectedmember = $('#CastMembers option:selected').text();
+                      var selectedType = $('#Type option:selected').text();
+                      if (selectedType !== "Actor")
+                        document.getElementById("Character").value = selectedmember;
+                      }            
                   </script>
+
                   @Html.ValidationMessageFor(model => model.Person, "", new { @class = "text-danger" })
                 </div>
               </div>
