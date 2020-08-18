@@ -38,6 +38,7 @@
                         $('#Character').removeAttr('readonly')
                       }
                     }
+                    $(document).ready(GetType);
                   </script>
                   @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
                 </div>
@@ -55,7 +56,8 @@
                       var selectedType = $('#Type option:selected').text();
                       if (selectedType !== "Actor")
                         document.getElementById("Character").value = selectedmember;
-                      }            
+                    }         
+                    $(document).ready(GetPerson);
                   </script>
 
                   @Html.ValidationMessageFor(model => model.Person, "", new { @class = "text-danger" })
