@@ -491,18 +491,18 @@
 
     @Scripts.Render("~/bundles/jquery")
     <script>
-    $(document).ready(function () {
+      $(document).ready(function () {
         @* Swap search button for mobile view, if > 900px use fontawesome magnifying glass, if < 900 use standard "Search" button" *@
         function changeSearchBtn() {
-            if (window.matchMedia('(max-width: 899px)').matches) { @* matchMedia syncs with CSS media query *@
-                $(".search-btn").each(function (i) {
-                    $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
-                });
-            } else {
-                $(".mobile-search-btn").each(function (i) {
-                    $(this).replaceWith('<button class="search-btn btn btn-lg btn-circle fa fa-search color" type="submit" value="search"></button>');
-                });
-            }
+          if (window.matchMedia('(max-width: 899px)').matches) { @* matchMedia syncs with CSS media query *@
+            $(".search-btn").each(function (i) {
+              $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
+            });
+          } else {
+            $(".mobile-search-btn").each(function (i) {
+              $(this).replaceWith('<button class="search-btn btn btn-lg btn-circle fa fa-search color" type="submit" value="search"></button>');
+            });
+          }
         }
 
         @* Call changeSearchBtn() when page is loaded *@
@@ -510,8 +510,8 @@
 
         @* If window is resized, call changeSearchBtn()*@
         window.onresize = function (event) {
-            changeSearchBtn();
+          changeSearchBtn();
         };
-
-    });
+        //There is awesome!
+      });
     </script>
