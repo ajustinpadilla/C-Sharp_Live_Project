@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.Ajax.Utilities;
 using System.Web.Caching;
+using System.Data.Entity;
 
 [assembly: OwinStartupAttribute(typeof(TheatreCMS.Startup))]
 namespace TheatreCMS
@@ -25,14 +26,17 @@ namespace TheatreCMS
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            //createRolesandUsers();
-            //SeedCastPhotos();
-            //SeedCastMembers();
-            //SeedProductions();
-            //SeedProductionPhotos();
-            //SeedParts();
-            //SeedAwards();
-            //SeedSponsors();
+            createRolesandUsers();
+            SeedCastPhotos();
+            SeedCastMembers();
+            SeedProductions();
+            SeedProductionPhotos();
+            SeedParts();
+            SeedAwards();
+            SeedSponsors();
+            // Call methods here that are defined below.
+            SeedRentalRequests();
+            SeedCalendarEvents();
         }
 
 
@@ -2328,6 +2332,219 @@ namespace TheatreCMS
 
             sponsor.ForEach(Sponsor => context.Sponsors.AddOrUpdate(c => c.Name, Sponsor));
             context.SaveChanges();
+        }
+
+        /* Method to seed mock entities into the RentalRequest table. */
+        private void SeedRentalRequests()
+        {
+            var rentalRequests = new List<RentalRequest>
+            {
+                new RentalRequest
+                {
+                    ContactPerson = "Tim Smith",
+                    ContactPhoneNumber = "(555)-123-4567",
+                    ContactEmail = "timsmith@act.com",
+                    Company = "Act Pack",
+                    StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 11, 00, 00),
+                    EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 12, 30, 00),
+                    ProjectInfo = "Rehearsal space needed for the afternoon for an upcoming production.",
+                    Requests = "Borrow lighting equipment.",
+                    RentalCode = 10000,
+                    Accepted = true,
+                    ContractSigned = true,
+                },
+                new RentalRequest
+                {
+                    ContactPerson = "Sarah Parker",
+                    ContactPhoneNumber = "(555)-654-4567",
+                    ContactEmail = "sarahjparker@director.com",
+                    Company = "Direct Directors",
+                    StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 10, 00, 00),
+                    EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 11, 30, 00),
+                    ProjectInfo = "Meeting space to interview potential directors.",
+                    Requests = "none",
+                    RentalCode = 10001,
+                    Accepted = true,
+                    ContractSigned = true,
+                }
+            };
+            rentalRequests.ForEach(RentalRequest =>
+            {
+                var tempRentalReq = context.RentalRequests.Where(c => c.ContactPerson == RentalRequest.ContactPerson && c.StartTime == RentalRequest.StartTime).FirstOrDefault();
+                if (tempRentalReq != null)
+                {
+                    RentalRequest.RentalRequestId = tempRentalReq.RentalRequestId;
+                }
+                context.RentalRequests.AddOrUpdate(c => c.RentalRequestId, RentalRequest);
+            });
+            context.SaveChanges();
+        }
+
+        /* Method to seed the calendar index view with matinee events, evening events, and rental events. */
+        private void SeedCalendarEvents()
+        {
+            var matineeCalendarEvents = new List<CalendarEvent>
+            {
+                new CalendarEvent
+                {
+                    Title = "Hamilton",
+                    /* Using DateTime.Now.Year and DateTime.Now.Month will automatically recreate these same events for each
+                     * year and month keeping it on the same relative day across different months by calling the FirstFridayOfMonth() method. */
+			        StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 12, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 13, 30, 00),
+                    TicketsAvailable = 25,
+                    Color = "#db1a11",
+                    AllDay = false,
+                    ProductionId = context.Productions.Where(p => p.Title == "Hamilton").FirstOrDefault().ProductionId,
+                },
+                new CalendarEvent
+                {
+                    Title = "Phantom of the Opera",
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondMondayOfMonth(), 12, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondMondayOfMonth(), 13, 30, 00),
+                    TicketsAvailable = 40,
+                    Color = "#db1a11",
+                    AllDay = false,
+                    ProductionId = context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault().ProductionId,
+                }
+            };
+            /* Iterate through the list. */
+            matineeCalendarEvents.ForEach(CalendarEvent =>
+            {
+                /* Where the calendar event title and start date match it will return the query data or null if it doesn't exist. */
+                var tempMatEvent = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
+                /* If it doesn't return null */
+                if (tempMatEvent != null)
+                {
+                    /* Update the calendar event EventId with the Id assigned to tempMatEvent */
+                    CalendarEvent.EventId = tempMatEvent.EventId;
+                }
+                /* Runs AddOrUpdate. If tempMatEvent returns null a new record will be added otherwise if it returns not null it will update based off 
+                 * of the EventID assigned in the if statement. */
+                context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
+            });
+            context.SaveChanges();
+
+            var eveningCalendarEvents = new List<CalendarEvent>
+            {
+                new CalendarEvent
+                {
+                    Title = "Hamilton",
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 20, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, FirstFridayOfMonth(), 21, 30, 00),
+                    TicketsAvailable = 50,
+                    Color = "#db1a11",
+                    AllDay = false,
+                    ProductionId = context.Productions.Where(p => p.Title == "Hamilton").FirstOrDefault().ProductionId,
+                },
+                 new CalendarEvent
+                {
+                    Title = "Phantom of the Opera",
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondMondayOfMonth(), 20, 00, 00),
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondMondayOfMonth(), 21, 30, 00),
+                    TicketsAvailable = 20,
+                    Color = "#db1a11",
+                    AllDay = false,
+                    ProductionId = context.Productions.Where(p => p.Title == "Phantom of the Opera").FirstOrDefault().ProductionId,
+                }
+            };
+            eveningCalendarEvents.ForEach(CalendarEvent =>
+            {
+                var tempEveningEvent = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
+                if (tempEveningEvent != null)
+                {
+                    CalendarEvent.EventId = tempEveningEvent.EventId;
+                }
+                context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
+            });
+            context.SaveChanges();
+            
+            var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 11, 00, 00);
+            var startDate2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 10, 00, 00);
+            var rentalEvents = new List<CalendarEvent>
+            {
+                new CalendarEvent
+                {
+                    Title = "Private Event",
+                    StartDate = startDate,
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, ThirdWedOfMonth(), 12, 30, 00),
+                    Color = "#4287f5",
+                    AllDay = false,
+                    RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Tim Smith" && r.StartTime == startDate).FirstOrDefault().RentalRequestId,
+                },
+                new CalendarEvent
+                {
+                    Title = "Private Event",
+                    StartDate = startDate2,
+                    EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, SecondFridayOfMonth(), 11, 30, 00),
+                    Color = "#4287f5",
+                    AllDay = false,
+                    RentalRequestId = context.RentalRequests.Where(r => r.ContactPerson == "Sarah Parker" && r.StartTime == startDate2).FirstOrDefault().RentalRequestId,
+                }
+            };
+            rentalEvents.ForEach(CalendarEvent =>
+            {
+                var tempRental = context.CalendarEvent.Where(c => c.Title == CalendarEvent.Title && c.StartDate == CalendarEvent.StartDate).FirstOrDefault();
+                if (tempRental != null)
+                {
+                    CalendarEvent.EventId = tempRental.EventId;
+                }
+                context.CalendarEvent.AddOrUpdate(c => c.EventId, CalendarEvent);
+            });
+            context.SaveChanges();
+        }
+
+        /* Method to get the first Friday of a given month and year. */
+        public static int FirstFridayOfMonth()
+        {
+            /* Creates a new DateTime that reflects the firstFriday of the current year and month. */
+            DateTime firstFriday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            /* While the firstFriday.DayOfWeek is not Friday... */
+            while (firstFriday.DayOfWeek != DayOfWeek.Friday)
+            {
+                /* ...add a day to firstFriday to update DateTime.Day. */
+                firstFriday = firstFriday.AddDays(1);
+            }
+            return firstFriday.Day;
+        }
+
+        /* Method to get the second Monday of a given month and year. */
+        public static int SecondMondayOfMonth()
+        {
+            /* Creates a new DateTime that reflects the secondMonday of the current year and month. */
+            DateTime secondMonday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            /* While secondMonday.DayOfWeek is not Monday... */
+            while (secondMonday.DayOfWeek != DayOfWeek.Monday)
+            {
+                /* ...add a day to secondMonday to update the DateTime.Day. */
+                secondMonday = secondMonday.AddDays(1);
+            }
+            /* Add 7 days to secondMonday, then return the day. */
+            return secondMonday.AddDays(7).Day;
+        }
+
+        /* Method to get the 3rd Wednesday of a given month and year. */
+        public static int ThirdWedOfMonth()
+        {
+            DateTime thirdWed = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            while (thirdWed.DayOfWeek != DayOfWeek.Wednesday)
+            {
+                thirdWed = thirdWed.AddDays(1);
+            }
+            return thirdWed.AddDays(14).Day;
+        }
+
+        /* Method to get the second Friday of a given month and year. */
+        public static int SecondFridayOfMonth()
+        {
+            DateTime secondFriday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            while (secondFriday.DayOfWeek != DayOfWeek.Friday)
+            {
+                secondFriday = secondFriday.AddDays(1);
+            }
+            return secondFriday.AddDays(7).Day;
         }
 
     }
