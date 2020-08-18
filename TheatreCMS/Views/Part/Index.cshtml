@@ -6,10 +6,15 @@
 }
 
 <h2 class="ml-5 mb-3 mt-4">Part</h2>
-<div class="container">
+<div class="container ml-5 mb-3 mt-4">
     <div class="row">
+        <h6>Filter By...</h6>
+    </div>
+    <div class="row">
+        @* The HTML helper creates a form and when the form is submitted it calls the Index() method from PartController. *@
         @using (Html.BeginForm("Index", "Part", FormMethod.Post, new { @id = "partsForm" }))
         {
+            // Creates a drop down list referencing the information from ViewData dictionary, which contains 'ProductionsID' key. The value that is selected is submitted onchange.
             @Html.DropDownList("ProductionsID", (IEnumerable<SelectListItem>)null, "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3", @onchange = "document.getElementById('partsForm').submit();" })
 
             @Html.DropDownList("CastMembersID", (IEnumerable<SelectListItem>)null, "All Cast Members", new { @class = "col-5 col-md-3 text-muted mr-3", @onchange = "document.getElementById('partsForm').submit();" })
@@ -18,28 +23,22 @@
         }
     </div>
 </div>
-
-@*  Got the idea to do this JQuery from: https://stackoverflow.com/questions/19933115/mvc-4-postback-on-dropdownlist-change *@
-<script>
-    @*$('#Productions').change(function () {
-        var selectedProd = $('#Productions').val();
-        $.post('@Url.Action("Index", "Part")', { selection: selectedProd }, function (data) {
-            // Handle server response...
+<div class="container ml-5 mb-3">
+    <div class="row">
+        @if (User.IsInRole("Admin"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
         }
-        document.getElementById('partsForm').submit();
-    });*@
-</script>
+    </div>
+    <div class="row">
+        <h6>
+            @Html.ActionLink("Reset Filters", "ResetFilters")
+        </h6>
+    </div>
+</div>
 
-@if (User.IsInRole("Admin"))
-{
-    <p class="ml-5 mb-3 mt-3">
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
-
-<p class="ml-5 mb-3 mt-3">
-    @Html.ActionLink("Reset Filters", "ResetFilters")
-</p>
 
 
 <div class="ml-1 mr-1 justify-content-center part-card-deck">
