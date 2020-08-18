@@ -33,9 +33,11 @@
                       var selectedType = $('#Type option:selected').text();
                       if (selectedType !== "Actor") {
                         $('#Character').attr('readonly', 'true')
+                        $('#Character').val("");
                       }
                       else {
                         $('#Character').removeAttr('readonly')
+                        $('#Character').val("");
                       }
                     }
                     $(document).ready(GetType);
