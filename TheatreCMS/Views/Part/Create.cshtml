@@ -33,7 +33,7 @@
                       var selectedType = $('#Type option:selected').text();
                       if (selectedType !== "Actor") {
                         $('#Character').attr('readonly', 'true')
-                        $('#Character').val("");
+                        $('#Character').val($('#CastMembers option:selected').text());
                       }
                       else {
                         $('#Character').removeAttr('readonly')
