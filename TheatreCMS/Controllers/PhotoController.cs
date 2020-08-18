@@ -98,6 +98,10 @@ namespace TheatreCMS.Controllers
                 var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
                 ModelState.AddModelError("PhotoFile", "This photo already exists in the database. Would you like to <a href='/Photo/Details/" + id + "'>view</a> or <a href='/Photo/Edit/" + id + "'>edit</a> the photo?");
             }
+            if (photo.Title == null)
+            {
+                ModelState.AddModelError("Title", "The photo must have a title");
+            }
             if (ModelState.IsValid)
             {
                 photo.PhotoFile = photoArray;
@@ -218,47 +222,57 @@ namespace TheatreCMS.Controllers
             var currentphoto = db.Photo.Find(photo.PhotoId);
             currentphoto.Title = photo.Title;
 
-
-            if (file == null && currentphoto.Title != null)
+            if (file == null)
             {
-
-                currentphoto.Title = photo.Title;
-                db.Entry(currentphoto).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            if (file == null && currentphoto.Title == null)
-            {
-                return RedirectToAction("Edit");
-            }
-            byte[] photoArray = ImageBytes(file);
-            if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
-            {
-                var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
-                ModelState.AddModelError("PhotoFile", "This photo already exists in the database. Would you like to <a href='/Photo/Details/" + id + "'>view</a> the photo?");
-            }
-            if (ModelState.IsValid)
-            {
-                currentphoto.PhotoFile = photoArray;
-                Bitmap img = new Bitmap(file.InputStream);
-                currentphoto.OriginalHeight = img.Height;
-                currentphoto.OriginalWidth = img.Width;
-                if (file != null)
+                if (currentphoto.Title == null)
                 {
-                    
-                    
-                    db.Entry(currentphoto).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    ModelState.AddModelError("Title", "The photo must have a title");
                 }
                 else
                 {
-                    currentphoto.Title = photo.Title;
                     db.Entry(currentphoto).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            
+            }
+            else
+            {
+                if (currentphoto.Title == null)
+                {
+                    ModelState.AddModelError("Title", "The photo must have a title");
+
+                }
+                else
+                {
+                    byte[] photoArray = ImageBytes(file);
+                    if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
+                    {
+                        var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
+                        ModelState.AddModelError("PhotoFile", "This photo already exists in the database. Would you like to <a href='/Photo/Details/" + id + "'>view</a> the photo?");
+                    }
+
+                    if (ModelState.IsValid)
+                    {
+                        currentphoto.PhotoFile = photoArray;
+                        Bitmap img = new Bitmap(file.InputStream);
+                        currentphoto.OriginalHeight = img.Height;
+                        currentphoto.OriginalWidth = img.Width;
+                        if (file != null)
+                        {
+                            db.Entry(currentphoto).State = EntityState.Modified;
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            currentphoto.Title = photo.Title;
+                            db.Entry(currentphoto).State = EntityState.Modified;
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                    }
+                }
+                
             }
 
             return View(currentphoto);
