@@ -18,7 +18,7 @@ namespace TheatreCMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Messages
-        public ActionResult Index()
+        public ActionResult Index(string searchQuery)
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
@@ -36,7 +36,23 @@ namespace TheatreCMS.Controllers
             ViewData["currentUserId"] = currentUser.Id;
             ViewData["currentUserName"] = currentUser.LastName + ", " + currentUser.FirstName;
 
-            return View(db.Messages.Where(i => ( i.SenderId == currentUser.Id && i.SenderPermanentDelete != true ) || ( i.RecipientId == currentUser.Id && i.RecipientPermanentDelete != true ) ).OrderByDescending(i => i.SentTime).ToList());
+            // Get all messages for the user
+            var messages = db.Messages.Where(i => (i.SenderId == currentUser.Id && i.SenderPermanentDelete != true) || (i.RecipientId == currentUser.Id && i.RecipientPermanentDelete != true)).OrderByDescending(i => i.SentTime).ToList();
+
+            // If there is a search query, filter messages that match the search
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                var users = db.Users.Where(u => u.FirstName.Contains(searchQuery) || u.LastName.Contains(searchQuery)).Select(u => u.Id).ToArray();
+
+
+                messages = messages.Where(m => m.Subject.Contains(searchQuery) || m.Body.Contains(searchQuery) || users.Any(u => u == m.SenderId) || users.Any(u => u == m.RecipientId)).ToList();
+                ViewData["searchQuery"] = searchQuery;
+            }
+
+
+            
+
+            return View(messages);
         }
 
         // GET: Messages/Details/5
@@ -73,6 +89,16 @@ namespace TheatreCMS.Controllers
                 ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
                 message.SenderId = currentUser.Id;
                 message.SentTime = DateTime.Now;
+
+                if(message.Body == null)
+                {
+                    message.Body = "";
+                }
+                if (message.Subject == null)
+                {
+                    message.Subject = "";
+                }
+
                 db.Messages.Add(message);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -243,8 +269,6 @@ namespace TheatreCMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
 
 
         protected override void Dispose(bool disposing)

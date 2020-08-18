@@ -3921,3 +3921,8 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 .prod-delete-th-width {
     width: 157px;
 }
+
+/* Styles for Message page Searchbar */
+.searchBar .form-control {
+    margin: 0
+}

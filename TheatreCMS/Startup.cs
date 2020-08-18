@@ -25,14 +25,14 @@ namespace TheatreCMS
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            createRolesandUsers();
-            SeedCastPhotos();
-            SeedCastMembers();
-            SeedProductions();
-            SeedProductionPhotos();
-            SeedParts();
-            SeedAwards();
-            SeedSponsors();
+            //createRolesandUsers();
+            //SeedCastPhotos();
+            //SeedCastMembers();
+            //SeedProductions();
+            //SeedProductionPhotos();
+            //SeedParts();
+            //SeedAwards();
+            //SeedSponsors();
         }
 
 
