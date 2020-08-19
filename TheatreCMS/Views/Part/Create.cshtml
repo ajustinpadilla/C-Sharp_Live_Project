@@ -14,50 +14,78 @@
             <h4 class="formHeader">Part</h4>
             <hr />
             <div class="inputBox2">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-                    <div class="col-md-10 formBox">
-                        @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Production)
-                    </div>
+              @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+              <div class="form-group">
+                @Html.LabelFor(model => model.Production, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                  @Html.DropDownList("Productions", (IEnumerable<SelectListItem>)ViewData["Productions"], htmlAttributes: new { @class = "form-control"})
+                  @Html.ValidationMessageFor(model => model.Production)
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Person, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-                    <div class="col-md-10 formBox">
-                        @Html.DropDownList("CastMembers", (IEnumerable<SelectListItem>)ViewData["CastMembers"], htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Person)
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Character, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-                    <div class="col-md-10 formBox">
-                        @Html.EditorFor(model => model.Character, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Character, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+              </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-                    <div class="col-md-10 formBox">
-                        @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-                    </div>
+              <div class="form-group">
+                @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                  @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control", @onchange = "GetType()" })
+                  @*if anything except Actor type is selected, the Character field will be read only*@
+                  <script type="text/javascript">
+                    function GetType() {
+                      var selectedType = $('#Type option:selected').text();
+                      if (selectedType !== "Actor") {
+                        $('#Character').attr('readonly', 'true')
+                        $('#Character').val($('#CastMembers option:selected').text());
+                      }
+                      else {
+                        $('#Character').removeAttr('readonly')
+                        $('#Character').val("");
+                      }
+                    }
+                    $(document).ready(GetType);
+                  </script>
+                  @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
                 </div>
+              </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-                    <div class="col-md-10 formBox">
-                        @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+              <div class="form-group">
+                @Html.LabelFor(model => model.Person, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                  @Html.DropDownList("CastMembers", (IEnumerable<SelectListItem>)ViewData["CastMembers"], htmlAttributes: new { @class = "form-control", @onchange = "GetPerson() " })
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10 formBox">
-                        <input type="submit" value="Create" class="submitButton2" />
-                    </div>
+                  @*this script takes the person name and populates it in character field if it is not Actor"*@
+                  <script type="text/javascript">
+                    function GetPerson() {
+                      var selectedmember = $('#CastMembers option:selected').text();
+                      var selectedType = $('#Type option:selected').text();
+                      if (selectedType !== "Actor")
+                        document.getElementById("Character").value = selectedmember;
+                    }         
+                    $(document).ready(GetPerson);
+                  </script>
+
+                  @Html.ValidationMessageFor(model => model.Person, "", new { @class = "text-danger" })
                 </div>
+              </div>
+              <div class="form-group">
+                @Html.LabelFor(model => model.Character, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                  @Html.EditorFor(model => model.Character, new { htmlAttributes = new { @class = "form-control" } })
+                  @Html.ValidationMessageFor(model => model.Character, "", new { @class = "text-danger" })
+                </div>
+              </div>
+
+              <div class="form-group">
+                @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                <div class="col-md-10 formBox">
+                  @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
+                  @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 formBox">
+                  <input type="submit" value="Create" class="submitButton2" />
+                </div>
+              </div>
             </div>
         </div>
     </div>

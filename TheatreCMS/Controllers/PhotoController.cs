@@ -98,6 +98,10 @@ namespace TheatreCMS.Controllers
                 var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
                 ModelState.AddModelError("PhotoFile", "This photo already exists in the database. Would you like to <a href='/Photo/Details/" + id + "'>view</a> or <a href='/Photo/Edit/" + id + "'>edit</a> the photo?");
             }
+            if (photo.Title == null)
+            {
+                ModelState.AddModelError("Title", "The photo must have a title");
+            }
             if (ModelState.IsValid)
             {
                 photo.PhotoFile = photoArray;
@@ -217,53 +221,42 @@ namespace TheatreCMS.Controllers
         {
             var currentphoto = db.Photo.Find(photo.PhotoId);
             currentphoto.Title = photo.Title;
-
-
-            if (file == null && currentphoto.Title != null)
+            
+            if (currentphoto.Title == null)
             {
+                ModelState.AddModelError("Title", "The photo must have a title");
+                return View(currentphoto);
+            }
 
-                currentphoto.Title = photo.Title;
+            if (file == null)
+            {
                 db.Entry(currentphoto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            if (file == null && currentphoto.Title == null)
+            else
             {
-                return RedirectToAction("Edit");
-            }
-            byte[] photoArray = ImageBytes(file);
-            if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
-            {
-                var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
-                ModelState.AddModelError("PhotoFile", "This photo already exists in the database. Would you like to <a href='/Photo/Details/" + id + "'>view</a> the photo?");
-            }
-            if (ModelState.IsValid)
-            {
-                currentphoto.PhotoFile = photoArray;
-                Bitmap img = new Bitmap(file.InputStream);
-                currentphoto.OriginalHeight = img.Height;
-                currentphoto.OriginalWidth = img.Width;
-                if (file != null)
+                byte[] photoArray = ImageBytes(file);
+                if (db.Photo.Where(x => x.PhotoFile == photoArray).ToList().Any())
                 {
-                    
-                    
-                    db.Entry(currentphoto).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    var id = db.Photo.Where(x => x.PhotoFile == photoArray).ToList().FirstOrDefault().PhotoId;
+                    ModelState.AddModelError("PhotoFile", "This photo already exists in the database. Would you like to <a href='/Photo/Details/" + id + "'>view</a> the photo?");
                 }
-                else
-                {
-                    currentphoto.Title = photo.Title;
-                    db.Entry(currentphoto).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            
-            }
 
+                if (ModelState.IsValid)
+                {
+                    currentphoto.PhotoFile = photoArray;
+                    Bitmap img = new Bitmap(file.InputStream);
+                    currentphoto.OriginalHeight = img.Height;
+                    currentphoto.OriginalWidth = img.Width;
+                    db.Entry(currentphoto).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }   
+            }
             return View(currentphoto);
         }
-
+        
         // GET: Photo/Delete/5
         public ActionResult Delete(int? id)
         {
