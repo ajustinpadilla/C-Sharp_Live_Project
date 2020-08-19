@@ -318,7 +318,18 @@
 
                                 </dl>
                             </p>
-              <a href="#" class="btn btn-primary">buy now</a>
+              @{
+                var today = DateTime.Today;
+                var ActiveProductions = Model.ClosingDay;
+                if (ActiveProductions <= today)
+                {
+                  <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">buy now</a>
+                }
+                else
+                {
+                  <a href="#" class="btn btn-primary">buy now</a>
+                }
+              }
             </div>
           </div>
         </div>
