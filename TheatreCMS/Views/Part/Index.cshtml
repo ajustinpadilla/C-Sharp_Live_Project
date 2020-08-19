@@ -25,17 +25,17 @@
 </div>
 <div class="container ml-5 mb-3">
     <div class="row">
+        <h6>
+            @Html.ActionLink("Reset Filters", "ResetFilters")
+        </h6>
+    </div>
+    <div class="row">
         @if (User.IsInRole("Admin"))
         {
             <p>
                 @Html.ActionLink("Create New", "Create")
             </p>
         }
-    </div>
-    <div class="row">
-        <h6>
-            @Html.ActionLink("Reset Filters", "ResetFilters")
-        </h6>
     </div>
 </div>
 

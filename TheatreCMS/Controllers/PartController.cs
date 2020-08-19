@@ -22,8 +22,42 @@ namespace TheatreCMS.Controllers
         // GET: Part
         public ActionResult Index()
         {
+            FilterOptions();
+            return View(db.Parts.ToList());
+        }
+
+        /* This method gets involked when a user makes a selection from one of the drop down lists. */
+        [HttpPost]
+        /* The input parameters are set to a default value initially. When a selection is made from the drop down lists, it changes the default value to the
+         * 'value' (which is the Id for Productions and CastMembers, and the enum 'Type' string name for Roles) from the rendered HTML. */
+        public ActionResult Index(int ProductionsID = 0, int CastMembersID = 0 , string Roles = "")
+        {
+            FilterOptions();
+
+            /* Depending on which drop down list item(s) are selected, it determines which of the conditions below will be executed. */
+            /* These if statements figure out which query to do based on the drop down selected. */
+           List < Part> queriedPartsList = db.Parts.ToList();
+
+            if (ProductionsID != 0)
+            {
+               queriedPartsList = queriedPartsList.Where(part => part.Production.ProductionId == ProductionsID).ToList();
+            }
+            if (CastMembersID != 0)
+            {
+                queriedPartsList = queriedPartsList.Where(part => part.Person.CastMemberID == CastMembersID).ToList();
+            }
+            if (Roles != "")
+            {
+                queriedPartsList = queriedPartsList.Where(part => part.Type.ToString() == Roles).ToList();
+            }
+            return View(queriedPartsList);
+        }
+
+        /* This method encapsulates filtering options and is called in both the GET and POST Index() methods. */
+        public void FilterOptions()
+        {
             /* From the Parts Db, group by ProductionId, and select the first ProductionId found and add it to a list. This query prevents duplicate 
-             * Production Titles in the Productions drop down list on the Parts Index page. */
+            * Production Titles in the Productions drop down list on the Parts Index page. */
             List<Part> partProdQueryList = db.Parts.GroupBy(part => new { part.Production.ProductionId }).Select(i => i.FirstOrDefault()).ToList();
 
             /*This is what helps populate the Productions drop down list. */
@@ -54,93 +88,6 @@ namespace TheatreCMS.Controllers
                 Text = i.Type.ToString()
             });
             ViewData["Roles"] = new SelectList(filterRoles, "Value", "Text");
-
-
-            return View(db.Parts.ToList());
-        }
-
-        /* This method gets involked when a user makes a selection from one of the drop down lists. */
-        [HttpPost]
-        /* The input parameters are set to a default value initially. When a selection is made from the drop down lists, it changes the default value to the
-         * 'value' (which is the Id for Productions and CastMembers, and the enum 'Type' string name for Roles) from the rendered HTML. */
-        public ActionResult Index(int ProductionsID = 0, int CastMembersID = 0 , string Roles = "")
-        {
-            List<Part> partProdQueryList = db.Parts.GroupBy(part => new { part.Production.ProductionId }).Select(i => i.FirstOrDefault()).ToList();
-
-            var filterProds = partProdQueryList.Select(i => new SelectListItem
-            {
-                Value = i.Production.ProductionId.ToString(),
-                Text = i.Production.Title
-            });
-            ViewData["ProductionsID"] = new SelectList(filterProds, "Value", "Text");
-
-            List<Part> partCastMemQueryList = db.Parts.GroupBy(part => new { part.Person.CastMemberID }).Select(i => i.FirstOrDefault()).ToList();
-
-            var filterCastMem = partCastMemQueryList.Select(i => new SelectListItem
-            {
-                Value = i.Person.CastMemberID.ToString(),
-                Text = i.Person.Name
-            });
-            ViewData["CastMembersID"] = new SelectList(filterCastMem, "Value", "Text");
-
-            List<Part> partRolesQueryList = db.Parts.GroupBy(part => new { part.Type }).Select(i => i.FirstOrDefault()).ToList();
-
-            var filterRoles = partRolesQueryList.Select(i => new SelectListItem
-            {
-                Value = i.Type.ToString(),
-                Text = i.Type.ToString()
-            });
-            ViewData["Roles"] = new SelectList(filterRoles, "Value", "Text");
-
-            /* These are user selection case queries. Depending on which drop down list item(s) are selected, it determines which
-             * of the conditions below will be executed. */
-            /* All of these if statements figure out which query to do based on the drop down selected. */
-            /* If there is a selection from the Productions drop down list, and no selections from the other two drop down lists... */
-            if (ProductionsID != 0 && CastMembersID == 0 && Roles == "")
-            {
-                /* ...Then create a list from db.Parts where the ProductionId from the Productions Db equals the 'ProductionID' selected from the drop down list. */
-                var myList = db.Parts.Where(i => i.Production.ProductionId == ProductionsID).ToList();
-                /* And display that list to the View. */
-                return View(myList);
-            }
-            if (ProductionsID == 0 && CastMembersID != 0 && Roles == "")
-            {
-                var myList = db.Parts.Where(i => i.Person.CastMemberID == CastMembersID).ToList();
-
-                return View(myList);
-            }
-            if (ProductionsID == 0 && CastMembersID == 0 && Roles != "")
-            {
-                var myList = db.Parts.Where(i => i.Type.ToString() == Roles).ToList();
-
-                return View(myList);
-            }
-            if (ProductionsID != 0 && CastMembersID != 0 && Roles == "")
-            {
-                var myList = db.Parts.Where(i => i.Production.ProductionId == ProductionsID && i.Person.CastMemberID == CastMembersID).ToList();
-
-                return View(myList);
-            }
-            if (ProductionsID == 0 && CastMembersID != 0 && Roles != "")
-            {
-                var myList = db.Parts.Where(i => i.Person.CastMemberID == CastMembersID && i.Type.ToString() == Roles).ToList();
-
-                return View(myList);
-            }
-            if (ProductionsID != 0 && CastMembersID == 0 && Roles != "")
-            {
-                var myList = db.Parts.Where(i => i.Production.ProductionId == ProductionsID && i.Type.ToString() == Roles).ToList();
-
-                return View(myList);
-            }
-            if (ProductionsID != 0 && CastMembersID != 0 && Roles != "")
-            {
-                var myList = db.Parts.Where(i => i.Production.ProductionId == ProductionsID && i.Person.CastMemberID == CastMembersID && i.Type.ToString() == Roles).ToList();
-
-                return View(myList);
-            }
-
-            return View(db.Parts.ToList());
         }
 
         /* This method will reset the View by calling the GET Index method. It will remove a users' selections from the drop down lists, resetting the drop downs
