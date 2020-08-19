@@ -45,7 +45,7 @@ namespace TheatreCMS.Controllers
                 var users = db.Users.Where(u => u.FirstName.Contains(searchQuery) || u.LastName.Contains(searchQuery)).Select(u => u.Id).ToArray();
 
 
-                messages = messages.Where(m => m.Subject.Contains(searchQuery) || m.Body.Contains(searchQuery) || users.Any(u => u == m.SenderId) || users.Any(u => u == m.RecipientId)).ToList();
+                messages = messages.Where(m => m.Subject.ToLower().Contains(searchQuery.ToLower()) || m.Body.ToLower().Contains(searchQuery.ToLower()) || users.Any(u => u == m.SenderId) || users.Any(u => u == m.RecipientId)).ToList();
                 ViewData["searchQuery"] = searchQuery;
             }
 
