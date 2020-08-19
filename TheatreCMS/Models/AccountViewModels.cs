@@ -88,14 +88,14 @@ namespace TheatreCMS.Models
         public string FirstName {get; set;}
 
         [Required]
-        [Display(Name = "LastName")]
+        [Display(Name = "Last Name")]
         public string LastName {get; set;}
 
         [Required]
-        [Display(Name = "UserName")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
-        [Display(Name = "StreetAddress")]
+        [Display(Name = "Street Address")]
         public string StreetAddress { get; set; }
         
         [Display(Name = "City")]
