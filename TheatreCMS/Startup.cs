@@ -909,6 +909,119 @@ namespace TheatreCMS
                 OpeningDay = new DateTime(2002, 8, 01, 14, 00, 00), ClosingDay = new DateTime(2002, 8, 30, 14, 00, 00), ShowtimeEve = new DateTime(2002, 8, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2002, 8, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 6, IsCurrent = false},
 
+                //// Productions for Season 5
+                new Production{Title = "Masterpieces", Playwright = "Sarah Daniels", Description = "Masterpieces is a fiery and uncompromising condemnation of pornography" +
+                "and the objectification of women.",
+                OpeningDay = new DateTime(2002, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2002, 5, 31, 14, 00, 00), ShowtimeEve = new DateTime(2002, 5, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2002, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 5, IsCurrent = false},
+
+                 new Production{Title = "Rashomon", Playwright = "Fay Kanin and Michael Kanin", Description = "the wife of a Samurai officer is assaulted and her husband killed" +
+                "by a roving bandit. Contradictory versions of what happened are reenacted at the trial by the bandit, the wife and the dead husband who speaks through a medium." +
+                "Each version is true in its fashion.",
+                OpeningDay = new DateTime(2002, 2, 01, 14, 00, 00), ClosingDay = new DateTime(2002, 2, 28, 14, 00, 00), ShowtimeEve = new DateTime(2002, 2, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2002, 2, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 5, IsCurrent = false},
+
+                new Production{Title = "The Physicists", Playwright = "Friedrich Dürrenmatt", Description = "A nurse has been murdered at Les Cerisiers, a private sanitarium"  +
+                "run by the world-renowned psychiatrist, Dr. Mathilde von Zahnd. This is the second nurse killed in three months, and both have been murdered by residents" +
+                "of the physicist ward.",
+                OpeningDay = new DateTime(2001, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2001, 10, 31, 14, 00, 00), ShowtimeEve = new DateTime(2001, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2001, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 5, IsCurrent = false},
+
+                new Production{Title = "The 24-Hour Plays", Playwright = "", Description = "The 24-Hour Plays® bring together creative communities to produce plays and musicals " +
+                "that are written, rehearsed, and performed in 24 hours.",
+                OpeningDay = new DateTime(2001, 7, 01, 14, 00, 00), ClosingDay = new DateTime(2001, 7, 31, 14, 00, 00), ShowtimeEve = new DateTime(2001, 7, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2001, 7, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 5, IsCurrent = false},
+
+                 //// Productions for Season 4
+                new Production{Title = "The Baptism", Playwright = "Amiri Baraka", Description = "A boy comes to the church to be baptized, but his sins become a heated topic of" +
+                "discussion, launching angry accusations and a violent end.",
+                OpeningDay = new DateTime(2001, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2001, 5, 31, 14, 00, 00), ShowtimeEve = new DateTime(2001, 5, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2001, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 4, IsCurrent = false},
+
+                new Production{Title = "Brutality of Fact", Playwright = "Keith Reddin", Description = "Val, a matriarch, comes to live with her daughter, Jackie." +
+                "Jackie, recently divorced and having lost custody of her daughter, takes her mother in willingly but also enlists her in a crusade to convert everyone" +
+                "to a Jehovah’s Witness.",
+                OpeningDay = new DateTime(2001, 2, 01, 14, 00, 00), ClosingDay = new DateTime(2001, 2, 28, 14, 00, 00), ShowtimeEve = new DateTime(2001, 2, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2001, 2, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 4, IsCurrent = false},
+
+                new Production{Title = "Poona the Fuckdog: And Other Plays for Children", Playwright = "Jeff Goode", Description = "Poona's adventures take her to the" +
+                "Kingdom of Do (where nobody did) ruled by a powerful television set. She meets, among others, Suzy-Suzy Cyber Assassin, a thespian shrub, lost space aliens," +
+                "and she even talks to God! Poona finally grows old and must tell her fabulous story to all you little kiddies.",
+                OpeningDay = new DateTime(2000, 10, 01, 14, 00, 00), ClosingDay = new DateTime(2000, 10, 31, 14, 00, 00), ShowtimeEve = new DateTime(2000, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2000, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 4, IsCurrent = false},
+
+                new Production{Title = "Popcorn", Playwright = "Ben Elton", Description = "A satirical comedy going on hostage drama going on heated moral debate about" +
+                "violent movies, copycat crimes and taking responsibility.",
+                OpeningDay = new DateTime(2000, 7, 01, 14, 00, 00), ClosingDay = new DateTime(2000, 7, 31, 14, 00, 00), ShowtimeEve = new DateTime(2000, 7, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2000, 7, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 4, IsCurrent = false},
+
+                 //// Productions for Season 3
+                new Production{Title = "Hellcab", Playwright = "Will Kern", Description = "Hellcab portrays the story of a cab driver during the longest night of his life" +
+                "as he transports a bizarre and mysterious array of customers through the gritty streets of Chicago",
+                OpeningDay = new DateTime(2000, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2000, 5, 31, 14, 00, 00), ShowtimeEve = new DateTime(2000, 5, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2000, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false},
+
+                new Production{Title = "The Anger of Ernest and Ernestine", Playwright = "Leah Cherniak and Martha Ross", Description = " It is a series of related comic" +
+                "sketches about marriage featuring two who exaggerate their love for one another before they marry and move into their dingy basement" +
+                "apartment, only to find that their habits are incompatible. Ernest is obsessive compulsive; Ernestine is happy making and living in a mess.",
+                OpeningDay = new DateTime(2000, 3, 01, 14, 00, 00), ClosingDay = new DateTime(2000, 3, 31, 14, 00, 00), ShowtimeEve = new DateTime(2000, 3, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2000, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false},
+
+                new Production{Title = "Lion in the Streets", Playwright = "Judith Thompson", Description = "Its central character is the ghost Isobel, a nine-year-old" +
+                "Portuguese girl who is searching for her killer by observing and occasionally interacting with her neighbors seventeen years after her murder, revealing" +
+                "their dark, horrific, emotional, and very private experiences.",
+                OpeningDay = new DateTime(2000, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2000, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2000, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(2000, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false},
+
+                new Production{Title = "The King has Gone to Tenebrae", Playwright = "George Herman", Description = "",
+                OpeningDay = new DateTime(1999, 9, 01, 14, 00, 00), ClosingDay = new DateTime(1999, 9, 30, 14, 00, 00), ShowtimeEve = new DateTime(1999, 9, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1999, 9, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false},
+
+                new Production{Title = "The Grey Zone", Playwright = "Tim Blake Nelson", Description = "A small group of Sonderkommando, prisoners assigned to dispose of" +
+                "the bodies of other dead prisoners, are plotting an insurrection that, they hope, will destroy at least one of the camp's four crematoria and gas chambers.",
+                OpeningDay = new DateTime(1999, 6, 01, 14, 00, 00), ClosingDay = new DateTime(1999, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(1999, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1999, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false}, 
+                
+                //// Productions for Season 2
+                new Production{Title = "This is a Play", Playwright = "Daniel MacIvor", Description = "A hilarious metaplay,  This Is A Play follows three actors who," +
+                "while performing, reveal their own thoughts and motivations as they struggle through crazy stage directions and an unoriginal musical score.",
+                OpeningDay = new DateTime(1999, 5, 01, 14, 00, 00), ClosingDay = new DateTime(1999, 5, 31, 14, 00, 00), ShowtimeEve = new DateTime(1999, 5, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1999, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 2, IsCurrent = false},
+
+                new Production{Title = "Criminal Genius", Playwright = "George F. Walker", Description = "A gut-busting black comedy in which nothing is beyond ridicule" +
+                "– not even murder, arson or pornography.",
+                OpeningDay = new DateTime(1999, 3, 01, 14, 00, 00), ClosingDay = new DateTime(1999, 3, 31, 14, 00, 00), ShowtimeEve = new DateTime(1999, 3, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1999, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 2, IsCurrent = false},
+
+                new Production{Title = "Never Swim Alone", Playwright = "Daniel MacIvor", Description = "A swift, funny satire about two Alpha-males and their ruthless competition for" +
+                "the title of Top Dog. The play is structured as a surreal egotistic boxing match: Frank and Bill, two guys in dark suits and bad ties, square off in a 13" +
+                "round Battle Royale of vicious undermining and one-upmanship.",
+                OpeningDay = new DateTime(1999, 1, 01, 14, 00, 00), ClosingDay = new DateTime(1999, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(1999, 1, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1999, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 2, IsCurrent = false},
+
+                new Production{Title = "Two-Headed Roommate", Playwright = "", Description = "",
+                OpeningDay = new DateTime(1998, 9, 01, 14, 00, 00), ClosingDay = new DateTime(1998, 9, 30, 14, 00, 00), ShowtimeEve = new DateTime(1998, 9, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1998, 9, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 2, IsCurrent = false},
+
+                new Production{Title = "Larry and the Werewolf", Playwright = "Jeff Goode", Description = "Larry Fingers and his cigar-chomping, gun-toting protege Spike" +
+                "are about to hit the big-time. But will their budding music career survive the spectre of scandal raised by the Lycanthrope from Larry's occult past?" +
+                "Larry's not saying. But hotel detective (and erotic novelist) Dick Piston means to find some answers. Even if he has to write it himself.",
+                OpeningDay = new DateTime(1998, 6, 01, 14, 00, 00), ClosingDay = new DateTime(1998, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(1998, 6, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1998, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 45, Season = 2, IsCurrent = false},
+                
+                //// Productions for Season 1
+                new Production{Title = "A Woman, Alone", Playwright = "Dario Fo and Franca Rame", Description = "A murder-mystery serial-comedy with gratuitous sex and violence and a " +
+                "cliffhanger ending every 10 minutes. Larry Fingers and his cigar-chomping, gun-toting protégé Spike are about to hit the big-time. But will their budding music career" +
+                "survive the spectre of scandal raised by the Lycanthrope from Larry’s occult past? Larry’s not saying. But hotel detective (and erotic novelist) Dick Piston means to" +
+                "find some answers. Even if he has to write it himself.",
+                OpeningDay = new DateTime(1998, 3, 01, 14, 00, 00), ClosingDay = new DateTime(1998, 3, 31, 14, 00, 00), ShowtimeEve = new DateTime(1998, 3, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1998, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 1, IsCurrent = false},
+
+                new Production{Title = "Mass Murder", Playwright = "", Description = "",
+                OpeningDay = new DateTime(1997, 10, 01, 14, 00, 00), ClosingDay = new DateTime(1997, 10, 31, 14, 00, 00), ShowtimeEve = new DateTime(1997, 10, 01, 19, 00, 00),
+                ShowtimeMat = new DateTime(1997, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 1, IsCurrent = false},
+
+
 
                 #endregion
             };
@@ -1009,6 +1122,33 @@ namespace TheatreCMS
             Image image68 = Image.FromFile(Path.Combine(imagesRoot, @"freedomland.jpg"));
             Image image69 = Image.FromFile(Path.Combine(imagesRoot, @"24HourPlays3.jpg"));
             Image image70 = Image.FromFile(Path.Combine(imagesRoot, @"importanceOfBeingEarnest.jpg"));
+            // images for season 5
+            Image image71 = Image.FromFile(Path.Combine(imagesRoot, @"masterpieces.jpg"));
+            Image image72 = Image.FromFile(Path.Combine(imagesRoot, @"rashomon.jpg"));
+            Image image73 = Image.FromFile(Path.Combine(imagesRoot, @"Physicists.jpeg"));
+            Image image74 = Image.FromFile(Path.Combine(imagesRoot, @"24HourPlays4.jpg"));
+            // images for season 4
+            Image image75 = Image.FromFile(Path.Combine(imagesRoot, @"baptism.jpg"));
+            Image image76 = Image.FromFile(Path.Combine(imagesRoot, @"brutalityOfFact.jpg"));
+            Image image77 = Image.FromFile(Path.Combine(imagesRoot, @"poona.jpg"));
+            Image image78 = Image.FromFile(Path.Combine(imagesRoot, @"popcorn.jpg"));
+            // images for season 3
+            Image image79 = Image.FromFile(Path.Combine(imagesRoot, @"hellcab.jpg"));
+            Image image80 = Image.FromFile(Path.Combine(imagesRoot, @"angerErnestAndErnestine.jpg"));
+            Image image81 = Image.FromFile(Path.Combine(imagesRoot, @"lionInTheStreets.jpg"));
+            Image image82 = Image.FromFile(Path.Combine(imagesRoot, @"kingTenebrae.jpg"));
+            Image image83 = Image.FromFile(Path.Combine(imagesRoot, @"grayZone.jpg"));
+            // images for season 2
+            Image image84 = Image.FromFile(Path.Combine(imagesRoot, @"thisIsAPlay.jpg"));
+            Image image85 = Image.FromFile(Path.Combine(imagesRoot, @"criminalGenius.png"));
+            Image image86 = Image.FromFile(Path.Combine(imagesRoot, @"neverSwimAlone.jpg"));
+            Image image87 = Image.FromFile(Path.Combine(imagesRoot, @"twoHeadedRoommate.jpg"));
+            Image image88 = Image.FromFile(Path.Combine(imagesRoot, @"larryWerewolf.jpg"));
+            // images for season 1
+            Image image89 = Image.FromFile(Path.Combine(imagesRoot, @"aWomanAlone.jpg"));
+            Image image90 = Image.FromFile(Path.Combine(imagesRoot, @"massMurder.jpg"));
+
+
 
             var photos = new List<Photo>
             {
@@ -1553,6 +1693,172 @@ namespace TheatreCMS
                     Title = "Anonymous Theatre: The Importance of Being Earnest"
                 },
 
+                // Photos for season 5
+                new Photo
+                {
+                    OriginalHeight = image71.Height,
+                    OriginalWidth = image71.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image71, typeof(byte[])),
+                    Title = "Masterpieces"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image72.Height,
+                    OriginalWidth = image72.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image72, typeof(byte[])),
+                    Title = "Rashomon"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image73.Height,
+                    OriginalWidth = image73.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image73, typeof(byte[])),
+                    Title = "The Physicists"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image74.Height,
+                    OriginalWidth = image74.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image74, typeof(byte[])),
+                    Title = "The 24-Hour Plays - Season 5"
+                },
+
+                // Photos for season 4
+                new Photo
+                {
+                    OriginalHeight = image75.Height,
+                    OriginalWidth = image75.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image75, typeof(byte[])),
+                    Title = "The Baptism"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image76.Height,
+                    OriginalWidth = image76.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image76, typeof(byte[])),
+                    Title = "Brutality of Fact"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image77.Height,
+                    OriginalWidth = image77.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image77, typeof(byte[])),
+                    Title = "Poona the Fuckdog: And Other Plays for Children"
+                },
+
+
+
+                new Photo
+                {
+                    OriginalHeight = image78.Height,
+                    OriginalWidth = image78.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image78, typeof(byte[])),
+                    Title = "Popcorn"
+                },
+
+                // Photos for season 3
+                new Photo
+                {
+                    OriginalHeight = image79.Height,
+                    OriginalWidth = image79.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image79, typeof(byte[])),
+                    Title = "Hellcab"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image80.Height,
+                    OriginalWidth = image80.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image80, typeof(byte[])),
+                    Title = "The Anger of Ernest and Ernestine"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image81.Height,
+                    OriginalWidth = image81.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image81, typeof(byte[])),
+                    Title = "Lion in the Streets"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image82.Height,
+                    OriginalWidth = image82.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image82, typeof(byte[])),
+                    Title = "The King has Gone to Tenebrae"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image83.Height,
+                    OriginalWidth = image83.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image83, typeof(byte[])),
+                    Title = "The Grey Zone"
+                },
+
+                // Photos for season 2
+                new Photo
+                {
+                    OriginalHeight = image84.Height,
+                    OriginalWidth = image84.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image84, typeof(byte[])),
+                    Title = "This is a Play"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image85.Height,
+                    OriginalWidth = image85.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image85, typeof(byte[])),
+                    Title = "Criminal Genius"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image86.Height,
+                    OriginalWidth = image86.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image86, typeof(byte[])),
+                    Title = "Never Swim Alone"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image87.Height,
+                    OriginalWidth = image87.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image87, typeof(byte[])),
+                    Title = "Two-Headed Roommate"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image88.Height,
+                    OriginalWidth = image88.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image88, typeof(byte[])),
+                    Title = "Larry and the Werewolf"
+                },
+
+                // Photos for season 1
+                new Photo
+                {
+                    OriginalHeight = image89.Height,
+                    OriginalWidth = image89.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image89, typeof(byte[])),
+                    Title = "A Woman Alone"
+                },
+
+                new Photo
+                {
+                    OriginalHeight = image90.Height,
+                    OriginalWidth = image90.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(image90, typeof(byte[])),
+                    Title = "Mass Murder"
+                },
             };
             photos.ForEach(Photo => context.Photo.AddOrUpdate(p => p.PhotoFile, Photo));
             context.SaveChanges();
@@ -2103,6 +2409,175 @@ namespace TheatreCMS
                     Title = "Anonymous Theatre: The Importance of Being Earnest",
                     Description = "Anonymous Theatre: The Importance of Being Earnest",
                     Production = context.Productions.Where(name => name.Title == "Anonymous Theatre: The Importance of Being Earnest").FirstOrDefault()
+                },
+
+                // production photos for season 5
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Masterpieces").FirstOrDefault().PhotoId,
+                    Title = "Masterpieces",
+                    Description = "Masterpieces",
+                    Production = context.Productions.Where(name => name.Title == "Masterpieces").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Rashomon").FirstOrDefault().PhotoId,
+                    Title = "Rashomon",
+                    Description = "Rashomon",
+                    Production = context.Productions.Where(name => name.Title == "Rashomon").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Physicists").FirstOrDefault().PhotoId,
+                    Title = "The Physicists",
+                    Description = "The Physicists",
+                    Production = context.Productions.Where(name => name.Title == "The Physicists").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The 24-Hour Plays - Season 5").FirstOrDefault().PhotoId,
+                    Title = "The 24-Hour Plays - Season 5",
+                    Description = "The 24-Hour Plays - Season 5",
+                    Production = context.Productions.Where(name => name.Title == "The 24-Hour Plays" && name.Season == 5).FirstOrDefault()
+                },
+
+                // production photos for season 4
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Baptism").FirstOrDefault().PhotoId,
+                    Title = "The Baptism",
+                    Description = "The Baptism",
+                    Production = context.Productions.Where(name => name.Title == "The Baptism").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Brutality of Fact").FirstOrDefault().PhotoId,
+                    Title = "Brutality of Fact",
+                    Description = "Brutality of Fact",
+                    Production = context.Productions.Where(name => name.Title == "Brutality of Fact").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Poona the Fuckdog: And Other Plays for Children").FirstOrDefault().PhotoId,
+                    Title = "Poona the Fuckdog: And Other Plays for Children",
+                    Description = "Poona the Fuckdog: And Other Plays for Children",
+                    Production = context.Productions.Where(name => name.Title == "Poona the Fuckdog: And Other Plays for Children").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Popcorn").FirstOrDefault().PhotoId,
+                    Title = "Popcorn",
+                    Description = "Popcorn",
+                    Production = context.Productions.Where(name => name.Title == "Popcorn").FirstOrDefault()
+                },
+
+                // production photos for season 3
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Hellcab").FirstOrDefault().PhotoId,
+                    Title = "Hellcab",
+                    Description = "Hellcab",
+                    Production = context.Productions.Where(name => name.Title == "Hellcab").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Anger of Ernest and Ernestine").FirstOrDefault().PhotoId,
+                    Title = "The Anger of Ernest and Ernestine",
+                    Description = "The Anger of Ernest and Ernestine",
+                    Production = context.Productions.Where(name => name.Title == "The Anger of Ernest and Ernestine").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Lion in the Streets").FirstOrDefault().PhotoId,
+                    Title = "Lion in the Streets",
+                    Description = "Lion in the Streets",
+                    Production = context.Productions.Where(name => name.Title == "Lion in the Streets").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The King has Gone to Tenebrae").FirstOrDefault().PhotoId,
+                    Title = "The King has Gone to Tenebrae",
+                    Description = "The King has Gone to Tenebrae",
+                    Production = context.Productions.Where(name => name.Title == "The King has Gone to Tenebrae").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "The Grey Zone").FirstOrDefault().PhotoId,
+                    Title = "The Grey Zone",
+                    Description = "The Grey Zone",
+                    Production = context.Productions.Where(name => name.Title == "The Grey Zone").FirstOrDefault()
+                },
+
+                // production photos for season 2
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "This is a Play").FirstOrDefault().PhotoId,
+                    Title = "This is a Play",
+                    Description = "This is a Play",
+                    Production = context.Productions.Where(name => name.Title == "This is a Play").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Criminal Genius").FirstOrDefault().PhotoId,
+                    Title = "Criminal Genius",
+                    Description = "Criminal Genius",
+                    Production = context.Productions.Where(name => name.Title == "Criminal Genius").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Never Swim Alone").FirstOrDefault().PhotoId,
+                    Title = "Never Swim Alone",
+                    Description = "Never Swim Alone",
+                    Production = context.Productions.Where(name => name.Title == "Never Swim Alone").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Two-Headed Roommate").FirstOrDefault().PhotoId,
+                    Title = "Two-Headed Roommate",
+                    Description = "Two-Headed Roommate",
+                    Production = context.Productions.Where(name => name.Title == "Two-Headed Roommate").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Larry and the Werewolf").FirstOrDefault().PhotoId,
+                    Title = "Larry and the Werewolf",
+                    Description = "Larry and the Werewolf",
+                    Production = context.Productions.Where(name => name.Title == "Larry and the Werewolf").FirstOrDefault()
+                },
+
+                // production photos for season 1
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "A Woman Alone").FirstOrDefault().PhotoId,
+                    Title = "A Woman Alone",
+                    Description = "A Woman Alone",
+                    Production = context.Productions.Where(name => name.Title == "A Woman Alone").FirstOrDefault()
+                },
+
+                new ProductionPhotos
+                {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Mass Murder").FirstOrDefault().PhotoId,
+                    Title = "Mass Murder",
+                    Description = "Mass Murder",
+                    Production = context.Productions.Where(name => name.Title == "Mass Murder").FirstOrDefault()
                 },
             };
             productionphoto.ForEach(prodphoto => context.ProductionPhotos.AddOrUpdate(p => p.PhotoId, prodphoto));
