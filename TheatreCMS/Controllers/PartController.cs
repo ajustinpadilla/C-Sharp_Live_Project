@@ -17,12 +17,11 @@ namespace TheatreCMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
-
         // GET: Part
         public ActionResult Index()
         {
             FilterOptions();
+
             return View(db.Parts.ToList());
         }
 
@@ -36,7 +35,7 @@ namespace TheatreCMS.Controllers
 
             /* Depending on which drop down list item(s) are selected, it determines which of the conditions below will be executed. */
             /* These if statements figure out which query to do based on the drop down selected. */
-           List < Part> queriedPartsList = db.Parts.ToList();
+            List<Part> queriedPartsList = db.Parts.ToList();
 
             if (ProductionsID != 0)
             {
@@ -50,6 +49,7 @@ namespace TheatreCMS.Controllers
             {
                 queriedPartsList = queriedPartsList.Where(part => part.Type.ToString() == Roles).ToList();
             }
+
             return View(queriedPartsList);
         }
 
