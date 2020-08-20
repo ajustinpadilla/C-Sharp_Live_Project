@@ -1143,10 +1143,10 @@ namespace TheatreCMS
             Image image85 = Image.FromFile(Path.Combine(imagesRoot, @"criminalGenius.png"));
             Image image86 = Image.FromFile(Path.Combine(imagesRoot, @"neverSwimAlone.jpg"));
             Image image87 = Image.FromFile(Path.Combine(imagesRoot, @"twoHeadedRoommate.jpg"));
-            Image image88 = Image.FromFile(Path.Combine(imagesRoot, @"larryWerewolf.jpg"));
+            Image image88 = Image.FromFile(Path.Combine(imagesRoot, @"larryTheWerewolf.jpg"));
             // images for season 1
             Image image89 = Image.FromFile(Path.Combine(imagesRoot, @"aWomanAlone.jpg"));
-            Image image90 = Image.FromFile(Path.Combine(imagesRoot, @"massMurder.jpg"));
+            Image image90 = Image.FromFile(Path.Combine(imagesRoot, @"massMurders.jpg"));
 
 
 
