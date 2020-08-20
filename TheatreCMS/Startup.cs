@@ -1019,7 +1019,7 @@ namespace TheatreCMS
 
                 new Production{Title = "Mass Murder", Playwright = "", Description = "",
                 OpeningDay = new DateTime(1997, 10, 01, 14, 00, 00), ClosingDay = new DateTime(1997, 10, 31, 14, 00, 00), ShowtimeEve = new DateTime(1997, 10, 01, 19, 00, 00),
-                ShowtimeMat = new DateTime(1997, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 1, IsCurrent = false},
+                ShowtimeMat = new DateTime(1997, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 1, IsWorldPremiere= true, IsCurrent = false},
 
 
 
