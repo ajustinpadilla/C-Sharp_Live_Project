@@ -183,23 +183,24 @@
                 </div>
             </div>
 
-            @{ var content = TheatreCMS.Helpers.AdminSettingsReader.CurrentSettings(); }
+            @* Get footer information from AdminSettings *@
+            @{ var footerContent = TheatreCMS.Helpers.AdminSettingsReader.CurrentSettings().FooterInfo; }
 
             <div class="float-lg-left text-left" id="contactInfo">
                 @*bootstrap classes that align text*@
                 <div id="address">
                     <p id="addressPadding">
                         @*Added for css styling*@
-                        @content.FooterInfo.AddressStreet <br />
-                        @content.FooterInfo.AddressCityStateZip
+                        @footerContent.AddressStreet <br />
+                        @footerContent.AddressCityStateZip
                     </p>
                 </div>
 
                 <div id="phoneNumbers">
                     <p id="phoneNumbersPadding">
                         @*Added for css styling*@
-                        Phone Number (General) - @content.FooterInfo.PhoneGeneral<br />
-                        Phone Number (Sales) - @content.FooterInfo.PhoneSales  
+                        Phone Number (General) - @footerContent.PhoneGeneral<br />
+                        Phone Number (Sales) - @footerContent.PhoneSales  
                     </p>
                 </div>
             </div>

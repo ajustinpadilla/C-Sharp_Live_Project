@@ -37,10 +37,10 @@ namespace TheatreCMS.Models
         public Footer FooterInfo { get; set; }
         public class Footer
         {
-            public string AddressStreet { get; set; }
-            public string AddressCityStateZip { get; set; }
-            public string PhoneSales { get; set; }
-            public string PhoneGeneral { get; set; }
+            public string AddressStreet { get; set; }   // Street address
+            public string AddressCityStateZip { get; set; }     // City, State, Zip Address
+            public string PhoneSales { get; set; }  // Sales Phone Number
+            public string PhoneGeneral { get; set; }    // General Phone Number
         }
 
     }
