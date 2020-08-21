@@ -911,13 +911,13 @@ namespace TheatreCMS
 
                 //// Productions for Season 5
                 new Production{Title = "Masterpieces", Playwright = "Sarah Daniels", Description = "Masterpieces is a fiery and uncompromising condemnation of pornography" +
-                "and the objectification of women.",
+                " and the objectification of women.",
                 OpeningDay = new DateTime(2002, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2002, 5, 31, 14, 00, 00), ShowtimeEve = new DateTime(2002, 5, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2002, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 5, IsCurrent = false},
 
-                 new Production{Title = "Rashomon", Playwright = "Fay Kanin and Michael Kanin", Description = "the wife of a Samurai officer is assaulted and her husband killed" +
+                 new Production{Title = "Rashomon", Playwright = "Fay Kanin and Michael Kanin", Description = "The wife of a Samurai officer is assaulted and her husband killed" +
                 "by a roving bandit. Contradictory versions of what happened are reenacted at the trial by the bandit, the wife and the dead husband who speaks through a medium." +
-                "Each version is true in its fashion.",
+                "  Each version is true in its fashion.",
                 OpeningDay = new DateTime(2002, 2, 01, 14, 00, 00), ClosingDay = new DateTime(2002, 2, 28, 14, 00, 00), ShowtimeEve = new DateTime(2002, 2, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2002, 2, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 5, IsCurrent = false},
 
@@ -934,7 +934,7 @@ namespace TheatreCMS
 
                  //// Productions for Season 4
                 new Production{Title = "The Baptism", Playwright = "Amiri Baraka", Description = "A boy comes to the church to be baptized, but his sins become a heated topic of" +
-                "discussion, launching angry accusations and a violent end.",
+                " discussion, launching angry accusations and a violent end.",
                 OpeningDay = new DateTime(2001, 5, 01, 14, 00, 00), ClosingDay = new DateTime(2001, 5, 31, 14, 00, 00), ShowtimeEve = new DateTime(2001, 5, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2001, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 4, IsCurrent = false},
 
@@ -951,7 +951,7 @@ namespace TheatreCMS
                 ShowtimeMat = new DateTime(2000, 10, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 4, IsCurrent = false},
 
                 new Production{Title = "Popcorn", Playwright = "Ben Elton", Description = "A satirical comedy going on hostage drama going on heated moral debate about" +
-                "violent movies, copycat crimes and taking responsibility.",
+                " violent movies, copycat crimes and taking responsibility.",
                 OpeningDay = new DateTime(2000, 7, 01, 14, 00, 00), ClosingDay = new DateTime(2000, 7, 31, 14, 00, 00), ShowtimeEve = new DateTime(2000, 7, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2000, 7, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 4, IsCurrent = false},
 
@@ -962,14 +962,14 @@ namespace TheatreCMS
                 ShowtimeMat = new DateTime(2000, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false},
 
                 new Production{Title = "The Anger of Ernest and Ernestine", Playwright = "Leah Cherniak and Martha Ross", Description = " It is a series of related comic" +
-                "sketches about marriage featuring two who exaggerate their love for one another before they marry and move into their dingy basement" +
-                "apartment, only to find that their habits are incompatible. Ernest is obsessive compulsive; Ernestine is happy making and living in a mess.",
+                " sketches about marriage featuring two who exaggerate their love for one another before they marry and move into their dingy basement" +
+                " apartment, only to find that their habits are incompatible. Ernest is obsessive compulsive; Ernestine is happy making and living in a mess.",
                 OpeningDay = new DateTime(2000, 3, 01, 14, 00, 00), ClosingDay = new DateTime(2000, 3, 31, 14, 00, 00), ShowtimeEve = new DateTime(2000, 3, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2000, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false},
 
                 new Production{Title = "Lion in the Streets", Playwright = "Judith Thompson", Description = "Its central character is the ghost Isobel, a nine-year-old" +
-                "Portuguese girl who is searching for her killer by observing and occasionally interacting with her neighbors seventeen years after her murder, revealing" +
-                "their dark, horrific, emotional, and very private experiences.",
+                " Portuguese girl who is searching for her killer by observing and occasionally interacting with her neighbors seventeen years after her murder, revealing" +
+                " their dark, horrific, emotional, and very private experiences.",
                 OpeningDay = new DateTime(2000, 1, 01, 14, 00, 00), ClosingDay = new DateTime(2000, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(2000, 1, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(2000, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false},
 
@@ -978,13 +978,13 @@ namespace TheatreCMS
                 ShowtimeMat = new DateTime(1999, 9, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false},
 
                 new Production{Title = "The Grey Zone", Playwright = "Tim Blake Nelson", Description = "A small group of Sonderkommando, prisoners assigned to dispose of" +
-                "the bodies of other dead prisoners, are plotting an insurrection that, they hope, will destroy at least one of the camp's four crematoria and gas chambers.",
+                " the bodies of other dead prisoners, are plotting an insurrection that, they hope, will destroy at least one of the camp's four crematoria and gas chambers.",
                 OpeningDay = new DateTime(1999, 6, 01, 14, 00, 00), ClosingDay = new DateTime(1999, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(1999, 6, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(1999, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 3, IsCurrent = false}, 
                 
                 //// Productions for Season 2
                 new Production{Title = "This is a Play", Playwright = "Daniel MacIvor", Description = "A hilarious metaplay,  This Is A Play follows three actors who," +
-                "while performing, reveal their own thoughts and motivations as they struggle through crazy stage directions and an unoriginal musical score.",
+                " while performing, reveal their own thoughts and motivations as they struggle through crazy stage directions and an unoriginal musical score.",
                 OpeningDay = new DateTime(1999, 5, 01, 14, 00, 00), ClosingDay = new DateTime(1999, 5, 31, 14, 00, 00), ShowtimeEve = new DateTime(1999, 5, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(1999, 5, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 2, IsCurrent = false},
 
@@ -994,8 +994,8 @@ namespace TheatreCMS
                 ShowtimeMat = new DateTime(1999, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 2, IsCurrent = false},
 
                 new Production{Title = "Never Swim Alone", Playwright = "Daniel MacIvor", Description = "A swift, funny satire about two Alpha-males and their ruthless competition for" +
-                "the title of Top Dog. The play is structured as a surreal egotistic boxing match: Frank and Bill, two guys in dark suits and bad ties, square off in a 13" +
-                "round Battle Royale of vicious undermining and one-upmanship.",
+                " the title of Top Dog. The play is structured as a surreal egotistic boxing match: Frank and Bill, two guys in dark suits and bad ties, square off in a 13" +
+                " round Battle Royale of vicious undermining and one-upmanship.",
                 OpeningDay = new DateTime(1999, 1, 01, 14, 00, 00), ClosingDay = new DateTime(1999, 1, 31, 14, 00, 00), ShowtimeEve = new DateTime(1999, 1, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(1999, 1, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 2, IsCurrent = false},
 
@@ -1004,16 +1004,15 @@ namespace TheatreCMS
                 ShowtimeMat = new DateTime(1998, 9, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 210, Season = 2, IsCurrent = false},
 
                 new Production{Title = "Larry and the Werewolf", Playwright = "Jeff Goode", Description = "Larry Fingers and his cigar-chomping, gun-toting protege Spike" +
-                "are about to hit the big-time. But will their budding music career survive the spectre of scandal raised by the Lycanthrope from Larry's occult past?" +
-                "Larry's not saying. But hotel detective (and erotic novelist) Dick Piston means to find some answers. Even if he has to write it himself.",
+                " are about to hit the big-time. But will their budding music career survive the spectre of scandal raised by the Lycanthrope from Larry's occult past?" +
+                " Larry's not saying. But hotel detective (and erotic novelist) Dick Piston means to find some answers. Even if he has to write it himself.",
                 OpeningDay = new DateTime(1998, 6, 01, 14, 00, 00), ClosingDay = new DateTime(1998, 6, 30, 14, 00, 00), ShowtimeEve = new DateTime(1998, 6, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(1998, 6, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 45, Season = 2, IsCurrent = false},
                 
                 //// Productions for Season 1
-                new Production{Title = "A Woman, Alone", Playwright = "Dario Fo and Franca Rame", Description = "A murder-mystery serial-comedy with gratuitous sex and violence and a " +
-                "cliffhanger ending every 10 minutes. Larry Fingers and his cigar-chomping, gun-toting protégé Spike are about to hit the big-time. But will their budding music career" +
-                "survive the spectre of scandal raised by the Lycanthrope from Larry’s occult past? Larry’s not saying. But hotel detective (and erotic novelist) Dick Piston means to" +
-                "find some answers. Even if he has to write it himself.",
+                new Production{Title = "A Woman, Alone", Playwright = "Dario Fo and Franca Rame", Description = "Locked up in a flat, a solitary woman makes her confession." + 
+                "Amid domestic chores, dodgy phone calls, a sex-mad brother-in-law and a forever screaming baby she tells us the story of how her love for a young student led" +
+                " to her imprisonment at the hands of her jealous husband.",
                 OpeningDay = new DateTime(1998, 3, 01, 14, 00, 00), ClosingDay = new DateTime(1998, 3, 31, 14, 00, 00), ShowtimeEve = new DateTime(1998, 3, 01, 19, 00, 00),
                 ShowtimeMat = new DateTime(1998, 3, 01, 14, 00, 00), TicketLink = "ticketsforyou.com", Runtime = 120, Season = 1, IsCurrent = false},
 
@@ -1849,7 +1848,7 @@ namespace TheatreCMS
                     OriginalHeight = image89.Height,
                     OriginalWidth = image89.Width,
                     PhotoFile = (byte[])converter.ConvertTo(image89, typeof(byte[])),
-                    Title = "A Woman Alone"
+                    Title = "A Woman, Alone"
                 },
 
                 new Photo
@@ -2566,10 +2565,10 @@ namespace TheatreCMS
 
                 new ProductionPhotos
                 {
-                    PhotoId = context.Photo.Where(photo => photo.Title == "A Woman Alone").FirstOrDefault().PhotoId,
-                    Title = "A Woman Alone",
-                    Description = "A Woman Alone",
-                    Production = context.Productions.Where(name => name.Title == "A Woman Alone").FirstOrDefault()
+                    PhotoId = context.Photo.Where(photo => photo.Title == "A Woman, Alone").FirstOrDefault().PhotoId,
+                    Title = "A Woman, Alone",
+                    Description = "A Woman, Alone",
+                    Production = context.Productions.Where(name => name.Title == "A Woman, Alone").FirstOrDefault()
                 },
 
                 new ProductionPhotos
