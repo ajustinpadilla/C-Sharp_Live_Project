@@ -113,12 +113,12 @@
                   <dl>
                     @foreach (var item in parts)
                     {
-                        if (item != null && part.ToString() == "Actor")
-                        {
+                      if (item != null && part.ToString() == "Actor")
+                      {
                         <dd class="col">
                           <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
                         </dd>
-                        if (item.Person != null) { 
+                        if (item.Person != null) {
                             <dd class="col">
                               <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID">@item.Person.Name.ToString()</a></p>
                             </dd>
@@ -241,96 +241,95 @@
             }
         }*@
 
-      <div class="col-md-8">
+    <div class="col-md-8">
 
-        <div class="card text-center bg-white text-black-50 mr-4" id="cardss">
+      <div class="card text-center bg-white text-black-50 mr-4" id="cardss">
 
-          <h5 class="card-header text-white" id="head"><b>About The Production</b></h5>
+        <h5 class="card-header text-white" id="head"><b>About The Production</b></h5>
 
-          <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' id="DisplayImg" />
-          <dl class="dl-horizontal justify-content-start col">
+        <img src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' id="DisplayImg" />
+        <dl class="dl-horizontal justify-content-start col">
 
-            <dt class="col">
-              @Html.DisplayNameFor(model => model.Title)
-            </dt>
+          <dt class="col">
+            @Html.DisplayNameFor(model => model.Title)
+          </dt>
 
-            <dd class="col">
-              @Html.DisplayFor(model => model.Title)
-            </dd>
+          <dd class="col">
+            @Html.DisplayFor(model => model.Title)
+          </dd>
 
-            <dt class="col">
-              @Html.DisplayNameFor(model => model.Playwright)
-            </dt>
+          <dt class="col">
+            @Html.DisplayNameFor(model => model.Playwright)
+          </dt>
 
-            <dd class="col">
-              @Html.DisplayFor(model => model.Playwright)
-            </dd>
-            <div class="text-center">
-              <dl>
+          <dd class="col">
+            @Html.DisplayFor(model => model.Playwright)
+          </dd>
+          <div class="text-center">
+            <dl>
 
-                <dt class="col flex-md-row">
-                  @Html.DisplayNameFor(model => model.Description)
-                </dt>
+              <dt class="col flex-md-row">
+                @Html.DisplayNameFor(model => model.Description)
+              </dt>
 
-                <dd class="col">
-                  @Html.DisplayFor(model => model.Description)
-                </dd>
+              <dd class="col">
+                @Html.DisplayFor(model => model.Description)
+              </dd>
 
-                <dt class="col">
-                  @Html.DisplayNameFor(model => model.Season)
-                </dt>
+              <dt class="col">
+                @Html.DisplayNameFor(model => model.Season)
+              </dt>
 
-                <dd class="col">
-                  @Html.DisplayFor(model => model.Season)
-                </dd>
+              <dd class="col">
+                @Html.DisplayFor(model => model.Season)
+              </dd>
 
-                <dt class="col">
-                  @Html.DisplayNameFor(model => model.IsCurrent)
+              <dt class="col">
+                @Html.DisplayNameFor(model => model.IsCurrent)
 
-                </dt>
+              </dt>
 
-                <dd class="col">
-                  @Html.DisplayFor(model => model.IsCurrent)
-                </dd>
+              <dd class="col">
+                @Html.DisplayFor(model => model.IsCurrent)
+              </dd>
 
-                <dt class="col">
-                  @Html.DisplayNameFor(model => model.IsWorldPremiere)
+              <dt class="col">
+                @Html.DisplayNameFor(model => model.IsWorldPremiere)
 
-                </dt>
+              </dt>
 
-                <dd class="col">
-                  @Html.DisplayFor(model => model.IsWorldPremiere)
-                </dd>
+              <dd class="col">
+                @Html.DisplayFor(model => model.IsWorldPremiere)
+              </dd>
 
 
-              </dl>
-            </div>
-
-          </dl>
-          <div class="card text-center bg-white text-black-50" id="cardss">
-            <div class="card-body">
-              <h5 class="card-title">Where To Buy?</h5>
-              <p class="card-text">
-                <dl>
-                  <dd class="col">Get your tickets online! at @Html.DisplayFor(model => model.TicketLink)</dd>
-                </dl>
-              </p>
-              @{
-                var today = DateTime.Today;
-                var ActiveProductions = Model.ClosingDay;
-                if (ActiveProductions >= today || Model.IsCurrent == true)
-                {
-                  <a href="#" class="btn btn-primary">buy now</a>
-                }
-              }
-            </div>
+            </dl>
           </div>
-        </div>
 
+        </dl>
+        @*Hiding buying info and options.*@
+        @{
+            var ActiveProductions = Model.ClosingDay;  // Getting ClosingDay
+            // Comparing ClosingDay to today & IsCurrent bool to display or not
+            if (ActiveProductions >= DateTime.Today || Model.IsCurrent)
+            {
+            <div class="card text-center bg-white text-black-50" id="cardss">
+              <div class="card-body">
+                <h5 class="card-title">Where To Buy?</h5>
+                <p class="card-text">
+                  <dl>
+                    <dd class="col">Get your tickets online! at @Html.DisplayFor(model => model.TicketLink)</dd>
+                  </dl>
+                </p>
+                <a href="#" class="btn btn-primary">buy now</a>
+              </div>
+            </div>
+            }
+          }
         <!-- Parts Card Section visible when screen size small -->
         <!--===================================================
-        The below refactors the parts section for a small screen
-         ===================================================-->
+    The below refactors the parts section for a small screen
+     ===================================================-->
 
 
         <div class="card bg-info mr-4 d-md-none" id="cardss">
@@ -358,15 +357,15 @@
                         <dd class="col">
                           <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
                         </dd>
-                            if (item.Person != null)
-                            {
-                        <dd class="col">
-                          <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID"><i>@item.Person.Name.ToString()</i></a></p>
-                        </dd>
-                            }
-                        }
-                        else if (item != null)
+                        if (item.Person != null)
                         {
+                          <dd class="col">
+                            <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID"><i>@item.Person.Name.ToString()</i></a></p>
+                          </dd>
+                        }
+                      }
+                      else if (item != null)
+                      {
                         <dd class="col">
                           <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
                         </dd>
@@ -384,126 +383,126 @@
 
         <!--Iterate through Parts for a specific Type of role and if there is data it will display the below item in the Parts card. If no data is returned it will not display-->
         @*@{var actorsm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Actor);
-                  if (actorsm != null && actorsm.Any())
-                  {
-                      <li class="list-group-item">
-                          Actors
-                          <dl>
-                              @foreach (var item in actorsm)
+              if (actorsm != null && actorsm.Any())
+              {
+                  <li class="list-group-item">
+                      Actors
+                      <dl>
+                          @foreach (var item in actorsm)
+                          {
+                              if (item != null)
                               {
-                                  if (item != null)
-                                  {
-                                      <dd class="col">
-                                          <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                      </dd>
-                                  }
+                                  <dd class="col">
+                                      <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                  </dd>
                               }
-                          </dl>
-                      </li>
-                  }
+                          }
+                      </dl>
+                  </li>
               }
+          }
 
-              @{var directorsm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Director);
-                  if (directorsm != null && directorsm.Any())
-                  {
-                      <li class="list-group-item">
-                          Directors
-                          <dl>
-                              @foreach (var item in directorsm)
+          @{var directorsm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Director);
+              if (directorsm != null && directorsm.Any())
+              {
+                  <li class="list-group-item">
+                      Directors
+                      <dl>
+                          @foreach (var item in directorsm)
+                          {
+                              if (item != null)
                               {
-                                  if (item != null)
-                                  {
-                                      <dd class="col">
-                                          <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                      </dd>
-                                  }
+                                  <dd class="col">
+                                      <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                  </dd>
                               }
-                          </dl>
-                      </li>
-                  }
+                          }
+                      </dl>
+                  </li>
               }
+          }
 
-              @{var stagemanagersm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.StageManager);
-                  if (stagemanagersm != null && stagemanagersm.Any())
-                  {
-                      <li class="list-group-item">
-                          Stage Managers
-                          <dl>
-                              @foreach (var item in stagemanagersm)
+          @{var stagemanagersm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.StageManager);
+              if (stagemanagersm != null && stagemanagersm.Any())
+              {
+                  <li class="list-group-item">
+                      Stage Managers
+                      <dl>
+                          @foreach (var item in stagemanagersm)
+                          {
+                              if (item != null)
                               {
-                                  if (item != null)
-                                  {
-                                      <dd class="col">
-                                          <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                      </dd>
-                                  }
+                                  <dd class="col">
+                                      <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                  </dd>
                               }
-                          </dl>
-                      </li>
-                  }
+                          }
+                      </dl>
+                  </li>
               }
+          }
 
 
-              @{var techniciansm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Technician);
-                  if (techniciansm != null && techniciansm.Any())
-                  {
-                      <li class="list-group-item">
-                          Technicians
-                          <dl>
-                              @foreach (var item in techniciansm)
+          @{var techniciansm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Technician);
+              if (techniciansm != null && techniciansm.Any())
+              {
+                  <li class="list-group-item">
+                      Technicians
+                      <dl>
+                          @foreach (var item in techniciansm)
+                          {
+                              if (item != null)
                               {
-                                  if (item != null)
-                                  {
-                                      <dd class="col">
-                                          <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                      </dd>
-                                  }
+                                  <dd class="col">
+                                      <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                  </dd>
                               }
-                          </dl>
-                      </li>
-                  }
+                          }
+                      </dl>
+                  </li>
               }
+          }
 
-              @{var othersm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Other);
-                  if (othersm != null && othersm.Any())
-                  {
-                      <li class="list-group-item">
-                          Other
-                          <dl>
-                              @foreach (var item in othersm)
+          @{var othersm = Model.Parts.Where(t => t.Type == TheatreCMS.Enum.PositionEnum.Other);
+              if (othersm != null && othersm.Any())
+              {
+                  <li class="list-group-item">
+                      Other
+                      <dl>
+                          @foreach (var item in othersm)
+                          {
+                              if (item != null)
                               {
-                                  if (item != null)
-                                  {
-                                      <dd class="col">
-                                          <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-                                      </dd>
-                                  }
+                                  <dd class="col">
+                                      <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                                  </dd>
                               }
-                          </dl>
-                      </li>
-                  }
+                          }
+                      </dl>
+                  </li>
               }
+          }
 
-          </ul>
-          </div>*@
+      </ul>
+      </div>*@
         <!-- End Parts Card Section-->
         @* Old code for the Parts data. Commented out.
-          <div class="justify-content-end col-md-3">
-              <dl>
-                  @if (Model.Parts.Count != 0)
+      <div class="justify-content-end col-md-3">
+          <dl>
+              @if (Model.Parts.Count != 0)
+              {
+                  <dt>
+                      @Html.DisplayNameFor(model => model.Parts)
+                  </dt>
+                  foreach (var part in Model.Parts)
                   {
-                      <dt>
-                          @Html.DisplayNameFor(model => model.Parts)
-                      </dt>
-                      foreach (var part in Model.Parts)
-                      {
-                          <dd>
-                              <a href="/Part/Details/@part.PartID">@Html.DisplayFor(model => part.Character)</a>
-                          </dd>
-                      }
+                      <dd>
+                          <a href="/Part/Details/@part.PartID">@Html.DisplayFor(model => part.Character)</a>
+                      </dd>
                   }
-              </dl>
-          </div>*@
+              }
+          </dl>
+      </div>*@
       </div>
 
 
