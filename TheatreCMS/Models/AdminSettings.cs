@@ -34,5 +34,12 @@ namespace TheatreCMS.Models
             public DateTime date { get; set; }  // earliest date for what is considered recent
         }
 
+        public class modelsMissingPhotos
+        {
+            public List<string> Productions { get; set; }
+            public List<string> ProductionPhotos { get; set; }
+            public List<string> Sponsors { get; set; }
+            public List<string> CastMembers { get; set; }
+        }
     }
 }

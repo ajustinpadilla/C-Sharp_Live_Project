@@ -14,5 +14,13 @@
     "span": 60,
     "date": "2020-04-29"
   },
-  "onstage": 4
+  "onstage": 4,
+
+  "models_missing_photos": {
+    "productions": [],
+    "production_photos": [],
+    "sponsors": [],
+    "cast_members": []
+  }
+
 }
