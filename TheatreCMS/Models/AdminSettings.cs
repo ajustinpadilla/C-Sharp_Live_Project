@@ -34,5 +34,14 @@ namespace TheatreCMS.Models
             public DateTime date { get; set; }  // earliest date for what is considered recent
         }
 
+        public Footer FooterInfo { get; set; }
+        public class Footer
+        {
+            public string AddressStreet { get; set; }
+            public string AddressCityStateZip { get; set; }
+            public string PhoneSales { get; set; }
+            public string PhoneGeneral { get; set; }
+        }
+
     }
 }
