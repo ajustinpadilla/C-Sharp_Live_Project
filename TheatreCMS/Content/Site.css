@@ -3922,3 +3922,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     width: 157px;
 }
 
+/* Delete modal styling */
+.deleteModal_style {
+    color: black;
+}
