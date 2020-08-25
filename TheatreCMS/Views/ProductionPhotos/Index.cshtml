@@ -94,7 +94,8 @@
     //search button click
     $(document).ready(function () {
         $(".prodphoto-searchbtn").click(function () {
-            searchF();
+          searchF();
+          searchHilight();
             //if filter value is a prod, filter results after search is run
             if (filter.selectedIndex != 0) {
                 $(".prodphoto-cards").hide();
@@ -130,6 +131,23 @@
         });
     };
 
+    //Highlight the words searched by the user  + value + 
+    function searchHilight() {
+        var value = $(".prodphoto-searchbar").val()
+      var regex = new RegExp('(' + value + ')', 'gi'); //a regular expression that finds every time the searched word is mentioned.
+      var cards = document.getElementsByClassName("card-body");
+
+      for (let item of cards) {                               // a for loop that loops through all of the production photo cards.
+        for (var i = 0; i < item.children.length; i++) {      // a for loop that loops through all of child classes of each card.
+          var node = item.children[i];
+          var text = node.innerText;
+          text = text.replace(regex, '<span style="background-color:lightblue;">$1</span>');  //puts the text into a span tag that changes the background color. 
+          node.innerHTML = text;
+           }
+        }
+     };
+
+  
 </script>
 
 @*  old code

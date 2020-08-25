@@ -163,6 +163,8 @@ namespace TheatreCMS.Models
         public ActionResult DeleteConfirmed(int id)
         {
             ProductionPhotos productionPhotos = db.ProductionPhotos.Find(id);
+            Production production = db.Productions.Find(productionPhotos.Production.ProductionId);
+            production.DefaultPhoto = null;
             db.ProductionPhotos.Remove(productionPhotos);
             db.SaveChanges();
             return RedirectToAction("Index");
