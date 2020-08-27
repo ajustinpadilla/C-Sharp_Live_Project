@@ -1,54 +1,108 @@
 ﻿@model TheatreCMS.Models.Photo
 
 @{
-    ViewBag.Title = "Delete";
+  ViewBag.Title = "Delete";
+}
+
+@*Create a local variable to assign the output of the FindDependencies() method.*@
+@{ 
+    var dependencies = TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId);
 }
 
 <div class="mt-5 mx-auto col-12 col-sm-10 col-md-8 col-lg-6">
   <h4>Are you sure you want to delete this?</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>*@
+  <hr />
+  <dl class="dl-horizontal">
+    @*<dt>
+          @Html.DisplayNameFor(model => model.Title)
+      </dt>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <dd>
+      @Html.DisplayFor(model => model.Title)
+    </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.PhotoFile)
-        </dt>*@
+    @*<dt>
+          @Html.DisplayNameFor(model => model.PhotoFile)
+      </dt>*@
 
-        <dd>
-            <img class="medium_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
-        </dd>
+    <dd>
+      <img class="medium_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
+    </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.OriginalHeight)
-        </dt>*@
+    @*<dt>
+          @Html.DisplayNameFor(model => model.OriginalHeight)
+      </dt>*@
 
-        <dd>
-          @Html.DisplayFor(model => model.OriginalHeight) 
-          x @Html.DisplayFor(model => model.OriginalWidth)
-        </dd>
+    <dd>
+      @Html.DisplayFor(model => model.OriginalHeight)
+      x @Html.DisplayFor(model => model.OriginalWidth)
+    </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.OriginalWidth)
-        </dt>
+    @*<dt>
+          @Html.DisplayNameFor(model => model.OriginalWidth)
+      </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OriginalWidth)
-        </dd>*@
+      <dd>
+          @Html.DisplayFor(model => model.OriginalWidth)
+      </dd>*@
 
-    </dl>
+  </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn"/>
-            | @Html.ActionLink("Back to List", "Index")
-        </div>
+    // Checking to see if photos has dependencies
+    if (dependencies.HasDependencies == false)
+    {
+      // No dependencies, deleted
+      <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" />
+        | @Html.ActionLink("Back to List", "Index")
+      </div>
     }
+    else
+    {
+      // Has dependencies, launch modal
+      <div class="form-actions no-color">
+        <input type="button" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" data-toggle="modal" data-target="#deleteModal" style="color:white; font-size:small; padding-top:15px; padding-bottom:15px" />
+        | @Html.ActionLink("Back to List", "Index")
+      </div>
+    }
+  }
+
+  @* Modal *@
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="deleteModal_style">Delete photo?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5 class="deleteModal_style">This photo is being used by the following items:</h5>
+
+          @*Finds and lists productions this photo is used in.*@
+          <p class="deleteModal_style">
+            @foreach (var production in dependencies.ProductionPhotos)
+            {
+              @production.Title; <text> - Season: </text>
+              @production.Production.Season; <br />
+            }
+            @* Foreach sponsor in the dependencies.Sponsors List, get the name of each sponsor. *@
+            @foreach (var sponsor in dependencies.Sponsors)
+            {
+              @sponsor.Name <br />
+            }
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
