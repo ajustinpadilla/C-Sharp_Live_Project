@@ -16,9 +16,9 @@
   },
   "onstage": 4,
   "FooterInfo": {
-    "AddressStreet": "Apples",
-    "AddressCityStateZip": "Bananas",
-    "PhoneSales": "Oranges",
-    "PhoneGeneral": "Pineapple"
+    "AddressStreet": "2110 SE 10TH AVE",
+    "AddressCityStateZip": "PORTLAND OR 97214",
+    "PhoneSales": "(503) 482-8655",
+    "PhoneGeneral": "(503) 482-8655"
   }
 }
