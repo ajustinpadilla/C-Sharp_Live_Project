@@ -89,6 +89,14 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         public ActionResult SettingsUpdate(AdminSettings currentSettings)
         {
+            // The current_productions property of the AdminSettings object in the parameter does not 
+            // get set when POSTED.  This line of code sets that property.
+            currentSettings.current_productions = FindCurrentProductions();
+
+            // Populates the ViewData with the current productions same as the Dashboard() method.
+            // Without this line, an error is thrown after the form is submitted.
+            ViewData["CurrentProductionList"] = GetCurrentProductions();
+
             List<SelectListItem> productionList = GetSelectListItems();
             ViewData["ProductionList"] = productionList;
             string newSettings = JsonConvert.SerializeObject(currentSettings, Formatting.Indented);
