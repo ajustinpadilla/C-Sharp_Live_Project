@@ -14,5 +14,11 @@
     "span": 60,
     "date": "2020-04-29"
   },
-  "onstage": 4
+  "onstage": 4,
+  "FooterInfo": {
+    "AddressStreet": "2110 SE 10TH AVE",
+    "AddressCityStateZip": "PORTLAND OR 97214",
+    "PhoneSales": "(503) 482-8655",
+    "PhoneGeneral": "(503) 482-8655"
+  }
 }
