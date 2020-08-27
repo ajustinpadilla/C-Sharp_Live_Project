@@ -67,7 +67,7 @@
       // No dependencies, deleted
       <div class="form-actions no-color text-center">
         <input type="submit" value="Delete" class="btn btn-lg text-center ml-auto mr-1 col-5" id="photo-delete-btn" />
-        <input type="button" value="Cancel" class="btn btn-lg text-center mr-auto ml-1 col-5" onclick="location.href='@Url.Action("Index", "Photo")'" />
+        <input type="button" value="Cancel" class="btn btn-lg text-center mr-auto ml-1 col-5" id="photo-delete-cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
       </div>
     }
     else
@@ -77,7 +77,7 @@
       <div class="form-actions no-color">
         <div class="row">
           <input type="button" value="Delete" class="btn btn-lg text-center col-5 ml-auto mr-1 d-block" id="photo-delete-btn" data-toggle="modal" data-target="#deleteModal" />
-          <input type="button" value="Cancel" class="btn btn-lg text-center col-5 mr-auto ml-1 d-block" onclick="location.href='@Url.Action("Index", "Photo")'" />
+          <input type="button" value="Cancel" class="btn btn-lg text-center col-5 mr-auto ml-1 d-block" id="photo-delete-cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
         </div>
       </div>
     }
