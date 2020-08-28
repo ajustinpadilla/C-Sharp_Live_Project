@@ -12,6 +12,7 @@ using TheatreCMS.Helpers;
 using TheatreCMS.Models;
 using TheatreCMS.ViewModels;
 using System.Globalization;
+using TheatreCMS.Annotations;
 
 namespace TheatreCMS.Controllers
 {
@@ -295,11 +296,38 @@ namespace TheatreCMS.Controllers
 
         // POST: Productions/Delete/5
         [HttpPost, ActionName("Delete")]
+        [MultipleButton(Name = "action", Argument = "DeleteProd")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Production production = db.Productions.Find(id);
             db.Productions.Remove(production);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Productions/Delete/5 including all ProductionPhotos and regular photos
+        [HttpPost, ActionName("Delete")]
+        [MultipleButton(Name = "action", Argument = "DeleteProdWithPhotos")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmedWithPhotos(int id)
+        {
+            Production prod = db.Productions.Find(id);
+            ProductionPhotos[] productionPhotos = prod.ProductionPhotos.ToArray();
+            Photo[] photos = db.Photo.Where(p => p.PhotoId == productionPhotos).ToArray();
+            //List<ProductionPhotos> prodPhotos = db.ProductionPhotos.Where(p => p.ProPhotoId == production.ProductionId).ToList();
+            //List<Photo> photos = db.Photo.Where(p => p.PhotoId == productionPhotos.PhotoId).ToList();
+
+            foreach (ProductionPhotos prodPhoto in productionPhotos)
+            {
+                db.ProductionPhotos.Remove(prodPhoto);
+            }
+
+            foreach (Photo photo in photos)
+            {
+                db.Photo.Remove(photo);
+            }
+            db.Productions.Remove(prod);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
