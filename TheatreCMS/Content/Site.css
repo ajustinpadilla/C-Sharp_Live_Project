@@ -3865,6 +3865,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 /* BEGIN Photo Delete styles */
 #photo-delete-btn {
+    max-width: 250px;
     color: white;
     background-color: var(--main-bg-color);
     padding: 14px 20px;
@@ -3881,6 +3882,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 /* Style photo delete cancel buttons */
 #photo-delete-cancel-btn {
+    max-width: 250px;
     background-color: #727272;
     color: white;
     padding: 14px 20px;
