@@ -314,6 +314,7 @@ namespace TheatreCMS.Controllers
         {
             Production prod = db.Productions.Find(id);
             ProductionPhotos[] productionPhotos = prod.ProductionPhotos.ToArray();
+            Part[] parts = prod.Parts.ToArray();
                                                                          
             var photos = new List<Photo>();
             for (int i = 0; i < productionPhotos.Length; i++)
@@ -322,7 +323,8 @@ namespace TheatreCMS.Controllers
                 Photo photoQuery = db.Photo.Find(photoId);
                 photos.Add(photoQuery);
             }
-        
+
+            foreach (Part part in parts) db.Parts.Remove(part);
             foreach (ProductionPhotos prodPhoto in productionPhotos) db.ProductionPhotos.Remove(prodPhoto);
             db.SaveChanges();
             foreach (Photo photo in photos) db.Photo.Remove(photo);
