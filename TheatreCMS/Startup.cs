@@ -27,16 +27,16 @@ namespace TheatreCMS
         {
             ConfigureAuth(app);
             createRolesandUsers();
-            SeedCastPhotos();
-            SeedCastMembers();
-            SeedProductions();
-            SeedProductionPhotos();
-            SeedParts();
-            SeedAwards();
-            SeedSponsors();
-            // Call methods here that are defined below.
-            SeedRentalRequests();
-            SeedCalendarEvents();
+            //SeedCastPhotos();
+            //SeedCastMembers();
+            //SeedProductions();
+            //SeedProductionPhotos();
+            //SeedParts();
+            //SeedAwards();
+            //SeedSponsors();
+            //// Call methods here that are defined below.
+            //SeedRentalRequests();
+            //SeedCalendarEvents();
         }
 
 

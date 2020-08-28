@@ -314,21 +314,22 @@ namespace TheatreCMS.Controllers
         {
             Production prod = db.Productions.Find(id);
             ProductionPhotos[] productionPhotos = prod.ProductionPhotos.ToArray();
-            Photo[] photos = db.Photo.Where(p => p.PhotoId == productionPhotos).ToArray();
-            //List<ProductionPhotos> prodPhotos = db.ProductionPhotos.Where(p => p.ProPhotoId == production.ProductionId).ToList();
-            //List<Photo> photos = db.Photo.Where(p => p.PhotoId == productionPhotos.PhotoId).ToList();
-
-            foreach (ProductionPhotos prodPhoto in productionPhotos)
+                                                                         
+            var photos = new List<Photo>();
+            for (int i = 0; i < productionPhotos.Length; i++)
             {
-                db.ProductionPhotos.Remove(prodPhoto);
+                int photoId = productionPhotos[i].PhotoId;
+                Photo photoQuery = db.Photo.Find(photoId);
+                photos.Add(photoQuery);
             }
-
-            foreach (Photo photo in photos)
-            {
-                db.Photo.Remove(photo);
-            }
+        
+            foreach (ProductionPhotos prodPhoto in productionPhotos) db.ProductionPhotos.Remove(prodPhoto);
+            db.SaveChanges();
+            foreach (Photo photo in photos) db.Photo.Remove(photo);
+            db.SaveChanges();
             db.Productions.Remove(prod);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

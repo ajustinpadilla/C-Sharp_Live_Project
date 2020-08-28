@@ -105,6 +105,16 @@ namespace TheatreCMS.Models
         public System.Data.Entity.DbSet<TheatreCMS.ViewModels.NewsletterListVm> NewsletterListVms { get; set; }
 
         public System.Data.Entity.DbSet<TheatreCMS.Models.Award> Awards { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Part>()
+                        .HasRequired(p => p.Production)
+                        .WithMany()
+                        .WillCascadeOnDelete(true);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
 }
