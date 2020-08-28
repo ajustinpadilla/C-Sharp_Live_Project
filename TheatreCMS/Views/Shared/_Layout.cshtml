@@ -99,6 +99,7 @@
                           <li class="dropdown-submenu">
                             <a class="dropdown-item dropdown-toggle" href="#">Manage Content</a>
                             <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="@Url.Action("Index", "Photo")">All Photos</a></li>
                               <li><a class="dropdown-item" href="@Url.Action("Index", "Sponsors")">Sponsors</a></li>
                               <li><a class="dropdown-item" href="@Url.Action("Index", "DisplayInfo")">Info</a></li>
                               <li><a class="dropdown-item" href="@Url.Action("Index", "DisplayLinks")">Links</a></li>
@@ -182,21 +183,25 @@
                     </ul>
                 </div>
             </div>
+
+            @* Get footer information from AdminSettings *@
+            @{ var footerContent = TheatreCMS.Helpers.AdminSettingsReader.CurrentSettings().FooterInfo; }
+
             <div class="float-lg-left text-left" id="contactInfo">
                 @*bootstrap classes that align text*@
                 <div id="address">
                     <p id="addressPadding">
                         @*Added for css styling*@
-                        2110 SE 10th AVE<br />
-                        Portland, OR 97214
+                        @footerContent.AddressStreet <br />
+                        @footerContent.AddressCityStateZip
                     </p>
                 </div>
 
                 <div id="phoneNumbers">
                     <p id="phoneNumbersPadding">
                         @*Added for css styling*@
-                        Phone Number (General)<br />
-                        Phone Number (Sales)
+                        @footerContent.PhoneGeneral (General)<br />
+                        @footerContent.PhoneSales (Sales)
                     </p>
                 </div>
             </div>
