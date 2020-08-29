@@ -4,49 +4,58 @@
   ViewBag.Title = "Delete";
 }
 
-@*Create a local variable to assign the output of the FindDependencies() method.*@
-@{ 
-    var dependencies = TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId);
-}
-
 <div class="mt-5 mx-auto col-12 col-sm-10 col-md-8 col-lg-6">
-  <h4>Are you sure you want to delete this?</h4>
+  <h4 class="text-center">Are you sure you want to delete this?</h4>
   <hr />
   <dl class="dl-horizontal">
-    @*<dt>
-          @Html.DisplayNameFor(model => model.Title)
-      </dt>*@
 
-    <dd>
+    <dd class="text-center">
       @Html.DisplayFor(model => model.Title)
     </dd>
 
-    @*<dt>
-          @Html.DisplayNameFor(model => model.PhotoFile)
-      </dt>*@
-
-    <dd>
-      <img class="medium_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
+    <dd class="text-center">
+      <img class="large_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
     </dd>
 
-    @*<dt>
-          @Html.DisplayNameFor(model => model.OriginalHeight)
-      </dt>*@
-
     <dd>
+      <h5 class="text-center">Dimensions</h5>
+    </dd>
+
+    <dd class="text-center">
       @Html.DisplayFor(model => model.OriginalHeight)
       x @Html.DisplayFor(model => model.OriginalWidth)
     </dd>
 
-    @*<dt>
-          @Html.DisplayNameFor(model => model.OriginalWidth)
+    @*Create a local variable to assign the output of the FindDependencies() method.*@
+    @{
+      var dependencies = TheatreCMS.Controllers.PhotoController.FindDependencies(Model.PhotoId);
+    }
+
+    @*Use variable dependencies.HasDependencies to check for an evaluation of false. *@
+    @if (!dependencies.HasDependencies)
+    {
+      <dt class="text-center">
+        No dependencies exist with this photo: Safe to delete
+      </dt>
+    }
+    else
+    {
+      <dt class="text-center">
+        This photo is being used by the following items:
       </dt>
 
-      <dd>
-          @Html.DisplayFor(model => model.OriginalWidth)
-      </dd>*@
+      <dd class="text-center">
+        @* Foreach production in the dependencies.ProductionPhotos List, get the title and season of each production. *@
+        @foreach (var production in dependencies.ProductionPhotos)
+        {
+          @production.Title; <text> - Season: </text>
+          @production.Production.Season; <br />
+        }
+      </dd>
+    }
 
   </dl>
+     
 
   @using (Html.BeginForm())
   {
@@ -56,17 +65,20 @@
     if (dependencies.HasDependencies == false)
     {
       // No dependencies, deleted
-      <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" />
-        | @Html.ActionLink("Back to List", "Index")
+      <div class="form-actions no-color text-center">
+        <input type="submit" value="Delete" class="btn btn-lg text-center ml-auto mr-1 col-5" id="photo-delete-btn" />
+        <input type="button" value="Cancel" class="btn btn-lg text-center mr-auto ml-1 col-5" id="photo-delete-cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
       </div>
     }
     else
     {
       // Has dependencies, launch modal
+      
       <div class="form-actions no-color">
-        <input type="button" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" data-toggle="modal" data-target="#deleteModal" style="color:white; font-size:small; padding-top:15px; padding-bottom:15px" />
-        | @Html.ActionLink("Back to List", "Index")
+        <div class="row">
+          <input type="button" value="Delete" class="btn btn-lg text-center col-5 ml-auto mr-1 d-block" id="photo-delete-btn" data-toggle="modal" data-target="#deleteModal" />
+          <input type="button" value="Cancel" class="btn btn-lg text-center col-5 mr-auto ml-1 d-block" id="photo-delete-cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
+        </div>
       </div>
     }
   }
@@ -99,8 +111,8 @@
           </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" />
+          <input type="submit" value="Delete" class="btn btn-default text-center m-1 col-3" id="photo-delete-btn" />
+          <input type="button" value="Cancel" class="btn btn-default text-center m-1 col-3" id="photo-delete-cancel-btn" data-dismiss="modal" />
         </div>
       </div>
     </div>
