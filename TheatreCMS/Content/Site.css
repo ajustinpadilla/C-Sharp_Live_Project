@@ -3928,7 +3928,14 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     color: black;
 }
 
-#custom-bootstrap-menu.dropdown .dropdown-menu {
-    border: none;
-    top: -20px;
+.prod-delete-dropdown-item {
+    min-width: 100px;
+    background-color: var(--light-color);
+    color: var(--dark-color)
 }
+    
+    .prod-delete-dropdown-item:hover {
+        background-color: var(--main-secondary-color);
+        color: var(--light-color)
+    }
+

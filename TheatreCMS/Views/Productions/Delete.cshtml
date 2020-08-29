@@ -84,13 +84,15 @@
       @*  Display a horizontal line separating the card text in the card body from the delete button. *@
       <hr class="mt-4 mb-4 prod-delete-horizonal-divider" />
 
-      <div id="custom-bootstrap-menu" class="dropdown col-lg-6">
-        <button type="button" class="btn btn-lg w-100 prod-delete-delete-btn dropdown-toggle" id="dropdownMenuDelete" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0, 0">
-          Delete
-        </button>
-        <div class="dropdown-menu prod-delete-dropdown-menu" aria-labelledby="dropdownMenuDelete">
-          @Html.ActionLink("Production", "DeleteProduction", "Productions" , new { id = Model.ProductionId }, new { @class = "dropdown-item prod-delete-dropdown-item" })
-          @Html.ActionLink("Production & All Dependencies", "DeleteProductionWithPhotos", "Productions" , new { id = Model.ProductionId }, new { @class = "dropdown-item prod-delete-dropdown-item" })
+      <div class="row">
+        <div class="dropdown  col-6  mx-auto">
+          <button type="button" class="btn text-center prod-delete-delete-btn dropdown-toggle" id="dropdownMenuDelete" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-70, 0">
+            Delete
+          </button>
+          <div class="dropdown-menu prod-delete-dropdown-menu" aria-labelledby="dropdownMenuDelete">
+            @Html.ActionLink("Production", "DeleteProduction", "Productions", new { id = Model.ProductionId }, new { @class = "dropdown-item prod-delete-dropdown-item w-100 text-center" })
+            @Html.ActionLink("Production & Photos", "DeleteProductionWithPhotos", "Productions", new { id = Model.ProductionId }, new { @class = "dropdown-item prod-delete-dropdown-item w-100 text-center" })
+          </div>
         </div>
       </div>
 
