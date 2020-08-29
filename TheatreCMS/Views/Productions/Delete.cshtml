@@ -2,7 +2,7 @@
 @using TheatreCMS.Controllers
 
 @{
-  ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete";
 }
 
 <div class="pt-5">
@@ -12,102 +12,98 @@
     @*  Display the photo for each production as long as there is an image to display. *@
     @if (Model.DefaultPhoto != null)
     {
-      <img class="card-img-top" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId})' alt="Production promo photo" />
+      <img class="card-img-top" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })' alt="Production promo photo" />
 
     }
-  <div class="card-body">
-    @*  Display the title and playwright for each production. *@
-    <h4 class="card-title">@Html.DisplayFor(model => model.Title)</h4>
-    <h5 class="card-title font-italic">@Html.DisplayFor(model => model.Playwright)</h5>
-    @*  Display the season for each production in a pill badge. *@
-    <span class="badge badge-pill badge-secondary mb-2">Season # @Html.DisplayFor(model => model.Season)</span>
-    @*  Display a pill badge for each production that is a world premiere. *@
-    @if (Model.IsWorldPremiere)
-    {
-      <span class="badge badge-pill badge-primary">World Premiere</span>
-    }
-    @* Display a table with properties and values for each production. *@
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        <table class="w-100">
-          <tr class="production-index-tr-styling">
-            <th class="productions-index-th-styling">
-              @Html.DisplayNameFor(model => model.OpeningDay)
-            </th>
-            <td class="productions-index-td-styling">
-              @Model.OpeningDay.ToShortDateString()
-            </td>
-          </tr>
-          <tr class="production-index-tr-styling">
-            <th class="productions-index-th-styling">
-              @Html.DisplayNameFor(model => model.ClosingDay)
-            </th>
-            <td class="productions-index-td-styling">
-              @Model.ClosingDay.ToShortDateString()
-            </td>
-          </tr>
-          @if (Model.ShowtimeMat.HasValue)
-          {
+    <div class="card-body">
+      @*  Display the title and playwright for each production. *@
+      <h4 class="card-title">@Html.DisplayFor(model => model.Title)</h4>
+      <h5 class="card-title font-italic">@Html.DisplayFor(model => model.Playwright)</h5>
+      @*  Display the season for each production in a pill badge. *@
+      <span class="badge badge-pill badge-secondary mb-2">Season # @Html.DisplayFor(model => model.Season)</span>
+      @*  Display a pill badge for each production that is a world premiere. *@
+      @if (Model.IsWorldPremiere)
+      {
+        <span class="badge badge-pill badge-primary">World Premiere</span>
+      }
+      @* Display a table with properties and values for each production. *@
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <table class="w-100">
             <tr class="production-index-tr-styling">
               <th class="productions-index-th-styling">
-                @Html.DisplayNameFor(model => model.ShowtimeMat)
+                @Html.DisplayNameFor(model => model.OpeningDay)
               </th>
               <td class="productions-index-td-styling">
-                @Model.ShowtimeMat.GetValueOrDefault().ToShortTimeString()
+                @Model.OpeningDay.ToShortDateString()
               </td>
             </tr>
-          }
+            <tr class="production-index-tr-styling">
+              <th class="productions-index-th-styling">
+                @Html.DisplayNameFor(model => model.ClosingDay)
+              </th>
+              <td class="productions-index-td-styling">
+                @Model.ClosingDay.ToShortDateString()
+              </td>
+            </tr>
+            @if (Model.ShowtimeMat.HasValue)
+            {
+              <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                  @Html.DisplayNameFor(model => model.ShowtimeMat)
+                </th>
+                <td class="productions-index-td-styling">
+                  @Model.ShowtimeMat.GetValueOrDefault().ToShortTimeString()
+                </td>
+              </tr>
+            }
 
-          @if (Model.ShowtimeEve.HasValue)
-          {
+            @if (Model.ShowtimeEve.HasValue)
+            {
+              <tr class="production-index-tr-styling">
+                <th class="productions-index-th-styling">
+                  @Html.DisplayNameFor(model => model.ShowtimeEve)
+                </th>
+                <td class="productions-index-td-styling">
+                  @Model.ShowtimeEve.GetValueOrDefault().ToShortTimeString()
+                </td>
+              </tr>
+            }
             <tr class="production-index-tr-styling">
-              <th class="productions-index-th-styling">
-                @Html.DisplayNameFor(model => model.ShowtimeEve)
+              <th class="productions-index-th-styling prod-delete-th-width">
+                @Html.DisplayNameFor(model => model.Runtime)
               </th>
               <td class="productions-index-td-styling">
-                @Model.ShowtimeEve.GetValueOrDefault().ToShortTimeString()
+                @Model.Runtime
               </td>
             </tr>
-          }
-          <tr class="production-index-tr-styling">
-            <th class="productions-index-th-styling prod-delete-th-width">
-              @Html.DisplayNameFor(model => model.Runtime)
-            </th>
-            <td class="productions-index-td-styling">
-              @Model.Runtime
-            </td>
-          </tr>
-        </table>
+          </table>
+        </div>
       </div>
-    </div>
 
-    @*  Display a horizontal line separating the card text in the card body from the delete button. *@
-    <hr class="mt-4 mb-4 prod-delete-horizonal-divider" />
+      @*  Display a horizontal line separating the card text in the card body from the delete button. *@
+      <hr class="mt-4 mb-4 prod-delete-horizonal-divider" />
 
-    @using (Html.BeginForm())
-    {
-      @Html.AntiForgeryToken()
       <div id="custom-bootstrap-menu" class="dropdown col-lg-6">
         <button type="button" class="btn btn-lg w-100 prod-delete-delete-btn dropdown-toggle" id="dropdownMenuDelete" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0, 0">
           Delete
         </button>
         <div class="dropdown-menu prod-delete-dropdown-menu" aria-labelledby="dropdownMenuDelete">
-          <button type="submit" name="action:DeleteProd" class="dropdown-item prod-delete-dropdown-item">Production</button>
-          <button type="submit" name="action:DeleteProdWithPhotos" class="dropdown-item prod-delete-dropdown-item">Production & All Photos</button>
+          @Html.ActionLink("Production", "DeleteProduction", "Productions" , new { id = Model.ProductionId }, new { @class = "dropdown-item prod-delete-dropdown-item" })
+          @Html.ActionLink("Production & All Dependencies", "DeleteProductionWithPhotos", "Productions" , new { id = Model.ProductionId }, new { @class = "dropdown-item prod-delete-dropdown-item" })
         </div>
       </div>
-    }
 
+    </div>
   </div>
-</div>
-
-
+  
+  
   <div class="py-3">
     @using (Html.BeginForm())
-      {
-        @Html.AntiForgeryToken()
+    { 
+      @Html.AntiForgeryToken()
 
-        <div class="container text-center">
+      <div class="container text-center">
 
         @Html.ActionLink("Current Productions", "Current") |
         @Html.ActionLink("Back to List", "Index")
