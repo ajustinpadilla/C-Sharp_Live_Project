@@ -2379,7 +2379,6 @@ a.dropdown-item:hover {
     border-bottom: 1px solid var(--light-color) !important;
     margin-top: 10px;
     padding-bottom: 10px;
-    flex-basis:;
 }
 
 #rental-request-nav-th {
@@ -3935,6 +3934,15 @@ hr.Isaiah_castline { /*Styling the seperation line*/
   
 ***/
 
+h4.msg-title {
+    display: inline-block !important;
+    width: 90px;
+    margin: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 1.5rem !important;
+    margin-left: 0 !important;
+}
+
 #inboxList thead,
 #inboxList tr,
 #inboxList th {
@@ -3945,4 +3953,18 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 #inboxList {
     border-top: 1px solid rgba(0, 0, 0, .2);
     border-bottom: 2px solid rgba(0, 0, 0, .2);
+}
+
+.search-form-container {
+    float: right;
+    position: relative;
+    width: 50%;
+    height: 40px;
+    overflow: visible;
+}
+
+.search-bar-form {
+    position: absolute;
+    right: 0;
+    width: 100%;
 }
