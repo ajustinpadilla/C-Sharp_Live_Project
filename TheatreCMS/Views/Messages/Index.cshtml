@@ -9,7 +9,6 @@
   <h4 class="mb-4 msg-title">Mailbox</h4>
 
     @* Search Form *@
- 
   <div class="search-form-container ml-4">
     @using (Html.BeginForm("Index", "Messages", FormMethod.Post, new { @class = "search-bar-form" }))
     {
@@ -23,119 +22,82 @@
       </div>
     }
   </div>
-     
 
   @if (ViewData["searchQuery"] != null)
-          {
-    <div class="mb-3">Showing search results for <b>@ViewData["searchQuery"]</b>. <span class="ml-1"><a href="@Url.Action("Index", "Messages")">Clear Search</a></span></div>
+  {
+      <div>
+        Showing search results for <b>@ViewData["searchQuery"]</b>.
+      </div>
+      <div class="mb-3 clear-search">
+        <a href="@Url.Action("Index", "Messages")">Clear Search</a>
+      </div>
   }
 
-
   <!-- Nav tabs"-->
-<div class="row">
-  <ul class="nav nav-tabs justify-content-end" role="tablist" id="navTabs">
+  <div class="justify-content-start flex-nowrap">
+    <ul class="nav nav-tabs" role="tablist" id="navTabs">
+      <li class="nav-item mr-1">
+        <a class="nav-link btn btn-primary" id="compose" data-toggle="tab" href="#newMsg">Compose</a>
+      </li>
+      <li class="nav-item mr-1">
+        <a class="nav-link btn fas fa-trash btn-danger msg-del-btn inactive" id="msg-delete" data-toggle="modal" data-target="#checkboxDeleteModal"></a>
+      </li>
+      <li class="nav-item ml-auto col-xs-4">
+        <a class="nav-link active" data-toggle="tab" id="msgInboxTab" href="#inbox">Inbox</a>
+      </li>
+      <li class="nav-item col-xs-4">
+        <a class="nav-link" data-toggle="tab" id="msgSentTab" href="#sent">Sent</a>
+      </li>
+      <li class="nav-item col-sx-4">
+        <a class="nav-link" data-toggle="tab" id="msgTrashTab" href="#trash">Trash</a>
+      </li>
+    </ul>
+  </div>
 
-    <li class="nav-item mr-1 ml-3">
-
-      <a class="nav-link btn btn-primary" id="compose" data-toggle="tab" href="#newMsg">Compose</a>
-
-    </li>
-
-    <li class="nav-item mr-1">
-
-      <a class="nav-link btn fas fa-trash btn-danger msg-del-btn inactive" id="msg-delete" data-toggle="modal" data-target="#checkboxDeleteModal"></a>
-
-    </li>
-
-
-
-
-
-    <li class="nav-item">
-
-      <a class="nav-link active" data-toggle="tab" id="msgInboxTab" href="#inbox">Inbox</a>
-
-    </li>
-
-    <li class="nav-item">
-
-      <a class="nav-link" data-toggle="tab" id="msgSentTab" href="#sent">Sent</a>
-
-    </li>
-
-    <li class="nav-item">
-
-      <a class="nav-link" data-toggle="tab" id="msgTrashTab" href="#trash">Trash</a>
-
-    </li>
-
-  </ul>
-</div>
 
 
 
   <!-- Tab panes -->
-
   <div class="tab-content border">
 
     <!-- Compose/New Message tab -->
-
     <div id="newMsg" class="container tab-pane fade my-4 text-right">
 
       <h5 class="text-center my-2">New Message</h5>
 
-      @using (Html.BeginForm("Create", "Messages", FormMethod.Post))
-      {
-          @Html.AntiForgeryToken()
+      @using (Html.BeginForm("Create", "Messages", FormMethod.Post, new { @class = "new-msg-form" }))
+            {
+              @Html.AntiForgeryToken()
 
-          <div class="form-group form-row align-items-center">
-  
-            <label class="col-lg-2 col-md-2 control-label col-1" for="RecipientId">To:</label>
-  
-            <div class="col-lg-6 col-md-8">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label control-label" for="RecipientId">To:</label>
+            <div class="col-md-8 px-0">
               @Html.DropDownList("RecipientId", (IEnumerable<SelectListItem>)ViewData["listOfUsers"], "", htmlAttributes: new { @class = "form-control", required = "required" })
             </div>
-  
           </div>
-  
-
-          <div class="form-group form-row align-items-center">
-  
-            <label class="col-lg-2 col-md-2 control-label col-1" for="Subject">Subject:</label>
-  
-            <div class="col-lg-6 col-md-8">
-  
-              <input id="Subject" name="Subject" type="text" autocomplete="off"
-                   class="form-control">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label control-label" for="Subject">Subject:</label>
+            <div class="col-md-8 px-0">
+              <input id="Subject" name="Subject" type="text" autocomplete="off" class="form-control">
           </div>
         </div>
-
-        <div class="form-group form-row align-items-center">
-          <label class="col-lg-2 col-md-2 control-label col-1" for="Body">Body:</label>
-          <div class="col-lg-6 col-md-8">
-            <textarea rows="5" class="form-control" id="Body" name="Body"></textarea>
+        <div class="form-group row px-0">
+          <label class="col-sm-2 col-form-label control-label" for="Body">Body:</label>
+          <div class="col-md-8 px-0">
+            <textarea class="form-control" id="Body" name="Body"></textarea>
           </div>
         </div>
-
         <input id="ParentId" name="ParentId" type="hidden" value="">
-
-
-        <div class="form-group form-row align-items-center">
-          <label class="col-lg-2 col-md-2 control-label col-1"></label>
-          <div class="col-lg-6 col-md-8">
-            <button type="button" class="btn btn-info float-left goBack">
-              Go Back
-            </button>
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label control-label"></label>
+          <div class="col-md-8 px-0 text-right">
+            <button type="button" class="btn btn-info float-left goBack">Go Back</button>
             <button type="submit" class="btn btn-primary">Send</button>
-            <button type="reset" id="clearCurrentMsg" class="btn btn-danger">
-              <i class="fa fa-trash"
-                 aria-hidden="true"></i>
-            </button>
+            <button type="reset" id="clearCurrentMsg" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
         </div>
       }
     </div>
-
 
     <!-- Inbox tab -->
     <div id="inbox" class="container tab-pane active my-4">
@@ -143,103 +105,82 @@
       <div id="inboxList">
         <table class="table table-hover">
           <thead>
-            <tr class="d-flex">
-              <th>
+            <tr class="inboxRow">
+              <th class="checkbox">
                 @Html.CheckBox("checkAll", false, new { @class = "top-check inbox-top-check" })
               </th>
               <th class="col-2">
                 @Html.DisplayNameFor(model => model.SenderId)
               </th>
-              <th class="col-5">
+              <th class="col-5 inbox-subject">
                 @Html.DisplayNameFor(model => model.Subject)
               </th>
               <th class="col-2 d-none">
                 @Html.DisplayNameFor(model => model.Body)
               </th>
-              <th class="col-2">
+              <th class="col-1 inbox-sent-time">
                 @Html.DisplayNameFor(model => model.SentTime)
               </th>
-              <th class="col-3 col-lg-2" id="badges"></th>
+              <th class="col-1" id="badges"></th>
             </tr>
           </thead>
-
           <tbody>
-            <!-- parentId is for future feature, "isviewed-false" is only present if isviewed is null-->
             @foreach (var item in Model.Where(i => i.RecipientId == (string)ViewData["currentUserId"] && i.RecipientDeleted == null))
             {
-              <tr class="d-flex inboxRow @(item.IsViewed.HasValue ? "" : "isviewed-false")" id="msg_@item.MessageId" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
+              <tr class="inboxRow @(item.IsViewed.HasValue ? "" : "isviewed-false")" id="msg_@item.MessageId" data-msg_id="@item.MessageId" data-parent_id="" data-sender_id="@item.SenderId">
                 <td>
                   @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted inbox-check", @value = item.MessageId })
                 </td>
                 <td class="col-2 msgFrom">
                   @item.Sender.LastName, @item.Sender.FirstName
                 </td>
-                <td class="col-5 msgSubject">
+                <td class="col-5 msgSubject inbox-subject">
                   @Html.DisplayFor(modelItem => item.Subject)
                 </td>
                 <td class="col-2 d-none msgBody">
                   @Html.DisplayFor(modelItem => item.Body)
                 </td>
-                <td class="col-2 msgDate">
+                <td class="col-2 msgDate inbox-sent-time">
                   @Html.DisplayFor(modelItem => item.SentTime)
                 </td>
-                <td class="col-3 col-lg-2 text-right">
-                  <span class="badge badge-pill badge-secondary mx-2 list-reply">Reply</span>
-
+                <td class="col-1 align-items-center text-center">
+                  <span class="badge badge-pill badge-secondary list-reply">Reply</span>
                   <span class="badge badge-pill badge-danger listDel" data-toggle="modal" data-target="#deleteMessageMaster">
-                    <i class="fa fa-trash"
-                       aria-hidden="true"></i>
-                  </span>
+                    <i class="fa fa-trash" aria-hidden="true"></i></span>
                 </td>
               </tr>
             }
-
           </tbody>
         </table>
       </div>
 
-
-
-      <!-- on load, this will be a template with no data, click of a msg will populate the template with the msg info and be displayed  -->
+      <!-- Reply form: A template with no data, click on msg will populate template with msg info and be displayed  -->
       <div id="inboxDetails" data-msg_id="" data-parent_id="" data-sender_id="">
         <h5 class="text-center my-2">Message</h5>
-        <form class="form">
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">From:</label>
-            <div class="col-lg-6 col-md-8 msgFrom"></div>
+        <form>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">From:</label>
+            <div class="col-md-8 msgFrom"></div>
           </div>
-
-          <div class=" form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Date:</label>
-            <div class="col-lg-3 col-md-4 msgDate"></div>
+          <div class=" form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">Date:</label>
+            <div class="col-md-3 msgDate"></div>
           </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Subject:</label>
-            <div class="col-lg-6 col-md-8 msgSubject"></div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label control-label text-right">Subject:</label>
+            <div class="col-md-8 msgSubject"></div>
           </div>
-
-          <div rows="5 " class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label><textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody" readonly></textarea>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label control-label text-right">Body:</label>
+             <textarea class="col-md-8 msgBody" readonly></textarea>
           </div>
-          <!--<div class="col-lg-6 col-md-8 msgBody"></div>-->
-
-
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1"></label>
-            <div class="col-lg-6 col-md-8 clearfix text-right">
-              <button type="button" class="btn btn-info float-left goBack">
-                Go Back
-              </button>
-              <button type="button" id="reply" class="btn btn-success mx-1">Reply</button>
-
-
-
-
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster">
-                <i class="fa fa-trash"
-                   aria-hidden="true"></i>
-              </button>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label"></label>
+            <div class="col-md-8 px-0 text-right">
+              <button type="button" class="btn btn-info float-left goBack">Go Back</button>
+              <button type="button" id="reply" class="btn btn-primary">Reply</button>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster"><i class="fa fa-trash"
+                    aria-hidden="true"></i></button>
             </div>
           </div>
         </form>
@@ -254,60 +195,53 @@
       <div id="sentList">
         <table class="table table-hover">
           <thead>
-            <tr class="d-flex">
-              <th>
+            <tr class="sentRow">
+              <th class="checkbox">
                 @Html.CheckBox("checkAll", false, new { @class = "top-check sent-top-check" })
               </th>
-              <th class="col-2">
+              <th class="col-md-4 col-lg-2">
                 @Html.DisplayNameFor(model => model.RecipientId)
               </th>
-              <th class="col-5">
+              <th class="col-md-5 col-lg-4 sent-subject">
                 @Html.DisplayNameFor(model => model.Subject)
               </th>
               <th class="col-2 d-none">
                 @Html.DisplayNameFor(model => model.Body)
               </th>
-              <th class="col-2">
+              <th class="col-2 sent-sent-time">
                 @Html.DisplayNameFor(model => model.SentTime)
               </th>
-              <th class="col-3 col-lg-2" id="badges"></th>
+              <th class="col-1" id="badges"></th>
             </tr>
           </thead>
 
           <tbody>
             @foreach (var item in Model.Where(i => i.SenderId == (string)ViewData["currentUserId"] && i.SenderDeleted == null))
             {
-              <tr class="d-flex sentRow" id="#msg_@item.MessageId" data-msg_id="@item.MessageId">
-
+              <tr class="sentRow" id="#msg_@item.MessageId" data-msg_id="@item.MessageId">
                 <td>
                   @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted sent-check", @value = item.MessageId })
                 </td>
-
-                <td class="col-2 msgTo ">
+                <td class="col-md-4 col-lg-2 msgTo">
                   @if (item.Recipient != null)
                   {
                     @: @item.Recipient.LastName, @item.Recipient.FirstName
                   }
                 </td>
-                <td class="col-5 msgSubject ">
+                <td class="col-md-5 col-lg-4 msgSubject sent-subject">
                   @Html.DisplayFor(modelItem => item.Subject)
                 </td>
-                <td class="col-2 d-none msgBody ">
+                <td class="col-2 d-none msgBody">
                   @Html.DisplayFor(modelItem => item.Body)
                 </td>
-                <td class="col-2 msgDate ">
+                <td class="col-2 msgDate sent-sent-time">
                   @Html.DisplayFor(modelItem => item.SentTime)
                 </td>
-                <td class="col-3 col-lg-2 text-right">
+                <td class="col-1 text-center">
 
-                  <span class="badge badge-pill badge-danger listDel" data-toggle="modal" data-target="#deleteMessageMaster">
-                    <i class="fa fa-trash"
-                       aria-hidden="true"></i>
-                  </span>
-
-
+                  <span class="badge badge-pill badge-danger text-right listDel" data-toggle="modal" data-target="#deleteMessageMaster">
+                    <i class="fa fa-trash" aria-hidden="true"></i></span>
                 </td>
-
               </tr>
             }
           </tbody>
@@ -317,36 +251,28 @@
       <div id="sentDetails" data-msg_id="">
         <h5 class="text-center my-2">Sent Message</h5>
         <form class="form">
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">To:</label>
-            <div class="col-lg-6 col-md-8 msgTo"></div>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">To:</label>
+            <div class="col-md-8 msgTo"></div>
           </div>
-
-          <div class=" form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Date:</label>
-            <div class="col-lg-3 col-md-4 msgDate"></div>
+          <div class=" form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">Date:</label>
+            <div class="col-md-3 msgDate"></div>
           </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Subject:</label>
-            <div class="col-lg-6 col-md-8 msgSubject"></div>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">Subject:</label>
+            <div class="col-md-8 msgSubject"></div>
           </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
-            <textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody" readonly></textarea>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">Body:</label>
+            <textarea class="col-md-8 msgBody" readonly></textarea>
           </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1"></label>
-            <div class="col-lg-6 col-md-8 clearfix text-right">
-              <button type="button" class="btn btn-info float-left goBack">
-                Go Back
-              </button>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label"></label>
+            <div class="col-md-8 px-0 text-right">
+              <button type="button" class="btn btn-info float-left goBack">Go Back</button>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster">
-                <i class="fa fa-trash"
-                   aria-hidden="true"></i>
-              </button>
+                <i class="fa fa-trash" aria-hidden="true"></i></button>
             </div>
           </div>
         </form>
@@ -361,26 +287,23 @@
       <div id="trashList">
         <table class="table table-hover">
           <thead>
-            <tr class="d-flex">
-              @*<th>
-                    @Html.CheckBox("checkAll", false, new { @class = "top-check sent-top-check" })
-                </th>*@
+            <tr class="trashRow">
               <th class="col-2">
                 @Html.DisplayNameFor(model => model.RecipientId)
               </th>
-              <th class="col-2">
+              <th class="col-2 trash-sender">
                 @Html.DisplayNameFor(model => model.SenderId)
               </th>
-              <th class="col-3">
+              <th class="col-3 trash-subject">
                 @Html.DisplayNameFor(model => model.Subject)
               </th>
               <th class="col-2 d-none">
                 @Html.DisplayNameFor(model => model.Body)
               </th>
-              <th class="col-3">
+              <th class="col-3 trash-delete-time">
                 Time Deleted
               </th>
-              <th class="col-2 col-lg-2" id="badges"></th>
+              <th class="col-1" id="badges"></th>
             </tr>
           </thead>
 
@@ -389,7 +312,7 @@
             @*@foreach (var item in Model.Where(i => (i.SenderId == (string)ViewData["currentUserId"] && i.SenderDeleted != null) || (i.RecipientId == (string)ViewData["currentUserId"] && i.RecipientDeleted != null)).OrderByDescending(i => i.SenderDeleted ?? i.RecipientDeleted))*@
             @foreach (var item in Model.Where(i => (i.SenderId == (string)ViewData["currentUserId"] && i.SenderDeleted != null) || (i.RecipientId == (string)ViewData["currentUserId"] && i.RecipientDeleted != null)).OrderByDescending(i => i.SenderId == (string)ViewData["currentUserId"] ? i.SenderDeleted : i.RecipientDeleted))
             {
-              <tr class="d-flex trashRow" id="trash_@item.MessageId" data-msg_id="@item.MessageId">
+              <tr class="trashRow" id="trash_@item.MessageId" data-msg_id="@item.MessageId">
 
                 @*<td>
                       @Html.CheckBox(item.MessageId.ToString(), new { @class = "to-be-deleted sent-check", @value = item.MessageId })
@@ -402,20 +325,20 @@
                   }
                 </td>
 
-                <td class="col-2 msgFrom ">
+                <td class="col-2 msgFrom trash-sender">
                   @if (item.Recipient != null)
                   {
                     @: @item.Sender.LastName, @item.Sender.FirstName
                   }
                 </td>
 
-                <td class="col-3 msgSubject ">
+                <td class="col-3 msgSubject trash-subject">
                   @Html.DisplayFor(modelItem => item.Subject)
                 </td>
                 <td class="col-2 d-none msgBody ">
                   @Html.DisplayFor(modelItem => item.Body)
                 </td>
-                <td class="col-3 msgDate ">
+                <td class="col-3 msgDate trash-delete-time">
                   @if (item.SenderId == (string)ViewData["currentUserId"])
                   {
                     @Html.DisplayFor(modelItem => item.SenderDeleted)
@@ -426,7 +349,7 @@
                   }
 
                 </td>
-                <td class="col-2 col-lg-2 text-right">
+                <td class="col-1 text-right align-items-center text-center">
                   @* Recover Deleted Message *@
                   <span class="badge badge-pill badge-success listRecoverMsg" data-toggle="modal" data-target="#recoverMessageMaster">
                     Recover
@@ -445,48 +368,38 @@
 
       <div id="trashDetails" data-msg_id="">
         <h5 class="text-center my-2">Deleted Message</h5>
-        <form class="form">
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">From:</label>
-            <div class="col-lg-6 col-md-8 msgFrom"></div>
+        <form>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">From:</label>
+            <div class="col-md-8 msgFrom"></div>
           </div>
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">To:</label>
-            <div class="col-lg-6 col-md-8 msgTo"></div>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">To:</label>
+            <div class="col-md-8 msgTo"></div>
           </div>
-
-          <div class=" form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Date:</label>
-            <div class="col-lg-3 col-md-4 msgDate"></div>
+          <div class=" form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">Date:</label>
+            <div class="col-md-3 msgDate"></div>
           </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Subject:</label>
-            <div class="col-lg-6 col-md-8 msgSubject"></div>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">Subject:</label>
+            <div class="col-md-8 msgSubject"></div>
           </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1 text-right">Body:</label>
-            <textarea rows="5" class="col-lg-6 col-md-8 text-left msgBody" readonly></textarea>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label text-right">Body:</label>
+            <textarea class="col-md-8 msgBody" readonly></textarea>
           </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-lg-2 col-md-2 control-label col-1"></label>
-            <div class="col-lg-6 col-md-8 clearfix text-right">
-              <button type="button" class="btn btn-info float-left goBack">
-                Go Back
-              </button>
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#recoverMessageMaster">
-                Recover Message
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label control-label"></label>
+            <div class="col-md-8 px-0 text-right">
+              <button type="button" class="btn btn-info float-left goBack">Go Back</button>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#recoverMessageMaster">Recover Message
               </button>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#permanentDeleteMaster">
                 <i class="fa fa-trash"
                    aria-hidden="true"></i>
               </button>
             </div>
-
-
-
           </div>
         </form>
       </div>
@@ -844,7 +757,7 @@
         });
 
         //behavior of row on trash tab
-        $(".trashRow").on("click", "td:not(:last-child,:first-child)", function () {
+        $(".trashRow").on("click", function () {
             var msgId_str = $(this).parent().data("msg_id");
             var senderName = @Html.Raw(Json.Encode(ViewData["currentUserName"]));
 

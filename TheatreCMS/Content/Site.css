@@ -3626,7 +3626,6 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     background-color: rgba(240, 240, 240, 0.5);
     border: 1px solid lightgray;
     border-radius: 5px;
-    padding: 5px 15px;
 }
 
 #inboxDetails .msgBody,
@@ -3972,16 +3971,114 @@ h4.msg-title {
     margin-left: 0 !important;
 }
 
+.clear-search {
+    display: inline-block;
+}
+
+ul#navTabs {
+    width: 100%;
+    display: flex;
+    justify-content: normal !important;
+}
+
+#compose,
+#msg-delete {
+    justify-content: start !important;
+}
+
+#msgInboxTab,
+#msgSentTab,
+#msgTrashTab
+#navTabs .trash-nav-item {
+    justify-content: end !important;
+}
+
 #inboxList thead,
 #inboxList tr,
-#inboxList th {
+#inboxList th,
+#inboxList td {
     border-bottom: none;
     border-top: none;
 }
 
 #inboxList {
-    border-top: 1px solid rgba(0, 0, 0, .2);
-    border-bottom: 2px solid rgba(0, 0, 0, .2);
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    height: auto;
+}
+
+    #inboxList thead {
+        border-bottom: 2px solid rgba(0, 0, 0, .1);
+    }
+
+    #inboxList .inboxRow {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+#sentList thead,
+#sentDetails tr,
+#sentList th,
+#sentList td {
+    border-bottom: none;
+    border-top: none;
+}
+
+#sentList {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    height: auto;
+}
+
+    #sentList thead {
+        border-bottom: 2px solid rgba(0, 0, 0, .1);
+    }
+
+    #sentList .sentRow {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+#trashList thead,
+#trashList tr,
+#trashList th,
+#trashList td {
+    border-bottom: none;
+    border-top: none;
+}
+
+#trashList {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    height: auto;
+}
+
+    #trashList thead {
+        border-bottom: 2px solid rgba(0, 0, 0, .1);
+    }
+
+    #trashList .sentRow {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+
+#inboxList th.checkbox {
+    width: 40px;
+}
+
+#sentList th.checkbox {
+    width: 40px;
+}
+
+
+#inboxList table.table {
+    margin-bottom: 0 !important;
+}
+
+#sentList table.table {
+    margin-bottom: 0 !important;
+}
+
+#trashList table.table {
+    margin-bottom: 0 !important;
 }
 
 .search-form-container {
@@ -3996,4 +4093,37 @@ h4.msg-title {
     position: absolute;
     right: 0;
     width: 100%;
+}
+
+button.goBack {
+    background-color: darkgray;
+    border: none;
+}
+    
+    button.goBack:hover {
+        background-color: gray;
+        border: none;
+    }
+
+@media only screen and (max-width: 480px) {
+    .nav {
+        flex-direction: column;
+        justify-content: start !important;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .inbox-sent-time,
+    .inbox-subject,
+    .sent-sent-time,
+    .trash-subject {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 350px){
+    .sent-subject,
+    .trash-delete-time {
+        display: none;
+    }
 }
