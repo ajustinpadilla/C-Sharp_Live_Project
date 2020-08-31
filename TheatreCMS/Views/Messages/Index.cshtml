@@ -36,19 +36,19 @@
   <!-- Nav tabs"-->
   <div class="justify-content-start flex-nowrap">
     <ul class="nav nav-tabs" role="tablist" id="navTabs">
-      <li class="nav-item mr-1">
+      <li class="nav-item">
         <a class="nav-link btn btn-primary" id="compose" data-toggle="tab" href="#newMsg">Compose</a>
       </li>
-      <li class="nav-item mr-1">
+      <li class="nav-item">
         <a class="nav-link btn fas fa-trash btn-danger msg-del-btn inactive" id="msg-delete" data-toggle="modal" data-target="#checkboxDeleteModal"></a>
       </li>
-      <li class="nav-item ml-auto col-xs-4">
+      <li class="nav-item" id="inbox-nav">
         <a class="nav-link active" data-toggle="tab" id="msgInboxTab" href="#inbox">Inbox</a>
       </li>
-      <li class="nav-item col-xs-4">
+      <li class="nav-item">
         <a class="nav-link" data-toggle="tab" id="msgSentTab" href="#sent">Sent</a>
       </li>
-      <li class="nav-item col-sx-4">
+      <li class="nav-item">
         <a class="nav-link" data-toggle="tab" id="msgTrashTab" href="#trash">Trash</a>
       </li>
     </ul>
@@ -89,10 +89,10 @@
         </div>
         <input id="ParentId" name="ParentId" type="hidden" value="">
         <div class="form-group row">
-          <label class="col-md-2 col-form-label control-label"></label>
+          <label id="btn-label" class="col-md-2 col-form-label control-label"></label>
           <div class="col-md-8 px-0 text-right">
             <button type="button" class="btn btn-info float-left goBack">Go Back</button>
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" id="sendCurrentMsg" class="btn btn-primary">Send</button>
             <button type="reset" id="clearCurrentMsg" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
         </div>
@@ -157,29 +157,29 @@
       <!-- Reply form: A template with no data, click on msg will populate template with msg info and be displayed  -->
       <div id="inboxDetails" data-msg_id="" data-parent_id="" data-sender_id="">
         <h5 class="text-center my-2">Message</h5>
-        <form>
+        <form class="new-msg-form">
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">From:</label>
-            <div class="col-md-8 msgFrom"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">From:</label>
+            <div class="col-md-8 msgFrom form-control"></div>
           </div>
           <div class=" form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">Date:</label>
-            <div class="col-md-3 msgDate"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">Date:</label>
+            <div class="col-md-3 msgDate form-control"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label control-label text-right">Subject:</label>
-            <div class="col-md-8 msgSubject"></div>
+            <label class="col-sm-2 col-form-label control-label reply-label">Subject:</label>
+            <div class="col-md-8 msgSubject form-control"></div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label control-label text-right">Body:</label>
-             <textarea class="col-md-8 msgBody" readonly></textarea>
+            <label class="col-sm-2 col-form-label control-label reply-label">Body:</label>
+             <textarea class="col-md-8 msgBody form-control" readonly></textarea>
           </div>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label"></label>
+            <label id="btn-label" class="col-md-2 col-form-label control-label"></label>
             <div class="col-md-8 px-0 text-right">
               <button type="button" class="btn btn-info float-left goBack">Go Back</button>
               <button type="button" id="reply" class="btn btn-primary">Reply</button>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster"><i class="fa fa-trash"
+              <button type="button" id="deleteCurrentMsg" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster"><i class="fa fa-trash"
                     aria-hidden="true"></i></button>
             </div>
           </div>
@@ -250,28 +250,28 @@
 
       <div id="sentDetails" data-msg_id="">
         <h5 class="text-center my-2">Sent Message</h5>
-        <form class="form">
+        <form class="form new-msg-form">
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">To:</label>
-            <div class="col-md-8 msgTo"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">To:</label>
+            <div class="col-md-8 msgTo form-control"></div>
           </div>
           <div class=" form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">Date:</label>
-            <div class="col-md-3 msgDate"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">Date:</label>
+            <div class="col-md-3 msgDate form-control"></div>
           </div>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">Subject:</label>
-            <div class="col-md-8 msgSubject"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">Subject:</label>
+            <div class="col-md-8 msgSubject form-control"></div>
           </div>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">Body:</label>
-            <textarea class="col-md-8 msgBody" readonly></textarea>
+            <label class="col-md-2 col-form-label control-label reply-label">Body:</label>
+            <textarea class="col-md-8 msgBody form-control" readonly></textarea>
           </div>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label"></label>
+            <label id="btn-label" class="col-md-2 col-form-label control-label"></label>
             <div class="col-md-8 px-0 text-right">
               <button type="button" class="btn btn-info float-left goBack">Go Back</button>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster">
+              <button id="deleteCurrentMsg" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessageMaster">
                 <i class="fa fa-trash" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -368,34 +368,34 @@
 
       <div id="trashDetails" data-msg_id="">
         <h5 class="text-center my-2">Deleted Message</h5>
-        <form>
+        <form class="new-msg-form">
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">From:</label>
-            <div class="col-md-8 msgFrom"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">From:</label>
+            <div class="col-md-8 msgFrom form-control"></div>
           </div>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">To:</label>
-            <div class="col-md-8 msgTo"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">To:</label>
+            <div class="col-md-8 msgTo form-control"></div>
           </div>
           <div class=" form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">Date:</label>
-            <div class="col-md-3 msgDate"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">Date:</label>
+            <div class="col-md-3 msgDate form-control"></div>
           </div>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">Subject:</label>
-            <div class="col-md-8 msgSubject"></div>
+            <label class="col-md-2 col-form-label control-label reply-label">Subject:</label>
+            <div class="col-md-8 msgSubject form-control"></div>
           </div>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label text-right">Body:</label>
-            <textarea class="col-md-8 msgBody" readonly></textarea>
+            <label class="col-md-2 col-form-label control-label reply-label">Body:</label>
+            <textarea class="col-md-8 msgBody form-control" readonly></textarea>
           </div>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label control-label"></label>
+            <label id="btn-label" class="col-md-2 col-form-label control-label"></label>
             <div class="col-md-8 px-0 text-right">
               <button type="button" class="btn btn-info float-left goBack">Go Back</button>
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#recoverMessageMaster">Recover Message
+              <button id="recoverCurrentMsg" type="button" class="btn btn-success" data-toggle="modal" data-target="#recoverMessageMaster">Recover Message
               </button>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#permanentDeleteMaster">
+              <button id="deleteCurrentMsg" type="button" class="btn btn-danger" data-toggle="modal" data-target="#permanentDeleteMaster">
                 <i class="fa fa-trash"
                    aria-hidden="true"></i>
               </button>
