@@ -184,6 +184,7 @@ namespace TheatreCMS.Controllers
         }
 
         // GET: Productions/Create
+        [TheatreAuthorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewData["current_season"] = AdminSettingsReader.CurrentSettings().current_season;
@@ -195,6 +196,7 @@ namespace TheatreCMS.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [TheatreAuthorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto_ProPhotoId,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase file)
         {
