@@ -178,8 +178,6 @@ namespace TheatreCMS.Controllers
             }
             List<int> positions = new List<int>() { 0, 1, 3, 2, 4 };
             ViewBag.Positions = positions;
-            ViewBag.ShowtimeEve = production.ShowtimeEve;
-            ViewBag.ShowtimeMat = production.ShowtimeMat;
             return View(production);
         }
 
@@ -216,7 +214,6 @@ namespace TheatreCMS.Controllers
 
 
         // GET: Productions/Edit/5
-        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
