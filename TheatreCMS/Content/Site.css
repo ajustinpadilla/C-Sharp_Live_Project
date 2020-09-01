@@ -54,7 +54,6 @@
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
     background-color: var(--dark-color);
     color: var(--light-color);
-
 }
 
 .palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
@@ -478,18 +477,18 @@ footer .list-group-item :hover {
 
 #contactInfo {
     flex-wrap: nowrap;
-    display:flex; /*This allows the address's and phone #'s to sit side by side*/
+    display: flex; /*This allows the address's and phone #'s to sit side by side*/
 }
 
 #address {
-    align-content:flex-start; /*aligns the address's to the left*/
+    align-content: flex-start; /*aligns the address's to the left*/
 }
 
-#addressPadding{
+#addressPadding {
     padding-right: 1rem; /*puts padding between the adress and the phone #*/
 }
 
-#phoneNumbersPadding {/*puts padding between the adress and the phone #*/
+#phoneNumbersPadding { /*puts padding between the adress and the phone #*/
     padding-left: 1rem;
 }
 
@@ -498,9 +497,10 @@ footer .list-group-item :hover {
 
 /*************max-width > 900px**************/
 @media only screen and (min-width: 992px) {
-    #footer--container {/*When the screen width is at or above 992 the width of the footer shrinks to 85%*/
+    #footer--container { /*When the screen width is at or above 992 the width of the footer shrinks to 85%*/
         max-width: 85%;
     }
+
     footer .list-group-item {
         padding-top: 12px !important;
     }
@@ -863,7 +863,7 @@ div.magnify:hover {
 
 @media only screen and (max-width: 360px) {
     .prod-photo-edit-header {
-        font-size: 9vw;        
+        font-size: 9vw;
     }
 }
 
@@ -1608,7 +1608,7 @@ div.magnify:hover {
     background-color: var(--main-secondary-color);
 }
 
-/* Style the submit button */
+/* Style inputs */
 input[type=text], select {
     width: 100%;
     padding: 12px 20px;
@@ -1619,7 +1619,7 @@ input[type=text], select {
     box-sizing: border-box;
 }
 
-/* Style input type="submit" */
+/* Style the submit button */
 input[type=submit] {
     width: 100%;
     background-color: #4CAF50;
@@ -1654,7 +1654,7 @@ input[type=submit] {
 .nav-button {
     color: var(--light-color);
     display: block;
-    padding:  0.5rem 1rem;
+    padding: 0.5rem 1rem;
     font-size: 20pt;
 }
 
@@ -1852,7 +1852,7 @@ a.dropdown-item:hover {
     margin: auto;
     min-height: 100%;
     min-width: 100%;
-    top: 0; 
+    top: 0;
     bottom: 0;
     vertical-align: middle;
 }
@@ -3619,11 +3619,11 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 #sentDetails .msgBody,
 #sentDetails .msgTo,
 #sentDetails .msgDate,
-#trashDetails .msgTo, 
-#trashDetails .msgFrom, 
+#trashDetails .msgTo,
+#trashDetails .msgFrom,
 #trashDetails .msgSubject,
-#trashDetails .msgBody, 
-#trashDetails .msgDate{
+#trashDetails .msgBody,
+#trashDetails .msgDate {
     background-color: rgba(240, 240, 240, 0.5);
     border: 1px solid lightgray;
     border-radius: 5px;
@@ -3766,6 +3766,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     position: relative;
     overflow: hidden;
 }
+
 .prod-index-ribbon {
     position: absolute;
     opacity: 0.8;
@@ -3839,17 +3840,17 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     color: white;
 }
 
-.btn-danger.msg-del-btn:hover {
-    color: white;
-}
+    .btn-danger.msg-del-btn:hover {
+        color: white;
+    }
 
-.btn-danger.msg-del-btn.inactive {
-    padding: .7rem;
-    background: grey;
-    opacity: .8;
-    pointer-events: none;
-    color: rgb(228, 228, 228);
-}
+    .btn-danger.msg-del-btn.inactive {
+        padding: .7rem;
+        background: grey;
+        opacity: .8;
+        pointer-events: none;
+        color: rgb(228, 228, 228);
+    }
 
 #checkboxDeleteModal {
     color: black;
