@@ -4,24 +4,24 @@
   ViewBag.Title = "Delete";
 }
 
-<div class="mt-5 mx-auto col-12 col-sm-10 col-md-8 col-lg-6">
-  <h4 class="text-center">Are you sure you want to delete this?</h4>
+<div class="mt-5 mx-auto col-12 col-sm-10 col-md-8 col-lg-6 text-center">
+  <h4>Are you sure you want to delete this?</h4>
   <hr />
   <dl class="dl-horizontal">
 
-    <dd class="text-center">
+    <dd>
       @Html.DisplayFor(model => model.Title)
     </dd>
 
-    <dd class="text-center">
+    <dd>
       <img class="large_size" src='@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })' />
     </dd>
 
     <dd>
-      <h5 class="text-center">Dimensions</h5>
+      <h5>Dimensions</h5>
     </dd>
 
-    <dd class="text-center">
+    <dd>
       @Html.DisplayFor(model => model.OriginalHeight)
       x @Html.DisplayFor(model => model.OriginalWidth)
     </dd>
@@ -34,17 +34,17 @@
     @*Use variable dependencies.HasDependencies to check for an evaluation of false. *@
     @if (!dependencies.HasDependencies)
     {
-      <dt class="text-center">
+      <dt>
         No dependencies exist with this photo: Safe to delete
       </dt>
     }
     else
     {
-      <dt class="text-center">
+      <dt>
         This photo is being used by the following items:
       </dt>
 
-      <dd class="text-center">
+      <dd>
         @* Foreach production in the dependencies.ProductionPhotos List, get the title and season of each production. *@
         @foreach (var production in dependencies.ProductionPhotos)
         {
@@ -66,9 +66,9 @@
     {
       // No dependencies, deleted
       <div class="form-actions no-color">
-        <div class="row">
-          <input type="submit" value="Delete" class="btn btn-lg text-center ml-auto mr-1 col-5" id="delete-btn" />
-          <input type="button" value="Cancel" class="btn btn-lg text-center mr-auto ml-1 col-5" id="cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
+        <div class="row text-center">
+          <input type="submit" value="Delete" class="btn btn-lg ml-auto mr-1 col-5" id="delete-btn" />
+          <input type="button" value="Cancel" class="btn btn-lg mr-auto ml-1 col-5" id="cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
         </div>
       </div>
     }
@@ -77,9 +77,9 @@
       // Has dependencies, launch modal
 
       <div class="form-actions no-color">
-        <div class="row">
-          <input type="button" value="Delete" class="btn btn-lg text-center col-5 ml-auto mr-1 d-block" id="delete-btn" data-toggle="modal" data-target="#deleteModal" />
-          <input type="button" value="Cancel" class="btn btn-lg text-center col-5 mr-auto ml-1 d-block" id="cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
+        <div class="row text-center">
+          <input type="button" value="Delete" class="btn btn-lg col-5 ml-auto mr-1 d-block" id="delete-btn" data-toggle="modal" data-target="#deleteModal" />
+          <input type="button" value="Cancel" class="btn btn-lg col-5 mr-auto ml-1 d-block" id="cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
         </div>
       </div>
     }
@@ -112,9 +112,9 @@
             }
           </p>
         </div>
-        <div class="modal-footer">
-          <input type="submit" value="Delete" class="btn btn-default text-center m-1 col-3" id="delete-btn" />
-          <input type="button" value="Cancel" class="btn btn-default text-center m-1 col-3" id="cancel-btn" data-dismiss="modal" />
+        <div class="modal-footer text-center">
+          <input type="submit" value="Delete" class="btn btn-default m-1 col-3" id="delete-btn" />
+          <input type="button" value="Cancel" class="btn btn-default m-1 col-3" id="cancel-btn" data-dismiss="modal" />
         </div>
       </div>
     </div>
