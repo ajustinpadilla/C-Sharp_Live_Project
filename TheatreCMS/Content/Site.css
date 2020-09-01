@@ -3863,38 +3863,8 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 /* BEGIN Photo Delete styles */
 #photo-delete-btn {
-    max-width: 250px;
-    color: white;
     background-color: var(--main-bg-color);
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
 }
-
-    #photo-delete-btn:hover {
-        background-color: #F04D44;
-    }
-
-/* Style photo delete cancel buttons */
-#photo-delete-cancel-btn {
-    max-width: 250px;
-    background-color: #727272;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-    /* Add a background color to the cancel button on mouse-over */
-    #photo-delete-cancel-btn:hover {
-        background-color: #A7A7A7;
-    }
 /* END Photo Delete styles */
 
 .Display-linkspage-details {
