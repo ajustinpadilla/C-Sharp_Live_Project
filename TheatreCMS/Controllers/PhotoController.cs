@@ -292,7 +292,6 @@ namespace TheatreCMS.Controllers
             }
             base.Dispose(disposing);
         }
-
         public static PhotoDependenciesVm FindDependencies(int? Id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
