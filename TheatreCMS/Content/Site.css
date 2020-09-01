@@ -3891,11 +3891,6 @@ input#cancel-btn {
     cursor: pointer;
 }
 
-    /* Add a background color to the submit type input on mouse-over */
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
     /* Slightly changes background color on hover of delete photo button */
     input#delete-btn:hover {
         background-color: #F04D44;
