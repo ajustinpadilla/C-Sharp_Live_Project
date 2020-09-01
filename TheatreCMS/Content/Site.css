@@ -3865,11 +3865,46 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     cursor: default;
 }*/
 
-/* BEGIN Photo Delete styles */
-#photo-delete-btn {
+/* Formats the Photo Delete pages delete button */
+input#delete-btn {
+    max-width: 250px;
+    color: white;
     background-color: var(--main-bg-color);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
 }
-/* END Photo Delete styles */
+
+/* Formats the Photo Delete pages cancel button */
+input#cancel-btn {
+    max-width: 250px;
+    background-color: #727272;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+    /* Add a background color to the submit type input on mouse-over */
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    /* Slightly changes background color on hover of delete photo button */
+    input#delete-btn:hover {
+        background-color: #F04D44;
+    }
+
+    /* Slightly changes background color of hover of cancel button on Photo Delete page */
+    input#cancel-btn:hover {
+        background-color: #A7A7A7;
+}
 
 .Display-linkspage-details {
     background-color: #d6972a;
