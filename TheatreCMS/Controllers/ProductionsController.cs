@@ -131,13 +131,13 @@ namespace TheatreCMS.Controllers
 
             //check if calendar is displayed before this GET Request
             ViewData["calDisplay"] = calBool;
-            
+
             var prodId = productions.Select(i => i.ProductionId).ToList();
 
             //return only calendar events that are associated with the filtered results
             var eventList = db.CalendarEvent.Where(x => prodId.Contains(x.ProductionId ?? 0)).ToList();
 
-            var eventArray = eventList.Select(x => new []
+            var eventArray = eventList.Select(x => new[]
             {
                 x.EventId.ToString(),
                 x.Title,
@@ -176,8 +176,10 @@ namespace TheatreCMS.Controllers
             {
                 return HttpNotFound();
             }
-            List<int> positions = new List<int>(){0,1,3,2,4};
+            List<int> positions = new List<int>() { 0, 1, 3, 2, 4 };
             ViewBag.Positions = positions;
+            ViewBag.ShowtimeEve = production.ShowtimeEve;
+            ViewBag.ShowtimeMat = production.ShowtimeMat;
             return View(production);
         }
 
@@ -212,6 +214,7 @@ namespace TheatreCMS.Controllers
 
 
         // GET: Productions/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
