@@ -70,7 +70,7 @@
               Evening Show Time
               <dl>
                 <dd class="col">
-                  @ViewBag.ShowTimeEve.ToString("hh:mm tt")
+                  @Html.DisplayFor(model => model.ShowtimeEve)
                 </dd>
               </dl>
             </li>
@@ -78,7 +78,7 @@
               Matinee Show Time
               <dl>
                 <dd class="col">
-                  @ViewBag.ShowTimeMat.ToString("hh:mm tt")
+                  @Html.DisplayFor(model => model.ShowtimeMat)
                 </dd>
               </dl>
             </li>

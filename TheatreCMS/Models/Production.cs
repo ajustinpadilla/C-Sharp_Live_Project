@@ -27,12 +27,12 @@ namespace TheatreCMS.Models
         public DateTime ClosingDay { get; set; }    // production closing day
 
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Evening Showtime")]
         public DateTime? ShowtimeEve { get; set; }  // production evening showtime
 
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Matinee Showtime")]
         public DateTime? ShowtimeMat { get; set; }  // production matinee showtime
 
@@ -53,7 +53,7 @@ namespace TheatreCMS.Models
 
         public virtual ICollection<CalendarEvent> Events { get; set; }              // associated production events
 
-        [InverseProperty("Production")]
+        [InverseProperty ("Production")]
         public virtual ICollection<ProductionPhotos> ProductionPhotos { get; set; } // associated production photos
 
         //public static implicit operator object(Production v)
