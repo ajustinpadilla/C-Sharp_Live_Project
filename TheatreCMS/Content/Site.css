@@ -4235,7 +4235,6 @@ button.goBack {
 
 /* -----------------------------
           End Messages Styling */
-}
 
 .prod-delete-dropdown-item {
     min-width: 100px;
@@ -4247,4 +4246,3 @@ button.goBack {
         background-color: var(--main-secondary-color);
         color: var(--light-color)
     }
-
