@@ -355,11 +355,6 @@
 
 </table>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.bundle.min.js"></script>
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-
 @section Scripts {
   <script>
     var events = [];
@@ -623,18 +618,27 @@
             $(".calendar-event").prop('checked', false);
           }
         });
-
+     
         // Checks top checkbox if all checkboxes are checked
-        $("input[type='checkbox'].calendar-event").change(function () {
-          var checks = $("input[type='checkbox'].calendar-event").filter(":checked").length;
-          var allChecks = $("input[type='checkbox'].calendar-event").map(function () {
-            return this.innerHTML;
-          }).get();
-          if (checks == allChecks.length) {
-            $(".select-all").prop("checked", true)
-          } else {
-            $(".select-all").prop("checked", false)
-          }
+      var test = $(".calendar-event");
+      console.log(test);
+      var allChecks = $(".calendar-event").map(function () {
+        return this.innerHTML;
+      }).get();
+      console.log(allChecks);
+
+          $(".calendar-event").on("change", function () {
+            var checks = $(".calendar-event").filter(":checked").length;
+            console.log(checks);
+            var allChecks = $(".calendar-event").map(function () {
+              return this.innerHTML;
+            }).get();
+            console.log(allChecks.length);
+            if (checks.length == allChecks.length) {
+              $(".select-all").prop("checked", true)
+            } else {
+              $(".select-all").prop("checked", false)
+            }
         });
 
         // Toggles the trash button above table active/inactive
