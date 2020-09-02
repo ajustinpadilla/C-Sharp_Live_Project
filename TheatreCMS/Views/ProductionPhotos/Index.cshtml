@@ -15,21 +15,22 @@
     </div>
 </div>
 
-<h2 class="m-3">Index </h2>
-<div class="prodphoto-bar m-3">
-    <label>Filter by Production</label>
-    @Html.DropDownList("ProductionList", (IEnumerable<SelectListItem>)ViewData["ProdutionList"], "All", new { @class = "col-5 col-md-3 prodphoto-filter" })
-    <div class="prodphoto-search-container"></div>
-    <input type="text" name="some text box" placeholder=" Search" class="prodphoto-searchbar" />
-    <script type="application/json">
-    </script> $('#txtSearchProdAssign').keypress(function (e) {
-    var key = e.which;
-    if(key == 13)  
-    {
-    $('input[name = butAssignProd]').click();
-    return false;
-    }
-    });
+
+ 
+<div>
+    <script>
+        var input = document.getElementsByClassName("prodphoto-searchbar");
+        console.log(input);
+        input[0].addEventListener("keyup", function (event) {
+            console.log("see if working");
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementsByClassName("prodphoto-searchbtn")[0].click();
+                console.log("enter key worked");
+            }
+        });
+    </script>
+
 </div>
 
 
