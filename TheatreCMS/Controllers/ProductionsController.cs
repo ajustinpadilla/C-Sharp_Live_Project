@@ -81,7 +81,7 @@ namespace TheatreCMS.Controllers
                     isSearching = true;
                 }
             }
-            //Comapare values passed from view to values in productions
+            //Compare values passed from view to values in productions
             if (!String.IsNullOrEmpty(searchString))
             {
                 productions = productions.Where(p => p.Title.Contains(searchString) || p.Playwright.Contains(searchString) || p.Description.Contains(searchString));

@@ -1636,6 +1636,7 @@ input[type=submit] {
         background-color: #45a049;
     }
 
+
 /*navbar*/
 .navbar-nav li:active > ul.dropdown-menu {
     /* Dagmar 20200311:

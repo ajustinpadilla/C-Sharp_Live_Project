@@ -105,7 +105,6 @@ namespace TheatreCMS.Models
         public System.Data.Entity.DbSet<TheatreCMS.ViewModels.NewsletterListVm> NewsletterListVms { get; set; }
 
         public System.Data.Entity.DbSet<TheatreCMS.Models.Award> Awards { get; set; }
-
     }
 
 }
