@@ -367,9 +367,9 @@
                     eventClick: function (calEvent) {
                         $('#detailsModal #deventId').html(calEvent.id);
                         $('#detailsModal #deventTitle').html(calEvent.title);
-                        var startdatedetail = moment.utc(calEvent.start).local().format("MM-DD-YYYY h:mm a");
+                        var startdatedetail = moment.utc(calEvent.start).local().format("MM-DD-YYYY HH:mm a");
                         $('#detailsModal #deventStartDate').html(startdatedetail);
-                        var enddatedetail = moment.utc(calEvent.end).local().format("MM-DD-YYYY h:mm a");
+                        var enddatedetail = moment.utc(calEvent.end).local().format("MM-DD-YYYY HH:mm a");
                         $('#detailsModal #deventEndDate').html(enddatedetail);
                         
                         if (calEvent.productionid > 0) {
