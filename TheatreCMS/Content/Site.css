@@ -3931,6 +3931,7 @@ input#cancel-btn {
 .prod-delete-delete-btn {
     background-color: var(--main-bg-color);
     color: var(--light-color);
+    letter-spacing: 1.5px;
     box-shadow: 0 2px #666;
     transform: translateY(1px);
 }
@@ -4234,3 +4235,14 @@ button.goBack {
 
 /* -----------------------------
           End Messages Styling */
+
+.prod-delete-dropdown-item {
+    min-width: 100px;
+    background-color: var(--light-color);
+    color: var(--dark-color)
+}
+    
+    .prod-delete-dropdown-item:hover {
+        background-color: var(--main-secondary-color);
+        color: var(--light-color)
+    }
