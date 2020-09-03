@@ -70,7 +70,7 @@
               Evening Show Time
               <dl>
                 <dd class="col">
-                  @Html.DisplayFor(model => model.ShowtimeEve)
+                  @Model.ShowtimeEve.Value.ToString("h:mm tt")
                 </dd>
               </dl>
             </li>
@@ -78,7 +78,7 @@
               Matinee Show Time
               <dl>
                 <dd class="col">
-                  @Html.DisplayFor(model => model.ShowtimeMat)
+                  @Model.ShowtimeMat.Value.ToString("h:mm tt")
                 </dd>
               </dl>
             </li>
