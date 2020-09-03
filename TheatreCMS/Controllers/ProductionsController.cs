@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TheatreCMS.Controllers;
 using TheatreCMS.Helpers;
 using TheatreCMS.Models;
 using TheatreCMS.ViewModels;
-using System.Globalization;
 
 namespace TheatreCMS.Controllers
 {
@@ -83,7 +81,7 @@ namespace TheatreCMS.Controllers
                     isSearching = true;
                 }
             }
-            //Comapare values passed from view to values in productions
+            //Compare values passed from view to values in productions
             if (!String.IsNullOrEmpty(searchString))
             {
                 productions = productions.Where(p => p.Title.Contains(searchString) || p.Playwright.Contains(searchString) || p.Description.Contains(searchString));
@@ -161,7 +159,7 @@ namespace TheatreCMS.Controllers
             return View(current.ToList());
         }
 
-        // GET: Productions/Details/5
+        // GET: Productions/Details/id
         public ActionResult Details(int? id)
         {
 
@@ -178,12 +176,11 @@ namespace TheatreCMS.Controllers
             }
             List<int> positions = new List<int>() { 0, 1, 3, 2, 4 };
             ViewBag.Positions = positions;
-            ViewBag.ShowtimeEve = production.ShowtimeEve;
-            ViewBag.ShowtimeMat = production.ShowtimeMat;
             return View(production);
         }
 
         // GET: Productions/Create
+        [TheatreAuthorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewData["current_season"] = AdminSettingsReader.CurrentSettings().current_season;
@@ -195,6 +192,7 @@ namespace TheatreCMS.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [TheatreAuthorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto_ProPhotoId,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase file)
         {
@@ -214,7 +212,6 @@ namespace TheatreCMS.Controllers
 
 
         // GET: Productions/Edit/5
-        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -280,7 +277,7 @@ namespace TheatreCMS.Controllers
         }
 
 
-        // GET: Productions/Delete/5
+        // GET: Productions/Delete/id
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
@@ -296,14 +293,58 @@ namespace TheatreCMS.Controllers
             return View(production);
         }
 
-        // POST: Productions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        // Productions/Delete/id
+        public ActionResult DeleteProduction(int id)
         {
-            Production production = db.Productions.Find(id);
-            db.Productions.Remove(production);
+            Production prod = db.Productions.Find(id);
+            Part[] parts = prod.Parts.ToArray();
+            CalendarEvent[] calEvents = prod.Events.ToArray();
+            ProductionPhotos[] productionPhotos = prod.ProductionPhotos.ToArray();
+            IQueryable prodAwards = db.Awards.Where(a => a.ProductionId == prod.ProductionId);
+
+           
+            foreach (Award prodAward in prodAwards) db.Awards.Remove(prodAward);
+            foreach (Part part in parts) db.Parts.Remove(part);
+            foreach (CalendarEvent calEvent in calEvents) db.CalendarEvent.Remove(calEvent);
+            foreach (ProductionPhotos prodPhoto in productionPhotos) db.ProductionPhotos.Remove(prodPhoto);
             db.SaveChanges();
+
+            db.Productions.Remove(prod);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        // Productions/Delete/id including all dependencies
+        public ActionResult DeleteProductionWithPhotos(int id)
+        {
+
+            Production prod = db.Productions.Find(id);
+            ProductionPhotos[] productionPhotos = prod.ProductionPhotos.ToArray();
+            Part[] parts = prod.Parts.ToArray();
+            CalendarEvent[] calEvents = prod.Events.ToArray();
+            IQueryable prodAwards = db.Awards.Where(a => a.ProductionId == prod.ProductionId);
+
+            var photos = new List<Photo>();
+            for (int i = 0; i < productionPhotos.Length; i++)
+            {
+                int photoId = productionPhotos[i].PhotoId;
+                Photo photoQuery = db.Photo.Find(photoId);
+                photos.Add(photoQuery);
+            }
+
+            foreach (ProductionPhotos prodPhoto in productionPhotos) db.ProductionPhotos.Remove(prodPhoto);
+            foreach (Part part in parts) db.Parts.Remove(part);
+            foreach (CalendarEvent calEvent in calEvents) db.CalendarEvent.Remove(calEvent);
+            foreach (Award prodAward in prodAwards) db.Awards.Remove(prodAward);
+            db.SaveChanges();
+
+            foreach (Photo photo in photos) db.Photo.Remove(photo);
+            db.SaveChanges();
+
+            db.Productions.Remove(prod);
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
