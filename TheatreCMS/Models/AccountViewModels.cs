@@ -246,4 +246,11 @@ namespace TheatreCMS.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+    //private void input_KeyDown(object sender, KeyEventArgs e)
+    //{
+    //    if (e.KeyData == Keys.Enter)
+    //    {
+    //        MessageBox.Show("Pressed enter.");
+    //    }
+    //}
 }
