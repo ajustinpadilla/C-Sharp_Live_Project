@@ -280,88 +280,92 @@
 {
   <div id="calendarTableContainer">
     <table id="adminEventTable" class="table">
-      <tr>
-        @if (User.IsInRole("Admin"))
-        {
-        <th>
-          <input type="checkbox" class="checkAll" />
-          <label class="ml-1" for="checkAll">Select All</label>
-        </th>
-        }
-        <th>
-          @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.TicketsAvailable)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.ProductionId)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.RentalRequestId)
-        </th>
-        <th>
+      <thead>
+        <tr class="text-center">
           @if (User.IsInRole("Admin"))
           {
-            <text>Options</text>
+            <th class="text-left">
+              <input type="checkbox" class="checkAll" />
+              <label class="ml-1" for="checkAll">Select All</label>
+            </th>
           }
-          else
-          {
-            <text>Details</text>
-          }
-        </th>
-      </tr>
-
-      @foreach (var item in Model)
-      {
-        <tr>
-        @if (User.IsInRole("Admin"))
-        {
-          <td>
-            @Html.CheckBox(item.EventId.ToString(), new { @class = "calendarEvent", @value = item.EventId })
-          </td>
-        }
-          <td>
-            @Html.DisplayFor(modelItem => item.Title)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.TicketsAvailable)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.ProductionId)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.RentalRequestId)
-          </td>
-          <td>
+          <th>
+            @Html.DisplayNameFor(model => model.Title)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.TicketsAvailable)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.ProductionId)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.RentalRequestId)
+          </th>
+          <th>
             @if (User.IsInRole("Admin"))
             {
-
-              @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
+              <text>Options</text>
             }
-
-            | @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
-
-            @if (User.IsInRole("Admin"))
+            else
             {
-
-              @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+              <text>Details</text>
             }
-          </td>
+          </th>
         </tr>
-      }
+      </thead>
+
+      <tbody>
+        @foreach (var item in Model)
+        {
+          <tr class="text-center">
+            @if (User.IsInRole("Admin"))
+            {
+              <td class="text-left">
+                @Html.CheckBox(item.EventId.ToString(), new { @class = "calendarEvent", @value = item.EventId })
+              </td>
+            }
+            <td>
+              @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.TicketsAvailable)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.ProductionId)
+            </td>
+            <td>
+              @Html.DisplayFor(modelItem => item.RentalRequestId)
+            </td>
+            <td>
+              @if (User.IsInRole("Admin"))
+              {
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
+              }
+
+              | @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+
+              @if (User.IsInRole("Admin"))
+              {
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
   </div>
 }
@@ -619,30 +623,23 @@
           });
         });
 
-        @* The following code is used to delete one or more calendar events from the admin table *@
-        // Check all checkboxes based on CheckAll checkbox
-        $(".checkAll").click(function () {
-          $(".calendarEvent").prop('checked', $(this).prop('checked'));
+        @* The following code is used to delete one or more calendar events from the admin table. It will trigger a modal that shows any CalendarEvents chosen for deletion as well as the total number to delete *@
+
+        // Check/Un-check all checkboxes based on CheckAll checkbox & style each checked row for deletion
+        $('tbody :checkbox').change(function () {
+          $(this).closest('tr').toggleClass('isChecked', this.checked);
+          $(this).parent().siblings('td').children('a').toggleClass('linkIsChecked', this.ckecked);
+
+          var allchecked = $('tbody :checkbox:checked').length == $('tbody :checkbox').length;
+          $('thead :checkbox').prop('checked', allchecked);
+        });
+        $('thead :checkbox').change(function () {
+          $('tbody :checkbox').prop('checked', this.checked).trigger('change')
         });
 
-        // Uncheck CheckAll checkbox if not all checkboxes are checked
-        $(".calendarEvent").change(function () {
-          if (!$(this).prop("checked")) {
-            $(".checkAll").prop("checked", false);
-          }
-        });
+        // Toggles the trash button above table to be active, or inactive
 
-        // Check CheckAll checkbox if all checkboxes are checked
-        $(".calendarEvent").change(function () {
-          if ($('.calendarEvent:checked').length == $('.calendarEvent').length) {
-            $(".checkAll").prop('checked', true);
-          }
-          else {
-            $(".checkAll").prop('checked', false);
-          }
-        });
-
-        // Toggles the trash button above table active/inactive
+        // For checkAll checkbox
         $(".checkAll").click(function () {
           var trash = $(".msg-del-btn");
           if ($(this).is(':checked')) {
@@ -652,7 +649,7 @@
           }
         });
 
-      
+        // For individual row's checkboxes
         $(".calendarEvent").click(function () {
           var trash = $(".msg-del-btn");
           if ($(".calendarEvent").is(":checked")) {
@@ -662,70 +659,11 @@
             trash.addClass("inactive");
           }
         });
-        
-      
-      
-        // Row delete indicator when row checkbox is checked for deletion
-        $('.calendarEvent').change(function () {
 
-
-              if ($('.calendarEvent').is(":checked")) {
-                var delColor = '#bd1a11';
-                var delBorder = '3px solid #bd1a11';
-                var textEffect = 'line-through';
-                var linkColor = '#bd1a11';
-              }
-              else if (!$('.calendarEvent').is(":checked")) {
-                var delColor = '#fffbfb';
-                var delBorder = '1px solid #fffbfb';
-                var textEffect = 'none';
-                var linkColor = '#007bff';
-              }
-            
-              $(this).parent().siblings('td').css('color', delColor);
-              $(this).parent().siblings('td').css('border-top', delBorder);
-              $(this).parent().siblings('td').css('border-bottom', delBorder);
-              $(this).parent().siblings('td').css('text-decoration-line', textEffect);
-              $(this).parent().siblings('td').children('a').css('color', linkColor);
-              $(this).parent('td').css('border-top', delBorder);
-              $(this).parent('td').css('border-bottom', delBorder);
-            });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-
-          //$('.calendarEvent').change(function () {
-          //  if (.is(":checked"))
-          //}
-
-
-      //!$('.checkAll').is(":checked")
-          // Row delete indicator when row CheckAll is checked for deletion
-          //$('.ckeckAll').click(function () {
-          //  $('.calendarEvent').change(function () {
-          //    if ($(this).is(':checked')) {
-          //      var delColor = '#bd1a11';
-          //      var delBorder = '3px solid #bd1a11';
-          //      var textEffect = 'line-through';
-          //      var linkColor = '#bd1a11';
-          //    }
-          //    else {
-          //      var delColor = '#fffbfb';
-          //      var delBorder = '1px solid #fffbfb';
-          //      var textEffect = 'none';                                                                                                                                                     
-          //      var linkColor = '#007bff';
-          //    }
-
-          //    $(this).parent().siblings('td').css('color', delColor);
-          //    $(this).parent().siblings('td').css('border-top', delBorder);
-          //    $(this).parent().siblings('td').css('border-bottom', delBorder);
-          //    $(this).parent().siblings('td').css('text-decoration-line', textEffect);
-          //    $(this).parent().siblings('td').children('a').css('color', linkColor);
-          //    $(this).parent('td').css('border-top', delBorder);
-          //    $(this).parent('td').css('border-bottom', delBorder);
-          //  });
-          //});
-      
         @* End multiple delete admin calendar table *@
 
     });
+
         // page is now ready, initialize the calendar...
   </script>
 }

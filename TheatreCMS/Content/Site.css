@@ -2263,7 +2263,14 @@ a.dropdown-item:hover {
 
 /* Styling for CalendarEvent Admin table rows when checked for deletion */
 .isChecked {
-    color: var(--main-bg-color) !important;
+    color: rgb(189, 26, 17);
+    border-top: 3px solid rgb(189, 26, 17);
+    border-bottom: 3px solid rgb(189, 26, 17);
+    text-decoration-line: line-through;
+}
+
+.linkIsChecked {
+    color: rgb(189, 26, 17);
 }
 
 table#adminEventTable {
