@@ -48,9 +48,21 @@ namespace TheatreCMS.Models
         }
 
         // GET: ProductionPhotos/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            if (id > db.Productions.Count())
+            {
+                return HttpNotFound();
+            }
+            if (id == null)
+            {
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            }
+            else
+            {
+                ViewData["Productions"] = new SelectList(db.Productions.Where(x => x.ProductionId == id).ToList(), "ProductionId", "Title");
+            }
+            
             return View();
         }
 
