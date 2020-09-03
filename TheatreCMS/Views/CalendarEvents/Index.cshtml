@@ -275,314 +275,325 @@
     <a class="btn btn-danger mx-3 msg-del-btn inactive" aria-disabled="true"><i class="fas fa-trash"></i></a>
   </p>
 }
-<table id="adminEventTable" class="table">
-  <tr>
-    @if (User.IsInRole("Admin"))
-    {
-      <th>
-        @Html.CheckBox("selectAll", false, new { @class = "select-all" })
-        <label class="ml-1" for="selectAll">Select All</label>
-      </th>
-    }
-    <th>
-      @Html.DisplayNameFor(model => model.Title)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.StartDate)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.EndDate)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.TicketsAvailable)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.ProductionId)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.RentalRequestId)
-    </th>
-    <th></th>
-  </tr>
 
-  @foreach (var item in Model)
-  {
-    <tr class="event-row">
-      @if (User.IsInRole("Admin"))
+@using (Html.BeginForm("DeleteMultiple", "CalendarEvents", FormMethod.Post, new { encType = "multipart/form-data" }))
+{
+  <div id="calendarTableContainer">
+    <table id="adminEventTable" class="table">
+      <tr>
+        @if (User.IsInRole("Admin"))
+        {
+        <th>
+          <input type="checkbox" class="checkAll" />
+          <label class="ml-1" for="checkAll">Select All</label>
+        </th>
+        }
+        <th>
+          @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.TicketsAvailable)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.ProductionId)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.RentalRequestId)
+        </th>
+        <th>
+          @if (User.IsInRole("Admin"))
+          {
+            <text>Options</text>
+          }
+          else
+          {
+            <text>Details</text>
+          }
+        </th>
+      </tr>
+
+      @foreach (var item in Model)
       {
-        <td>
-          @Html.CheckBox(item.EventId.ToString(), new { @class = "event-to-delete calendar-event", @value = item.EventId })
-        </td>
+        <tr>
+        @if (User.IsInRole("Admin"))
+        {
+          <td>
+            @Html.CheckBox(item.EventId.ToString(), new { @class = "calendarEvent", @value = item.EventId })
+          </td>
+        }
+          <td>
+            @Html.DisplayFor(modelItem => item.Title)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.TicketsAvailable)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.ProductionId)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.RentalRequestId)
+          </td>
+          <td>
+            @if (User.IsInRole("Admin"))
+            {
+
+              @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
+            }
+
+            | @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+
+            @if (User.IsInRole("Admin"))
+            {
+
+              @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+            }
+          </td>
+        </tr>
       }
-
-      <td>
-        @Html.DisplayFor(modelItem => item.Title)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.StartDate)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.EndDate)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.TicketsAvailable)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.ProductionId)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.RentalRequestId)
-      </td>
-      <td>
-        @if (User.IsInRole("Admin"))
-        {
-
-          @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
-        }
-
-        | @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
-
-        @if (User.IsInRole("Admin"))
-        {
-
-          @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
-        }
-
-
-      </td>
-    </tr>
-  }
-
-</table>
+    </table>
+  </div>
+}
 
 @section Scripts {
   <script>
     var events = [];
     $(document).ready(function () {
-        GetCalendarEvents();
-        function GetCalendarEvents() {
-          $.ajax({
-            type: "GET",
-            url: "/CalendarEvents/GetCalendarEvents",
-            success: function (data) {
-              events = data
-              GenerateCalendar(events);
+      GetCalendarEvents();
+      function GetCalendarEvents() {
+        $.ajax({
+          type: "GET",
+          url: "/CalendarEvents/GetCalendarEvents",
+          success: function (data) {
+            events = data
+            GenerateCalendar(events);
+          }
+        })
+      };
+
+      function GenerateCalendar(events) {
+        //remove the previous Calendar
+        $('#calendar').fullCalendar('destroy');
+        //Assign properties to the Calendar, and some events
+        $('#calendar').fullCalendar({
+          contentHeight: 550,
+          timezone: "local",
+          defaultDate: new Date(),
+          //allows multiple/stacked events
+          eventLimit: true,
+          events: events,
+          //render appropriate eventcolor to calendar based on type of event
+          selectable: true,
+          selectHelper: true,
+          //if multiple events on same day should be stacked, set to true:
+          eventLimit: false,
+          select: function (startStr, endStr) {
+            var addstarttime = moment(moment.utc(startStr)).format().substring(0, 19);
+            var addendtime = moment(moment.utc(endStr)).format().substring(0, 19);
+            //setting the selected start and end date/times to default in Add Modal inputs
+
+            function getAddStartT() {
+              document.getElementById("addformstarttime").defaultValue = addstarttime;
+            };
+            function getAddEndT() {
+              document.getElementById("addformendtime").defaultValue = addendtime;
+            };
+            getAddStartT();
+            getAddEndT();
+
+            $("#addModal").modal({ backdrop: true });
+
+            $("#addModal #ProductionsMenu").hide();
+            $("#addModal #RentalsMenu").hide();
+
+
+            $("#addModal #eventtypes").change(function () {
+              var type = $(this).val();
+              if (type == "prod_type") {
+                $("#addModal #ProductionsMenu").show();
+                $("#addModal #RentalsMenu").hide();
+              }
+              else if (type == "rent_type") {
+                $("#addModal #RentalsMenu").show();
+                $("#addModal #ProductionsMenu").hide();
+              }
+              else {
+                $("#addModal #ProductionsMenu").hide();
+                $("#addModal #RentalsMenu").hide();
+              };
+            }),
+
+              //Call CalendarEvents/Create New Event
+              $.ajax({
+                type: "GET",
+                url: '/CalendarEvents/Create',
+                data: { '': '' },
+                success: function (data) {
+                  if (data.status) {
+                    //refresh the calendar
+                    $("#calendar").fullCalendar('renderEvent');
+                    GetCalendarEvents();
+                    $('#addModal').modal('hide');
+                  }
+                },
+                error: function () {
+                  alert('Failed, Sorry!');
+                }
+              });
+            $("#calendar").fullCalendar('unselect');
+          },
+
+          eventClick: function (calEvent) {
+            $('#detailsModal #deventId').html(calEvent.id);
+            $('#detailsModal #deventTitle').html(calEvent.title);
+            var startdatedetail = moment.utc(calEvent.start).local().format("MM-DD-YYYY HH:mm a");
+            $('#detailsModal #deventStartDate').html(startdatedetail);
+            var enddatedetail = moment.utc(calEvent.end).local().format("MM-DD-YYYY HH:mm a");
+            $('#detailsModal #deventEndDate').html(enddatedetail);
+
+            if (calEvent.productionid > 0) {
+              $('#detailsModal #deventtypes').html("Production: " + calEvent.productionid);
             }
-          })
-        };
+            else if (calEvent.rentalrequestid > 0) {
+              $('#detailsModal #deventtypes').html("Facility Rental: " + calEvent.rentalrequestid);
+            }
+            //$('#detailsModal #deventEventLinks').html(calEvent.eventlinks);
+            $("#detailsModal").modal({ backdrop: true });
 
-        function GenerateCalendar(events) {
-          //remove the previous Calendar
-          $('#calendar').fullCalendar('destroy');
-          //Assign properties to the Calendar, and some events
-          $('#calendar').fullCalendar({
-            contentHeight: 550,
-            timezone: "local",
-            defaultDate: new Date(),
-            //allows multiple/stacked events
-            eventLimit: true,
-            events: events,
-            //render appropriate eventcolor to calendar based on type of event
-            selectable: true,
-            selectHelper: true,
-            //if multiple events on same day should be stacked, set to true:
-            eventLimit: false,
-            select: function (startStr, endStr) {
-              var addstarttime = moment(moment.utc(startStr)).format().substring(0, 19);
-              var addendtime = moment(moment.utc(endStr)).format().substring(0, 19);
-              //setting the selected start and end date/times to default in Add Modal inputs
+            $("#detaileditbtn").click(function () {
+              $('#editModal #eeventId').html(calEvent.id);
+              $('#editModal #eeventTitle').html(document.getElementById("editformtitle").defaultValue = calEvent.title);
+              $('#editModal #eeventStartDate').html(document.getElementById("editformstarttime").defaultValue = moment(moment.utc(calEvent.start)).local().format().substring(0, 19));
+              $('#editModal #eeventEndDate').html(document.getElementById("editformendtime").defaultValue = moment(moment.utc(calEvent.end)).local().format().substring(0, 19));
 
-              function getAddStartT() {
-                document.getElementById("addformstarttime").defaultValue = addstarttime;
-              };
-              function getAddEndT() {
-                document.getElementById("addformendtime").defaultValue = addendtime;
-              };
-              getAddStartT();
-              getAddEndT();
+              if (calEvent.productionid > 0) {
+                $("#editModal #editeventtypes").val("e_prod_type");
+                $('#editModal #Productions').val(calEvent.productionid);
+                $("#editModal #e_RentalsMenu").hide();
+              }
+              else if (calEvent.rentalrequestid > 0) {
+                $("#editModal #editeventtypes").val("e_rent_type");
+                $('#editModal #RentalRequests').val(calEvent.rentalrequestid)
+                $("#editModal #e_ProductionsMenu").hide();
+              }
 
-              $("#addModal").modal({ backdrop: true });
+              //remove previous modal and show edit Modal when edit button selected
+              $("#detailsModal").modal('hide');
+              window.setTimeout(function () {
+                $("#editModal").modal("show");
+              }, 500);
 
-              $("#addModal #ProductionsMenu").hide();
-              $("#addModal #RentalsMenu").hide();
+              //save changes made in edit Modal
+              $('#editsavebtn').click(function () {
+                var antiForgeryToken = $('#editModal input[name="__RequestVerificationToken"]').val();
+                calendarEvent = {
+                  "EventId": calEvent.id,
+                  "Title": $('#editModal #editformtitle').val(),
+                  "StartDate": $('#editModal #editformstarttime').val(),
+                  "EndDate": $('#editModal #editformendtime').val(),
+                  "TicketsAvailable": null,
+                  "ProductionId": $("#editModal #Productions").val(),
+                  "RentalRequestId": $("editModal #RentalRequests").val(),
 
-
-              $("#addModal #eventtypes").change(function () {
-                var type = $(this).val();
-                if (type == "prod_type") {
-                  $("#addModal #ProductionsMenu").show();
-                  $("#addModal #RentalsMenu").hide();
+                  '__RequestVerificationToken': antiForgeryToken,
                 }
-                else if (type == "rent_type") {
-                  $("#addModal #RentalsMenu").show();
-                  $("#addModal #ProductionsMenu").hide();
-                }
-                else {
-                  $("#addModal #ProductionsMenu").hide();
-                  $("#addModal #RentalsMenu").hide();
-                };
-              }),
-
-                //Call CalendarEvents/Create New Event
                 $.ajax({
-                  type: "GET",
-                  url: '/CalendarEvents/Create',
-                  data: { '': '' },
+                  type: "POST",
+                  url: '/CalendarEvents/Edit',
+                  data: calendarEvent,
                   success: function (data) {
-                    if (data.status) {
-                      //refresh the calendar
-                      $("#calendar").fullCalendar('renderEvent');
-                      GetCalendarEvents();
-                      $('#addModal').modal('hide');
-                    }
+                    //refresh the calendar
+                    console.log(data);
+                    GetCalendarEvents();
+                    $('#editModal').modal('hide');
                   },
                   error: function () {
                     alert('Failed, Sorry!');
                   }
                 });
-              $("#calendar").fullCalendar('unselect');
-            },
-
-            eventClick: function (calEvent) {
-              $('#detailsModal #deventId').html(calEvent.id);
-              $('#detailsModal #deventTitle').html(calEvent.title);
-              var startdatedetail = moment.utc(calEvent.start).local().format("MM-DD-YYYY HH:mm a");
-              $('#detailsModal #deventStartDate').html(startdatedetail);
-              var enddatedetail = moment.utc(calEvent.end).local().format("MM-DD-YYYY HH:mm a");
-              $('#detailsModal #deventEndDate').html(enddatedetail);
-
-              if (calEvent.productionid > 0) {
-                $('#detailsModal #deventtypes').html("Production: " + calEvent.productionid);
-              }
-              else if (calEvent.rentalrequestid > 0) {
-                $('#detailsModal #deventtypes').html("Facility Rental: " + calEvent.rentalrequestid);
-              }
-              //$('#detailsModal #deventEventLinks').html(calEvent.eventlinks);
-              $("#detailsModal").modal({ backdrop: true });
-
-              $("#detaileditbtn").click(function () {
-                $('#editModal #eeventId').html(calEvent.id);
-                $('#editModal #eeventTitle').html(document.getElementById("editformtitle").defaultValue = calEvent.title);
-                $('#editModal #eeventStartDate').html(document.getElementById("editformstarttime").defaultValue = moment(moment.utc(calEvent.start)).local().format().substring(0, 19));
-                $('#editModal #eeventEndDate').html(document.getElementById("editformendtime").defaultValue = moment(moment.utc(calEvent.end)).local().format().substring(0, 19));
-
-                if (calEvent.productionid > 0) {
-                  $("#editModal #editeventtypes").val("e_prod_type");
-                  $('#editModal #Productions').val(calEvent.productionid);
-                  $("#editModal #e_RentalsMenu").hide();
-                }
-                else if (calEvent.rentalrequestid > 0) {
-                  $("#editModal #editeventtypes").val("e_rent_type");
-                  $('#editModal #RentalRequests').val(calEvent.rentalrequestid)
-                  $("#editModal #e_ProductionsMenu").hide();
-                }
-
-                //remove previous modal and show edit Modal when edit button selected
-                $("#detailsModal").modal('hide');
-                window.setTimeout(function () {
-                  $("#editModal").modal("show");
-                }, 500);
-
-                //save changes made in edit Modal
-                $('#editsavebtn').click(function () {
-                  var antiForgeryToken = $('#editModal input[name="__RequestVerificationToken"]').val();
-                  calendarEvent = {
-                    "EventId": calEvent.id,
-                    "Title": $('#editModal #editformtitle').val(),
-                    "StartDate": $('#editModal #editformstarttime').val(),
-                    "EndDate": $('#editModal #editformendtime').val(),
-                    "TicketsAvailable": null,
-                    "ProductionId": $("#editModal #Productions").val(),
-                    "RentalRequestId": $("editModal #RentalRequests").val(),
-
-                    '__RequestVerificationToken': antiForgeryToken,
-                  }
-                  $.ajax({
-                    type: "POST",
-                    url: '/CalendarEvents/Edit',
-                    data: calendarEvent,
-                    success: function (data) {
-                      //refresh the calendar
-                      console.log(data);
-                      GetCalendarEvents();
-                      $('#editModal').modal('hide');
-                    },
-                    error: function () {
-                      alert('Failed, Sorry!');
-                    }
-                  });
-                  $("#calendar").fullCalendar('unselect', jsEvent, view);
-                  $("#calendar").fullCalendar('updateEvent', calendarEvent, true);
-                });
+                $("#calendar").fullCalendar('unselect', jsEvent, view);
+                $("#calendar").fullCalendar('updateEvent', calendarEvent, true);
               });
+            });
 
-              //send to Confirm to Delete Modal when delete button selected [on details Modal]
-              $("#detaildeletebtn").click(function () {
-                window.setTimeout(function () {
-                  $("#confdelModal").modal("show");
-                }, 500);
-                selectedEvent = calEvent.id;
-                $("#detailsModal").modal('hide');
-              });
-
-              //send to Confirm to Delete Modal when delete button selected [on edit Modal]
-              $("#editdeletebtn").click(function () {
+            //send to Confirm to Delete Modal when delete button selected [on details Modal]
+            $("#detaildeletebtn").click(function () {
+              window.setTimeout(function () {
                 $("#confdelModal").modal("show");
-                selectedEvent = calEvent.id;
-              });
-            }
-          });
+              }, 500);
+              selectedEvent = calEvent.id;
+              $("#detailsModal").modal('hide');
+            });
+
+            //send to Confirm to Delete Modal when delete button selected [on edit Modal]
+            $("#editdeletebtn").click(function () {
+              $("#confdelModal").modal("show");
+              selectedEvent = calEvent.id;
+            });
+          }
+        });
+      };
+
+      //save new event from Add Modal to db
+      $('#addsavebtn').click(function () {
+        var antiForgeryToken = $('#addModal input[name="__RequestVerificationToken"]').val();
+        var savestart = $('#addModal #addformstarttime').val();
+        var saveend = $('#addModal #addformendtime').val();
+        var prod_id = $("#addModal #Productions").val();
+        var rent_id = $("#addModal #RentalRequests").val();
+
+        if (prod_id > 0) {
+          var productionid = prod_id;
+          var rentalrequestid = null;
+          var color = '#DB1A11';
+        }
+        else if (rent_id > 0) {
+          var productionid = null;
+          var rentalrequestid = rent_id;
+          var color = '#9D7C39';
+        }
+        else {
+          alert("You must choose a Production or Facility Rental to post an event to the calendar.");
         };
 
-        //save new event from Add Modal to db
-        $('#addsavebtn').click(function () {
-          var antiForgeryToken = $('#addModal input[name="__RequestVerificationToken"]').val();
-          var savestart = $('#addModal #addformstarttime').val();
-          var saveend = $('#addModal #addformendtime').val();
-          var prod_id = $("#addModal #Productions").val();
-          var rent_id = $("#addModal #RentalRequests").val();
+        var calendarEvent = {
+          "Title": $('#addModal #addformtitle').val(),
+          "StartDate": savestart,
+          "EndDate": saveend,
+          "TicketsAvailable": null,
+          "RentalRequestId": rentalrequestid,
+          "ProductionId": productionid,
+          "Color": color,
+          '__RequestVerificationToken': antiForgeryToken
+        };
 
-          if (prod_id > 0) {
-            var productionid = prod_id;
-            var rentalrequestid = null;
-            var color = '#DB1A11';
+        $.ajax({
+          type: "POST",
+          url: '/CalendarEvents/Create',
+          data: calendarEvent,
+          success: function (data) {
+            //refresh the calendar
+            console.log(data);
+            GetCalendarEvents();
+            $('#addModal').modal('hide');
+          },
+          error: function () {
+            alert('Failed, Sorry!');
           }
-          else if (rent_id > 0) {
-            var productionid = null;
-            var rentalrequestid = rent_id;
-            var color = '#9D7C39';
-          }
-          else {
-            alert("You must choose a Production or Facility Rental to post an event to the calendar.");
-          };
-
-          var calendarEvent = {
-            "Title": $('#addModal #addformtitle').val(),
-            "StartDate": savestart,
-            "EndDate": saveend,
-            "TicketsAvailable": null,
-            "RentalRequestId": rentalrequestid,
-            "ProductionId": productionid,
-            "Color": color,
-            '__RequestVerificationToken': antiForgeryToken
-          };
-
-          $.ajax({
-            type: "POST",
-            url: '/CalendarEvents/Create',
-            data: calendarEvent,
-            success: function (data) {
-              //refresh the calendar
-              console.log(data);
-              GetCalendarEvents();
-              $('#addModal').modal('hide');
-            },
-            error: function () {
-              alert('Failed, Sorry!');
-            }
-          });
-          $("#calendar").fullCalendar('renderEvent', calendarEvent);
-        }),
+        });
+        $("#calendar").fullCalendar('renderEvent', calendarEvent);
+      }),
 
         //confirm delete function call/fully delete event from db
         $('#confdeletebtn').click(function () {
@@ -609,51 +620,31 @@
         });
 
         @* The following code is used to delete one or more calendar events from the admin table *@
+        // Check all checkboxes based on CheckAll checkbox
+        $(".checkAll").click(function () {
+          $(".calendarEvent").prop('checked', $(this).prop('checked'));
+        });
 
-        // Checks all checkboxs if top checkbox is checked & vice versa
-        $(".select-all").click(function () {
-          if ($(this).is(":checked")) {
-            $(".calendar-event").prop('checked', true);
-          } else {
-            $(".calendar-event").prop('checked', false);
+        // Uncheck CheckAll checkbox if not all checkboxes are checked
+        $(".calendarEvent").change(function () {
+          if (!$(this).prop("checked")) {
+            $(".checkAll").prop("checked", false);
           }
         });
-     
-        // Checks top checkbox if all checkboxes are checked
-      var test = $(".calendar-event");
-      console.log(test);
-      var allChecks = $(".calendar-event").map(function () {
-        return this.innerHTML;
-      }).get();
-      console.log(allChecks);
 
-          $(".calendar-event").on("change", function () {
-            var checks = $(".calendar-event").filter(":checked").length;
-            console.log(checks);
-            var allChecks = $(".calendar-event").map(function () {
-              return this.innerHTML;
-            }).get();
-            console.log(allChecks.length);
-            if (checks.length == allChecks.length) {
-              $(".select-all").prop("checked", true)
-            } else {
-              $(".select-all").prop("checked", false)
-            }
+        // Check CheckAll checkbox if all checkboxes are checked
+        $(".calendarEvent").change(function () {
+          if ($('.calendarEvent:checked').length == $('.calendarEvent').length) {
+            $(".checkAll").prop('checked', true);
+          }
+          else {
+            $(".checkAll").prop('checked', false);
+          }
         });
 
         // Toggles the trash button above table active/inactive
-        $("input[type='checkbox'].calendar-event").click(function () {
-          var trash = $("a.msg-del-btn");
-          var anyChecks = $(this);
-          if (anyChecks.filter(':checked').length >= 1) {
-            trash.removeClass("inactive");
-          } else {
-            trash.addClass("inactive");
-          }
-        });
-
-        $("input[type='checkbox'].select-all").click(function () {
-          var trash = $("a.msg-del-btn");
+        $(".checkAll").click(function () {
+          var trash = $(".msg-del-btn");
           if ($(this).is(':checked')) {
             trash.removeClass("inactive");
           } else {
@@ -661,15 +652,79 @@
           }
         });
 
-        // Row indicator when row is checked for deletion
-        $("tr").click(function () {
-          var input = $(this).find(".calendar-event");
-          var tr = $(this).closest('tr');
-          input.prop('checked', !input.is(':checked'))
-          tr.toggleClass('isChecked', input.is(':checked'));
+      
+        $(".calendarEvent").click(function () {
+          var trash = $(".msg-del-btn");
+          if ($(".calendarEvent").is(":checked")) {
+            trash.removeClass("inactive");
+          }
+          else {
+            trash.addClass("inactive");
+          }
         });
+        
+      
+      
+        // Row delete indicator when row checkbox is checked for deletion
+        $('.calendarEvent').change(function () {
 
+
+              if ($('.calendarEvent').is(":checked")) {
+                var delColor = '#bd1a11';
+                var delBorder = '3px solid #bd1a11';
+                var textEffect = 'line-through';
+                var linkColor = '#bd1a11';
+              }
+              else if (!$('.calendarEvent').is(":checked")) {
+                var delColor = '#fffbfb';
+                var delBorder = '1px solid #fffbfb';
+                var textEffect = 'none';
+                var linkColor = '#007bff';
+              }
+            
+              $(this).parent().siblings('td').css('color', delColor);
+              $(this).parent().siblings('td').css('border-top', delBorder);
+              $(this).parent().siblings('td').css('border-bottom', delBorder);
+              $(this).parent().siblings('td').css('text-decoration-line', textEffect);
+              $(this).parent().siblings('td').children('a').css('color', linkColor);
+              $(this).parent('td').css('border-top', delBorder);
+              $(this).parent('td').css('border-bottom', delBorder);
+            });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+          //$('.calendarEvent').change(function () {
+          //  if (.is(":checked"))
+          //}
+
+
+      //!$('.checkAll').is(":checked")
+          // Row delete indicator when row CheckAll is checked for deletion
+          //$('.ckeckAll').click(function () {
+          //  $('.calendarEvent').change(function () {
+          //    if ($(this).is(':checked')) {
+          //      var delColor = '#bd1a11';
+          //      var delBorder = '3px solid #bd1a11';
+          //      var textEffect = 'line-through';
+          //      var linkColor = '#bd1a11';
+          //    }
+          //    else {
+          //      var delColor = '#fffbfb';
+          //      var delBorder = '1px solid #fffbfb';
+          //      var textEffect = 'none';                                                                                                                                                     
+          //      var linkColor = '#007bff';
+          //    }
+
+          //    $(this).parent().siblings('td').css('color', delColor);
+          //    $(this).parent().siblings('td').css('border-top', delBorder);
+          //    $(this).parent().siblings('td').css('border-bottom', delBorder);
+          //    $(this).parent().siblings('td').css('text-decoration-line', textEffect);
+          //    $(this).parent().siblings('td').children('a').css('color', linkColor);
+          //    $(this).parent('td').css('border-top', delBorder);
+          //    $(this).parent('td').css('border-bottom', delBorder);
+          //  });
+          //});
+      
         @* End multiple delete admin calendar table *@
+
     });
         // page is now ready, initialize the calendar...
   </script>

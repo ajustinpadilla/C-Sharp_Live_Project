@@ -2263,20 +2263,17 @@ a.dropdown-item:hover {
 
 /* Styling for CalendarEvent Admin table rows when checked for deletion */
 .isChecked {
-    color: var(--main-bg-color);
+    color: var(--main-bg-color) !important;
 }
 
 table#adminEventTable {
     width: 100%;
     border-collapse: collapse;
+    color: var(--light-color);
 }
 
 tr.event-row {
     color: white;
-}
-
-.calendar-event {
-    pointer-events: none;
 }
 
 
@@ -3847,8 +3844,8 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 .top-check,
 .to-be-deleted,
-.select-all,
-.calendar-event {
+.checkAll,
+.calendarEvent {
     background-color: #B9B9B9;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.07), inset 0px -15px 10px -12px rgba(0,0,0,0.07);
     height: 18px;

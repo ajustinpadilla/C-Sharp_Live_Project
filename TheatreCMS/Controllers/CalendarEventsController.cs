@@ -14,7 +14,7 @@ using System.Diagnostics;
 using System.Web.Script.Serialization;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
-
+using System.Windows.Navigation;
 
 namespace TheatreCMS.Controllers
 {
@@ -220,6 +220,31 @@ namespace TheatreCMS.Controllers
                 status = true;
             }
             return new JsonResult { Data = new { status = status } };
+        }
+
+        //POST: CalendarEvents Delete Multiple Events From Table
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMultiple(int? id, int[] selectedIDs)
+        {
+            if (id > 0)
+            {
+                CalendarEvent calEvent = db.CalendarEvent.Find(id);
+                db.CalendarEvent.Remove(calEvent);
+                db.SaveChanges();
+            }
+            else
+            {
+                foreach (int item in selectedIDs)
+                {
+                    CalendarEvent calEvent = db.CalendarEvent.Find(item);
+                    db.CalendarEvent.Remove(calEvent);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
