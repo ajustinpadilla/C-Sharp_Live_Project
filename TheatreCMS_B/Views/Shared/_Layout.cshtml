@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+@using TheatreCMS_B.Models
+    
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -25,6 +28,24 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+
+                @{ // This code block is added to accommodate TheatreCMS_B version and to auto logoff when switching between versions
+                    // Not necessary for deployment, but also won't hurt
+                    if (Request.IsAuthenticated)
+                    {
+                        var userId = ((ClaimsIdentity)this.User.Identity).FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value;
+                        var db = new ApplicationDbContext();
+                        if (db.Users.Find(userId) == null)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoff" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                            <script>document.getElementById('logoff').submit();</script>
+                        }
+                    }
+                }
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
