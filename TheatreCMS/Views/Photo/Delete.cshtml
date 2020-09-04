@@ -56,18 +56,18 @@
     if (dependencies.HasDependencies == false)
     {
       // No dependencies, deleted
-      <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" />
-        | @Html.ActionLink("Back to List", "Index")
-      </div>
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-main col-3" id="photo-delete-btn" /> <!-- btn-main originally btn-default, save for possible reversion -->
+    | @Html.ActionLink("Back to List", "Index")
+</div>
     }
     else
     {
       // Has dependencies, launch modal
-      <div class="form-actions no-color">
-        <input type="button" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" data-toggle="modal" data-target="#deleteModal" style="color:white; font-size:small; padding-top:15px; padding-bottom:15px" />
-        | @Html.ActionLink("Back to List", "Index")
-      </div>
+<div class="form-actions no-color">
+    <input type="button" value="Delete" class="btn btn-main col-3" id="photo-delete-btn" data-toggle="modal" data-target="#deleteModal" style="color:white; font-size:small; padding-top:15px; padding-bottom:15px" /> <!-- btn-main originally btn-default, save for possible reversion -->
+    | @Html.ActionLink("Back to List", "Index")
+</div>
     }
   }
 
@@ -99,8 +99,8 @@
           </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" />
+            <button type="button" class="btn btn-main" data-dismiss="modal">Close</button> <!-- btn-main originally btn-secondary, save for possible reversion -->
+            <input type="submit" value="Delete" class="btn btn-main col-3" id="photo-delete-btn" /> <!-- btn-main originally btn-default, save for possible reversion -->
         </div>
       </div>
     </div>
