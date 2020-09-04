@@ -292,6 +292,11 @@ namespace TheatreCMS.Controllers
             }
             base.Dispose(disposing);
         }
+        /// <summary>
+        /// Find the dependencies for a photo and to allow them to be displayed on the details and edit views.  
+        /// </summary>
+        /// <param name="Id">The Id of the photo that can be used to find the dependencies.</param>
+        /// <returns>Photo Dependencies View Model</returns>
         public static PhotoDependenciesVm FindDependencies(int? Id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -314,7 +319,11 @@ namespace TheatreCMS.Controllers
                 {
                     photoDependencies.ProductionPhotos.Add(productionEntity);                                                //Adds prod object to production list inside ViewModel
                 }
-                photoDependencies.HasDependencies = false;
+                var castMemberEntity = db.CastMembers.FirstOrDefault(Photo => Photo.PhotoId == photoEntity.PhotoId);         //Declaring a cast member object using passed in Id.
+                if (castMemberEntity != null && castMemberEntity.PhotoId == photoEntity.PhotoId)                             //Check if there is a cast member if the Id finds a match
+                {
+                    photoDependencies.CastMembers.Add(castMemberEntity);                                                     //Add cast member object to list in the View Model
+                }
                 //Final check for dependencies. If either sponsorEntity or productionEntity are null an error is thrown, so an evaluation is necessary before comparing photo id's
                 if (sponsorEntity != null && photoEntity.PhotoId == sponsorEntity.LogoId || productionEntity != null && photoEntity.PhotoId == productionEntity.PhotoId)
                 {
