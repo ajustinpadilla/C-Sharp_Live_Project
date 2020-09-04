@@ -2283,6 +2283,21 @@ tr.event-row {
     color: white;
 }
 
+/* Styling for admin multi CalendarEvent delete Modal */
+#multiDeleteModal {
+    color: #000;
+}
+
+.multiDeleteModalHeading {
+    display: block;
+    text-align: center;
+}
+
+.multiDeleteModalHeading >button {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
 
 
 /*Product Details*/
