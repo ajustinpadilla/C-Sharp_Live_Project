@@ -2291,12 +2291,56 @@ tr.event-row {
 .multiDeleteModalHeading {
     display: block;
     text-align: center;
+    border-bottom: none;
+    background-color: var(--main-secondary-color);
 }
 
-.multiDeleteModalHeading > button {
-    position: absolute;
-    top: 5%;
-    right: 5%;
+    .multiDeleteModalHeading > h4 {
+        color: var(--light-color);
+    }
+
+    #multiDeleteModal .multiDeleteModalHeading > button.close {
+        position: absolute;
+        color: var(--light-color);
+        top: .5%;
+        right: 2%;
+        padding-right: 7.5%;
+    }
+
+.events-comment {
+    text-align: center;
+    font-weight: 500;
+    color: var(--light-color);
+    text-decoration: underline;
+    padding: 0;
+}
+
+#eventsList {
+    list-style: none;
+    text-align: center;
+    font-weight: 500;
+    padding: 0;
+}
+
+#multiDeleteModal .modal-body {
+    background-color: var(--main-secondary-color);
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#multiDeleteModal .modal-body > ul {
+    border: 5px solid #000;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: var(--light-color);
+}
+
+.events-total {
+    color: var(--light-color);
+    text-align: center;
+    font-weight: 500;
 }
 
 

@@ -223,17 +223,17 @@ namespace TheatreCMS.Controllers
         }
 
         //POST: CalendarEvents Delete Multiple Events From Table
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteMultiple(FormCollection events)
         {
-            
-
-            foreach (var item in events)
+            var values = events["eventsArray"];
+            string[] str = values.Split(new string[] {","}, StringSplitOptions.None);
+            for (int i = 0; i < str.Length; i++)
             {
-                CalendarEvent calEvent = db.CalendarEvent.Find(item);
-                db.CalendarEvent.Remove(calEvent);
+                CalendarEvent calendarEvent = db.CalendarEvent.Find(Int32.Parse(str[i]));
+                db.CalendarEvent.Remove(calendarEvent);
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
