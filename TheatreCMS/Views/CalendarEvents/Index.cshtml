@@ -270,23 +270,30 @@
 <div class="modal fade" id="multiDeleteModal" tabindex="-1" role="dialog" aria-labelledby="multiDeleteModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header multiDeleteModalHeading">
-        <h4 class="modal-title">Delete Confirmation</h4>
-        <span class="fa-stack fa-2x">
-          <i class="fa fa-calendar-check fa-stack-1x" aria-hidden="true"></i>
-          <i class="fa fa-ban fa-stack-2x text-danger" aria-hidden="true"></i>
-        </span>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>. . .</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
-      </div>
+      @using (Html.BeginForm("DeleteMultiple", "CalendarEvents", null, FormMethod.Post, new { encType = "multipart/form-data" }))
+      {
+        @Html.AntiForgeryToken()
+        <div class="modal-header multiDeleteModalHeading">
+          <h4 class="modal-title">Delete Confirmation</h4>
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-calendar-check fa-stack-1x" aria-hidden="true"></i>
+            <i class="fa fa-ban fa-stack-2x text-danger" aria-hidden="true"></i>
+          </span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="events-comment">Events To Be Deleted</p>
+          <ul id="eventsList">
+            
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger delete"><i class="fa fa-trash"></i> Delete</button>
+        </div>
+      }
     </div>
   </div>
 </div>
@@ -302,99 +309,96 @@
   </p>
 }
 
-@using (Html.BeginForm("DeleteMultiple", "CalendarEvents", FormMethod.Post, new { encType = "multipart/form-data" }))
-{
-  <div id="calendarTableContainer">
-    <table id="adminEventTable" class="table">
-      <thead>
+<div id="calendarTableContainer">
+  <table id="adminEventTable" class="table">
+    <thead>
+      <tr class="text-center">
+        @if (User.IsInRole("Admin"))
+        {
+          <th class="text-left">
+            <input type="checkbox" class="checkAll" />
+            <label class="ml-1" for="checkAll">Select All</label>
+          </th>
+        }
+        <th>
+          @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.TicketsAvailable)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.ProductionId)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.RentalRequestId)
+        </th>
+        <th>
+          @if (User.IsInRole("Admin"))
+          {
+            <text>Options</text>
+          }
+          else
+          {
+            <text>Details</text>
+          }
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @foreach (var item in Model)
+      {
         <tr class="text-center">
           @if (User.IsInRole("Admin"))
           {
-            <th class="text-left">
-              <input type="checkbox" class="checkAll" />
-              <label class="ml-1" for="checkAll">Select All</label>
-            </th>
+            <td class="text-left">
+              @Html.CheckBox(item.Title.ToString(), new { @class = "calendarEvent", @value = item.EventId })
+            </td>
           }
-          <th>
-            @Html.DisplayNameFor(model => model.Title)
-          </th>
-          <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-          </th>
-          <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-          </th>
-          <th>
-            @Html.DisplayNameFor(model => model.TicketsAvailable)
-          </th>
-          <th>
-            @Html.DisplayNameFor(model => model.ProductionId)
-          </th>
-          <th>
-            @Html.DisplayNameFor(model => model.RentalRequestId)
-          </th>
-          <th>
+          <td>
+            @Html.DisplayFor(modelItem => item.Title)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.TicketsAvailable)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.ProductionId)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.RentalRequestId)
+          </td>
+          <td>
             @if (User.IsInRole("Admin"))
             {
-              <text>Options</text>
+
+              @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
             }
-            else
+
+            | @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+
+            @if (User.IsInRole("Admin"))
             {
-              <text>Details</text>
+
+              @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
             }
-          </th>
+          </td>
         </tr>
-      </thead>
-
-      <tbody>
-        @foreach (var item in Model)
-        {
-          <tr class="text-center">
-            @if (User.IsInRole("Admin"))
-            {
-              <td class="text-left">
-                @Html.CheckBox(item.EventId.ToString(), new { @class = "calendarEvent", @value = item.EventId })
-              </td>
-            }
-            <td>
-              @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.TicketsAvailable)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.ProductionId)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.RentalRequestId)
-            </td>
-            <td>
-              @if (User.IsInRole("Admin"))
-              {
-
-                @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
-              }
-
-              | @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
-
-              @if (User.IsInRole("Admin"))
-              {
-
-                @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
-              }
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-}
+      }
+    </tbody>
+  </table>
+</div>
 
 @section Scripts {
   <script>
@@ -664,8 +668,6 @@
         });
 
         // Toggles the trash button above table to be active, or inactive
-
-        // For checkAll checkbox
         $(".checkAll").click(function () {
           var trash = $(".msg-del-btn");
           if ($(this).is(':checked')) {
@@ -675,7 +677,6 @@
           }
         });
 
-        // For individual row's checkboxes
         $(".calendarEvent").click(function () {
           var trash = $(".msg-del-btn");
           if ($(".calendarEvent").is(":checked")) {
@@ -685,6 +686,33 @@
             trash.addClass("inactive");
           }
         });
+
+        // Passing the CalendarEvents that are checked to the modal to be sent to the controller for deletion
+        $(".delete").click(function () {
+          var modal = $("#multiDeleteModal").find(".modal-body");
+          $(".calendarEvent:checked").each(function (index) {
+            var eventId = $(this).val();
+            $(modal).append("<input name='eventsArray' value='" + eventId + "' type='hidden' />");
+          });
+        });
+
+        // Append the Titles' of the selected events to the modal
+        var eventTitle = "";
+        $(".msg-del-btn").click(function () {
+          var eventsList = [];
+          $(".calendarEvent:checked").each(function () {
+            eventTitle = $(this).attr("name");
+            eventsList.push(eventTitle);
+          });
+          for (var i = 0; i < eventsList.length; i++) {
+            $("#eventsList").append("<li class='temp-event'>" + eventsList[i] + "</li>");
+          }
+        });
+
+        // Remove the Titles' of the selected events from the modal on cancel
+        $(".cancel").click(function () {
+          $("#eventsList").children().remove(".temp-event");
+        })
 
         @* End multiple delete admin calendar table *@
 

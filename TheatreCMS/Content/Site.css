@@ -2293,7 +2293,7 @@ tr.event-row {
     text-align: center;
 }
 
-.multiDeleteModalHeading >button {
+.multiDeleteModalHeading > button {
     position: absolute;
     top: 5%;
     right: 5%;

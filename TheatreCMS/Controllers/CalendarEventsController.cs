@@ -226,24 +226,16 @@ namespace TheatreCMS.Controllers
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteMultiple(int? id, int[] selectedIDs)
+        public ActionResult DeleteMultiple(FormCollection events)
         {
-            if (id > 0)
+            
+
+            foreach (var item in events)
             {
-                CalendarEvent calEvent = db.CalendarEvent.Find(id);
+                CalendarEvent calEvent = db.CalendarEvent.Find(item);
                 db.CalendarEvent.Remove(calEvent);
                 db.SaveChanges();
             }
-            else
-            {
-                foreach (int item in selectedIDs)
-                {
-                    CalendarEvent calEvent = db.CalendarEvent.Find(item);
-                    db.CalendarEvent.Remove(calEvent);
-                    db.SaveChanges();
-                }
-            }
-
             return RedirectToAction("Index");
         }
 
