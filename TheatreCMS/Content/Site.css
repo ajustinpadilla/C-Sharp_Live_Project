@@ -54,7 +54,6 @@
 .palette-container { /* Applying --dark-color for the content of the body with --light-color for the text */
     background-color: var(--dark-color);
     color: var(--light-color);
-
 }
 
 .palette-navbar { /* Applying --secondary-color to navbar along with --dark-color for its text */
@@ -485,18 +484,18 @@ footer .list-group-item :hover {
 
 #contactInfo {
     flex-wrap: nowrap;
-    display:flex; /*This allows the address's and phone #'s to sit side by side*/
+    display: flex; /*This allows the address's and phone #'s to sit side by side*/
 }
 
 #address {
-    align-content:flex-start; /*aligns the address's to the left*/
+    align-content: flex-start; /*aligns the address's to the left*/
 }
 
-#addressPadding{
+#addressPadding {
     padding-right: 1rem; /*puts padding between the adress and the phone #*/
 }
 
-#phoneNumbersPadding {/*puts padding between the adress and the phone #*/
+#phoneNumbersPadding { /*puts padding between the adress and the phone #*/
     padding-left: 1rem;
 }
 
@@ -505,9 +504,10 @@ footer .list-group-item :hover {
 
 /*************max-width > 900px**************/
 @media only screen and (min-width: 992px) {
-    #footer--container {/*When the screen width is at or above 992 the width of the footer shrinks to 85%*/
+    #footer--container { /*When the screen width is at or above 992 the width of the footer shrinks to 85%*/
         max-width: 85%;
     }
+
     footer .list-group-item {
         padding-top: 12px !important;
     }
@@ -870,7 +870,7 @@ div.magnify:hover {
 
 @media only screen and (max-width: 360px) {
     .prod-photo-edit-header {
-        font-size: 9vw;        
+        font-size: 9vw;
     }
 }
 
@@ -1662,7 +1662,7 @@ input[type=submit] {
 .nav-button {
     color: var(--light-color);
     display: block;
-    padding:  0.5rem 1rem;
+    padding: 0.5rem 1rem;
     font-size: 20pt;
 }
 
@@ -1860,7 +1860,7 @@ a.dropdown-item:hover {
     margin: auto;
     min-height: 100%;
     min-width: 100%;
-    top: 0; 
+    top: 0;
     bottom: 0;
     vertical-align: middle;
 }
@@ -2386,7 +2386,6 @@ a.dropdown-item:hover {
     border-bottom: 1px solid var(--light-color) !important;
     margin-top: 10px;
     padding-bottom: 10px;
-    flex-basis:;
 }
 
 #rental-request-nav-th {
@@ -3627,15 +3626,14 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 #sentDetails .msgBody,
 #sentDetails .msgTo,
 #sentDetails .msgDate,
-#trashDetails .msgTo, 
-#trashDetails .msgFrom, 
+#trashDetails .msgTo,
+#trashDetails .msgFrom,
 #trashDetails .msgSubject,
-#trashDetails .msgBody, 
-#trashDetails .msgDate{
+#trashDetails .msgBody,
+#trashDetails .msgDate {
     background-color: rgba(240, 240, 240, 0.5);
     border: 1px solid lightgray;
     border-radius: 5px;
-    padding: 5px 15px;
 }
 
 #inboxDetails .msgBody,
@@ -3774,6 +3772,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     position: relative;
     overflow: hidden;
 }
+
 .prod-index-ribbon {
     position: absolute;
     opacity: 0.8;
@@ -3847,17 +3846,17 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     color: white;
 }
 
-.btn-danger.msg-del-btn:hover {
-    color: white;
-}
+    .btn-danger.msg-del-btn:hover {
+        color: white;
+    }
 
-.btn-danger.msg-del-btn.inactive {
-    padding: .7rem;
-    background: grey;
-    opacity: .8;
-    pointer-events: none;
-    color: rgb(228, 228, 228);
-}
+    .btn-danger.msg-del-btn.inactive {
+        padding: .7rem;
+        background: grey;
+        opacity: .8;
+        pointer-events: none;
+        color: rgb(228, 228, 228);
+    }
 
 #checkboxDeleteModal {
     color: black;
@@ -3871,11 +3870,41 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     cursor: default;
 }*/
 
-/* BEGIN Photo Delete styles */
-#photo-delete-btn {
+/* Formats the Photo Delete pages delete button */
+input#delete-btn {
+    max-width: 250px;
+    color: white;
     background-color: var(--main-bg-color);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
 }
-/* END Photo Delete styles */
+
+/* Formats the Photo Delete pages cancel button */
+input#cancel-btn {
+    max-width: 250px;
+    background-color: #727272;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+    /* Slightly changes background color on hover of delete photo button */
+    input#delete-btn:hover {
+        background-color: #F04D44;
+    }
+
+    /* Slightly changes background color of hover of cancel button on Photo Delete page */
+    input#cancel-btn:hover {
+        background-color: #A7A7A7;
+}
 
 .Display-linkspage-details {
     background-color: #d6972a;
@@ -3909,6 +3938,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 .prod-delete-delete-btn {
     background-color: var(--main-bg-color);
     color: var(--light-color);
+    letter-spacing: 1.5px;
     box-shadow: 0 2px #666;
     transform: translateY(1px);
 }
@@ -3933,3 +3963,293 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 .deleteModal_style {
     color: black;
 }
+
+
+/* Messages Styling
+   ----------------------------- */
+
+/* Format title to play nice with the search bar */
+h4.msg-title {
+    display: inline-block !important;
+    width: 90px;
+    margin: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 1.5rem !important;
+    margin-left: 0 !important;
+}
+
+/* Position search bar inline with title */
+.clear-search {
+    display: inline-block;
+}
+
+/* Change width of row that nav-tabs sit in to fill container */
+ul#navTabs {
+    width: 100%;
+    display: flex;
+    justify-content: normal !important;
+}
+
+/* Position compose and unified trash buttons to stay on the left */
+#compose,
+#msg-delete {
+    margin-right: .1rem;
+    justify-content: start !important;
+}
+
+/* Position inbox, sent and trash buttons to stay on the right */
+#inbox-nav {
+    margin-left: auto;
+}
+
+/* Remove top and bottom borders for the inbox's exterior table elements */
+#inboxList thead,
+#inboxList tr,
+#inboxList th,
+#inboxList td {
+    border-bottom: none;
+    border-top: none;
+}
+
+/* Create top and bottom borders for the inbox's interior table elements */
+#inboxList {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    height: auto;
+}
+    /* Create defined, thicker border for the end of the inbox table */
+    #inboxList thead {
+        border-bottom: 2px solid rgba(0, 0, 0, .1);
+    }
+
+    /* Create thin, wispy separators between inbox messages */
+    #inboxList .inboxRow {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+/* Remove top and bottom borders for sent's exterior table elements */
+#sentList thead,
+#sentDetails tr,
+#sentList th,
+#sentList td {
+    border-bottom: none;
+    border-top: none;
+}
+
+/* Create top and bottom borders for sent's interior table elements */
+#sentList {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    height: auto;
+}
+    /* Create defined, thicker border for the end of the sent table */
+    #sentList thead {
+        border-bottom: 2px solid rgba(0, 0, 0, .1);
+    }
+
+    /* Create thin, wispy separators between sent messages */
+    #sentList .sentRow {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+/* Remove top and bottom borders for trash's exterior table elements */
+#trashList thead,
+#trashList tr,
+#trashList th,
+#trashList td {
+    border-bottom: none;
+    border-top: none;
+}
+
+/* Create top and bottom borders for trash's interior table elements */
+#trashList {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    height: auto;
+}
+    /* Create defined, thicker border for the end of the trash table */
+    #trashList thead {
+        border-bottom: 2px solid rgba(0, 0, 0, .1);
+    }
+
+    /* Create thin, wispy separators between trash messages */
+    #trashList .sentRow {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+/* Create dimension for the inbox's delete check-boxes to stop it from getting overlapped */
+#inboxList th.checkbox {
+    width: 40px;
+}
+
+/* Create dimension for the sent's delete check-boxes to stop it from getting overlapped */
+#sentList th.checkbox {
+    width: 40px;
+}
+
+/* Tighten up bottom of the inbox messages table */
+#inboxList table.table {
+    margin-bottom: 0 !important;
+}
+
+/* Tighten up bottom of the sent messages table */
+#sentList table.table {
+    margin-bottom: 0 !important;
+}
+
+/* Tighten up bottom of the trash messages table */
+#trashList table.table {
+    margin-bottom: 0 !important;
+}
+
+/* Position the search bar to the right edge of the messages container */
+.search-form-container {
+    float: right;
+    position: relative;
+    width: 50%;
+    height: 40px;
+    overflow: hidden;
+}
+
+/* Move the create, reply and details messages form's text to the right of it's bootstrap col */
+.reply-label {
+    text-align: right;
+}
+
+/* Format "Goback" button on messages form */
+button.goBack {
+    background-color: darkgray;
+    border: none;
+}
+    /* Format "Goback" button on messages form on hover */
+    button.goBack:hover {
+        background-color: gray;
+        border: none;
+    }
+
+/* Change layout of nav-tabs, messages and message forms for mobile screens */
+@media only screen and (max-width: 767px) {
+
+    /* Cause nav-tabs to stack for mobile-first layout */
+    .nav {
+        flex-direction: column;
+        justify-content: start !important;
+    }
+        /* Space between stacked nav-tabs */
+        .nav > li.nav-item {
+            margin-bottom: .25rem;
+        }
+    /* Remove nav-tabs left-margin when stacked */
+    #inbox-nav {
+        margin-left: 0;
+    }
+
+    /* Make font more pronounced in compose tab when stacked */
+    #compose {
+        font-weight: 500;
+        margin-right: 0;
+    }
+
+    /* Force unified delete tab to span the entire container and remove it's right margin */
+    #msg-delete {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    /* Format stacked inbox, sent and trash tabs */
+    #msgInboxTab,
+    #msgSentTab,
+    #msgTrashTab {
+        border: 1px solid rgba(0, 0, 0, .1);
+        border-radius: .25rem;
+        text-align: center;
+        background-color: #E1E1E1;
+        font-weight: 500;
+        color: #000;
+    }
+
+    /* Change color of inbox, sent and trash tabs on click */
+    #msgInboxTab:active,
+    #msgSentTab:active,
+    #msgTrashTab:active {
+        background-color: var(--main-secondary-color);
+        color: #000;
+    }
+        /* Have color of inbox, sent and trash tabs hold active color after click */
+        #msgInboxTab:focus,
+        #msgSentTab:focus,
+        #msgTrashTab:focus {
+            background-color: var(--main-secondary-color);
+            color: #000;
+        }
+            :target {
+                background-color: var(--main-secondary-color);
+            }
+    
+    /* Have height of form adhere to height of all content combined */
+    .tab-content {
+        max-height: 875px;
+    }
+
+    /* Create padding between inputs and form border in mobile view */
+    form.new-msg-form {
+        padding: .5rem;
+    }
+
+    /* Place form labels on left when screen collapses removing bootstrap cols */
+    .reply-label {
+         text-align: left;
+    }
+
+    /* Remove dimensions for form buttons label */
+    #btn-label {
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Remove border for any send, reply, recover, delete or reset buttons on form */
+    #sendCurrentMsg,
+    #clearCurrentMsg,
+    #deleteCurrentMsg,
+    #reply
+    #recoverCurrentMsg {
+        border: none;
+    }
+
+    /* Hide any overflowing subject text in trash message details view on mobile */
+    #trashDetails .msgSubject {
+        overflow: hidden;
+    }
+}
+
+/* Remove either subject or time column in squeezed mobile view to fit messages without overlapping */
+@media only screen and (max-width: 450px) {
+    .inbox-sent-time,
+    .inbox-subject,
+    .sent-sent-time,
+    .trash-subject {
+        display: none;
+    }
+}
+
+/* Remove either subject or time column in trashList, specifically, in squeezed mobile view to fit messages without overlapping */
+@media only screen and (max-width: 350px){
+    .sent-subject,
+    .trash-delete-time {
+        display: none;
+    }
+}
+
+/* -----------------------------
+          End Messages Styling */
+
+.prod-delete-dropdown-item {
+    min-width: 100px;
+    background-color: var(--light-color);
+    color: var(--dark-color)
+}
+    
+    .prod-delete-dropdown-item:hover {
+        background-color: var(--main-secondary-color);
+        color: var(--light-color)
+    }
