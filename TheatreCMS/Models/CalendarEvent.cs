@@ -23,9 +23,7 @@ namespace TheatreCMS.Models
         public string ClassName { get; set; }       // (remove)
         public string SomeKey { get; set; }         // (remove)
         public bool AllDay { get; set; }            // all day event
-        [Column("DeleteEvent")]
-        public bool? ToDelete { get; set; }            // event to be deleted
-
+  
         public int? ProductionId { get; set; }      // Id for associated production
 
         public int? RentalRequestId { get; set; }   // Id for associated rental request

@@ -14,7 +14,6 @@ using System.Diagnostics;
 using System.Web.Script.Serialization;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
-using System.Windows.Navigation;
 
 namespace TheatreCMS.Controllers
 {
