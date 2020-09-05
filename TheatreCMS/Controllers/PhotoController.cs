@@ -325,7 +325,7 @@ namespace TheatreCMS.Controllers
                     photoDependencies.CastMembers.Add(castMemberEntity);                                                     //Add cast member object to list in the View Model
                 }
                 //Final check for dependencies. If either sponsorEntity or productionEntity are null an error is thrown, so an evaluation is necessary before comparing photo id's
-                if (sponsorEntity != null && photoEntity.PhotoId == sponsorEntity.LogoId || productionEntity != null && photoEntity.PhotoId == productionEntity.PhotoId)
+                if (sponsorEntity != null && photoEntity.PhotoId == sponsorEntity.LogoId || productionEntity != null && photoEntity.PhotoId == productionEntity.PhotoId || castMemberEntity != null && photoEntity.PhotoId == castMemberEntity.PhotoId)
                 {
                     photoDependencies.HasDependencies = true;
                 }
