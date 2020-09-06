@@ -4246,3 +4246,9 @@ button.goBack {
         background-color: var(--main-secondary-color);
         color: var(--light-color)
     }
+
+
+#sponsor-details-sponsor-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
