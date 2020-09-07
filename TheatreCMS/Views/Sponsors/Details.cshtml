@@ -4,28 +4,25 @@
 @{
     ViewBag.Title = "Details";
 }
-    <div class="container">
-        <h2>Details</h2>
-        <div>
-            <h4>Sponsor</h4>
-            <hr />
-            <div class="row">
-                <dl class="dl-horizontal justify-content-start col-md-12">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </dt>
+<div class="container text-center">
+    <h2 class="mt-5">Sponsor Details</h2>
+    <div>
+        <hr />
+        <div class="row">
+            <dl class="dl-horizontal justify-content-start col-md-12">
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Name)
-                    </dd>
+                <dd id="sponsor-details-sponsor-name">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-                    <dt>
+
+                @*<dt>
                         @Html.DisplayNameFor(model => model.LogoId)
-                    </dt>
+                    </dt>*@
 
-                    <dd>
-                        <img src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.LogoId })" class="large_size" alt="Sponsor Logo Image"/>
-                        @*{
+                <dd>
+                    <img src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.LogoId })" class="large_size" alt="Sponsor Logo Image" />
+                    @*{
                             string img = "";
                             if (Model.Logo != null)
                             {
@@ -33,37 +30,28 @@
                                 var base64 = System.Convert.ToBase64String(thumbBytes);
                                 img = String.Format("data:image/png;base64,{0}", base64);
                             }
-        
+
                         <img src="@img" />}*@
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Height)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Height)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Width)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Width)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Current)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Current)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Link)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Link)
-                    </dd>
-                </dl>                
-            </div>
+                </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Height) &nbsp;<strong>x</strong>&nbsp; @Html.DisplayFor(model => model.Width)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Current)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Current)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Link)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Link)
+                </dd>
+            </dl>
         </div>
     </div>
+</div>
 
     <div>
         
