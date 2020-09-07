@@ -4346,3 +4346,8 @@ button.goBack {
         background-color: var(--main-secondary-color);
         color: var(--light-color)
     }
+
+ul {
+    text-align: center;
+    list-style-position: inside;
+}
