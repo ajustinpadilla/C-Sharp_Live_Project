@@ -2268,6 +2268,101 @@ a.dropdown-item:hover {
 }
 /*Styling for dropdown Menus on Add & Edit Modals*/
 
+/* ===== Styling for CalendarEvent Admin table rows when checked for deletion ===== */
+
+/* Styles row that are checked for deletion for clear indicator */
+.isChecked {
+    color: rgb(189, 26, 17);
+    border-top: 3px solid rgb(189, 26, 17);
+    border-bottom: 3px solid rgb(189, 26, 17);
+    text-decoration-line: line-through;
+}
+
+/* Makes CalendarEvent table responsive and consistently colored */
+table#adminEventTable {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--light-color);
+}
+
+/* Ensures all text in CalendarEvent table rows are white */
+tr.event-row {
+    color: white;
+}
+/* ===== End row indicator styling for CalendarEvent deletion ===== */
+
+
+/* ===== Styling for admin multi CalendarEvent delete Modal ===== */
+
+/* Changes modal color default to black */
+#multiDeleteModal {
+    color: #000;
+}
+
+/* Styles modal header */
+.multiDeleteModalHeading {
+    display: block;
+    text-align: center;
+    border-bottom: none;
+    background-color: var(--main-secondary-color);
+}
+    /* Makes modal heading white */
+    .multiDeleteModalHeading > h4 {
+        color: var(--light-color);
+    }
+
+    /* Styles and positions X(Close) button for modal */
+    #multiDeleteModal .multiDeleteModalHeading > button.close {
+        position: absolute;
+        color: var(--light-color);
+        top: .5%;
+        right: 2%;
+        padding-right: 7.5%;
+    }
+
+/* Styles and colors subheading for modal */
+.events-comment {
+    text-align: center;
+    font-weight: 500;
+    color: var(--light-color);
+    text-decoration: underline;
+    padding: 0;
+}
+
+/* Styles and positions CalendarEvent titles to be deleted */
+#eventsList {
+    list-style: none;
+    text-align: center;
+    font-weight: 500;
+    padding: 0;
+}
+
+/* Styles and colors modal body background and relative position to other elements */
+#multiDeleteModal .modal-body {
+    background-color: var(--main-secondary-color);
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Styles position and border for list of titles being deleted */
+#multiDeleteModal .modal-body > ul {
+    border: 5px solid #000;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: var(--light-color);
+}
+
+/* Styles indicator for total number of titles to be deleted */
+.events-total {
+    color: var(--light-color);
+    text-align: center;
+    font-weight: 500;
+}
+/* ===== End admin multi-delete function for CalendarEvents from table ===== */
+
+
 /*Product Details*/
 #jumbo.jumbotron {
     background-color: #bd1a11;
@@ -3832,18 +3927,21 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 /*============================END PRODUCTION DISPLAY EDIT PAGE==========================================*/
 
 
-.top-check, .to-be-deleted {
+.top-check,
+.to-be-deleted,
+.checkAll,
+.calendarEvent {
     background-color: #B9B9B9;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.07), inset 0px -15px 10px -12px rgba(0,0,0,0.07);
     height: 18px;
     width: 18px;
 }
 
-
 .btn-danger.msg-del-btn {
     height: 100%;
     padding: .75rem;
     color: white;
+    border: none;
 }
 
     .btn-danger.msg-del-btn:hover {
@@ -3851,11 +3949,13 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     }
 
     .btn-danger.msg-del-btn.inactive {
-        padding: .7rem;
+        padding: .75rem;
         background: grey;
+        height: 100%;
         opacity: .8;
         pointer-events: none;
         color: rgb(228, 228, 228);
+        border: none;
     }
 
 #checkboxDeleteModal {
@@ -4253,3 +4353,9 @@ button.goBack {
         background-color: var(--main-secondary-color);
         color: var(--light-color)
     }
+
+
+#sponsor-details-sponsor-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
