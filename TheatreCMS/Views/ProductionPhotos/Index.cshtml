@@ -7,13 +7,32 @@
 
 <h2 class="m-3">Index</h2>
 <div class="prodphoto-bar m-3">
-        <label>Filter by Production</label>
-        @Html.DropDownList("ProductionList", (IEnumerable<SelectListItem>)ViewData["ProductionList"], "All", new { @class = "col-5 col-md-3 prodphoto-filter" })
+    <label>Filter by Production</label>
+    @Html.DropDownList("ProductionList", (IEnumerable<SelectListItem>)ViewData["ProductionList"], "All", new { @class = "col-5 col-md-3 prodphoto-filter" })
     <div class="prodphoto-search-container">
         <input type="text" name="prodphoto-search" placeholder="Search..." class="prodphoto-searchbar" />
         <button class="prodphoto-searchbtn"><i class="fa fa-search"></i></button>
     </div>
 </div>
+
+
+ 
+<div>
+    <script>
+        var input = document.getElementsByClassName("prodphoto-searchbar");
+        console.log(input);
+        input[0].addEventListener("keyup", function (event) {
+            console.log("see if working");
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementsByClassName("prodphoto-searchbtn")[0].click();
+                console.log("enter key worked");
+            }
+        });
+    </script>
+
+</div>
+
 
 
 <p class="m-3">
@@ -94,8 +113,8 @@
     //search button click
     $(document).ready(function () {
         $(".prodphoto-searchbtn").click(function () {
-          searchF();
-          searchHilight();
+            searchF();
+            searchHilight();
             //if filter value is a prod, filter results after search is run
             if (filter.selectedIndex != 0) {
                 $(".prodphoto-cards").hide();
@@ -131,23 +150,23 @@
         });
     };
 
-    //Highlight the words searched by the user  + value + 
+    //Highlight the words searched by the user  + value +
     function searchHilight() {
         var value = $(".prodphoto-searchbar").val()
-      var regex = new RegExp('(' + value + ')', 'gi'); //a regular expression that finds every time the searched word is mentioned.
-      var cards = document.getElementsByClassName("card-body");
+        var regex = new RegExp('(' + value + ')', 'gi'); //a regular expression that finds every time the searched word is mentioned.
+        var cards = document.getElementsByClassName("card-body");
 
-      for (let item of cards) {                               // a for loop that loops through all of the production photo cards.
-        for (var i = 0; i < item.children.length; i++) {      // a for loop that loops through all of child classes of each card.
-          var node = item.children[i];
-          var text = node.innerText;
-          text = text.replace(regex, '<span style="background-color:lightblue;">$1</span>');  //puts the text into a span tag that changes the background color. 
-          node.innerHTML = text;
-           }
+        for (let item of cards) {                               // a for loop that loops through all of the production photo cards.
+            for (var i = 0; i < item.children.length; i++) {      // a for loop that loops through all of child classes of each card.
+                var node = item.children[i];
+                var text = node.innerText;
+                text = text.replace(regex, '<span style="background-color:lightblue;">$1</span>');  //puts the text into a span tag that changes the background color.
+                node.innerHTML = text;
+            }
         }
-     };
+    };
 
-  
+
 </script>
 
 @*  old code
@@ -188,4 +207,10 @@
                 }
 
                 </table>
-*@
+*@<!--private void input_KeyDown(object sender, KeyEventArgs e)
+{
+    if(e.KeyData == Keys.Enter)
+    {
+        MessageBox.Show("Pressed enter.");
+    }
+}-->
