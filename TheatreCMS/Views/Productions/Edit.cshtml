@@ -71,21 +71,27 @@
 
 
       <!-- PHOTO MODAL-->
+     
       <div class="form-group">
+          
         @Html.LabelFor(model => model.DefaultPhoto, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
-        <div class="container">
-          <a href="#prod-photo-default-modal" data-toggle="modal">
-            <img id="prod-photo-default-thumbnail" class="card-img-top medium_size" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })" alt="Card image cap" data-photo="@Model.DefaultPhoto.PhotoId">
-          </a>
+            <div class="container">
+
+                <a href="#prod-photo-default-modal" data-toggle="modal">
+                    <img id="prod-photo-default-thumbnail" class="card-img-top medium_size" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.DefaultPhoto.PhotoId })" alt="Card image cap" data-photo="@Model.DefaultPhoto.PhotoId">
+                </a>
+            
 
         </div>
+
         <div>
           <input id="prod-photo-default-modal-btn" type="button" value="Update Default Promo Photo" class="btn btn-default" data-target="#prod-photo-default-modal" data-toggle="modal" />
         </div>
 
         <!-- Modal -->
         <div id="prod-photo-default-modal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
+
+          <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -94,31 +100,42 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
 
+
+                
               <div class="modal-body">
-                <div class="prodphoto-content my-lg-4 container">
-                  <div class="prodphoto-cards">
-                    @foreach (var item in Model.ProductionPhotos)
-                    {
-                      <div class="card-body">
-                        <img id="@item.PhotoId" class="card-img-bottom card-img-bottom-prod-photo-default @(item.PhotoId == Model.DefaultPhoto.PhotoId ? "selected-prod-photo" : "")" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo" data-photo="@item.ProPhotoId" />
+                  <div class="card-columns">
+                 
+                          @foreach (var item in Model.ProductionPhotos)
+                          {
+
+                            
+                              <div class="card">
+                                  <div class="card-body p-0">
+                                      <img id="@item.PhotoId" class="card-img-bottom card-img-bottom-prod-photo-default @(item.PhotoId == Model.DefaultPhoto.PhotoId ? "selected-prod-photo" : "")" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.PhotoId })" alt="Production Photo" data-photo="@item.ProPhotoId" />
+                                  </div>
+                              </div>
+
+                          }
+                     
+                 </div>
+              </div>
+
+                      <div class="modal-footer">
+                          <button id="prod-photo-default-modal-btn" type="button" class="btn btn-default" data-dismiss="modal">Save Selection</button>
                       </div>
-
-                    }
+                    </div>
                   </div>
-                  <br /><br />
-                </div>
-              </div>
-
-              <div class="modal-footer">
-                <button id="prod-photo-default-modal-btn" type="button" class="btn btn-default" data-dismiss="modal">Save Selection</button>
-              </div>
-
-            </div>
-          </div>
+             
+                
         </div>
         @Html.ValidationMessageFor(model => model.DefaultPhoto.ProPhotoId, "", new { @class = "text-danger" })
       </div>
+      
       <!-- END PHOTO MODAL-->
+
+
+
+
 
       <div class="form-group">
         @Html.LabelFor(model => model.ShowtimeEve, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
