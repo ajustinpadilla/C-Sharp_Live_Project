@@ -49,16 +49,16 @@
         @*Use variable dependencies.HasDependencies to check for an evaluation of false. *@
         @if (!dependencies.HasDependencies)
         {
-            <div>
+            <dd>
                 This photo is not being used
-            </div>
+            </dd>
         }
         else
         {
-            <div>
+            <dd>
                 This photo is being used by the following items:
-            </div>
-            <div>
+            </dd>
+            <dd>
               <ul>
                 @* Foreach production in the dependencies.ProductionPhotos List, get the title and season of each production. *@
                 @foreach (var productionPhoto in dependencies.ProductionPhotos)
@@ -87,7 +87,7 @@
                   </li>
                 }
               </ul>
-            </div>
+            </dd>
         }
 
     </dl>
