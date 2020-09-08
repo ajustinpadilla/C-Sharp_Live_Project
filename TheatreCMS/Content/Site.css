@@ -3081,7 +3081,7 @@ a.dropdown-item:hover {
 }
 
 .home-title {
-    font-size: 3rem;
+    font-size: 13rem;
     font-weight: 400;
     color: var(--light-color);
     text-shadow: var(--dark-color) 0px 0px 10px;
@@ -3148,19 +3148,12 @@ a.dropdown-item:hover {
     border: 1px solid var(--main-bg-color);
 }
 
-    .btn-main:focus {
+    .btn-main:focus, btn-main:active:hover { /* combined to reduce duplicate code */
         background-color: rgba(0, 0, 0, .6);
         color: var(--main-bg-color);
         border: 1px solid var(--main-bg-color);
         box-shadow: none;
-    }
-
-
-    .btn-main:active:hover {
-        background-color: rgba(0, 0, 0, .6);
-        color: var(--main-bg-color);
-        border: 1px solid var(--main-bg-color);
-        box-shadow: none !important;
+        transition: .5s; /* gradual transition on hover */
     }
 
     .btn-main:hover, .btn-main:hover:not([diabled="disabled"]) {
@@ -3169,10 +3162,11 @@ a.dropdown-item:hover {
         color: var(--light-color);
         border: 1px solid var(--main-bg-color);
         opacity: .8;
+        transition: .5s; /* gradual transition on hover */
     }
 
 @media only screen and (max-width: 48em) {
-    .btn-main {
+    .home-content-inner .btn-main {
         font-size: .875rem;
         line-height: 1.7143;
         color: var(--dark-color);
