@@ -408,32 +408,32 @@ namespace TheatreCMS
                     Year = 2007, Name = "Drammy", Type = AwardType.Award, Category = "Set design", Recipient ="Ben Plont",
                           ProductionId = context.Productions.Where(prod => prod.Title == "Escape from Happiness").FirstOrDefault().ProductionId,
                 },
-                //new Award
-                //{
-                //    Year = 2001, Name = "Drammy", Type = AwardType.Award, Category = "Supporting Actress", Recipient ="Andrea White",
-                //          ProductionId = context.Productions.Where(prod => prod.Title == "Hellcab").FirstOrDefault().ProductionId,
-                //},
-                //new Award
-                //{
-                //    Year = 2001, Name = "Drammy", Type = AwardType.Award, Category = "Supporting Actress", Recipient ="Lorraine Bahr",
-                //          ProductionId = context.Productions.Where(prod => prod.Title == "Lion in the Streets").FirstOrDefault().ProductionId,
-                //},
-                //new Award
-                //{
-                //    Year = 2001, Name = "Drammy", Type = AwardType.Award, Category = "Supporting Actress", Recipient ="Ted Schulz",
-                //          ProductionId = context.Productions.Where(prod => prod.Title == "The Grey Zone").FirstOrDefault().ProductionId,
-                //},
-                //new Award
-                //{
-                //    Year = 2000, Name = "Drammy", Type = AwardType.Award, Category = "Outstanding direction", Recipient ="Michael Griggs",
-                //          ProductionId = context.Productions.Where(prod => prod.Title == "The Grey Zone").FirstOrDefault().ProductionId,
-                //},
+                new Award
+                {
+                    Year = 2001, Name = "Drammy", Type = AwardType.Award, Category = "Supporting Actress", Recipient ="Lorraine Bahr",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "Lion in the Streets").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2001, Name = "Drammy", Type = AwardType.Award, Category = "Supporting Actress", Recipient ="Andrea White",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "Hellcab").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2000, Name = "Drammy", Type = AwardType.Award, Category = "Supporting Actor", Recipient ="Ted Schulz",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The Grey Zone").FirstOrDefault().ProductionId,
+                },
+                new Award
+                {
+                    Year = 2000, Name = "Drammy", Type = AwardType.Award, Category = "Outstanding Direction", Recipient ="Michael Griggs",
+                          ProductionId = context.Productions.Where(prod => prod.Title == "The Grey Zone").FirstOrDefault().ProductionId,
+                },
                 #endregion
             };
 
             //awards.ForEach(award => context.Awards.AddOrUpdate(aw => aw.AwardId, award));
 
-            awards.ForEach(award => context.Awards.AddOrUpdate(a => new { a.Year, a.Name, a.Type, a.Category }, award));
+            awards.ForEach(award => context.Awards.AddOrUpdate(a => new { a.Year, a.Recipient, a.Type, a.Category }, award));
             context.SaveChanges();
         }
 
