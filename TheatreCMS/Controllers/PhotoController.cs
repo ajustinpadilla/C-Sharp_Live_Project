@@ -314,10 +314,10 @@ namespace TheatreCMS.Controllers
                 {
                     photoDependencies.Sponsors.Add(sponsorEntity);                                                           //Adds sponsor object to sponsors list inside ViewModel
                 }
-                var productionEntity = db.ProductionPhotos.FirstOrDefault(photo => photo.PhotoId == photoEntity.PhotoId);    //Declaring production object from photo object
-                if (productionEntity != null && productionEntity.PhotoId == photoEntity.PhotoId)                             //Checks if there is a production, and if the prod photo id matches
+                var productionPhotoEntity = db.ProductionPhotos.FirstOrDefault(photo => photo.PhotoId == photoEntity.PhotoId);    //Declaring production object from photo object
+                if (productionPhotoEntity != null && productionPhotoEntity.PhotoId == photoEntity.PhotoId)                             //Checks if there is a production, and if the prod photo id matches
                 {
-                    photoDependencies.ProductionPhotos.Add(productionEntity);                                                //Adds prod object to production list inside ViewModel
+                    photoDependencies.ProductionPhotos.Add(productionPhotoEntity);                                                //Adds prod object to production list inside ViewModel
                 }
                 var castMemberEntity = db.CastMembers.FirstOrDefault(Photo => Photo.PhotoId == photoEntity.PhotoId);         //Declaring a cast member object using passed in Id.
                 if (castMemberEntity != null && castMemberEntity.PhotoId == photoEntity.PhotoId)                             //Check if there is a cast member if the Id finds a match
@@ -325,12 +325,12 @@ namespace TheatreCMS.Controllers
                     photoDependencies.CastMembers.Add(castMemberEntity);                                                     //Add cast member object to list in the View Model
                 }
                 //Final check for dependencies. If either sponsorEntity or productionEntity are null an error is thrown, so an evaluation is necessary before comparing photo id's
-                if (sponsorEntity != null && photoEntity.PhotoId == sponsorEntity.LogoId || productionEntity != null && photoEntity.PhotoId == productionEntity.PhotoId || castMemberEntity != null && photoEntity.PhotoId == castMemberEntity.PhotoId)
+                if (sponsorEntity != null && photoEntity.PhotoId == sponsorEntity.LogoId || productionPhotoEntity != null && photoEntity.PhotoId == productionPhotoEntity.PhotoId || castMemberEntity != null && photoEntity.PhotoId == castMemberEntity.PhotoId)
                 {
                     photoDependencies.HasDependencies = true;
                 }
                 int season;
-                if (productionEntity != null) season = productionEntity.Production.Season;                                   //Gets the producton's season before closing the connection to the database
+                if (productionPhotoEntity != null) season = productionPhotoEntity.Production.Season;                                   //Gets the producton's season before closing the connection to the database
                 return photoDependencies;
             }
             

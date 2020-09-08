@@ -76,15 +76,15 @@
           <div>
             This photo is being used by the following items:
           </div>
-          <div class="dependency">
-            <ul>
+          <div>
+            <ul class="dependency">
               @* Foreach production in the dependencies.ProductionPhotos List, get the title and season of each production. *@
-              @foreach (var production in dependencies.ProductionPhotos)
+              @foreach (var productionPhoto in dependencies.ProductionPhotos)
               {
                 <li>
-                  @production.Title - Season: @production.Production.Season
-                  @Html.ActionLink("View", "Details", "Productions", new { id = production.Production.ProductionId }, new { @class = "badge badge-pill badge-dark" })
-                  @Html.ActionLink("Edit", "Edit", "Productions", new { id = production.Production.ProductionId }, new { @class = "badge badge-pill badge-dark" })
+                  @productionPhoto.Title - Season: @productionPhoto.Production.Season
+                  @Html.ActionLink("View", "Details", "ProductionPhotos", new { id = productionPhoto.ProPhotoId }, new { @class = "badge badge-pill badge-dark" })
+                  @Html.ActionLink("Edit", "Edit", "ProductionPhotos", new { id = productionPhoto.ProPhotoId}, new { @class = "badge badge-pill badge-dark" })
                 </li>
               }
               @* Foreach sponsor in the dependencies.Sponsors List, get the name of each sponsor. *@

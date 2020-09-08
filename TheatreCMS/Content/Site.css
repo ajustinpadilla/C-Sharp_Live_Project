@@ -303,6 +303,13 @@
     padding-right: 13px;
 }
 
+.spaced-btn-3 {
+    padding: 5px;
+    margin-top: 20px;
+    margin-left: 15px;
+    background-color: var(--secondary-color);
+}
+
 .production-index-img {
     border-radius: 6px;
 }
@@ -4347,7 +4354,13 @@ button.goBack {
         color: var(--light-color)
     }
 
-ul {
+
+#sponsor-details-sponsor-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+ul.dependency {
     text-align: center;
     list-style-position: inside;
 }
