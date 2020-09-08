@@ -3130,14 +3130,14 @@ a.dropdown-item:hover {
     }
 }
 
+/* Custom button class for main site. */
 .btn-main {
     display: inline-block;
     font-weight: 400;
     margin-bottom: 1rem;
-    padding: .75rem 1rem;
+    padding: .5rem .5rem;
     font-family: Arial;
     text-align: center;
-    text-transform: uppercase;
     text-decoration: none;
     border-radius: .25rem;
     font-size: 1rem;
@@ -3147,24 +3147,7 @@ a.dropdown-item:hover {
     border: 1px solid var(--main-bg-color);
 }
 
-.home-content-inner {
-    display: inline-block;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    padding: .75rem 1rem;
-    font-family: Arial;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-    min-width: 7.5rem;
-    border-radius: 0;
-    font-size: 1rem;
-    line-height: 1.5;
-    background-color: rgba(0,0,0,0);
-    color: var(--light-color);
-}
-
-    .home-content-inner .btn-main:focus {
+    .btn-main:focus {
         background-color: rgba(0, 0, 0, .6);
         color: var(--main-bg-color);
         border: 1px solid var(--main-bg-color);
@@ -3172,17 +3155,20 @@ a.dropdown-item:hover {
     }
 
 
-    .home-content-inner .btn-main:active:hover {
+    .btn-main:active:hover {
         background-color: rgba(0, 0, 0, .6);
         color: var(--main-bg-color);
         border: 1px solid var(--main-bg-color);
         box-shadow: none !important;
     }
 
-    .home-content-inner .btn-main:hover {
-        background-color: rgba(219, 26, 17, .7);
+    .btn-main:hover, .btn-main:hover:not([diabled="disabled"]) {
+        /* background-color: rgba(219, 26, 17, .7); */
+        background-color: var(--main-secondary-color);
+        color: var(--light-color);
+        border: 1px solid var(--main-bg-color);
+        opacity: .8;
     }
-
 
 @media only screen and (max-width: 48em) {
     .home-content-inner .btn-main {
