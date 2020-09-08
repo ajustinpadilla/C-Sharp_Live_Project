@@ -19,51 +19,6 @@
     </div>
 </div>
 
-<!--Seach Bar/ Actors,parts, and productions dropdown-->
-<div class="archive-search-container">
-    @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
-    {
-        <div class="archive-input-container">
-            <select id="SearchByCategory" name="SearchByCategory">
-                <option class="search-dropdown" value="SearchAll">Search All</option>
-                <option class="search-dropdown option" value="SearchCastMembers">Cast Member</option>
-                <option class="search-dropdown option" value="SearchProductions">Production</option>
-                <option class="search-dropdown option" value="SearchParts">Part</option>
-            </select>
-            @Html.TextBox("searchKey", "", new { placeholder = "Search" })
-            <button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>
-        </div>
-    }
-</div>
-
-@*<div class="container" style="align-content:center">
-        <nav class="navbar navbar-expand-xl">
-            <form class="form-inline">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-
-                    <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                    <div class="dropdown">
-                        <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Search by category
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#Cast_Member">Cast Member</a>
-                            <a class="dropdown-item" href="#Part">Part</a>
-                            <a class="dropdown-item" href="#Production">Production</a>
-                        </div>
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
-                    </div>
-                </div>
-            </form>
-        </nav>
-    </div>*@
-
 
 
 <!--Current Productions referencing database-->
@@ -242,6 +197,51 @@
         }
     </div>
 </div>
+
+<!--Seach Bar/ Actors,parts, and productions dropdown-->
+<div class="archive-search-container">
+    @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
+    {
+        <div class="archive-input-container">
+            <select id="SearchByCategory" name="SearchByCategory">
+                <option class="search-dropdown" value="SearchAll">Search All</option>
+                <option class="search-dropdown option" value="SearchCastMembers">Cast Member</option>
+                <option class="search-dropdown option" value="SearchProductions">Production</option>
+                <option class="search-dropdown option" value="SearchParts">Part</option>
+            </select>
+            @Html.TextBox("searchKey", "", new { placeholder = "Search" })
+            <button class="search-btn btn btn-lg btn-circle fa fa-search" type="submit" value="search"></button>
+        </div>
+    }
+</div>
+
+@*<div class="container" style="align-content:center">
+        <nav class="navbar navbar-expand-xl">
+            <form class="form-inline">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+
+                    <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Search by category
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#Cast_Member">Cast Member</a>
+                            <a class="dropdown-item" href="#Part">Part</a>
+                            <a class="dropdown-item" href="#Production">Production</a>
+                        </div>
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </nav>
+    </div>*@
 
 
 <!--Search results-->

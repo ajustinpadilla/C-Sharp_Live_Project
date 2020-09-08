@@ -2623,9 +2623,9 @@ a.dropdown-item:hover {
 
     /* Search container for centering Input Container*/
     .archive-search-container {
-        display: flex;
+        display: flex;       
         justify-content: center;
-        align-items: center;
+        align-items: center;        
     }
 
     /* Input Container: Input field, Category Dropdown, Search button*/
@@ -2637,7 +2637,7 @@ a.dropdown-item:hover {
 
         /* Archive Search Text*/
         .archive-input-container input[type="text"] {
-            width: 600px;
+            width: 400px;
             height: 50px;
             padding: 12.5px 20px 12.5px 20px;
             margin: 8px 0px 8px 200px;
