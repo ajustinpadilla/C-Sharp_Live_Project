@@ -49,7 +49,7 @@
 
                     <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Search by category
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -67,9 +67,9 @@
 
 
 <!--Current Productions referencing database-->
-<div id="current-productions">
+<div class="mt-5" id="current-productions">
     <h4>Current Productions</h4>
-    <div class="card-deck mt-5 bg-black">
+    <div class="card-deck mt-5 ml-3 mr-3 bg-black">
         <!-- added mt-5 class to create spacing between header and content -->
         @{
             var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
@@ -125,7 +125,7 @@
                             <p class="card-text">@item.Description</p>
                         </div>
                         <div class="card-footer align-bottom">
-                            <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                            <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
                         </div>
                     </div>
                 }
@@ -145,7 +145,7 @@
                     <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
                 </div>
                 <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
                 </div>
             </div>
             <div class="card bg-black">
@@ -155,7 +155,7 @@
                     <p class="card-text">A cursed man that ruins everything he touches.</p>
                 </div>
                 <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
                 </div>
             </div>
             <div class="card bg-black">
@@ -165,7 +165,7 @@
                     <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
                 </div>
                 <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
                 </div>
             </div>
         </div>
@@ -177,7 +177,7 @@
 
 <div id="future-productions">
     <h4>Future Productions</h4>
-    <div class="card-deck mt-5 bg-black">
+    <div class="card-deck mt-5 ml-3 mr-3 bg-black">
         <!-- added mt-5 class to create spacing between header and content -->
         @{
             foreach (var item in Model)
@@ -234,7 +234,7 @@
                             <p class="card-text">@item.Description</p>
                         </div>
                         @*<div class="card-footer align-bottom">
-                                <button type="button" class="btn btn-block btn-primary" disabled>Get Tickets</button>
+                                <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
                             </div>*@
                     </div>
                 }
@@ -422,7 +422,7 @@
     }
 }
 <div class="container">
-    <div class="h4">Past Productions</div>
+    <div class="h4 text-center">Past Productions</div>
     <div class="accordian" id="pastProductions">
         <!-- Begin for loop to populate years-->
         @for (int i = currentSeason; i >= 1; i--)
@@ -435,7 +435,7 @@
                     @if (Model.Any(x => x.Season == i))
                     {
                         <h2 class="mb-0">
-                            <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
+                            <button class="btn btn-main" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
                                 @seasonYears[i]
                             </button>
                         </h2>
