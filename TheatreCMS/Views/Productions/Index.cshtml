@@ -14,7 +14,7 @@
     var runTimes = (ViewBag.RunTimes as IEnumerable<int>).ToList();
 }
 
-<h2 class="prod-index-header">Productions <i class="btn btn-main far fa-calendar-alt py-1 px-2"></i></h2> <!-- btn-main originally btn-light, save for possible reversion -->
+<h2 class="prod-index-header">Productions <i class="btn btn-light far fa-calendar-alt py-1 px-2"></i></h2> <!-- btn-main originally btn-light, save for possible reversion -->
 <div id="calendar" class="prod-index-cal mb-4"></div>
 
 @if (User.IsInRole("Admin"))
