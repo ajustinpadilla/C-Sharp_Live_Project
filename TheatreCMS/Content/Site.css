@@ -4359,3 +4359,9 @@ button.goBack {
     font-size: 1.3rem;
     font-weight: bold;
 }
+
+/*===== FOCUS NEGATE - selective remove focus highlight style from bootstrap form-control elements =====*/
+.focus-negate .form-control:focus {
+    border-color: none;
+    box-shadow: none;
+}
