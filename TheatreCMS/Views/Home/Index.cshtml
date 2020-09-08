@@ -135,7 +135,7 @@
             $('.home-title').each(function () {
                 textLength = ($(this).text().length);
                 if (window.matchMedia('(min-width: 80.0625em)').matches) {
-                    if (textLength >= 20 && textLength < 30) {
+                    if (textLength >= 1 && textLength < 30) {
                         $(this).css('font-size', '10rem');
                     }
                     if (textLength > 30) {
@@ -144,7 +144,7 @@
                 }
 
                 if (window.matchMedia('(max-width: 80em)').matches) {
-                    if (textLength >= 20 && textLength < 30) {
+                    if (textLength >= 1 && textLength < 30) {
                         $(this).css('font-size', '7rem');
                     }
                     if (textLength > 30) {
@@ -152,7 +152,7 @@
                     }
 
                     if (window.matchMedia('(max-width: 64.0625em)').matches) {
-                        if (textLength >= 20 && textLength < 30) {
+                        if (textLength >= 1 && textLength < 30) {
                             $(this).css('font-size', '6.5rem');
                         }
                         if (textLength > 30) {
@@ -160,7 +160,7 @@
                         }
 
                         if (window.matchMedia('(max-width: 48em)').matches) {
-                            if (textLength >= 20 && textLength < 30) {
+                            if (textLength >= 1 && textLength < 30) {
                                 $(this).css('font-size', '2.75rem');
                             }
                             if (textLength > 30) {

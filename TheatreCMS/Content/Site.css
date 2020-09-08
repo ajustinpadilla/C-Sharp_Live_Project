@@ -3131,7 +3131,7 @@ a.dropdown-item:hover {
     }
 }
 
-/* Custom button class for site. */
+/* Custom button class for main site. */
 .btn-main {
     display: inline-block;
     font-weight: 400;
@@ -3148,7 +3148,7 @@ a.dropdown-item:hover {
     border: 1px solid var(--main-bg-color);
 }
 
-    .home-content-inner .btn-main:focus {
+    .btn-main:focus {
         background-color: rgba(0, 0, 0, .6);
         color: var(--main-bg-color);
         border: 1px solid var(--main-bg-color);
@@ -3156,14 +3156,14 @@ a.dropdown-item:hover {
     }
 
 
-    .home-content-inner .btn-main:active:hover {
+    .btn-main:active:hover {
         background-color: rgba(0, 0, 0, .6);
         color: var(--main-bg-color);
         border: 1px solid var(--main-bg-color);
         box-shadow: none !important;
     }
 
-    .home-content-inner .btn-main:hover {
+    .btn-main:hover, .btn-main:hover:not([diabled="disabled"]) {
         /* background-color: rgba(219, 26, 17, .7); */
         background-color: var(--main-secondary-color);
         color: var(--light-color);
@@ -3171,9 +3171,8 @@ a.dropdown-item:hover {
         opacity: .8;
     }
 
-
 @media only screen and (max-width: 48em) {
-    .home-content-inner .btn-main {
+    .btn-main {
         font-size: .875rem;
         line-height: 1.7143;
         color: var(--dark-color);
