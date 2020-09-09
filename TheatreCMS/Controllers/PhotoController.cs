@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -277,11 +278,45 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Photo photo = db.Photo.Find(id);
-            db.Photo.Remove(photo);
-            db.SaveChanges();
+
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                Photo photo = db.Photo.Find(id);
+
+                ProductionPhotos productionPhoto = db.ProductionPhotos.FirstOrDefault(x => x.PhotoId == photo.PhotoId);
+                if (productionPhoto != null)
+                {
+                    DbEntityEntry<ProductionPhotos> dbEntityEntry = db.Entry(productionPhoto);
+                    productionPhoto.PhotoId = null;
+                    dbEntityEntry.CurrentValues.SetValues(productionPhoto);
+                }
+                Production productions = db.Productions.FirstOrDefault(x => x.DefaultPhoto.PhotoId == photo.PhotoId);
+                if (productions != null)
+                {
+                    DbEntityEntry<Production> dbEntityEntry = db.Entry(productions);
+                    productions.DefaultPhoto = null;
+                    dbEntityEntry.CurrentValues.SetValues(productions);
+                }
+                Sponsor sponsors = db.Sponsors.FirstOrDefault(x => x.LogoId == photo.PhotoId);
+                if (sponsors != null)
+                {
+                    DbEntityEntry<Sponsor> dbEntityEntry = db.Entry(sponsors);
+                    sponsors.LogoId = null;
+                    dbEntityEntry.CurrentValues.SetValues(sponsors);
+                }
+                CastMember cast = db.CastMembers.FirstOrDefault(x => x.PhotoId == photo.PhotoId);
+                if (cast != null)
+                {
+                    DbEntityEntry<CastMember> dbEntityEntry = db.Entry(cast);
+                    cast.PhotoId = null;
+                    dbEntityEntry.CurrentValues.SetValues(cast);
+                }
+                db.Photo.Remove(photo);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
+
 
         [AllowAnonymous]
         protected override void Dispose(bool disposing)

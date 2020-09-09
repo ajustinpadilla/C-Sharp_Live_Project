@@ -30,50 +30,55 @@ namespace TheatreCMS.Controllers
         }
         public ActionResult Dashboard()
         {
-            #region ViewData
-            List<SelectListItem> productionList = GetSelectListItems();
-            ViewData["ProductionList"] = productionList;
-            #endregion
+            AdminSettings current = AdminSettingsReader.CurrentSettings();
             UpdateAdminSettings();
-            AdminSettings current = new AdminSettings();
-            current = AdminSettingsReader.CurrentSettings();
-            ViewData["CurrentProductionList"] = GetCurrentProductions();
+            AddViewData(current);
             return View(current);
         }
 
-        // ***OLD "SettingsUpdate" method, can be deleted once NEW one with tweaks (see below) has been reviewed - 2/18/2020, jc***
-        //
-        //[HttpPost]
-        //public ActionResult SettingsUpdate(int Current_Season, int Winter, int Fall, int Spring, int Span, DateTime Date, int Onstage)
-        //{
-        //    AdminSettings settings = new AdminSettings
-        //    {
-        //        current_season = Current_Season,
-        //        season_productions = new AdminSettings.seasonProductions
-        //        {
-        //            winter = Winter,
-        //            fall = Fall,
-        //            spring = Spring
-        //        },
-        //        recent_definition = new AdminSettings.recentDefinition
-        //        {
-        //            span = Span,
-        //            date = Date,
-        //        },
-        //        onstage = Onstage
-        //    };
-        //    string newSettings = JsonConvert.SerializeObject(settings);
-        //    string filepath = Server.MapPath(Url.Content("~/AdminSettings.json"));
-        //    using (StreamWriter writer = new StreamWriter(filepath))
-        //    {
-        //        writer.Write(newSettings);
-        //    }
-        //    return RedirectToAction("Dashboard");
-        //}
+        //Section to pass ViewData to controller.
+        public void AddViewData(AdminSettings currentSettings)
+        {
+            currentSettings = AdminSettingsReader.CurrentSettings();
+            List<SelectListItem> productionList = GetSelectListItems();
+            #region ViewData
+            ViewData["ProductionList"] = productionList;
+            ViewData["CurrentProductionList"] = GetCurrentProductions();
+            #endregion
+        }
+            // ***OLD "SettingsUpdate" method, can be deleted once NEW one with tweaks (see below) has been reviewed - 2/18/2020, jc***
+            //
+            //[HttpPost]
+            //public ActionResult SettingsUpdate(int Current_Season, int Winter, int Fall, int Spring, int Span, DateTime Date, int Onstage)
+            //{
+            //    AdminSettings settings = new AdminSettings
+            //    {
+            //        current_season = Current_Season,
+            //        season_productions = new AdminSettings.seasonProductions
+            //        {
+            //            winter = Winter,
+            //            fall = Fall,
+            //            spring = Spring
+            //        },
+            //        recent_definition = new AdminSettings.recentDefinition
+            //        {
+            //            span = Span,
+            //            date = Date,
+            //        },
+            //        onstage = Onstage
+            //    };
+            //    string newSettings = JsonConvert.SerializeObject(settings);
+            //    string filepath = Server.MapPath(Url.Content("~/AdminSettings.json"));
+            //    using (StreamWriter writer = new StreamWriter(filepath))
+            //    {
+            //        writer.Write(newSettings);
+            //    }
+            //    return RedirectToAction("Dashboard");
+            //}
 
 
-        //AUTO CALCULATION OF SEASON CODE
-        public int AutoCalculateCurrentSeason()
+            //AUTO CALCULATION OF SEASON CODE
+            public int AutoCalculateCurrentSeason()
         {
             DateTime season = new DateTime(1996, 6, 1);
             DateTime now = DateTime.Now;
@@ -86,46 +91,31 @@ namespace TheatreCMS.Controllers
         }
         //END AUTO CALCULATION OF SEASON CODE
 
+
         [HttpPost]
-        public ActionResult SettingsUpdate(AdminSettings currentSettings)
+        public ActionResult SettingsUpdate(AdminSettings currentAdminSettings)
         {
-            // The current_productions property of the AdminSettings object in the parameter does not 
-            // get set when POSTED.  This line of code sets that property.
-            currentSettings.current_productions = FindCurrentProductions();
+            currentAdminSettings.models_missing_photos = AdminSettingsReader.CurrentSettings().models_missing_photos;
+            string newSettings = JsonConvert.SerializeObject(currentAdminSettings, Formatting.Indented);
 
-            // Populates the ViewData with the current productions same as the Dashboard() method.
-            // Without this line, an error is thrown after the form is submitted.
-            ViewData["CurrentProductionList"] = GetCurrentProductions();
-
-            List<SelectListItem> productionList = GetSelectListItems();
-            ViewData["ProductionList"] = productionList;
-            string newSettings = JsonConvert.SerializeObject(currentSettings, Formatting.Indented);
             newSettings = newSettings.Replace("T00:00:00", "");
             string filepath = Server.MapPath(Url.Content("~/AdminSettings.json"));
             string oldSettings = null;
-             
+
             using (StreamReader reader = new StreamReader(filepath))
             {
-               oldSettings = reader.ReadToEnd();
+                oldSettings = reader.ReadToEnd();
             }
             dynamic oldJSON = JObject.Parse(oldSettings);
             dynamic newJSON = JObject.Parse(newSettings);
-            if (oldJSON.recent_definition.date != newJSON.recent_definition.date)
-            {
-                UpdateSubscribers(newJSON);
-            }
-            int thisSeason = AutoCalculateCurrentSeason();
-            //ADDING AUTO CALC ERROR CODE HERE
-            if (newJSON.current_season != thisSeason)
-                //(oldJSON.current_season == 23)
-                //(oldJSON.current_season != newJSON.current_season)
-            {
-                ModelState.AddModelError("current_season", "You have entered the incorrect Season number."); 
-            }
-            
-          
-            //END AUTO CALC ERROR CODE
 
+            UpdateSubscribers(newJSON);
+
+            int thisSeason = AutoCalculateCurrentSeason();
+            if (newJSON.current_season != thisSeason)
+            {
+                ModelState.AddModelError("current_season", "You have entered the incorrect Season number.");
+            }
             if (oldJSON.season_productions != newJSON.season_productions)
             {
                 UpdateProductions(newJSON);
@@ -133,11 +123,15 @@ namespace TheatreCMS.Controllers
             using (StreamWriter writer = new StreamWriter(filepath))
             {
                 writer.Write(newSettings);
-                return View("Dashboard", currentSettings); 
             }
+            UpdateAdminSettings();
+            currentAdminSettings = AdminSettingsReader.CurrentSettings();
+            AddViewData(currentAdminSettings);
+
+            return View("Dashboard", currentAdminSettings);
         }
 
-
+        //Updates Changes in database depending on inputs from the Admin Settings form for recent_definition.
         private void UpdateSubscribers(dynamic newJSON)
         {
             DateTime recentDef = newJSON.recent_definition.date;
@@ -155,6 +149,7 @@ namespace TheatreCMS.Controllers
             db.SaveChanges();
         }
 
+        //Updates Changes in database depending on inputs from the Admin Settings form for season productions.
         private void UpdateProductions(dynamic newJSON)
         {
             int fall = newJSON.season_productions.fall;
@@ -292,38 +287,59 @@ namespace TheatreCMS.Controllers
             return result;
         }
 
-        //returns a Lis<Production> from a List<int> of current season production IDs
+        //returns a List<Production> from a List<int> of current season production IDs
         public static List<Production> GetCurrentProductions()
         {
+            List<int> i = new List<int>();
             var admin = new AdminController();
-            List<int> currentProdId = AdminSettingsReader.CurrentSettings().current_productions;
-            List<Production> currentProd = admin.db.Productions.Where(p => currentProdId.Contains(p.ProductionId)).OrderBy(p=> p.OpeningDay).ToList();
+            List<int> current = new List<int>();
+            List<Production> currentProd = admin.db.Productions.Where(p => current.Contains(p.ProductionId)).OrderBy(p => p.OpeningDay).ToList();
             return currentProd;
         }
 
-        // updates the AdminSettings.json file with list of current season Production IDs
+        //returns ModelsMissingPhotos which contains a List<int> for models:
+        //Production, ProductionPhotos, Sponsor, and Cast that dont have a picture.
+        public static ModelsMissingPhotos FindModelsNoPics()
+        {
+            var admin = new AdminController();
+            ModelsMissingPhotos modelsWithNoPics = new ModelsMissingPhotos();
+            modelsWithNoPics.cast_members = admin.db.CastMembers.Where(p => p.PhotoId == null).OrderBy(p => p.CastMemberID).
+                Select(p => p.CastMemberID).ToList();
+
+            modelsWithNoPics.productions = admin.db.Productions.Where(p => p.DefaultPhoto == null).OrderBy(p => p.ProductionId).
+                Select(p => p.ProductionId).ToList();
+
+            modelsWithNoPics.production_photos = admin.db.ProductionPhotos.Where(p => p.PhotoId == null).OrderBy(p => p.ProPhotoId).
+                Select(p => p.ProPhotoId).ToList();
+
+            modelsWithNoPics.sponsors = admin.db.Sponsors.Where(p => p.LogoId == null).OrderBy(p => p.LogoId).
+                Select(p => p.SponsorId).ToList();
+
+            return modelsWithNoPics;
+        }
+
         private void UpdateAdminSettings()
         {
             //flowchart: reads json file, deserializes, updates the values, serializes new string, and writes result to json file
-            List<int> currentProd = AdminController.FindCurrentProductions();
+
+            List<int> currentProd = FindCurrentProductions();
+            ModelsMissingPhotos miss = FindModelsNoPics();
+
             string json_path = Server.MapPath(Url.Content("~/AdminSettings.json"));
             string json_string = null;
-
             using (StreamReader reader = new StreamReader(json_path))
             {
                 json_string = reader.ReadToEnd();
             }
 
             JObject json_content = (JObject)JsonConvert.DeserializeObject(json_string);
+
             json_content.Property("current_productions").Value = JToken.FromObject(currentProd);
+            json_content.Property("models_missing_photos").Value = JToken.FromObject(miss);
+
             string updated_json = JsonConvert.SerializeObject(json_content, Formatting.Indented);
 
-            using (StreamWriter writer = new StreamWriter(json_path))
-            {
-                writer.Write(updated_json);
-            }
-
-
+            System.IO.File.WriteAllText(json_path, updated_json);
         }
     }
 }
