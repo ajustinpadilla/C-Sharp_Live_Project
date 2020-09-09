@@ -4360,3 +4360,8 @@ button.goBack {
     font-size: 1.3rem;
     font-weight: bold;
 }
+
+ul.dependency {
+    text-align: center;
+    list-style-position: inside;
+}
