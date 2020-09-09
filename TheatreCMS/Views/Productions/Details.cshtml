@@ -13,16 +13,16 @@
       <div class="col-12">
         <dl>
           <dd class="col">
-            <div class="jumbotron mr-6" id="jumbo"><h1><b> @Html.DisplayFor(model => model.Title)</b></h1></div>
+            <div class="jumbotron" id="jumbo"><h1><b> @Html.DisplayFor(model => model.Title)</b></h1></div>
           </dd>
 
         </dl>
       </div>
-    </div>                           
+    </div>
 
     <div class="row">
       <div class="col-md-4 justify-content-center">
-        <div class="card bg-info mr-6" id="cardss">
+        <div class="card bg-info" id="cardss">
           <div class="card-header" id="head">
             <b>Days Playing</b>
           </div>
@@ -48,8 +48,7 @@
           </ul>
         </div>
 
-
-        <div class="card bg-info mr-6" id="cardss">
+        <div class="card bg-info" id="cardss">
           <div class="card-header" id="head">
             <b>Show Time and Length</b>
           </div>
@@ -83,14 +82,14 @@
         </div>
 
 
-
-
         <!--Iterate through Parts for a specific Type of role and if there is data it will display the below item in the Parts card. If no data is returned it will not display-->
         <!--===================================================
               The below refactors the parts section
         ===================================================-->
+        <!-- Parts Card Section visible when screen size is bigger-->
+        <!-- when screen size is med or bigger this will display. It is otherwise hidden-->
         <!-- Parts Card Section -->
-        <div class="card mr-6 d-md-block" id="cardss">
+        <div class="card d-none d-md-block" id="cardss">
           <div class="card-header" id="head">
             <b>Parts</b>
           </div>
@@ -137,9 +136,10 @@
         <!-- End Parts Card Section-->
       </div>
 
+
       <div class="col-md-8">
 
-        <div class="card text-center bg-white text-black-50 mr-6" id="cardss">
+        <div class="card text-center bg-white text-black-50" id="cardss">
 
           <h5 class="card-header text-white" id="head"><b>About The Production</b></h5>
 
@@ -224,7 +224,53 @@
           }
         </div>
 
+          <!-- Parts Card Section visible when screen size small -->
+          <!--===================================================
+          The below refactors the parts section for a small screen
+          ===================================================-->
 
+
+          <div class="card bg-info d-md-none" id="cardss">
+            <!-- when screen size is md or bigger this will not display. So when screen size is sm/mobile view it will be visible but otherwise hidden -->
+            <div class="card-header text-white" id="head">
+              <b>Parts</b>
+            </div>
+            <ul class="list-group list-group-flush text-black-50">
+              @{var part1 = new TheatreCMS.Enum.PositionEnum();}
+              @{List<TheatreCMS.Models.Part> parts1 = new List<TheatreCMS.Models.Part>();}
+              @foreach (int position in ViewBag.Positions)
+              {
+                parts1.Clear();
+                part1 = (TheatreCMS.Enum.PositionEnum)position;
+                parts1 = Model.Parts.Where(x => x.Type == part1).ToList();
+                if (parts1 != null && parts1.Any())
+                {
+              <li class="list-group-item">
+               @(part1)s
+              <dl>
+              @foreach (var item in parts1)
+              {
+              if (item != null && part1.ToString() == "Actor")
+              {
+              <dd class="col">
+              <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+              </dd> if (item.Person != null)
+                      {
+              <dd class="col">
+              <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID"><i>@item.Person.Name.ToString()</i></a></p>
+              </dd> }
+                    }
+                    else if (item != null)
+                    {
+              <dd class="col">
+                <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+              </dd>}
+                  }
+              </dl>
+              </li>}
+              }
+            </ul>
+          </div>
       </div>
     </div>
   </div>
@@ -239,3 +285,4 @@
     @Html.ActionLink("Current Productions", "Current") |
     @Html.ActionLink("Back to List", "Index")
   </p>
+</div>
