@@ -2631,7 +2631,7 @@ a.dropdown-item:hover {
     /* Input Container: Input field, Category Dropdown, Search button*/
     .archive-input-container {
         margin: 0 auto;
-        width: 10rem;
+        width: 850px;
         position: relative;
     }
 
