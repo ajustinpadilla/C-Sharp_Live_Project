@@ -38,17 +38,21 @@ namespace TheatreCMS.Controllers
         }
         public ActionResult Index()
         {
-            var productions = from p in db.Productions
-                          select p;
-
-
-            //Filter list by current and future productions
-            var query = productions.Where(p => p.OpeningDay > DateTime.Now || p.IsCurrent == true || (p.OpeningDay <= DateTime.Now && p.ClosingDay >= DateTime.Now))
+            //==== LIST OF PRODUCTIONS - Filter by current and future productions
+            var query = db.Productions.Where(p => p.OpeningDay > DateTime.Now || p.IsCurrent == true || (p.OpeningDay <= DateTime.Now && p.ClosingDay >= DateTime.Now))
                 .OrderBy(p => p.OpeningDay);
-
-            List<Production> unorderedProductions = query.ToList();
-            var orderedProductions = SortProductions(unorderedProductions);
-
+            //===== ORDER PRODUCTIONS
+            var orderedProductions = SortProductions(query.ToList());
+            //===== PRODUCTION PICTURES - create list of productionPhotos objects for each production, randomize order of photo objects, nest productionPhotos objects list in a list, store list in ViewBag dictionary 
+            var productionPhotosList = new List<List<ProductionPhotos>>();
+            foreach (Production production in orderedProductions)
+            {
+                var photoArray = db.ProductionPhotos.Where(p => p.Production.ProductionId == production.ProductionId).ToList();
+                productionPhotosList.Add(ShufflePhotos(photoArray));
+                //DEBUG System.Diagnostics.Debug.WriteLine(photoArray.Count);
+            }
+            ViewBag.ProductionPhotosList = productionPhotosList;
+            
             return View(orderedProductions);
         }
 
@@ -85,6 +89,22 @@ namespace TheatreCMS.Controllers
             sorted.AddRange(comingSoon);
 
             return sorted;
+        }
+
+        //===== SHUFFLE PHOTOS - takes a list of ProductionPhoto objects and shuffles them
+        private static readonly Random random = new Random();
+        private List<ProductionPhotos> ShufflePhotos(List<ProductionPhotos> photos)
+        {
+            int n = photos.Count;
+            while (n > 1)
+            {
+                n--;
+                int rnd = random.Next(n + 1);
+                ProductionPhotos value = photos[rnd];
+                photos[rnd] = photos[n];
+                photos[n] = value;
+            }
+            return photos;
         }
 
         public ActionResult About()

@@ -5,7 +5,9 @@
 @{
     ViewBag.Title = "Home Page";
     int i = 1; //counter for hash tag links
-
+    var productionPhotosList = ViewBag.ProductionPhotosList; //stores a list (productions) of lists (ProductionPhotos objects)
+    int productionIndex = 0; //iteration index for ViewBag.ProductionPhotosList
+    int photoIndex = 0;//iteration index for nested photo object list inside ViewBag.ProductionPhotosList
 }
 
 @*@Styles.Render("~/Content/Site.css")*@
@@ -14,14 +16,7 @@
 
 <div class="home-body">
     <main id="home-main">
-        <div class="home-container">
-            @{  
-                // Establish Random object for displaying random production image
-                Random rand = new Random();
-
-                // Open connection to database
-                ApplicationDbContext db = new ApplicationDbContext();
-            }
+        <div class="home-container">            
             @foreach (var item in Model)
             {
                 <div id="index-block-@i" class="home-block">
@@ -30,19 +25,11 @@
                         @{
                             if (item.DefaultPhoto != null)
                             {
-                                // Create list of photos associated with production
-                                var photoArray = db.ProductionPhotos.Where(p => p.Production.ProductionId == item.ProductionId).ToList();
-                                // Get length of list and choose random number between 0 and length of list
-                                var photoCount = photoArray.Count();
-                                var randNum = rand.Next(photoCount);
-                                // Get id of the selected photo
-                                var selectedPhoto = photoArray[randNum].PhotoId;
-
                                 <div class="home-img">
-                                   <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = selectedPhoto }))"></div>
+                                    <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = productionPhotosList[productionIndex][photoIndex].PhotoId }))"></div>
                                 </div>
                                 <div class="home-mobile-img">
-                                    <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = selectedPhoto }))"></div>
+                                    <div role="presentation" style="background-image: url(@Url.Action("DisplayPhoto", "Photo", new { id = productionPhotosList[productionIndex][photoIndex].PhotoId }))"></div>
                                 </div>
                                 if (item.OpeningDay <= DateTime.Now && item.ClosingDay >= DateTime.Now)
                                 {
@@ -82,6 +69,7 @@
                     </figure>
                 </div>
                 i++;
+                productionIndex++;                
             }
         </div>
         <nav>
