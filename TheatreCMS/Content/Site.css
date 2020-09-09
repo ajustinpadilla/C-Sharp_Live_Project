@@ -3003,8 +3003,11 @@ tr.event-row {
     display: none;
 }
 
-/* Start Homepage */
+/*=========================================
+========== HOMEPAGE =======================
+===========================================*/
 
+/*===== BODY - page format */
 .home-body {
     position: relative;
     -webkit-box-flex: 1;
@@ -3012,7 +3015,7 @@ tr.event-row {
     flex: 1 0 auto;
 }
 
-
+/*===== MAIN - general display, font settings */
 #home-main {
     display: block;
     font-size: 100%;
@@ -3022,7 +3025,9 @@ tr.event-row {
     overflow-x: hidden;
 }
 
+/*========== HOME CONTENT - production carousels and info  */
 
+/*===== Production & Photo Carousel - general display, margins, borders */
 .home-block, .home-inner {
     margin: 0;
     padding: 0;
@@ -3031,6 +3036,7 @@ tr.event-row {
     vertical-align: baseline;
 }
 
+/*===== Photo Carousel - position, overflow */
 .home-inner {
     position: relative;
     overflow: hidden;
@@ -3074,6 +3080,7 @@ tr.event-row {
     }
 }
 
+/*===== TINT PHOTO OVERLAY - visable only on large screens */
 .home-tint-overlay {
     position: absolute;
     top: 0px;
@@ -3086,7 +3093,6 @@ tr.event-row {
     -webkit-transition: inherit;
     transition: opacity ease-in-out 3s;
 }
-
 @media only screen and (max-width: 48em) {
     .home-tint-overlay {
         display: none;
@@ -3278,6 +3284,8 @@ tr.event-row {
     }
 }
 
+/*========== HOME NAV - dots on right side of screen, display current vertical position and jump to vertical position  */
+/*===== Positioning of navbar on screen */
 #home-nav {
     position: fixed;
     top: 50%;
@@ -3288,13 +3296,13 @@ tr.event-row {
     padding: 0;
     margin: 0;
 }
-
+/*===== Not visable on small screens */
 @media only screen and (max-width:48em) {
     #home-nav {
         display: none;
     }
 }
-
+/*===== Dot format */
 #home-nav a {
     display: block;
     border-bottom: none;
@@ -3306,26 +3314,19 @@ tr.event-row {
     border-radius: 50%;
     cursor: pointer;
 }
-
-    #home-nav a:hover {
-        background-color: var(--secondary-color);
-    }
-
+/*===== Dot hover, active, focus */
+#home-nav a:hover {
+    background-color: var(--secondary-color);
+}
 #home-nav li.active a {
     background-color: var(--main-bg-color);
 }
-
 #home-nav a:focus {
     box-shadow: 0px 2px 0 0 var(--dark-color) !important;
     outline: 0;
 }
 
-
-
-
-
-
-/* End Homepage */
+/*========== End Homepage ==========*/
 
 /* Start Ribbons */
 
