@@ -7,41 +7,62 @@ using Newtonsoft.Json;
 
 namespace TheatreCMS.Models
 {
+    //Many the classes below are designed to be read by the helper method AdminSettingsReader().
+    //Datatypes besides int/string or classes/lists of int/strings are liable to throw errors.
+    //Any Classes/properties not meant to be used in Json string, is recommened to have [JsonIgnore] above,
+    //or to place it in AdminSettings
     public class AdminSettings
     {
-        public static DateTime Now { get; }  //Add for current season auto calculation
-        [Required(ErrorMessage = "Please enter current season number")]         // for current season validation
-        public int current_season { get; set; }     // the theater season number for the current season
-        public seasonProductions season_productions { get; set; }   // holds 3 production ID's for current season
-
-        public List<int> current_productions { get; set; }  //a list of production IDs for current season
-
-        public recentDefinition recent_definition { get; set; }     // holds recent span and date
-        public int onstage { get; set; }            // production ID of current production
-
-        public class seasonProductions
-        {
-            public int fall { get; set; }       // fall production ID for current season
-            public int winter { get; set; }     // winter production ID for current season
-            public int spring { get; set; }     // spring production ID for current season
-        }
-
-        public class recentDefinition
-        {
-            public int span { get; set; }       // number of months in the past
-            [DataType(DataType.Date)]
-            [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-            public DateTime date { get; set; }  // earliest date for what is considered recent
-        }
+        [JsonProperty("season_productions")]
+        public SeasonProductions season_productions { get; set; }
 
         public Footer FooterInfo { get; set; }
-        public class Footer
-        {
-            public string AddressStreet { get; set; }   // Street address
-            public string AddressCityStateZip { get; set; }     // City, State, Zip Address
-            public string PhoneSales { get; set; }  // Sales Phone Number
-            public string PhoneGeneral { get; set; }    // General Phone Number
-        }
 
+        [JsonProperty("models_missing_photos")]
+        public ModelsMissingPhotos models_missing_photos { get; set; }
+
+        [JsonProperty("recent_definition")]
+        public RecentDefinition recent_definition { get; set; }
+
+        [JsonProperty("on_stage")]
+        public int on_stage { get; set; }
+
+        [Required(ErrorMessage = "Please enter current season number")]     // for current season validation
+        [JsonProperty("current_season")]
+        public int current_season { get; set; }
+
+        [JsonProperty("current_productions")]
+        public List<int> current_productions { get; set; }     //a list of production IDs for current season
+    }
+
+    public class SeasonProductions
+    {
+        public int fall { get; set; }
+        public int winter { get; set; }
+        public int spring { get; set; }
+    }
+    public class RecentDefinition      //Lets Admin Define what they consider to be "recent", such as recent subscribers or productions
+    {
+        public int? span { get; set; }        //Number of months in the past
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime date { get; set; }  // Earliest date for what is considered recent
+    }
+
+    public class Footer                  //All Information presented in Dashboard footer
+    {
+        public string AddressStreet { get; set; }
+        public string AddressCityStateZip { get; set; }
+        public string PhoneSales { get; set; }
+        public string PhoneGeneral { get; set; }
+    }
+    public class ModelsMissingPhotos        //Used for methods reguarding missing photos in models
+    {
+        public List<int> productions { get; set; }
+        public List<int> cast_members { get; set; }
+        public List<int> sponsors { get; set; }
+        public List<int> production_photos { get; set; }
     }
 }
+

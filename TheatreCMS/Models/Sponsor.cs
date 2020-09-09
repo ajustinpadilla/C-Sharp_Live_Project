@@ -12,7 +12,7 @@ namespace TheatreCMS.Models
         public int SponsorId { get; set; }  // sponsor primary key
         public string Name { get; set; }    // sponsor name
         [Display(Name ="Logo Image")]       
-        public int LogoId { get; set; }     // ID of photo.cs object
+        public int? LogoId { get; set; }     // ID of photo.cs object
         public int? Height { get; set; }    // logo display height (may be different from original)
         public int? Width { get; set; }     // logo display width (may be different from original)
         public bool Current { get; set; }   // active sponsor
