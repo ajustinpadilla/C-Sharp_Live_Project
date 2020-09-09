@@ -65,10 +65,10 @@
             </div>
 
             <!--===== CHECKBOXES - match column width for group container =====-->
-            <div class="container col-md-6 text-center">
-                <div class="row">
+            <div class="container col-md-10 text-center">
+                <div class="row justify-content-center">
                     <!--=== AssociateArtist ===-->
-                    <div class="col-sm form-group">
+                    <div class="col form-group">
                         @Html.LabelFor(model => model.AssociateArtist, htmlAttributes: new { @class = "control-label inputLabel" })
                         <div class="focus-negate">
                             @Html.EditorFor(model => model.AssociateArtist, new { htmlAttributes = new { @class = "form-control" } })
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <!--=== EnsembleMember ===-->
-                    <div class="col-sm form-group">
+                    <div class="col form-group">
                         @Html.LabelFor(model => model.EnsembleMember, htmlAttributes: new { @class = "control-label inputLabel" })
                         <div class="focus-negate">
                             @Html.EditorFor(model => model.EnsembleMember, new { htmlAttributes = new { @class = "form-control" } })
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <!--=== CurrentMember ===-->
-                    <div class="col-sm form-group">
+                    <div class="col form-group">
                         @Html.LabelFor(model => model.CurrentMember, htmlAttributes: new { @class = "control-label inputLabel" })
                         <div class="focus-negate">
                             @Html.EditorFor(model => model.CurrentMember, new { htmlAttributes = new { @class = "form-control" } })
