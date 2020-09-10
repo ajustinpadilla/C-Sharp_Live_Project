@@ -3680,16 +3680,24 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 }
 
 .part-overlay .btn-light {
+    transition: .25s;
     font-family: 'Times New Roman', Times, serif;
-    color:white;
+    color: white;
     text-align: center;
-    background-color: rgba(240, 77, 68, .5);
+    background-color: #f04d44; 
     border-radius: 15px;
-    margin-bottom: 3px;
+    margin-left: 1.5px;
+    margin-right: 1.5px;
+    margin-bottom: 4px;
 }
 
 .part-overlay .btn-light a {
-    color: white;   
+    color: white;  
+    text-decoration: none;
+} 
+
+.part-overlay:hover .btn-light:hover {
+    background-color: #bd1a11;
 } 
 
 
@@ -3719,6 +3727,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 .part-card:hover, .part-card:active {
         transform: scale(1.05);
         background-color: #F04D44;
+
     }
 
 
