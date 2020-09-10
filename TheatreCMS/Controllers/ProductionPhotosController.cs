@@ -170,10 +170,10 @@ namespace TheatreCMS.Models
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProductionPhotos productionPhotos = db.ProductionPhotos.Find(id);
-            var adv = db.ProductionPhotos.Include(b => b.Production)
+            // Removes Photo and dependencies on delete
+            var photoDependency = db.ProductionPhotos.Include(b => b.Production)
                                          .FirstOrDefault(b => b.ProPhotoId == id);
-            db.ProductionPhotos.Remove(adv);
+            db.ProductionPhotos.Remove(photoDependency);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
