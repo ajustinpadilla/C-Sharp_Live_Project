@@ -42,8 +42,8 @@ namespace TheatreCMS.Areas.Subscribers.Controllers
         // GET: Subscribers/SeasonManager/Create
         public ActionResult Create()
         {
-            AdminSettings currentSettings = AdminSettingsReader.CurrentSettings();                                      
-            int[] validSeason = new int[] { currentSettings.current_season, currentSettings.current_season + 1 };   //Creates a list of the current season and the next season to populate the Season field
+            int currentSeason = AdminSettingsReader.CurrentSettings().current_season;
+            int[] validSeason = new int[] { currentSeason, currentSeason + 1 };   //Creates a list of the current season and the next season to populate the Season field
             ViewData["Season"] = new SelectList(validSeason.ToList(), validSeason, "Season");                       //
             
             if (User.IsInRole("Admin"))                                                                             // this block is used to send a list of names to the user dropdown. If the user isn't an admin, they just see their name.

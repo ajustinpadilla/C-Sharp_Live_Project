@@ -15,7 +15,6 @@ using System.Web.Script.Serialization;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 
-
 namespace TheatreCMS.Controllers
 {
     public class CalendarEventsController : Controller
@@ -220,6 +219,23 @@ namespace TheatreCMS.Controllers
                 status = true;
             }
             return new JsonResult { Data = new { status = status } };
+        }
+
+        //POST: CalendarEvents Delete Multiple Events From Table
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMultiple(FormCollection events)
+        {
+            var values = events["eventsArray"];
+            string[] str = values.Split(new string[] {","}, StringSplitOptions.None);
+            for (int i = 0; i < str.Length; i++)
+            {
+                CalendarEvent calendarEvent = db.CalendarEvent.Find(Int32.Parse(str[i]));
+                db.CalendarEvent.Remove(calendarEvent);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
