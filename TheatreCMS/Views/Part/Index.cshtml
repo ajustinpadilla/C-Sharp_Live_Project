@@ -81,15 +81,15 @@
                 <!--Card overlay for edit tools-->
                 <div class="part-overlay mask d-flex align-items-end justify-content-center">
 
-                    <div class="partButton">
+                    
                     <!--condition to look for admin authority and give access to edit options for cards-->
                     @if (User.IsInRole("Admin"))
                     {
-                        <button class="btn btn-light btn-sm">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </button>
-                        <button class="btn btn-light btn-sm">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </button>
-                        <button class="btn btn-light btn-sm">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </button>
+                        <button class="btn btn-light">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </button>
+                        <button class="btn btn-light">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </button>
+                        <button class="btn btn-light">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </button>
                     }
-                    </div>
+                    
                    
                 </div>
             </div>
