@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Part";
 }
-@*Modified te code to alter the display of the following section between nav and create new*@
+@*Modified te code to alter the display of the following section between nav and create new to be centered*@
 <h2 class="mx-auto mb-3 mt-4 text-center">Part</h2>
 <div class="table-responsive">
     <table class="table-borderless mx-auto w-auto">
@@ -15,16 +15,21 @@
             <tr>
                 <td>
                     @*The HTML helper creates a form and when the form is submitted it calls the Index() method from PartController.*@
-                    @using (Html.BeginForm("Index", "Part", FormMethod.Post, new { @id = "partsForm" }))
+                    @*Had to apply a row to the form and move the col to a div o get the drop downs spaces out and adjusted the margis to pull top and bottm closer*@ 
+                    @using (Html.BeginForm("Index", "Part", FormMethod.Post, new { @id = "partsForm", @class = "row mx-auto mt-n2 mb-n3" }))
                     {
                         // Creates a drop down list referencing the information from ViewData dictionary, which contains 'ProductionsID' key. The value that is selected is submitted onchange.
-                        @Html.DropDownList("ProductionsID", (IEnumerable<SelectListItem>)null, "All Productions", new { @class = "col-4 mt-n1 mb-n2 text-muted", @onchange = "document.getElementById('partsForm').submit();" })
-
-                        @Html.DropDownList("CastMembersID", (IEnumerable<SelectListItem>)null, "All Cast Members", new { @class = "col-4 mt-n1 mb-n2 text-muted", @onchange = "document.getElementById('partsForm').submit();" })
-
-                        @Html.DropDownList("Roles", (IEnumerable<SelectListItem>)null, "All Roles", new { @class = "col-4 mt-n1 mb-n2 text-muted", @onchange = "document.getElementById('partsForm').submit();" })
-                    }
-                </td>
+                        <div class="col-4 px-0">
+                            @Html.DropDownList("ProductionsID", (IEnumerable<SelectListItem>)null, "All Productions", new { @class = "text-muted", @onchange = "document.getElementById('partsForm').submit();" })
+                        </div>
+                        <div class="col-4">
+                            @Html.DropDownList("CastMembersID", (IEnumerable<SelectListItem>)null, "All Cast Members", new { @class = "text-muted", @onchange = "document.getElementById('partsForm').submit();" })
+                        </div>
+                        <div class="col-4 px-0">
+                            @Html.DropDownList("Roles", (IEnumerable<SelectListItem>)null, "All Roles", new { @class = "text-muted", @onchange = "document.getElementById('partsForm').submit();" })
+                        </div>
+                            }
+                    </td>
             </tr>
             <tr>
                 <td class="text-right">@Html.ActionLink("Reset Filters", "ResetFilters")</td>
@@ -35,10 +40,7 @@
 
 
 
-
 <div class="container ml-5 mb-3">
-   
-
 
     <div class="row">
         @if (User.IsInRole("Admin"))
