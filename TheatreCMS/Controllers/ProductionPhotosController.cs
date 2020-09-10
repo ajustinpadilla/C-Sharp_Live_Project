@@ -171,7 +171,9 @@ namespace TheatreCMS.Models
         public ActionResult DeleteConfirmed(int id)
         {
             ProductionPhotos productionPhotos = db.ProductionPhotos.Find(id);
-            db.ProductionPhotos.Remove(productionPhotos);
+            var adv = db.ProductionPhotos.Include(b => b.Production)
+                                         .FirstOrDefault(b => b.ProPhotoId == id);
+            db.ProductionPhotos.Remove(adv);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
