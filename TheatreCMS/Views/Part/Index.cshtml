@@ -15,7 +15,7 @@
             <tr>
                 <td>
                     @*The HTML helper creates a form and when the form is submitted it calls the Index() method from PartController.*@
-                    @*Had to apply a row to the form and move the col to a div o get the drop downs spaces out and adjusted the margis to pull top and bottm closer*@ 
+                    @*Had to apply a row to the form and move the col to a div o get the drop downs spaces out and adjusted the margis to pull top and bottm closer*@
                     @using (Html.BeginForm("Index", "Part", FormMethod.Post, new { @id = "partsForm", @class = "row mx-auto mt-n2 mb-n3" }))
                     {
                         // Creates a drop down list referencing the information from ViewData dictionary, which contains 'ProductionsID' key. The value that is selected is submitted onchange.
@@ -28,8 +28,8 @@
                         <div class="col-4 px-0">
                             @Html.DropDownList("Roles", (IEnumerable<SelectListItem>)null, "All Roles", new { @class = "text-muted", @onchange = "document.getElementById('partsForm').submit();" })
                         </div>
-                            }
-                    </td>
+                    }
+                </td>
             </tr>
             <tr>
                 <td class="text-right">@Html.ActionLink("Reset Filters", "ResetFilters")</td>
