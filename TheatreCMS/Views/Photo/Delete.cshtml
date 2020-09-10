@@ -67,8 +67,8 @@
       // No dependencies, deleted
       <div class="form-actions no-color">
         <div class="row text-center">
-          <input type="submit" value="Delete" class="btn btn-lg ml-auto mr-1 col-5" id="delete-btn" />
-          <input type="button" value="Cancel" class="btn btn-lg mr-auto ml-1 col-5" id="cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
+          <input type="submit" value="Delete" class="btn btn-main ml-auto mr-1 col-5" id="delete-btn" />
+          <input type="button" value="Cancel" class="btn btn-main mr-auto ml-1 col-5" id="cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
         </div>
       </div>
     }
@@ -78,8 +78,8 @@
 
       <div class="form-actions no-color">
         <div class="row text-center">
-          <input type="button" value="Delete" class="btn btn-lg col-5 ml-auto mr-1 d-block" id="delete-btn" data-toggle="modal" data-target="#deleteModal" />
-          <input type="button" value="Cancel" class="btn btn-lg col-5 mr-auto ml-1 d-block" id="cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
+          <input type="button" value="Delete" class="btn btn-main col-5 ml-auto mr-1 d-block" id="delete-btn" data-toggle="modal" data-target="#deleteModal" />
+          <input type="button" value="Cancel" class="btn btn-main col-5 mr-auto ml-1 d-block" id="cancel-btn" onclick="location.href='@Url.Action("Index", "Photo")'" />
         </div>
       </div>
     }
@@ -116,8 +116,8 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" value="Delete" class="btn btn-default col-3" id="photo-delete-btn" />
+                    <button type="button" class="btn btn-main" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Delete" class="btn btn-main col-3" id="photo-delete-btn" />
                     @Url.Action("DeleteConfirmed", "Photo", new { id = Model.PhotoId })
                 </div>
             }

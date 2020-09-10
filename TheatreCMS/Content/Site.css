@@ -3232,46 +3232,43 @@ tr.event-row {
     }
 }
 
-.home-content-inner .btn-primary {
+/* Custom button class for main site. */
+.btn-main {
     display: inline-block;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 1rem;
-    padding: .75rem 1rem;
+    padding: .5rem .5rem;
     font-family: Arial;
-    text-decoration: none;
-    text-transform: uppercase;
     text-align: center;
-    min-width: 7.5rem;
-    border-radius: 0;
+    text-decoration: none;
+    border-radius: .25rem;
     font-size: 1rem;
     line-height: 1.5;
     background-color: var(--main-bg-color);
     color: var(--light-color);
     border: 1px solid var(--main-bg-color);
+    transition: .5s; /* gradual transition on hover on/off */
 }
 
-    .home-content-inner .btn-primary:focus {
+    .btn-main:focus, btn-main:active:hover { /* combined to reduce duplicate code */
+        text-decoration: none; /* remove underline on hover */
         background-color: rgba(0, 0, 0, .6);
         color: var(--main-bg-color);
         border: 1px solid var(--main-bg-color);
-        box-shadow: none;
+        box-shadow: none;        
     }
 
-
-    .home-content-inner .btn-primary:active:hover {
-        background-color: rgba(0, 0, 0, .6);
-        color: var(--main-bg-color);
+    .btn-main:hover, .btn-main:hover:not([diabled="disabled"]) {
+        /* background-color: rgba(219, 26, 17, .7); */
+        text-decoration: none; /* remove underline on hover */
+        background-color: var(--main-secondary-color);
+        color: var(--light-color);
         border: 1px solid var(--main-bg-color);
-        box-shadow: none !important;
+        opacity: .8;
     }
-
-    .home-content-inner .btn-primary:hover {
-        background-color: rgba(219, 26, 17, .7);
-    }
-
 
 @media only screen and (max-width: 48em) {
-    .home-content-inner .btn-primary {
+    .home-content-inner .btn-main {
         font-size: .875rem;
         line-height: 1.7143;
         color: var(--dark-color);
