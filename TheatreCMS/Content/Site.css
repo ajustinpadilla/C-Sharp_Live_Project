@@ -3145,26 +3145,20 @@ a.dropdown-item:hover {
     background-color: var(--main-bg-color);
     color: var(--light-color);
     border: 1px solid var(--main-bg-color);
-    transition: .5s;
+    transition: .5s; /* gradual transition on hover on/off */
 }
 
-    .btn-main:focus {
+    .btn-main:focus, btn-main:active:hover { /* combined to reduce duplicate code */
+        text-decoration: none; /* remove underline on hover */
         background-color: rgba(0, 0, 0, .6);
         color: var(--main-bg-color);
         border: 1px solid var(--main-bg-color);
-        box-shadow: none;
-    }
-
-
-    .btn-main:active:hover {
-        background-color: rgba(0, 0, 0, .6);
-        color: var(--main-bg-color);
-        border: 1px solid var(--main-bg-color);
-        box-shadow: none !important;
+        box-shadow: none;        
     }
 
     .btn-main:hover, .btn-main:hover:not([diabled="disabled"]) {
         /* background-color: rgba(219, 26, 17, .7); */
+        text-decoration: none; /* remove underline on hover */
         background-color: var(--main-secondary-color);
         color: var(--light-color);
         border: 1px solid var(--main-bg-color);
