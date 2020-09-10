@@ -23,7 +23,8 @@
             {
                 <!--===== PRODUCTION - Container for Carousel & Content =====-->
                 <div class="home-block">
-                     <!--===== CAROUSEL =====-->
+                    <div class="home-tint-overlay"></div>
+                    <!--===== CAROUSEL =====-->
                     <div id="index-block-@i" class="carousel slide" data-interval="10000" data-ride="carousel">
                         <!--===== CAROUSEL INDICATORS -->
                         <ol class="carousel-indicators">
@@ -89,11 +90,9 @@
                     <!--===== PRODUCTION - Content =====-->
                     <div class="home-content">
                         <div class="home-content-inner">
-                            <h2 role="heading" class="home-title">@item.Title</h2>
+                            <h2 class="home-title">@item.Title</h2>
                             <p class="home-date">@item.OpeningDay.ToString("dddd, MMMM %d, yyyy") - @item.ClosingDay.ToString("dddd, MMMM %d, yyyy")</p>
-                            <div class="home-btn">
-                                <a class="btn-primary" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">Details</a>
-                            </div>
+                            <a class="btn-primary" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">Details</a>                            
                         </div>
                     </div>
                 </div>

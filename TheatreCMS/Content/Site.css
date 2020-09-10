@@ -3025,9 +3025,7 @@ tr.event-row {
     overflow-x: hidden;
 }
 
-/*========== HOME CONTENT - production carousels and info  */
-
-/*===== Production & Photo Carousel - general display, margins, borders */
+/*===== HOME BLOCK - production carousels and info  */
 .home-block, .home-inner {
     margin: 0;
     padding: 0;
@@ -3038,50 +3036,6 @@ tr.event-row {
     overflow: hidden;
 }
 
-/*===== Photo Carousel - position, overflow */
-.home-inner {
-    position: relative;
-    overflow: hidden;
-}
-
-.home-img, .home-mobile-img {
-    padding-bottom: 56.25%;
-}
-
-@media only screen and (max-width: 48em) {
-    .home-img, .home-mobile-img {
-        position: relative;
-        display: none;
-    }
-}
-
-.home-img > div, .home-mobile-img > div {
-    position: absolute;
-    background-size: cover;
-    background-position: 50%;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-@media only screen and (min-width: 48.0625em) {
-    .home-img {
-        padding-bottom: 100vh;
-    }
-}
-
-.home-mobile-img {
-    padding-bottom: 61.25%;
-    display: none;
-}
-
-@media only screen and (max-width: 48em) {
-    .home-mobile-img {
-        display: block;
-    }
-}
-
 /*===== TINT PHOTO OVERLAY - visable only on large screens */
 .home-tint-overlay {
     position: absolute;
@@ -3089,7 +3043,7 @@ tr.event-row {
     left: 0px;
     right: 0px;
     bottom: 0px;
-    z-index: 10;
+    z-index: 1;
     background: -webkit-gradient(linear,left top,left bottom,color-stop(53.92%,rgba(35,31,32,0)),color-stop(72.5%,rgba(35,31,32,.6)));
     background: linear-gradient(rgba(35,31,32,0) 53.92%,rgba(35,31,32,.6) 72.5%);
     -webkit-transition: inherit;
@@ -3100,6 +3054,48 @@ tr.event-row {
         display: none;
     }
 }
+
+/*===== Photo Carousel - - OBSOLETE 
+.home-inner {
+    position: relative;
+    overflow: hidden;
+}
+*/
+
+/*===== home-img home-mobile-img - OBSOLETE
+.home-img, .home-mobile-img {
+    padding-bottom: 56.25%;
+}
+@media only screen and (max-width: 48em) {
+    .home-img, .home-mobile-img {
+        position: relative;
+        display: none;
+    }
+}
+.home-img > div, .home-mobile-img > div {
+    position: absolute;
+    background-size: cover;
+    background-position: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+@media only screen and (min-width: 48.0625em) {
+    .home-img {
+        padding-bottom: 100vh;
+    }
+}
+.home-mobile-img {
+    padding-bottom: 61.25%;
+    display: none;
+}
+@media only screen and (max-width: 48em) {
+    .home-mobile-img {
+        display: block;
+    }
+}
+*/
 
 /*===== HOME CONTENT - Absolute position over photos, relative position for small screens */
 .home-content {
@@ -3124,7 +3120,7 @@ tr.event-row {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-/*===== Large screens- In front of Carousel */
+/*=== Large screens- In front of Carousel */
 @media only screen and (min-width: 48.0625em) {
     .home-content {
         max-width: 94rem;
@@ -3132,7 +3128,7 @@ tr.event-row {
         padding-right: 2rem;
     }
 }
-/*===== X-Large screens - In front of Carousel */
+/*=== X-Large screens - In front of Carousel */
 @media only screen and (min-width: 64.125em) {
     .home-content {
         max-width: 99.75rem;
@@ -3140,7 +3136,7 @@ tr.event-row {
         padding-right: 4.875rem;
     }
 }
-/*===== Small screens - drops below Carousel on page */
+/*=== Small screens - drops below Carousel on page */
 @media (max-width: 48em) {
     .home-content {
         position: relative;
@@ -3177,8 +3173,10 @@ tr.event-row {
     .home-tag-line {
         display: none;
     }
-}*/
+}
+*/
 
+/* OBSOLETE 
 .home-content-inner h2 {
     display: block;
     line-height: 1;
@@ -3186,26 +3184,32 @@ tr.event-row {
     background: transparent;
     margin: 0;
 }
+*/
 
+/*===== HOME TITLE */
 .home-title {
+    display: block;
+    margin: 0;
+    line-height: 1;
     font-size: 13rem;
     font-weight: 400;
+    background: transparent;
     color: var(--light-color);
     text-shadow: var(--dark-color) 0px 0px 10px;
 }
-
+/*=== X-Large screens */
 @media only screen and (max-width: 80em) {
     .home-title {
         font-size: 10rem;
     }
 }
-
+/*=== Large screens */
 @media only screen and (max-width: 64.0625em) {
     .home-title {
         font-size: 7.5rem;
     }
 }
-
+/*=== Small screens */
 @media only screen and (max-width: 48em) {
     .home-title {
         font-size: 2.5rem;
@@ -3214,22 +3218,24 @@ tr.event-row {
     }
 }
 
-
+/* OBSOLETE 
 @media only screen and (max-width: 48em) {
     .home-title + .home-btn {
         margin-top: .625rem;
     }
 }
-
 .home-content-inner .home-date {
     font-family: Arial, sans-serif;
 }
+*/
 
+/*===== HOME DATE */
 .home-date {
+    font-family: Arial, sans-serif;
     font-size: 1.5rem;
     margin: -.25rem 0 1.25rem;
 }
-
+/*=== Small screens */
 @media only screen and (max-width: 48em) {
     .home-date {
         color: var(--light-color);
@@ -3278,6 +3284,7 @@ tr.event-row {
 
 @media only screen and (max-width: 48em) {
     .home-content-inner .btn-primary {
+        margin-top: .625rem;
         font-size: .875rem;
         line-height: 1.7143;
         color: var(--dark-color);
@@ -3296,12 +3303,13 @@ tr.event-row {
     padding: 0;
     margin: 0;
 }
-/*===== Not visable on small screens */
+/*=== Not visable on small screens */
 @media only screen and (max-width:48em) {
     #home-nav {
         display: none;
     }
 }
+
 /*===== Dot format */
 #home-nav a {
     display: block;
@@ -3314,6 +3322,7 @@ tr.event-row {
     border-radius: 50%;
     cursor: pointer;
 }
+
 /*===== Dot hover, active, focus */
 #home-nav a:hover {
     background-color: var(--secondary-color);
