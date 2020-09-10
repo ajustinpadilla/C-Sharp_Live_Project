@@ -20,6 +20,10 @@ namespace TheatreCMS
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            // Needed for Bootstrap dropdowns and popovers
+            bundles.Add(new ScriptBundle("~/bundles/popper").Include(
+                    "~/Scripts/umd/popper.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 

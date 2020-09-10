@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -277,11 +278,45 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Photo photo = db.Photo.Find(id);
-            db.Photo.Remove(photo);
-            db.SaveChanges();
+
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                Photo photo = db.Photo.Find(id);
+
+                ProductionPhotos productionPhoto = db.ProductionPhotos.FirstOrDefault(x => x.PhotoId == photo.PhotoId);
+                if (productionPhoto != null)
+                {
+                    DbEntityEntry<ProductionPhotos> dbEntityEntry = db.Entry(productionPhoto);
+                    productionPhoto.PhotoId = null;
+                    dbEntityEntry.CurrentValues.SetValues(productionPhoto);
+                }
+                Production productions = db.Productions.FirstOrDefault(x => x.DefaultPhoto.PhotoId == photo.PhotoId);
+                if (productions != null)
+                {
+                    DbEntityEntry<Production> dbEntityEntry = db.Entry(productions);
+                    productions.DefaultPhoto = null;
+                    dbEntityEntry.CurrentValues.SetValues(productions);
+                }
+                Sponsor sponsors = db.Sponsors.FirstOrDefault(x => x.LogoId == photo.PhotoId);
+                if (sponsors != null)
+                {
+                    DbEntityEntry<Sponsor> dbEntityEntry = db.Entry(sponsors);
+                    sponsors.LogoId = null;
+                    dbEntityEntry.CurrentValues.SetValues(sponsors);
+                }
+                CastMember cast = db.CastMembers.FirstOrDefault(x => x.PhotoId == photo.PhotoId);
+                if (cast != null)
+                {
+                    DbEntityEntry<CastMember> dbEntityEntry = db.Entry(cast);
+                    cast.PhotoId = null;
+                    dbEntityEntry.CurrentValues.SetValues(cast);
+                }
+                db.Photo.Remove(photo);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
+
 
         [AllowAnonymous]
         protected override void Dispose(bool disposing)
@@ -292,7 +327,11 @@ namespace TheatreCMS.Controllers
             }
             base.Dispose(disposing);
         }
-
+        /// <summary>
+        /// Find the dependencies for a photo and to allow them to be displayed on the details and edit views.  
+        /// </summary>
+        /// <param name="Id">The Id of the photo that can be used to find the dependencies.</param>
+        /// <returns>Photo Dependencies View Model</returns>
         public static PhotoDependenciesVm FindDependencies(int? Id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -310,19 +349,23 @@ namespace TheatreCMS.Controllers
                 {
                     photoDependencies.Sponsors.Add(sponsorEntity);                                                           //Adds sponsor object to sponsors list inside ViewModel
                 }
-                var productionEntity = db.ProductionPhotos.FirstOrDefault(photo => photo.PhotoId == photoEntity.PhotoId);    //Declaring production object from photo object
-                if (productionEntity != null && productionEntity.PhotoId == photoEntity.PhotoId)                             //Checks if there is a production, and if the prod photo id matches
+                var productionPhotoEntity = db.ProductionPhotos.FirstOrDefault(photo => photo.PhotoId == photoEntity.PhotoId);    //Declaring production object from photo object
+                if (productionPhotoEntity != null && productionPhotoEntity.PhotoId == photoEntity.PhotoId)                             //Checks if there is a production, and if the prod photo id matches
                 {
-                    photoDependencies.ProductionPhotos.Add(productionEntity);                                                //Adds prod object to production list inside ViewModel
+                    photoDependencies.ProductionPhotos.Add(productionPhotoEntity);                                                //Adds prod object to production list inside ViewModel
                 }
-                photoDependencies.HasDependencies = false;
+                var castMemberEntity = db.CastMembers.FirstOrDefault(Photo => Photo.PhotoId == photoEntity.PhotoId);         //Declaring a cast member object using passed in Id.
+                if (castMemberEntity != null && castMemberEntity.PhotoId == photoEntity.PhotoId)                             //Check if there is a cast member if the Id finds a match
+                {
+                    photoDependencies.CastMembers.Add(castMemberEntity);                                                     //Add cast member object to list in the View Model
+                }
                 //Final check for dependencies. If either sponsorEntity or productionEntity are null an error is thrown, so an evaluation is necessary before comparing photo id's
-                if (sponsorEntity != null && photoEntity.PhotoId == sponsorEntity.LogoId || productionEntity != null && photoEntity.PhotoId == productionEntity.PhotoId)
+                if (sponsorEntity != null && photoEntity.PhotoId == sponsorEntity.LogoId || productionPhotoEntity != null && photoEntity.PhotoId == productionPhotoEntity.PhotoId || castMemberEntity != null && photoEntity.PhotoId == castMemberEntity.PhotoId)
                 {
                     photoDependencies.HasDependencies = true;
                 }
                 int season;
-                if (productionEntity != null) season = productionEntity.Production.Season;                                   //Gets the producton's season before closing the connection to the database
+                if (productionPhotoEntity != null) season = productionPhotoEntity.Production.Season;                                   //Gets the producton's season before closing the connection to the database
                 return photoDependencies;
             }
             

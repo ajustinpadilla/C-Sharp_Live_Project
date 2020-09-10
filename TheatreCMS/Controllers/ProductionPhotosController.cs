@@ -48,9 +48,17 @@ namespace TheatreCMS.Models
         }
 
         // GET: ProductionPhotos/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            if (id == null)
+            {
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+            }
+            else
+            {
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title", Convert.ToInt32(id));
+            }
+            
             return View();
         }
 
@@ -163,8 +171,6 @@ namespace TheatreCMS.Models
         public ActionResult DeleteConfirmed(int id)
         {
             ProductionPhotos productionPhotos = db.ProductionPhotos.Find(id);
-            Production production = db.Productions.Find(productionPhotos.Production.ProductionId);
-            production.DefaultPhoto = null;
             db.ProductionPhotos.Remove(productionPhotos);
             db.SaveChanges();
             return RedirectToAction("Index");

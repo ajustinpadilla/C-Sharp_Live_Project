@@ -185,7 +185,7 @@ namespace TheatreCMS.Controllers
 
             if (ModelState.IsValid)
             {
-                int oldPhotoId = currentCastMember.PhotoId; // replace photo operation with photoid
+                int? oldPhotoId = currentCastMember.PhotoId; // replace photo operation with photoid
 
                 currentCastMember.Name = castMember.Name;
                 currentCastMember.YearJoined = castMember.YearJoined;

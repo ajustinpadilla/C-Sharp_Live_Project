@@ -22,10 +22,10 @@
 <!--Current Productions referencing database-->
 <div id="current-productions">
     <h4>Current Productions</h4>
-    <div class="card-deck bg-black">
+    <div class="card-deck mt-5 bg-black"> <!-- added mt-5 class to create spacing between header and content -->
         @{
-            var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
-            int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
+        var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
+        int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
 
             foreach (var item in Model)
             {
@@ -129,7 +129,7 @@
 
 <div id="future-productions">
     <h4>Future Productions</h4>
-    <div class="card-deck bg-black">
+    <div class="card-deck mt-5 bg-black"> <!-- added mt-5 class to create spacing between header and content -->
         @{
             foreach (var item in Model)
             {

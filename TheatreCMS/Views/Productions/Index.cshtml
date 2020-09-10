@@ -331,8 +331,9 @@
                 @* Removed table with Current Show property, World Premier property and checkboxes *@
                 @if (User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 px-3" }); <!-- removed spaced-button-1, replaced with Bootstrap classes to match original alignment and size -->
-                    @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 ml-3" }); <!-- removed spaced-button-2, replaced with Bootstrap classes to match original alignment and size -->
+                    @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main" });
+                    @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 px-3" });
+                    @Html.ActionLink("Add Photos", "Create", "ProductionPhotos", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 ml-3" });
                 }
             </div>
             </div>
