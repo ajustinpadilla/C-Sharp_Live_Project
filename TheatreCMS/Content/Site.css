@@ -3035,6 +3035,10 @@ tr.event-row {
     position: relative;
     overflow: hidden;
 }
+/*=== Carousel nav buttons */
+.home-carousel-nav {
+    z-index: 2;
+}
 
 /*===== TINT PHOTO OVERLAY - visable only on large screens */
 .home-tint-overlay {
@@ -3055,7 +3059,7 @@ tr.event-row {
     }
 }
 
-/*===== Photo Carousel - - OBSOLETE 
+/*===== Photo - OBSOLETE 
 .home-inner {
     position: relative;
     overflow: hidden;
@@ -3112,7 +3116,7 @@ tr.event-row {
     text-align: center;
     color: #fff;
     margin-bottom: 2.5rem;
-    z-index: 100;
+    z-index: 1;
     width: 100%;
     max-width: 92rem;
     margin-left: auto;
@@ -3154,6 +3158,64 @@ tr.event-row {
     width: 100%;
 }
 
+/*===== PRODUCTION TITLE */
+.home-title {
+    display: block;
+    margin: 0;
+    line-height: 1;
+    font-size: 13rem;
+    font-weight: 400;
+    background: transparent;
+    color: var(--light-color);
+    text-shadow: var(--dark-color) 0px 0px 10px;    
+}
+/*=== X-Large screens */
+@media only screen and (max-width: 80em) {
+    .home-title {
+        font-size: 10rem;
+    }
+}
+/*=== Large screens */
+@media only screen and (max-width: 64.0625em) {
+    .home-title {
+        font-size: 7.5rem;
+    }
+}
+/*=== Small screens */
+@media only screen and (max-width: 48em) {
+    .home-title {
+        font-size: 2.5rem;
+        color: var(--light-color);
+        margin-bottom: 0 !important;
+    }
+}
+
+/*===== PRODUCTION DATE */
+.home-date {
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    margin: -.25rem 0 1.25rem;
+}
+/*=== Small screens */
+@media only screen and (max-width: 48em) {
+    .home-date {
+        color: var(--light-color);
+        font-size: .875rem;
+        margin: 0 0 .25rem;
+    }
+}
+
+/* OBSOLETE 
+@media only screen and (max-width: 48em) {
+    .home-title + .home-btn {
+        margin-top: .625rem;
+    }
+}
+.home-content-inner .home-date {
+    font-family: Arial, sans-serif;
+}
+*/
+
 /*===== home-tag-line - OBSOLETE 
 .home-tag-line {
     margin-bottom: -2.5rem;
@@ -3186,65 +3248,8 @@ tr.event-row {
 }
 */
 
-/*===== HOME TITLE */
-.home-title {
-    display: block;
-    margin: 0;
-    line-height: 1;
-    font-size: 13rem;
-    font-weight: 400;
-    background: transparent;
-    color: var(--light-color);
-    text-shadow: var(--dark-color) 0px 0px 10px;
-}
-/*=== X-Large screens */
-@media only screen and (max-width: 80em) {
-    .home-title {
-        font-size: 10rem;
-    }
-}
-/*=== Large screens */
-@media only screen and (max-width: 64.0625em) {
-    .home-title {
-        font-size: 7.5rem;
-    }
-}
-/*=== Small screens */
-@media only screen and (max-width: 48em) {
-    .home-title {
-        font-size: 2.5rem;
-        color: var(--light-color);
-        margin-bottom: 0 !important;
-    }
-}
-
-/* OBSOLETE 
-@media only screen and (max-width: 48em) {
-    .home-title + .home-btn {
-        margin-top: .625rem;
-    }
-}
-.home-content-inner .home-date {
-    font-family: Arial, sans-serif;
-}
-*/
-
-/*===== HOME DATE */
-.home-date {
-    font-family: Arial, sans-serif;
-    font-size: 1.5rem;
-    margin: -.25rem 0 1.25rem;
-}
-/*=== Small screens */
-@media only screen and (max-width: 48em) {
-    .home-date {
-        color: var(--light-color);
-        font-size: .875rem;
-        margin: 0 0 .25rem;
-    }
-}
-
-.home-content-inner .btn-primary {
+/*===== PRODUCTION DETAILS BUTTON */
+.home-content .btn-primary {
     display: inline-block;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -3261,29 +3266,25 @@ tr.event-row {
     color: var(--light-color);
     border: 1px solid var(--main-bg-color);
 }
-
-    .home-content-inner .btn-primary:focus {
-        background-color: rgba(0, 0, 0, .6);
-        color: var(--main-bg-color);
-        border: 1px solid var(--main-bg-color);
-        box-shadow: none;
-    }
-
-
-    .home-content-inner .btn-primary:active:hover {
-        background-color: rgba(0, 0, 0, .6);
-        color: var(--main-bg-color);
-        border: 1px solid var(--main-bg-color);
-        box-shadow: none !important;
-    }
-
-    .home-content-inner .btn-primary:hover {
-        background-color: rgba(219, 26, 17, .7);
-    }
-
-
+/*=== Button focus, hover, active */
+.home-content .btn-primary:focus {
+    background-color: rgba(0, 0, 0, .6);
+    color: var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+    box-shadow: none;
+}
+.home-content .btn-primary:active:hover {
+    background-color: rgba(0, 0, 0, .6);
+    color: var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+    box-shadow: none !important;
+}
+.home-content .btn-primary:hover {
+    background-color: rgba(219, 26, 17, .7);
+}
+/*=== Small screens */
 @media only screen and (max-width: 48em) {
-    .home-content-inner .btn-primary {
+    .home-content .btn-primary {
         margin-top: .625rem;
         font-size: .875rem;
         line-height: 1.7143;
@@ -3334,7 +3335,6 @@ tr.event-row {
     box-shadow: 0px 2px 0 0 var(--dark-color) !important;
     outline: 0;
 }
-
 /*========== End Homepage ==========*/
 
 /* Start Ribbons */
