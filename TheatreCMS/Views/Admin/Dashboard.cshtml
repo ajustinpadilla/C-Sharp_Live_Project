@@ -125,7 +125,7 @@
 <div id="admin-formspace">
     CURRENT SEASON:
     <br />
-
+    <div>@ViewData["nextSeasonNotification"]</div>
     <input type="number" name="Current_Season" value="@Html.DisplayFor(model => model.current_season)">
     <!--Add Alert Message for Season Error-->
     @Html.ValidationMessageFor(model => model.current_season, "", new { @class = "text-danger" })

@@ -44,6 +44,7 @@ namespace TheatreCMS.Controllers
             #region ViewData
             ViewData["ProductionList"] = productionList;
             ViewData["CurrentProductionList"] = GetCurrentProductions();
+            ViewData["nextSeasonNotification"] = NextSeasonNotification();
             #endregion
         }
             // ***OLD "SettingsUpdate" method, can be deleted once NEW one with tweaks (see below) has been reviewed - 2/18/2020, jc***
@@ -129,6 +130,37 @@ namespace TheatreCMS.Controllers
             AddViewData(currentAdminSettings);
 
             return View("Dashboard", currentAdminSettings);
+        }
+        //Sends message to view based on when the season is going to change.
+        public string NextSeasonNotification()
+        {
+            DateTime season = new DateTime(1996, 6, 1);
+            DateTime now = DateTime.Now.Date;
+            int nextSeasonNumber = AutoCalculateCurrentSeason() + 1;
+            DateTime nextSeason = new DateTime(season.Year + nextSeasonNumber, season.Month, season.Day);
+            TimeSpan daysBeforeNextSeason = nextSeason.Subtract(now);
+
+            if (now > nextSeason.AddMonths(-3))
+            {
+                //If season is going to change in 2 weeks or less, gives text on how many days until season change and what season its changing too.
+                if (daysBeforeNextSeason.Days < 15)
+                {
+                    string nextSeasonNotification = String.Format("Season {0} begins in {1} days", nextSeasonNumber, daysBeforeNextSeason.Days);
+                    return nextSeasonNotification;
+                }
+                //If season changes in 2 weeks - 3 months says what seasons its going to change too and on what date.
+                else
+                {
+                    string nextSeasonNotification = String.Format("Season {0} begins on {1}", nextSeasonNumber, nextSeason.ToShortDateString());
+                    return nextSeasonNotification;
+                }
+            }
+            //If the next season is further than 3 months don't display anything.
+            else
+            {
+                string nextSeasonNotification = "";
+                return nextSeasonNotification;
+            }
         }
 
         //Updates Changes in database depending on inputs from the Admin Settings form for recent_definition.
