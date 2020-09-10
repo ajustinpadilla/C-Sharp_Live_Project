@@ -3099,6 +3099,7 @@ tr.event-row {
     }
 }
 
+/*===== HOME CONTENT - Absolute position over photos, relative position for small screens */
 .home-content {
     position: absolute;
     bottom: 0;
@@ -3121,7 +3122,7 @@ tr.event-row {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-
+/*===== Large screens- In front of Carousel */
 @media only screen and (min-width: 48.0625em) {
     .home-content {
         max-width: 94rem;
@@ -3129,7 +3130,7 @@ tr.event-row {
         padding-right: 2rem;
     }
 }
-
+/*===== X-Large screens - In front of Carousel */
 @media only screen and (min-width: 64.125em) {
     .home-content {
         max-width: 99.75rem;
@@ -3137,7 +3138,7 @@ tr.event-row {
         padding-right: 4.875rem;
     }
 }
-
+/*===== Small screens - drops below Carousel on page */
 @media (max-width: 48em) {
     .home-content {
         position: relative;
@@ -3155,29 +3156,26 @@ tr.event-row {
     width: 100%;
 }
 
-
+/*===== home-tag-line - OBSOLETE 
 .home-tag-line {
     margin-bottom: -2.5rem;
     font-size: 1.25rem;
 }
-
 @media only screen and (max-width: 80em) {
     .home-tag-line {
         margin-bottom: -1.75rem;
     }
 }
-
 @media only screen and (max-width: 64.0625em) {
     .home-tag-line {
         margin-bottom: -1.25rem;
     }
 }
-
 @media only screen and (max-width: 48em) {
     .home-tag-line {
         display: none;
     }
-}
+}*/
 
 .home-content-inner h2 {
     display: block;
