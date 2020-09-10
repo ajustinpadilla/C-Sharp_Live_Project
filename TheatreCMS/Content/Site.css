@@ -2631,7 +2631,7 @@ a.dropdown-item:hover {
     /* Input Container: Input field, Category Dropdown, Search button*/
     .archive-input-container {
         margin: 0 auto;
-        width: 850px;
+        width: 650px;
         position: relative;
     }
 
@@ -3145,6 +3145,7 @@ a.dropdown-item:hover {
     background-color: var(--main-bg-color);
     color: var(--light-color);
     border: 1px solid var(--main-bg-color);
+    transition: .5s;
 }
 
     .btn-main:focus {
@@ -3168,6 +3169,11 @@ a.dropdown-item:hover {
         color: var(--light-color);
         border: 1px solid var(--main-bg-color);
         opacity: .8;
+    }
+
+    .btn-main:disabled { /* removes hover effects and cursor changes for disabled buttons */
+        cursor: default;
+        pointer-events: none;
     }
 
 @media only screen and (max-width: 48em) {
