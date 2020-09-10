@@ -3034,6 +3034,8 @@ tr.event-row {
     border: none;
     outline: 0;
     vertical-align: baseline;
+    position: relative;
+    overflow: hidden;
 }
 
 /*===== Photo Carousel - position, overflow */
