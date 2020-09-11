@@ -3667,7 +3667,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     -ms-flex: 1 0 0%;
     flex: 1 0 0%;
     margin-right: 15px;
-    margin-bottom: 2px;
+    margin-bottom: 15px;
     margin-left: 15px;
     position: relative;
     word-wrap: break-word;
@@ -3688,7 +3688,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     border-radius: 20px;
     margin-left: 1.5px;
     margin-right: 1.5px;
-   /* margin-bottom: 4px; */
+  
 }
 
 .part-overlay .btn-light a {
