@@ -224,53 +224,57 @@
           }
         </div>
 
-          <!-- Parts Card Section visible when screen size small -->
-          <!--===================================================
-          The below refactors the parts section for a small screen
-          ===================================================-->
+        <!-- Parts Card Section visible when screen size small -->
+        <!--===================================================
+        The below refactors the parts section for a small screen
+        ===================================================-->
 
 
-          <div class="card bg-info d-md-none" id="cardss">
-            <!-- when screen size is md or bigger this will not display. So when screen size is sm/mobile view it will be visible but otherwise hidden -->
-            <div class="card-header text-white" id="head">
-              <b>Parts</b>
-            </div>
-            <ul class="list-group list-group-flush text-black-50">
-              @{var part1 = new TheatreCMS.Enum.PositionEnum();}
-              @{List<TheatreCMS.Models.Part> parts1 = new List<TheatreCMS.Models.Part>();}
-              @foreach (int position in ViewBag.Positions)
-              {
-                parts1.Clear();
-                part1 = (TheatreCMS.Enum.PositionEnum)position;
-                parts1 = Model.Parts.Where(x => x.Type == part1).ToList();
-                if (parts1 != null && parts1.Any())
-                {
-              <li class="list-group-item">
-               @(part1)s
-              <dl>
-              @foreach (var item in parts1)
-              {
-              if (item != null && part1.ToString() == "Actor")
-              {
-              <dd class="col">
-              <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-              </dd> if (item.Person != null)
-                      {
-              <dd class="col">
-              <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID"><i>@item.Person.Name.ToString()</i></a></p>
-              </dd> }
-                    }
-                    else if (item != null)
-                    {
-              <dd class="col">
-                <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
-              </dd>}
-                  }
-              </dl>
-              </li>}
-              }
-            </ul>
+        <div class="card bg-info d-md-none" id="cardss">
+          <!-- when screen size is md or bigger this will not display. So when screen size is sm/mobile view it will be visible but otherwise hidden -->
+          <div class="card-header text-white" id="head">
+            <b>Parts</b>
           </div>
+          <ul class="list-group list-group-flush text-black-50">
+            @{var part1 = new TheatreCMS.Enum.PositionEnum();}
+            @{List<TheatreCMS.Models.Part> parts1 = new List<TheatreCMS.Models.Part>();}
+            @foreach (int position in ViewBag.Positions)
+            {
+              parts1.Clear();
+              part1 = (TheatreCMS.Enum.PositionEnum)position;
+              parts1 = Model.Parts.Where(x => x.Type == part1).ToList();
+              if (parts1 != null && parts1.Any())
+              {
+                <li class="list-group-item">
+                  @(part1)s
+                  <dl>
+                    @foreach (var item in parts1)
+                    {
+                      if (item != null && part1.ToString() == "Actor")
+                      {
+                        <dd class="col">
+                          <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                        </dd>
+                        if (item.Person != null)
+                        {
+                          <dd class="col">
+                            <p class="prod-details-actor-info"> played by <a class="prod-details-actor-info-link" href="/CastMembers/Details/@item.Person.CastMemberID"><i>@item.Person.Name.ToString()</i></a></p>
+                          </dd>
+                        }
+                      }
+                      else if (item != null)
+                      {
+                        <dd class="col">
+                          <a href="/Part/Details/@item.PartID">@Html.Raw(@item.Character)</a>
+                        </dd>
+                      }
+                    }
+                  </dl>
+                </li>
+              }
+            }
+          </ul>
+        </div>
       </div>
     </div>
   </div>
