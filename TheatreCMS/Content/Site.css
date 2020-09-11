@@ -1303,7 +1303,7 @@ div.magnify:hover {
     margin-left: 3em;
     margin-right: 3em;
     border: 1px solid #007bff;
-    border-color: #007bff;
+    border-color: var(--main-bg-color);
 }
 
 .results {
@@ -1312,7 +1312,7 @@ div.magnify:hover {
 
     .results th {
         font-size: 22px;
-        color: #007bff
+        color: var(--main-secondary-color);
     }
 
     .results a {
@@ -2655,7 +2655,7 @@ a.dropdown-item:hover {
             height: 50px;
             margin: 0px;
             padding: 12.5px 20px 12.5px 20px;
-            background-color: #007bff;
+            background-color: var(--main-bg-color);
             color: var(--light-color);
             text-align: center;
             position: absolute;
