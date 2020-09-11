@@ -210,15 +210,15 @@
             if (ActiveProductions >= DateTime.Today || Model.IsCurrent)
             {
               <div class="card text-center bg-white text-black-50" id="cardss">
-                <div class="card-body">
-                  <h5 class="card-title">Where To Buy?</h5>
-                  <p class="card-text">
-                    <dl>
-                      <dd class="col">Get your tickets online! at @Html.DisplayFor(model => model.TicketLink)</dd>
-                    </dl>
-                  </p>
-                  <a href="#" class="btn btn-primary">buy now</a>
-                </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Where To Buy?</h5>
+                                <p class="card-text">
+                                    <dl>
+                                        <dd class="col">Get your tickets online! at @Html.DisplayFor(model => model.TicketLink)</dd>
+                                    </dl>
+                                </p>
+                                <a href="#" class="btn btn-main">buy now</a> <!-- btn-main originally btn-primary, save for possible reversion -->
+                            </div>
               </div>
             }
           }
