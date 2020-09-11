@@ -21,7 +21,7 @@ namespace TheatreCMS.Models
         //Photo attribute needs work in the Create() action of the CastMemembersController
         /* public byte[] Photo { get; set; } */              // cast member photo
 
-        public int PhotoId { get; set; }
+        public int? PhotoId { get; set; }
         
 
 
