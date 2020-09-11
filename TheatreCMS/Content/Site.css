@@ -3787,28 +3787,53 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 }
 
 .part-overlay {
-    transition: .3s ease;
     opacity: 0;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 100%;
-    width: 100%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-    background-color: rgba(240, 77, 68, .5);
-    border-radius: 25px;
+    border-radius: 15px;
+    height: 350px;
+    min-width: 250px;
+    max-width: 280px;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    position: relative;
+    word-wrap: break-word;
+    background-clip: border-box;
 }
+
 /*opaque overlay for card hover*/
 .part-cardHover:hover .part-overlay {
     opacity: 1;
 }
 
+.part-overlay .btn-light {
+    transition: .25s;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    text-align: center;
+    background-color: var(--main-secondary-color);
+    border-radius: 20px;
+    margin-left: 1.5px;
+    margin-right: 1.5px;
+  
+}
+
+.part-overlay .btn-light a {
+    color: white;  
+    text-decoration: none;
+}
+
+.part-overlay:hover .btn-light:hover {
+    background-color: var(--main-bg-color);
+} 
+
+
 /*card formatting for part page*/
 .part-card {
-    color: white;
-    background-color: #bd1a11;
+    transition-duration: .33s;
+    background-color: var(--main-bg-color);
     border-radius: 25px;
     height: 350px;
     min-width: 250px;
@@ -3827,6 +3852,12 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
 }
+
+    .part-card:hover, .part-card:active {
+        transform: scale(1.05);
+        background-color: var(--main-secondary-color);
+    }
+
 
 /*custom card-deck formatting that allows custom format for screens < 575px*/
 .part-card-deck {

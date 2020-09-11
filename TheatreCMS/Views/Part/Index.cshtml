@@ -77,15 +77,20 @@
                 <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
                 <p class="bold mt-1 mb-0 text-center">Details</p>
                 <p class="card-text ml-3 mr-3 part-details-elipsis">@Html.DisplayFor(modelItem => (item.Details))</p>
+
                 <!--Card overlay for edit tools-->
                 <div class="part-overlay mask d-flex align-items-end justify-content-center">
+
+                    
                     <!--condition to look for admin authority and give access to edit options for cards-->
                     @if (User.IsInRole("Admin"))
                     {
-                        <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </span>
-                        <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </span>
-                        <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </span>
+                        <button class="btn btn-light">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </button>
+                        <button class="btn btn-light">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </button>
+                        <button class="btn btn-light">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </button>
                     }
+                    
+                   
                 </div>
             </div>
         </div>
