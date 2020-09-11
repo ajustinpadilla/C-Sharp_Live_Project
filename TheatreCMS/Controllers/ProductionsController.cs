@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TheatreCMS.Controllers;
 using TheatreCMS.Helpers;
 using TheatreCMS.Models;
 using TheatreCMS.ViewModels;
-using System.Globalization;
 
 namespace TheatreCMS.Controllers
 {
@@ -83,7 +81,7 @@ namespace TheatreCMS.Controllers
                     isSearching = true;
                 }
             }
-            //Comapare values passed from view to values in productions
+            //Compare values passed from view to values in productions
             if (!String.IsNullOrEmpty(searchString))
             {
                 productions = productions.Where(p => p.Title.Contains(searchString) || p.Playwright.Contains(searchString) || p.Description.Contains(searchString));
@@ -161,7 +159,7 @@ namespace TheatreCMS.Controllers
             return View(current.ToList());
         }
 
-        // GET: Productions/Details/5
+        // GET: Productions/Details/id
         public ActionResult Details(int? id)
         {
 
@@ -169,7 +167,7 @@ namespace TheatreCMS.Controllers
 
             if (id == null)
             {
-                id = adminSettings.onstage;
+                id = adminSettings.on_stage;
             }
             Production production = db.Productions.Find(id);
             if (production == null)
@@ -279,7 +277,7 @@ namespace TheatreCMS.Controllers
         }
 
 
-        // GET: Productions/Delete/5
+        // GET: Productions/Delete/id
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
@@ -295,14 +293,58 @@ namespace TheatreCMS.Controllers
             return View(production);
         }
 
-        // POST: Productions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        // Productions/Delete/id
+        public ActionResult DeleteProduction(int id)
         {
-            Production production = db.Productions.Find(id);
-            db.Productions.Remove(production);
+            Production prod = db.Productions.Find(id);
+            Part[] parts = prod.Parts.ToArray();
+            CalendarEvent[] calEvents = prod.Events.ToArray();
+            ProductionPhotos[] productionPhotos = prod.ProductionPhotos.ToArray();
+            IQueryable prodAwards = db.Awards.Where(a => a.ProductionId == prod.ProductionId);
+
+           
+            foreach (Award prodAward in prodAwards) db.Awards.Remove(prodAward);
+            foreach (Part part in parts) db.Parts.Remove(part);
+            foreach (CalendarEvent calEvent in calEvents) db.CalendarEvent.Remove(calEvent);
+            foreach (ProductionPhotos prodPhoto in productionPhotos) db.ProductionPhotos.Remove(prodPhoto);
             db.SaveChanges();
+
+            db.Productions.Remove(prod);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        // Productions/Delete/id including all dependencies
+        public ActionResult DeleteProductionWithPhotos(int id)
+        {
+
+            Production prod = db.Productions.Find(id);
+            ProductionPhotos[] productionPhotos = prod.ProductionPhotos.ToArray();
+            Part[] parts = prod.Parts.ToArray();
+            CalendarEvent[] calEvents = prod.Events.ToArray();
+            IQueryable prodAwards = db.Awards.Where(a => a.ProductionId == prod.ProductionId);
+
+            var photos = new List<Photo>();
+            for (int i = 0; i < productionPhotos.Length; i++)
+            {
+                int? photoId = productionPhotos[i].PhotoId;
+                Photo photoQuery = db.Photo.Find(photoId);
+                photos.Add(photoQuery);
+            }
+
+            foreach (ProductionPhotos prodPhoto in productionPhotos) db.ProductionPhotos.Remove(prodPhoto);
+            foreach (Part part in parts) db.Parts.Remove(part);
+            foreach (CalendarEvent calEvent in calEvents) db.CalendarEvent.Remove(calEvent);
+            foreach (Award prodAward in prodAwards) db.Awards.Remove(prodAward);
+            db.SaveChanges();
+
+            foreach (Photo photo in photos) db.Photo.Remove(photo);
+            db.SaveChanges();
+
+            db.Productions.Remove(prod);
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -317,8 +359,7 @@ namespace TheatreCMS.Controllers
 
         private Dictionary<int, string> SeasonYears()
         {
-            var currentSettings = AdminSettingsReader.CurrentSettings();
-            var currentSeason = currentSettings.current_season;
+            var currentSeason = AdminSettingsReader.CurrentSettings().current_season;
             int latestYear = DateTime.Now.Year;
             int currentMonth = DateTime.Now.Month;
             if (currentMonth >= 6) //Seasons last from June - June, if True current season must display latest year as current year + 1

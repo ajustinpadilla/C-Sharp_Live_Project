@@ -27,12 +27,12 @@ namespace TheatreCMS.Models
         public DateTime ClosingDay { get; set; }    // production closing day
 
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         [Display(Name = "Evening Showtime")]
         public DateTime? ShowtimeEve { get; set; }  // production evening showtime
 
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         [Display(Name = "Matinee Showtime")]
         public DateTime? ShowtimeMat { get; set; }  // production matinee showtime
 
