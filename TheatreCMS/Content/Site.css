@@ -3667,7 +3667,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     -ms-flex: 1 0 0%;
     flex: 1 0 0%;
     margin-right: 15px;
-    margin-bottom: 0;
+    margin-bottom: 2px;
     margin-left: 15px;
     position: relative;
     word-wrap: break-word;
@@ -3684,27 +3684,27 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     font-family: 'Times New Roman', Times, serif;
     color: white;
     text-align: center;
-    background-color: #f04d44; 
-    border-radius: 15px;
+    background-color: var(--main-secondary-color);
+    border-radius: 20px;
     margin-left: 1.5px;
     margin-right: 1.5px;
-    margin-bottom: 4px;
+   /* margin-bottom: 4px; */
 }
 
 .part-overlay .btn-light a {
     color: white;  
     text-decoration: none;
-} 
+}
 
 .part-overlay:hover .btn-light:hover {
-    background-color: #bd1a11;
+    background-color: var(--main-bg-color);
 } 
 
 
 /*card formatting for part page*/
 .part-card {
     transition-duration: .33s;
-    background-color: #bd1a11;
+    background-color: var(--main-bg-color);
     border-radius: 25px;
     height: 350px;
     min-width: 250px;
@@ -3724,10 +3724,9 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.part-card:hover, .part-card:active {
+    .part-card:hover, .part-card:active {
         transform: scale(1.05);
-        background-color: #F04D44;
-
+        background-color: var(--main-secondary-color);
     }
 
 
