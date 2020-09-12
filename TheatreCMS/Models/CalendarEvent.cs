@@ -23,7 +23,7 @@ namespace TheatreCMS.Models
         public string ClassName { get; set; }       // (remove)
         public string SomeKey { get; set; }         // (remove)
         public bool AllDay { get; set; }            // all day event
-
+  
         public int? ProductionId { get; set; }      // Id for associated production
 
         public int? RentalRequestId { get; set; }   // Id for associated rental request

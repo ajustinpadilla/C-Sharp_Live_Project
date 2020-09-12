@@ -4,43 +4,43 @@
 @{
     ViewBag.Title = "Part";
 }
-
-<h2 class="ml-5 mb-3 mt-4">Part</h2>
-<div class="container ml-5 mb-3 mt-4">
-    <div class="row">
-
-        <h6 class="mb-0">Filter By...</h6>
-
-    </div>
-    <div class="row">
-        @* The HTML helper creates a form and when the form is submitted it calls the Index() method from PartController. *@
-        @using (Html.BeginForm("Index", "Part", FormMethod.Post, new { @id = "partsForm" }))
-        {
-            // Creates a drop down list referencing the information from ViewData dictionary, which contains 'ProductionsID' key. The value that is selected is submitted onchange.
-            @Html.DropDownList("ProductionsID", (IEnumerable<SelectListItem>)null, "All Productions", new { @class = "col-5 col-md-3 text-muted mr-3", @onchange = "document.getElementById('partsForm').submit();" })
-
-            @Html.DropDownList("CastMembersID", (IEnumerable<SelectListItem>)null, "All Cast Members", new { @class = "col-5 col-md-3 text-muted mr-3", @onchange = "document.getElementById('partsForm').submit();" })
-
-            @Html.DropDownList("Roles", (IEnumerable<SelectListItem>)null, "All Roles", new { @class = "col-5 col-md-3 text-muted", @onchange = "document.getElementById('partsForm').submit();" })
-        }
-
-
-    </div>
-
-    <div class="row">
-        <h6 class="mt-0">
-            @Html.ActionLink("Reset Filters", "ResetFilters")
-        </h6>
-    </div>
-
-
+@*Modified te code to alter the display of the following section between nav and create new to be centered*@
+<h2 class="mx-auto mb-3 mt-4 text-center">Part</h2>
+<div class="table-responsive">
+    <table class="table-borderless mx-auto w-auto">
+        <tbody>
+            <tr>
+                <td class="text-left">Filter By...</td>
+            </tr>
+            <tr>
+                <td>
+                    @*The HTML helper creates a form and when the form is submitted it calls the Index() method from PartController.*@
+                    @*Had to apply a row to the form and move the col to a div o get the drop downs spaces out and adjusted the margis to pull top and bottm closer*@
+                    @using (Html.BeginForm("Index", "Part", FormMethod.Post, new { @id = "partsForm", @class = "row mx-auto mt-n2 mb-n3" }))
+                    {
+                        // Creates a drop down list referencing the information from ViewData dictionary, which contains 'ProductionsID' key. The value that is selected is submitted onchange.
+                        <div class="col-4 px-0">
+                            @Html.DropDownList("ProductionsID", (IEnumerable<SelectListItem>)null, "All Productions", new { @class = "text-muted", @onchange = "document.getElementById('partsForm').submit();" })
+                        </div>
+                        <div class="col-4">
+                            @Html.DropDownList("CastMembersID", (IEnumerable<SelectListItem>)null, "All Cast Members", new { @class = "text-muted", @onchange = "document.getElementById('partsForm').submit();" })
+                        </div>
+                        <div class="col-4 px-0">
+                            @Html.DropDownList("Roles", (IEnumerable<SelectListItem>)null, "All Roles", new { @class = "text-muted", @onchange = "document.getElementById('partsForm').submit();" })
+                        </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">@Html.ActionLink("Reset Filters", "ResetFilters")</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 
 
 <div class="container ml-5 mb-3">
-   
-
 
     <div class="row">
         @if (User.IsInRole("Admin"))
@@ -77,15 +77,20 @@
                 <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
                 <p class="bold mt-1 mb-0 text-center">Details</p>
                 <p class="card-text ml-3 mr-3 part-details-elipsis">@Html.DisplayFor(modelItem => (item.Details))</p>
+
                 <!--Card overlay for edit tools-->
                 <div class="part-overlay mask d-flex align-items-end justify-content-center">
+
+                    
                     <!--condition to look for admin authority and give access to edit options for cards-->
                     @if (User.IsInRole("Admin"))
                     {
-                        <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </span>
-                        <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </span>
-                        <span class="badge badge-pill badge-light m-1">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </span>
+                        <button class="btn btn-light">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </button>
+                        <button class="btn btn-light">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </button>
+                        <button class="btn btn-light">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </button>
                     }
+                    
+                   
                 </div>
             </div>
         </div>

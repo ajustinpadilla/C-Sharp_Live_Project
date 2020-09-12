@@ -167,7 +167,7 @@ namespace TheatreCMS.Controllers
 
             if (id == null)
             {
-                id = adminSettings.onstage;
+                id = adminSettings.on_stage;
             }
             Production production = db.Productions.Find(id);
             if (production == null)
@@ -328,7 +328,7 @@ namespace TheatreCMS.Controllers
             var photos = new List<Photo>();
             for (int i = 0; i < productionPhotos.Length; i++)
             {
-                int photoId = productionPhotos[i].PhotoId;
+                int? photoId = productionPhotos[i].PhotoId;
                 Photo photoQuery = db.Photo.Find(photoId);
                 photos.Add(photoQuery);
             }
@@ -359,8 +359,7 @@ namespace TheatreCMS.Controllers
 
         private Dictionary<int, string> SeasonYears()
         {
-            var currentSettings = AdminSettingsReader.CurrentSettings();
-            var currentSeason = currentSettings.current_season;
+            var currentSeason = AdminSettingsReader.CurrentSettings().current_season;
             int latestYear = DateTime.Now.Year;
             int currentMonth = DateTime.Now.Month;
             if (currentMonth >= 6) //Seasons last from June - June, if True current season must display latest year as current year + 1

@@ -96,11 +96,17 @@ namespace TheatreCMS.Controllers
         {
             long sec = 10000000;        //DateTime ticks per second
             long hrSecs = 3600;         //Seconds in an hour
+            DateTime endOfCurrentDayDateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+            long endOfCurrentDate =  Convert.ToInt64(endOfCurrentDayDateTime.Ticks) / sec;
             long Strtm = Convert.ToInt64(rentalRequest.StartTime.Ticks) / sec;    //divided ticks into seconds
             long Endtm = Convert.ToInt64(rentalRequest.EndTime.Ticks) / sec;
             if (Endtm < (Strtm + hrSecs) && Endtm >= Strtm)    //Doesn't allow rentals < 1hr
             {
                 ModelState.AddModelError("EndTime", "** Rental must be at least 1 hour.  **");  
+            }
+            if (Strtm <= endOfCurrentDate)
+            {
+                ModelState.AddModelError("StartTime", "Date cannot occur before current date");
             }
             if (Endtm < Strtm)   //Keeps End time after start time
             {
