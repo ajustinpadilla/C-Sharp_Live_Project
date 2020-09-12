@@ -49,7 +49,7 @@
 
                     <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Search by category
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -57,7 +57,7 @@
                             <a class="dropdown-item" href="#Part">Part</a>
                             <a class="dropdown-item" href="#Production">Production</a>
                         </div>
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                        <button class="btn btn-main" type="submit">Search</button>
                     </div>
                 </div>
             </form>
@@ -501,7 +501,7 @@
         function changeSearchBtn() {
           if (window.matchMedia('(max-width: 899px)').matches) { @* matchMedia syncs with CSS media query *@
             $(".search-btn").each(function (i) {
-              $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
+              $(this).replaceWith('<button class="search-btn btn btn-main mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
             });
           } else {
             $(".mobile-search-btn").each(function (i) {
