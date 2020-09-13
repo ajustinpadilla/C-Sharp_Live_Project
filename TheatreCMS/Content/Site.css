@@ -3868,8 +3868,59 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     margin-right: -15px;
     margin-left: -15px;
 }
-/*END CSS for Admin Parts page*/
 
+/*========== PART CREATE ==========*/
+
+/*===== CARD - add part create style to Bootstrap base card */
+.card.part-create {
+    background-color: var(--main-bg-color);
+    border-radius: 25px;
+    outline-color: white;
+    min-width: 300px;
+    max-width: 550px;    
+}
+
+/*===== FORM CONTROL - add part create style to Bootstrap base */
+.form-control.part-create {
+    background-color: var(--main-secondary-color);
+    color: white;    
+}
+/*=== center align the value selected in the dropdown list */
+select.form-control.part-create {
+    text-align-last: center; 
+}
+
+/*===== DROPDOWN Placeholder option */
+select.form-control.part-create option[value=""] {
+    color: rgba(255,255,255,.4);
+}
+
+/*=== INPUT Placeholder color */
+.form-control.part-create::-webkit-input-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create::placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control:-ms-input-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control:-moz-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control::-moz-placeholder {
+    color: rgba(255,255,255,.4);
+}
+
+/*===== BUTTON - Submit under card */
+button.part-create {
+    max-width: 500px;
+    width: 90%;
+}
+
+
+/*---------- END Part Create ----------*/
+/*END CSS for Admin Parts page*/
 /*RentalCalendar CSS*/
 .calIcon {
     font-size: 30px;
