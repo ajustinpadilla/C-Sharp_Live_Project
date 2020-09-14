@@ -475,7 +475,7 @@
                                         @item.Title
                                         <span class="badge badge-pill badge-info">Season: @item.Season</span>
                                     </h5>
-                                    <p class="card-text pa-details-elipsis" id="desc">
+                                    <p class="card-text" id="desc">
                                         @*Limit Description to 30 words*@
                                         @{
                                             var finalText = " ";
@@ -485,25 +485,26 @@
                                             var numberOfWords = text3.Length;
                                          }
                                          @if (numberOfWords > 30)
-                                            {
-                                                foreach (var word in text3)
-                                                {
-                                                    finalText = finalText + word + " ";
-                                                }
-                                                @Html.Raw(finalText + '…');
-                                            }
-                                            else
-                                            {
-                                                @Html.Raw(text);
-                                            }
-                                          
+                                                     {
+                                                         for(int k=0; k<30; k++)
+                                                         {
+                                                             finalText = finalText + text3[k] + " ";
+                                                         }
+                                                         @Html.Raw(finalText + '…');
+                                                     }
+                                                     else
+                                                     {
+                                                         @Html.Raw(text);
+                                                     }
+
+
                                     </p>
 
                                     <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
                                 </div>
                             </div>
                                 }
-                            }
+                                         }
                         </div>
                     </div>
                 </div>
