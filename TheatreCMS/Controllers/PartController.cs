@@ -132,21 +132,26 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
         {
-            int productionID = Convert.ToInt32(Request.Form["Productions"]);
-            int castID = Convert.ToInt32(Request.Form["CastMembers"]);
-
+            int productionID = 0;
+            int castID = 0;
+            //=== Checking for default (placeholder) drowpdown values 
+            if (Request.Form["Productions"] != "" && Request.Form["CastMembers"] != "")
+            {
+                productionID = Convert.ToInt32(Request.Form["Productions"]);
+                castID = Convert.ToInt32(Request.Form["CastMembers"]);
+            }
             if (ModelState.IsValid)
             {
                 var person = db.CastMembers.Find(castID);
                 var production = db.Productions.Find(productionID);
-                
+
                 part.Production = production;
                 part.Person = person;
                 db.Parts.Add(part);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-
+            }                      
+            
             return View(part);
         }
 

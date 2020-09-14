@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-        
+    
     <div class="mt-4 container text-center">
         <!--===== TYPE =====-->
         <div class="form-row align-items-center justify-content-center form-group">
@@ -17,7 +17,7 @@
                 <h4>Creating a new</h4>
             </div>
             <div class="mx-2">
-                @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control", @onchange = "GetType()", @value = "" })
+                @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control", @onchange = "GetType()" })
                 <!-- if anything except Actor type is selected, the Character field will be read only -->
                 <script type="text/javascript">
                     function GetType() {
@@ -33,7 +33,7 @@
                     }
                     $(document).ready(GetType);
                 </script>
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-white" })
             </div>
             <div>
                 <h4>Part</h4>
