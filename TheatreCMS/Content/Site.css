@@ -2408,7 +2408,6 @@ tr.event-row {
 
 .arch-card-img {
     width: 100%;
-    height: 15vw;
     object-fit: contain;
 }
 
@@ -3869,6 +3868,40 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     margin-left: -15px;
 }
 /*END CSS for Admin Parts page*/
+
+/*CSS for Arcive View by Jeff Staab*/
+/*creates an elipsis if multi-line text is over 6 lines long.*/
+
+/*card formatting for Arcive page*/
+.pa-card {
+    background-color: black;
+    border-radius: 25px;
+    height: 470px;
+    min-width: 280px;
+    max-width: 320px;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    word-wrap: break-word;
+}
+
+/*custom card-deck formatting that allows custom format for screens < 575px*/
+.pa-card-deck {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+/*END CSS for Archive page*/
 
 /*RentalCalendar CSS*/
 .calIcon {

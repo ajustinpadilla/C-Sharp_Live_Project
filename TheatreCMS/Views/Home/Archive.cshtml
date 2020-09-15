@@ -22,10 +22,11 @@
 <!--Current Productions referencing database-->
 <div id="current-productions">
     <h4>Current Productions</h4>
-    <div class="card-deck mt-5 bg-black"> <!-- added mt-5 class to create spacing between header and content -->
+    <div class="card-deck mt-5 bg-black">
+        <!-- added mt-5 class to create spacing between header and content -->
         @{
-        var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
-        int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
+            var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
+            int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
 
             foreach (var item in Model)
             {
@@ -129,7 +130,8 @@
 
 <div id="future-productions">
     <h4>Future Productions</h4>
-    <div class="card-deck mt-5 bg-black"> <!-- added mt-5 class to create spacing between header and content -->
+    <div class="card-deck mt-5 bg-black">
+        <!-- added mt-5 class to create spacing between header and content -->
         @{
             foreach (var item in Model)
             {
@@ -449,13 +451,16 @@
                 <!-- Collapsable body -->
                 <div id="@currentBody" class="collapse" aria-labelledby="@currentHeading" data-parent="#pastProductions">
                     <div class="card-body">
-                        <div class="card-deck bg-black">
+                        <div class="ml-3 mr-3 justify-content-center pa-card-deck">
+                            @*Added custom deck*@
                             <!-- Iterate through Productions and populate cards-->
                             @foreach (var item in Model)
                             {
                                 if (item.Season == i)
                                 {
-                                    <div class="card bg-black">
+                                    <div class="mb-4 align-items-center pa-card">
+                                        @*Added custom card*@
+                                        @*Added custon card*@
                                         @if (item.DefaultPhoto != null)
                                         {
                                             <div class="embed-responsive-4by3">
@@ -474,9 +479,31 @@
                                                 @item.Title
                                                 <span class="badge badge-pill badge-info">Season: @item.Season</span>
                                             </h5>
-                                            <p class="card-text">
-                                                @Html.DisplayFor(modelItem => item.Description)
+                                            <p class="card-text" id="desc">
+                                                @*Limit Description to 30 words*@
+                                                @{
+                                                    var finalText = " ";
+                                                    var text = @item.Description;
+                                                    var text2 = text.Replace("  ", " ");
+                                                    var text3 = text2.Split(' ');
+                                                    var numberOfWords = text3.Length;
+                                                }
+                                                @if (numberOfWords > 30)
+                                                {
+                                                    for (int k = 0; k < 30; k++)
+                                                    {
+                                                        finalText = finalText + text3[k] + " ";
+                                                    }
+                                                    @Html.Raw(finalText + '…');
+                                                }
+                                                else
+                                                {
+                                                    @Html.Raw(text);
+                                                }
+
+
                                             </p>
+
                                             <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
                                         </div>
                                     </div>
