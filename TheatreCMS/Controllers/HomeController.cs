@@ -29,7 +29,9 @@ namespace TheatreCMS.Controllers
             {
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
-                boolUnread = db.Messages.Any(i => i.RecipientId == currentUser.Id && i.IsViewed == null);
+
+                if (currentUser != null) //IF statement added to accommodate TheatreCMS_B version
+                    boolUnread = db.Messages.Any(i => i.RecipientId == currentUser.Id && i.IsViewed == null);
                 
             }
             ViewData["unread"] = boolUnread;
