@@ -92,7 +92,7 @@
                         <div class="home-content-inner">
                             <h2 class="home-title">@item.Title</h2>
                             <p class="home-date">@item.OpeningDay.ToString("dddd, MMMM %d, yyyy") - @item.ClosingDay.ToString("dddd, MMMM %d, yyyy")</p>
-                            <a class="btn-primary" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">Details</a>
+                            <a class="btn-main" href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">Details</a>
                         </div>
                     </div>
                 </div>
