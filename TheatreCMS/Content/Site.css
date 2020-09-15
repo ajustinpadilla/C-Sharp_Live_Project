@@ -3287,6 +3287,7 @@ tr.event-row {
         pointer-events: none;
     }
 
+/*=== Small screens */
 @media only screen and (max-width: 48em) {
     .home-content-inner .btn-main {
         font-size: .875rem;
