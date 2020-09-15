@@ -3253,10 +3253,9 @@ tr.event-row {
     display: inline-block;
     font-weight: 400;
     margin-bottom: 1rem;
-    padding: .3rem 1rem ; /*made btn slightly wider */
+    padding: .5rem .5rem ;
     font-family: Arial;
     text-align: center;
-    text-transform:uppercase; /* made text to uppercase*/
     text-decoration: none;
     border-radius: .25rem;
     font-size: 1rem;
