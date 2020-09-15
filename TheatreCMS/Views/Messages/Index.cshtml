@@ -4,15 +4,49 @@
   ViewBag.Title = "Mailbox";
 }
 
+
+<style>
+  /* Placeholder for now */
+</style>
+
+@*@Html.AntiForgeryToken()*@
+
 <div class="messages-index container my-5 py-4">
 
-  <h4 class="mb-4 msg-title">Mailbox</h4>
+   
 
-    @* Search Form *@
-  <div class="search-form-container ml-4">
-    @using (Html.BeginForm("Index", "Messages", FormMethod.Post, new { @class = "search-bar-form" }))
+
+
+    <h4 class="mb-4">Mailbox</h4>
+
+    @if (ViewData["searchQuery"] != null)
     {
-      @Html.AntiForgeryToken()
+        <div class="mb-3">Showing search results for <b>@ViewData["searchQuery"]</b>. <span class="ml-1"><a href="@Url.Action("Index", "Messages")">Clear Search</a></span></div>
+    }
+
+
+
+    <!-- Nav tabs"-->
+
+    <ul class="nav nav-tabs justify-content-end" role="tablist" id="navTabs">
+
+        <li class="nav-item mr-1">
+
+            <a class="nav-link btn btn-main" id="compose" data-toggle="tab" href="#newMsg">Compose</a> <!-- btn-main originally btn-primary, save for possible reversion -->
+
+        </li>
+
+        <li class="nav-item mr-1">
+
+            <a class="nav-link btn fas fa-trash btn-danger msg-del-btn inactive" id="msg-delete" data-toggle="modal" data-target="#checkboxDeleteModal"></a>
+
+        </li>
+
+        @* Search Form *@
+        <li class="nav-item searchBar mr-auto">
+            @using (Html.BeginForm("Index", "Messages", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
 
       <div class="input-group">
         <input type="text" class="form-control m-0 searchBar" name="searchQuery" id="searchQuery" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
