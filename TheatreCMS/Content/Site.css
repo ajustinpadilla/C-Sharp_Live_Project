@@ -3889,6 +3889,10 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 select.form-control.part-create {
     text-align-last: center; 
 }
+/*=== hide element selectively from jQuery add/remove class method */
+.form-control.part-create.hide {
+    display: none;
+}
 
 /*===== DROPDOWN Placeholder option */
 select.form-control.part-create option[value=""] {
@@ -3902,13 +3906,13 @@ select.form-control.part-create option[value=""] {
 .form-control.part-create::placeholder {
     color: rgba(255,255,255,.4);
 }
-.form-control:-ms-input-placeholder {
+.form-control.part-create:-ms-input-placeholder {
     color: rgba(255,255,255,.4);
 }
-.form-control:-moz-placeholder {
+.form-control.part-create:-moz-placeholder {
     color: rgba(255,255,255,.4);
 }
-.form-control::-moz-placeholder {
+.form-control.part-create::-moz-placeholder {
     color: rgba(255,255,255,.4);
 }
 
