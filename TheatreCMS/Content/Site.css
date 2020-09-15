@@ -1310,7 +1310,7 @@ div.magnify:hover {
     margin-left: 3em;
     margin-right: 3em;
     border: 1px solid #007bff;
-    border-color: #007bff;
+    border-color: var(--main-bg-color);
 }
 
 .results {
@@ -1319,7 +1319,7 @@ div.magnify:hover {
 
     .results th {
         font-size: 22px;
-        color: #007bff
+        color: var(--main-secondary-color);
     }
 
     .results a {
@@ -2724,21 +2724,21 @@ tr.event-row {
 
     /* Search container for centering Input Container*/
     .archive-search-container {
-        display: flex;
+        display: flex;       
         justify-content: center;
-        align-items: center;
+        align-items: center;        
     }
 
     /* Input Container: Input field, Category Dropdown, Search button*/
     .archive-input-container {
         margin: 0 auto;
-        width: 850px;
+        width: 650px;
         position: relative;
     }
 
         /* Archive Search Text*/
         .archive-input-container input[type="text"] {
-            width: 600px;
+            width: 400px;
             height: 50px;
             padding: 12.5px 20px 12.5px 20px;
             margin: 8px 0px 8px 200px;
@@ -2756,7 +2756,7 @@ tr.event-row {
             height: 50px;
             margin: 0px;
             padding: 12.5px 20px 12.5px 20px;
-            background-color: #007bff;
+            background-color: var(--main-bg-color);
             color: var(--light-color);
             text-align: center;
             position: absolute;
@@ -3282,26 +3282,14 @@ tr.event-row {
         opacity: .8;
     }
 
-/*=== Button focus, hover, active */
-.home-content .btn-primary:focus {
-    background-color: rgba(0, 0, 0, .6);
-    color: var(--main-bg-color);
-    border: 1px solid var(--main-bg-color);
-    box-shadow: none;
-}
-.home-content .btn-primary:active:hover {
-    background-color: rgba(0, 0, 0, .6);
-    color: var(--main-bg-color);
-    border: 1px solid var(--main-bg-color);
-    box-shadow: none !important;
-}
-.home-content .btn-primary:hover {
-    background-color: rgba(219, 26, 17, .7);
-}
+    .btn-main:disabled { /* removes hover effects and cursor changes for disabled buttons */
+        cursor: default;
+        pointer-events: none;
+    }
+
 /*=== Small screens */
 @media only screen and (max-width: 48em) {
-    .home-content .btn-primary {
-        margin-top: .625rem;
+    .home-content-inner .btn-main {
         font-size: .875rem;
         line-height: 1.7143;
         color: var(--dark-color);
