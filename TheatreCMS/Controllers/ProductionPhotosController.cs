@@ -67,7 +67,7 @@ namespace TheatreCMS.Models
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "Title,Description")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
             int productionID = Convert.ToInt32(Request.Form["Production"]);
 
