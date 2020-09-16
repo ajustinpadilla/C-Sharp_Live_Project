@@ -277,6 +277,11 @@
                                     <td>
                                         <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
                                     </td>
+                                  </tr>
+                                  <tr><!--New row for playwright subtitle-->
+                                    <td>
+                                    <div align="left"><h9 class="card-subtitle text-muted font-italic">@item.Playwright</h9></div><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
+                                    </td>
                                 </tr>
                             </table>
 
@@ -373,21 +378,24 @@
                             }
                         }
                         <div class="card-body production-index-card-inner justify-content-center">
-                            <table>
-                                <!-- create a table to divide the line into two elements of different sizes-->
-                                <tr>
-                                    <!-- table has a single row corresponding to the title line-->
-                                    <td>
-                                        <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
-                                    </td>
-                                    <td>
-                                        <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
-                                    </td>
-                                </tr>
-                            </table>
-
-
-
+                          <table>
+                            <!-- create a table to divide the line into two elements of different sizes-->
+                            <tr>
+                              <!-- table has a single row corresponding to the title line-->
+                              <td>
+                                <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
+                              </td>
+                              <td>
+                                <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
+                              </td>
+                            </tr>
+                            <tr>
+                              <!--New row for playwright subtitle-->
+                              <td>
+                                <div align="left"><h9 class="card-subtitle text-muted font-italic">@item.Playwright</h9></div><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
+                              </td>
+                            </tr>
+                          </table>
 
                             @*<h5 class="card-title">
                                   @item.Title
@@ -474,39 +482,45 @@
                                                 <img src="~/Content/Images/Unavailable.png" class="card-img-top arch-card-img bg-black">
                                             </div>
                                         }
-                                        <div class="card-body">
-                                            @*<h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>*@
-                                            <h5 class="card-title">
-                                                @item.Title
-                                                <span class="badge badge-pill badge-info">Season: @item.Season</span>
-                                            </h5>
-                                            <p class="card-text" id="desc">
-                                                @*Limit Description to 30 words*@
-                                                @{
-                                                    var finalText = " ";
-                                                    var text = @item.Description;
-                                                    var text2 = text.Replace("  ", " ");
-                                                    var text3 = text2.Split(' ');
-                                                    var numberOfWords = text3.Length;
-                                                }
-                                                @if (numberOfWords > 30)
-                                                {
-                                                    for (int k = 0; k < 30; k++)
-                                                    {
-                                                        finalText = finalText + text3[k] + " ";
-                                                    }
-                                                    @Html.Raw(finalText + '…');
-                                                }
-                                                else
-                                                {
-                                                    @Html.Raw(text);
-                                                }
+                                    <div class="card-body">
+                                      @*<h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>*@
+                                      <h5 class="card-title">
+                                        @item.Title
+                                        <span class="badge badge-pill badge-info">Season: @item.Season</span>
+                                      </h5>
+                                      <tr>
+                                        <!--New row for playwright subtitle-->
+                                        <td>
+                                          <div align="left"><h9 class="card-subtitle text-muted font-italic">@item.Playwright</h9></div><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
+                                        </td>
+                                      </tr>
+                                      <p class="card-text" id="desc">
+                                        @*Limit Description to 30 words*@
+                                        @{
+                                          var finalText = " ";
+                                          var text = @item.Description;
+                                          var text2 = text.Replace("  ", " ");
+                                          var text3 = text2.Split(' ');
+                                          var numberOfWords = text3.Length;
+                                        }
+                                        @if (numberOfWords > 30)
+                                        {
+                                          for (int k = 0; k < 30; k++)
+                                          {
+                                            finalText = finalText + text3[k] + " ";
+                                          }
+                                          @Html.Raw(finalText + '…');
+                                        }
+                                        else
+                                        {
+                                          @Html.Raw(text);
+                                        }
 
 
-                                            </p>
+                                      </p>
 
-                                            <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
-                                        </div>
+                                      <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
+                                    </div>
                                     </div>
                                 }
                             }
