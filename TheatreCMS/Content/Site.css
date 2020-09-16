@@ -3247,13 +3247,20 @@ tr.event-row {
 }
 */
 
-/*===== PRODUCTION DETAILS BUTTON */
+/*===== SITE WIDE STYLING FOR BUTTONS =====*/
+/*=========================================
+        .btn-main is used as default styling for buttons across the site
+        Changes to this class will affect the whole site.
+        If you need to make a change for a specific use case, 
+        you can either do it with Bootstrap (preferred), or by applying additional classes or an ID.
+*/
+
 /*===Removed .home - content . btn primary == */
 .btn-main {
     display: inline-block;
     font-weight: 400;
     margin-bottom: 1rem;
-    padding: .5rem .5rem ;
+    padding: .5rem .5rem;
     font-family: Arial;
     text-align: center;
     text-decoration: none;
