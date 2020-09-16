@@ -278,12 +278,13 @@
                                         <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
                                     </td>
                                   </tr>
-                                  <tr><!--New row for playwright subtitle-->
-                                    <td>
-                                    <div align="left"><h9 class="card-subtitle text-muted font-italic">@item.Playwright</h9></div><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
-                                    </td>
-                                </tr>
-                            </table>
+                              </table>
+                                  <!--Adding playwright subtitle below season above item desc.-->
+                                    
+                           <p class="card-subtitle text-muted font-italic">@item.Playwright</p><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
+                                    
+                                
+                           
 
                             @*<h5 class="card-title">
                                 @item.Title
@@ -377,32 +378,28 @@
                                 </a>
                             }
                         }
-                        <div class="card-body production-index-card-inner justify-content-center">
-                          <table>
-                            <!-- create a table to divide the line into two elements of different sizes-->
-                            <tr>
-                              <!-- table has a single row corresponding to the title line-->
-                              <td>
-                                <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
-                              </td>
-                              <td>
-                                <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
-                              </td>
-                            </tr>
-                            <tr>
-                              <!--New row for playwright subtitle-->
-                              <td>
-                                <div align="left"><h9 class="card-subtitle text-muted font-italic">@item.Playwright</h9></div><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
-                              </td>
-                            </tr>
-                          </table>
+                    <div class="card-body production-index-card-inner justify-content-center">
+                      <table>
+                        <!-- create a table to divide the line into two elements of different sizes-->
+                        <tr>
+                          <!-- table has a single row corresponding to the title line-->
+                          <td>
+                            <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
+                          </td>
+                          <td>
+                            <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
+                          </td>
+                        </tr>
+                      </table>
+                      <!--Adding playwright subtitle-->
+                      <p class="card-subtitle text-muted font-italic">@item.Playwright</p><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
 
-                            @*<h5 class="card-title">
-                                  @item.Title
-                                  <span class="badge badge-pill badge-primary">Season: @item.Season</span>
-                                </h5>*@
-                            <p class="card-text">@item.Description</p>
-                        </div>
+                      @*<h5 class="card-title">
+      @item.Title
+      <span class="badge badge-pill badge-primary">Season: @item.Season</span>
+    </h5>*@
+                      <p class="card-text">@item.Description</p>
+                    </div>
                         @*<div class="card-footer align-bottom">
                                 <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
                             </div>*@
@@ -488,12 +485,11 @@
                                         @item.Title
                                         <span class="badge badge-pill badge-info">Season: @item.Season</span>
                                       </h5>
-                                      <tr>
-                                        <!--New row for playwright subtitle-->
-                                        <td>
-                                          <div align="left"><h9 class="card-subtitle text-muted font-italic">@item.Playwright</h9></div><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
-                                        </td>
-                                      </tr>
+                                   
+                                        <!--Adding in playwright subtitle-->
+                                     
+                                          <p class="card-subtitle text-muted font-italic">@item.Playwright</p><!--text-muted for the grey color, font-italic and card title for sizing/style. -->
+                                       
                                       <p class="card-text" id="desc">
                                         @*Limit Description to 30 words*@
                                         @{
