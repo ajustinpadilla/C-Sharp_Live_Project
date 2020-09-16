@@ -1036,6 +1036,9 @@ namespace TheatreCMS
             // create images first
             string imagesRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images");
 
+            // Image Unavailable photo
+            Image imageUnavailable = Image.FromFile(Path.Combine(imagesRoot, @"Unavailable.png"));
+
             Image image1 = Image.FromFile(Path.Combine(imagesRoot, @"hamilton1.png"));
             Image image2 = Image.FromFile(Path.Combine(imagesRoot, @"hamilton2.png"));
             Image image3 = Image.FromFile(Path.Combine(imagesRoot, @"phantom1.png"));
@@ -1151,6 +1154,13 @@ namespace TheatreCMS
 
             var photos = new List<Photo>
             {
+                new Photo
+                {
+                    OriginalHeight = imageUnavailable.Height,
+                    OriginalWidth = imageUnavailable.Width,
+                    PhotoFile = (byte[])converter.ConvertTo(imageUnavailable, typeof(byte[])),
+                    Title = "Photo Unavailable"
+                },
                 new Photo
                 {
                     OriginalHeight = image1.Height,
