@@ -19,181 +19,6 @@
     </div>
 </div>
 
-<!--Current Productions referencing database-->
-<div id="current-productions">
-    <h4>Current Productions</h4>
-    <div class="card-deck mt-5 bg-black"> <!-- added mt-5 class to create spacing between header and content -->
-        @{
-        var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
-        int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
-
-            foreach (var item in Model)
-            {
-                if (item.Season == currentSeason)
-                {
-                    <div class="card mx-auto archivecard bg-black">
-                        @{
-                            if (item.DefaultPhoto != null)
-                            {
-                                @*<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <img class="card-img-top production-index-img current-production-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Url.Action(item.Title)">
-                                    </a>*@
-
-                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <!-- reinsert current-production-img into <img> -->
-                                    <img class="card-img-top production-index-img current-production-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@item.Title"> <!-- replace Url.Action which displayed the link and not the string itself -->
-                                </a>
-                            }
-                            else
-                            {
-                                @*<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                      <img class="card-img-top production-index-img current-production-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Url.Action(item.Title)">
-                                    </a>*@
-
-                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <!-- reinsert current-production-img into <img> -->
-                                    <img class="card-img-top production-index-img current-production-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
-                                </a>
-                            }
-                        }
-                        <div class="card-body production-index-card-inner justify-content-center">
-                            <table>
-                                <!-- create a table to divide the line into two elements of different sizes-->
-                                <tr>
-                                    <!-- table has a single row corresponding to the title line-->
-                                    <td>
-                                        <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
-                                    </td>
-                                    <td>
-                                        <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
-                                    </td>
-                                </tr>
-                            </table>
-
-                            @*<h5 class="card-title">
-                                @item.Title
-                                <span class="badge badge-pill badge-primary">Season: @item.Season</span>
-                                </h5>*@
-                            <p class="card-text">@item.Description</p>
-                        </div>
-                        <div class="card-footer align-bottom">
-                            <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
-                        </div>
-                    </div>
-                }
-            }
-        }
-    </div>
-</div>
-
-<!--Current Productions-->
-@*<div id="current-productions">
-        <h4>Current Productions</h4>
-        <div class="card-deck bg-black">
-            <div class="card bg-black">
-                <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black current-production-img" alt="Ghost">
-                <div class="card-body">
-                    <h5 class="card-title">Stupid Ghost</h5>
-                    <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
-                </div>
-            </div>
-            <div class="card bg-black">
-                <img src="~/Content/Images/Midas-gold.jpg" class=" img-fluid card-img-top bg-black current-production-img" alt="Midas">
-                <div class="card-body">
-                    <h5 class="card-title">Everything You Touch</h5>
-                    <p class="card-text">A cursed man that ruins everything he touches.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
-                </div>
-            </div>
-            <div class="card bg-black">
-                <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black current-production-img" alt="Merchant">
-                <div class="card-body">
-                    <h5 class="card-title">Merchant of Venice</h5>
-                    <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
-                </div>
-            </div>
-        </div>
-        <hr />
-    </div>*@
-
-
-<!--Future Productions referencing database-->
-
-<div id="future-productions">
-    <h4>Future Productions</h4>
-    <div class="card-deck mt-5 bg-black"> <!-- added mt-5 class to create spacing between header and content -->
-        @{
-            foreach (var item in Model)
-            {
-                if (item.Season > currentSeason)
-                {
-                    <div class="card mx-auto archivecard bg-black">
-                        <!-- add mx-auto to center cards -->
-                        @{
-
-                            if (item.DefaultPhoto != null)
-                            {
-                                @*<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                      <img class="card-img-top production-index-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Url.Action(item.Title)">
-                                    </a>*@
-
-                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <!-- reinsert future-production-img into <img> -->
-                                    <img class="card-img-top production-index-img future-production-img mt-5 bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
-                                </a>
-                            }
-                            else
-                            {
-                                @*<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Url.Action(item.Title)">*@
-
-                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
-                                    <!-- reinsert future-production-img into <img> -->
-                                    <img class="card-img-top production-index-img future-production-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself -->
-                                </a>
-                            }
-                        }
-                        <div class="card-body production-index-card-inner justify-content-center">
-                            <table>
-                                <!-- create a table to divide the line into two elements of different sizes-->
-                                <tr>
-                                    <!-- table has a single row corresponding to the title line-->
-                                    <td>
-                                        <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
-                                    </td>
-                                    <td>
-                                        <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
-                                    </td>
-                                </tr>
-                            </table>
-
-
-
-
-                            @*<h5 class="card-title">
-                                  @item.Title
-                                  <span class="badge badge-pill badge-primary">Season: @item.Season</span>
-                                </h5>*@
-                            <p class="card-text">@item.Description</p>
-                        </div>
-                        @*<div class="card-footer align-bottom">
-                                <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
-                            </div>*@
-                    </div>
-                }
-            }
-        }
-    </div>
-</div>
-
 <!--Seach Bar/ Actors,parts, and productions dropdown-->
 <div class="archive-search-container">
     @using (Html.BeginForm("Archive", "Home", FormMethod.Post))
@@ -232,7 +57,7 @@
                             <a class="dropdown-item" href="#Part">Part</a>
                             <a class="dropdown-item" href="#Production">Production</a>
                         </div>
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                        <button class="btn btn-main" type="submit">Search</button>
                     </div>
                 </div>
             </form>
@@ -403,6 +228,185 @@
 
 <hr />
 
+<!--Current Productions referencing database-->
+<div class="mt-5" id="current-productions">
+    <h4>Current Productions</h4>
+    <div class="card-deck mt-5 ml-3 mr-3 bg-black">
+        <!-- added mt-5 class to create spacing between header and content -->
+        @{
+            var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
+            int currentSeason = currentSettings.current_season;                     // Initialize currentSeason and set using "current_season" from JSON
+
+            foreach (var item in Model)
+            {
+                if (item.Season == currentSeason)
+                {
+                    <div class="card mx-auto archivecard bg-black">
+                        @{
+                            if (item.DefaultPhoto != null)
+                            {
+                                @*<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <img class="card-img-top production-index-img current-production-img bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Url.Action(item.Title)">
+                                    </a>*@<!-- removed mt-5 from img class -->
+
+                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <!-- reinsert current-production-img into <img> -->
+                                    <img class="card-img-top production-index-img current-production-img bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@item.Title"> <!-- replace Url.Action which displayed the link and not the string itself --><!-- removed mt-5 from img class -->
+                                </a>
+                            }
+                            else
+                            {
+                                @*<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                      <img class="card-img-top production-index-img current-production-img bg-black" src="~/Content/Images/Unavailable.png" alt="@Url.Action(item.Title)">
+                                    </a>*@<!-- removed mt-5 from img class -->
+
+                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <!-- reinsert current-production-img into <img> -->
+                                    <img class="card-img-top production-index-img current-production-img bg-black" src="~/Content/Images/Unavailable.png" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself --><!-- removed mt-5 from img class -->
+                                </a>
+                            }
+                        }
+                        <div class="card-body production-index-card-inner justify-content-center">
+                            <table>
+                                <!-- create a table to divide the line into two elements of different sizes-->
+                                <tr>
+                                    <!-- table has a single row corresponding to the title line-->
+                                    <td>
+                                        <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
+                                    </td>
+                                    <td>
+                                        <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
+                                    </td>
+                                </tr>
+                            </table>
+
+                            @*<h5 class="card-title">
+                                @item.Title
+                                <span class="badge badge-pill badge-primary">Season: @item.Season</span>
+                                </h5>*@
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                        <div class="card-footer align-bottom">
+                            <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+<!--Current Productions-->
+@*<div id="current-productions">
+        <h4>Current Productions</h4>
+        <div class="card-deck mt-5 bg-black"> <!-- added mt-5 class to create spacing between header and content -->
+            <div class="card bg-black">
+                <img src="~/Content/Images/Stupid-ghost.png" class="card-img-top bg-black current-production-img" alt="Ghost">
+                <div class="card-body">
+                    <h5 class="card-title">Stupid Ghost</h5>
+                    <p class="card-text">A clumsy ghost that stubs his toe everynight, spooking the new tenants.</p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
+                </div>
+            </div>
+            <div class="card bg-black">
+                <img src="~/Content/Images/Midas-gold.jpg" class=" img-fluid card-img-top bg-black current-production-img" alt="Midas">
+                <div class="card-body">
+                    <h5 class="card-title">Everything You Touch</h5>
+                    <p class="card-text">A cursed man that ruins everything he touches.</p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
+                </div>
+            </div>
+            <div class="card bg-black">
+                <img src="~/Content/Images/venice.jpg" class="card-img-top bg-black current-production-img" alt="Merchant">
+                <div class="card-body">
+                    <h5 class="card-title">Merchant of Venice</h5>
+                    <p class="card-text">A Merchant in Venice struggles to pay off his student loans.</p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>*@
+
+
+<!--Future Productions referencing database-->
+
+<div id="future-productions">
+    <h4>Future Productions</h4>
+    <div class="card-deck mt-5 ml-3 mr-3 bg-black">
+        <!-- added mt-5 class to create spacing between header and content -->
+        @{
+            foreach (var item in Model)
+            {
+                if (item.Season > currentSeason)
+                {
+                    <div class="card mx-auto archivecard bg-black">
+                        <!-- add mx-auto to center cards -->
+                        @{
+
+                            if (item.DefaultPhoto != null)
+                            {
+                                @*<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                      <img class="card-img-top production-index-img bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@Url.Action(item.Title)">
+                                    </a>*@<!-- removed mt-5 from img class -->
+
+                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <!-- reinsert future-production-img into <img> -->
+                                    <img class="card-img-top production-index-img future-production-img bg-black" src="@Url.Action("DisplayPhoto", "Photo", new { id = item.DefaultPhoto.PhotoId })" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself --><!-- removed mt-5 from img class -->
+                                </a>
+                            }
+                            else
+                            {
+                                @*<a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <img class="card-img-top production-index-img mt-5 bg-black" src="~/Content/Images/Unavailable.png" alt="@Url.Action(item.Title)">*@
+
+                                <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })">
+                                    <!-- reinsert future-production-img into <img> -->
+                                    <img class="card-img-top production-index-img future-production-img bg-black" src="~/Content/Images/Unavailable.png" alt="@item.Title)"> <!-- replace Url.Action which displayed the link and not the string itself --><!-- removed mt-5 from img class -->
+                                </a>
+                            }
+                        }
+                        <div class="card-body production-index-card-inner justify-content-center">
+                            <table>
+                                <!-- create a table to divide the line into two elements of different sizes-->
+                                <tr>
+                                    <!-- table has a single row corresponding to the title line-->
+                                    <td>
+                                        <div align="left"><h5 class="card-title">@item.Title &nbsp;</h5></div> <!-- first cell has the production title in a larger font-->
+                                    </td>
+                                    <td>
+                                        <div><h6 class="badge badge-pill badge-primary">Season: @item.Season</h6></div><!-- the second cell has the season number in a pill of smaller size -->
+                                    </td>
+                                </tr>
+                            </table>
+
+
+
+
+                            @*<h5 class="card-title">
+                                  @item.Title
+                                  <span class="badge badge-pill badge-primary">Season: @item.Season</span>
+                                </h5>*@
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                        @*<div class="card-footer align-bottom">
+                                <button type="button" class="btn btn-block btn-main" disabled>Get Tickets</button>
+                            </div>*@
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+<hr />
+
 <!--Past Productions-->
 @{
     //var currentSettings = AdminSettingsReader.CurrentSettings();            // Grabs AdminSettings JSON
@@ -418,7 +422,7 @@
     }
 }
 <div class="container">
-    <div class="h4">Past Productions</div>
+    <div class="h4 text-center">Past Productions</div>
     <div class="accordian" id="pastProductions">
         <!-- Begin for loop to populate years-->
         @for (int i = currentSeason; i >= 1; i--)
@@ -431,7 +435,7 @@
                     @if (Model.Any(x => x.Season == i))
                     {
                         <h2 class="mb-0">
-                            <button class="btn btn-block text-white" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
+                            <button class="btn btn-main" type="button" data-toggle="collapse" data-target="@('#' + currentBody)" aria-expanded="false" aria-controls="@currentBody">
                                 @seasonYears[i]
                             </button>
                         </h2>
@@ -439,7 +443,7 @@
                     else
                     {
                         <h2 class="mb-0">
-                            <button disabled class="btn btn-block text-white">
+                            <button disabled class="btn btn-main">
                                 @seasonYears[i]
                             </button>
                         </h2>
@@ -449,13 +453,15 @@
                 <!-- Collapsable body -->
                 <div id="@currentBody" class="collapse" aria-labelledby="@currentHeading" data-parent="#pastProductions">
                     <div class="card-body">
-                        <div class="card-deck bg-black">
+                        <div class="ml-3 mr-3 justify-content-center pa-card-deck">
+                            @*Added custom deck*@
                             <!-- Iterate through Productions and populate cards-->
                             @foreach (var item in Model)
                             {
                                 if (item.Season == i)
                                 {
-                                    <div class="card bg-black">
+                                    <div class="mb-4 align-items-center pa-card">
+                                        @*Added custom card*@
                                         @if (item.DefaultPhoto != null)
                                         {
                                             <div class="embed-responsive-4by3">
@@ -474,9 +480,31 @@
                                                 @item.Title
                                                 <span class="badge badge-pill badge-info">Season: @item.Season</span>
                                             </h5>
-                                            <p class="card-text">
-                                                @Html.DisplayFor(modelItem => item.Description)
+                                            <p class="card-text" id="desc">
+                                                @*Limit Description to 30 words*@
+                                                @{
+                                                    var finalText = " ";
+                                                    var text = @item.Description;
+                                                    var text2 = text.Replace("  ", " ");
+                                                    var text3 = text2.Split(' ');
+                                                    var numberOfWords = text3.Length;
+                                                }
+                                                @if (numberOfWords > 30)
+                                                {
+                                                    for (int k = 0; k < 30; k++)
+                                                    {
+                                                        finalText = finalText + text3[k] + " ";
+                                                    }
+                                                    @Html.Raw(finalText + '…');
+                                                }
+                                                else
+                                                {
+                                                    @Html.Raw(text);
+                                                }
+
+
                                             </p>
+
                                             <a href="@Url.Action("Details", "Productions", new { id = item.ProductionId })" class="stretched-link"></a>
                                         </div>
                                     </div>
@@ -497,7 +525,7 @@
         function changeSearchBtn() {
           if (window.matchMedia('(max-width: 899px)').matches) { @* matchMedia syncs with CSS media query *@
             $(".search-btn").each(function (i) {
-              $(this).replaceWith('<button class="search-btn btn btn-outline-primary mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
+              $(this).replaceWith('<button class="search-btn btn btn-main mobile-search-btn" type="submit" value="search">' + 'Search' + '</button>');
             });
           } else {
             $(".mobile-search-btn").each(function (i) {
