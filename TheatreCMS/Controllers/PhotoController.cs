@@ -294,7 +294,7 @@ namespace TheatreCMS.Controllers
                 if (productions != null)
                 {
                     DbEntityEntry<Production> dbEntityEntry = db.Entry(productions);
-                    productions.DefaultPhoto = null;
+                    // productions.DefaultPhoto = null;
                     dbEntityEntry.CurrentValues.SetValues(productions);
                 }
                 Sponsor sponsors = db.Sponsors.FirstOrDefault(x => x.LogoId == photo.PhotoId);
