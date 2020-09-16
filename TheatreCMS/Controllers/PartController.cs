@@ -132,22 +132,38 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PartID,Production,Person,Character,Type,Details")] Part part)
         {
-            int productionID = Convert.ToInt32(Request.Form["Productions"]);
-            int castID = Convert.ToInt32(Request.Form["CastMembers"]);
-
+            //=== VALIDATION - PRODUCTION check if selected from dropdown
+            if (Request.Form["Production"] != "")
+            {
+                int productionID = Convert.ToInt32(Request.Form["Production"]);
+                var production = db.Productions.Find(productionID);
+                part.Production = production;
+                ModelState.Remove("Production"); // manual remove error - throws by default due to Part model [Required] validation can't match to dropdown
+            }
+            //=== VALIDATION - PERSON check if selected from dropdown
+            if (Request.Form["Person"] != "")
+            {
+                int castID = Convert.ToInt32(Request.Form["Person"]);
+                var person = db.CastMembers.Find(castID);
+                part.Person = person;
+                ModelState.Remove("Person"); // manual remove error - throws by default due to Part model [Required] validation can't match to dropdown
+            }
+            //=== VALIDATION - FORM
             if (ModelState.IsValid)
             {
-                var person = db.CastMembers.Find(castID);
-                var production = db.Productions.Find(productionID);
-                
-                part.Production = production;
-                part.Person = person;
+                //=== IS VALID - lookup production and cast member objects based on form value "Id" for each
                 db.Parts.Add(part);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(part);
+            else
+            {
+                //=== NOT VALID - reload dropdown menus then return part to view 
+                ViewData["dbUsers"] = new SelectList(db.Users.ToList(), "Id", "UserName");
+                ViewData["CastMembers"] = new SelectList(db.CastMembers.ToList(), "CastMemberId", "Name");
+                ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+                return View(part);
+            }            
         }
 
         [Authorize(Roles = "Admin")]
