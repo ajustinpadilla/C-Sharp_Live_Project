@@ -1310,7 +1310,7 @@ div.magnify:hover {
     margin-left: 3em;
     margin-right: 3em;
     border: 1px solid #007bff;
-    border-color: #007bff;
+    border-color: var(--main-bg-color);
 }
 
 .results {
@@ -1319,7 +1319,7 @@ div.magnify:hover {
 
     .results th {
         font-size: 22px;
-        color: #007bff
+        color: var(--main-secondary-color);
     }
 
     .results a {
@@ -2408,7 +2408,6 @@ tr.event-row {
 
 .arch-card-img {
     width: 100%;
-    height: 15vw;
     object-fit: contain;
 }
 
@@ -2725,21 +2724,21 @@ tr.event-row {
 
     /* Search container for centering Input Container*/
     .archive-search-container {
-        display: flex;
+        display: flex;       
         justify-content: center;
-        align-items: center;
+        align-items: center;        
     }
 
     /* Input Container: Input field, Category Dropdown, Search button*/
     .archive-input-container {
         margin: 0 auto;
-        width: 850px;
+        width: 650px;
         position: relative;
     }
 
         /* Archive Search Text*/
         .archive-input-container input[type="text"] {
-            width: 600px;
+            width: 400px;
             height: 50px;
             padding: 12.5px 20px 12.5px 20px;
             margin: 8px 0px 8px 200px;
@@ -2757,7 +2756,7 @@ tr.event-row {
             height: 50px;
             margin: 0px;
             padding: 12.5px 20px 12.5px 20px;
-            background-color: #007bff;
+            background-color: var(--main-bg-color);
             color: var(--light-color);
             text-align: center;
             position: absolute;
@@ -3003,8 +3002,11 @@ tr.event-row {
     display: none;
 }
 
-/* Start Homepage */
+/*=========================================
+========== HOMEPAGE =======================
+===========================================*/
 
+/*===== BODY - page format */
 .home-body {
     position: relative;
     -webkit-box-flex: 1;
@@ -3012,7 +3014,7 @@ tr.event-row {
     flex: 1 0 auto;
 }
 
-
+/*===== MAIN - general display, font settings */
 #home-main {
     display: block;
     font-size: 100%;
@@ -3022,31 +3024,57 @@ tr.event-row {
     overflow-x: hidden;
 }
 
-
+/*===== HOME BLOCK - production carousels and info  */
 .home-block, .home-inner {
     margin: 0;
     padding: 0;
     border: none;
     outline: 0;
     vertical-align: baseline;
+    position: relative;
+    overflow: hidden;
+}
+/*=== Carousel nav buttons */
+.home-carousel-nav {
+    z-index: 2;
 }
 
+/*===== TINT PHOTO OVERLAY - visable only on large screens */
+.home-tint-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(53.92%,rgba(35,31,32,0)),color-stop(72.5%,rgba(35,31,32,.6)));
+    background: linear-gradient(rgba(35,31,32,0) 53.92%,rgba(35,31,32,.6) 72.5%);
+    -webkit-transition: inherit;
+    transition: opacity ease-in-out 3s;
+}
+@media only screen and (max-width: 48em) {
+    .home-tint-overlay {
+        display: none;
+    }
+}
+
+/*===== Photo - OBSOLETE 
 .home-inner {
     position: relative;
     overflow: hidden;
 }
+*/
 
+/*===== home-img home-mobile-img - OBSOLETE
 .home-img, .home-mobile-img {
     padding-bottom: 56.25%;
 }
-
 @media only screen and (max-width: 48em) {
     .home-img, .home-mobile-img {
         position: relative;
         display: none;
     }
 }
-
 .home-img > div, .home-mobile-img > div {
     position: absolute;
     background-size: cover;
@@ -3056,43 +3084,23 @@ tr.event-row {
     width: 100%;
     height: 100%;
 }
-
 @media only screen and (min-width: 48.0625em) {
     .home-img {
         padding-bottom: 100vh;
     }
 }
-
 .home-mobile-img {
     padding-bottom: 61.25%;
     display: none;
 }
-
 @media only screen and (max-width: 48em) {
     .home-mobile-img {
         display: block;
     }
 }
+*/
 
-.home-tint-overlay {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    z-index: 10;
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(53.92%,rgba(35,31,32,0)),color-stop(72.5%,rgba(35,31,32,.6)));
-    background: linear-gradient(rgba(35,31,32,0) 53.92%,rgba(35,31,32,.6) 72.5%);
-    -webkit-transition: inherit;
-    transition: opacity ease-in-out 3s;
-}
-
-@media only screen and (max-width: 48em) {
-    .home-tint-overlay {
-        display: none;
-    }
-}
-
+/*===== HOME CONTENT - Absolute position over photos, relative position for small screens */
 .home-content {
     position: absolute;
     bottom: 0;
@@ -3107,7 +3115,7 @@ tr.event-row {
     text-align: center;
     color: #fff;
     margin-bottom: 2.5rem;
-    z-index: 100;
+    z-index: 1;
     width: 100%;
     max-width: 92rem;
     margin-left: auto;
@@ -3115,7 +3123,7 @@ tr.event-row {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-
+/*=== Large screens- In front of Carousel */
 @media only screen and (min-width: 48.0625em) {
     .home-content {
         max-width: 94rem;
@@ -3123,7 +3131,7 @@ tr.event-row {
         padding-right: 2rem;
     }
 }
-
+/*=== X-Large screens - In front of Carousel */
 @media only screen and (min-width: 64.125em) {
     .home-content {
         max-width: 99.75rem;
@@ -3131,7 +3139,7 @@ tr.event-row {
         padding-right: 4.875rem;
     }
 }
-
+/*=== Small screens - drops below Carousel on page */
 @media (max-width: 48em) {
     .home-content {
         position: relative;
@@ -3149,57 +3157,30 @@ tr.event-row {
     width: 100%;
 }
 
-
-.home-tag-line {
-    margin-bottom: -2.5rem;
-    font-size: 1.25rem;
-}
-
-@media only screen and (max-width: 80em) {
-    .home-tag-line {
-        margin-bottom: -1.75rem;
-    }
-}
-
-@media only screen and (max-width: 64.0625em) {
-    .home-tag-line {
-        margin-bottom: -1.25rem;
-    }
-}
-
-@media only screen and (max-width: 48em) {
-    .home-tag-line {
-        display: none;
-    }
-}
-
-.home-content-inner h2 {
-    display: block;
-    line-height: 1;
-    font-weight: 400;
-    background: transparent;
-    margin: 0;
-}
-
+/*===== PRODUCTION TITLE */
 .home-title {
+    display: block;
+    margin: 0;
+    line-height: 1;
     font-size: 13rem;
     font-weight: 400;
+    background: transparent;
     color: var(--light-color);
-    text-shadow: var(--dark-color) 0px 0px 10px;
+    text-shadow: var(--dark-color) 0px 0px 10px;    
 }
-
+/*=== X-Large screens */
 @media only screen and (max-width: 80em) {
     .home-title {
         font-size: 10rem;
     }
 }
-
+/*=== Large screens */
 @media only screen and (max-width: 64.0625em) {
     .home-title {
         font-size: 7.5rem;
     }
 }
-
+/*=== Small screens */
 @media only screen and (max-width: 48em) {
     .home-title {
         font-size: 2.5rem;
@@ -3208,22 +3189,13 @@ tr.event-row {
     }
 }
 
-
-@media only screen and (max-width: 48em) {
-    .home-title + .home-btn {
-        margin-top: .625rem;
-    }
-}
-
-.home-content-inner .home-date {
-    font-family: Arial, sans-serif;
-}
-
+/*===== PRODUCTION DATE */
 .home-date {
+    font-family: Arial, sans-serif;
     font-size: 1.5rem;
     margin: -.25rem 0 1.25rem;
 }
-
+/*=== Small screens */
 @media only screen and (max-width: 48em) {
     .home-date {
         color: var(--light-color);
@@ -3232,7 +3204,58 @@ tr.event-row {
     }
 }
 
-/* Custom button class for main site. */
+/* OBSOLETE 
+@media only screen and (max-width: 48em) {
+    .home-title + .home-btn {
+        margin-top: .625rem;
+    }
+}
+.home-content-inner .home-date {
+    font-family: Arial, sans-serif;
+}
+*/
+
+/*===== home-tag-line - OBSOLETE 
+.home-tag-line {
+    margin-bottom: -2.5rem;
+    font-size: 1.25rem;
+}
+@media only screen and (max-width: 80em) {
+    .home-tag-line {
+        margin-bottom: -1.75rem;
+    }
+}
+@media only screen and (max-width: 64.0625em) {
+    .home-tag-line {
+        margin-bottom: -1.25rem;
+    }
+}
+@media only screen and (max-width: 48em) {
+    .home-tag-line {
+        display: none;
+    }
+}
+*/
+
+/* OBSOLETE 
+.home-content-inner h2 {
+    display: block;
+    line-height: 1;
+    font-weight: 400;
+    background: transparent;
+    margin: 0;
+}
+*/
+
+/*===== SITE WIDE STYLING FOR BUTTONS =====*/
+/*=========================================
+        .btn-main is used as default styling for buttons across the site
+        Changes to this class will affect the whole site.
+        If you need to make a change for a specific use case, 
+        you can either do it with Bootstrap (preferred), or by applying additional classes or an ID.
+*/
+
+/*===Removed .home - content . btn primary == */
 .btn-main {
     display: inline-block;
     font-weight: 400;
@@ -3247,7 +3270,7 @@ tr.event-row {
     background-color: var(--main-bg-color);
     color: var(--light-color);
     border: 1px solid var(--main-bg-color);
-    transition: .5s; /* gradual transition on hover on/off */
+    transition: .33s; /* gradual transition on hover on/off */ /* switched from .05s to 0.33s*/
 }
 
     .btn-main:focus, btn-main:active:hover { /* combined to reduce duplicate code */
@@ -3267,6 +3290,12 @@ tr.event-row {
         opacity: .8;
     }
 
+    .btn-main:disabled { /* removes hover effects and cursor changes for disabled buttons */
+        cursor: default;
+        pointer-events: none;
+    }
+
+/*=== Small screens */
 @media only screen and (max-width: 48em) {
     .home-content-inner .btn-main {
         font-size: .875rem;
@@ -3275,6 +3304,8 @@ tr.event-row {
     }
 }
 
+/*========== HOME NAV - dots on right side of screen, display current vertical position and jump to vertical position  */
+/*===== Positioning of navbar on screen */
 #home-nav {
     position: fixed;
     top: 50%;
@@ -3285,13 +3316,14 @@ tr.event-row {
     padding: 0;
     margin: 0;
 }
-
+/*=== Not visable on small screens */
 @media only screen and (max-width:48em) {
     #home-nav {
         display: none;
     }
 }
 
+/*===== Dot format */
 #home-nav a {
     display: block;
     border-bottom: none;
@@ -3304,25 +3336,18 @@ tr.event-row {
     cursor: pointer;
 }
 
-    #home-nav a:hover {
-        background-color: var(--secondary-color);
-    }
-
+/*===== Dot hover, active, focus */
+#home-nav a:hover {
+    background-color: var(--secondary-color);
+}
 #home-nav li.active a {
     background-color: var(--main-bg-color);
 }
-
 #home-nav a:focus {
     box-shadow: 0px 2px 0 0 var(--dark-color) !important;
     outline: 0;
 }
-
-
-
-
-
-
-/* End Homepage */
+/*========== End Homepage ==========*/
 
 /* Start Ribbons */
 
@@ -3757,28 +3782,53 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 }
 
 .part-overlay {
-    transition: .3s ease;
     opacity: 0;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 100%;
-    width: 100%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-    background-color: rgba(240, 77, 68, .5);
-    border-radius: 25px;
+    border-radius: 15px;
+    height: 350px;
+    min-width: 250px;
+    max-width: 280px;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    position: relative;
+    word-wrap: break-word;
+    background-clip: border-box;
 }
+
 /*opaque overlay for card hover*/
 .part-cardHover:hover .part-overlay {
     opacity: 1;
 }
 
+.part-overlay .btn-light {
+    transition: .25s;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    text-align: center;
+    background-color: var(--main-secondary-color);
+    border-radius: 20px;
+    margin-left: 1.5px;
+    margin-right: 1.5px;
+  
+}
+
+.part-overlay .btn-light a {
+    color: white;  
+    text-decoration: none;
+}
+
+.part-overlay:hover .btn-light:hover {
+    background-color: var(--main-bg-color);
+} 
+
+
 /*card formatting for part page*/
 .part-card {
-    color: white;
-    background-color: #bd1a11;
+    transition-duration: .33s;
+    background-color: var(--main-bg-color);
     border-radius: 25px;
     height: 350px;
     min-width: 250px;
@@ -3798,6 +3848,12 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+    .part-card:hover, .part-card:active {
+        transform: scale(1.05);
+        background-color: var(--main-secondary-color);
+    }
+
+
 /*custom card-deck formatting that allows custom format for screens < 575px*/
 .part-card-deck {
     display: -ms-flexbox;
@@ -3807,7 +3863,97 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     margin-right: -15px;
     margin-left: -15px;
 }
+
+/*========== PART CREATE ==========*/
+
+/*===== CARD - add part create style to Bootstrap base card */
+.card.part-create {
+    background-color: var(--main-bg-color);
+    border-radius: 25px;
+    outline-color: white;
+    min-width: 300px;
+    max-width: 550px;    
+}
+
+/*===== FORM CONTROL - add part create style to Bootstrap base */
+.form-control.part-create {
+    background-color: var(--main-secondary-color);
+    color: white;    
+}
+/*=== center align the value selected in the dropdown list */
+select.form-control.part-create {
+    text-align-last: center; 
+}
+/*=== hide element selectively from jQuery add/remove class method */
+.form-control.part-create.hide {
+    display: none;
+}
+
+/*===== DROPDOWN Placeholder option */
+select.form-control.part-create option[value=""] {
+    color: rgba(255,255,255,.4);
+}
+
+/*=== INPUT Placeholder color */
+.form-control.part-create::-webkit-input-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create::placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create:-ms-input-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create:-moz-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create::-moz-placeholder {
+    color: rgba(255,255,255,.4);
+}
+
+/*===== BUTTON - Submit under card */
+button.part-create {
+    max-width: 500px;
+    width: 90%;
+}
+
+
+/*---------- END Part Create ----------*/
 /*END CSS for Admin Parts page*/
+
+/*CSS for Arcive View by Jeff Staab*/
+/*creates an elipsis if multi-line text is over 6 lines long.*/
+
+/*card formatting for Arcive page*/
+.pa-card {
+    background-color: black;
+    border-radius: 25px;
+    height: 470px;
+    min-width: 280px;
+    max-width: 320px;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    word-wrap: break-word;
+}
+
+/*custom card-deck formatting that allows custom format for screens < 575px*/
+.pa-card-deck {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+/*END CSS for Archive page*/
 
 /*RentalCalendar CSS*/
 .calIcon {
