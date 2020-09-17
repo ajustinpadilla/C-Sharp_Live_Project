@@ -220,7 +220,11 @@ namespace TheatreCMS.Controllers
                     db.Entry(productionPhoto).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-
+                else
+                {
+                    db.Productions.Add(production);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             return View(production);
