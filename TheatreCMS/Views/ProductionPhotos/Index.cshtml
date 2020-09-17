@@ -44,12 +44,13 @@
 
 <div class="prodphoto-content my-3 container">
     @*sort by production season in descending order , then by opening day in ascending order*@
-    @foreach (var pro in Model.Select(i => i.Production).Distinct())
+
+    @foreach (var pro in Model.Where(i => i.Production != null).Select(i => i.Production).Distinct())
     {
         <div id="@pro.ProductionId-prodphoto-show" class="prodphoto-cards">
             <h3 class="prodphoto-prod-title text-center my-3">@pro.Title <span class="badge badge-pill badge-light">@pro.Season</span></h3>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 justify-content-center">
-                @foreach (var item in Model.Where(i => i.Production.Title == pro.Title))
+                @foreach (var item in Model.Where(i => (i.Production != null) && (i.Production.Title == pro.Title)))
                 {
                     <div class="col mb-4">
                         <div class="card h-100">

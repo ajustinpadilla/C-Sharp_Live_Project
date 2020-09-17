@@ -360,7 +360,6 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 Photo photo = db.Photo.Find(id);
@@ -372,11 +371,25 @@ namespace TheatreCMS.Controllers
                     productionPhoto.PhotoId = null;
                     dbEntityEntry.CurrentValues.SetValues(productionPhoto);
                 }
+                // Checks for a production using this photo as a deleted photo
                 Production productions = db.Productions.FirstOrDefault(x => x.DefaultPhoto.PhotoId == photo.PhotoId);
                 if (productions != null)
                 {
+                    if (productions.ProductionPhotos.Count() > 1)
+                    {
+                        foreach (var potentialDefaultPhoto in productions.ProductionPhotos)
+                        {
+                            if (potentialDefaultPhoto.PhotoId == photo.PhotoId) continue;
+                            else if (potentialDefaultPhoto == null || potentialDefaultPhoto.PhotoId == null) continue;
+                            else
+                            {
+                                productions.DefaultPhoto = potentialDefaultPhoto;
+                                break;
+                            }
+                        }
+                    }
+                    else productions.DefaultPhoto = db.ProductionPhotos.Where(p => p.Title == "Photo Unavailable").FirstOrDefault();
                     DbEntityEntry<Production> dbEntityEntry = db.Entry(productions);
-                    // productions.DefaultPhoto = null;
                     dbEntityEntry.CurrentValues.SetValues(productions);
                 }
                 Sponsor sponsors = db.Sponsors.FirstOrDefault(x => x.LogoId == photo.PhotoId);
