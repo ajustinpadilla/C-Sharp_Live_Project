@@ -180,7 +180,11 @@ namespace TheatreCMS.Controllers
             return View(production);
         }
 
-        // GET: Productions/Create
+        //------------------------------------------------------
+        //----------------------- CREATE -----------------------
+        //------------------------------------------------------
+        
+        //========== GET: Productions/Create
         [TheatreAuthorize(Roles = "Admin")]
         public ActionResult Create()
         {
@@ -188,8 +192,7 @@ namespace TheatreCMS.Controllers
             return View();
         }
 
-
-        // POST: Productions/Create
+        //========== POST: Productions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -197,15 +200,11 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase uploadFile)
         {
-
-
-
-            //========== VALIDATION
+            //========== VALIDATION ==========
             //===== PHOTO - Check if photo is not null but not a valid photo format
             if (uploadFile != null && !PhotoController.ValidatePhoto(uploadFile))
             {
-                ModelState.AddModelError("DefaultPhoto", "File must be a valid photo format.");
-                ViewData["upload_file"] = uploadFile;
+                ModelState.AddModelError("DefaultPhoto", "File must be a valid photo format.");                
             }
             //===== SHOWTIME - at list one (ShowtimeEve, ShowtimeMat) need to be assigned 
             if (production.ShowtimeEve == null && production.ShowtimeMat == null)
@@ -213,9 +212,10 @@ namespace TheatreCMS.Controllers
                 ModelState.AddModelError("ShowtimeEve", "At least one showtime must be specified.");
                 ModelState.AddModelError("ShowtimeMat", "At least one showtime must be specified.");
             }
+            //========== SAVE ==========
             if (ModelState.IsValid)
             {
-                //========== DEFAULT PHOTO ==========
+                //===== DEFAULT PHOTO 
                 //--- save photo using photo controller, save entry to ProductionPhotos, photoName set to production title, description set to "Default Photo"
                 if (uploadFile != null)
                 {
@@ -235,7 +235,7 @@ namespace TheatreCMS.Controllers
                     db.Entry(productionPhoto).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-                //========== NO PHOTO ==========
+                //===== NO PHOTO 
                 else
                 {
                     db.Productions.Add(production);
