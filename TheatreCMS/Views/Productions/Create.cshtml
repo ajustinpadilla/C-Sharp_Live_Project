@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 
-                <div checkClass class="form-group CheckboxStyle">
+                <div class="form-group CheckboxStyle">
                     @Html.LabelFor(model => model.IsCurrent, htmlAttributes: new { @class = "control-label col-md-4 CheckboxLabel" })
                     <div class="col-md-10 formBox">
                         <div checkClass class="checkbox">
@@ -117,10 +117,10 @@
                     </div>
                 </div>
 
-                <div checkClass class="form-group CheckboxStyle">
+                <div class="form-group CheckboxStyle">
                     @Html.LabelFor(model => model.IsWorldPremiere, htmlAttributes: new { @class = "control-label col-md-2 CheckboxLabel" })
                     <div class="col-md-10 formBox">
-                        <div checkClass class="checkbox">
+                        <div class="checkbox">
                             @Html.EditorFor(model => model.IsWorldPremiere)
                             @Html.ValidationMessageFor(model => model.IsWorldPremiere, "", new { @class = "text-danger" })
                         </div>

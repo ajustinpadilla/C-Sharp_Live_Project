@@ -1850,25 +1850,25 @@ a.dropdown-item:hover {
 
 /********** Productions Create Page **********/
 
-div[checkClass].CheckboxStyle {
+div.CheckboxStyle {
     display: inline-block;
     position: relative;
-    width: 200px;
+    
     margin: 25px 0 25px 0;
 }
 
 label.CheckboxLabel {
     display: inline;
-    width: 200px;
+    
 }
 
-div[checkClass].checkbox {
+div.checkbox {
     margin-top: 15px;
 }
 
 input#IsCurrent, input#IsWorldPremiere {
-    height: 25px;
-    width: 25px;
+    height: 40px;
+    width: 40px
 }
 
 /********** End Productions Create Page **********/
