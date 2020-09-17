@@ -115,19 +115,19 @@
                         @Html.ValidationMessageFor(model => model.Season, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IsCurrent, htmlAttributes: new { @class = "control-label col-md-4 inputLabel" })
+                
+                <div class="form-group CheckboxStyle">
+                    @Html.LabelFor(model => model.IsCurrent, htmlAttributes: new { @class = "control-label col-md-4 CheckboxLabel" })
                     <div class="col-md-10 formBox">
-                        <div class="checkbox">
+                        <div checkClass class="checkbox">
                             @Html.EditorFor(model => model.IsCurrent)
                             @Html.ValidationMessageFor(model => model.IsCurrent, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IsWorldPremiere, htmlAttributes: new { @class = "control-label col-md-2 inputLabel" })
+                <div class="form-group CheckboxStyle">
+                    @Html.LabelFor(model => model.IsWorldPremiere, htmlAttributes: new { @class = "control-label col-md-2 CheckboxLabel" })
                     <div class="col-md-10 formBox">
                         <div class="checkbox">
                             @Html.EditorFor(model => model.IsWorldPremiere)
@@ -136,7 +136,7 @@
                     </div>
                 </div>
 
-
+   
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10 formBox">
                         <input type="submit" value="Create" class="btn btn-main" /> <!-- btn-main originally btn-default, save for possible reversion -->
