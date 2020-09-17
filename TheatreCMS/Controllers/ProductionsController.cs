@@ -195,18 +195,27 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [TheatreAuthorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase DefaultPhoto)
+        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase uploadFile)
         {
-            
+
+
+
+            //========== VALIDATION
+            //===== PHOTO - Check if photo is not null but not a valid photo format
+            if (uploadFile != null && !PhotoController.ValidatePhoto(uploadFile))
+            {
+                ModelState.AddModelError("DefaultPhoto", "File must be a valid photo format.");
+                ViewData["upload_file"] = uploadFile;
+            }
             if (ModelState.IsValid)
             {
                 //========== DEFAULT PHOTO ==========
-                //--- Check if photo is null or a valid photo format, save photo using photo controller, save entry to ProductionPhotos, photoName set to production title, description set to "Default Photo"
-                if (DefaultPhoto != null && PhotoController.ValidatePhoto(DefaultPhoto))
+                //--- save photo using photo controller, save entry to ProductionPhotos, photoName set to production title, description set to "Default Photo"
+                if (uploadFile != null)
                 {
                     //----- Save New Photo or retrieve existing photo if the same - using photo controller
                     Debug.WriteLine("Saving photo...");
-                    int photoId = PhotoController.CreatePhoto(DefaultPhoto, production.Title);
+                    int photoId = PhotoController.CreatePhoto(uploadFile, production.Title);
                     //----- Save New ProductionPhoto
                     var productionPhoto = new ProductionPhotos() { PhotoId = photoId, Title = production.Title, Description = "Default Photo" };
                     db.ProductionPhotos.Add(productionPhoto);
@@ -220,6 +229,7 @@ namespace TheatreCMS.Controllers
                     db.Entry(productionPhoto).State = EntityState.Modified;
                     db.SaveChanges();
                 }
+                //========== NO PHOTO ==========
                 else
                 {
                     db.Productions.Add(production);
