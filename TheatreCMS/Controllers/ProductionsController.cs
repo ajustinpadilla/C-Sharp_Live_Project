@@ -197,7 +197,13 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase DefaultPhoto)
         {
-            
+            //========== VALIDATION - ShowtimeEve, ShowtimeMat
+            //===== SHOWTIME - at list one (ShowtimeEve, ShowtimeMat) need to be assigned 
+            if (production.ShowtimeEve == null && production.ShowtimeMat == null)
+            {
+                ModelState.AddModelError("ShowtimeEve", "At least one showtime must be specified.");
+                ModelState.AddModelError("ShowtimeMat", "At least one showtime must be specified.");
+            }
             if (ModelState.IsValid)
             {
                 //========== DEFAULT PHOTO ==========
