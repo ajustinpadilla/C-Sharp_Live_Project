@@ -375,7 +375,7 @@ namespace TheatreCMS.Controllers
                 Production productions = db.Productions.FirstOrDefault(x => x.DefaultPhoto.PhotoId == photo.PhotoId);
                 if (productions != null)
                 {
-                    if (productions.ProductionPhotos.Count() > 1)
+                    if (productions.ProductionPhotos.Where(p => p.PhotoId != null).Count() > 0)
                     {
                         foreach (var potentialDefaultPhoto in productions.ProductionPhotos)
                         {
