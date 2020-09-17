@@ -306,14 +306,7 @@ namespace TheatreCMS.Controllers
                             }
                         }
                     }
-                    else
-                    {
-                        Photo unavailablePhoto = db.Photo.FirstOrDefault(x => x.Title == "Photo Unavailable");
-                        ProductionPhotos unavProdPhoto = new ProductionPhotos();
-                        unavProdPhoto.PhotoId = unavailablePhoto.PhotoId;
-                        unavProdPhoto.Title = unavailablePhoto.Title;
-                        productions.DefaultPhoto = unavProdPhoto;
-                    }
+                    else productions.DefaultPhoto = db.ProductionPhotos.Where(p => p.Title == "Photo Unavailable").FirstOrDefault();
                     DbEntityEntry<Production> dbEntityEntry = db.Entry(productions);
                     dbEntityEntry.CurrentValues.SetValues(productions);
                 }

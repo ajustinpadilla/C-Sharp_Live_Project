@@ -1879,6 +1879,12 @@ namespace TheatreCMS
             {
                 new ProductionPhotos
                 {
+                    PhotoId = context.Photo.Where(photo => photo.Title == "Photo Unavailable").FirstOrDefault().PhotoId,
+                    Title = "Photo Unavailable",
+                    Description = "This photo is used when there are no photos to display or the photo does not load properly"
+                },
+                new ProductionPhotos
+                {
                     PhotoId = context.Photo.Where(photo => photo.Title == "Hamilton Image 1").FirstOrDefault().PhotoId,
                     Title = "Hamilton",
                     Description = "Actors performing \"The Story Of Tonight\".",
