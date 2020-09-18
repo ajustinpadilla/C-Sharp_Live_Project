@@ -1853,15 +1853,15 @@ a.dropdown-item:hover {
 div.CheckboxStyle {
     display: inline-block;
     position: relative;
-    margin: 25px 0 25px 0;
+    margin-bottom: 25px;
 }
 
-label.CheckboxLabel {
+/*label.CheckboxLabel {
     display: inline;
-}
+}*/
 
 div.checkbox {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 input#IsCurrent, input#IsWorldPremiere {
