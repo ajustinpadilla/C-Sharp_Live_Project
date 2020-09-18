@@ -372,32 +372,36 @@ namespace TheatreCMS.Controllers
                     dbEntityEntry.CurrentValues.SetValues(productionPhoto);
                 }
                 // Checks for a production using this photo as a deleted photo
-                Production productions = db.Productions.FirstOrDefault(x => x.DefaultPhoto.PhotoId == photo.PhotoId);
-                if (productions != null)
-                {
-                    if (productions.ProductionPhotos.Where(p => p.PhotoId != null).Count() > 0)
+                Production production = db.Productions.FirstOrDefault(x => x.DefaultPhoto.PhotoId == photo.PhotoId);
+                if (production != null)  // If Production exists
+                {   
+                    // Checks to see if there is another photo related to the production
+                    if (production.ProductionPhotos.Where(p => p.PhotoId != null).Count() > 0)
                     {
-                        foreach (var potentialDefaultPhoto in productions.ProductionPhotos)
+                        foreach (var potentialDefaultPhoto in production.ProductionPhotos)
                         {
-                            if (potentialDefaultPhoto.PhotoId == photo.PhotoId) continue;
+                            if (potentialDefaultPhoto.PhotoId == photo.PhotoId) continue;  // Ignores current default photo
+                            // Error handling for deleted photos that still have references
                             else if (potentialDefaultPhoto == null || potentialDefaultPhoto.PhotoId == null) continue;
                             else
                             {
-                                productions.DefaultPhoto = potentialDefaultPhoto;
-                                break;
+                                // Sets new default photo
+                                production.DefaultPhoto = potentialDefaultPhoto;
+                                break;  // Exists the loop since a photo has been found
                             }
                         }
                     }
-                    else productions.DefaultPhoto = db.ProductionPhotos.Where(p => p.Title == "Photo Unavailable").FirstOrDefault();
-                    DbEntityEntry<Production> dbEntityEntry = db.Entry(productions);
-                    dbEntityEntry.CurrentValues.SetValues(productions);
+                    // Sets the default photo to "Photo Unavailable"
+                    else production.DefaultPhoto = db.ProductionPhotos.Where(p => p.Title == "Photo Unavailable").FirstOrDefault();
+                    DbEntityEntry<Production> dbEntityEntry = db.Entry(production);
+                    dbEntityEntry.CurrentValues.SetValues(production);
                 }
-                Sponsor sponsors = db.Sponsors.FirstOrDefault(x => x.LogoId == photo.PhotoId);
-                if (sponsors != null)
+                Sponsor sponsor = db.Sponsors.FirstOrDefault(x => x.LogoId == photo.PhotoId);
+                if (sponsor != null)
                 {
-                    DbEntityEntry<Sponsor> dbEntityEntry = db.Entry(sponsors);
-                    sponsors.LogoId = null;
-                    dbEntityEntry.CurrentValues.SetValues(sponsors);
+                    DbEntityEntry<Sponsor> dbEntityEntry = db.Entry(sponsor);
+                    sponsor.LogoId = null;
+                    dbEntityEntry.CurrentValues.SetValues(sponsor);
                 }
                 CastMember cast = db.CastMembers.FirstOrDefault(x => x.PhotoId == photo.PhotoId);
                 if (cast != null)
