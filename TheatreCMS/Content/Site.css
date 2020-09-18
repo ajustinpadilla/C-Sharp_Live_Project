@@ -1848,7 +1848,28 @@ a.dropdown-item:hover {
     width: 400px;
 }
 
+/********** Productions Create Page **********/
 
+div.CheckboxStyle {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+/*label.CheckboxLabel {
+    display: inline;
+}*/
+
+div.checkbox {
+    margin-top: 10px;
+}
+
+input#IsCurrent, input#IsWorldPremiere {
+    height: 40px;
+    width: 40px
+}
+
+/********** End Productions Create Page **********/
 
 /********************PRODUCTION DETAILS PAGE ***********************/
 
