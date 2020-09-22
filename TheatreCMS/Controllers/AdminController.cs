@@ -110,8 +110,6 @@ namespace TheatreCMS.Controllers
             dynamic oldJSON = JObject.Parse(oldSettings);
             dynamic newJSON = JObject.Parse(newSettings);
 
-            UpdateSubscribers(newJSON);
-
             int thisSeason = AutoCalculateCurrentSeason();
             if (newJSON.current_season != thisSeason)
             {
@@ -128,6 +126,8 @@ namespace TheatreCMS.Controllers
             UpdateAdminSettings();
             currentAdminSettings = AdminSettingsReader.CurrentSettings();
             AddViewData(currentAdminSettings);
+
+            UpdateSubscribers();
 
             return View("Dashboard", currentAdminSettings);
         }
@@ -164,8 +164,18 @@ namespace TheatreCMS.Controllers
         }
 
         //Updates Changes in database depending on inputs from the Admin Settings form for recent_definition.
-        private void UpdateSubscribers(dynamic newJSON)
+        private void UpdateSubscribers()
         {
+            // Retrieve Admin Settings
+            string filepath = Server.MapPath(Url.Content("~/AdminSettings.json"));
+            string aStringSettings = null;
+
+            using (StreamReader reader = new StreamReader(filepath))
+            {
+                aStringSettings = reader.ReadToEnd();
+            }
+            dynamic adminSettings = JObject.Parse(aStringSettings);
+
             // Init variable
             DateTime recentDef = DateTime.Now;
 
@@ -173,14 +183,14 @@ namespace TheatreCMS.Controllers
             // Then set recentDef to the correct DateTime
             // If there is no selection, recentDef will be set to now
             // No recent subs will be displayed unless they donated at the exact time
-            if (newJSON.recent_definition.selection == 0)
+            if (adminSettings.recent_definition.selection == 0)
             {
-                recentDef = newJSON.recent_definition.date;
+                recentDef = adminSettings.recent_definition.date;
             }
-            else if (newJSON.recent_definition.selection == 1)
+            else if (adminSettings.recent_definition.selection == 1)
             {
                 recentDef = DateTime.Now;
-                recentDef.AddDays(-newJSON.recent_definition.span);
+                recentDef.AddDays(-Convert.ToInt32(adminSettings.recent_definition.span));
             }
 
             foreach (var subscriber in db.Subscribers)
