@@ -331,11 +331,11 @@
               @* Removed table with Current Show property, World Premier property and checkboxes *@
               @if (User.IsInRole("Admin"))
               {
-                <div class="btn-toolbar">
-                  @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 ml-2" })
+                
+                  @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3" })
                   @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 ml-2" })
                   @Html.ActionLink("Add Photos", "Create", "ProductionPhotos", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 ml-2" })
-                </div>
+                
               }
             </div>
             </div>
