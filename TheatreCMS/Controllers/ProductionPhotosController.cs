@@ -58,7 +58,6 @@ namespace TheatreCMS.Models
             {
                 ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title", Convert.ToInt32(id));
             }
-            
             return View();
         }
 
@@ -68,10 +67,10 @@ namespace TheatreCMS.Models
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Description,Production")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "Title,Description")] ProductionPhotos productionPhotos, HttpPostedFileBase file)
         {
-            int productionID = Convert.ToInt32(Request.Form["Productions"]);
-           
+            int productionID = Convert.ToInt32(Request.Form["Production"]);
+
             productionPhotos.PhotoId = PhotoController.CreatePhoto(file, productionPhotos.Title);
 
             if (ModelState.IsValid)
@@ -89,7 +88,8 @@ namespace TheatreCMS.Models
 
                 return RedirectToAction("Index");
             }
-            
+            ViewData["Productions"] = new SelectList(db.Productions.ToList(), "ProductionId", "Title");
+
             return View(productionPhotos);
         }
 
