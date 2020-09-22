@@ -4101,9 +4101,13 @@ button.part-create {
     width: 18px;
 }
 
+
 .btn-danger.msg-del-btn {
+    display: inline-block;
+    
+    margin: 5px;
     height: 100%;
-    padding: .75rem;
+    vertical-align: top;
     color: white;
     border: none;
 }
@@ -4113,7 +4117,10 @@ button.part-create {
     }
 
     .btn-danger.msg-del-btn.inactive {
-        padding: .75rem;
+        display:inline-block;
+        vertical-align: top;
+        
+        margin: 5px;
         background: grey;
         height: 100%;
         opacity: .8;
