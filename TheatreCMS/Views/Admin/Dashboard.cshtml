@@ -168,20 +168,38 @@
 
     RECENT DEFINITION:
     <br />
-    <input type="radio" name="recent_definition.selection" value="0" id="recentDefDateSel" />
-    <label for="recentDefDateSel">Date:</label>
-    <br />
-    <input align="center" type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")">
-    <br />
-    <br />
-    <input type="radio" name="recent_definition.selection" value="1" id="recentDefSpanSel" />
-    <label for="recentDefDateSel">Span:</label>
-    <br />
-    <input align="center" type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)">
-    <br />
-    <br />
-    <br />
-    ONSTAGE:
+    <input type="radio" name="recent_definition.selection" value="0" id="recentDefDateSel" 
+           @if (Model.recent_definition.selection == 0) { 
+               @:checked 
+               }/>
+
+<label for="recentDefDateSel">Date:</label>
+
+<br />
+
+<input align="center" type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")">
+
+<br />
+
+<br />
+
+<input type="radio" name="recent_definition.selection" value="1" id="recentDefSpanSel" 
+           @if (Model.recent_definition.selection == 1) { 
+               @:checked 
+               }/>
+
+<label for="recentDefDateSel">Span:</label>
+
+<br />
+
+<input align="center" type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)">
+
+<br />
+
+<br />
+
+<br />
+ONSTAGE:
     @*<input type="number" name="Onstage" value="@Html.DisplayFor(model => model.onstage)"><br /><br />*@
     <div>
         @Html.DropDownListFor(model => model.on_stage, (IEnumerable
