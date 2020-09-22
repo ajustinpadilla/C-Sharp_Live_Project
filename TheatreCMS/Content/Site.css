@@ -4016,9 +4016,13 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     width: 18px;
 }
 
+
 .btn-danger.msg-del-btn {
+    display: inline-block;
+    
+    margin: 5px;
     height: 100%;
-    padding: .75rem;
+    vertical-align: top;
     color: white;
     border: none;
 }
@@ -4028,7 +4032,10 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     }
 
     .btn-danger.msg-del-btn.inactive {
-        padding: .75rem;
+        display:inline-block;
+        vertical-align: top;
+        
+        margin: 5px;
         background: grey;
         height: 100%;
         opacity: .8;
