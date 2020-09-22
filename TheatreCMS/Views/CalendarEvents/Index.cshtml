@@ -302,14 +302,29 @@
 
 @if (User.IsInRole("Admin"))
 {
-  <p class="mt-5">
-    @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Bulk Add", "BulkAdd")
-    <button type="button" class="btn btn-danger mx-3 msg-del-btn inactive" data-toggle="modal" 
-            data-target="#multiDeleteModal" aria-disabled="true"><i class="fas fa-trash"></i></button>
-  </p>
+<p class="mt-5">
+ 
+    <button class="iconBtn" onclick="location.href='@Url.Action("Create")'">
+      <i class="fa fa-plus-square fa-fw"></i> Create New<!--Added a create button -->
+    </button>
+
+    <button class="iconBtn mx-0" onclick="location.href='@Url.Action("BulkAdd")'">
+      <i class="fas fa-mail-bulk"></i> Bulk Add <!--Added a add button -->
+    </button>
+
+    <button class="btn btn-danger msg-del-btn inactive  " data-toggle="modal"
+            data-target="#multiDeleteModal" aria-disabled="true">
+      <i class="fas fa-trash"></i>
+    </button>
+
+</p>
 }
 
 <div id="calendarTableContainer">
+
+  
+
+
   <table id="adminEventTable" class="table">
     <thead>
       <tr class="text-center">
