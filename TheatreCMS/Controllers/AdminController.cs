@@ -166,7 +166,23 @@ namespace TheatreCMS.Controllers
         //Updates Changes in database depending on inputs from the Admin Settings form for recent_definition.
         private void UpdateSubscribers(dynamic newJSON)
         {
-            DateTime recentDef = newJSON.recent_definition.date;
+            // Init variable
+            DateTime recentDef = DateTime.Now;
+
+            // Check and see what the recent definition is
+            // Then set recentDef to the correct DateTime
+            // If there is no selection, recentDef will be set to now
+            // No recent subs will be displayed unless they donated at the exact time
+            if (newJSON.recent_definition.selection == 0)
+            {
+                recentDef = newJSON.recent_definition.date;
+            }
+            else if (newJSON.recent_definition.selection == 1)
+            {
+                recentDef = DateTime.Now;
+                recentDef.AddDays(-newJSON.recent_definition.span);
+            }
+
             foreach (var subscriber in db.Subscribers)
             {
                 if (recentDef >= subscriber.LastDonated)
