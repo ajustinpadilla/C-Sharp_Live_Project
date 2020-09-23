@@ -11,48 +11,10 @@
     "PhoneGeneral": "(503) 482-8655"
   },
   "models_missing_photos": {
-    "productions": [
-      87
-    ],
+    "productions": [],
     "cast_members": [],
     "sponsors": [],
-    "production_photos": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      16,
-      17,
-      18,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      33,
-      92,
-      100,
-      110,
-      111,
-      117,
-      118,
-      119,
-      120,
-      121,
-      122,
-      123,
-      124
-    ]
+    "production_photos": []
   },
   "recent_definition": {
     "bUsingSpan": false,
@@ -62,7 +24,6 @@
   "on_stage": 5,
   "current_season": 24,
   "current_productions": [
-    87,
     4,
     3
   ]
