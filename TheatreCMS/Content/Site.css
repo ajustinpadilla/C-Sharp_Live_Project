@@ -1848,7 +1848,28 @@ a.dropdown-item:hover {
     width: 400px;
 }
 
+/********** Productions Create Page **********/
 
+div.CheckboxStyle {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+/*label.CheckboxLabel {
+    display: inline;
+}*/
+
+div.checkbox {
+    margin-top: 10px;
+}
+
+input#IsCurrent, input#IsWorldPremiere {
+    height: 40px;
+    width: 40px
+}
+
+/********** End Productions Create Page **********/
 
 /********************PRODUCTION DETAILS PAGE ***********************/
 
@@ -3247,8 +3268,16 @@ tr.event-row {
 }
 */
 
-/*===== PRODUCTION DETAILS BUTTON */
-.home-content .btn-primary .btn-main {
+/*===== SITE WIDE STYLING FOR BUTTONS =====*/
+/*=========================================
+        .btn-main is used as default styling for buttons across the site
+        Changes to this class will affect the whole site.
+        If you need to make a change for a specific use case, 
+        you can either do it with Bootstrap (preferred), or by applying additional classes or an ID.
+*/
+
+/*===Removed .home - content . btn primary == */
+.btn-main {
     display: inline-block;
     font-weight: 400;
     margin-bottom: 1rem;
@@ -3262,7 +3291,7 @@ tr.event-row {
     background-color: var(--main-bg-color);
     color: var(--light-color);
     border: 1px solid var(--main-bg-color);
-    transition: .5s; /* gradual transition on hover on/off */
+    transition: .33s; /* gradual transition on hover on/off */ /* switched from .05s to 0.33s*/
 }
 
     .btn-main:focus, btn-main:active:hover { /* combined to reduce duplicate code */
@@ -3855,6 +3884,62 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     margin-right: -15px;
     margin-left: -15px;
 }
+
+/*========== PART CREATE ==========*/
+
+/*===== CARD - add part create style to Bootstrap base card */
+.card.part-create {
+    background-color: var(--main-bg-color);
+    border-radius: 25px;
+    outline-color: white;
+    min-width: 300px;
+    max-width: 550px;    
+}
+
+/*===== FORM CONTROL - add part create style to Bootstrap base */
+.form-control.part-create {
+    background-color: var(--main-secondary-color);
+    color: white;    
+}
+/*=== center align the value selected in the dropdown list */
+select.form-control.part-create {
+    text-align-last: center; 
+}
+/*=== hide element selectively from jQuery add/remove class method */
+.form-control.part-create.hide {
+    display: none;
+}
+
+/*===== DROPDOWN Placeholder option */
+select.form-control.part-create option[value=""] {
+    color: rgba(255,255,255,.4);
+}
+
+/*=== INPUT Placeholder color */
+.form-control.part-create::-webkit-input-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create::placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create:-ms-input-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create:-moz-placeholder {
+    color: rgba(255,255,255,.4);
+}
+.form-control.part-create::-moz-placeholder {
+    color: rgba(255,255,255,.4);
+}
+
+/*===== BUTTON - Submit under card */
+button.part-create {
+    max-width: 500px;
+    width: 90%;
+}
+
+
+/*---------- END Part Create ----------*/
 /*END CSS for Admin Parts page*/
 
 /*CSS for Arcive View by Jeff Staab*/
@@ -4016,9 +4101,13 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     width: 18px;
 }
 
+
 .btn-danger.msg-del-btn {
+    display: inline-block;
+    
+    margin: 5px;
     height: 100%;
-    padding: .75rem;
+    vertical-align: top;
     color: white;
     border: none;
 }
@@ -4028,7 +4117,10 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     }
 
     .btn-danger.msg-del-btn.inactive {
-        padding: .75rem;
+        display:inline-block;
+        vertical-align: top;
+        
+        margin: 5px;
         background: grey;
         height: 100%;
         opacity: .8;

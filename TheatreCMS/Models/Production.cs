@@ -13,6 +13,7 @@ namespace TheatreCMS.Models
     {
         [Key]
         public int ProductionId { get; set; }       // production primary key
+        [Required]
         public string Title { get; set; }           // production title
         public string Playwright { get; set; }      // production playwright
         public string Description { get; set; }     // production description

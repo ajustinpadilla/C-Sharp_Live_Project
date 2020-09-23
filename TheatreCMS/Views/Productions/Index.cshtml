@@ -271,70 +271,72 @@
                     }
                 }
             <div class="card-body production-index-card-inner justify-content-center">
-                <h4 class="card-title">@item.Title</h4>
-                <h5 class="card-title">@item.Playwright</h5>
-                @*<p class="card-text">@item.Description</p>*@
+              <h4 class="card-title">@item.Title</h4>
+              <h5 class="card-title">@item.Playwright</h5>
+              @*<p class="card-text">@item.Description</p>*@
 
-                @* Pill badge displaying season number of each production.*@
-                <span class="badge badge-pill badge-secondary mb-2">
-                    Season #@item.Season
-                </span>
-                @* Pill badge displayed when IsWorldPremiere is true.*@
-                @if (item.IsWorldPremiere)
+              @* Pill badge displaying season number of each production.*@
+              <span class="badge badge-pill badge-secondary mb-2">
+                Season #@item.Season
+              </span>
+              @* Pill badge displayed when IsWorldPremiere is true.*@
+              @if (item.IsWorldPremiere)
+              {
+                <span class="badge badge-pill badge-primary">World Premiere</span>
+              }
+
+              <table class="w-100">
+                <tr class="production-index-tr-styling">
+                  <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.OpeningDay)
+                  </th>
+                  <td class="productions-index-td-styling">
+                    @item.OpeningDay.ToShortDateString()
+                    @*@Convert.ToString(item.OpeningDay).Replace(":00 PM", "")*@
+                  </td>
+                </tr>
+                <tr class="production-index-tr-styling">
+                  <th class="productions-index-th-styling">
+                    @Html.DisplayNameFor(model => model.ClosingDay)
+                  </th>
+                  <td class="productions-index-td-styling">
+                    @item.ClosingDay.ToShortDateString()
+                    @*@Convert.ToString(item.ClosingDay).Replace(":00 PM", "")*@
+                  </td>
+                </tr>
+                @if (item.ShowtimeMat.HasValue)
                 {
-                    <span class="badge badge-pill badge-primary">World Premiere</span>
+                  <tr class="production-index-tr-styling">
+                    <th class="productions-index-th-styling">
+                      @Html.DisplayNameFor(model => model.ShowtimeMat)
+                    </th>
+                    <td class="productions-index-td-styling">
+                      @item.ShowtimeMat.GetValueOrDefault().ToShortTimeString()
+                    </td>
+                  </tr>
                 }
 
-                <table class="w-100">
-                    <tr class="production-index-tr-styling">
-                        <th class="productions-index-th-styling">
-                            @Html.DisplayNameFor(model => model.OpeningDay)
-                        </th>
-                        <td class="productions-index-td-styling">
-                            @item.OpeningDay.ToShortDateString()
-                            @*@Convert.ToString(item.OpeningDay).Replace(":00 PM", "")*@
-                        </td>
-                    </tr>
-                    <tr class="production-index-tr-styling">
-                        <th class="productions-index-th-styling">
-                            @Html.DisplayNameFor(model => model.ClosingDay)
-                        </th>
-                        <td class="productions-index-td-styling">
-                            @item.ClosingDay.ToShortDateString()
-                            @*@Convert.ToString(item.ClosingDay).Replace(":00 PM", "")*@
-                        </td>
-                    </tr>
-                    @if (item.ShowtimeMat.HasValue)
-                    {
-                        <tr class="production-index-tr-styling">
-                            <th class="productions-index-th-styling">
-                                @Html.DisplayNameFor(model => model.ShowtimeMat)
-                            </th>
-                            <td class="productions-index-td-styling">
-                                @item.ShowtimeMat.GetValueOrDefault().ToShortTimeString()
-                            </td>
-                        </tr>
-                    }
-
-                    @if (item.ShowtimeEve.HasValue)
-                    {
-                        <tr class="production-index-tr-styling">
-                            <th class="productions-index-th-styling">
-                                @Html.DisplayNameFor(model => model.ShowtimeEve)
-                            </th>
-                            <td class="productions-index-td-styling">
-                                @item.ShowtimeEve.GetValueOrDefault().ToShortTimeString()
-                            </td>
-                        </tr>
-                    }
-                </table>
-                @* Removed table with Current Show property, World Premier property and checkboxes *@
-                @if (User.IsInRole("Admin"))
+                @if (item.ShowtimeEve.HasValue)
                 {
-                    @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main" });
-                    @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 px-3" });
-                    @Html.ActionLink("Add Photos", "Create", "ProductionPhotos", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 ml-3" });
+                  <tr class="production-index-tr-styling">
+                    <th class="productions-index-th-styling">
+                      @Html.DisplayNameFor(model => model.ShowtimeEve)
+                    </th>
+                    <td class="productions-index-td-styling">
+                      @item.ShowtimeEve.GetValueOrDefault().ToShortTimeString()
+                    </td>
+                  </tr>
                 }
+              </table>
+              @* Removed table with Current Show property, World Premier property and checkboxes *@
+              @if (User.IsInRole("Admin"))
+              {
+                
+                  @Html.ActionLink("Edit", "Edit", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3" })
+                  @Html.ActionLink("Delete", "Delete", "Productions", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 ml-2" })
+                  @Html.ActionLink("Add Photos", "Create", "ProductionPhotos", new { id = item.ProductionId }, new { @class = "btn btn-main mt-3 ml-2" })
+                
+              }
             </div>
             </div>
         }

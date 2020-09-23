@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Windows.Media.Animation;
@@ -147,6 +149,86 @@ namespace TheatreCMS.Controllers
             }
         }
 
+        //========== VALIDATE PHOTO - Test if input is photo, return True if a photo format
+        public static bool ValidatePhoto(HttpPostedFileBase postedFile)
+        {
+            Debug.WriteLine("Validating photo...");
+            const int ImageMinimumBytes = 512;
+            //-------------------------------------------
+            //  Check the image mime types
+            //-------------------------------------------
+            if (!string.Equals(postedFile.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(postedFile.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(postedFile.ContentType, "image/pjpeg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(postedFile.ContentType, "image/gif", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(postedFile.ContentType, "image/x-png", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(postedFile.ContentType, "image/png", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            //-------------------------------------------
+            //  Check the image extension
+            //-------------------------------------------
+            var postedFileExtension = Path.GetExtension(postedFile.FileName);
+            if (!string.Equals(postedFileExtension, ".jpg", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(postedFileExtension, ".png", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(postedFileExtension, ".gif", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(postedFileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            //-------------------------------------------
+            //  Attempt to read the file and check the first bytes
+            //-------------------------------------------
+            try
+            {
+                if (!postedFile.InputStream.CanRead)
+                {
+                    return false;
+                }
+                //----- Check whether the image size below the lower limit or not
+                if (postedFile.ContentLength < ImageMinimumBytes)
+                {
+                    return false;
+                }
+                //----- Read the file
+                byte[] buffer = new byte[ImageMinimumBytes];
+                postedFile.InputStream.Read(buffer, 0, ImageMinimumBytes);
+                string content = System.Text.Encoding.UTF8.GetString(buffer);
+                if (Regex.IsMatch(content, @"<script|<html|<head|<title|<body|<pre|<table|<a\s+href|<img|<plaintext|<cross\-domain\-policy",
+                    RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Multiline))
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            //-------------------------------------------
+            //  Try to instantiate new Bitmap, if .NET will throw exception
+            //  we can assume that it's not a valid image
+            //-------------------------------------------
+            try
+            {
+                using (var bitmap = new Bitmap(postedFile.InputStream))
+                {
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                postedFile.InputStream.Position = 0;
+            }
+            return true;
+        }
+
+
         //Takes an image file and title string and returns the PhotoId as string
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -278,7 +360,6 @@ namespace TheatreCMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 Photo photo = db.Photo.Find(id);
@@ -290,19 +371,37 @@ namespace TheatreCMS.Controllers
                     productionPhoto.PhotoId = null;
                     dbEntityEntry.CurrentValues.SetValues(productionPhoto);
                 }
-                Production productions = db.Productions.FirstOrDefault(x => x.DefaultPhoto.PhotoId == photo.PhotoId);
-                if (productions != null)
-                {
-                    DbEntityEntry<Production> dbEntityEntry = db.Entry(productions);
-                    productions.DefaultPhoto = null;
-                    dbEntityEntry.CurrentValues.SetValues(productions);
+                // Checks for a production using this photo as a deleted photo
+                Production production = db.Productions.FirstOrDefault(x => x.DefaultPhoto.PhotoId == photo.PhotoId);
+                if (production != null)  // If Production exists
+                {   
+                    // Checks to see if there is another photo related to the production
+                    if (production.ProductionPhotos.Where(p => p.PhotoId != null).Count() > 0)
+                    {
+                        foreach (var potentialDefaultPhoto in production.ProductionPhotos)
+                        {
+                            if (potentialDefaultPhoto.PhotoId == photo.PhotoId) continue;  // Ignores current default photo
+                            // Error handling for deleted photos that still have references
+                            else if (potentialDefaultPhoto == null || potentialDefaultPhoto.PhotoId == null) continue;
+                            else
+                            {
+                                // Sets new default photo
+                                production.DefaultPhoto = potentialDefaultPhoto;
+                                break;  // Exists the loop since a photo has been found
+                            }
+                        }
+                    }
+                    // Sets the default photo to "Photo Unavailable"
+                    else production.DefaultPhoto = db.ProductionPhotos.Where(p => p.Title == "Photo Unavailable").FirstOrDefault();
+                    DbEntityEntry<Production> dbEntityEntry = db.Entry(production);
+                    dbEntityEntry.CurrentValues.SetValues(production);
                 }
-                Sponsor sponsors = db.Sponsors.FirstOrDefault(x => x.LogoId == photo.PhotoId);
-                if (sponsors != null)
+                Sponsor sponsor = db.Sponsors.FirstOrDefault(x => x.LogoId == photo.PhotoId);
+                if (sponsor != null)
                 {
-                    DbEntityEntry<Sponsor> dbEntityEntry = db.Entry(sponsors);
-                    sponsors.LogoId = null;
-                    dbEntityEntry.CurrentValues.SetValues(sponsors);
+                    DbEntityEntry<Sponsor> dbEntityEntry = db.Entry(sponsor);
+                    sponsor.LogoId = null;
+                    dbEntityEntry.CurrentValues.SetValues(sponsor);
                 }
                 CastMember cast = db.CastMembers.FirstOrDefault(x => x.PhotoId == photo.PhotoId);
                 if (cast != null)

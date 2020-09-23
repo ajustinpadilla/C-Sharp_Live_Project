@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -179,7 +180,11 @@ namespace TheatreCMS.Controllers
             return View(production);
         }
 
-        // GET: Productions/Create
+        //------------------------------------------------------
+        //----------------------- CREATE -----------------------
+        //------------------------------------------------------
+        
+        //========== GET: Productions/Create
         [TheatreAuthorize(Roles = "Admin")]
         public ActionResult Create()
         {
@@ -187,24 +192,55 @@ namespace TheatreCMS.Controllers
             return View();
         }
 
-
-        // POST: Productions/Create
+        //========== POST: Productions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [TheatreAuthorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto_ProPhotoId,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "ProductionId,Title,Playwright,Description,Runtime,OpeningDay,ClosingDay,DefaultPhoto,ShowtimeEve,ShowtimeMat,TicketLink,Season,IsCurrent,IsWorldPremiere")] Production production, HttpPostedFileBase uploadFile)
         {
+            //========== VALIDATION ==========
+            //===== PHOTO - Check if photo is not null but not a valid photo format
+            if (uploadFile != null && !PhotoController.ValidatePhoto(uploadFile))
+            {
+                ModelState.AddModelError("DefaultPhoto", "File must be a valid photo format.");                
+            }
+            //===== SHOWTIME - at list one (ShowtimeEve, ShowtimeMat) need to be assigned 
+            if (production.ShowtimeEve == null && production.ShowtimeMat == null)
+            {
+                ModelState.AddModelError("ShowtimeEve", "At least one showtime must be specified.");
+                ModelState.AddModelError("ShowtimeMat", "At least one showtime must be specified.");
+            }
+            //========== SAVE ==========
             if (ModelState.IsValid)
             {
-                //if (upload != null)
-                //{
-                //    var promoPhoto = ImageUploadController.ImageBytes(upload, out string _64);
-                //    production.DefaultPhoto = promoPhoto;
-                //}
-                db.Productions.Add(production);
-                db.SaveChanges();
+                //===== DEFAULT PHOTO 
+                //--- save photo using photo controller, save entry to ProductionPhotos, photoName set to production title, description set to "Default Photo"
+                if (uploadFile != null)
+                {
+                    //----- Save New Photo or retrieve existing photo if the same - using photo controller
+                    Debug.WriteLine("Saving photo...");
+                    int photoId = PhotoController.CreatePhoto(uploadFile, production.Title);
+                    //----- Save New ProductionPhoto
+                    var productionPhoto = new ProductionPhotos() { PhotoId = photoId, Title = production.Title, Description = "Default Photo" };
+                    db.ProductionPhotos.Add(productionPhoto);
+                    db.SaveChanges();
+                    //----- Save New Production, add DefaultPhoto object reference to production
+                    production.DefaultPhoto = productionPhoto;
+                    db.Productions.Add(production);
+                    db.SaveChanges();
+                    //----- Add Production object reference to productionPhoto
+                    productionPhoto.Production = production;
+                    db.Entry(productionPhoto).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                //===== NO PHOTO 
+                else
+                {
+                    db.Productions.Add(production);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             return View(production);
