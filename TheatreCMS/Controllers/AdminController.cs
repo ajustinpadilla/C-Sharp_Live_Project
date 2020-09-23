@@ -190,7 +190,7 @@ namespace TheatreCMS.Controllers
             else if (adminSettings.recent_definition.selection == 1)
             {
                 recentDef = DateTime.Now;
-                recentDef.AddDays(-Convert.ToInt32(adminSettings.recent_definition.span));
+                recentDef.AddMonths(-Convert.ToInt32(adminSettings.recent_definition.span));
             }
 
             foreach (var subscriber in db.Subscribers)
