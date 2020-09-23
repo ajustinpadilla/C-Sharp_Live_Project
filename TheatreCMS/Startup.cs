@@ -125,7 +125,15 @@ namespace TheatreCMS
                     City = "Shire",
                     State = "MA",
                     ZipCode = "54321",
-                    Role = "Subscriber"
+                    Role = "Subscriber",
+                    SubscriberPerson = new Areas.Subscribers.Models.Subscriber ()
+                    {
+                        CurrentSubscriber = true,
+                        HasRenewed = false,
+                        Newsletter = true,
+                        RecentDonor = false
+                        //Generating SubscriberPerson data for Subscribers so can edit/delete from UserList page
+                    }
                 };
 
                 string userPWD = "100100St!";
