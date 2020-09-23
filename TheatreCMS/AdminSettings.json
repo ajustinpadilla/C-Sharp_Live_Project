@@ -55,7 +55,8 @@
     ]
   },
   "recent_definition": {
-    "selection": 1,
+    "selection": 0,
+    "bUsingSpan": true,
     "span": 57,
     "date": "2020-04-29"
   },

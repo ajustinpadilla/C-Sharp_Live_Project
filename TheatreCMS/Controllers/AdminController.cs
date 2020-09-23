@@ -182,7 +182,7 @@ namespace TheatreCMS.Controllers
             }
             else if (adminSettings.recent_definition.bUsingSpan)
             {
-                recentDef.AddMonths(-Convert.ToInt32(adminSettings.recent_definition.span));
+                recentDef = recentDef.AddMonths(-Convert.ToInt32(adminSettings.recent_definition.span));
             }
 
             foreach (var subscriber in db.Subscribers)
