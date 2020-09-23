@@ -167,14 +167,7 @@ namespace TheatreCMS.Controllers
         private void UpdateSubscribers()
         {
             // Retrieve Admin Settings
-            string filepath = Server.MapPath(Url.Content("~/AdminSettings.json"));
-            string aStringSettings = null;
-
-            using (StreamReader reader = new StreamReader(filepath))
-            {
-                aStringSettings = reader.ReadToEnd();
-            }
-            dynamic adminSettings = JObject.Parse(aStringSettings);
+            dynamic adminSettings = AdminSettingsReader.CurrentSettings();
 
             // Init variable
             DateTime recentDef = DateTime.Now;
