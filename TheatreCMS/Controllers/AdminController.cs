@@ -176,11 +176,11 @@ namespace TheatreCMS.Controllers
             // Then set recentDef to the correct DateTime
             // If there is no selection, recentDef will be set to now
             // No recent subs will be displayed unless they donated at the exact time
-            if (adminSettings.recent_definition.selection == 0)
+            if (!adminSettings.recent_definition.bUsingSpan)
             {
                 recentDef = adminSettings.recent_definition.date;
             }
-            else if (adminSettings.recent_definition.selection == 1)
+            else if (adminSettings.recent_definition.bUsingSpan)
             {
                 recentDef.AddMonths(-Convert.ToInt32(adminSettings.recent_definition.span));
             }

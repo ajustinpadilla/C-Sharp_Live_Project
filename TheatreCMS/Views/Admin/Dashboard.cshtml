@@ -168,8 +168,8 @@
 
     RECENT DEFINITION:
     <br />
-    <input type="radio" name="recent_definition.selection" value="0" id="recentDefDateSel" 
-           @if (Model.recent_definition.selection == 0) { 
+    <input type="radio" name="recent_definition.bUsingSpan" value="false" id="recentDefDateSel" 
+           @if (!Model.recent_definition.bUsingSpan) { 
                @:checked 
                }/>
 
@@ -183,8 +183,8 @@
 
 <br />
 
-<input type="radio" name="recent_definition.selection" value="1" id="recentDefSpanSel" 
-           @if (Model.recent_definition.selection == 1) { 
+<input type="radio" name="recent_definition.bUsingSpan" value="true" id="recentDefSpanSel" 
+           @if (Model.recent_definition.bUsingSpan) { 
                @:checked 
                }/>
 
