@@ -168,18 +168,38 @@
 
     RECENT DEFINITION:
     <br />
-    Date:
-    <br />
-    <input align="center" type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")">
-    <br />
-    <br />
-    Span:
-    <br />
-    <input align="center" type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)">
-    <br />
-    <br />
-    <br />
-    ONSTAGE:
+    <input type="radio" name="recent_definition.bUsingSpan" value="false" id="recentDefDateSel" 
+           @if (!Model.recent_definition.bUsingSpan) { 
+               @:checked 
+               }/>
+
+<label for="recentDefDateSel">Date:</label>
+
+<br />
+
+<input align="center" type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")">
+
+<br />
+
+<br />
+
+<input type="radio" name="recent_definition.bUsingSpan" value="true" id="recentDefSpanSel" 
+           @if (Model.recent_definition.bUsingSpan) { 
+               @:checked 
+               }/>
+
+<label for="recentDefDateSel">Span (Months):</label>
+
+<br />
+
+<input align="center" type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)">
+
+<br />
+
+<br />
+
+<br />
+ONSTAGE:
     @*<input type="number" name="Onstage" value="@Html.DisplayFor(model => model.onstage)"><br /><br />*@
     <div>
         @Html.DropDownListFor(model => model.on_stage, (IEnumerable

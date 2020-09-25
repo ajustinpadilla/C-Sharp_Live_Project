@@ -1848,7 +1848,28 @@ a.dropdown-item:hover {
     width: 400px;
 }
 
+/********** Productions Create Page **********/
 
+div.CheckboxStyle {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+/*label.CheckboxLabel {
+    display: inline;
+}*/
+
+div.checkbox {
+    margin-top: 10px;
+}
+
+input#IsCurrent, input#IsWorldPremiere {
+    height: 40px;
+    width: 40px
+}
+
+/********** End Productions Create Page **********/
 
 /********************PRODUCTION DETAILS PAGE ***********************/
 
@@ -4080,9 +4101,13 @@ button.part-create {
     width: 18px;
 }
 
+
 .btn-danger.msg-del-btn {
+    display: inline-block;
+    
+    margin: 5px;
     height: 100%;
-    padding: .75rem;
+    vertical-align: top;
     color: white;
     border: none;
 }
@@ -4092,7 +4117,10 @@ button.part-create {
     }
 
     .btn-danger.msg-del-btn.inactive {
-        padding: .75rem;
+        display:inline-block;
+        vertical-align: top;
+        
+        margin: 5px;
         background: grey;
         height: 100%;
         opacity: .8;

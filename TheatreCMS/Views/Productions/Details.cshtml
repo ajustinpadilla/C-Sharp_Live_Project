@@ -62,21 +62,36 @@
                 </dd>
               </dl>
             </li>
+            <!--===== SHOWTIMES - Display only if available-->
             <li class="list-group-item">
-              Evening Show Time
-              <dl>
-                <dd class="col">
-                  @Model.ShowtimeEve.Value.ToString("h:mm tt")
-                </dd>
-              </dl>
+              Evening Showtime
+                <dl>
+                    @{
+                        if (Model.ShowtimeEve.HasValue)
+                        {
+                            <dd class="col">@Model.ShowtimeEve.Value.ToString("h:mm tt")</dd>
+                        }
+                        else
+                        {
+                            <dd class="col">Not Playing</dd>
+                        }
+                    }
+                </dl>
             </li>
             <li class="list-group-item">
-              Matinee Show Time
-              <dl>
-                <dd class="col">
-                  @Model.ShowtimeMat.Value.ToString("h:mm tt")
-                </dd>
-              </dl>
+              Matinee Showtime
+                <dl>
+                    @{
+                        if (Model.ShowtimeMat.HasValue)
+                        {
+                            <dd class="col">@Model.ShowtimeMat.Value.ToString("h:mm tt")</dd>
+                        }
+                        else
+                        {
+                            <dd class="col">Not Playing</dd>
+                        }
+                    }                    
+                </dl>
             </li>
           </ul>
         </div>
