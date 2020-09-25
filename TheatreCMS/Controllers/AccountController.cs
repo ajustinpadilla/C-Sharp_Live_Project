@@ -13,6 +13,8 @@ using TheatreCMS.Models;
 using System.Web.Helpers;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace TheatreCMS.Controllers
 {
@@ -495,6 +497,45 @@ namespace TheatreCMS.Controllers
         public ActionResult UnauthorizedAccess()
         {
             return View();
+        }
+
+        // Add or remove a cast member id from the user's FavorateCastMembers list
+        private ApplicationDbContext db = new ApplicationDbContext();
+        public void ToggleFavoriteCastMembers(int castMemberId)
+        {
+            string cmId = castMemberId.ToString();
+
+            // Check/get the current user
+            if (Request.IsAuthenticated)
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null && currentUser.FavoriteCastMembers != null)
+                {
+                    // Break down the FavoriteCastMembers string and turn it into a list
+                    string[] stringFavCastIds = currentUser.FavoriteCastMembers.Split(',');
+                    List<string> favCastIds = new List<string> { };
+                    foreach (string castId in stringFavCastIds) favCastIds.Add(castId);
+                    // If the Id is in the list, remove it. If not, add it.
+                    if (favCastIds.Contains(cmId)) favCastIds.Remove(cmId);
+                    else favCastIds.Add(cmId);
+
+                    // Convert the list back into a string to store in the database
+                    string finalCMString = "";
+                    for (int i = 0; i < favCastIds.Count(); i++)
+                    {
+                        finalCMString += favCastIds[i];
+                        if ((i+1) < favCastIds.Count())
+                        {
+                            finalCMString += ",";   // Don't add comma to the end
+                        }
+                    }
+                    db.SaveChanges();
+                }
+                else if (currentUser != null) currentUser.FavoriteCastMembers = cmId;
+                return;
+            }
         }
 
         #region Helpers

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using TheatreCMS.Models;
 //using Microsoft.AspNet.Identity;
 
@@ -25,7 +27,26 @@ namespace TheatreCMS.Controllers
             foreach (var user in Users)
                 keyValuePairs.Add(user.Id, user.UserName);
             ViewBag.Users = keyValuePairs;
-            
+
+            List<string> favCastIds = new List<string> { };
+            if (Request.IsAuthenticated)
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null && currentUser.FavoriteCastMembers != null)
+                {
+                    // Break the string down into a list and send to view
+                    string[] stringFavCastIds = currentUser.FavoriteCastMembers.Split(',');
+                    foreach(string castId in favCastIds)
+                    {
+                        favCastIds.Add(castId);
+                        System.Diagnostics.Debug.WriteLine(castId);
+                    }
+                }
+            }
+            ViewBag.FavCastIds = favCastIds;
+
             return View(db.CastMembers.ToList());
         }
 
