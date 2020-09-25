@@ -501,9 +501,10 @@ namespace TheatreCMS.Controllers
 
         // Add or remove a cast member id from the user's FavorateCastMembers list
         private ApplicationDbContext db = new ApplicationDbContext();
-        public void ToggleFavoriteCastMembers(int castMemberId)
+        [HttpPost]
+        public void ToggleFavoriteCastMembers(int? id)
         {
-            string cmId = castMemberId.ToString();
+            string cmId = id.ToString();
 
             // Check/get the current user
             if (Request.IsAuthenticated)
@@ -526,15 +527,20 @@ namespace TheatreCMS.Controllers
                     for (int i = 0; i < favCastIds.Count(); i++)
                     {
                         finalCMString += favCastIds[i];
-                        if ((i+1) < favCastIds.Count())
+                        if ((i + 1) < favCastIds.Count())
                         {
                             finalCMString += ",";   // Don't add comma to the end
                         }
                     }
+                    currentUser.FavoriteCastMembers = finalCMString;
                     db.SaveChanges();
                 }
-                else if (currentUser != null) currentUser.FavoriteCastMembers = cmId;
-                return;
+                else if (currentUser != null)
+                {
+                    currentUser.FavoriteCastMembers = cmId;
+                    System.Diagnostics.Debug.WriteLine("BBGG");
+                    db.SaveChanges();
+                }
             }
         }
 

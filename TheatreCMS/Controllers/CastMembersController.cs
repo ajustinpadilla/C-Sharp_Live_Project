@@ -38,11 +38,7 @@ namespace TheatreCMS.Controllers
                 {
                     // Break the string down into a list and send to view
                     string[] stringFavCastIds = currentUser.FavoriteCastMembers.Split(',');
-                    foreach(string castId in favCastIds)
-                    {
-                        favCastIds.Add(castId);
-                        System.Diagnostics.Debug.WriteLine(castId);
-                    }
+                    foreach(string castId in stringFavCastIds) favCastIds.Add(castId);
                 }
             }
             ViewBag.FavCastIds = favCastIds;
