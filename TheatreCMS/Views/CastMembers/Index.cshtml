@@ -44,9 +44,9 @@
                 <h4 class="card-title">
                     @Html.DisplayFor(modelItem => item.Name),
                     @Html.DisplayFor(modelItem => item.MainRole)
-                    @if (User.IsInRole("Member"))
+                    @if (User.IsInRole("Member") | User.IsInRole("Subscriber"))
                     {
-                        @User.Identity
+                        <p class="fb-not-favorited" id="fb-@item.CastMemberID" onclick="FavoriteCastMember(@item.CastMemberID)"></p>
                     }
                 </h4>
                 @{ @*Added if statement so "YearJoined" variable is only used if the year joined is not null*@
@@ -87,3 +87,20 @@
         </div>
     }
 </div>
+
+<script>
+
+    function FavoriteCastMember(castMemeberId) {
+        var paragraphId = "fb-" + castMemeberId;
+        var likeBtn = document.getElementById(paragraphId);
+
+        if (likeBtn.classList.contains("fb-not-favorited")) {
+            likeBtn.classList.remove("fb-not-favorited");
+            likeBtn.classList.add("fb-favorited");
+        } else if (likeBtn.classList.contains("fb-favorited")) {
+            likeBtn.classList.remove("fb-favorited");
+            likeBtn.classList.add("fb-not-favorited");
+        }
+    };
+
+</script>
