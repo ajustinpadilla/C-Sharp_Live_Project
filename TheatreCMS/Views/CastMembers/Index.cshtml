@@ -46,7 +46,7 @@
                     @Html.DisplayFor(modelItem => item.Name),
                     @Html.DisplayFor(modelItem => item.MainRole)
                     @* Favorite cast members button *@
-                    @if (User.IsInRole("Member") | User.IsInRole("Subscriber") | User.IsInRole("Admin"))
+                    @if (User.Identity.IsAuthenticated)
                     {
                         if (FavCastIds.Contains(item.CastMemberID.ToString()))
                         {
