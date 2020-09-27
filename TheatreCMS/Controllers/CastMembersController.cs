@@ -62,6 +62,19 @@ namespace TheatreCMS.Controllers
             //Passes The Username of the currently selected cast member to the model
             if (castMember.CastMemberPersonID != null)
                 ViewBag.CurrentUser = db.Users.Find(castMember.CastMemberPersonID).UserName;
+
+            if (Request.IsAuthenticated)
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null && currentUser.FavoriteCastMembers != null)
+                {
+                    // Break the string down into a list and send to view
+                    ViewBag.FavCastIds = currentUser.FavoriteCastMembers.Split(',').ToList();
+                }
+            }
+
             return View(castMember);
         }
 

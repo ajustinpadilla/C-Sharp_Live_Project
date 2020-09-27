@@ -4546,7 +4546,8 @@ ul.dependency {
 
 .fb-favorited, .fb-not-favorited {
     font-family: "Font Awesome 5 Free";
-    display: contents
+    display: contents;
+    text-shadow: none;
 }
 
 .fb-not-favorited {
