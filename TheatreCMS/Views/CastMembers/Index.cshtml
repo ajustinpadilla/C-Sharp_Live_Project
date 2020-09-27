@@ -50,11 +50,11 @@
                     {
                         if (FavCastIds.Contains(item.CastMemberID.ToString()))
                         {
-                            <p class="fb-favorited" id="fb-@item.CastMemberID" onclick="FavoriteCastMember(@item.CastMemberID)"></p>
+                            <span class="fb-favorited" id="fb-@item.CastMemberID" onclick="FavoriteCastMember(@item.CastMemberID)"></span>
                         }
                             else
                         {
-                            <p class="fb-not-favorited" id="fb-@item.CastMemberID" onclick="FavoriteCastMember(@item.CastMemberID)"></p>
+                            <span class="fb-not-favorited" id="fb-@item.CastMemberID" onclick="FavoriteCastMember(@item.CastMemberID)"></span>
                         }
 
                     }
