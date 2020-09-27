@@ -515,9 +515,7 @@ namespace TheatreCMS.Controllers
                 if (currentUser != null && currentUser.FavoriteCastMembers != null)
                 {
                     // Break down the FavoriteCastMembers string and turn it into a list
-                    string[] stringFavCastIds = currentUser.FavoriteCastMembers.Split(',');
-                    List<string> favCastIds = new List<string> { };
-                    foreach (string castId in stringFavCastIds) favCastIds.Add(castId);
+                    List<string> favCastIds = currentUser.FavoriteCastMembers.Split(',').ToList();
                     // If the Id is in the list, remove it. If not, add it.
                     if (favCastIds.Contains(cmId)) favCastIds.Remove(cmId);
                     else favCastIds.Add(cmId);

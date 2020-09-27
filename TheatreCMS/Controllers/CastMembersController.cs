@@ -28,7 +28,6 @@ namespace TheatreCMS.Controllers
                 keyValuePairs.Add(user.Id, user.UserName);
             ViewBag.Users = keyValuePairs;
 
-            List<string> favCastIds = new List<string> { };
             if (Request.IsAuthenticated)
             {
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
@@ -37,11 +36,9 @@ namespace TheatreCMS.Controllers
                 if (currentUser != null && currentUser.FavoriteCastMembers != null)
                 {
                     // Break the string down into a list and send to view
-                    string[] stringFavCastIds = currentUser.FavoriteCastMembers.Split(',');
-                    foreach(string castId in stringFavCastIds) favCastIds.Add(castId);
+                    ViewBag.FavCastIds = currentUser.FavoriteCastMembers.Split(',').ToList();
                 }
             }
-            ViewBag.FavCastIds = favCastIds;
 
             return View(db.CastMembers.ToList());
         }
