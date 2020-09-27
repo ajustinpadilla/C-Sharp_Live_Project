@@ -3798,7 +3798,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
 
@@ -3812,11 +3812,12 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     -ms-flex: 1 0 0%;
     flex: 1 0 0%;
     margin-right: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     margin-left: 15px;
     position: relative;
     word-wrap: break-word;
     background-clip: border-box;
+    
 }
 
 /*opaque overlay for card hover*/
@@ -3826,16 +3827,33 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 
 /*=======   Begin Button Styling for Part Index Page Admin Controls  ========== */
-.fa-edit, .fa-info-circle, .fa-trash-alt {
+
+.partActions .btn {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 5px;
     color: whitesmoke;
-    height: 1.46em;
     transition: .33s;
+    
 }
 
-    .fa-edit:hover, .fa-info-circle:hover, .fa-trash-alt:hover {
-        transform: scale(1.3);
+.partActions .btn:hover {
+        transform: scale(1.25);
         color: white;
     }
+
+.part-card .partActions .btn {
+    opacity: 0;
+    transition: .3s;
+}
+
+.part-card:hover .partActions .btn {
+    opacity: 1;
+}
+
+
+
 /*=======   End Button Styling for Part Index Page Admin Controls  ========== */
 
 /*.part-overlay .btn-light {

@@ -80,17 +80,17 @@
             <p class="bold mt-1 mb-0 text-center">Details</p>
             <p class="card-text ml-3 mr-3 part-details-elipsis">@Html.DisplayFor(modelItem => (item.Details))</p>
             <!--Card overlay for edit tools-->
-            <div class="part-overlay mask d-flex align-items-end justify-content-center">
+            <div class="part-overlay d-flex align-items-end justify-content-center">
 
 
               <!--condition to look for admin authority and give access to edit options for cards-->
               @if (User.IsInRole("Admin"))
               {
-
+              <div class="partActions">
                 <a class="btn" href="@Url.Action("Edit", new { id = item.PartID })"><i class="fas fa-edit fa-2x"></i></a>
-                <a class="btn" href="@Url.Action("Details", new { id = item.PartID })"><i class="fas fa-info-circle fa-2x"></i></a>
-                <a class="btn" href="@Url.Action("Delete", new { id = item.PartID })"><i class="fas fa-trash-alt fa-2x"></i></a>
-
+                <a class="btn ml-3" href="@Url.Action("Details", new { id = item.PartID })"><i class="fas fa-info-circle fa-2x"></i></a>
+                <a class="btn ml-3" href="@Url.Action("Delete", new { id = item.PartID })"><i class="fas fa-trash-alt fa-2x"></i></a>
+              </div>
 
               }
 
