@@ -4553,13 +4553,7 @@ ul.dependency {
     font-weight: 400;
 }
 
-.fb-not-favorited:hover {
-    /*font-weight: 900;*/
-    cursor: pointer;
-}
-
-.fb-favorited:hover {
-    /*font-weight:400;*/
+.fb-not-favorited:hover, .fb-favorited:hover {
     cursor: pointer;
 }
 
