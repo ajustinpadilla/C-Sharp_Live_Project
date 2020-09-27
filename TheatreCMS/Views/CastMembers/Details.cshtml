@@ -17,8 +17,6 @@
                 <div class="col-md-4">
                     @*This collumn holds everything on the left side of the page*@
                     <h2 id="Isaiah_castname">
-                        @Html.DisplayFor(model => model.Name)
-
                         @if (User.Identity.IsAuthenticated)
                         {
                             int cmid = Model.CastMemberID;
@@ -30,8 +28,9 @@
                             {
                                 <span class="fb-not-favorited" id="fb-@cmid" onclick="FavoriteCastMember(@cmid)"></span>
                             }
-
                         }
+
+                        @Html.DisplayFor(model => model.Name)
 
                     </h2> @*The id is for my javascript code*@
 

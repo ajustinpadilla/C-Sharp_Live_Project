@@ -43,8 +43,6 @@
             @*<div class="castMiddle mr-3 mb-1 pb-0">*@
             <div class="card-body">
                 <h4 class="card-title">
-                    @Html.DisplayFor(modelItem => item.Name),
-                    @Html.DisplayFor(modelItem => item.MainRole)
                     @* Favorite cast members button *@
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -56,8 +54,9 @@
                         {
                             <span class="fb-not-favorited" id="fb-@item.CastMemberID" onclick="FavoriteCastMember(@item.CastMemberID)"></span>
                         }
-
                     }
+                    @Html.DisplayFor(modelItem => item.Name),
+                    @Html.DisplayFor(modelItem => item.MainRole)
                 </h4>
                 @{ @*Added if statement so "YearJoined" variable is only used if the year joined is not null*@
                     if (item.YearJoined != null)
