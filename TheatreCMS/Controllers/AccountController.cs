@@ -521,7 +521,8 @@ namespace TheatreCMS.Controllers
                     else favCastIds.Add(cmId);
 
                     // Convert the list back into a string to store in the database
-                    currentUser.FavoriteCastMembers = string.Join(",", favCastIds);
+                    if (favCastIds[0] == "") currentUser.FavoriteCastMembers = "";
+                    else currentUser.FavoriteCastMembers = string.Join(",", favCastIds);
                     db.SaveChanges();
                 }
                 else if (currentUser != null)
