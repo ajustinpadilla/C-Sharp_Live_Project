@@ -56,6 +56,7 @@ namespace TheatreCMS.Models
         public string AddressCityStateZip { get; set; }
         public string PhoneSales { get; set; }
         public string PhoneGeneral { get; set; }
+        public string CopyrightYear { get; set; }
     }
     public class ModelsMissingPhotos        //Used for methods reguarding missing photos in models
     {
