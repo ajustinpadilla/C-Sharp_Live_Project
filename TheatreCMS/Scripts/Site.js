@@ -497,3 +497,57 @@ function GenerateCalendar(rentalEvents) {
 };  // ************************************************************************ Rental Request Calendar Script End *************************************************************************************//    
 
 
+//****************************************************************************** Delete Mulitple Parts Scripts *****************************************************************************************//
+
+
+// Toggles the trash button above parts to be active, or inactive
+$(".partDeleteCheckbox").click(function () {
+    var trash = $(".msg-del-btn");
+    if ($(".partDeleteCheckbox").is(":checked")) {
+        trash.removeClass("inactive");
+        $(this).closest('div').removeClass('border-white');
+        $(this).closest('div').addClass('border-success');
+    }
+    else {
+        trash.addClass("inactive");
+        $(this).closest('div').removeClass('border-success');
+        $(this).closest('div').addClass('border-white');
+    }
+});
+
+// Passing the CalendarEvents id's that are checked to the modal to be sent to the controller for deletion
+$(".delete").click(function () {
+    var modal = $("#multiDeleteModal").find(".modal-body");
+    $(".partDeleteCheckbox:checked").each(function (index) {
+        var partId = $(this).val();
+        $(modal).append("<input name='PartIdsToDelete' value='" + partId + "' type='hidden' />");
+    });
+});
+
+
+// Append the Titles' of the selected parts & the total amount to the modal
+$(".msg-del-btn").click(function () {
+    var partTitle = "";
+    var partsList = [];
+    var partsTotal = 0;
+    $(".partDeleteCheckbox:checked").each(function () {
+        partTitle = $(this).attr("name");
+        partsList.push(partTitle);
+    });
+    for (var i = 0; i < partsList.length; i++) {
+        $("#partsList").append("<li class='temp-event'>" + partsList[i] + "</li>");
+    }
+    partsTotal = partsList.length;
+    $(".parts-total").append("<span class='temp-total'>" + partsTotal + "</span>");
+
+});
+
+// Remove the Titles and total number of selected parts from the modal on cancel
+$(".cancel").click(function () {
+    $("#partsList").children().remove(".temp-event");
+    $(".parts-total").children().remove(".temp-total");
+})
+
+
+
+//****************************************************************************** Delete Mulitple Parts Scripts End *************************************************************************************//

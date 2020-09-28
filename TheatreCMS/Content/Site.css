@@ -2313,7 +2313,7 @@ tr.event-row {
 /* ===== End row indicator styling for CalendarEvent deletion ===== */
 
 
-/* ===== Styling for admin multi CalendarEvent delete Modal ===== */
+/* ===== Styling for admin multi CalendarEvent delete Modal & multi Parts Delete Modal ===== */
 
 /* Changes modal color default to black */
 #multiDeleteModal {
@@ -2342,7 +2342,7 @@ tr.event-row {
     }
 
 /* Styles and colors subheading for modal */
-.events-comment {
+.events-comment, .parts-comment {
     text-align: center;
     font-weight: 500;
     color: var(--light-color);
@@ -2351,7 +2351,7 @@ tr.event-row {
 }
 
 /* Styles and positions CalendarEvent titles to be deleted */
-#eventsList {
+#eventsList, #partsList {
     list-style: none;
     text-align: center;
     font-weight: 500;
@@ -2376,12 +2376,12 @@ tr.event-row {
 }
 
 /* Styles indicator for total number of titles to be deleted */
-.events-total {
+.events-total,  .parts-total {
     color: var(--light-color);
     text-align: center;
     font-weight: 500;
 }
-/* ===== End admin multi-delete function for CalendarEvents from table ===== */
+/* ===== End admin multi-delete function for CalendarEvents from table & Roles from Parts ===== */
 
 
 /*Product Details*/
