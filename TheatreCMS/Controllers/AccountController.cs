@@ -515,14 +515,15 @@ namespace TheatreCMS.Controllers
                 if (currentUser != null && currentUser.FavoriteCastMembers != null)
                 {
                     // Break down the FavoriteCastMembers string and turn it into a list
-                    List<string> favCastIds = currentUser.FavoriteCastMembers.Split(',').ToList();
+                    List<string> favCastIds = new List<string> { };
+                    if (currentUser.FavoriteCastMembers != "")
+                        favCastIds = currentUser.FavoriteCastMembers.Split(',').ToList();
                     // If the Id is in the list, remove it. If not, add it.
                     if (favCastIds.Contains(cmId)) favCastIds.Remove(cmId);
                     else favCastIds.Add(cmId);
 
                     // Convert the list back into a string to store in the database
-                    if (favCastIds[0] == "") currentUser.FavoriteCastMembers = "";
-                    else currentUser.FavoriteCastMembers = string.Join(",", favCastIds);
+                    currentUser.FavoriteCastMembers = string.Join(",", favCastIds);
                     db.SaveChanges();
                 }
                 else if (currentUser != null)
