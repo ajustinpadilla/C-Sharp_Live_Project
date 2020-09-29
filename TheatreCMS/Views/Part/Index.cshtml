@@ -100,11 +100,11 @@
     @foreach (var item in Model)
     {
         <div class="part-cardHover">
-            <div class="text-light mb-3 align-items-center part-card border-white" id="partCard{@item.PartID}">
+            <div class="text-light mb-3 align-items-center part-card border-white" id="part-card-@item.PartID">
                 @if (User.IsInRole("Admin"))
                 {
                     // Adds item to be deleted when checked
-                    <div class="part-overlay">
+                    <div class="part-card-checkbox" id="check-@item.PartID" data-toggle="part-Delete-Checkbox" data-placement="top" title="Checked parts added to be deleted">
                         @Html.CheckBox(item.Person.Name + " in "+item.Production.Title.ToString(), new { @class = "partDeleteCheckbox", @value = item.PartID })
                     </div>
 

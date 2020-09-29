@@ -503,17 +503,34 @@ function GenerateCalendar(rentalEvents) {
 // Toggles the trash button above parts to be active, or inactive
 $(".partDeleteCheckbox").click(function () {
     var trash = $(".msg-del-btn");
+    var id = $(this).attr('id');
     if ($(".partDeleteCheckbox").is(":checked")) {
         trash.removeClass("inactive");
-        $(this).closest('div').removeClass('border-white');
-        $(this).closest('div').addClass('border-success');
     }
     else {
         trash.addClass("inactive");
-        $(this).closest('div').removeClass('border-success');
-        $(this).closest('div').addClass('border-white');
     }
+    DeleteVisualQueue(id);
 });
+
+// Toggles the visual queue to work on only the targeted part
+function DeleteVisualQueue(id) {
+    var part = $("#" + id);
+    var partVal = part.val()
+    if (part.is(":checked")) {
+        $('#part-card-' + partVal).removeClass('border-white');
+        $('#part-card-' + partVal).addClass('border-warning border-3');
+        $('#check-' + partVal).removeClass('part-card-check');
+        $('#check-' + partVal).addClass('part-card-check-opaque');
+    }
+    else {
+        $('#part-card-' + partVal).removeClass('border-warning border-3');
+        $('#part-card-' + partVal).addClass('border-white');
+        $('#check-' + partVal).removeClass('part-card-check-opaque');
+        $('#check-' + partVal).addClass('part-card-check');
+    }
+
+}
 
 // Passing the CalendarEvents id's that are checked to the modal to be sent to the controller for deletion
 $(".delete").click(function () {
@@ -548,6 +565,10 @@ $(".cancel").click(function () {
     $(".parts-total").children().remove(".temp-total");
 })
 
+
+$(function () {
+    $('[data-toggle="part-Delete-Checkbox"]').tooltip()
+})
 
 
 //****************************************************************************** Delete Mulitple Parts Scripts End *************************************************************************************//

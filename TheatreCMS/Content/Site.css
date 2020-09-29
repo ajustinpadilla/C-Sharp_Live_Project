@@ -3802,7 +3802,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     -webkit-box-orient: vertical;
 }
 
-.part-overlay {
+.part-overlay, .part-card-checkbox {
     opacity: 0;
     position: absolute;
     border-radius: 15px;
@@ -3819,8 +3819,13 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     background-clip: border-box;
 }
 
+.part-card-checkbox{
+    position: fixed
+}
+
 /*opaque overlay for card hover*/
-.part-cardHover:hover .part-overlay {
+.part-cardHover:hover .part-overlay,
+.part-cardHover:hover .part-card-checkbox {
     opacity: 1;
 }
 
@@ -3843,7 +3848,17 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 .part-overlay:hover .btn-light:hover {
     background-color: var(--main-bg-color);
-} 
+}
+
+.part-card-checkbox-opaque {
+    opacity: 1;
+    min-width: 250px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    position: fixed;
+    background-clip: border-box;
+}
 
 
 /*card formatting for part page*/
@@ -4540,4 +4555,9 @@ ul.dependency {
 .focus-negate .form-control:focus {
     border-color: none;
     box-shadow: none;
+}
+
+/* widen the border*/
+.border-3 {
+    border-width: 3px;
 }

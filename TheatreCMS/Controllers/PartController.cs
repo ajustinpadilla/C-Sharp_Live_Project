@@ -276,10 +276,10 @@ namespace TheatreCMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult PartsToDelete (IEnumerable<int> PartIdsToDelete)
+        public ActionResult DeleteMulitpleParts (IEnumerable<int> PartIdsToDelete)
         {
-            List<Part> deletingParts = db.Parts.Where(x => PartIdsToDelete.Contains(x.PartID)).ToList();
-            foreach (var part in deletingParts)
+            List<Part> partsToDelete = db.Parts.Where(x => PartIdsToDelete.Contains(x.PartID)).ToList();
+            foreach (var part in partsToDelete)
             {
                 db.Parts.Remove(db.Parts.Find(part.PartID));
                 db.SaveChanges();
