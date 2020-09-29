@@ -497,3 +497,26 @@ function GenerateCalendar(rentalEvents) {
 };  // ************************************************************************ Rental Request Calendar Script End *************************************************************************************//    
 
 
+// ************************************************************************ Favorite Cast Member Button ************************************************************************
+
+function FavoriteCastMember(castMemeberId) {
+    var paragraphId = "fb-" + castMemeberId;
+    var likeBtn = document.getElementById(paragraphId);
+
+    $.ajax({
+        method: 'POST',
+        url: '/Account/ToggleFavoriteCastMembers/',
+        data: { 'id': castMemeberId },
+
+    })
+
+    if (likeBtn.classList.contains("fb-not-favorited")) {
+        likeBtn.classList.remove("fb-not-favorited");
+        likeBtn.classList.add("fb-favorited");
+    } else if (likeBtn.classList.contains("fb-favorited")) {
+        likeBtn.classList.remove("fb-favorited");
+        likeBtn.classList.add("fb-not-favorited");
+    }
+};
+
+// ************************************************************************ End Favorite Cast Member ************************************************************************

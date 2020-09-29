@@ -43,6 +43,11 @@ namespace TheatreCMS.Models
     }
     public class RecentDefinition      //Lets Admin Define what they consider to be "recent", such as recent subscribers or productions
     {
+        //// 0 = Date
+        //// 1 = Span
+        //public byte selection { get; set; }     // Span or Date
+        public bool bUsingSpan { get; set; }    // If True, using Span instead of Date
+
         public int? span { get; set; }        //Number of months in the past
 
         [DataType(DataType.Date)]
