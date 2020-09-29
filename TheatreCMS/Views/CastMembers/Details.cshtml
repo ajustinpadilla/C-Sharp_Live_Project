@@ -3,7 +3,8 @@
 
 
 @{
-  ViewBag.Title = "Details";
+    ViewBag.Title = "Details";
+    var FavCastIds = ViewBag.FavCastIds;
 }
 
 
@@ -15,7 +16,23 @@
                 
                 <div class="col-md-4">
                     @*This collumn holds everything on the left side of the page*@
-                    <h2 id="Isaiah_castname">@Html.DisplayFor(model => model.Name)</h2> @*The id is for my javascript code*@
+                    <h2 id="Isaiah_castname">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            int cmid = Model.CastMemberID;
+                            if (FavCastIds.Contains(cmid.ToString()))
+                            {
+                                <span class="fb-favorited" id="fb-@cmid" onclick="FavoriteCastMember(@cmid)"></span>
+                            }
+                            else
+                            {
+                                <span class="fb-not-favorited" id="fb-@cmid" onclick="FavoriteCastMember(@cmid)"></span>
+                            }
+                        }
+
+                        @Html.DisplayFor(model => model.Name)
+
+                    </h2> @*The id is for my javascript code*@
 
                     @*Added an id for my javascript and bootstrap classes for reactive styling*@
                     <img id="Isaiah_castImage" src="@Url.Action("DisplayPhoto", "Photo", new { id = Model.PhotoId })" class="img-fluid imgRouned w-100" />

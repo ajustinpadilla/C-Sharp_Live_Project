@@ -6,6 +6,7 @@
     ViewBag.Title = "Cast";
     // UserIds set to make it easier to read
     var UserIds = ViewBag.Users as Dictionary<string, string>;
+    var FavCastIds = ViewBag.FavCastIds;
 }
 
 <h1 class="text-center m-3 pt-3">Cast</h1>
@@ -42,6 +43,18 @@
             @*<div class="castMiddle mr-3 mb-1 pb-0">*@
             <div class="card-body">
                 <h4 class="card-title">
+                    @* Favorite cast members button *@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (FavCastIds.Contains(item.CastMemberID.ToString()))
+                        {
+                            <span class="fb-favorited" id="fb-@item.CastMemberID" onclick="FavoriteCastMember(@item.CastMemberID)"></span>
+                        }
+                            else
+                        {
+                            <span class="fb-not-favorited" id="fb-@item.CastMemberID" onclick="FavoriteCastMember(@item.CastMemberID)"></span>
+                        }
+                    }
                     @Html.DisplayFor(modelItem => item.Name),
                     @Html.DisplayFor(modelItem => item.MainRole)
                 </h4>
@@ -83,3 +96,4 @@
         </div>
     }
 </div>
+

@@ -4541,3 +4541,28 @@ ul.dependency {
     border-color: none;
     box-shadow: none;
 }
+
+/*=================== Favorite Cast Member Button ===================*/
+
+.fb-favorited, .fb-not-favorited {
+    font-family: "Font Awesome 5 Free";
+    display: contents;
+    text-shadow: none;
+}
+
+.fb-not-favorited {
+    font-weight: 400;
+}
+
+.fb-not-favorited:hover, .fb-favorited:hover {
+    cursor: pointer;
+}
+
+.fb-favorited {
+    font-weight: 900;
+}
+
+.fb-not-favorited::before, .fb-favorited::before {
+    content: "\f004";
+    color: var(--main-secondary-color);
+}
