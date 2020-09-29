@@ -166,44 +166,64 @@
   <br />
   <br />
 
-  RECENT DEFINITION:
-  <br />
-  Date:
-  <br />
-  <input align="center" type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")">
-  <br />
-  <br />
-  Span:
-  <br />
-  <input align="center" type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)">
-  <br />
-  <br />
-  <br />
-  ONSTAGE:
-  @*<input type="number" name="Onstage" value="@Html.DisplayFor(model => model.onstage)"><br /><br />*@
-  <div>
-    @Html.DropDownListFor(model => model.on_stage, (IEnumerable
-    <SelectListItem>)ViewData["ProductionList"])
-  </div>
-  <br />
-  <br />
-  <br />
-  @* Inputs for Footer Information *@
-  FOOTER INFORMATION<br />
-  Address - Street<br />
-  <input type="text" name="FooterInfo.AddressStreet" value="@Html.DisplayFor(model => model.FooterInfo.AddressStreet)">
-  Address - City, State, Zip<br />
-  <input type="text" name="FooterInfo.AddressCityStateZip" value="@Html.DisplayFor(model => model.FooterInfo.AddressCityStateZip)">
-  Phone Number - Sales<br />
-  <input type="text" name="FooterInfo.PhoneSales" value="@Html.DisplayFor(model => model.FooterInfo.PhoneSales)">
-  Phone Number - General<br />
-  <input type="text" name="FooterInfo.PhoneGeneral" value="@Html.DisplayFor(model => model.FooterInfo.PhoneGeneral)">
-  Copyright Year<br />
-  <input type="text" name="FooterInfo.CopyrightYear" value="@Html.DisplayFor(model => model.FooterInfo.CopyrightYear)">
-  <br />
-  <br />
-  <br />
-  <button type="submit">Submit</button>
+    RECENT DEFINITION:
+    <br />
+    <input type="radio" name="recent_definition.bUsingSpan" value="false" id="recentDefDateSel" 
+           @if (!Model.recent_definition.bUsingSpan) { 
+               @:checked 
+               }/>
+
+<label for="recentDefDateSel">Date:</label>
+
+<br />
+
+<input align="center" type="date" name="recent_definition.date" value="@Model.recent_definition.date.ToString("yyyy-MM-dd")">
+
+<br />
+
+<br />
+
+<input type="radio" name="recent_definition.bUsingSpan" value="true" id="recentDefSpanSel" 
+           @if (Model.recent_definition.bUsingSpan) { 
+               @:checked 
+               }/>
+
+<label for="recentDefDateSel">Span (Months):</label>
+
+<br />
+
+<input align="center" type="number" name="recent_definition.span" value="@Html.DisplayFor(model => model.recent_definition.span)">
+
+<br />
+
+<br />
+
+<br />
+ONSTAGE:
+    @*<input type="number" name="Onstage" value="@Html.DisplayFor(model => model.onstage)"><br /><br />*@
+    <div>
+        @Html.DropDownListFor(model => model.on_stage, (IEnumerable
+        <SelectListItem>)ViewData["ProductionList"])
+    </div>
+    <br />
+    <br />
+    <br />
+    @* Inputs for Footer Information *@
+    FOOTER INFORMATION<br />
+    Address - Street<br />
+    <input type="text" name="FooterInfo.AddressStreet" value="@Html.DisplayFor(model => model.FooterInfo.AddressStreet)">
+    Address - City, State, Zip<br />
+    <input type="text" name="FooterInfo.AddressCityStateZip" value="@Html.DisplayFor(model => model.FooterInfo.AddressCityStateZip)">
+    Phone Number - Sales<br />
+    <input type="text" name="FooterInfo.PhoneSales" value="@Html.DisplayFor(model => model.FooterInfo.PhoneSales)">
+    Phone Number - General<br />
+    <input type="text" name="FooterInfo.PhoneGeneral" value="@Html.DisplayFor(model => model.FooterInfo.PhoneGeneral)">
+    Copyright Year<br />
+    <input type="text" name="FooterInfo.CopyrightYear" value="@Html.DisplayFor(model => model.FooterInfo.CopyrightYear)">
+    <br />
+    <br />
+    <br />
+    <button type="submit">Submit</button>
 </div>
     }
 

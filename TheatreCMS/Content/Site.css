@@ -3832,7 +3832,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 0px;
-    padding-bottom: 5px;
+    padding-bottom: 16px;
     color: whitesmoke;
     transition: .33s;
     
@@ -4133,9 +4133,13 @@ button.part-create {
     width: 18px;
 }
 
+
 .btn-danger.msg-del-btn {
+    display: inline-block;
+    
+    margin: 5px;
     height: 100%;
-    padding: .75rem;
+    vertical-align: top;
     color: white;
     border: none;
 }
@@ -4145,7 +4149,10 @@ button.part-create {
     }
 
     .btn-danger.msg-del-btn.inactive {
-        padding: .75rem;
+        display:inline-block;
+        vertical-align: top;
+        
+        margin: 5px;
         background: grey;
         height: 100%;
         opacity: .8;
@@ -4567,6 +4574,27 @@ ul.dependency {
     box-shadow: none;
 }
 
+/*=================== Favorite Cast Member Button ===================*/
 
+.fb-favorited, .fb-not-favorited {
+    font-family: "Font Awesome 5 Free";
+    display: contents;
+    text-shadow: none;
+}
 
+.fb-not-favorited {
+    font-weight: 400;
+}
 
+.fb-not-favorited:hover, .fb-favorited:hover {
+    cursor: pointer;
+}
+
+.fb-favorited {
+    font-weight: 900;
+}
+
+.fb-not-favorited::before, .fb-favorited::before {
+    content: "\f004";
+    color: var(--main-secondary-color);
+}
