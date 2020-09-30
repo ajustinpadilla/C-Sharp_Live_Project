@@ -59,40 +59,44 @@
     @foreach (var item in Model)
     {
         <div class="part-cardHover">
-            <div class="text-light mb-3 align-items-center part-card border-white">
-                <h5 class="mt-3 mb-3 underline text-center">@Html.DisplayFor(modelItem => item.Person.Name)</h5>
-                <!--Check for what type of job and displays correct formatting for card.-->
-                @if ((int)item.Type > 0)
-                {
-                    //non-actor formatting
-                    <h6 class=" ml-4 mr-4 text-center"> @Html.DisplayFor(modelItem => item.Type)</h6>
-                }
-                else
-                {
-                    //actor formatting
-                    <p class="font-italic text-center mb-0">Playing:</p>
-                    <h6 class="mb-1 text-center"> @Html.DisplayFor(modelItem => item.Character) </h6>
-                }
-                <p class="font-italic m-0">In the Production:</p>
-                <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
-                <p class="bold mt-1 mb-0 text-center">Details</p>
-                <p class="card-text ml-3 mr-3 part-details-elipsis">@Html.DisplayFor(modelItem => (item.Details))</p>
+          
+          
+          <div class="text-light mb-3 align-items-center part-card border-white">
+            <h5 class="mt-3 mb-3 underline text-center">@Html.DisplayFor(modelItem => item.Person.Name)</h5>
+            <!--Check for what type of job and displays correct formatting for card.-->
+            @if ((int)item.Type > 0)
+            {
+              //non-actor formatting
+              <h6 class=" ml-4 mr-4 text-center"> @Html.DisplayFor(modelItem => item.Type)</h6>
+            }
+            else
+            {
+              //actor formatting
+              <p class="font-italic text-center mb-0">Playing:</p>
+              <h6 class="mb-1 text-center"> @Html.DisplayFor(modelItem => item.Character) </h6>
+            }
+            <p class="font-italic m-0">In the Production:</p>
+            <h6 class=" ml-4 mr-4 text-center">@Html.DisplayFor(modelItem => item.Production.Title)</h6>
+            <p class="bold mt-1 mb-0 text-center">Details</p>
+            <p class="card-text ml-3 mr-3 part-details-elipsis">@Html.DisplayFor(modelItem => (item.Details))</p>
+            <!--Card overlay for edit tools-->
+            <div class="part-overlay d-flex align-items-end justify-content-center">
 
-                <!--Card overlay for edit tools-->
-                <div class="part-overlay mask d-flex align-items-end justify-content-center">
 
-                    
-                    <!--condition to look for admin authority and give access to edit options for cards-->
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <button class="btn btn-light">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </button>
-                        <button class="btn btn-light">@Html.ActionLink("Delete", "Delete", new { id = item.PartID }) </button>
-                        <button class="btn btn-light">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </button>
-                    }
-                    
-                   
-                </div>
+              <!--condition to look for admin authority and give access to edit options for cards-->
+              @if (User.IsInRole("Admin"))
+              {
+              <div class="partActions">
+                <a class="btn" href="@Url.Action("Edit", new { id = item.PartID })"><i class="fas fa-edit fa-2x"></i></a>
+                <a class="btn ml-3" href="@Url.Action("Details", new { id = item.PartID })"><i class="fas fa-info-circle fa-2x"></i></a>
+                <a class="btn ml-3" href="@Url.Action("Delete", new { id = item.PartID })"><i class="fas fa-trash-alt fa-2x"></i></a>
+              </div>
+
+              }
+
+
             </div>
+          </div>
         </div>
     }
 </div>

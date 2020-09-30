@@ -13,6 +13,8 @@ using TheatreCMS.Models;
 using System.Web.Helpers;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace TheatreCMS.Controllers
 {
@@ -498,6 +500,42 @@ namespace TheatreCMS.Controllers
         public ActionResult UnauthorizedAccess()
         {
             return View();
+        }
+
+        // Add or remove a cast member id from the user's FavorateCastMembers list
+        private ApplicationDbContext db = new ApplicationDbContext();
+        [HttpPost]
+        public void ToggleFavoriteCastMembers(int? id)
+        {
+            string cmId = id.ToString();
+
+            // Check/get the current user
+            if (Request.IsAuthenticated)
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null && currentUser.FavoriteCastMembers != null)
+                {
+                    // Break down the FavoriteCastMembers string and turn it into a list
+                    List<string> favCastIds = new List<string> { };
+                    if (currentUser.FavoriteCastMembers != "")
+                        favCastIds = currentUser.FavoriteCastMembers.Split(',').ToList();
+                    // If the Id is in the list, remove it. If not, add it.
+                    if (favCastIds.Contains(cmId)) favCastIds.Remove(cmId);
+                    else favCastIds.Add(cmId);
+
+                    // Convert the list back into a string to store in the database
+                    currentUser.FavoriteCastMembers = string.Join(",", favCastIds);
+                    db.SaveChanges();
+                }
+                else if (currentUser != null)
+                {
+                    currentUser.FavoriteCastMembers = cmId;
+                    System.Diagnostics.Debug.WriteLine("BBGG");
+                    db.SaveChanges();
+                }
+            }
         }
 
         #region Helpers

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using TheatreCMS.Models;
 //using Microsoft.AspNet.Identity;
 
@@ -25,7 +27,19 @@ namespace TheatreCMS.Controllers
             foreach (var user in Users)
                 keyValuePairs.Add(user.Id, user.UserName);
             ViewBag.Users = keyValuePairs;
-            
+
+            if (Request.IsAuthenticated)
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null && currentUser.FavoriteCastMembers != null)
+                {
+                    // Break the string down into a list and send to view
+                    ViewBag.FavCastIds = currentUser.FavoriteCastMembers.Split(',').ToList();
+                }
+            }
+
             return View(db.CastMembers.ToList());
         }
 
@@ -48,6 +62,19 @@ namespace TheatreCMS.Controllers
             //Passes The Username of the currently selected cast member to the model
             if (castMember.CastMemberPersonID != null)
                 ViewBag.CurrentUser = db.Users.Find(castMember.CastMemberPersonID).UserName;
+
+            if (Request.IsAuthenticated)
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null && currentUser.FavoriteCastMembers != null)
+                {
+                    // Break the string down into a list and send to view
+                    ViewBag.FavCastIds = currentUser.FavoriteCastMembers.Split(',').ToList();
+                }
+            }
+
             return View(castMember);
         }
 
