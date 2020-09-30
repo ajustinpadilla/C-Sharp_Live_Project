@@ -90,8 +90,11 @@ namespace TheatreCMS.Controllers
             //So, we can find the user whose Email is model.Email via ->
             var tempUser = UserManager.FindByEmail(model.Email);
 
-            //and extract their username as a string to pass to SignInManager.PasswordSignInAsync
-            try
+            //and extract their username as a string to pass to SignInManager.PasswordSignInAsync:
+
+            //Check if the user exists (whether the user is null) before further verifacation is attempted. 
+            //If the user doesn't exist then the login failure view is displayed.
+            if (tempUser != null)
             {
                 string tempUserName = tempUser.UserName;
                 var result = await SignInManager.PasswordSignInAsync(tempUserName, model.Password, model.RememberMe, shouldLockout: false);
@@ -110,7 +113,7 @@ namespace TheatreCMS.Controllers
                         return View(model);
                 }
             }
-            catch (NullReferenceException e)
+            else
             {
                 return View("LoginFailure");
             }
