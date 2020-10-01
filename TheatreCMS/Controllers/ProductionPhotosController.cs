@@ -171,8 +171,7 @@ namespace TheatreCMS.Models
         public ActionResult DeleteConfirmed(int id)
         {
             // Removes Photo and dependencies on delete
-            var photoDependency = db.ProductionPhotos.Include(b => b.Production)
-                                         .FirstOrDefault(b => b.ProPhotoId == id);
+            var photoDependency = db.ProductionPhotos.Include(b => b.Production).FirstOrDefault(b => b.ProPhotoId == id);
             db.ProductionPhotos.Remove(photoDependency);
             db.SaveChanges();
             return RedirectToAction("Index");
