@@ -110,8 +110,6 @@ namespace TheatreCMS.Controllers
             dynamic oldJSON = JObject.Parse(oldSettings);
             dynamic newJSON = JObject.Parse(newSettings);
 
-            UpdateSubscribers(newJSON);
-
             int thisSeason = AutoCalculateCurrentSeason();
             if (newJSON.current_season != thisSeason)
             {
@@ -128,6 +126,8 @@ namespace TheatreCMS.Controllers
             UpdateAdminSettings();
             currentAdminSettings = AdminSettingsReader.CurrentSettings();
             AddViewData(currentAdminSettings);
+
+            UpdateSubscribers();
 
             return View("Dashboard", currentAdminSettings);
         }
@@ -164,9 +164,27 @@ namespace TheatreCMS.Controllers
         }
 
         //Updates Changes in database depending on inputs from the Admin Settings form for recent_definition.
-        private void UpdateSubscribers(dynamic newJSON)
+        private void UpdateSubscribers()
         {
-            DateTime recentDef = newJSON.recent_definition.date;
+            // Retrieve Admin Settings
+            dynamic adminSettings = AdminSettingsReader.CurrentSettings();
+
+            // Init variable
+            DateTime recentDef = DateTime.Now;
+
+            // Check and see what the recent definition is
+            // Then set recentDef to the correct DateTime
+            // If there is no selection, recentDef will be set to now
+            // No recent subs will be displayed unless they donated at the exact time
+            if (!adminSettings.recent_definition.bUsingSpan)
+            {
+                recentDef = adminSettings.recent_definition.date;
+            }
+            else if (adminSettings.recent_definition.bUsingSpan)
+            {
+                recentDef = recentDef.AddMonths(-Convert.ToInt32(adminSettings.recent_definition.span));
+            }
+
             foreach (var subscriber in db.Subscribers)
             {
                 if (recentDef >= subscriber.LastDonated)

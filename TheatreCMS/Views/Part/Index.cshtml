@@ -131,17 +131,20 @@
                 <div class="part-overlay mask d-flex align-items-end justify-content-center">
 
 
-                    <!--condition to look for admin authority and give access to edit options for cards-->
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <button class="btn btn-light">@Html.ActionLink("Edit", "Edit", new { id = item.PartID })  </button>
-                        <button class="btn btn-light">@Html.ActionLink("Delete", "Delete", new { id = item.PartID })  </button>
-                        <button class="btn btn-light">@Html.ActionLink("Details", "Details", new { id = item.PartID }) </button>
-                    }
+              <!--condition to look for admin authority and give access to edit options for cards-->
+              @if (User.IsInRole("Admin"))
+              {
+              <div class="partActions">
+                <a class="btn" href="@Url.Action("Edit", new { id = item.PartID })"><i class="fas fa-edit fa-2x"></i></a>
+                <a class="btn ml-3" href="@Url.Action("Details", new { id = item.PartID })"><i class="fas fa-info-circle fa-2x"></i></a>
+                <a class="btn ml-3" href="@Url.Action("Delete", new { id = item.PartID })"><i class="fas fa-trash-alt fa-2x"></i></a>
+              </div>
+
+              }
 
 
-                </div>
             </div>
+          </div>
         </div>
     }
 </div>

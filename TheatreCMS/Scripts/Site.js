@@ -497,6 +497,31 @@ function GenerateCalendar(rentalEvents) {
 };  // ************************************************************************ Rental Request Calendar Script End *************************************************************************************//    
 
 
+// ************************************************************************ Favorite Cast Member Button ************************************************************************
+
+function FavoriteCastMember(castMemeberId) {
+    var paragraphId = "fb-" + castMemeberId;
+    var likeBtn = document.getElementById(paragraphId);
+
+    $.ajax({
+        method: 'POST',
+        url: '/Account/ToggleFavoriteCastMembers/',
+        data: { 'id': castMemeberId },
+
+    })
+
+    if (likeBtn.classList.contains("fb-not-favorited")) {
+        likeBtn.classList.remove("fb-not-favorited");
+        likeBtn.classList.add("fb-favorited");
+    } else if (likeBtn.classList.contains("fb-favorited")) {
+        likeBtn.classList.remove("fb-favorited");
+        likeBtn.classList.add("fb-not-favorited");
+    }
+};
+
+// ************************************************************************ End Favorite Cast Member ************************************************************************
+
+
 //****************************************************************************** Delete Mulitple Parts Scripts *****************************************************************************************//
 
 
@@ -561,14 +586,14 @@ $(".msg-del-btn").click(function () {
 $(".cancel").click(function () {
     $("#partsList").children().remove(".temp-event");
     $(".parts-total").children().remove(".temp-total");
-})
+});
 
 // Hovers a box when object is hovered only
 $(function () {
     $('[data-toggle="part-Delete-Checkbox"]').tooltip({ trigger: "hover" }, {
         'delay': { hide: 300 }
     });
-})
+});
 
 
 //****************************************************************************** Delete Mulitple Parts Scripts End *************************************************************************************//

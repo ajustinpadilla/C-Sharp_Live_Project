@@ -3798,7 +3798,7 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
 
@@ -3812,11 +3812,12 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     -ms-flex: 1 0 0%;
     flex: 1 0 0%;
     margin-right: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     margin-left: 15px;
     position: relative;
     word-wrap: break-word;
     background-clip: border-box;
+    
 }
 
 .part-card-checkbox{
@@ -3829,7 +3830,38 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     opacity: 1;
 }
 
-.part-overlay .btn-light {
+
+/*=======   Begin Button Styling for Part Index Page Admin Controls  ========== */
+
+.partActions .btn {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 16px;
+    color: whitesmoke;
+    transition: .33s;
+    
+}
+
+.partActions .btn:hover {
+        transform: scale(1.25);
+        color: white;
+    }
+
+.part-card .partActions .btn {
+    opacity: 0;
+    transition: .3s;
+}
+
+.part-card:hover .partActions .btn {
+    opacity: 1;
+}
+
+
+
+/*=======   End Button Styling for Part Index Page Admin Controls  ========== */
+
+/*.part-overlay .btn-light {
     transition: .25s;
     font-family: 'Times New Roman', Times, serif;
     color: white;
@@ -3848,7 +3880,8 @@ hr.Isaiah_castline { /*Styling the seperation line*/
 
 .part-overlay:hover .btn-light:hover {
     background-color: var(--main-bg-color);
-}
+} 
+*/
 
 .part-card-checkbox {
     opacity: 0;
@@ -4565,6 +4598,31 @@ ul.dependency {
 .focus-negate .form-control:focus {
     border-color: none;
     box-shadow: none;
+}
+
+/*=================== Favorite Cast Member Button ===================*/
+
+.fb-favorited, .fb-not-favorited {
+    font-family: "Font Awesome 5 Free";
+    display: contents;
+    text-shadow: none;
+}
+
+.fb-not-favorited {
+    font-weight: 400;
+}
+
+.fb-not-favorited:hover, .fb-favorited:hover {
+    cursor: pointer;
+}
+
+.fb-favorited {
+    font-weight: 900;
+}
+
+.fb-not-favorited::before, .fb-favorited::before {
+    content: "\f004";
+    color: var(--main-secondary-color);
 }
 
 /* Add a shadow of 3 pixels using the secondary color */
