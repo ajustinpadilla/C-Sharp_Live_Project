@@ -368,7 +368,8 @@ namespace TheatreCMS.Controllers
                 if (productionPhoto != null)
                 {
                     DbEntityEntry<ProductionPhotos> dbEntityEntry = db.Entry(productionPhoto);
-                    productionPhoto.PhotoId = 9;
+                    ProductionPhotos photoUnavailable = db.ProductionPhotos.Where(b => b.Title == "Photo Unavailable").FirstOrDefault();
+                    productionPhoto.PhotoId = photoUnavailable.PhotoId;
                     dbEntityEntry.CurrentValues.SetValues(productionPhoto);
                 }
                 // Checks for a production using this photo as a deleted photo
