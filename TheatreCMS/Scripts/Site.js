@@ -518,16 +518,14 @@ function DeleteVisualQueue(id) {
     var part = $("#" + id);
     var partVal = part.val()
     if (part.is(":checked")) {
-        $('#part-card-' + partVal).removeClass('border-white');
-        $('#part-card-' + partVal).addClass('border-warning border-3');
-        $('#check-' + partVal).removeClass('part-card-check');
-        $('#check-' + partVal).addClass('part-card-check-opaque');
+        $('#part-card-' + partVal).addClass('shadow-3-sec');
+        $('#check-' + partVal).removeClass('part-card-checkbox');
+        $('#check-' + partVal).addClass('part-card-checkbox-opaque');
     }
     else {
-        $('#part-card-' + partVal).removeClass('border-warning border-3');
-        $('#part-card-' + partVal).addClass('border-white');
-        $('#check-' + partVal).removeClass('part-card-check-opaque');
-        $('#check-' + partVal).addClass('part-card-check');
+        $('#part-card-' + partVal).removeClass('shadow-3-sec');
+        $('#check-' + partVal).removeClass('part-card-checkbox-opaque');
+        $('#check-' + partVal).addClass('part-card-checkbox');
     }
 
 }
@@ -565,9 +563,11 @@ $(".cancel").click(function () {
     $(".parts-total").children().remove(".temp-total");
 })
 
-
+// Hovers a box when object is hovered only
 $(function () {
-    $('[data-toggle="part-Delete-Checkbox"]').tooltip()
+    $('[data-toggle="part-Delete-Checkbox"]').tooltip({ trigger: "hover" }, {
+        'delay': { hide: 300 }
+    });
 })
 
 
