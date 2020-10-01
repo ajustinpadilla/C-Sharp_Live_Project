@@ -2313,7 +2313,7 @@ tr.event-row {
 /* ===== End row indicator styling for CalendarEvent deletion ===== */
 
 
-/* ===== Styling for admin multi CalendarEvent delete Modal ===== */
+/* ===== Styling for admin multi CalendarEvent delete Modal & multi Parts Delete Modal ===== */
 
 /* Changes modal color default to black */
 #multiDeleteModal {
@@ -2342,7 +2342,7 @@ tr.event-row {
     }
 
 /* Styles and colors subheading for modal */
-.events-comment {
+.events-comment, .parts-comment {
     text-align: center;
     font-weight: 500;
     color: var(--light-color);
@@ -2351,7 +2351,7 @@ tr.event-row {
 }
 
 /* Styles and positions CalendarEvent titles to be deleted */
-#eventsList {
+#eventsList, #partsList {
     list-style: none;
     text-align: center;
     font-weight: 500;
@@ -2376,12 +2376,12 @@ tr.event-row {
 }
 
 /* Styles indicator for total number of titles to be deleted */
-.events-total {
+.events-total,  .parts-total {
     color: var(--light-color);
     text-align: center;
     font-weight: 500;
 }
-/* ===== End admin multi-delete function for CalendarEvents from table ===== */
+/* ===== End admin multi-delete function for CalendarEvents from table & Roles from Parts ===== */
 
 
 /*Product Details*/
@@ -3820,8 +3820,13 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     
 }
 
+.part-card-checkbox{
+    position: absolute;
+}
+
 /*opaque overlay for card hover*/
-.part-cardHover:hover .part-overlay {
+.part-cardHover:hover .part-overlay,
+.part-cardHover:hover .part-card-checkbox {
     opacity: 1;
 }
 
@@ -3877,6 +3882,27 @@ hr.Isaiah_castline { /*Styling the seperation line*/
     background-color: var(--main-bg-color);
 } 
 */
+
+.part-card-checkbox {
+    opacity: 0;
+    float: left;
+    margin-right: 15px;
+    margin-left: 15px;
+    position: absolute;
+    background-clip: border-box;
+    left: 0;
+}
+
+.part-card-checkbox-opaque {
+    opacity: 1;
+    float: left;
+    margin-right: 15px;
+    margin-left: 15px;
+    position: absolute;
+    background-clip: border-box;
+    left: 0;
+}
+
 
 /*card formatting for part page*/
 .part-card {
@@ -4597,4 +4623,9 @@ ul.dependency {
 .fb-not-favorited::before, .fb-favorited::before {
     content: "\f004";
     color: var(--main-secondary-color);
+}
+
+/* Add a shadow of 3 pixels using the secondary color */
+.shadow-3-sec {
+    box-shadow: 0 0 0 3px var(--secondary-color);
 }
