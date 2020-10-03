@@ -271,5 +271,20 @@ namespace TheatreCMS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // POST: Deletes multiple parts at once
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public ActionResult PartsToDelete (IEnumerable<int> PartIdsToDelete)
+        {
+            List<Part> partsToDelete = db.Parts.Where(x => PartIdsToDelete.Contains(x.PartID)).ToList();
+            foreach (var part in partsToDelete)
+            {
+                db.Parts.Remove(part);
+            }
+                db.SaveChanges();
+            return Redirect("Index");
+        }
     }
 }

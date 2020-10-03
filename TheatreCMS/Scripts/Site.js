@@ -520,3 +520,80 @@ function FavoriteCastMember(castMemeberId) {
 };
 
 // ************************************************************************ End Favorite Cast Member ************************************************************************
+
+
+//****************************************************************************** Delete Mulitple Parts Scripts *****************************************************************************************//
+
+
+// Toggles the trash button above parts to be active, or inactive
+$(".partDeleteCheckbox").click(function () {
+    var trash = $(".msg-del-btn");
+    var id = $(this).attr('id');
+    if ($(".partDeleteCheckbox").is(":checked")) {
+        trash.removeClass("inactive");
+    }
+    else {
+        trash.addClass("inactive");
+    }
+    DeleteVisualQueue(id);
+});
+
+// Toggles the visual queue to work on only the targeted part
+function DeleteVisualQueue(id) {
+    var part = $("#" + id);
+    var partVal = part.val()
+    if (part.is(":checked")) {
+        $('#part-card-' + partVal).addClass('shadow-3-sec');
+        $('#check-' + partVal).removeClass('part-card-checkbox');
+        $('#check-' + partVal).addClass('part-card-checkbox-opaque');
+    }
+    else {
+        $('#part-card-' + partVal).removeClass('shadow-3-sec');
+        $('#check-' + partVal).removeClass('part-card-checkbox-opaque');
+        $('#check-' + partVal).addClass('part-card-checkbox');
+    }
+
+}
+
+// Passing the CalendarEvents id's that are checked to the modal to be sent to the controller for deletion
+$(".delete").click(function () {
+    var modal = $("#multiDeleteModal").find(".modal-body");
+    $(".partDeleteCheckbox:checked").each(function (index) {
+        var partId = $(this).val();
+        $(modal).append("<input name='PartIdsToDelete' value='" + partId + "' type='hidden' />");
+    });
+});
+
+
+// Append the Titles' of the selected parts & the total amount to the modal
+$(".msg-del-btn").click(function () {
+    var partTitle = "";
+    var partsList = [];
+    var partsTotal = 0;
+    $(".partDeleteCheckbox:checked").each(function () {
+        partTitle = $(this).attr("name");
+        partsList.push(partTitle);
+    });
+    for (var i = 0; i < partsList.length; i++) {
+        $("#partsList").append("<li class='temp-event'>" + partsList[i] + "</li>");
+    }
+    partsTotal = partsList.length;
+    $(".parts-total").append("<span class='temp-total'>" + partsTotal + "</span>");
+
+});
+
+// Remove the Titles and total number of selected parts from the modal on cancel
+$(".cancel").click(function () {
+    $("#partsList").children().remove(".temp-event");
+    $(".parts-total").children().remove(".temp-total");
+});
+
+// Hovers a box when object is hovered only
+$(function () {
+    $('[data-toggle="part-Delete-Checkbox"]').tooltip({ trigger: "hover" }, {
+        'delay': { hide: 300 }
+    });
+});
+
+
+//****************************************************************************** Delete Mulitple Parts Scripts End *************************************************************************************//
