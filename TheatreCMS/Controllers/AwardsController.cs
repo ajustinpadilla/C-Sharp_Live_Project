@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -24,6 +25,7 @@ namespace TheatreCMS.Controllers
         // GET: Awards/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -104,11 +106,23 @@ namespace TheatreCMS.Controllers
         // GET: Awards/Edit/5
         public ActionResult Edit(int? id)
         {
+            Award award = db.Awards.Find(id);
+            var yearList = new List<string>();
+            for (int i = 1997; i <= Convert.ToInt32(DateTime.Now.Year); i++) { yearList.Add(i.ToString()); }
+            var yearsItems = yearList.Select(i => new SelectListItem
+            {
+                Value = i,
+                Text = i
+            });
+            Debug.WriteLine(yearList);
+            SelectList years = new SelectList(yearsItems, "Value", "Text", award.Year);
+            Debug.WriteLine(years);
+            ViewData["Year"] = years;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Award award = db.Awards.Find(id);
             if (award == null)
             {
                 return HttpNotFound();
